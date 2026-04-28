@@ -1,0 +1,43 @@
+name: Refresh MLB Board
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 13-23 * * *"
+    - cron: "*/30 0-4 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-mlb:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install backend dependencies
+        run: pip install -r backend/requirements.txt
+
+      - name: Rebuild MLB board JSON
+        run: python backend/scripts/run_mlb.py
+
+      - name: Commit refreshed board data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add backend/data_final/mlb.json frontend/data/mlb.json
+          if git diff --cached --quiet; then
+            echo "No board changes to commit."
+            exit 0
+          fi
+          git commit -m "Refresh MLB board data"
+          git push

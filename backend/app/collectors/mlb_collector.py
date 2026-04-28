@@ -9,7 +9,7 @@ from typing import Any
 
 from app.outputs.json_writer import write_json
 from app.schemas.player_schema import RawPlayerMarketInput
-from app.utils.dates import today_et
+from app.utils.dates import now_et, today_et
 
 
 STATS_API_BASE = "https://statsapi.mlb.com/api/v1"
@@ -67,7 +67,7 @@ def fetch_schedule(slate_date: str) -> list[dict[str, Any]]:
     params = {
         "sportId": 1,
         "date": slate_date,
-        "hydrate": "probablePitcher,team",
+        "hydrate": "probablePitcher,team,linescore",
     }
     data = fetch_json(f"{STATS_API_BASE}/schedule?{urllib.parse.urlencode(params)}")
     if not data.get("dates"):
@@ -172,6 +172,8 @@ def build_game_payload(
         "away_team": away_abbr,
         "home_team": home_abbr,
         "time": format_game_time(game["gameDate"]),
+        "game_date": game["gameDate"],
+        "status": build_game_status(game),
         "players": [player.model_dump() for player in players],
     }
 
@@ -438,6 +440,45 @@ def format_game_time(game_date: str) -> str:
     first_pitch = datetime.fromisoformat(game_date.replace("Z", "+00:00"))
     local = first_pitch.astimezone(ZoneInfo("America/New_York"))
     return local.strftime("%I:%M %p ET").lstrip("0")
+
+
+def build_game_status(game: dict[str, Any]) -> dict[str, Any]:
+    from datetime import datetime
+
+    status = game.get("status", {})
+    first_pitch = datetime.fromisoformat(game["gameDate"].replace("Z", "+00:00")).astimezone(now_et().tzinfo)
+    now = now_et()
+    detailed = status.get("detailedState", "")
+    abstract = status.get("abstractGameState", "")
+    coded = status.get("codedGameState", "")
+    linescore = game.get("linescore", {})
+    current_inning = parse_int(linescore.get("currentInning"))
+
+    if abstract == "Final" or coded == "F":
+        phase = "final"
+    elif abstract == "Live" or coded in {"M", "I"}:
+        phase = "live"
+    else:
+        phase = "pregame"
+
+    minutes_to_start = int((first_pitch - now).total_seconds() // 60)
+    is_lineup_window = phase == "pregame" and minutes_to_start <= 90
+    probable_pitchers_confirmed = bool(
+        game.get("teams", {}).get("away", {}).get("probablePitcher")
+        and game.get("teams", {}).get("home", {}).get("probablePitcher")
+    )
+
+    return {
+        "phase": phase,
+        "abstract_state": abstract,
+        "detailed_state": detailed,
+        "coded_state": coded,
+        "start_time_et": first_pitch.isoformat(),
+        "minutes_to_start": minutes_to_start,
+        "current_inning": current_inning,
+        "is_lineup_window": is_lineup_window,
+        "probable_pitchers_confirmed": probable_pitchers_confirmed,
+    }
 
 
 def fetch_json(url: str) -> dict[str, Any]:
