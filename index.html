@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080808;
+  --surface: #101010;
+  --surface-2: #161616;
+  --surface-3: #1e1e1e;
+  --border: #242424;
+  --border-2: #2e2e2e;
+  --text: #f0f0f0;
+  --text-2: #909090;
+  --text-3: #505050;
+  --gold: #f0b429;
+  --gold-dim: rgba(240,180,41,0.12);
+  --green: #22c55e;
+  --green-dim: rgba(34,197,94,0.12);
+  --red: #ef4444;
+  --red-dim: rgba(239,68,68,0.12);
+  --blue: #3b82f6;
+  --blue-dim: rgba(59,130,246,0.12);
+  --mlb: #df2020;
+  --nba: #1d6bbf;
+  --wnba: #f97316;
+  --nfl: #16a34a;
+  --soccer: #0ea5e9;
+  --tennis: #a855f7;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Barlow", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+button, input, select { font: inherit; }
+button { cursor: pointer; border: none; background: none; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 3px; }
+
+/* HEADER */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(8,8,8,0.96);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  max-width: 1400px; margin: 0 auto; padding: 0 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 52px; gap: 20px;
+}
+
+.wordmark {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 22px; font-weight: 900;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--text);
+}
+.wordmark span { color: var(--gold); }
+
+.header-meta { display: flex; align-items: center; gap: 16px; }
+
+.date-badge {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3);
+}
+
+.updated-badge { font-size: 11px; color: var(--text-3); }
+.updated-badge span { color: var(--green); font-weight: 600; }
+
+/* SPORT TABS */
+.sport-tabs {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto; scrollbar-width: none;
+}
+.sport-tabs::-webkit-scrollbar { display: none; }
+
+.tabs-inner {
+  max-width: 1400px; margin: 0 auto; padding: 0 20px;
+  display: flex; gap: 0;
+}
+
+.sport-tab {
+  display: flex; align-items: center; gap: 7px;
+  padding: 12px 18px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text-3);
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s; white-space: nowrap;
+}
+.sport-tab:hover { color: var(--text-2); }
+.sport-tab[data-sport="mlb"].active { border-bottom-color: var(--mlb); color: var(--text); }
+.sport-tab[data-sport="nba"].active { border-bottom-color: var(--nba); color: var(--text); }
+.sport-tab[data-sport="wnba"].active { border-bottom-color: var(--wnba); color: var(--text); }
+.sport-tab[data-sport="nfl"].active { border-bottom-color: var(--nfl); color: var(--text); }
+.sport-tab[data-sport="soccer"].active { border-bottom-color: var(--soccer); color: var(--text); }
+.sport-tab[data-sport="tennis"].active { border-bottom-color: var(--tennis); color: var(--text); }
+
+.tab-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.sport-tab[data-sport="mlb"] .tab-dot { background: var(--mlb); }
+.sport-tab[data-sport="nba"] .tab-dot { background: var(--nba); }
+.sport-tab[data-sport="wnba"] .tab-dot { background: var(--wnba); }
+.sport-tab[data-sport="nfl"] .tab-dot { background: var(--nfl); }
+.sport-tab[data-sport="soccer"] .tab-dot { background: var(--soccer); }
+.sport-tab[data-sport="tennis"] .tab-dot { background: var(--tennis); }
+
+.tab-count {
+  background: var(--surface-3); color: var(--text-3);
+  border-radius: 3px; padding: 1px 5px;
+  font-size: 10px; font-weight: 700;
+}
+.sport-tab.active .tab-count { background: var(--gold-dim); color: var(--gold); }
+
+/* MAIN LAYOUT */
+.main {
+  max-width: 1400px; margin: 0 auto; padding: 20px;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 20px; align-items: start;
+}
+
+/* PINNED BOARD */
+.pinned-board { position: sticky; top: 104px; }
+
+.board-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; overflow: hidden;
+}
+
+.board-header {
+  padding: 12px 16px; background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.board-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 14px; font-weight: 800;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold);
+}
+
+.board-count { font-size: 11px; color: var(--text-3); font-family: "Barlow Condensed", sans-serif; letter-spacing: 1px; }
+
+.pinned-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 16px; border-bottom: 1px solid var(--border);
+  transition: background 0.12s;
+}
+.pinned-row:last-child { border-bottom: none; }
+.pinned-row:hover { background: var(--surface-2); }
+
+.pinned-rank {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 20px; font-weight: 900; color: var(--text-3);
+  width: 22px; flex-shrink: 0; line-height: 1;
+}
+.pinned-rank.top { color: var(--gold); }
+
+.pinned-info { flex: 1; min-width: 0; }
+
+.pinned-name {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 15px; font-weight: 700; letter-spacing: 0.5px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.pinned-meta { font-size: 11px; color: var(--text-3); margin-top: 1px; display: flex; align-items: center; gap: 5px; }
+.pinned-line { font-family: "Barlow Condensed", sans-serif; font-size: 13px; font-weight: 700; color: var(--gold); flex-shrink: 0; }
+
+.tier-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; border-radius: 4px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 11px; font-weight: 800; flex-shrink: 0;
+}
+.tier-A { background: var(--gold-dim); color: var(--gold); }
+.tier-B { background: var(--blue-dim); color: var(--blue); }
+.tier-C { background: var(--surface-3); color: var(--text-3); }
+.tier-D { background: var(--red-dim); color: var(--red); }
+
+/* COMING SOON */
+.coming-soon { padding: 48px 20px; text-align: center; }
+.coming-soon-icon { font-size: 32px; margin-bottom: 12px; }
+.coming-soon-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 18px; font-weight: 800; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--text-2); margin-bottom: 6px;
+}
+.coming-soon-sub { font-size: 12px; color: var(--text-3); }
+
+/* GAME CARDS */
+.section-label {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--text-3);
+  margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+}
+.section-label::before {
+  content: ""; display: inline-block;
+  width: 3px; height: 12px; background: var(--gold); border-radius: 2px;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+}
+
+.game-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; overflow: hidden;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  animation: fadeUp 0.3s ease both;
+}
+.game-card:hover { border-color: var(--border-2); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+.game-card:nth-child(1) { animation-delay: 0.05s; }
+.game-card:nth-child(2) { animation-delay: 0.10s; }
+.game-card:nth-child(3) { animation-delay: 0.15s; }
+.game-card:nth-child(4) { animation-delay: 0.20s; }
+
+.game-card-head {
+  padding: 12px 14px 10px; background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+
+.game-matchup {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 18px; font-weight: 800; letter-spacing: 0.5px; line-height: 1;
+}
+.game-time { font-size: 11px; color: var(--text-3); margin-top: 3px; }
+
+.game-market-count {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--text-3);
+  display: flex; align-items: center; gap: 4px;
+}
+.signal-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--green);
+  box-shadow: 0 0 6px rgba(34,197,94,0.6);
+}
+
+.game-card-body { padding: 10px 14px 14px; }
+.signals-list { display: flex; flex-direction: column; gap: 7px; margin-bottom: 12px; }
+
+.signal-row { display: flex; align-items: center; gap: 8px; }
+
+.market-tag {
+  flex-shrink: 0;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 10px; font-weight: 800; letter-spacing: 1px;
+  text-transform: uppercase; border-radius: 3px; padding: 2px 6px;
+  min-width: 32px; text-align: center;
+}
+.market-HR { background: rgba(239,68,68,0.15); color: #f87171; }
+.market-K  { background: var(--gold-dim); color: var(--gold); }
+.market-TB { background: var(--blue-dim); color: var(--blue); }
+.market-Hits { background: var(--green-dim); color: var(--green); }
+.market-ML { background: var(--surface-3); color: var(--text-2); }
+.market-PTS { background: rgba(249,115,22,0.15); color: #fb923c; }
+.market-REB { background: rgba(168,85,247,0.15); color: #c084fc; }
+.market-AST { background: rgba(14,165,233,0.15); color: #38bdf8; }
+.market-3PM { background: rgba(59,130,246,0.15); color: var(--blue); }
+
+.signal-player { flex: 1; min-width: 0; font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.signal-line { font-family: "Barlow Condensed", sans-serif; font-size: 13px; font-weight: 700; color: var(--text-2); white-space: nowrap; flex-shrink: 0; }
+
+.open-slate-btn {
+  width: 100%; padding: 8px;
+  background: var(--surface-3); border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-2);
+  transition: all 0.15s;
+}
+.open-slate-btn:hover {
+  background: var(--gold-dim); border-color: rgba(240,180,41,0.3); color: var(--gold);
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(0,0,0,0.8); backdrop-filter: blur(4px);
+  display: none; align-items: center; justify-content: center; padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+
+.modal-panel {
+  background: var(--surface); border: 1px solid var(--border-2);
+  border-radius: 12px; width: min(900px, 100%); max-height: 85vh;
+  overflow: hidden; display: flex; flex-direction: column;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+}
+
+.modal-head {
+  padding: 16px 20px; background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.modal-title { font-family: "Barlow Condensed", sans-serif; font-size: 22px; font-weight: 900; letter-spacing: 1px; }
+.modal-subtitle { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+
+.modal-close {
+  width: 32px; height: 32px; border-radius: 6px;
+  background: var(--surface-3); border: 1px solid var(--border);
+  color: var(--text-2); font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+}
+.modal-close:hover { background: var(--red-dim); color: var(--red); border-color: rgba(239,68,68,0.3); }
+
+.modal-tabs {
+  padding: 0 20px; background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  display: flex; gap: 0; overflow-x: auto;
+  scrollbar-width: none; flex-shrink: 0;
+}
+.modal-tabs::-webkit-scrollbar { display: none; }
+
+.modal-tab {
+  padding: 10px 16px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-3);
+  border-bottom: 2px solid transparent; transition: all 0.15s; white-space: nowrap;
+}
+.modal-tab:hover { color: var(--text-2); }
+.modal-tab.active { color: var(--text); border-bottom-color: var(--gold); }
+
+.modal-body { overflow-y: auto; flex: 1; padding: 16px 20px; }
+
+.market-section { margin-bottom: 20px; }
+.market-section-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--text-3);
+  margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+}
+
+.player-table { width: 100%; border-collapse: collapse; }
+.player-table th {
+  text-align: left;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-3);
+  padding: 6px 8px; border-bottom: 1px solid var(--border);
+}
+.player-table td { padding: 10px 8px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.player-table tr:last-child td { border-bottom: none; }
+.player-table tr:hover td { background: var(--surface-2); }
+
+.player-name-cell { font-weight: 600; font-size: 13px; }
+.player-team-cell { font-size: 11px; color: var(--text-3); font-family: "Barlow Condensed", sans-serif; font-weight: 700; letter-spacing: 1px; }
+.player-line-cell { font-family: "Barlow Condensed", sans-serif; font-size: 15px; font-weight: 700; color: var(--text-2); }
+.player-score-cell { font-family: "Barlow Condensed", sans-serif; font-size: 16px; font-weight: 800; }
+.score-high { color: var(--gold); }
+.score-mid { color: var(--text); }
+.score-low { color: var(--text-3); }
+.reason-cell { font-size: 11px; color: var(--text-3); max-width: 200px; }
+
+.empty-market { padding: 24px; text-align: center; font-size: 12px; color: var(--text-3); font-family: "Barlow Condensed", sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+
+/* SPORT VIEWS */
+.sport-view { display: none; }
+.sport-view.active { display: block; }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  .main { grid-template-columns: 1fr; }
+  .pinned-board { position: static; }
+}
+@media (max-width: 640px) {
+  .header-inner, .main, .tabs-inner { padding-left: 14px; padding-right: 14px; }
+  .modal-overlay { padding: 0; align-items: flex-end; }
+  .modal-panel { border-radius: 12px 12px 0 0; width: 100%; max-height: 92vh; }
+  .player-table th:nth-child(6), .player-table td:nth-child(6) { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="wordmark">THE <span>BOARD</span></div>
+    <div class="header-meta">
+      <div class="date-badge" id="header-date">—</div>
+      <div class="updated-badge">Updated <span id="header-updated">—</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="sport-tabs">
+  <div class="tabs-inner">
+    <button class="sport-tab active" data-sport="mlb"><span class="tab-dot"></span>MLB<span class="tab-count" id="tab-count-mlb">0</span></button>
+    <button class="sport-tab" data-sport="nba"><span class="tab-dot"></span>NBA<span class="tab-count" id="tab-count-nba">—</span></button>
+    <button class="sport-tab" data-sport="wnba"><span class="tab-dot"></span>WNBA<span class="tab-count" id="tab-count-wnba">—</span></button>
+    <button class="sport-tab" data-sport="nfl"><span class="tab-dot"></span>NFL<span class="tab-count" id="tab-count-nfl">—</span></button>
+    <button class="sport-tab" data-sport="soccer"><span class="tab-dot"></span>Soccer<span class="tab-count" id="tab-count-soccer">—</span></button>
+    <button class="sport-tab" data-sport="tennis"><span class="tab-dot"></span>Tennis<span class="tab-count" id="tab-count-tennis">—</span></button>
+  </div>
+</nav>
+
+<main class="main">
+  <div class="pinned-board" id="pinned-board-wrap"></div>
+  <div id="sport-views">
+    <div class="sport-view active" id="view-mlb"></div>
+    <div class="sport-view" id="view-nba"></div>
+    <div class="sport-view" id="view-wnba"></div>
+    <div class="sport-view" id="view-nfl"></div>
+    <div class="sport-view" id="view-soccer"></div>
+    <div class="sport-view" id="view-tennis"></div>
+  </div>
+</main>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-panel">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title" id="modal-title">—</div>
+        <div class="modal-subtitle" id="modal-subtitle">—</div>
+      </div>
+      <button class="modal-close" id="modal-close">✕</button>
+    </div>
+    <div class="modal-tabs" id="modal-tabs"></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+const DATA_FILES = {
+  mlb: "data/mlb.json",
+  nba: "data/nba.json",
+  wnba: "data/wnba.json",
+  nfl: "data/nfl.json",
+  soccer: "data/soccer.json",
+  tennis: "data/tennis.json",
+};
+
+const COMING_SOON = {
+  nba: { icon: "🏀", label: "NBA" },
+  wnba: { icon: "🏀", label: "WNBA" },
+  nfl: { icon: "🏈", label: "NFL" },
+  soccer: { icon: "⚽", label: "Soccer" },
+  tennis: { icon: "🎾", label: "Tennis" },
+};
+
+const cache = {};
+
+function esc(str) {
+  return String(str || "")
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
+
+function scoreClass(s) {
+  return s >= 30 ? "score-high" : s >= 20 ? "score-mid" : "score-low";
+}
+
+function tierBadge(tier) {
+  return `<span class="tier-badge tier-${esc(tier)}">${esc(tier)}</span>`;
+}
+
+function marketTag(m) {
+  return `<span class="market-tag market-${esc(m)}">${esc(m)}</span>`;
+}
+
+async function loadSport(sport) {
+  if (cache[sport]) return cache[sport];
+  try {
+    const r = await fetch(DATA_FILES[sport] + "?v=" + Date.now());
+    if (!r.ok) throw new Error();
+    const data = await r.json();
+    cache[sport] = data;
+    return data;
+  } catch(e) {
+    return null;
+  }
+}
+
+function renderPinnedBoard(data) {
+  const wrap = document.getElementById("pinned-board-wrap");
+  if (!data || !data.pinned_board || !data.pinned_board.players.length) {
+    wrap.innerHTML = "";
+    return;
+  }
+  const pb = data.pinned_board;
+  const players = pb.players;
+  wrap.innerHTML = `
+    <div class="board-card">
+      <div class="board-header">
+        <div class="board-title">${esc(pb.title)}</div>
+        <div class="board-count">${players.length} Players</div>
+      </div>
+      ${players.map((p, i) => `
+        <div class="pinned-row">
+          <div class="pinned-rank ${i < 3 ? "top" : ""}">${i + 1}</div>
+          <div class="pinned-info">
+            <div class="pinned-name">${esc(p.player_name)}</div>
+            <div class="pinned-meta"><span>${esc(p.team)}</span><span>vs ${esc(p.opponent)}</span></div>
+          </div>
+          <div class="pinned-line">${esc(p.line)}</div>
+          ${tierBadge(p.tier)}
+        </div>
+      `).join("")}
+    </div>`;
+}
+
+function renderGameView(sport, data) {
+  const view = document.getElementById(`view-${sport}`);
+  if (!data || !data.games || !data.games.length) {
+    const cs = COMING_SOON[sport];
+    if (cs) {
+      view.innerHTML = `<div class="coming-soon"><div class="coming-soon-icon">${cs.icon}</div><div class="coming-soon-title">${cs.label} Coming Soon</div><div class="coming-soon-sub">Backend pipeline will populate this board automatically.</div></div>`;
+    } else {
+      view.innerHTML = `<div class="coming-soon"><div class="coming-soon-title">No Games Today</div><div class="coming-soon-sub">Check back when the bot runs.</div></div>`;
+    }
+    return;
+  }
+
+  document.getElementById(`tab-count-${sport}`).textContent = data.games.length;
+
+  view.innerHTML = `
+    <div class="section-label">Today's Games — ${esc(data.date || "")}</div>
+    <div class="games-grid">
+      ${data.games.map(g => renderGameCard(g)).join("")}
+    </div>`;
+
+  view.querySelectorAll(".open-slate-btn").forEach(btn => {
+    const game = data.games.find(g => g.game_id === btn.dataset.gameId);
+    if (game) btn.addEventListener("click", () => openModal(game));
+  });
+}
+
+function renderGameCard(game) {
+  const signals = (game.top_signals || []).slice(0, 3);
+  const markets = game.markets || {};
+  const activeMarkets = Object.keys(markets).filter(k => markets[k] && markets[k].length);
+  return `
+    <div class="game-card">
+      <div class="game-card-head">
+        <div>
+          <div class="game-matchup">${esc(game.matchup)}</div>
+          <div class="game-time">${esc(game.time)}</div>
+        </div>
+        <div class="game-market-count">
+          <span class="signal-dot"></span>${activeMarkets.length} Markets
+        </div>
+      </div>
+      <div class="game-card-body">
+        <div class="signals-list">
+          ${signals.map(s => `
+            <div class="signal-row">
+              ${marketTag(s.market)}
+              <div class="signal-player">${esc(s.player_name)}</div>
+              <div class="signal-line">${esc(s.line)}</div>
+              ${tierBadge(s.tier)}
+            </div>`).join("")}
+        </div>
+        <button class="open-slate-btn" data-game-id="${esc(game.game_id)}">Open Full Slate →</button>
+      </div>
+    </div>`;
+}
+
+function openModal(game) {
+  const markets = game.markets || {};
+  const activeMarkets = Object.keys(markets).filter(k => markets[k] && markets[k].length);
+
+  document.getElementById("modal-title").textContent = game.matchup;
+  document.getElementById("modal-subtitle").textContent = game.time;
+
+  const tabs = ["all", ...activeMarkets];
+  document.getElementById("modal-tabs").innerHTML = tabs.map(m => `
+    <button class="modal-tab ${m === "all" ? "active" : ""}" data-market="${esc(m)}">
+      ${m === "all" ? "All Markets" : esc(m)}
+    </button>`).join("");
+
+  document.querySelectorAll(".modal-tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".modal-tab").forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      renderModalBody(game, tab.dataset.market);
+    });
+  });
+
+  renderModalBody(game, "all");
+  document.getElementById("modal-overlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function renderModalBody(game, filter) {
+  const markets = game.markets || {};
+  const keys = filter === "all" ? Object.keys(markets) : [filter];
+  let html = "";
+
+  for (const market of keys) {
+    const players = (markets[market] || []);
+    if (!players.length) { if (filter !== "all") html += `<div class="empty-market">No picks for ${esc(market)}</div>`; continue; }
+    if (filter === "all") {
+      html += `<div class="market-section"><div class="market-section-title">${esc(market)}</div>${renderPlayerTable(players)}</div>`;
+    } else {
+      html += renderPlayerTable(players);
+    }
+  }
+
+  document.getElementById("modal-body").innerHTML = html || `<div class="empty-market">No data available</div>`;
+}
+
+function renderPlayerTable(players) {
+  return `
+    <table class="player-table">
+      <thead><tr><th>Player</th><th>Team</th><th>Line</th><th>Score</th><th>Tier</th><th>Edge</th></tr></thead>
+      <tbody>
+        ${players.map(p => `
+          <tr>
+            <td class="player-name-cell">${esc(p.player_name)}</td>
+            <td class="player-team-cell">${esc(p.team)}</td>
+            <td class="player-line-cell">${esc(p.line)}</td>
+            <td class="player-score-cell ${scoreClass(p.score)}">${Number(p.score || 0).toFixed(1)}</td>
+            <td>${tierBadge(p.tier)}</td>
+            <td class="reason-cell">${esc(p.reason || "—")}</td>
+          </tr>`).join("")}
+      </tbody>
+    </table>`;
+}
+
+function closeModal() {
+  document.getElementById("modal-overlay").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+async function switchSport(sport) {
+  document.querySelectorAll(".sport-tab").forEach(t => t.classList.toggle("active", t.dataset.sport === sport));
+  document.querySelectorAll(".sport-view").forEach(v => v.classList.toggle("active", v.id === `view-${sport}`));
+
+  const data = await loadSport(sport);
+
+  if (sport === "mlb") {
+    renderPinnedBoard(data);
+  } else {
+    document.getElementById("pinned-board-wrap").innerHTML = "";
+  }
+
+  renderGameView(sport, data);
+
+  if (data) {
+    document.getElementById("header-date").textContent = data.date || "—";
+    document.getElementById("header-updated").textContent = data.last_updated || "—";
+  }
+}
+
+document.querySelectorAll(".sport-tab").forEach(t => t.addEventListener("click", () => switchSport(t.dataset.sport)));
+document.getElementById("modal-close").addEventListener("click", closeModal);
+document.getElementById("modal-overlay").addEventListener("click", e => { if (e.target.id === "modal-overlay") closeModal(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+switchSport("mlb");
+</script>
+</body>
+</html>

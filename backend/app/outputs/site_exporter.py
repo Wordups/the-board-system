@@ -9,4 +9,6 @@ def export_board_to_site(*, board: dict, sport_key: str, paths) -> None:
     final_path = paths.data_final / f"{sport_key}.json"
     write_json(final_path, board)
     paths.frontend_data.mkdir(parents=True, exist_ok=True)
+    paths.pages_data.mkdir(parents=True, exist_ok=True)
     shutil.copy2(final_path, paths.frontend_data / f"{sport_key}.json")
+    shutil.copy2(final_path, paths.pages_data / f"{sport_key}.json")

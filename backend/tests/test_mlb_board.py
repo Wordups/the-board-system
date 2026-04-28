@@ -18,6 +18,7 @@ def test_mlb_pipeline_writes_json_outputs():
     assert (PROJECT_ROOT / "backend" / "data_processed" / "mlb_processed.json").exists()
     assert (PROJECT_ROOT / "backend" / "data_final" / "mlb.json").exists()
     assert (PROJECT_ROOT / "frontend" / "data" / "mlb.json").exists()
+    assert (PROJECT_ROOT / "data" / "mlb.json").exists()
 
 
 def test_hr_board_sliding_scale_decays_live_games():
