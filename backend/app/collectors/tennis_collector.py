@@ -1,0 +1,1 @@
+"""Tennis collector placeholder."""

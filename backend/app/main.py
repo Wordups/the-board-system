@@ -1,0 +1,18 @@
+from __future__ import annotations
+
+from pathlib import Path
+
+from app.builders.mlb_board_builder import build_mlb_board
+from app.config import build_config
+from app.outputs.site_exporter import export_board_to_site
+from app.outputs.validator import validate_board_payload
+from app.paths import build_paths
+
+
+def run_mlb_pipeline(project_root: Path) -> dict:
+    config = build_config(project_root)
+    paths = build_paths(project_root)
+    board = build_mlb_board(config=config, paths=paths)
+    validate_board_payload(board)
+    export_board_to_site(board=board, sport_key="mlb", paths=paths)
+    return board

@@ -1,0 +1,1 @@
+"""Soccer model placeholder."""

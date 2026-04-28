@@ -1,0 +1,1 @@
+"""NBA collector placeholder."""

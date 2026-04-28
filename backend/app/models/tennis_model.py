@@ -1,0 +1,1 @@
+"""Tennis model placeholder."""
