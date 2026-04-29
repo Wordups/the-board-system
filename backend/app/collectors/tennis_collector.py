@@ -66,6 +66,8 @@ def build_matches_for_tournament(tournament: dict[str, Any], slate_date) -> list
             continue
         competitor_a = competition["competitors"][0]
         competitor_b = competition["competitors"][1]
+        if not is_named_competitor(competitor_a) or not is_named_competitor(competitor_b):
+            continue
         candidates = build_match_candidates(
             competition=competition,
             tournament=tournament,
@@ -218,7 +220,22 @@ def default_profile(competitor: dict[str, Any]) -> dict[str, Any]:
 
 
 def competitor_name(competitor: dict[str, Any]) -> str:
-    return competitor.get("athlete", {}).get("displayName", "Unknown")
+    athlete_name = competitor.get("athlete", {}).get("displayName")
+    if athlete_name:
+        return athlete_name
+    roster_name = competitor.get("roster", {}).get("displayName")
+    if roster_name:
+        return roster_name
+    athletes = competitor.get("roster", {}).get("athletes", [])
+    names = [athlete.get("displayName") for athlete in athletes if athlete.get("displayName")]
+    if names:
+        return " / ".join(names)
+    return "Unknown"
+
+
+def is_named_competitor(competitor: dict[str, Any]) -> bool:
+    name = competitor_name(competitor)
+    return bool(name and name != "Unknown")
 
 
 def current_rank(competitor: dict[str, Any]) -> int:
