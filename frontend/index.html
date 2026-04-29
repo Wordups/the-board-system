@@ -177,6 +177,18 @@ button { cursor: pointer; border: none; background: none; }
 }
 .pinned-rank.top { color: var(--gold); }
 
+.player-face {
+  width: 34px; height: 34px; border-radius: 50%;
+  object-fit: cover; flex-shrink: 0;
+  background: var(--surface-3); border: 1px solid var(--border);
+}
+
+.player-face-sm {
+  width: 28px; height: 28px; border-radius: 50%;
+  object-fit: cover; flex-shrink: 0;
+  background: var(--surface-3); border: 1px solid var(--border);
+}
+
 .pinned-info { flex: 1; min-width: 0; }
 
 .pinned-name {
@@ -198,6 +210,15 @@ button { cursor: pointer; border: none; background: none; }
 .tier-B { background: var(--blue-dim); color: var(--blue); }
 .tier-C { background: var(--surface-3); color: var(--text-3); }
 .tier-D { background: var(--red-dim); color: var(--red); }
+
+.result-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; border-radius: 4px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 12px; font-weight: 900; flex-shrink: 0;
+}
+.result-hit { background: var(--green-dim); color: var(--green); }
+.result-miss { background: var(--red-dim); color: var(--red); }
 
 /* COMING SOON */
 .coming-soon { padding: 48px 20px; text-align: center; }
@@ -266,6 +287,7 @@ button { cursor: pointer; border: none; background: none; }
 .signals-list { display: flex; flex-direction: column; gap: 7px; margin-bottom: 12px; }
 
 .signal-row { display: flex; align-items: center; gap: 8px; }
+.signal-player-wrap { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
 
 .market-tag {
   flex-shrink: 0;
@@ -283,6 +305,9 @@ button { cursor: pointer; border: none; background: none; }
 .market-REB { background: rgba(168,85,247,0.15); color: #c084fc; }
 .market-AST { background: rgba(14,165,233,0.15); color: #38bdf8; }
 .market-3PM { background: rgba(59,130,246,0.15); color: var(--blue); }
+.market-GS { background: rgba(34,197,94,0.15); color: var(--green); }
+.market-OU, .market-O\/U { background: rgba(240,180,41,0.15); color: var(--gold); }
+.market-Sets { background: rgba(168,85,247,0.15); color: #c084fc; }
 
 .signal-player { flex: 1; min-width: 0; font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .signal-line { font-family: "Barlow Condensed", sans-serif; font-size: 13px; font-weight: 700; color: var(--text-2); white-space: nowrap; flex-shrink: 0; }
@@ -374,6 +399,8 @@ button { cursor: pointer; border: none; background: none; }
 .player-table tr:hover td { background: var(--surface-2); }
 
 .player-name-cell { font-weight: 600; font-size: 13px; }
+.player-name-wrap { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.player-name-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .player-team-cell { font-size: 11px; color: var(--text-3); font-family: "Barlow Condensed", sans-serif; font-weight: 700; letter-spacing: 1px; }
 .player-line-cell { font-family: "Barlow Condensed", sans-serif; font-size: 15px; font-weight: 700; color: var(--text-2); }
 .player-score-cell { font-family: "Barlow Condensed", sans-serif; font-size: 16px; font-weight: 800; }
@@ -494,6 +521,36 @@ function marketTag(m) {
   return `<span class="market-tag market-${esc(m)}">${esc(m)}</span>`;
 }
 
+function playerHeadshot(player, sport) {
+  if (!player || !player.player_id) return "";
+  const id = esc(player.player_id);
+  if (sport === "mlb") {
+    return `https://img.mlbstatic.com/mlb-photos/image/upload/w_72,q_auto:best/v1/people/${id}/headshot/67/current`;
+  }
+  if (sport === "nba") {
+    return `https://a.espncdn.com/i/headshots/nba/players/full/${id}.png`;
+  }
+  return "";
+}
+
+function playerFace(player, sport, small = false) {
+  const src = playerHeadshot(player, sport);
+  if (!src) return "";
+  const klass = small ? "player-face-sm" : "player-face";
+  return `<img class="${klass}" src="${src}" alt="${esc(player.player_name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">`;
+}
+
+function hrResultBadge(player) {
+  if (!player || !player.hr_result) return "";
+  if (player.hr_result === "hit") {
+    return `<span class="result-badge result-hit" title="${esc((player.home_runs || 1) + ' HR')}">✓</span>`;
+  }
+  if (player.hr_result === "miss") {
+    return `<span class="result-badge result-miss" title="Final: no HR">x</span>`;
+  }
+  return "";
+}
+
 async function loadSport(sport) {
   if (cache[sport]) return cache[sport];
   try {
@@ -507,7 +564,7 @@ async function loadSport(sport) {
   }
 }
 
-function renderPinnedBoard(data) {
+function renderPinnedBoard(data, sport = "mlb") {
   const wrap = document.getElementById("pinned-board-wrap");
   if (!data || !data.pinned_board || !data.pinned_board.players.length) {
     wrap.innerHTML = "";
@@ -521,14 +578,16 @@ function renderPinnedBoard(data) {
         <div class="board-title">${esc(pb.title)}</div>
         <div class="board-count">${players.length} Players</div>
       </div>
-      ${players.map((p, i) => `
-        <div class="pinned-row">
-          <div class="pinned-rank ${i < 3 ? "top" : ""}">${i + 1}</div>
-          <div class="pinned-info">
-            <div class="pinned-name">${esc(p.player_name)}</div>
-            <div class="pinned-meta"><span>${esc(p.team)}</span><span>vs ${esc(p.opponent)}</span></div>
-          </div>
+        ${players.map((p, i) => `
+          <div class="pinned-row">
+            <div class="pinned-rank ${i < 3 ? "top" : ""}">${i + 1}</div>
+            ${playerFace(p, sport)}
+            <div class="pinned-info">
+              <div class="pinned-name">${esc(p.player_name)}</div>
+              <div class="pinned-meta"><span>${esc(p.team)}</span><span>vs ${esc(p.opponent)}</span></div>
+            </div>
           <div class="pinned-line">${esc(p.line)}</div>
+          ${hrResultBadge(p)}
           ${tierBadge(p.tier)}
         </div>
       `).join("")}
@@ -551,17 +610,17 @@ function renderGameView(sport, data) {
 
   view.innerHTML = `
     <div class="section-label">Today's Games — ${esc(data.date || "")}</div>
-    <div class="games-grid">
-      ${data.games.map(g => renderGameCard(g)).join("")}
-    </div>`;
+      <div class="games-grid">
+        ${data.games.map(g => renderGameCard(g, sport)).join("")}
+      </div>`;
 
-  view.querySelectorAll(".open-slate-btn").forEach(btn => {
-    const game = data.games.find(g => g.game_id === btn.dataset.gameId);
-    if (game) btn.addEventListener("click", () => openModal(game));
-  });
-}
+    view.querySelectorAll(".open-slate-btn").forEach(btn => {
+      const game = data.games.find(g => g.game_id === btn.dataset.gameId);
+      if (game) btn.addEventListener("click", () => openModal(game, sport));
+    });
+  }
 
-function renderGameCard(game) {
+function renderGameCard(game, sport) {
   const signals = (game.top_signals || []).slice(0, 3);
   const markets = game.markets || {};
   const activeMarkets = Object.keys(markets).filter(k => markets[k] && markets[k].length);
@@ -578,20 +637,20 @@ function renderGameCard(game) {
       </div>
       <div class="game-card-body">
         <div class="signals-list">
-          ${signals.map(s => `
-            <div class="signal-row">
-              ${marketTag(s.market)}
-              <div class="signal-player">${esc(s.player_name)}</div>
-              <div class="signal-line">${esc(s.line)}</div>
-              ${tierBadge(s.tier)}
-            </div>`).join("")}
+            ${signals.map(s => `
+              <div class="signal-row">
+                ${marketTag(s.market)}
+                <div class="signal-player-wrap">${playerFace(s, sport, true)}<div class="signal-player">${esc(s.player_name)}</div></div>
+                <div class="signal-line">${esc(s.line)}</div>
+                ${tierBadge(s.tier)}
+              </div>`).join("")}
         </div>
         <button class="open-slate-btn" data-game-id="${esc(game.game_id)}">Open Full Slate →</button>
       </div>
     </div>`;
 }
 
-function openModal(game) {
+function openModal(game, sport) {
   const markets = game.markets || {};
   const activeMarkets = Object.keys(markets).filter(k => markets[k] && markets[k].length);
 
@@ -606,18 +665,18 @@ function openModal(game) {
 
   document.querySelectorAll(".modal-tab").forEach(tab => {
     tab.addEventListener("click", () => {
-      document.querySelectorAll(".modal-tab").forEach(t => t.classList.remove("active"));
-      tab.classList.add("active");
-      renderModalBody(game, tab.dataset.market);
-    });
+    document.querySelectorAll(".modal-tab").forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+    renderModalBody(game, tab.dataset.market, sport);
   });
+});
 
-  renderModalBody(game, "all");
+  renderModalBody(game, "all", sport);
   document.getElementById("modal-overlay").classList.add("open");
   document.body.style.overflow = "hidden";
 }
 
-function renderModalBody(game, filter) {
+function renderModalBody(game, filter, sport) {
   const markets = game.markets || {};
   const keys = filter === "all" ? Object.keys(markets) : [filter];
   let html = "";
@@ -626,23 +685,23 @@ function renderModalBody(game, filter) {
     const players = (markets[market] || []);
     if (!players.length) { if (filter !== "all") html += `<div class="empty-market">No picks for ${esc(market)}</div>`; continue; }
     if (filter === "all") {
-      html += `<div class="market-section"><div class="market-section-title">${esc(market)}</div>${renderPlayerTable(players)}</div>`;
+      html += `<div class="market-section"><div class="market-section-title">${esc(market)}</div>${renderPlayerTable(players, sport)}</div>`;
     } else {
-      html += renderPlayerTable(players);
+      html += renderPlayerTable(players, sport);
     }
   }
 
   document.getElementById("modal-body").innerHTML = html || `<div class="empty-market">No data available</div>`;
 }
 
-function renderPlayerTable(players) {
+function renderPlayerTable(players, sport) {
   return `
     <table class="player-table">
       <thead><tr><th>Player</th><th>Team</th><th>Line</th><th>Score</th><th>Tier</th><th>Edge</th></tr></thead>
       <tbody>
         ${players.map(p => `
           <tr>
-            <td class="player-name-cell">${esc(p.player_name)}</td>
+            <td class="player-name-cell"><div class="player-name-wrap">${playerFace(p, sport, true)}<span class="player-name-text">${esc(p.player_name)}</span></div></td>
             <td class="player-team-cell">${esc(p.team)}</td>
             <td class="player-line-cell">${esc(p.line)}</td>
             <td class="player-score-cell ${scoreClass(p.score)}">${Number(p.score || 0).toFixed(1)}</td>
@@ -664,8 +723,8 @@ async function switchSport(sport) {
 
   const data = await loadSport(sport);
 
-  if (sport === "mlb") {
-    renderPinnedBoard(data);
+  if (data && data.pinned_board) {
+    renderPinnedBoard(data, sport);
   } else {
     document.getElementById("pinned-board-wrap").innerHTML = "";
   }

@@ -19,12 +19,14 @@ def build_mlb_board(*, config, paths) -> dict:
     games_output = []
     pinned_candidates = []
     game_status_by_id = {}
+    game_hr_results_by_id = {}
 
     processed_games = []
     for raw_game in raw_payload["games"]:
         candidates = [score_candidate(item) for item in normalize_mlb_inputs(raw_game)]
         processed_games.append({"raw": raw_game, "candidates": candidates})
         game_status_by_id[raw_game["game_id"]] = raw_game.get("status", {})
+        game_hr_results_by_id[raw_game["game_id"]] = raw_game.get("player_hr_results", {})
 
     write_json(
         paths.data_processed / "mlb_processed.json",
@@ -100,6 +102,7 @@ def build_mlb_board(*, config, paths) -> dict:
         candidates=sorted_candidates(pinned_candidates),
         previous_pinned_players=previous_pinned_players,
         game_status_by_id=game_status_by_id,
+        game_hr_results_by_id=game_hr_results_by_id,
     )
     return {
         "sport": "MLB",
@@ -130,10 +133,11 @@ def load_previous_pinned_players(paths) -> dict[str, dict]:
     }
 
 
-def build_sticky_hr_board(*, candidates, previous_pinned_players, game_status_by_id) -> list[dict]:
+def build_sticky_hr_board(*, candidates, previous_pinned_players, game_status_by_id, game_hr_results_by_id) -> list[dict]:
     sticky_rows = []
     for candidate in candidates:
         status = game_status_by_id.get(candidate.game_id, {})
+        hr_result = game_hr_results_by_id.get(candidate.game_id, {}).get(str(candidate.player_id), {})
         previous = previous_pinned_players.get(str(candidate.player_id))
         sticky_score = apply_hr_board_sliding_scale(
             base_score=candidate.score,
@@ -153,6 +157,8 @@ def build_sticky_hr_board(*, candidates, previous_pinned_players, game_status_by
                 "confidence": to_confidence(sticky_score),
                 "tier": assign_tier(sticky_score),
                 "reason": build_pinned_reason(candidate.reason, status),
+                "hr_result": hr_result.get("result", "pending"),
+                "home_runs": int(hr_result.get("home_runs", 0)),
             }
         )
     sticky_rows.sort(

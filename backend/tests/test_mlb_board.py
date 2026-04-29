@@ -7,6 +7,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT / "backend"))
 
 from app.builders.mlb_board_builder import apply_hr_board_sliding_scale
+from app.collectors.mlb_collector import build_player_hr_results
 from app.main import run_mlb_pipeline
 
 
@@ -39,3 +40,32 @@ def test_hr_board_sliding_scale_decays_live_games():
     )
     assert pregame > live
     assert final == 0.0
+
+
+def test_build_player_hr_results_marks_hit_and_miss():
+    game_boxscore = {
+        "teams": {
+            "away": {
+                "players": {
+                    "ID1": {
+                        "person": {"id": 1},
+                        "stats": {"batting": {"homeRuns": 1}},
+                    }
+                }
+            },
+            "home": {
+                "players": {
+                    "ID2": {
+                        "person": {"id": 2},
+                        "stats": {"batting": {"homeRuns": 0}},
+                    }
+                }
+            },
+        }
+    }
+
+    results = build_player_hr_results(game_boxscore, {"phase": "final"})
+
+    assert results["1"]["result"] == "hit"
+    assert results["1"]["home_runs"] == 1
+    assert results["2"]["result"] == "miss"

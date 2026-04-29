@@ -1,43 +1,41 @@
-name: Refresh MLB Board
+name: Refresh Live Boards
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: "*/30 13-23 * * *"
-    - cron: "*/30 0-4 * * *"
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  refresh-mlb:
+  refresh:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
+      - name: Checkout repo
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.11"
 
       - name: Install backend dependencies
-        run: pip install -r backend/requirements.txt
-
-      - name: Rebuild MLB board JSON
-        run: python backend/scripts/run_mlb.py
-
-      - name: Commit refreshed board data
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          pip install -r backend/requirements.txt
+
+      - name: Run live board refresh
+        run: |
+          python backend/scripts/run_all.py
+
+      - name: Commit updated board data
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
           git add backend/data_final/mlb.json frontend/data/mlb.json data/mlb.json
-          if git diff --cached --quiet; then
-            echo "No board changes to commit."
-            exit 0
-          fi
-          git commit -m "Refresh MLB board data"
+          git add backend/data_final/nba.json frontend/data/nba.json data/nba.json
+          git add backend/data_final/soccer.json frontend/data/soccer.json data/soccer.json
+          git add backend/data_final/tennis.json frontend/data/tennis.json data/tennis.json
+          git commit -m "refresh live boards" || echo "No changes to commit"
           git push

@@ -26,6 +26,8 @@ def collect_mlb_raw_data(data_raw_dir: Path) -> dict[str, Any]:
         if not schedule_games:
             raise RuntimeError(f"No MLB games found for {slate_date}")
 
+        game_boxscores = fetch_game_boxscores(schedule_games)
+
         team_ids = sorted(
             {
                 game["teams"]["away"]["team"]["id"]
@@ -47,6 +49,7 @@ def collect_mlb_raw_data(data_raw_dir: Path) -> dict[str, Any]:
                     game=game,
                     rosters=rosters,
                     team_hitting_stats=team_hitting_stats,
+                    game_boxscore=game_boxscores.get(game["gamePk"]),
                     season=season,
                     slate_date=slate_date,
                 )
@@ -99,11 +102,29 @@ def fetch_team_hitting_stats(team_ids: list[int], season: int) -> dict[int, dict
         return dict(pool.map(load, team_ids))
 
 
+def fetch_game_boxscores(schedule_games: list[dict[str, Any]]) -> dict[int, dict[str, Any]]:
+    live_or_final = [
+        game for game in schedule_games
+        if build_game_status(game).get("phase") in {"live", "final"}
+    ]
+
+    def load(game: dict[str, Any]) -> tuple[int, dict[str, Any]]:
+        url = f"{STATS_API_BASE}/game/{game['gamePk']}/boxscore"
+        return game["gamePk"], fetch_json(url)
+
+    if not live_or_final:
+        return {}
+
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
+        return dict(pool.map(load, live_or_final))
+
+
 def build_game_payload(
     *,
     game: dict[str, Any],
     rosters: dict[int, dict[str, Any]],
     team_hitting_stats: dict[int, dict[str, Any]],
+    game_boxscore: dict[str, Any] | None,
     season: int,
     slate_date: str,
 ) -> dict[str, Any]:
@@ -174,6 +195,7 @@ def build_game_payload(
         "time": format_game_time(game["gameDate"]),
         "game_date": game["gameDate"],
         "status": build_game_status(game),
+        "player_hr_results": build_player_hr_results(game_boxscore, build_game_status(game)),
         "players": [player.model_dump() for player in players],
     }
 
@@ -479,6 +501,32 @@ def build_game_status(game: dict[str, Any]) -> dict[str, Any]:
         "is_lineup_window": is_lineup_window,
         "probable_pitchers_confirmed": probable_pitchers_confirmed,
     }
+
+
+def build_player_hr_results(game_boxscore: dict[str, Any] | None, status: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    if not game_boxscore:
+        return {}
+
+    phase = status.get("phase", "pregame")
+    results: dict[str, dict[str, Any]] = {}
+    for side in ("away", "home"):
+        for player_blob in game_boxscore.get("teams", {}).get(side, {}).get("players", {}).values():
+            person = player_blob.get("person", {})
+            player_id = str(person.get("id") or "")
+            if not player_id:
+                continue
+            batting = player_blob.get("stats", {}).get("batting", {})
+            home_runs = parse_int(batting.get("homeRuns"))
+            result = "pending"
+            if home_runs > 0:
+                result = "hit"
+            elif phase == "final":
+                result = "miss"
+            results[player_id] = {
+                "result": result,
+                "home_runs": home_runs,
+            }
+    return results
 
 
 def fetch_json(url: str) -> dict[str, Any]:
