@@ -1,1 +1,278 @@
-"""NBA board builder placeholder."""
+from __future__ import annotations
+
+from collections import defaultdict
+import json
+
+from app.builders.universal_game_builder import empty_markets_for
+from app.collectors.nba_collector import NBA_MARKETS, collect_nba_raw_data
+from app.outputs.json_writer import write_json
+from app.utils.dates import timestamp_et
+
+
+def build_nba_board(*, config, paths) -> dict:
+    raw_payload = collect_nba_raw_data(paths.data_raw)
+    previous_pick = load_previous_pick(paths)
+    games_output = []
+    pinned_candidates = []
+    processed_games = []
+    all_candidates = []
+
+    for raw_game in raw_payload["games"]:
+        candidates = [candidate for candidate in raw_game["candidates"] if candidate["score"] > 0]
+        candidates = apply_anti_correlation(candidates)
+        processed_games.append({"raw": raw_game, "candidates": candidates})
+        all_candidates.extend(candidates)
+
+    pick_of_day = build_pick_of_day(processed_games, previous_pick)
+    game_clusters = build_game_clusters(processed_games)
+    section_boards = build_section_boards(all_candidates, config.top_market_limit)
+    hero_pick = build_hero_pick(pick_of_day, all_candidates)
+
+    write_json(
+        paths.data_processed / "nba_processed.json",
+        {
+            "sport": "NBA",
+            "date": raw_payload["date"],
+            "season_type": raw_payload.get("season_type"),
+            "pick_of_day": pick_of_day,
+            "games": processed_games,
+        },
+    )
+
+    for processed_game in processed_games:
+        raw_game = processed_game["raw"]
+        candidates = sorted(processed_game["candidates"], key=lambda row: (row["score"], row["confidence"]), reverse=True)
+        market_bucket = defaultdict(list)
+        for candidate in candidates:
+            market_bucket[candidate["market"]].append(to_board_row(candidate))
+
+        top_signals = [
+            {
+                "market": candidate["market"],
+                "player_name": candidate["player_name"],
+                "line": candidate["line"],
+                "score": candidate["score"],
+                "confidence": candidate["confidence"],
+                "tier": candidate["tier"],
+            }
+            for candidate in candidates[: config.top_signals_per_game]
+        ]
+
+        games_output.append(
+            {
+                "game_id": raw_game["game_id"],
+                "matchup": f'{raw_game["away_team"]} @ {raw_game["home_team"]}',
+                "time": raw_game["time"],
+                "top_signals": top_signals,
+                "markets": {
+                    **empty_markets_for(NBA_MARKETS),
+                    **{market: rows[: config.top_market_limit] for market, rows in market_bucket.items()},
+                },
+            }
+        )
+        pinned_candidates.extend(candidate for candidate in candidates if candidate["market"] == "PTS")
+
+    pinned_players = [to_board_row(candidate) for candidate in sorted(pinned_candidates, key=lambda row: (row["score"], row["confidence"]), reverse=True)[:10]]
+    return {
+        "sport": "NBA",
+        "date": raw_payload["date"],
+        "last_updated": timestamp_et(),
+        "hero_pick": hero_pick,
+        "game_clusters": game_clusters,
+        "section_boards": section_boards,
+        "pinned_board": {
+            "title": "PTS Top 10",
+            "market": "PTS",
+            "players": pinned_players,
+        },
+        "games": games_output,
+    }
+
+
+def to_board_row(candidate: dict) -> dict:
+    return {
+        "player_id": str(candidate["player_id"]),
+        "player_name": candidate["player_name"],
+        "team": candidate["team"],
+        "opponent": candidate["opponent"],
+        "line": candidate["line"],
+        "score": round(float(candidate["score"]), 2),
+        "confidence": int(candidate["confidence"]),
+        "tier": candidate["tier"],
+        "reason": candidate["reason"],
+    }
+
+
+def apply_anti_correlation(candidates: list[dict]) -> list[dict]:
+    grouped = defaultdict(list)
+    for candidate in candidates:
+        if candidate["market"] == "ML":
+            continue
+        grouped[(candidate["game_id"], candidate["team"], candidate["market"])].append(candidate)
+
+    for group_candidates in grouped.values():
+        unique_players = {}
+        for candidate in group_candidates:
+            unique_players.setdefault(candidate["player_name"], candidate)
+        ranked = sorted(unique_players.values(), key=lambda row: row["score"], reverse=True)
+        if len(ranked) < 2:
+            continue
+        leader = ranked[0]["player_name"]
+        for follower in ranked[1:]:
+            follower["reason"] = f"{follower['reason']} | Anti-correlation: same team as {leader}"
+            follower["score"] = round(max(follower["score"] - 1.25, 0.0), 2)
+            follower["confidence"] = max(1, min(99, round(follower["score"])))
+    return candidates
+
+
+def build_pick_of_day(processed_games: list[dict], previous_pick: dict | None) -> dict | None:
+    qualified = []
+    for processed_game in processed_games:
+        for candidate in processed_game["candidates"]:
+            if candidate["market"] == "ML":
+                continue
+            if candidate["tier"] != "A":
+                continue
+            if candidate.get("l5_hit_rate", 0.0) < 0.70:
+                continue
+            qualified.append(candidate)
+    if not qualified:
+        return previous_pick
+    ranked = sorted(qualified, key=lambda row: (row["score"], row["l5_hit_rate"], row["l10_hit_rate"]), reverse=True)
+    best = ranked[0]
+    return {
+        "player_id": str(best["player_id"]),
+        "player_name": best["player_name"],
+        "team": best["team"],
+        "opponent": best["opponent"],
+        "market": best["market"],
+        "line": best["line"],
+        "score": best["score"],
+        "confidence": best["confidence"],
+        "tier": best["tier"],
+        "reason": best["reason"],
+    }
+
+
+def build_hero_pick(pick_of_day: dict | None, candidates: list[dict]) -> dict | None:
+    if pick_of_day:
+        return {
+            **pick_of_day,
+            "label": "Pick of the Day",
+        }
+    if not candidates:
+        return None
+    best = sorted(candidates, key=lambda row: (row["score"], row["confidence"]), reverse=True)[0]
+    return {
+        "player_id": str(best["player_id"]),
+        "player_name": best["player_name"],
+        "team": best["team"],
+        "opponent": best["opponent"],
+        "market": best["market"],
+        "line": best["line"],
+        "score": best["score"],
+        "confidence": best["confidence"],
+        "tier": best["tier"],
+        "reason": best["reason"],
+        "label": "Signal Leader",
+    }
+
+
+def build_game_clusters(processed_games: list[dict]) -> list[dict]:
+    clusters = []
+    for processed_game in processed_games:
+        candidates = [candidate for candidate in processed_game["candidates"] if candidate["market"] != "ML"]
+        ranked = sorted(candidates, key=lambda row: (row["score"], row["confidence"]), reverse=True)
+        if not ranked:
+            continue
+        top_candidates = ranked[:3]
+        cluster_score = round(sum(candidate["score"] for candidate in top_candidates) / len(top_candidates), 2)
+        clusters.append(
+            {
+                "game_id": processed_game["raw"]["game_id"],
+                "matchup": f'{processed_game["raw"]["away_team"]} @ {processed_game["raw"]["home_team"]}',
+                "top_score": cluster_score,
+                "signals": [
+                    {
+                        "player_name": candidate["player_name"],
+                        "market": candidate["market"],
+                        "line": candidate["line"],
+                        "score": round(float(candidate["score"]), 2),
+                        "tier": candidate["tier"],
+                    }
+                    for candidate in top_candidates
+                ],
+            }
+        )
+    return sorted(clusters, key=lambda row: row["top_score"], reverse=True)[:3]
+
+
+def build_section_boards(candidates: list[dict], limit: int) -> dict[str, list[dict]]:
+    section_map = {
+        "PTS": "Scoring Board",
+        "AST": "Playmaker Assists",
+        "REB": "Glass / Rebounds",
+        "3PM": "3PT Heat",
+    }
+    boards = {}
+    for market, title in section_map.items():
+        market_candidates = [candidate for candidate in candidates if candidate["market"] == market]
+        ranked = sorted(market_candidates, key=lambda row: (row["score"], row["confidence"]), reverse=True)
+        boards[market] = {
+            "title": title,
+            "market": market,
+            "players": [to_board_row(candidate) for candidate in ranked[:limit]],
+        }
+
+    ladder_candidates = []
+    for market in ("AST", "REB"):
+        market_candidates = [candidate for candidate in candidates if candidate["market"] == market]
+        ranked = sorted(market_candidates, key=lambda row: (row["score"], row["confidence"]), reverse=True)
+        for candidate in ranked[:5]:
+            ladder_candidates.append(
+                {
+                    "player_id": str(candidate["player_id"]),
+                    "player_name": candidate["player_name"],
+                    "team": candidate["team"],
+                    "opponent": candidate["opponent"],
+                    "line": candidate["line"],
+                    "score": round(float(candidate["score"]), 2),
+                    "confidence": int(candidate["confidence"]),
+                    "tier": candidate["tier"],
+                    "reason": candidate["reason"],
+                    "market": candidate["market"],
+                    "ladder": build_ladder_steps(candidate["line"]),
+                }
+            )
+
+    boards["LADDERS"] = {
+        "title": "Ladder Sleepers",
+        "market": "LADDERS",
+        "players": sorted(ladder_candidates, key=lambda row: (row["score"], row["confidence"]), reverse=True)[:5],
+    }
+    return boards
+
+
+def build_ladder_steps(line: str) -> list[str]:
+    base = extract_line_value(line)
+    if base <= 0:
+        return []
+    return [f"{base + step}+" for step in (0, 2, 4)]
+
+
+def extract_line_value(line: str) -> int:
+    try:
+        return int(str(line).split("+", maxsplit=1)[0])
+    except (TypeError, ValueError):
+        return 0
+
+
+def load_previous_pick(paths) -> dict | None:
+    previous_path = paths.data_processed / "nba_processed.json"
+    if not previous_path.exists():
+        return None
+    try:
+        payload = json.loads(previous_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return None
+    return payload.get("pick_of_day")

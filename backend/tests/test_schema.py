@@ -25,3 +25,27 @@ def test_board_schema_accepts_contract_shape():
     }
     parsed = BoardPayload.model_validate(payload)
     assert parsed.sport == "MLB"
+
+
+def test_board_schema_accepts_nba_market_shape():
+    payload = {
+        "sport": "NBA",
+        "date": "2026-04-28",
+        "last_updated": "8:15 PM ET",
+        "pinned_board": {
+            "title": "PTS Top 10",
+            "market": "PTS",
+            "players": [],
+        },
+        "games": [
+            {
+                "game_id": "0042500115",
+                "matchup": "PHI @ BOS",
+                "time": "Q1 2:59",
+                "top_signals": [],
+                "markets": {"PTS": [], "REB": [], "AST": [], "3PM": [], "ML": []},
+            }
+        ],
+    }
+    parsed = BoardPayload.model_validate(payload)
+    assert parsed.sport == "NBA"
