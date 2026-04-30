@@ -1,7 +1,7 @@
 {
   "sport": "NBA",
   "date": "2026-04-30",
-  "last_updated": "7:00 PM ET",
+  "last_updated": "7:30 PM ET",
   "hero_pick": {
     "player_id": "4065648",
     "player_name": "Jayson Tatum",
@@ -16,34 +16,6 @@
     "label": "Pick of the Day"
   },
   "game_clusters": [
-    {
-      "game_id": "401869410",
-      "matchup": "BOS @ PHI",
-      "top_score": 79.23,
-      "signals": [
-        {
-          "player_name": "Jayson Tatum",
-          "market": "AST",
-          "line": "7+ AST",
-          "score": 80.52,
-          "tier": "A"
-        },
-        {
-          "player_name": "Tyrese Maxey",
-          "market": "AST",
-          "line": "6+ AST",
-          "score": 79.05,
-          "tier": "B"
-        },
-        {
-          "player_name": "Jayson Tatum",
-          "market": "PTS",
-          "line": "23+ PTS",
-          "score": 78.11,
-          "tier": "C"
-        }
-      ]
-    },
     {
       "game_id": "401869402",
       "matchup": "DEN @ MIN",
@@ -69,6 +41,34 @@
           "line": "24+ PTS",
           "score": 78.12,
           "tier": "A"
+        }
+      ]
+    },
+    {
+      "game_id": "401869410",
+      "matchup": "BOS @ PHI",
+      "top_score": 79.11,
+      "signals": [
+        {
+          "player_name": "Jayson Tatum",
+          "market": "AST",
+          "line": "7+ AST",
+          "score": 80.52,
+          "tier": "A"
+        },
+        {
+          "player_name": "Joel Embiid",
+          "market": "3PM",
+          "line": "1+ 3PM",
+          "score": 78.71,
+          "tier": "C"
+        },
+        {
+          "player_name": "Jayson Tatum",
+          "market": "PTS",
+          "line": "23+ PTS",
+          "score": 78.11,
+          "tier": "C"
         }
       ]
     },
@@ -156,10 +156,10 @@
           "team": "PHI",
           "opponent": "BOS",
           "line": "16+ PTS",
-          "score": 69.62,
-          "confidence": 70,
+          "score": 66.96,
+          "confidence": 67,
           "tier": "C",
-          "reason": "L10 80% | L5 100% | USG 22% | MIN 34.4 | PTS matchup 0.96x | Home boost"
+          "reason": "L10 80% | L5 100% | USG 18% | MIN 34.4 | PTS matchup 0.96x | Home boost"
         },
         {
           "player_id": "3917376",
@@ -184,6 +184,17 @@
           "reason": "L10 60% | L5 40% | USG 33% | MIN 32.8 | PTS matchup 1.02x | Home boost"
         },
         {
+          "player_id": "3059318",
+          "player_name": "Joel Embiid",
+          "team": "PHI",
+          "opponent": "BOS",
+          "line": "27+ PTS",
+          "score": 59.53,
+          "confidence": 60,
+          "tier": "C",
+          "reason": "L10 60% | L5 40% | USG 32% | MIN 34.7 | PTS matchup 0.96x | Home boost | Anti-correlation: same team as Paul George"
+        },
+        {
           "player_id": "4431671",
           "player_name": "Jaden McDaniels",
           "team": "MIN",
@@ -204,17 +215,6 @@
           "confidence": 56,
           "tier": "B",
           "reason": "L10 70% | L5 60% | USG 23% | MIN 32.1 | PTS matchup 1.05x | Anti-correlation: same team as Jalen Brunson"
-        },
-        {
-          "player_id": "3934719",
-          "player_name": "OG Anunoby",
-          "team": "NY",
-          "opponent": "ATL",
-          "line": "18+ PTS",
-          "score": 54.32,
-          "confidence": 54,
-          "tier": "B",
-          "reason": "L10 60% | L5 60% | USG 19% | MIN 36.4 | PTS matchup 1.05x | Anti-correlation: same team as Jalen Brunson"
         }
       ]
     },
@@ -245,17 +245,6 @@
           "reason": "L10 90% | L5 80% | USG 32% | MIN 38.1 | AST matchup 1.25x"
         },
         {
-          "player_id": "4431678",
-          "player_name": "Tyrese Maxey",
-          "team": "PHI",
-          "opponent": "BOS",
-          "line": "6+ AST",
-          "score": 79.05,
-          "confidence": 79,
-          "tier": "B",
-          "reason": "L10 60% | L5 80% | USG 36% | MIN 39.3 | AST matchup 1.15x | Home boost"
-        },
-        {
           "player_id": "3917376",
           "player_name": "Jaylen Brown",
           "team": "BOS",
@@ -265,6 +254,17 @@
           "confidence": 77,
           "tier": "A",
           "reason": "L10 80% | L5 80% | USG 37% | MIN 35.1 | AST matchup 1.25x | Anti-correlation: same team as Jayson Tatum"
+        },
+        {
+          "player_id": "4431678",
+          "player_name": "Tyrese Maxey",
+          "team": "PHI",
+          "opponent": "BOS",
+          "line": "6+ AST",
+          "score": 76.38,
+          "confidence": 76,
+          "tier": "B",
+          "reason": "L10 60% | L5 80% | USG 30% | MIN 39.3 | AST matchup 1.15x | Home boost"
         },
         {
           "player_id": "4431671",
@@ -287,6 +287,17 @@
           "confidence": 73,
           "tier": "B",
           "reason": "L10 70% | L5 60% | USG 33% | MIN 32.8 | AST matchup 1.25x | Home boost | Anti-correlation: same team as Jaden McDaniels"
+        },
+        {
+          "player_id": "3059318",
+          "player_name": "Joel Embiid",
+          "team": "PHI",
+          "opponent": "BOS",
+          "line": "4+ AST",
+          "score": 71.25,
+          "confidence": 71,
+          "tier": "B",
+          "reason": "L10 60% | L5 60% | USG 32% | MIN 34.7 | AST matchup 1.15x | Home boost | Anti-correlation: same team as Tyrese Maxey"
         },
         {
           "player_id": "3934672",
@@ -320,17 +331,6 @@
           "confidence": 69,
           "tier": "B",
           "reason": "L10 80% | L5 80% | USG 23% | MIN 32.1 | AST matchup 1.25x | Anti-correlation: same team as Jalen Brunson"
-        },
-        {
-          "player_id": "4701230",
-          "player_name": "Jalen Johnson",
-          "team": "ATL",
-          "opponent": "NY",
-          "line": "5+ AST",
-          "score": 62.24,
-          "confidence": 62,
-          "tier": "B",
-          "reason": "L10 70% | L5 60% | USG 26% | MIN 35.8 | AST matchup 1.21x | Home boost"
         }
       ]
     },
@@ -394,17 +394,6 @@
           "reason": "L10 70% | L5 80% | USG 34% | MIN 37.5 | REB matchup 0.97x | Anti-correlation: same team as Jamal Murray"
         },
         {
-          "player_id": "4251",
-          "player_name": "Paul George",
-          "team": "PHI",
-          "opponent": "BOS",
-          "line": "4+ REB",
-          "score": 71.09,
-          "confidence": 71,
-          "tier": "C",
-          "reason": "L10 90% | L5 80% | USG 22% | MIN 34.4 | REB matchup 0.97x | Home boost"
-        },
-        {
           "player_id": "4431671",
           "player_name": "Jaden McDaniels",
           "team": "MIN",
@@ -438,15 +427,26 @@
           "reason": "L10 70% | L5 80% | USG 22% | MIN 23.6 | REB matchup 1.14x | Home boost | Minutes watch | Anti-correlation: same team as Julius Randle"
         },
         {
+          "player_id": "4251",
+          "player_name": "Paul George",
+          "team": "PHI",
+          "opponent": "BOS",
+          "line": "4+ REB",
+          "score": 68.43,
+          "confidence": 68,
+          "tier": "C",
+          "reason": "L10 90% | L5 80% | USG 18% | MIN 34.4 | REB matchup 0.97x | Home boost"
+        },
+        {
           "player_id": "5124612",
           "player_name": "VJ Edgecombe",
           "team": "PHI",
           "opponent": "BOS",
           "line": "6+ REB",
-          "score": 66.13,
-          "confidence": 66,
+          "score": 63.18,
+          "confidence": 63,
           "tier": "C",
-          "reason": "L10 80% | L5 60% | USG 25% | MIN 36.6 | REB matchup 0.97x | Home boost | Anti-correlation: same team as Paul George"
+          "reason": "L10 80% | L5 60% | USG 20% | MIN 36.6 | REB matchup 0.97x | Home boost | Anti-correlation: same team as Paul George"
         }
       ]
     },
@@ -455,15 +455,15 @@
       "market": "3PM",
       "players": [
         {
-          "player_id": "4431678",
-          "player_name": "Tyrese Maxey",
+          "player_id": "3059318",
+          "player_name": "Joel Embiid",
           "team": "PHI",
           "opponent": "BOS",
-          "line": "3+ 3PM",
-          "score": 73.13,
-          "confidence": 73,
+          "line": "1+ 3PM",
+          "score": 78.71,
+          "confidence": 79,
           "tier": "C",
-          "reason": "L10 60% | L5 80% | USG 36% | MIN 39.3 | 3PM matchup 0.97x | Home boost"
+          "reason": "L10 90% | L5 80% | USG 32% | MIN 34.7 | 3PM matchup 0.97x | Home boost"
         },
         {
           "player_id": "3917376",
@@ -510,6 +510,17 @@
           "reason": "L10 70% | L5 80% | USG 33% | MIN 35.4 | 3PM matchup 0.94x"
         },
         {
+          "player_id": "4431678",
+          "player_name": "Tyrese Maxey",
+          "team": "PHI",
+          "opponent": "BOS",
+          "line": "3+ 3PM",
+          "score": 69.21,
+          "confidence": 69,
+          "tier": "C",
+          "reason": "L10 60% | L5 80% | USG 30% | MIN 39.3 | 3PM matchup 0.97x | Home boost | Anti-correlation: same team as Joel Embiid"
+        },
+        {
           "player_id": "3112335",
           "player_name": "Nikola Jokic",
           "team": "DEN",
@@ -552,17 +563,6 @@
           "confidence": 67,
           "tier": "B",
           "reason": "L10 60% | L5 60% | USG 32% | MIN 36.7 | 3PM matchup 1.25x | Anti-correlation: same team as Jaylen Brown"
-        },
-        {
-          "player_id": "3064514",
-          "player_name": "Julius Randle",
-          "team": "MIN",
-          "opponent": "DEN",
-          "line": "1+ 3PM",
-          "score": 64.96,
-          "confidence": 65,
-          "tier": "B",
-          "reason": "L10 70% | L5 40% | USG 33% | MIN 32.8 | 3PM matchup 1.05x | Home boost | Anti-correlation: same team as Naz Reid"
         }
       ]
     },
@@ -622,23 +622,6 @@
           ]
         },
         {
-          "player_id": "4431678",
-          "player_name": "Tyrese Maxey",
-          "team": "PHI",
-          "opponent": "BOS",
-          "line": "6+ AST",
-          "score": 79.05,
-          "confidence": 79,
-          "tier": "B",
-          "reason": "L10 60% | L5 80% | USG 36% | MIN 39.3 | AST matchup 1.15x | Home boost",
-          "market": "AST",
-          "ladder": [
-            "6+",
-            "8+",
-            "10+"
-          ]
-        },
-        {
           "player_id": "3934719",
           "player_name": "OG Anunoby",
           "team": "NY",
@@ -653,6 +636,23 @@
             "7+",
             "9+",
             "11+"
+          ]
+        },
+        {
+          "player_id": "3917376",
+          "player_name": "Jaylen Brown",
+          "team": "BOS",
+          "opponent": "PHI",
+          "line": "3+ AST",
+          "score": 76.6,
+          "confidence": 77,
+          "tier": "A",
+          "reason": "L10 80% | L5 80% | USG 37% | MIN 35.1 | AST matchup 1.25x | Anti-correlation: same team as Jayson Tatum",
+          "market": "AST",
+          "ladder": [
+            "3+",
+            "5+",
+            "7+"
           ]
         }
       ]
@@ -712,10 +712,10 @@
         "team": "PHI",
         "opponent": "BOS",
         "line": "16+ PTS",
-        "score": 69.62,
-        "confidence": 70,
+        "score": 66.96,
+        "confidence": 67,
         "tier": "C",
-        "reason": "L10 80% | L5 100% | USG 22% | MIN 34.4 | PTS matchup 0.96x | Home boost"
+        "reason": "L10 80% | L5 100% | USG 18% | MIN 34.4 | PTS matchup 0.96x | Home boost"
       },
       {
         "player_id": "3917376",
@@ -740,6 +740,17 @@
         "reason": "L10 60% | L5 40% | USG 33% | MIN 32.8 | PTS matchup 1.02x | Home boost"
       },
       {
+        "player_id": "3059318",
+        "player_name": "Joel Embiid",
+        "team": "PHI",
+        "opponent": "BOS",
+        "line": "27+ PTS",
+        "score": 59.53,
+        "confidence": 60,
+        "tier": "C",
+        "reason": "L10 60% | L5 40% | USG 32% | MIN 34.7 | PTS matchup 0.96x | Home boost | Anti-correlation: same team as Paul George"
+      },
+      {
         "player_id": "4431671",
         "player_name": "Jaden McDaniels",
         "team": "MIN",
@@ -760,17 +771,6 @@
         "confidence": 56,
         "tier": "B",
         "reason": "L10 70% | L5 60% | USG 23% | MIN 32.1 | PTS matchup 1.05x | Anti-correlation: same team as Jalen Brunson"
-      },
-      {
-        "player_id": "3934719",
-        "player_name": "OG Anunoby",
-        "team": "NY",
-        "opponent": "ATL",
-        "line": "18+ PTS",
-        "score": 54.32,
-        "confidence": 54,
-        "tier": "B",
-        "reason": "L10 60% | L5 60% | USG 19% | MIN 36.4 | PTS matchup 1.05x | Anti-correlation: same team as Jalen Brunson"
       }
     ]
   },
@@ -778,7 +778,7 @@
     {
       "game_id": "401869393",
       "matchup": "NY @ ATL",
-      "time": "4/30 - 7:00 PM EDT",
+      "time": "3:19 - 1st",
       "top_signals": [
         {
           "market": "PTS",
@@ -1195,12 +1195,12 @@
           "tier": "A"
         },
         {
-          "market": "AST",
-          "player_name": "Tyrese Maxey",
-          "line": "6+ AST",
-          "score": 79.05,
+          "market": "3PM",
+          "player_name": "Joel Embiid",
+          "line": "1+ 3PM",
+          "score": 78.71,
           "confidence": 79,
-          "tier": "B"
+          "tier": "C"
         },
         {
           "market": "PTS",
@@ -1230,10 +1230,10 @@
             "team": "PHI",
             "opponent": "BOS",
             "line": "16+ PTS",
-            "score": 69.62,
-            "confidence": 70,
+            "score": 66.96,
+            "confidence": 67,
             "tier": "C",
-            "reason": "L10 80% | L5 100% | USG 22% | MIN 34.4 | PTS matchup 0.96x | Home boost"
+            "reason": "L10 80% | L5 100% | USG 18% | MIN 34.4 | PTS matchup 0.96x | Home boost"
           },
           {
             "player_id": "3917376",
@@ -1247,15 +1247,26 @@
             "reason": "L10 70% | L5 60% | USG 37% | MIN 35.1 | PTS matchup 0.98x | Anti-correlation: same team as Jayson Tatum"
           },
           {
+            "player_id": "3059318",
+            "player_name": "Joel Embiid",
+            "team": "PHI",
+            "opponent": "BOS",
+            "line": "27+ PTS",
+            "score": 59.53,
+            "confidence": 60,
+            "tier": "C",
+            "reason": "L10 60% | L5 40% | USG 32% | MIN 34.7 | PTS matchup 0.96x | Home boost | Anti-correlation: same team as Paul George"
+          },
+          {
             "player_id": "3133603",
             "player_name": "Kelly Oubre Jr.",
             "team": "PHI",
             "opponent": "BOS",
             "line": "10+ PTS",
-            "score": 45.64,
-            "confidence": 46,
+            "score": 43.65,
+            "confidence": 44,
             "tier": "C",
-            "reason": "L10 70% | L5 60% | USG 17% | MIN 32.6 | PTS matchup 0.96x | Home boost | Anti-correlation: same team as Paul George"
+            "reason": "L10 70% | L5 60% | USG 14% | MIN 32.6 | PTS matchup 0.96x | Home boost | Anti-correlation: same team as Paul George"
           },
           {
             "player_id": "4066354",
@@ -1282,17 +1293,6 @@
             "reason": "L10 60% | L5 80% | USG 37% | MIN 35.1 | REB matchup 1.25x"
           },
           {
-            "player_id": "4251",
-            "player_name": "Paul George",
-            "team": "PHI",
-            "opponent": "BOS",
-            "line": "4+ REB",
-            "score": 71.09,
-            "confidence": 71,
-            "tier": "C",
-            "reason": "L10 90% | L5 80% | USG 22% | MIN 34.4 | REB matchup 0.97x | Home boost"
-          },
-          {
             "player_id": "4065648",
             "player_name": "Jayson Tatum",
             "team": "BOS",
@@ -1304,15 +1304,26 @@
             "reason": "L10 70% | L5 60% | USG 32% | MIN 36.7 | REB matchup 1.25x | Anti-correlation: same team as Jaylen Brown"
           },
           {
+            "player_id": "4251",
+            "player_name": "Paul George",
+            "team": "PHI",
+            "opponent": "BOS",
+            "line": "4+ REB",
+            "score": 68.43,
+            "confidence": 68,
+            "tier": "C",
+            "reason": "L10 90% | L5 80% | USG 18% | MIN 34.4 | REB matchup 0.97x | Home boost"
+          },
+          {
             "player_id": "5124612",
             "player_name": "VJ Edgecombe",
             "team": "PHI",
             "opponent": "BOS",
             "line": "6+ REB",
-            "score": 66.13,
-            "confidence": 66,
+            "score": 63.18,
+            "confidence": 63,
             "tier": "C",
-            "reason": "L10 80% | L5 60% | USG 25% | MIN 36.6 | REB matchup 0.97x | Home boost | Anti-correlation: same team as Paul George"
+            "reason": "L10 80% | L5 60% | USG 20% | MIN 36.6 | REB matchup 0.97x | Home boost | Anti-correlation: same team as Paul George"
           },
           {
             "player_id": "3133603",
@@ -1320,10 +1331,10 @@
             "team": "PHI",
             "opponent": "BOS",
             "line": "5+ REB",
-            "score": 62.75,
-            "confidence": 63,
+            "score": 60.77,
+            "confidence": 61,
             "tier": "C",
-            "reason": "L10 70% | L5 80% | USG 17% | MIN 32.6 | REB matchup 0.97x | Home boost | Anti-correlation: same team as Paul George"
+            "reason": "L10 70% | L5 80% | USG 14% | MIN 32.6 | REB matchup 0.97x | Home boost | Anti-correlation: same team as Paul George"
           },
           {
             "player_id": "4065804",
@@ -1364,10 +1375,10 @@
             "team": "PHI",
             "opponent": "BOS",
             "line": "6+ REB",
-            "score": 34.77,
-            "confidence": 35,
+            "score": 33.65,
+            "confidence": 34,
             "tier": "C",
-            "reason": "L10 60% | L5 40% | USG 9% | MIN 17.6 | REB matchup 0.97x | Home boost | Minutes watch | Anti-correlation: same team as Paul George"
+            "reason": "L10 60% | L5 40% | USG 8% | MIN 17.6 | REB matchup 0.97x | Home boost | Minutes watch | Anti-correlation: same team as Paul George"
           }
         ],
         "AST": [
@@ -1383,17 +1394,6 @@
             "reason": "L10 80% | L5 80% | USG 32% | MIN 36.7 | AST matchup 1.25x"
           },
           {
-            "player_id": "4431678",
-            "player_name": "Tyrese Maxey",
-            "team": "PHI",
-            "opponent": "BOS",
-            "line": "6+ AST",
-            "score": 79.05,
-            "confidence": 79,
-            "tier": "B",
-            "reason": "L10 60% | L5 80% | USG 36% | MIN 39.3 | AST matchup 1.15x | Home boost"
-          },
-          {
             "player_id": "3917376",
             "player_name": "Jaylen Brown",
             "team": "BOS",
@@ -1405,15 +1405,26 @@
             "reason": "L10 80% | L5 80% | USG 37% | MIN 35.1 | AST matchup 1.25x | Anti-correlation: same team as Jayson Tatum"
           },
           {
-            "player_id": "5124612",
-            "player_name": "VJ Edgecombe",
+            "player_id": "4431678",
+            "player_name": "Tyrese Maxey",
             "team": "PHI",
             "opponent": "BOS",
-            "line": "3+ AST",
-            "score": 61.32,
-            "confidence": 61,
+            "line": "6+ AST",
+            "score": 76.38,
+            "confidence": 76,
             "tier": "B",
-            "reason": "L10 70% | L5 60% | USG 25% | MIN 36.6 | AST matchup 1.15x | Home boost | Anti-correlation: same team as Tyrese Maxey"
+            "reason": "L10 60% | L5 80% | USG 30% | MIN 39.3 | AST matchup 1.15x | Home boost"
+          },
+          {
+            "player_id": "3059318",
+            "player_name": "Joel Embiid",
+            "team": "PHI",
+            "opponent": "BOS",
+            "line": "4+ AST",
+            "score": 71.25,
+            "confidence": 71,
+            "tier": "B",
+            "reason": "L10 60% | L5 60% | USG 32% | MIN 34.7 | AST matchup 1.15x | Home boost | Anti-correlation: same team as Tyrese Maxey"
           },
           {
             "player_id": "4066354",
@@ -1425,6 +1436,17 @@
             "confidence": 61,
             "tier": "B",
             "reason": "L10 70% | L5 80% | USG 20% | MIN 31.3 | AST matchup 1.25x | Anti-correlation: same team as Jayson Tatum"
+          },
+          {
+            "player_id": "5124612",
+            "player_name": "VJ Edgecombe",
+            "team": "PHI",
+            "opponent": "BOS",
+            "line": "3+ AST",
+            "score": 58.37,
+            "confidence": 58,
+            "tier": "B",
+            "reason": "L10 70% | L5 60% | USG 20% | MIN 36.6 | AST matchup 1.15x | Home boost | Anti-correlation: same team as Tyrese Maxey"
           },
           {
             "player_id": "3078576",
@@ -1451,15 +1473,15 @@
         ],
         "3PM": [
           {
-            "player_id": "4431678",
-            "player_name": "Tyrese Maxey",
+            "player_id": "3059318",
+            "player_name": "Joel Embiid",
             "team": "PHI",
             "opponent": "BOS",
-            "line": "3+ 3PM",
-            "score": 73.13,
-            "confidence": 73,
+            "line": "1+ 3PM",
+            "score": 78.71,
+            "confidence": 79,
             "tier": "C",
-            "reason": "L10 60% | L5 80% | USG 36% | MIN 39.3 | 3PM matchup 0.97x | Home boost"
+            "reason": "L10 90% | L5 80% | USG 32% | MIN 34.7 | 3PM matchup 0.97x | Home boost"
           },
           {
             "player_id": "3917376",
@@ -1471,6 +1493,17 @@
             "confidence": 72,
             "tier": "B",
             "reason": "L10 70% | L5 60% | USG 37% | MIN 35.1 | 3PM matchup 1.25x"
+          },
+          {
+            "player_id": "4431678",
+            "player_name": "Tyrese Maxey",
+            "team": "PHI",
+            "opponent": "BOS",
+            "line": "3+ 3PM",
+            "score": 69.21,
+            "confidence": 69,
+            "tier": "C",
+            "reason": "L10 60% | L5 80% | USG 30% | MIN 39.3 | 3PM matchup 0.97x | Home boost | Anti-correlation: same team as Joel Embiid"
           },
           {
             "player_id": "4065648",
@@ -1517,17 +1550,6 @@
             "reason": "L10 80% | L5 80% | USG 14% | MIN 34.7 | 3PM matchup 1.25x | Anti-correlation: same team as Jaylen Brown"
           },
           {
-            "player_id": "4251",
-            "player_name": "Paul George",
-            "team": "PHI",
-            "opponent": "BOS",
-            "line": "2+ 3PM",
-            "score": 58.36,
-            "confidence": 58,
-            "tier": "C",
-            "reason": "L10 60% | L5 80% | USG 22% | MIN 34.4 | 3PM matchup 0.97x | Home boost | Anti-correlation: same team as Tyrese Maxey"
-          },
-          {
             "player_id": "4066354",
             "player_name": "Payton Pritchard",
             "team": "BOS",
@@ -1539,26 +1561,26 @@
             "reason": "L10 70% | L5 60% | USG 20% | MIN 31.3 | 3PM matchup 1.25x | Anti-correlation: same team as Jaylen Brown"
           },
           {
+            "player_id": "4251",
+            "player_name": "Paul George",
+            "team": "PHI",
+            "opponent": "BOS",
+            "line": "2+ 3PM",
+            "score": 55.7,
+            "confidence": 56,
+            "tier": "C",
+            "reason": "L10 60% | L5 80% | USG 18% | MIN 34.4 | 3PM matchup 0.97x | Home boost | Anti-correlation: same team as Joel Embiid"
+          },
+          {
             "player_id": "4397014",
             "player_name": "Quentin Grimes",
             "team": "PHI",
             "opponent": "BOS",
             "line": "1+ 3PM",
-            "score": 50.39,
-            "confidence": 50,
+            "score": 48.85,
+            "confidence": 49,
             "tier": "C",
-            "reason": "L10 70% | L5 80% | USG 13% | MIN 23.8 | 3PM matchup 0.97x | Home boost | Minutes watch | Anti-correlation: same team as Tyrese Maxey"
-          },
-          {
-            "player_id": "6478",
-            "player_name": "Nikola Vucevic",
-            "team": "BOS",
-            "opponent": "PHI",
-            "line": "1+ 3PM",
-            "score": 47.95,
-            "confidence": 48,
-            "tier": "C",
-            "reason": "L10 60% | L5 80% | USG 10% | MIN 22.3 | 3PM matchup 1.25x | Minutes watch | Anti-correlation: same team as Jaylen Brown"
+            "reason": "L10 70% | L5 80% | USG 11% | MIN 23.8 | 3PM matchup 0.97x | Home boost | Minutes watch | Anti-correlation: same team as Joel Embiid"
           }
         ],
         "ML": [
