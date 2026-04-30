@@ -74,8 +74,8 @@ def build_mlb_board(*, config, paths) -> dict:
                 "confidence": candidate.confidence,
                 "tier": candidate.tier,
             }
-            for candidate in candidates[: config.top_signals_per_game]
-            if candidate.tier != "PASS"
+                for candidate in candidates[: config.top_signals_per_game]
+                if candidate.tier != "PASS"
         ]
 
         games_output.append(
@@ -96,7 +96,6 @@ def build_mlb_board(*, config, paths) -> dict:
         pinned_candidates.extend(
             candidate for candidate in candidates if candidate.market == "HR" and candidate.tier != "PASS"
         )
-
     previous_pinned_players = load_previous_pinned_players(paths)
     pinned_players = build_sticky_hr_board(
         candidates=sorted_candidates(pinned_candidates),
@@ -181,8 +180,12 @@ def apply_hr_board_sliding_scale(*, base_score: float, previous_score: float | N
 
     if phase == "live":
         progress = min(max(inning, 1), 9) / 9.0
-        live_factor = max(0.18, 1.0 - progress * 0.78)
-        live_memory = previous_score * 0.18
+        live_factor = max(0.0, 1.0 - progress * 0.92)
+        if inning >= 8:
+            live_factor *= 0.35
+        elif inning >= 6:
+            live_factor *= 0.6
+        live_memory = previous_score * (0.12 if inning < 6 else 0.05)
         return round(base_score * live_factor + live_memory, 2)
 
     pregame_factor = 0.96

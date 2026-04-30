@@ -267,6 +267,15 @@ def build_hitter_inputs(
                 trend=clamp(0.65 * l5_hr + 0.35 * l10_hr, 0.0, 1.0),
                 matchup=clamp(pitcher_matchup * 0.8 + lineup_boost * 0.2, 0.0, 1.0),
                 recent_form=clamp(form_boost * 0.7 + lineup_boost * 0.3, 0.0, 1.0),
+                extra={
+                    "season_hr_per_game": round(hr_per_game, 3),
+                    "l5_hr_per_game": round(l5_hr, 3),
+                    "l10_hr_per_game": round(l10_hr, 3),
+                    "ops": round(ops, 3),
+                    "slg": round(slg, 3),
+                    "lineup_spot": index,
+                    "pitcher_matchup": round(pitcher_matchup, 3),
+                },
             )
         )
         results.append(

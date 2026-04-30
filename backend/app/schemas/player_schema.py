@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pydantic import BaseModel, Field
+from typing import Any
 
 
 class RawPlayerMarketInput(BaseModel):
@@ -16,6 +17,7 @@ class RawPlayerMarketInput(BaseModel):
     trend: float = Field(ge=0.0, le=1.0)
     matchup: float = Field(ge=0.0, le=1.0)
     recent_form: float = Field(ge=0.0, le=1.0)
+    extra: dict[str, Any] = Field(default_factory=dict)
 
 
 class BoardPlayer(BaseModel):
