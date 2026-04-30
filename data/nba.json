@@ -1,7 +1,7 @@
 {
   "sport": "NBA",
   "date": "2026-04-29",
-  "last_updated": "9:30 PM ET",
+  "last_updated": "10:00 PM ET",
   "hero_pick": {
     "player_id": "4871144",
     "player_name": "Alperen Sengun",
@@ -12,20 +12,48 @@
     "score": 74.41,
     "confidence": 74,
     "tier": "A",
-    "reason": "L10 70% | L5 80% | USG 32% | MIN 35.0 | AST matchup 1.24x",
+    "reason": "L10 70% | L5 80% | USG 32% | MIN 35.0 | AST matchup 1.25x",
     "label": "Pick of the Day"
   },
   "game_clusters": [
     {
+      "game_id": "401869416",
+      "matchup": "ORL @ DET",
+      "top_score": 76.65,
+      "signals": [
+        {
+          "player_name": "Cade Cunningham",
+          "market": "REB",
+          "line": "5+ REB",
+          "score": 78.92,
+          "tier": "B"
+        },
+        {
+          "player_name": "Tobias Harris",
+          "market": "REB",
+          "line": "6+ REB",
+          "score": 76.46,
+          "tier": "B"
+        },
+        {
+          "player_name": "Desmond Bane",
+          "market": "REB",
+          "line": "4+ REB",
+          "score": 74.58,
+          "tier": "C"
+        }
+      ]
+    },
+    {
       "game_id": "401869380",
       "matchup": "TOR @ CLE",
-      "top_score": 74.88,
+      "top_score": 74.83,
       "signals": [
         {
           "player_name": "RJ Barrett",
           "market": "PTS",
           "line": "21+ PTS",
-          "score": 77.88,
+          "score": 77.92,
           "tier": "B"
         },
         {
@@ -39,7 +67,7 @@
           "player_name": "RJ Barrett",
           "market": "REB",
           "line": "5+ REB",
-          "score": 71.88,
+          "score": 71.69,
           "tier": "B"
         }
       ]
@@ -47,7 +75,7 @@
     {
       "game_id": "401869407",
       "matchup": "HOU @ LAL",
-      "top_score": 72.64,
+      "top_score": 72.65,
       "signals": [
         {
           "player_name": "Alperen Sengun",
@@ -60,7 +88,7 @@
           "player_name": "Jabari Smith Jr.",
           "market": "PTS",
           "line": "16+ PTS",
-          "score": 74.01,
+          "score": 74.05,
           "tier": "C"
         },
         {
@@ -68,34 +96,6 @@
           "market": "AST",
           "line": "6+ AST",
           "score": 69.5,
-          "tier": "B"
-        }
-      ]
-    },
-    {
-      "game_id": "401869416",
-      "matchup": "ORL @ DET",
-      "top_score": 71.47,
-      "signals": [
-        {
-          "player_name": "Desmond Bane",
-          "market": "REB",
-          "line": "4+ REB",
-          "score": 73.26,
-          "tier": "C"
-        },
-        {
-          "player_name": "Cade Cunningham",
-          "market": "AST",
-          "line": "8+ AST",
-          "score": 70.74,
-          "tier": "B"
-        },
-        {
-          "player_name": "Paolo Banchero",
-          "market": "AST",
-          "line": "5+ AST",
-          "score": 70.41,
           "tier": "B"
         }
       ]
@@ -112,7 +112,7 @@
           "team": "TOR",
           "opponent": "CLE",
           "line": "21+ PTS",
-          "score": 77.88,
+          "score": 77.92,
           "confidence": 78,
           "tier": "B",
           "reason": "L10 60% | L5 80% | USG 40% | MIN 33.8 | PTS matchup 1.07x"
@@ -123,21 +123,21 @@
           "team": "HOU",
           "opponent": "LAL",
           "line": "16+ PTS",
-          "score": 74.01,
+          "score": 74.05,
           "confidence": 74,
           "tier": "C",
           "reason": "L10 90% | L5 100% | USG 27% | MIN 39.8 | PTS matchup 0.96x"
         },
         {
-          "player_id": "4432573",
-          "player_name": "Paolo Banchero",
-          "team": "ORL",
-          "opponent": "DET",
-          "line": "20+ PTS",
-          "score": 64.06,
+          "player_id": "6440",
+          "player_name": "Tobias Harris",
+          "team": "DET",
+          "opponent": "ORL",
+          "line": "17+ PTS",
+          "score": 64.18,
           "confidence": 64,
           "tier": "C",
-          "reason": "L10 60% | L5 60% | USG 36% | MIN 35.8 | PTS matchup 1.00x"
+          "reason": "L10 60% | L5 80% | USG 20% | MIN 32.7 | PTS matchup 0.98x | Home boost"
         },
         {
           "player_id": "5093267",
@@ -145,21 +145,10 @@
           "team": "TOR",
           "opponent": "CLE",
           "line": "12+ PTS",
-          "score": 63.61,
+          "score": 63.66,
           "confidence": 64,
           "tier": "C",
           "reason": "L10 80% | L5 80% | USG 20% | MIN 22.5 | PTS matchup 1.07x | Minutes watch | Anti-correlation: same team as RJ Barrett"
-        },
-        {
-          "player_id": "4432165",
-          "player_name": "Jalen Suggs",
-          "team": "ORL",
-          "opponent": "DET",
-          "line": "12+ PTS",
-          "score": 57.95,
-          "confidence": 58,
-          "tier": "C",
-          "reason": "L10 70% | L5 80% | USG 23% | MIN 30.6 | PTS matchup 1.00x | Anti-correlation: same team as Paolo Banchero"
         },
         {
           "player_id": "3913174",
@@ -167,10 +156,21 @@
           "team": "LAL",
           "opponent": "HOU",
           "line": "13+ PTS",
-          "score": 57.84,
+          "score": 57.88,
           "confidence": 58,
           "tier": "C",
           "reason": "L10 60% | L5 60% | USG 18% | MIN 30.4 | PTS matchup 1.00x | Home boost"
+        },
+        {
+          "player_id": "4066320",
+          "player_name": "Desmond Bane",
+          "team": "ORL",
+          "opponent": "DET",
+          "line": "17+ PTS",
+          "score": 57.52,
+          "confidence": 58,
+          "tier": "C",
+          "reason": "L10 60% | L5 80% | USG 27% | MIN 35.0 | PTS matchup 0.98x"
         },
         {
           "player_id": "3908809",
@@ -178,7 +178,7 @@
           "team": "CLE",
           "opponent": "TOR",
           "line": "25+ PTS",
-          "score": 56.84,
+          "score": 56.88,
           "confidence": 57,
           "tier": "C",
           "reason": "L10 60% | L5 60% | USG 26% | MIN 33.9 | PTS matchup 1.00x | Home boost"
@@ -189,32 +189,32 @@
           "team": "HOU",
           "opponent": "LAL",
           "line": "12+ PTS",
-          "score": 51.67,
+          "score": 51.71,
           "confidence": 52,
           "tier": "C",
           "reason": "L10 70% | L5 80% | USG 20% | MIN 28.7 | PTS matchup 0.96x | Minutes watch | Anti-correlation: same team as Jabari Smith Jr."
         },
         {
-          "player_id": "4277847",
-          "player_name": "Wendell Carter Jr.",
+          "player_id": "4432165",
+          "player_name": "Jalen Suggs",
           "team": "ORL",
           "opponent": "DET",
-          "line": "10+ PTS",
-          "score": 50.94,
-          "confidence": 51,
+          "line": "12+ PTS",
+          "score": 48.65,
+          "confidence": 49,
           "tier": "C",
-          "reason": "L10 60% | L5 80% | USG 15% | MIN 31.2 | PTS matchup 1.00x | Anti-correlation: same team as Paolo Banchero"
+          "reason": "L10 60% | L5 60% | USG 22% | MIN 32.8 | PTS matchup 0.98x | Anti-correlation: same team as Desmond Bane"
         },
         {
-          "player_id": "4066320",
-          "player_name": "Desmond Bane",
-          "team": "ORL",
-          "opponent": "DET",
-          "line": "17+ PTS",
-          "score": 50.41,
-          "confidence": 50,
+          "player_id": "4433192",
+          "player_name": "Tari Eason",
+          "team": "HOU",
+          "opponent": "LAL",
+          "line": "11+ PTS",
+          "score": 45.52,
+          "confidence": 46,
           "tier": "C",
-          "reason": "L10 60% | L5 60% | USG 27% | MIN 35.1 | PTS matchup 1.00x | Anti-correlation: same team as Paolo Banchero"
+          "reason": "L10 60% | L5 60% | USG 17% | MIN 29.0 | PTS matchup 0.96x | Minutes watch | Anti-correlation: same team as Jabari Smith Jr."
         }
       ]
     },
@@ -231,7 +231,18 @@
           "score": 74.41,
           "confidence": 74,
           "tier": "A",
-          "reason": "L10 70% | L5 80% | USG 32% | MIN 35.0 | AST matchup 1.24x"
+          "reason": "L10 70% | L5 80% | USG 32% | MIN 35.0 | AST matchup 1.25x"
+        },
+        {
+          "player_id": "4432573",
+          "player_name": "Paolo Banchero",
+          "team": "ORL",
+          "opponent": "DET",
+          "line": "5+ AST",
+          "score": 73.36,
+          "confidence": 73,
+          "tier": "B",
+          "reason": "L10 70% | L5 60% | USG 39% | MIN 37.0 | AST matchup 1.23x"
         },
         {
           "player_id": "4395625",
@@ -245,28 +256,6 @@
           "reason": "L10 70% | L5 60% | USG 40% | MIN 33.8 | AST matchup 1.25x"
         },
         {
-          "player_id": "4432166",
-          "player_name": "Cade Cunningham",
-          "team": "DET",
-          "opponent": "ORL",
-          "line": "8+ AST",
-          "score": 70.74,
-          "confidence": 71,
-          "tier": "B",
-          "reason": "L10 60% | L5 60% | USG 32% | MIN 34.9 | AST matchup 1.25x | Home boost"
-        },
-        {
-          "player_id": "4432573",
-          "player_name": "Paolo Banchero",
-          "team": "ORL",
-          "opponent": "DET",
-          "line": "5+ AST",
-          "score": 70.41,
-          "confidence": 70,
-          "tier": "B",
-          "reason": "L10 60% | L5 60% | USG 36% | MIN 35.8 | AST matchup 1.24x"
-        },
-        {
           "player_id": "4684740",
           "player_name": "Amen Thompson",
           "team": "HOU",
@@ -275,7 +264,18 @@
           "score": 69.5,
           "confidence": 70,
           "tier": "B",
-          "reason": "L10 70% | L5 80% | USG 29% | MIN 41.5 | AST matchup 1.24x | Anti-correlation: same team as Alperen Sengun"
+          "reason": "L10 70% | L5 80% | USG 29% | MIN 41.5 | AST matchup 1.25x | Anti-correlation: same team as Alperen Sengun"
+        },
+        {
+          "player_id": "4432165",
+          "player_name": "Jalen Suggs",
+          "team": "ORL",
+          "opponent": "DET",
+          "line": "3+ AST",
+          "score": 66.01,
+          "confidence": 66,
+          "tier": "B",
+          "reason": "L10 90% | L5 80% | USG 22% | MIN 32.8 | AST matchup 1.23x | Anti-correlation: same team as Paolo Banchero"
         },
         {
           "player_id": "4066457",
@@ -297,7 +297,18 @@
           "score": 64.87,
           "confidence": 65,
           "tier": "C",
-          "reason": "L10 70% | L5 100% | USG 20% | MIN 28.7 | AST matchup 1.24x | Minutes watch | Anti-correlation: same team as Alperen Sengun"
+          "reason": "L10 70% | L5 100% | USG 20% | MIN 28.7 | AST matchup 1.25x | Minutes watch | Anti-correlation: same team as Alperen Sengun"
+        },
+        {
+          "player_id": "4432166",
+          "player_name": "Cade Cunningham",
+          "team": "DET",
+          "opponent": "ORL",
+          "line": "7+ AST",
+          "score": 64.33,
+          "confidence": 64,
+          "tier": "B",
+          "reason": "L10 60% | L5 40% | USG 35% | MIN 38.1 | AST matchup 1.21x | Home boost"
         },
         {
           "player_id": "3908809",
@@ -320,17 +331,6 @@
           "confidence": 61,
           "tier": "B",
           "reason": "L10 80% | L5 60% | USG 18% | MIN 30.9 | AST matchup 1.25x | Home boost | Anti-correlation: same team as Donovan Mitchell"
-        },
-        {
-          "player_id": "3157465",
-          "player_name": "Duncan Robinson",
-          "team": "DET",
-          "opponent": "ORL",
-          "line": "2+ AST",
-          "score": 60.69,
-          "confidence": 61,
-          "tier": "C",
-          "reason": "L10 80% | L5 80% | USG 14% | MIN 27.3 | AST matchup 1.25x | Home boost | Minutes watch | Anti-correlation: same team as Cade Cunningham"
         }
       ]
     },
@@ -338,6 +338,28 @@
       "title": "Glass / Rebounds",
       "market": "REB",
       "players": [
+        {
+          "player_id": "4432166",
+          "player_name": "Cade Cunningham",
+          "team": "DET",
+          "opponent": "ORL",
+          "line": "5+ REB",
+          "score": 78.92,
+          "confidence": 79,
+          "tier": "B",
+          "reason": "L10 60% | L5 80% | USG 35% | MIN 38.1 | REB matchup 1.16x | Home boost"
+        },
+        {
+          "player_id": "6440",
+          "player_name": "Tobias Harris",
+          "team": "DET",
+          "opponent": "ORL",
+          "line": "6+ REB",
+          "score": 76.46,
+          "confidence": 76,
+          "tier": "B",
+          "reason": "L10 60% | L5 100% | USG 20% | MIN 32.7 | REB matchup 1.16x | Home boost | Anti-correlation: same team as Cade Cunningham"
+        },
         {
           "player_id": "3908809",
           "player_name": "Donovan Mitchell",
@@ -347,7 +369,7 @@
           "score": 74.89,
           "confidence": 75,
           "tier": "B",
-          "reason": "L10 60% | L5 80% | USG 26% | MIN 33.9 | REB matchup 1.17x | Home boost"
+          "reason": "L10 60% | L5 80% | USG 26% | MIN 33.9 | REB matchup 1.16x | Home boost"
         },
         {
           "player_id": "4066320",
@@ -355,10 +377,21 @@
           "team": "ORL",
           "opponent": "DET",
           "line": "4+ REB",
-          "score": 73.26,
-          "confidence": 73,
+          "score": 74.58,
+          "confidence": 75,
           "tier": "C",
-          "reason": "L10 60% | L5 100% | USG 27% | MIN 35.1 | REB matchup 1.02x"
+          "reason": "L10 70% | L5 100% | USG 27% | MIN 35.0 | REB matchup 1.01x"
+        },
+        {
+          "player_id": "4432573",
+          "player_name": "Paolo Banchero",
+          "team": "ORL",
+          "opponent": "DET",
+          "line": "8+ REB",
+          "score": 72.04,
+          "confidence": 72,
+          "tier": "C",
+          "reason": "L10 70% | L5 80% | USG 39% | MIN 37.0 | REB matchup 1.01x | Anti-correlation: same team as Desmond Bane"
         },
         {
           "player_id": "4395625",
@@ -366,21 +399,10 @@
           "team": "TOR",
           "opponent": "CLE",
           "line": "5+ REB",
-          "score": 71.88,
+          "score": 71.69,
           "confidence": 72,
           "tier": "B",
           "reason": "L10 70% | L5 60% | USG 40% | MIN 33.8 | REB matchup 1.12x"
-        },
-        {
-          "player_id": "4433621",
-          "player_name": "Jalen Duren",
-          "team": "DET",
-          "opponent": "ORL",
-          "line": "8+ REB",
-          "score": 68.25,
-          "confidence": 68,
-          "tier": "C",
-          "reason": "L10 80% | L5 80% | USG 20% | MIN 28.5 | REB matchup 1.13x | Home boost | Minutes watch"
         },
         {
           "player_id": "4871144",
@@ -391,7 +413,7 @@
           "score": 68.17,
           "confidence": 68,
           "tier": "B",
-          "reason": "L10 60% | L5 60% | USG 32% | MIN 35.0 | REB matchup 1.19x"
+          "reason": "L10 60% | L5 60% | USG 32% | MIN 35.0 | REB matchup 1.18x"
         },
         {
           "player_id": "4278077",
@@ -402,7 +424,18 @@
           "score": 67.11,
           "confidence": 67,
           "tier": "C",
-          "reason": "L10 80% | L5 100% | USG 7% | MIN 15.9 | REB matchup 1.17x | Home boost | Minutes watch"
+          "reason": "L10 80% | L5 100% | USG 7% | MIN 15.9 | REB matchup 1.16x | Home boost | Minutes watch"
+        },
+        {
+          "player_id": "4433621",
+          "player_name": "Jalen Duren",
+          "team": "DET",
+          "opponent": "ORL",
+          "line": "8+ REB",
+          "score": 66.26,
+          "confidence": 66,
+          "tier": "C",
+          "reason": "L10 80% | L5 80% | USG 19% | MIN 29.4 | REB matchup 1.16x | Home boost | Minutes watch | Anti-correlation: same team as Cade Cunningham"
         },
         {
           "player_id": "4684740",
@@ -413,40 +446,7 @@
           "score": 63.81,
           "confidence": 64,
           "tier": "B",
-          "reason": "L10 60% | L5 60% | USG 29% | MIN 41.5 | REB matchup 1.19x | Anti-correlation: same team as Alperen Sengun"
-        },
-        {
-          "player_id": "4432573",
-          "player_name": "Paolo Banchero",
-          "team": "ORL",
-          "opponent": "DET",
-          "line": "7+ REB",
-          "score": 63.35,
-          "confidence": 63,
-          "tier": "C",
-          "reason": "L10 60% | L5 60% | USG 36% | MIN 35.8 | REB matchup 1.02x | Anti-correlation: same team as Desmond Bane"
-        },
-        {
-          "player_id": "4433192",
-          "player_name": "Tari Eason",
-          "team": "HOU",
-          "opponent": "LAL",
-          "line": "6+ REB",
-          "score": 62.2,
-          "confidence": 62,
-          "tier": "C",
-          "reason": "L10 70% | L5 80% | USG 17% | MIN 29.0 | REB matchup 1.19x | Minutes watch | Anti-correlation: same team as Alperen Sengun"
-        },
-        {
-          "player_id": "4432165",
-          "player_name": "Jalen Suggs",
-          "team": "ORL",
-          "opponent": "DET",
-          "line": "4+ REB",
-          "score": 56.12,
-          "confidence": 56,
-          "tier": "C",
-          "reason": "L10 60% | L5 60% | USG 23% | MIN 30.6 | REB matchup 1.02x | Anti-correlation: same team as Desmond Bane"
+          "reason": "L10 60% | L5 60% | USG 29% | MIN 41.5 | REB matchup 1.18x | Anti-correlation: same team as Alperen Sengun"
         }
       ]
     },
@@ -460,10 +460,10 @@
           "team": "ORL",
           "opponent": "DET",
           "line": "1+ 3PM",
-          "score": 68.35,
-          "confidence": 68,
+          "score": 70.01,
+          "confidence": 70,
           "tier": "B",
-          "reason": "L10 60% | L5 60% | USG 36% | MIN 35.8 | 3PM matchup 1.10x"
+          "reason": "L10 60% | L5 60% | USG 39% | MIN 37.0 | 3PM matchup 1.15x"
         },
         {
           "player_id": "4432165",
@@ -471,10 +471,10 @@
           "team": "ORL",
           "opponent": "DET",
           "line": "2+ 3PM",
-          "score": 65.5,
+          "score": 66.02,
           "confidence": 66,
           "tier": "B",
-          "reason": "L10 80% | L5 80% | USG 23% | MIN 30.6 | 3PM matchup 1.10x | Anti-correlation: same team as Paolo Banchero"
+          "reason": "L10 80% | L5 80% | USG 22% | MIN 32.8 | 3PM matchup 1.15x | Anti-correlation: same team as Paolo Banchero"
         },
         {
           "player_id": "4066457",
@@ -485,7 +485,7 @@
           "score": 62.9,
           "confidence": 63,
           "tier": "C",
-          "reason": "L10 70% | L5 80% | USG 27% | MIN 33.9 | 3PM matchup 0.90x | Home boost"
+          "reason": "L10 70% | L5 80% | USG 27% | MIN 33.9 | 3PM matchup 0.89x | Home boost"
         },
         {
           "player_id": "1966",
@@ -496,7 +496,7 @@
           "score": 61.4,
           "confidence": 61,
           "tier": "C",
-          "reason": "L10 80% | L5 60% | USG 30% | MIN 33.8 | 3PM matchup 0.90x | Home boost | Anti-correlation: same team as Austin Reaves"
+          "reason": "L10 80% | L5 60% | USG 30% | MIN 33.8 | 3PM matchup 0.89x | Home boost | Anti-correlation: same team as Austin Reaves"
         },
         {
           "player_id": "3908809",
@@ -504,10 +504,10 @@
           "team": "CLE",
           "opponent": "TOR",
           "line": "2+ 3PM",
-          "score": 57.56,
-          "confidence": 58,
+          "score": 57.15,
+          "confidence": 57,
           "tier": "C",
-          "reason": "L10 60% | L5 60% | USG 26% | MIN 33.9 | 3PM matchup 1.00x | Home boost"
+          "reason": "L10 60% | L5 60% | USG 26% | MIN 33.9 | 3PM matchup 0.99x | Home boost"
         },
         {
           "player_id": "4066648",
@@ -518,7 +518,7 @@
           "score": 56.15,
           "confidence": 56,
           "tier": "C",
-          "reason": "L10 70% | L5 80% | USG 17% | MIN 35.1 | 3PM matchup 0.90x | Home boost | Anti-correlation: same team as Austin Reaves"
+          "reason": "L10 70% | L5 80% | USG 17% | MIN 35.1 | 3PM matchup 0.89x | Home boost | Anti-correlation: same team as Austin Reaves"
         },
         {
           "player_id": "2990992",
@@ -529,7 +529,7 @@
           "score": 55.15,
           "confidence": 55,
           "tier": "C",
-          "reason": "L10 70% | L5 80% | USG 16% | MIN 31.8 | 3PM matchup 0.90x | Home boost | Anti-correlation: same team as Austin Reaves"
+          "reason": "L10 70% | L5 80% | USG 16% | MIN 31.8 | 3PM matchup 0.89x | Home boost | Anti-correlation: same team as Austin Reaves"
         },
         {
           "player_id": "3992",
@@ -537,10 +537,10 @@
           "team": "CLE",
           "opponent": "TOR",
           "line": "3+ 3PM",
-          "score": 54.97,
+          "score": 54.56,
           "confidence": 55,
           "tier": "C",
-          "reason": "L10 60% | L5 60% | USG 24% | MIN 33.1 | 3PM matchup 1.00x | Home boost | Anti-correlation: same team as Donovan Mitchell"
+          "reason": "L10 60% | L5 60% | USG 24% | MIN 33.1 | 3PM matchup 0.99x | Home boost | Anti-correlation: same team as Donovan Mitchell"
         },
         {
           "player_id": "3912848",
@@ -548,21 +548,21 @@
           "team": "CLE",
           "opponent": "TOR",
           "line": "1+ 3PM",
-          "score": 54.29,
+          "score": 53.87,
           "confidence": 54,
           "tier": "C",
-          "reason": "L10 80% | L5 100% | USG 5% | MIN 23.3 | 3PM matchup 1.00x | Home boost | Minutes watch | Anti-correlation: same team as Donovan Mitchell"
+          "reason": "L10 80% | L5 100% | USG 5% | MIN 23.3 | 3PM matchup 0.99x | Home boost | Minutes watch | Anti-correlation: same team as Donovan Mitchell"
         },
         {
-          "player_id": "6440",
-          "player_name": "Tobias Harris",
+          "player_id": "3157465",
+          "player_name": "Duncan Robinson",
           "team": "DET",
           "opponent": "ORL",
-          "line": "1+ 3PM",
-          "score": 53.34,
+          "line": "2+ 3PM",
+          "score": 53.42,
           "confidence": 53,
           "tier": "C",
-          "reason": "L10 70% | L5 60% | USG 19% | MIN 31.4 | 3PM matchup 0.94x | Home boost"
+          "reason": "L10 80% | L5 80% | USG 14% | MIN 27.8 | 3PM matchup 0.93x | Home boost | Minutes watch"
         }
       ]
     },
@@ -570,6 +570,40 @@
       "title": "Ladder Sleepers",
       "market": "LADDERS",
       "players": [
+        {
+          "player_id": "4432166",
+          "player_name": "Cade Cunningham",
+          "team": "DET",
+          "opponent": "ORL",
+          "line": "5+ REB",
+          "score": 78.92,
+          "confidence": 79,
+          "tier": "B",
+          "reason": "L10 60% | L5 80% | USG 35% | MIN 38.1 | REB matchup 1.16x | Home boost",
+          "market": "REB",
+          "ladder": [
+            "5+",
+            "7+",
+            "9+"
+          ]
+        },
+        {
+          "player_id": "6440",
+          "player_name": "Tobias Harris",
+          "team": "DET",
+          "opponent": "ORL",
+          "line": "6+ REB",
+          "score": 76.46,
+          "confidence": 76,
+          "tier": "B",
+          "reason": "L10 60% | L5 100% | USG 20% | MIN 32.7 | REB matchup 1.16x | Home boost | Anti-correlation: same team as Cade Cunningham",
+          "market": "REB",
+          "ladder": [
+            "6+",
+            "8+",
+            "10+"
+          ]
+        },
         {
           "player_id": "3908809",
           "player_name": "Donovan Mitchell",
@@ -579,25 +613,8 @@
           "score": 74.89,
           "confidence": 75,
           "tier": "B",
-          "reason": "L10 60% | L5 80% | USG 26% | MIN 33.9 | REB matchup 1.17x | Home boost",
+          "reason": "L10 60% | L5 80% | USG 26% | MIN 33.9 | REB matchup 1.16x | Home boost",
           "market": "REB",
-          "ladder": [
-            "5+",
-            "7+",
-            "9+"
-          ]
-        },
-        {
-          "player_id": "4871144",
-          "player_name": "Alperen Sengun",
-          "team": "HOU",
-          "opponent": "LAL",
-          "line": "5+ AST",
-          "score": 74.41,
-          "confidence": 74,
-          "tier": "A",
-          "reason": "L10 70% | L5 80% | USG 32% | MIN 35.0 | AST matchup 1.24x",
-          "market": "AST",
           "ladder": [
             "5+",
             "7+",
@@ -610,10 +627,10 @@
           "team": "ORL",
           "opponent": "DET",
           "line": "4+ REB",
-          "score": 73.26,
-          "confidence": 73,
+          "score": 74.58,
+          "confidence": 75,
           "tier": "C",
-          "reason": "L10 60% | L5 100% | USG 27% | MIN 35.1 | REB matchup 1.02x",
+          "reason": "L10 70% | L5 100% | USG 27% | MIN 35.0 | REB matchup 1.01x",
           "market": "REB",
           "ladder": [
             "4+",
@@ -622,37 +639,20 @@
           ]
         },
         {
-          "player_id": "4395625",
-          "player_name": "RJ Barrett",
-          "team": "TOR",
-          "opponent": "CLE",
-          "line": "5+ REB",
-          "score": 71.88,
-          "confidence": 72,
-          "tier": "B",
-          "reason": "L10 70% | L5 60% | USG 40% | MIN 33.8 | REB matchup 1.12x",
-          "market": "REB",
+          "player_id": "4871144",
+          "player_name": "Alperen Sengun",
+          "team": "HOU",
+          "opponent": "LAL",
+          "line": "5+ AST",
+          "score": 74.41,
+          "confidence": 74,
+          "tier": "A",
+          "reason": "L10 70% | L5 80% | USG 32% | MIN 35.0 | AST matchup 1.25x",
+          "market": "AST",
           "ladder": [
             "5+",
             "7+",
             "9+"
-          ]
-        },
-        {
-          "player_id": "4395625",
-          "player_name": "RJ Barrett",
-          "team": "TOR",
-          "opponent": "CLE",
-          "line": "3+ AST",
-          "score": 71.44,
-          "confidence": 71,
-          "tier": "B",
-          "reason": "L10 70% | L5 60% | USG 40% | MIN 33.8 | AST matchup 1.25x",
-          "market": "AST",
-          "ladder": [
-            "3+",
-            "5+",
-            "7+"
           ]
         }
       ]
@@ -668,7 +668,7 @@
         "team": "TOR",
         "opponent": "CLE",
         "line": "21+ PTS",
-        "score": 77.88,
+        "score": 77.92,
         "confidence": 78,
         "tier": "B",
         "reason": "L10 60% | L5 80% | USG 40% | MIN 33.8 | PTS matchup 1.07x"
@@ -679,21 +679,21 @@
         "team": "HOU",
         "opponent": "LAL",
         "line": "16+ PTS",
-        "score": 74.01,
+        "score": 74.05,
         "confidence": 74,
         "tier": "C",
         "reason": "L10 90% | L5 100% | USG 27% | MIN 39.8 | PTS matchup 0.96x"
       },
       {
-        "player_id": "4432573",
-        "player_name": "Paolo Banchero",
-        "team": "ORL",
-        "opponent": "DET",
-        "line": "20+ PTS",
-        "score": 64.06,
+        "player_id": "6440",
+        "player_name": "Tobias Harris",
+        "team": "DET",
+        "opponent": "ORL",
+        "line": "17+ PTS",
+        "score": 64.18,
         "confidence": 64,
         "tier": "C",
-        "reason": "L10 60% | L5 60% | USG 36% | MIN 35.8 | PTS matchup 1.00x"
+        "reason": "L10 60% | L5 80% | USG 20% | MIN 32.7 | PTS matchup 0.98x | Home boost"
       },
       {
         "player_id": "5093267",
@@ -701,21 +701,10 @@
         "team": "TOR",
         "opponent": "CLE",
         "line": "12+ PTS",
-        "score": 63.61,
+        "score": 63.66,
         "confidence": 64,
         "tier": "C",
         "reason": "L10 80% | L5 80% | USG 20% | MIN 22.5 | PTS matchup 1.07x | Minutes watch | Anti-correlation: same team as RJ Barrett"
-      },
-      {
-        "player_id": "4432165",
-        "player_name": "Jalen Suggs",
-        "team": "ORL",
-        "opponent": "DET",
-        "line": "12+ PTS",
-        "score": 57.95,
-        "confidence": 58,
-        "tier": "C",
-        "reason": "L10 70% | L5 80% | USG 23% | MIN 30.6 | PTS matchup 1.00x | Anti-correlation: same team as Paolo Banchero"
       },
       {
         "player_id": "3913174",
@@ -723,10 +712,21 @@
         "team": "LAL",
         "opponent": "HOU",
         "line": "13+ PTS",
-        "score": 57.84,
+        "score": 57.88,
         "confidence": 58,
         "tier": "C",
         "reason": "L10 60% | L5 60% | USG 18% | MIN 30.4 | PTS matchup 1.00x | Home boost"
+      },
+      {
+        "player_id": "4066320",
+        "player_name": "Desmond Bane",
+        "team": "ORL",
+        "opponent": "DET",
+        "line": "17+ PTS",
+        "score": 57.52,
+        "confidence": 58,
+        "tier": "C",
+        "reason": "L10 60% | L5 80% | USG 27% | MIN 35.0 | PTS matchup 0.98x"
       },
       {
         "player_id": "3908809",
@@ -734,7 +734,7 @@
         "team": "CLE",
         "opponent": "TOR",
         "line": "25+ PTS",
-        "score": 56.84,
+        "score": 56.88,
         "confidence": 57,
         "tier": "C",
         "reason": "L10 60% | L5 60% | USG 26% | MIN 33.9 | PTS matchup 1.00x | Home boost"
@@ -745,32 +745,32 @@
         "team": "HOU",
         "opponent": "LAL",
         "line": "12+ PTS",
-        "score": 51.67,
+        "score": 51.71,
         "confidence": 52,
         "tier": "C",
         "reason": "L10 70% | L5 80% | USG 20% | MIN 28.7 | PTS matchup 0.96x | Minutes watch | Anti-correlation: same team as Jabari Smith Jr."
       },
       {
-        "player_id": "4277847",
-        "player_name": "Wendell Carter Jr.",
+        "player_id": "4432165",
+        "player_name": "Jalen Suggs",
         "team": "ORL",
         "opponent": "DET",
-        "line": "10+ PTS",
-        "score": 50.94,
-        "confidence": 51,
+        "line": "12+ PTS",
+        "score": 48.65,
+        "confidence": 49,
         "tier": "C",
-        "reason": "L10 60% | L5 80% | USG 15% | MIN 31.2 | PTS matchup 1.00x | Anti-correlation: same team as Paolo Banchero"
+        "reason": "L10 60% | L5 60% | USG 22% | MIN 32.8 | PTS matchup 0.98x | Anti-correlation: same team as Desmond Bane"
       },
       {
-        "player_id": "4066320",
-        "player_name": "Desmond Bane",
-        "team": "ORL",
-        "opponent": "DET",
-        "line": "17+ PTS",
-        "score": 50.41,
-        "confidence": 50,
+        "player_id": "4433192",
+        "player_name": "Tari Eason",
+        "team": "HOU",
+        "opponent": "LAL",
+        "line": "11+ PTS",
+        "score": 45.52,
+        "confidence": 46,
         "tier": "C",
-        "reason": "L10 60% | L5 60% | USG 27% | MIN 35.1 | PTS matchup 1.00x | Anti-correlation: same team as Paolo Banchero"
+        "reason": "L10 60% | L5 60% | USG 17% | MIN 29.0 | PTS matchup 0.96x | Minutes watch | Anti-correlation: same team as Jabari Smith Jr."
       }
     ]
   },
@@ -778,67 +778,45 @@
     {
       "game_id": "401869416",
       "matchup": "ORL @ DET",
-      "time": "3:52 - 4th",
+      "time": "Final",
       "top_signals": [
+        {
+          "market": "REB",
+          "player_name": "Cade Cunningham",
+          "line": "5+ REB",
+          "score": 78.92,
+          "confidence": 79,
+          "tier": "B"
+        },
+        {
+          "market": "REB",
+          "player_name": "Tobias Harris",
+          "line": "6+ REB",
+          "score": 76.46,
+          "confidence": 76,
+          "tier": "B"
+        },
         {
           "market": "REB",
           "player_name": "Desmond Bane",
           "line": "4+ REB",
-          "score": 73.26,
-          "confidence": 73,
+          "score": 74.58,
+          "confidence": 75,
           "tier": "C"
-        },
-        {
-          "market": "AST",
-          "player_name": "Cade Cunningham",
-          "line": "8+ AST",
-          "score": 70.74,
-          "confidence": 71,
-          "tier": "B"
-        },
-        {
-          "market": "AST",
-          "player_name": "Paolo Banchero",
-          "line": "5+ AST",
-          "score": 70.41,
-          "confidence": 70,
-          "tier": "B"
         }
       ],
       "markets": {
         "PTS": [
           {
-            "player_id": "4432573",
-            "player_name": "Paolo Banchero",
-            "team": "ORL",
-            "opponent": "DET",
-            "line": "20+ PTS",
-            "score": 64.06,
+            "player_id": "6440",
+            "player_name": "Tobias Harris",
+            "team": "DET",
+            "opponent": "ORL",
+            "line": "17+ PTS",
+            "score": 64.18,
             "confidence": 64,
             "tier": "C",
-            "reason": "L10 60% | L5 60% | USG 36% | MIN 35.8 | PTS matchup 1.00x"
-          },
-          {
-            "player_id": "4432165",
-            "player_name": "Jalen Suggs",
-            "team": "ORL",
-            "opponent": "DET",
-            "line": "12+ PTS",
-            "score": 57.95,
-            "confidence": 58,
-            "tier": "C",
-            "reason": "L10 70% | L5 80% | USG 23% | MIN 30.6 | PTS matchup 1.00x | Anti-correlation: same team as Paolo Banchero"
-          },
-          {
-            "player_id": "4277847",
-            "player_name": "Wendell Carter Jr.",
-            "team": "ORL",
-            "opponent": "DET",
-            "line": "10+ PTS",
-            "score": 50.94,
-            "confidence": 51,
-            "tier": "C",
-            "reason": "L10 60% | L5 80% | USG 15% | MIN 31.2 | PTS matchup 1.00x | Anti-correlation: same team as Paolo Banchero"
+            "reason": "L10 60% | L5 80% | USG 20% | MIN 32.7 | PTS matchup 0.98x | Home boost"
           },
           {
             "player_id": "4066320",
@@ -846,10 +824,21 @@
             "team": "ORL",
             "opponent": "DET",
             "line": "17+ PTS",
-            "score": 50.41,
-            "confidence": 50,
+            "score": 57.52,
+            "confidence": 58,
             "tier": "C",
-            "reason": "L10 60% | L5 60% | USG 27% | MIN 35.1 | PTS matchup 1.00x | Anti-correlation: same team as Paolo Banchero"
+            "reason": "L10 60% | L5 80% | USG 27% | MIN 35.0 | PTS matchup 0.98x"
+          },
+          {
+            "player_id": "4432165",
+            "player_name": "Jalen Suggs",
+            "team": "ORL",
+            "opponent": "DET",
+            "line": "12+ PTS",
+            "score": 48.65,
+            "confidence": 49,
+            "tier": "C",
+            "reason": "L10 60% | L5 60% | USG 22% | MIN 32.8 | PTS matchup 0.98x | Anti-correlation: same team as Desmond Bane"
           },
           {
             "player_id": "3157465",
@@ -857,34 +846,56 @@
             "team": "DET",
             "opponent": "ORL",
             "line": "10+ PTS",
-            "score": 38.24,
-            "confidence": 38,
+            "score": 43.54,
+            "confidence": 44,
             "tier": "C",
-            "reason": "L10 70% | L5 40% | USG 14% | MIN 27.3 | PTS matchup 0.97x | Home boost | Minutes watch"
-          },
-          {
-            "player_id": "4433621",
-            "player_name": "Jalen Duren",
-            "team": "DET",
-            "opponent": "ORL",
-            "line": "14+ PTS",
-            "score": 31.26,
-            "confidence": 31,
-            "tier": "C",
-            "reason": "L10 60% | L5 20% | USG 20% | MIN 28.5 | PTS matchup 0.97x | Home boost | Minutes watch | Anti-correlation: same team as Duncan Robinson"
+            "reason": "L10 70% | L5 60% | USG 14% | MIN 27.8 | PTS matchup 0.98x | Home boost | Minutes watch | Anti-correlation: same team as Tobias Harris"
           }
         ],
         "REB": [
+          {
+            "player_id": "4432166",
+            "player_name": "Cade Cunningham",
+            "team": "DET",
+            "opponent": "ORL",
+            "line": "5+ REB",
+            "score": 78.92,
+            "confidence": 79,
+            "tier": "B",
+            "reason": "L10 60% | L5 80% | USG 35% | MIN 38.1 | REB matchup 1.16x | Home boost"
+          },
+          {
+            "player_id": "6440",
+            "player_name": "Tobias Harris",
+            "team": "DET",
+            "opponent": "ORL",
+            "line": "6+ REB",
+            "score": 76.46,
+            "confidence": 76,
+            "tier": "B",
+            "reason": "L10 60% | L5 100% | USG 20% | MIN 32.7 | REB matchup 1.16x | Home boost | Anti-correlation: same team as Cade Cunningham"
+          },
           {
             "player_id": "4066320",
             "player_name": "Desmond Bane",
             "team": "ORL",
             "opponent": "DET",
             "line": "4+ REB",
-            "score": 73.26,
-            "confidence": 73,
+            "score": 74.58,
+            "confidence": 75,
             "tier": "C",
-            "reason": "L10 60% | L5 100% | USG 27% | MIN 35.1 | REB matchup 1.02x"
+            "reason": "L10 70% | L5 100% | USG 27% | MIN 35.0 | REB matchup 1.01x"
+          },
+          {
+            "player_id": "4432573",
+            "player_name": "Paolo Banchero",
+            "team": "ORL",
+            "opponent": "DET",
+            "line": "8+ REB",
+            "score": 72.04,
+            "confidence": 72,
+            "tier": "C",
+            "reason": "L10 70% | L5 80% | USG 39% | MIN 37.0 | REB matchup 1.01x | Anti-correlation: same team as Desmond Bane"
           },
           {
             "player_id": "4433621",
@@ -892,32 +903,10 @@
             "team": "DET",
             "opponent": "ORL",
             "line": "8+ REB",
-            "score": 68.25,
-            "confidence": 68,
+            "score": 66.26,
+            "confidence": 66,
             "tier": "C",
-            "reason": "L10 80% | L5 80% | USG 20% | MIN 28.5 | REB matchup 1.13x | Home boost | Minutes watch"
-          },
-          {
-            "player_id": "4432573",
-            "player_name": "Paolo Banchero",
-            "team": "ORL",
-            "opponent": "DET",
-            "line": "7+ REB",
-            "score": 63.35,
-            "confidence": 63,
-            "tier": "C",
-            "reason": "L10 60% | L5 60% | USG 36% | MIN 35.8 | REB matchup 1.02x | Anti-correlation: same team as Desmond Bane"
-          },
-          {
-            "player_id": "4432165",
-            "player_name": "Jalen Suggs",
-            "team": "ORL",
-            "opponent": "DET",
-            "line": "4+ REB",
-            "score": 56.12,
-            "confidence": 56,
-            "tier": "C",
-            "reason": "L10 60% | L5 60% | USG 23% | MIN 30.6 | REB matchup 1.02x | Anti-correlation: same team as Desmond Bane"
+            "reason": "L10 80% | L5 80% | USG 19% | MIN 29.4 | REB matchup 1.16x | Home boost | Minutes watch | Anti-correlation: same team as Cade Cunningham"
           },
           {
             "player_id": "4278562",
@@ -928,18 +917,18 @@
             "score": 53.61,
             "confidence": 54,
             "tier": "C",
-            "reason": "L10 70% | L5 60% | USG 10% | MIN 11.0 | REB matchup 1.13x | Home boost | Minutes watch | Anti-correlation: same team as Jalen Duren"
+            "reason": "L10 70% | L5 60% | USG 10% | MIN 11.0 | REB matchup 1.16x | Home boost | Minutes watch | Anti-correlation: same team as Cade Cunningham"
           },
           {
-            "player_id": "4348700",
-            "player_name": "Goga Bitadze",
+            "player_id": "4277847",
+            "player_name": "Wendell Carter Jr.",
             "team": "ORL",
             "opponent": "DET",
-            "line": "4+ REB",
-            "score": 52.38,
+            "line": "7+ REB",
+            "score": 51.75,
             "confidence": 52,
             "tier": "C",
-            "reason": "L10 80% | L5 80% | USG 8% | MIN 14.6 | REB matchup 1.02x | Minutes watch | Anti-correlation: same team as Desmond Bane"
+            "reason": "L10 60% | L5 60% | USG 14% | MIN 32.2 | REB matchup 1.01x | Anti-correlation: same team as Desmond Bane"
           },
           {
             "player_id": "4432810",
@@ -947,45 +936,56 @@
             "team": "DET",
             "opponent": "ORL",
             "line": "4+ REB",
-            "score": 50.14,
+            "score": 49.93,
             "confidence": 50,
             "tier": "C",
-            "reason": "L10 60% | L5 60% | USG 10% | MIN 17.7 | REB matchup 1.13x | Home boost | Minutes watch | Anti-correlation: same team as Jalen Duren"
+            "reason": "L10 60% | L5 60% | USG 9% | MIN 18.2 | REB matchup 1.16x | Home boost | Minutes watch | Anti-correlation: same team as Cade Cunningham"
+          },
+          {
+            "player_id": "4348700",
+            "player_name": "Goga Bitadze",
+            "team": "ORL",
+            "opponent": "DET",
+            "line": "4+ REB",
+            "score": 42.4,
+            "confidence": 42,
+            "tier": "C",
+            "reason": "L10 70% | L5 60% | USG 7% | MIN 14.3 | REB matchup 1.01x | Minutes watch | Anti-correlation: same team as Desmond Bane"
           }
         ],
         "AST": [
-          {
-            "player_id": "4432166",
-            "player_name": "Cade Cunningham",
-            "team": "DET",
-            "opponent": "ORL",
-            "line": "8+ AST",
-            "score": 70.74,
-            "confidence": 71,
-            "tier": "B",
-            "reason": "L10 60% | L5 60% | USG 32% | MIN 34.9 | AST matchup 1.25x | Home boost"
-          },
           {
             "player_id": "4432573",
             "player_name": "Paolo Banchero",
             "team": "ORL",
             "opponent": "DET",
             "line": "5+ AST",
-            "score": 70.41,
-            "confidence": 70,
+            "score": 73.36,
+            "confidence": 73,
             "tier": "B",
-            "reason": "L10 60% | L5 60% | USG 36% | MIN 35.8 | AST matchup 1.24x"
+            "reason": "L10 70% | L5 60% | USG 39% | MIN 37.0 | AST matchup 1.23x"
           },
           {
-            "player_id": "3157465",
-            "player_name": "Duncan Robinson",
+            "player_id": "4432165",
+            "player_name": "Jalen Suggs",
+            "team": "ORL",
+            "opponent": "DET",
+            "line": "3+ AST",
+            "score": 66.01,
+            "confidence": 66,
+            "tier": "B",
+            "reason": "L10 90% | L5 80% | USG 22% | MIN 32.8 | AST matchup 1.23x | Anti-correlation: same team as Paolo Banchero"
+          },
+          {
+            "player_id": "4432166",
+            "player_name": "Cade Cunningham",
             "team": "DET",
             "opponent": "ORL",
-            "line": "2+ AST",
-            "score": 60.69,
-            "confidence": 61,
-            "tier": "C",
-            "reason": "L10 80% | L5 80% | USG 14% | MIN 27.3 | AST matchup 1.25x | Home boost | Minutes watch | Anti-correlation: same team as Cade Cunningham"
+            "line": "7+ AST",
+            "score": 64.33,
+            "confidence": 64,
+            "tier": "B",
+            "reason": "L10 60% | L5 40% | USG 35% | MIN 38.1 | AST matchup 1.21x | Home boost"
           },
           {
             "player_id": "4433621",
@@ -993,32 +993,21 @@
             "team": "DET",
             "opponent": "ORL",
             "line": "2+ AST",
-            "score": 59.75,
-            "confidence": 60,
+            "score": 58.43,
+            "confidence": 58,
             "tier": "C",
-            "reason": "L10 80% | L5 60% | USG 20% | MIN 28.5 | AST matchup 1.25x | Home boost | Minutes watch | Anti-correlation: same team as Cade Cunningham"
+            "reason": "L10 80% | L5 60% | USG 19% | MIN 29.4 | AST matchup 1.21x | Home boost | Minutes watch | Anti-correlation: same team as Cade Cunningham"
           },
           {
-            "player_id": "4432165",
-            "player_name": "Jalen Suggs",
-            "team": "ORL",
-            "opponent": "DET",
-            "line": "4+ AST",
-            "score": 55.6,
-            "confidence": 56,
-            "tier": "B",
-            "reason": "L10 70% | L5 60% | USG 23% | MIN 30.6 | AST matchup 1.24x | Anti-correlation: same team as Paolo Banchero"
-          },
-          {
-            "player_id": "5107199",
-            "player_name": "Daniss Jenkins",
+            "player_id": "3157465",
+            "player_name": "Duncan Robinson",
             "team": "DET",
             "opponent": "ORL",
-            "line": "3+ AST",
-            "score": 45.81,
-            "confidence": 46,
+            "line": "2+ AST",
+            "score": 52.2,
+            "confidence": 52,
             "tier": "C",
-            "reason": "L10 70% | L5 40% | USG 16% | MIN 16.0 | AST matchup 1.25x | Home boost | Minutes watch | Anti-correlation: same team as Cade Cunningham"
+            "reason": "L10 70% | L5 60% | USG 14% | MIN 27.8 | AST matchup 1.21x | Home boost | Minutes watch | Anti-correlation: same team as Cade Cunningham"
           },
           {
             "player_id": "4684742",
@@ -1026,10 +1015,10 @@
             "team": "DET",
             "opponent": "ORL",
             "line": "2+ AST",
-            "score": 44.86,
-            "confidence": 45,
-            "tier": "C",
-            "reason": "L10 70% | L5 40% | USG 14% | MIN 28.0 | AST matchup 1.25x | Home boost | Minutes watch | Anti-correlation: same team as Cade Cunningham"
+            "score": 49.64,
+            "confidence": 50,
+            "tier": "B",
+            "reason": "L10 70% | L5 40% | USG 14% | MIN 30.1 | AST matchup 1.21x | Home boost | Anti-correlation: same team as Cade Cunningham"
           },
           {
             "player_id": "4712849",
@@ -1037,10 +1026,21 @@
             "team": "ORL",
             "opponent": "DET",
             "line": "2+ AST",
-            "score": 38.29,
+            "score": 38.23,
             "confidence": 38,
             "tier": "C",
-            "reason": "L10 60% | L5 40% | USG 16% | MIN 24.9 | AST matchup 1.24x | Minutes watch | Anti-correlation: same team as Paolo Banchero"
+            "reason": "L10 60% | L5 40% | USG 16% | MIN 26.7 | AST matchup 1.23x | Minutes watch | Anti-correlation: same team as Paolo Banchero"
+          },
+          {
+            "player_id": "5107199",
+            "player_name": "Daniss Jenkins",
+            "team": "DET",
+            "opponent": "ORL",
+            "line": "3+ AST",
+            "score": 35.88,
+            "confidence": 36,
+            "tier": "C",
+            "reason": "L10 60% | L5 20% | USG 14% | MIN 15.5 | AST matchup 1.21x | Home boost | Minutes watch | Anti-correlation: same team as Cade Cunningham"
           }
         ],
         "3PM": [
@@ -1050,10 +1050,10 @@
             "team": "ORL",
             "opponent": "DET",
             "line": "1+ 3PM",
-            "score": 68.35,
-            "confidence": 68,
+            "score": 70.01,
+            "confidence": 70,
             "tier": "B",
-            "reason": "L10 60% | L5 60% | USG 36% | MIN 35.8 | 3PM matchup 1.10x"
+            "reason": "L10 60% | L5 60% | USG 39% | MIN 37.0 | 3PM matchup 1.15x"
           },
           {
             "player_id": "4432165",
@@ -1061,21 +1061,10 @@
             "team": "ORL",
             "opponent": "DET",
             "line": "2+ 3PM",
-            "score": 65.5,
+            "score": 66.02,
             "confidence": 66,
             "tier": "B",
-            "reason": "L10 80% | L5 80% | USG 23% | MIN 30.6 | 3PM matchup 1.10x | Anti-correlation: same team as Paolo Banchero"
-          },
-          {
-            "player_id": "6440",
-            "player_name": "Tobias Harris",
-            "team": "DET",
-            "opponent": "ORL",
-            "line": "1+ 3PM",
-            "score": 53.34,
-            "confidence": 53,
-            "tier": "C",
-            "reason": "L10 70% | L5 60% | USG 19% | MIN 31.4 | 3PM matchup 0.94x | Home boost"
+            "reason": "L10 80% | L5 80% | USG 22% | MIN 32.8 | 3PM matchup 1.15x | Anti-correlation: same team as Paolo Banchero"
           },
           {
             "player_id": "3157465",
@@ -1083,43 +1072,21 @@
             "team": "DET",
             "opponent": "ORL",
             "line": "2+ 3PM",
-            "score": 46.74,
-            "confidence": 47,
+            "score": 53.42,
+            "confidence": 53,
             "tier": "C",
-            "reason": "L10 80% | L5 60% | USG 14% | MIN 27.3 | 3PM matchup 0.94x | Home boost | Minutes watch | Anti-correlation: same team as Tobias Harris"
+            "reason": "L10 80% | L5 80% | USG 14% | MIN 27.8 | 3PM matchup 0.93x | Home boost | Minutes watch"
           },
           {
-            "player_id": "4702382",
-            "player_name": "Tristan da Silva",
-            "team": "ORL",
-            "opponent": "DET",
-            "line": "1+ 3PM",
-            "score": 45.93,
-            "confidence": 46,
-            "tier": "C",
-            "reason": "L10 60% | L5 80% | USG 10% | MIN 18.1 | 3PM matchup 1.10x | Minutes watch | Anti-correlation: same team as Paolo Banchero"
-          },
-          {
-            "player_id": "5105806",
-            "player_name": "Jett Howard",
-            "team": "ORL",
-            "opponent": "DET",
-            "line": "1+ 3PM",
-            "score": 44.68,
-            "confidence": 45,
-            "tier": "C",
-            "reason": "L10 80% | L5 60% | USG 7% | MIN 9.2 | 3PM matchup 1.10x | Minutes watch | Anti-correlation: same team as Paolo Banchero"
-          },
-          {
-            "player_id": "2596112",
-            "player_name": "Javonte Green",
+            "player_id": "6440",
+            "player_name": "Tobias Harris",
             "team": "DET",
             "opponent": "ORL",
             "line": "1+ 3PM",
-            "score": 39.95,
-            "confidence": 40,
+            "score": 51.84,
+            "confidence": 52,
             "tier": "C",
-            "reason": "L10 70% | L5 60% | USG 7% | MIN 16.4 | 3PM matchup 0.94x | Home boost | Minutes watch | Anti-correlation: same team as Tobias Harris"
+            "reason": "L10 70% | L5 60% | USG 20% | MIN 32.7 | 3PM matchup 0.93x | Home boost | Anti-correlation: same team as Duncan Robinson"
           },
           {
             "player_id": "4712849",
@@ -1127,10 +1094,21 @@
             "team": "ORL",
             "opponent": "DET",
             "line": "1+ 3PM",
-            "score": 38.85,
-            "confidence": 39,
+            "score": 45.86,
+            "confidence": 46,
             "tier": "C",
-            "reason": "L10 60% | L5 40% | USG 16% | MIN 24.9 | 3PM matchup 1.10x | Minutes watch | Anti-correlation: same team as Paolo Banchero"
+            "reason": "L10 60% | L5 60% | USG 16% | MIN 26.7 | 3PM matchup 1.15x | Minutes watch | Anti-correlation: same team as Paolo Banchero"
+          },
+          {
+            "player_id": "5105806",
+            "player_name": "Jett Howard",
+            "team": "ORL",
+            "opponent": "DET",
+            "line": "1+ 3PM",
+            "score": 45.29,
+            "confidence": 45,
+            "tier": "C",
+            "reason": "L10 80% | L5 60% | USG 7% | MIN 9.2 | 3PM matchup 1.15x | Minutes watch | Anti-correlation: same team as Paolo Banchero"
           },
           {
             "player_id": "3133635",
@@ -1138,34 +1116,34 @@
             "team": "ORL",
             "opponent": "DET",
             "line": "1+ 3PM",
-            "score": 38.68,
+            "score": 39.29,
             "confidence": 39,
             "tier": "C",
-            "reason": "L10 60% | L5 60% | USG 7% | MIN 12.5 | 3PM matchup 1.10x | Minutes watch | Anti-correlation: same team as Paolo Banchero"
+            "reason": "L10 60% | L5 60% | USG 7% | MIN 12.5 | 3PM matchup 1.15x | Minutes watch | Anti-correlation: same team as Paolo Banchero"
           },
           {
-            "player_id": "5107199",
-            "player_name": "Daniss Jenkins",
+            "player_id": "2596112",
+            "player_name": "Javonte Green",
             "team": "DET",
             "opponent": "ORL",
             "line": "1+ 3PM",
-            "score": 36.87,
-            "confidence": 37,
+            "score": 38.93,
+            "confidence": 39,
             "tier": "C",
-            "reason": "L10 60% | L5 40% | USG 16% | MIN 16.0 | 3PM matchup 0.94x | Home boost | Minutes watch | Anti-correlation: same team as Tobias Harris"
+            "reason": "L10 70% | L5 60% | USG 7% | MIN 16.8 | 3PM matchup 0.93x | Home boost | Minutes watch | Anti-correlation: same team as Duncan Robinson"
           }
         ],
         "ML": [
           {
-            "player_id": "orl-moneyline",
-            "player_name": "ORL",
-            "team": "ORL",
-            "opponent": "DET",
+            "player_id": "det-moneyline",
+            "player_name": "DET",
+            "team": "DET",
+            "opponent": "ORL",
             "line": "Moneyline",
-            "score": 54.72,
-            "confidence": 55,
+            "score": 58.76,
+            "confidence": 59,
             "tier": "C",
-            "reason": "Recent win 75% | Allow 104.4 PPG"
+            "reason": "Recent win 62% | Allow 105.4 PPG"
           }
         ]
       }
@@ -1173,13 +1151,13 @@
     {
       "game_id": "401869380",
       "matchup": "TOR @ CLE",
-      "time": "3:47 - 3rd",
+      "time": "5:25 - 4th",
       "top_signals": [
         {
           "market": "PTS",
           "player_name": "RJ Barrett",
           "line": "21+ PTS",
-          "score": 77.88,
+          "score": 77.92,
           "confidence": 78,
           "tier": "B"
         },
@@ -1195,7 +1173,7 @@
           "market": "REB",
           "player_name": "RJ Barrett",
           "line": "5+ REB",
-          "score": 71.88,
+          "score": 71.69,
           "confidence": 72,
           "tier": "B"
         }
@@ -1208,7 +1186,7 @@
             "team": "TOR",
             "opponent": "CLE",
             "line": "21+ PTS",
-            "score": 77.88,
+            "score": 77.92,
             "confidence": 78,
             "tier": "B",
             "reason": "L10 60% | L5 80% | USG 40% | MIN 33.8 | PTS matchup 1.07x"
@@ -1219,7 +1197,7 @@
             "team": "TOR",
             "opponent": "CLE",
             "line": "12+ PTS",
-            "score": 63.61,
+            "score": 63.66,
             "confidence": 64,
             "tier": "C",
             "reason": "L10 80% | L5 80% | USG 20% | MIN 22.5 | PTS matchup 1.07x | Minutes watch | Anti-correlation: same team as RJ Barrett"
@@ -1230,7 +1208,7 @@
             "team": "CLE",
             "opponent": "TOR",
             "line": "25+ PTS",
-            "score": 56.84,
+            "score": 56.88,
             "confidence": 57,
             "tier": "C",
             "reason": "L10 60% | L5 60% | USG 26% | MIN 33.9 | PTS matchup 1.00x | Home boost"
@@ -1241,7 +1219,7 @@
             "team": "CLE",
             "opponent": "TOR",
             "line": "11+ PTS",
-            "score": 32.17,
+            "score": 32.21,
             "confidence": 32,
             "tier": "C",
             "reason": "L10 60% | L5 40% | USG 12% | MIN 27.0 | PTS matchup 1.00x | Home boost | Minutes watch | Anti-correlation: same team as Donovan Mitchell"
@@ -1257,7 +1235,7 @@
             "score": 74.89,
             "confidence": 75,
             "tier": "B",
-            "reason": "L10 60% | L5 80% | USG 26% | MIN 33.9 | REB matchup 1.17x | Home boost"
+            "reason": "L10 60% | L5 80% | USG 26% | MIN 33.9 | REB matchup 1.16x | Home boost"
           },
           {
             "player_id": "4395625",
@@ -1265,7 +1243,7 @@
             "team": "TOR",
             "opponent": "CLE",
             "line": "5+ REB",
-            "score": 71.88,
+            "score": 71.69,
             "confidence": 72,
             "tier": "B",
             "reason": "L10 70% | L5 60% | USG 40% | MIN 33.8 | REB matchup 1.12x"
@@ -1276,7 +1254,7 @@
             "team": "TOR",
             "opponent": "CLE",
             "line": "5+ REB",
-            "score": 55.77,
+            "score": 55.58,
             "confidence": 56,
             "tier": "C",
             "reason": "L10 60% | L5 60% | USG 20% | MIN 22.5 | REB matchup 1.12x | Minutes watch | Anti-correlation: same team as RJ Barrett"
@@ -1287,7 +1265,7 @@
             "team": "TOR",
             "opponent": "CLE",
             "line": "5+ REB",
-            "score": 53.97,
+            "score": 53.78,
             "confidence": 54,
             "tier": "C",
             "reason": "L10 70% | L5 60% | USG 13% | MIN 18.0 | REB matchup 1.12x | Minutes watch | Anti-correlation: same team as RJ Barrett"
@@ -1298,7 +1276,7 @@
             "team": "TOR",
             "opponent": "CLE",
             "line": "5+ REB",
-            "score": 53.35,
+            "score": 53.15,
             "confidence": 53,
             "tier": "C",
             "reason": "L10 60% | L5 80% | USG 14% | MIN 19.5 | REB matchup 1.12x | Minutes watch | Anti-correlation: same team as RJ Barrett"
@@ -1312,7 +1290,7 @@
             "score": 52.77,
             "confidence": 53,
             "tier": "C",
-            "reason": "L10 60% | L5 60% | USG 8% | MIN 15.7 | REB matchup 1.17x | Home boost | Minutes watch | Anti-correlation: same team as Donovan Mitchell"
+            "reason": "L10 60% | L5 60% | USG 8% | MIN 15.7 | REB matchup 1.16x | Home boost | Minutes watch | Anti-correlation: same team as Donovan Mitchell"
           },
           {
             "player_id": "4065778",
@@ -1323,7 +1301,7 @@
             "score": 51.93,
             "confidence": 52,
             "tier": "C",
-            "reason": "L10 60% | L5 60% | USG 12% | MIN 23.5 | REB matchup 1.17x | Home boost | Minutes watch | Anti-correlation: same team as Donovan Mitchell"
+            "reason": "L10 60% | L5 60% | USG 12% | MIN 23.5 | REB matchup 1.16x | Home boost | Minutes watch | Anti-correlation: same team as Donovan Mitchell"
           },
           {
             "player_id": "4066328",
@@ -1334,7 +1312,7 @@
             "score": 51.78,
             "confidence": 52,
             "tier": "C",
-            "reason": "L10 60% | L5 60% | USG 12% | MIN 27.0 | REB matchup 1.17x | Home boost | Minutes watch | Anti-correlation: same team as Donovan Mitchell"
+            "reason": "L10 60% | L5 60% | USG 12% | MIN 27.0 | REB matchup 1.16x | Home boost | Minutes watch | Anti-correlation: same team as Donovan Mitchell"
           },
           {
             "player_id": "3912848",
@@ -1345,7 +1323,7 @@
             "score": 48.16,
             "confidence": 48,
             "tier": "C",
-            "reason": "L10 60% | L5 60% | USG 5% | MIN 23.3 | REB matchup 1.17x | Home boost | Minutes watch | Anti-correlation: same team as Donovan Mitchell"
+            "reason": "L10 60% | L5 60% | USG 5% | MIN 23.3 | REB matchup 1.16x | Home boost | Minutes watch | Anti-correlation: same team as Donovan Mitchell"
           }
         ],
         "AST": [
@@ -1467,10 +1445,10 @@
             "team": "CLE",
             "opponent": "TOR",
             "line": "2+ 3PM",
-            "score": 57.56,
-            "confidence": 58,
+            "score": 57.15,
+            "confidence": 57,
             "tier": "C",
-            "reason": "L10 60% | L5 60% | USG 26% | MIN 33.9 | 3PM matchup 1.00x | Home boost"
+            "reason": "L10 60% | L5 60% | USG 26% | MIN 33.9 | 3PM matchup 0.99x | Home boost"
           },
           {
             "player_id": "3992",
@@ -1478,10 +1456,10 @@
             "team": "CLE",
             "opponent": "TOR",
             "line": "3+ 3PM",
-            "score": 54.97,
+            "score": 54.56,
             "confidence": 55,
             "tier": "C",
-            "reason": "L10 60% | L5 60% | USG 24% | MIN 33.1 | 3PM matchup 1.00x | Home boost | Anti-correlation: same team as Donovan Mitchell"
+            "reason": "L10 60% | L5 60% | USG 24% | MIN 33.1 | 3PM matchup 0.99x | Home boost | Anti-correlation: same team as Donovan Mitchell"
           },
           {
             "player_id": "3912848",
@@ -1489,10 +1467,10 @@
             "team": "CLE",
             "opponent": "TOR",
             "line": "1+ 3PM",
-            "score": 54.29,
+            "score": 53.87,
             "confidence": 54,
             "tier": "C",
-            "reason": "L10 80% | L5 100% | USG 5% | MIN 23.3 | 3PM matchup 1.00x | Home boost | Minutes watch | Anti-correlation: same team as Donovan Mitchell"
+            "reason": "L10 80% | L5 100% | USG 5% | MIN 23.3 | 3PM matchup 0.99x | Home boost | Minutes watch | Anti-correlation: same team as Donovan Mitchell"
           },
           {
             "player_id": "4278580",
@@ -1503,7 +1481,7 @@
             "score": 50.38,
             "confidence": 50,
             "tier": "C",
-            "reason": "L10 80% | L5 60% | USG 13% | MIN 18.0 | 3PM matchup 1.18x | Minutes watch"
+            "reason": "L10 80% | L5 60% | USG 13% | MIN 18.0 | 3PM matchup 1.16x | Minutes watch"
           },
           {
             "player_id": "4684272",
@@ -1514,7 +1492,7 @@
             "score": 48.63,
             "confidence": 49,
             "tier": "C",
-            "reason": "L10 70% | L5 60% | USG 15% | MIN 24.9 | 3PM matchup 1.18x | Minutes watch | Anti-correlation: same team as Sandro Mamukelashvili"
+            "reason": "L10 70% | L5 60% | USG 15% | MIN 24.9 | 3PM matchup 1.16x | Minutes watch | Anti-correlation: same team as Sandro Mamukelashvili"
           },
           {
             "player_id": "4432241",
@@ -1525,7 +1503,7 @@
             "score": 43.38,
             "confidence": 43,
             "tier": "C",
-            "reason": "L10 70% | L5 40% | USG 15% | MIN 26.7 | 3PM matchup 1.18x | Minutes watch | Anti-correlation: same team as Sandro Mamukelashvili"
+            "reason": "L10 70% | L5 40% | USG 15% | MIN 26.7 | 3PM matchup 1.16x | Minutes watch | Anti-correlation: same team as Sandro Mamukelashvili"
           },
           {
             "player_id": "4065778",
@@ -1533,10 +1511,10 @@
             "team": "CLE",
             "opponent": "TOR",
             "line": "2+ 3PM",
-            "score": 42.08,
+            "score": 41.67,
             "confidence": 42,
             "tier": "C",
-            "reason": "L10 60% | L5 60% | USG 12% | MIN 23.5 | 3PM matchup 1.00x | Home boost | Minutes watch | Anti-correlation: same team as Donovan Mitchell"
+            "reason": "L10 60% | L5 60% | USG 12% | MIN 23.5 | 3PM matchup 0.99x | Home boost | Minutes watch | Anti-correlation: same team as Donovan Mitchell"
           }
         ],
         "ML": [
@@ -1571,7 +1549,7 @@
           "market": "PTS",
           "player_name": "Jabari Smith Jr.",
           "line": "16+ PTS",
-          "score": 74.01,
+          "score": 74.05,
           "confidence": 74,
           "tier": "C"
         },
@@ -1592,7 +1570,7 @@
             "team": "HOU",
             "opponent": "LAL",
             "line": "16+ PTS",
-            "score": 74.01,
+            "score": 74.05,
             "confidence": 74,
             "tier": "C",
             "reason": "L10 90% | L5 100% | USG 27% | MIN 39.8 | PTS matchup 0.96x"
@@ -1603,7 +1581,7 @@
             "team": "LAL",
             "opponent": "HOU",
             "line": "13+ PTS",
-            "score": 57.84,
+            "score": 57.88,
             "confidence": 58,
             "tier": "C",
             "reason": "L10 60% | L5 60% | USG 18% | MIN 30.4 | PTS matchup 1.00x | Home boost"
@@ -1614,7 +1592,7 @@
             "team": "HOU",
             "opponent": "LAL",
             "line": "12+ PTS",
-            "score": 51.67,
+            "score": 51.71,
             "confidence": 52,
             "tier": "C",
             "reason": "L10 70% | L5 80% | USG 20% | MIN 28.7 | PTS matchup 0.96x | Minutes watch | Anti-correlation: same team as Jabari Smith Jr."
@@ -1625,8 +1603,8 @@
             "team": "HOU",
             "opponent": "LAL",
             "line": "11+ PTS",
-            "score": 45.48,
-            "confidence": 45,
+            "score": 45.52,
+            "confidence": 46,
             "tier": "C",
             "reason": "L10 60% | L5 60% | USG 17% | MIN 29.0 | PTS matchup 0.96x | Minutes watch | Anti-correlation: same team as Jabari Smith Jr."
           },
@@ -1636,7 +1614,7 @@
             "team": "LAL",
             "opponent": "HOU",
             "line": "10+ PTS",
-            "score": 39.53,
+            "score": 39.57,
             "confidence": 40,
             "tier": "C",
             "reason": "L10 60% | L5 40% | USG 11% | MIN 18.9 | PTS matchup 1.00x | Home boost | Minutes watch | Anti-correlation: same team as Luke Kennard"
@@ -1652,7 +1630,7 @@
             "score": 68.17,
             "confidence": 68,
             "tier": "B",
-            "reason": "L10 60% | L5 60% | USG 32% | MIN 35.0 | REB matchup 1.19x"
+            "reason": "L10 60% | L5 60% | USG 32% | MIN 35.0 | REB matchup 1.18x"
           },
           {
             "player_id": "4278077",
@@ -1663,7 +1641,7 @@
             "score": 67.11,
             "confidence": 67,
             "tier": "C",
-            "reason": "L10 80% | L5 100% | USG 7% | MIN 15.9 | REB matchup 1.17x | Home boost | Minutes watch"
+            "reason": "L10 80% | L5 100% | USG 7% | MIN 15.9 | REB matchup 1.16x | Home boost | Minutes watch"
           },
           {
             "player_id": "4684740",
@@ -1674,7 +1652,7 @@
             "score": 63.81,
             "confidence": 64,
             "tier": "B",
-            "reason": "L10 60% | L5 60% | USG 29% | MIN 41.5 | REB matchup 1.19x | Anti-correlation: same team as Alperen Sengun"
+            "reason": "L10 60% | L5 60% | USG 29% | MIN 41.5 | REB matchup 1.18x | Anti-correlation: same team as Alperen Sengun"
           },
           {
             "player_id": "4433192",
@@ -1685,7 +1663,7 @@
             "score": 62.2,
             "confidence": 62,
             "tier": "C",
-            "reason": "L10 70% | L5 80% | USG 17% | MIN 29.0 | REB matchup 1.19x | Minutes watch | Anti-correlation: same team as Alperen Sengun"
+            "reason": "L10 70% | L5 80% | USG 17% | MIN 29.0 | REB matchup 1.18x | Minutes watch | Anti-correlation: same team as Alperen Sengun"
           },
           {
             "player_id": "4397077",
@@ -1696,7 +1674,7 @@
             "score": 50.39,
             "confidence": 50,
             "tier": "C",
-            "reason": "L10 60% | L5 60% | USG 11% | MIN 18.9 | REB matchup 1.17x | Home boost | Minutes watch | Anti-correlation: same team as Jarred Vanderbilt"
+            "reason": "L10 60% | L5 60% | USG 11% | MIN 18.9 | REB matchup 1.16x | Home boost | Minutes watch | Anti-correlation: same team as Jarred Vanderbilt"
           }
         ],
         "AST": [
@@ -1709,7 +1687,7 @@
             "score": 74.41,
             "confidence": 74,
             "tier": "A",
-            "reason": "L10 70% | L5 80% | USG 32% | MIN 35.0 | AST matchup 1.24x"
+            "reason": "L10 70% | L5 80% | USG 32% | MIN 35.0 | AST matchup 1.25x"
           },
           {
             "player_id": "4684740",
@@ -1720,7 +1698,7 @@
             "score": 69.5,
             "confidence": 70,
             "tier": "B",
-            "reason": "L10 70% | L5 80% | USG 29% | MIN 41.5 | AST matchup 1.24x | Anti-correlation: same team as Alperen Sengun"
+            "reason": "L10 70% | L5 80% | USG 29% | MIN 41.5 | AST matchup 1.25x | Anti-correlation: same team as Alperen Sengun"
           },
           {
             "player_id": "4066457",
@@ -1742,7 +1720,7 @@
             "score": 64.87,
             "confidence": 65,
             "tier": "C",
-            "reason": "L10 70% | L5 100% | USG 20% | MIN 28.7 | AST matchup 1.24x | Minutes watch | Anti-correlation: same team as Alperen Sengun"
+            "reason": "L10 70% | L5 100% | USG 20% | MIN 28.7 | AST matchup 1.25x | Minutes watch | Anti-correlation: same team as Alperen Sengun"
           },
           {
             "player_id": "3913174",
@@ -1764,7 +1742,7 @@
             "score": 53.24,
             "confidence": 53,
             "tier": "C",
-            "reason": "L10 60% | L5 80% | USG 17% | MIN 29.0 | AST matchup 1.24x | Minutes watch | Anti-correlation: same team as Alperen Sengun"
+            "reason": "L10 60% | L5 80% | USG 17% | MIN 29.0 | AST matchup 1.25x | Minutes watch | Anti-correlation: same team as Alperen Sengun"
           }
         ],
         "3PM": [
@@ -1777,7 +1755,7 @@
             "score": 62.9,
             "confidence": 63,
             "tier": "C",
-            "reason": "L10 70% | L5 80% | USG 27% | MIN 33.9 | 3PM matchup 0.90x | Home boost"
+            "reason": "L10 70% | L5 80% | USG 27% | MIN 33.9 | 3PM matchup 0.89x | Home boost"
           },
           {
             "player_id": "1966",
@@ -1788,7 +1766,7 @@
             "score": 61.4,
             "confidence": 61,
             "tier": "C",
-            "reason": "L10 80% | L5 60% | USG 30% | MIN 33.8 | 3PM matchup 0.90x | Home boost | Anti-correlation: same team as Austin Reaves"
+            "reason": "L10 80% | L5 60% | USG 30% | MIN 33.8 | 3PM matchup 0.89x | Home boost | Anti-correlation: same team as Austin Reaves"
           },
           {
             "player_id": "4066648",
@@ -1799,7 +1777,7 @@
             "score": 56.15,
             "confidence": 56,
             "tier": "C",
-            "reason": "L10 70% | L5 80% | USG 17% | MIN 35.1 | 3PM matchup 0.90x | Home boost | Anti-correlation: same team as Austin Reaves"
+            "reason": "L10 70% | L5 80% | USG 17% | MIN 35.1 | 3PM matchup 0.89x | Home boost | Anti-correlation: same team as Austin Reaves"
           },
           {
             "player_id": "2990992",
@@ -1810,7 +1788,7 @@
             "score": 55.15,
             "confidence": 55,
             "tier": "C",
-            "reason": "L10 70% | L5 80% | USG 16% | MIN 31.8 | 3PM matchup 0.90x | Home boost | Anti-correlation: same team as Austin Reaves"
+            "reason": "L10 70% | L5 80% | USG 16% | MIN 31.8 | 3PM matchup 0.89x | Home boost | Anti-correlation: same team as Austin Reaves"
           },
           {
             "player_id": "4432639",
@@ -1821,7 +1799,7 @@
             "score": 51.99,
             "confidence": 52,
             "tier": "C",
-            "reason": "L10 60% | L5 60% | USG 27% | MIN 39.8 | 3PM matchup 0.89x"
+            "reason": "L10 60% | L5 60% | USG 27% | MIN 39.8 | 3PM matchup 0.88x"
           },
           {
             "player_id": "3913174",
@@ -1832,7 +1810,7 @@
             "score": 50.87,
             "confidence": 51,
             "tier": "C",
-            "reason": "L10 70% | L5 60% | USG 18% | MIN 30.4 | 3PM matchup 0.90x | Home boost | Anti-correlation: same team as Austin Reaves"
+            "reason": "L10 70% | L5 60% | USG 18% | MIN 30.4 | 3PM matchup 0.89x | Home boost | Anti-correlation: same team as Austin Reaves"
           },
           {
             "player_id": "4433192",
@@ -1843,7 +1821,7 @@
             "score": 44.46,
             "confidence": 44,
             "tier": "C",
-            "reason": "L10 60% | L5 80% | USG 17% | MIN 29.0 | 3PM matchup 0.89x | Minutes watch | Anti-correlation: same team as Jabari Smith Jr."
+            "reason": "L10 60% | L5 80% | USG 17% | MIN 29.0 | 3PM matchup 0.88x | Minutes watch | Anti-correlation: same team as Jabari Smith Jr."
           },
           {
             "player_id": "4592965",
@@ -1854,7 +1832,7 @@
             "score": 41.94,
             "confidence": 42,
             "tier": "C",
-            "reason": "L10 67% | L5 80% | USG 10% | MIN 14.6 | 3PM matchup 0.89x | Minutes watch | Anti-correlation: same team as Jabari Smith Jr."
+            "reason": "L10 67% | L5 80% | USG 10% | MIN 14.6 | 3PM matchup 0.88x | Minutes watch | Anti-correlation: same team as Jabari Smith Jr."
           },
           {
             "player_id": "4683774",
@@ -1865,7 +1843,7 @@
             "score": 40.12,
             "confidence": 40,
             "tier": "C",
-            "reason": "L10 70% | L5 60% | USG 8% | MIN 10.0 | 3PM matchup 0.90x | Home boost | Minutes watch | Anti-correlation: same team as Austin Reaves"
+            "reason": "L10 70% | L5 60% | USG 8% | MIN 10.0 | 3PM matchup 0.89x | Home boost | Minutes watch | Anti-correlation: same team as Austin Reaves"
           },
           {
             "player_id": "3922230",
@@ -1876,7 +1854,7 @@
             "score": 26.86,
             "confidence": 27,
             "tier": "C",
-            "reason": "L10 60% | L5 40% | USG 7% | MIN 13.0 | 3PM matchup 0.89x | Minutes watch | Anti-correlation: same team as Jabari Smith Jr."
+            "reason": "L10 60% | L5 40% | USG 7% | MIN 13.0 | 3PM matchup 0.88x | Minutes watch | Anti-correlation: same team as Jabari Smith Jr."
           }
         ],
         "ML": [
