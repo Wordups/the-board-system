@@ -1,7 +1,7 @@
 {
   "sport": "NBA",
   "date": "2026-04-30",
-  "last_updated": "12:30 PM ET",
+  "last_updated": "1:00 PM ET",
   "hero_pick": {
     "player_id": "4065648",
     "player_name": "Jayson Tatum",
@@ -16,34 +16,6 @@
     "label": "Pick of the Day"
   },
   "game_clusters": [
-    {
-      "game_id": "401869402",
-      "matchup": "DEN @ MIN",
-      "top_score": 79.36,
-      "signals": [
-        {
-          "player_name": "Julius Randle",
-          "market": "REB",
-          "line": "7+ REB",
-          "score": 79.99,
-          "tier": "B"
-        },
-        {
-          "player_name": "Jamal Murray",
-          "market": "AST",
-          "line": "5+ AST",
-          "score": 79.98,
-          "tier": "A"
-        },
-        {
-          "player_name": "Nikola Jokic",
-          "market": "PTS",
-          "line": "24+ PTS",
-          "score": 78.12,
-          "tier": "A"
-        }
-      ]
-    },
     {
       "game_id": "401869410",
       "matchup": "BOS @ PHI",
@@ -69,6 +41,34 @@
           "line": "23+ PTS",
           "score": 78.11,
           "tier": "C"
+        }
+      ]
+    },
+    {
+      "game_id": "401869402",
+      "matchup": "DEN @ MIN",
+      "top_score": 78.88,
+      "signals": [
+        {
+          "player_name": "Jamal Murray",
+          "market": "AST",
+          "line": "5+ AST",
+          "score": 79.98,
+          "tier": "A"
+        },
+        {
+          "player_name": "Julius Randle",
+          "market": "REB",
+          "line": "7+ REB",
+          "score": 78.53,
+          "tier": "B"
+        },
+        {
+          "player_name": "Nikola Jokic",
+          "market": "PTS",
+          "line": "24+ PTS",
+          "score": 78.12,
+          "tier": "A"
         }
       ]
     },
@@ -178,21 +178,10 @@
           "team": "MIN",
           "opponent": "DEN",
           "line": "20+ PTS",
-          "score": 61.56,
-          "confidence": 62,
+          "score": 60.1,
+          "confidence": 60,
           "tier": "C",
-          "reason": "L10 60% | L5 40% | USG 35% | MIN 32.8 | PTS matchup 1.02x | Home boost"
-        },
-        {
-          "player_id": "4431671",
-          "player_name": "Jaden McDaniels",
-          "team": "MIN",
-          "opponent": "DEN",
-          "line": "15+ PTS",
-          "score": 57.63,
-          "confidence": 58,
-          "tier": "C",
-          "reason": "L10 70% | L5 40% | USG 30% | MIN 33.4 | PTS matchup 1.02x | Home boost | Anti-correlation: same team as Julius Randle"
+          "reason": "L10 60% | L5 40% | USG 32% | MIN 32.8 | PTS matchup 1.02x | Home boost"
         },
         {
           "player_id": "3136195",
@@ -204,6 +193,17 @@
           "confidence": 57,
           "tier": "B",
           "reason": "L10 70% | L5 60% | USG 25% | MIN 32.1 | PTS matchup 1.05x | Anti-correlation: same team as Jalen Brunson"
+        },
+        {
+          "player_id": "4431671",
+          "player_name": "Jaden McDaniels",
+          "team": "MIN",
+          "opponent": "DEN",
+          "line": "15+ PTS",
+          "score": 55.76,
+          "confidence": 56,
+          "tier": "C",
+          "reason": "L10 70% | L5 40% | USG 27% | MIN 33.4 | PTS matchup 1.02x | Home boost | Anti-correlation: same team as Julius Randle"
         },
         {
           "player_id": "3934719",
@@ -272,10 +272,10 @@
           "team": "MIN",
           "opponent": "DEN",
           "line": "2+ AST",
-          "score": 75.57,
-          "confidence": 76,
+          "score": 73.71,
+          "confidence": 74,
           "tier": "B",
-          "reason": "L10 80% | L5 80% | USG 30% | MIN 33.4 | AST matchup 1.25x | Home boost"
+          "reason": "L10 80% | L5 80% | USG 27% | MIN 33.4 | AST matchup 1.25x | Home boost"
         },
         {
           "player_id": "3064514",
@@ -283,10 +283,10 @@
           "team": "MIN",
           "opponent": "DEN",
           "line": "4+ AST",
-          "score": 73.15,
-          "confidence": 73,
+          "score": 71.69,
+          "confidence": 72,
           "tier": "B",
-          "reason": "L10 70% | L5 60% | USG 35% | MIN 32.8 | AST matchup 1.25x | Home boost | Anti-correlation: same team as Jaden McDaniels"
+          "reason": "L10 70% | L5 60% | USG 32% | MIN 32.8 | AST matchup 1.25x | Home boost | Anti-correlation: same team as Jaden McDaniels"
         },
         {
           "player_id": "3136195",
@@ -344,10 +344,10 @@
           "team": "MIN",
           "opponent": "DEN",
           "line": "7+ REB",
-          "score": 79.99,
-          "confidence": 80,
+          "score": 78.53,
+          "confidence": 79,
           "tier": "B",
-          "reason": "L10 60% | L5 80% | USG 35% | MIN 32.8 | REB matchup 1.14x | Home boost"
+          "reason": "L10 60% | L5 80% | USG 32% | MIN 32.8 | REB matchup 1.14x | Home boost"
         },
         {
           "player_id": "3934719",
@@ -394,17 +394,6 @@
           "reason": "L10 70% | L5 80% | USG 34% | MIN 37.5 | REB matchup 0.97x | Anti-correlation: same team as Jamal Murray"
         },
         {
-          "player_id": "4431671",
-          "player_name": "Jaden McDaniels",
-          "team": "MIN",
-          "opponent": "DEN",
-          "line": "5+ REB",
-          "score": 71.16,
-          "confidence": 71,
-          "tier": "B",
-          "reason": "L10 60% | L5 60% | USG 30% | MIN 33.4 | REB matchup 1.14x | Home boost | Anti-correlation: same team as Julius Randle"
-        },
-        {
           "player_id": "4251",
           "player_name": "Paul George",
           "team": "PHI",
@@ -416,17 +405,6 @@
           "reason": "L10 90% | L5 80% | USG 22% | MIN 34.4 | REB matchup 0.97x | Home boost"
         },
         {
-          "player_id": "4396971",
-          "player_name": "Naz Reid",
-          "team": "MIN",
-          "opponent": "DEN",
-          "line": "6+ REB",
-          "score": 69.48,
-          "confidence": 69,
-          "tier": "C",
-          "reason": "L10 70% | L5 80% | USG 23% | MIN 23.6 | REB matchup 1.14x | Home boost | Minutes watch | Anti-correlation: same team as Julius Randle"
-        },
-        {
           "player_id": "4065648",
           "player_name": "Jayson Tatum",
           "team": "BOS",
@@ -436,6 +414,28 @@
           "confidence": 69,
           "tier": "B",
           "reason": "L10 70% | L5 60% | USG 32% | MIN 36.7 | REB matchup 1.25x | Anti-correlation: same team as Jaylen Brown"
+        },
+        {
+          "player_id": "4431671",
+          "player_name": "Jaden McDaniels",
+          "team": "MIN",
+          "opponent": "DEN",
+          "line": "5+ REB",
+          "score": 69.3,
+          "confidence": 69,
+          "tier": "B",
+          "reason": "L10 60% | L5 60% | USG 27% | MIN 33.4 | REB matchup 1.14x | Home boost | Anti-correlation: same team as Julius Randle"
+        },
+        {
+          "player_id": "4396971",
+          "player_name": "Naz Reid",
+          "team": "MIN",
+          "opponent": "DEN",
+          "line": "6+ REB",
+          "score": 68.03,
+          "confidence": 68,
+          "tier": "C",
+          "reason": "L10 70% | L5 80% | USG 21% | MIN 23.6 | REB matchup 1.14x | Home boost | Minutes watch | Anti-correlation: same team as Julius Randle"
         },
         {
           "player_id": "5124612",
@@ -493,10 +493,10 @@
           "team": "MIN",
           "opponent": "DEN",
           "line": "1+ 3PM",
-          "score": 71.51,
-          "confidence": 72,
+          "score": 70.06,
+          "confidence": 70,
           "tier": "C",
-          "reason": "L10 90% | L5 100% | USG 23% | MIN 23.6 | 3PM matchup 1.05x | Home boost | Minutes watch"
+          "reason": "L10 90% | L5 100% | USG 21% | MIN 23.6 | 3PM matchup 1.05x | Home boost | Minutes watch"
         },
         {
           "player_id": "3934672",
@@ -588,23 +588,6 @@
           ]
         },
         {
-          "player_id": "3064514",
-          "player_name": "Julius Randle",
-          "team": "MIN",
-          "opponent": "DEN",
-          "line": "7+ REB",
-          "score": 79.99,
-          "confidence": 80,
-          "tier": "B",
-          "reason": "L10 60% | L5 80% | USG 35% | MIN 32.8 | REB matchup 1.14x | Home boost",
-          "market": "REB",
-          "ladder": [
-            "7+",
-            "9+",
-            "11+"
-          ]
-        },
-        {
           "player_id": "3936299",
           "player_name": "Jamal Murray",
           "team": "DEN",
@@ -636,6 +619,23 @@
             "6+",
             "8+",
             "10+"
+          ]
+        },
+        {
+          "player_id": "3064514",
+          "player_name": "Julius Randle",
+          "team": "MIN",
+          "opponent": "DEN",
+          "line": "7+ REB",
+          "score": 78.53,
+          "confidence": 79,
+          "tier": "B",
+          "reason": "L10 60% | L5 80% | USG 32% | MIN 32.8 | REB matchup 1.14x | Home boost",
+          "market": "REB",
+          "ladder": [
+            "7+",
+            "9+",
+            "11+"
           ]
         },
         {
@@ -734,21 +734,10 @@
         "team": "MIN",
         "opponent": "DEN",
         "line": "20+ PTS",
-        "score": 61.56,
-        "confidence": 62,
+        "score": 60.1,
+        "confidence": 60,
         "tier": "C",
-        "reason": "L10 60% | L5 40% | USG 35% | MIN 32.8 | PTS matchup 1.02x | Home boost"
-      },
-      {
-        "player_id": "4431671",
-        "player_name": "Jaden McDaniels",
-        "team": "MIN",
-        "opponent": "DEN",
-        "line": "15+ PTS",
-        "score": 57.63,
-        "confidence": 58,
-        "tier": "C",
-        "reason": "L10 70% | L5 40% | USG 30% | MIN 33.4 | PTS matchup 1.02x | Home boost | Anti-correlation: same team as Julius Randle"
+        "reason": "L10 60% | L5 40% | USG 32% | MIN 32.8 | PTS matchup 1.02x | Home boost"
       },
       {
         "player_id": "3136195",
@@ -760,6 +749,17 @@
         "confidence": 57,
         "tier": "B",
         "reason": "L10 70% | L5 60% | USG 25% | MIN 32.1 | PTS matchup 1.05x | Anti-correlation: same team as Jalen Brunson"
+      },
+      {
+        "player_id": "4431671",
+        "player_name": "Jaden McDaniels",
+        "team": "MIN",
+        "opponent": "DEN",
+        "line": "15+ PTS",
+        "score": 55.76,
+        "confidence": 56,
+        "tier": "C",
+        "reason": "L10 70% | L5 40% | USG 27% | MIN 33.4 | PTS matchup 1.02x | Home boost | Anti-correlation: same team as Julius Randle"
       },
       {
         "player_id": "3934719",
@@ -1571,20 +1571,20 @@
       "time": "4/30 - 9:30 PM EDT",
       "top_signals": [
         {
-          "market": "REB",
-          "player_name": "Julius Randle",
-          "line": "7+ REB",
-          "score": 79.99,
-          "confidence": 80,
-          "tier": "B"
-        },
-        {
           "market": "AST",
           "player_name": "Jamal Murray",
           "line": "5+ AST",
           "score": 79.98,
           "confidence": 80,
           "tier": "A"
+        },
+        {
+          "market": "REB",
+          "player_name": "Julius Randle",
+          "line": "7+ REB",
+          "score": 78.53,
+          "confidence": 79,
+          "tier": "B"
         },
         {
           "market": "PTS",
@@ -1625,10 +1625,10 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "20+ PTS",
-            "score": 61.56,
-            "confidence": 62,
+            "score": 60.1,
+            "confidence": 60,
             "tier": "C",
-            "reason": "L10 60% | L5 40% | USG 35% | MIN 32.8 | PTS matchup 1.02x | Home boost"
+            "reason": "L10 60% | L5 40% | USG 32% | MIN 32.8 | PTS matchup 1.02x | Home boost"
           },
           {
             "player_id": "4431671",
@@ -1636,10 +1636,10 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "15+ PTS",
-            "score": 57.63,
-            "confidence": 58,
+            "score": 55.76,
+            "confidence": 56,
             "tier": "C",
-            "reason": "L10 70% | L5 40% | USG 30% | MIN 33.4 | PTS matchup 1.02x | Home boost | Anti-correlation: same team as Julius Randle"
+            "reason": "L10 70% | L5 40% | USG 27% | MIN 33.4 | PTS matchup 1.02x | Home boost | Anti-correlation: same team as Julius Randle"
           },
           {
             "player_id": "4396971",
@@ -1647,10 +1647,10 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "10+ PTS",
-            "score": 49.54,
-            "confidence": 50,
+            "score": 48.08,
+            "confidence": 48,
             "tier": "C",
-            "reason": "L10 70% | L5 60% | USG 23% | MIN 23.6 | PTS matchup 1.02x | Home boost | Minutes watch | Anti-correlation: same team as Julius Randle"
+            "reason": "L10 70% | L5 60% | USG 21% | MIN 23.6 | PTS matchup 1.02x | Home boost | Minutes watch | Anti-correlation: same team as Julius Randle"
           },
           {
             "player_id": "3138196",
@@ -1693,10 +1693,10 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "7+ REB",
-            "score": 79.99,
-            "confidence": 80,
+            "score": 78.53,
+            "confidence": 79,
             "tier": "B",
-            "reason": "L10 60% | L5 80% | USG 35% | MIN 32.8 | REB matchup 1.14x | Home boost"
+            "reason": "L10 60% | L5 80% | USG 32% | MIN 32.8 | REB matchup 1.14x | Home boost"
           },
           {
             "player_id": "3936299",
@@ -1726,10 +1726,10 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "5+ REB",
-            "score": 71.16,
-            "confidence": 71,
+            "score": 69.3,
+            "confidence": 69,
             "tier": "B",
-            "reason": "L10 60% | L5 60% | USG 30% | MIN 33.4 | REB matchup 1.14x | Home boost | Anti-correlation: same team as Julius Randle"
+            "reason": "L10 60% | L5 60% | USG 27% | MIN 33.4 | REB matchup 1.14x | Home boost | Anti-correlation: same team as Julius Randle"
           },
           {
             "player_id": "4396971",
@@ -1737,10 +1737,10 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "6+ REB",
-            "score": 69.48,
-            "confidence": 69,
+            "score": 68.03,
+            "confidence": 68,
             "tier": "C",
-            "reason": "L10 70% | L5 80% | USG 23% | MIN 23.6 | REB matchup 1.14x | Home boost | Minutes watch | Anti-correlation: same team as Julius Randle"
+            "reason": "L10 70% | L5 80% | USG 21% | MIN 23.6 | REB matchup 1.14x | Home boost | Minutes watch | Anti-correlation: same team as Julius Randle"
           },
           {
             "player_id": "3032976",
@@ -1748,10 +1748,10 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "10+ REB",
-            "score": 60.46,
-            "confidence": 60,
+            "score": 59.48,
+            "confidence": 59,
             "tier": "B",
-            "reason": "L10 70% | L5 60% | USG 15% | MIN 32.7 | REB matchup 1.14x | Home boost | Anti-correlation: same team as Julius Randle"
+            "reason": "L10 70% | L5 60% | USG 14% | MIN 32.7 | REB matchup 1.14x | Home boost | Anti-correlation: same team as Julius Randle"
           },
           {
             "player_id": "4065670",
@@ -1783,10 +1783,10 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "2+ AST",
-            "score": 75.57,
-            "confidence": 76,
+            "score": 73.71,
+            "confidence": 74,
             "tier": "B",
-            "reason": "L10 80% | L5 80% | USG 30% | MIN 33.4 | AST matchup 1.25x | Home boost"
+            "reason": "L10 80% | L5 80% | USG 27% | MIN 33.4 | AST matchup 1.25x | Home boost"
           },
           {
             "player_id": "3064514",
@@ -1794,10 +1794,10 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "4+ AST",
-            "score": 73.15,
-            "confidence": 73,
+            "score": 71.69,
+            "confidence": 72,
             "tier": "B",
-            "reason": "L10 70% | L5 60% | USG 35% | MIN 32.8 | AST matchup 1.25x | Home boost | Anti-correlation: same team as Jaden McDaniels"
+            "reason": "L10 70% | L5 60% | USG 32% | MIN 32.8 | AST matchup 1.25x | Home boost | Anti-correlation: same team as Jaden McDaniels"
           },
           {
             "player_id": "3112335",
@@ -1816,10 +1816,10 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "2+ AST",
-            "score": 59.9,
-            "confidence": 60,
+            "score": 58.93,
+            "confidence": 59,
             "tier": "B",
-            "reason": "L10 60% | L5 80% | USG 15% | MIN 32.7 | AST matchup 1.25x | Home boost | Anti-correlation: same team as Jaden McDaniels"
+            "reason": "L10 60% | L5 80% | USG 14% | MIN 32.7 | AST matchup 1.25x | Home boost | Anti-correlation: same team as Jaden McDaniels"
           },
           {
             "player_id": "3195",
@@ -1827,10 +1827,10 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "2+ AST",
-            "score": 55.08,
+            "score": 54.59,
             "confidence": 55,
             "tier": "C",
-            "reason": "L10 80% | L5 80% | USG 8% | MIN 12.7 | AST matchup 1.25x | Home boost | Minutes watch | Anti-correlation: same team as Jaden McDaniels"
+            "reason": "L10 80% | L5 80% | USG 7% | MIN 12.7 | AST matchup 1.25x | Home boost | Minutes watch | Anti-correlation: same team as Jaden McDaniels"
           },
           {
             "player_id": "4065670",
@@ -1855,15 +1855,26 @@
             "reason": "L10 70% | L5 60% | USG 15% | MIN 29.6 | AST matchup 1.25x | Minutes watch | Anti-correlation: same team as Jamal Murray"
           },
           {
+            "player_id": "4592492",
+            "player_name": "Bones Hyland",
+            "team": "MIN",
+            "opponent": "DEN",
+            "line": "2+ AST",
+            "score": 44.76,
+            "confidence": 45,
+            "tier": "C",
+            "reason": "L10 60% | L5 40% | USG 17% | MIN 15.2 | AST matchup 1.25x | Home boost | Minutes watch | Anti-correlation: same team as Jaden McDaniels"
+          },
+          {
             "player_id": "2993874",
             "player_name": "Kyle Anderson",
             "team": "MIN",
             "opponent": "DEN",
             "line": "2+ AST",
-            "score": 40.64,
-            "confidence": 41,
+            "score": 40.13,
+            "confidence": 40,
             "tier": "C",
-            "reason": "L10 70% | L5 40% | USG 8% | MIN 10.2 | AST matchup 1.25x | Home boost | Minutes watch | Anti-correlation: same team as Jaden McDaniels"
+            "reason": "L10 70% | L5 40% | USG 7% | MIN 10.2 | AST matchup 1.25x | Home boost | Minutes watch | Anti-correlation: same team as Jaden McDaniels"
           }
         ],
         "3PM": [
@@ -1873,10 +1884,10 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "1+ 3PM",
-            "score": 71.51,
-            "confidence": 72,
+            "score": 70.06,
+            "confidence": 70,
             "tier": "C",
-            "reason": "L10 90% | L5 100% | USG 23% | MIN 23.6 | 3PM matchup 1.05x | Home boost | Minutes watch"
+            "reason": "L10 90% | L5 100% | USG 21% | MIN 23.6 | 3PM matchup 1.05x | Home boost | Minutes watch"
           },
           {
             "player_id": "3112335",
@@ -1895,10 +1906,10 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "1+ 3PM",
-            "score": 65.51,
-            "confidence": 66,
+            "score": 64.05,
+            "confidence": 64,
             "tier": "B",
-            "reason": "L10 70% | L5 40% | USG 35% | MIN 32.8 | 3PM matchup 1.05x | Home boost | Anti-correlation: same team as Naz Reid"
+            "reason": "L10 70% | L5 40% | USG 32% | MIN 32.8 | 3PM matchup 1.05x | Home boost | Anti-correlation: same team as Naz Reid"
           },
           {
             "player_id": "3936299",
@@ -1910,6 +1921,17 @@
             "confidence": 63,
             "tier": "C",
             "reason": "L10 80% | L5 60% | USG 32% | MIN 38.1 | 3PM matchup 0.75x | Anti-correlation: same team as Nikola Jokic"
+          },
+          {
+            "player_id": "4592492",
+            "player_name": "Bones Hyland",
+            "team": "MIN",
+            "opponent": "DEN",
+            "line": "2+ 3PM",
+            "score": 50.96,
+            "confidence": 51,
+            "tier": "C",
+            "reason": "L10 70% | L5 60% | USG 17% | MIN 15.2 | 3PM matchup 1.05x | Home boost | Minutes watch | Anti-correlation: same team as Naz Reid"
           },
           {
             "player_id": "3138196",
@@ -1961,10 +1983,10 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "1+ 3PM",
-            "score": 36.08,
+            "score": 35.59,
             "confidence": 36,
             "tier": "C",
-            "reason": "L10 60% | L5 40% | USG 8% | MIN 12.7 | 3PM matchup 1.05x | Home boost | Minutes watch | Anti-correlation: same team as Naz Reid"
+            "reason": "L10 60% | L5 40% | USG 7% | MIN 12.7 | 3PM matchup 1.05x | Home boost | Minutes watch | Anti-correlation: same team as Naz Reid"
           }
         ],
         "ML": [
