@@ -1,7 +1,7 @@
 {
   "sport": "NBA",
   "date": "2026-04-30",
-  "last_updated": "9:30 PM ET",
+  "last_updated": "10:00 PM ET",
   "hero_pick": {
     "player_id": "4065648",
     "player_name": "Jayson Tatum",
@@ -16,6 +16,34 @@
     "label": "Pick of the Day"
   },
   "game_clusters": [
+    {
+      "game_id": "401869410",
+      "matchup": "BOS @ PHI",
+      "top_score": 79.24,
+      "signals": [
+        {
+          "player_name": "Jayson Tatum",
+          "market": "AST",
+          "line": "7+ AST",
+          "score": 80.52,
+          "tier": "A"
+        },
+        {
+          "player_name": "Joel Embiid",
+          "market": "3PM",
+          "line": "1+ 3PM",
+          "score": 79.11,
+          "tier": "C"
+        },
+        {
+          "player_name": "Jayson Tatum",
+          "market": "PTS",
+          "line": "23+ PTS",
+          "score": 78.1,
+          "tier": "C"
+        }
+      ]
+    },
     {
       "game_id": "401869402",
       "matchup": "DEN @ MIN",
@@ -39,63 +67,35 @@
           "player_name": "Nikola Jokic",
           "market": "PTS",
           "line": "24+ PTS",
-          "score": 78.12,
-          "tier": "A"
-        }
-      ]
-    },
-    {
-      "game_id": "401869410",
-      "matchup": "BOS @ PHI",
-      "top_score": 79.11,
-      "signals": [
-        {
-          "player_name": "Jayson Tatum",
-          "market": "AST",
-          "line": "7+ AST",
-          "score": 80.52,
-          "tier": "A"
-        },
-        {
-          "player_name": "Joel Embiid",
-          "market": "3PM",
-          "line": "1+ 3PM",
-          "score": 78.71,
-          "tier": "C"
-        },
-        {
-          "player_name": "Jayson Tatum",
-          "market": "PTS",
-          "line": "23+ PTS",
           "score": 78.11,
-          "tier": "C"
+          "tier": "A"
         }
       ]
     },
     {
       "game_id": "401869393",
       "matchup": "NY @ ATL",
-      "top_score": 75.95,
+      "top_score": 72.96,
       "signals": [
-        {
-          "player_name": "Jalen Brunson",
-          "market": "PTS",
-          "line": "25+ PTS",
-          "score": 78.39,
-          "tier": "A"
-        },
         {
           "player_name": "OG Anunoby",
           "market": "REB",
           "line": "7+ REB",
-          "score": 77.24,
+          "score": 76.92,
           "tier": "B"
         },
         {
-          "player_name": "Nickeil Alexander-Walker",
-          "market": "3PM",
-          "line": "3+ 3PM",
-          "score": 72.22,
+          "player_name": "Jalen Brunson",
+          "market": "PTS",
+          "line": "24+ PTS",
+          "score": 71.18,
+          "tier": "B"
+        },
+        {
+          "player_name": "Jalen Brunson",
+          "market": "AST",
+          "line": "6+ AST",
+          "score": 70.79,
           "tier": "B"
         }
       ]
@@ -107,23 +107,12 @@
       "market": "PTS",
       "players": [
         {
-          "player_id": "3934672",
-          "player_name": "Jalen Brunson",
-          "team": "NY",
-          "opponent": "ATL",
-          "line": "25+ PTS",
-          "score": 78.39,
-          "confidence": 78,
-          "tier": "A",
-          "reason": "L10 70% | L5 80% | USG 33% | MIN 35.4 | PTS matchup 1.05x"
-        },
-        {
           "player_id": "3112335",
           "player_name": "Nikola Jokic",
           "team": "DEN",
           "opponent": "MIN",
           "line": "24+ PTS",
-          "score": 78.12,
+          "score": 78.11,
           "confidence": 78,
           "tier": "A",
           "reason": "L10 70% | L5 100% | USG 34% | MIN 37.5 | PTS matchup 1.06x"
@@ -134,7 +123,7 @@
           "team": "BOS",
           "opponent": "PHI",
           "line": "23+ PTS",
-          "score": 78.11,
+          "score": 78.1,
           "confidence": 78,
           "tier": "C",
           "reason": "L10 90% | L5 80% | USG 32% | MIN 36.7 | PTS matchup 0.98x"
@@ -151,12 +140,23 @@
           "reason": "L10 60% | L5 80% | USG 32% | MIN 38.1 | PTS matchup 1.06x | Anti-correlation: same team as Nikola Jokic"
         },
         {
+          "player_id": "3934672",
+          "player_name": "Jalen Brunson",
+          "team": "NY",
+          "opponent": "ATL",
+          "line": "24+ PTS",
+          "score": 71.18,
+          "confidence": 71,
+          "tier": "B",
+          "reason": "L10 70% | L5 60% | USG 34% | MIN 34.4 | PTS matchup 1.07x"
+        },
+        {
           "player_id": "4251",
           "player_name": "Paul George",
           "team": "PHI",
           "opponent": "BOS",
           "line": "16+ PTS",
-          "score": 66.96,
+          "score": 66.95,
           "confidence": 67,
           "tier": "C",
           "reason": "L10 80% | L5 100% | USG 18% | MIN 34.4 | PTS matchup 0.96x | Home boost"
@@ -167,7 +167,7 @@
           "team": "BOS",
           "opponent": "PHI",
           "line": "25+ PTS",
-          "score": 62.93,
+          "score": 62.92,
           "confidence": 63,
           "tier": "C",
           "reason": "L10 70% | L5 60% | USG 37% | MIN 35.1 | PTS matchup 0.98x | Anti-correlation: same team as Jayson Tatum"
@@ -178,7 +178,7 @@
           "team": "MIN",
           "opponent": "DEN",
           "line": "20+ PTS",
-          "score": 61.01,
+          "score": 61.0,
           "confidence": 61,
           "tier": "C",
           "reason": "L10 60% | L5 40% | USG 33% | MIN 32.8 | PTS matchup 1.02x | Home boost"
@@ -200,7 +200,7 @@
           "team": "MIN",
           "opponent": "DEN",
           "line": "15+ PTS",
-          "score": 56.53,
+          "score": 56.52,
           "confidence": 57,
           "tier": "C",
           "reason": "L10 70% | L5 40% | USG 28% | MIN 33.4 | PTS matchup 1.02x | Home boost | Anti-correlation: same team as Julius Randle"
@@ -210,11 +210,11 @@
           "player_name": "Karl-Anthony Towns",
           "team": "NY",
           "opponent": "ATL",
-          "line": "19+ PTS",
-          "score": 55.99,
-          "confidence": 56,
+          "line": "17+ PTS",
+          "score": 52.86,
+          "confidence": 53,
           "tier": "B",
-          "reason": "L10 70% | L5 60% | USG 23% | MIN 32.1 | PTS matchup 1.05x | Anti-correlation: same team as Jalen Brunson"
+          "reason": "L10 70% | L5 60% | USG 22% | MIN 31.3 | PTS matchup 1.07x | Anti-correlation: same team as Jalen Brunson"
         }
       ]
     },
@@ -264,7 +264,7 @@
           "score": 76.38,
           "confidence": 76,
           "tier": "B",
-          "reason": "L10 60% | L5 80% | USG 30% | MIN 39.3 | AST matchup 1.15x | Home boost"
+          "reason": "L10 60% | L5 80% | USG 30% | MIN 39.3 | AST matchup 1.14x | Home boost"
         },
         {
           "player_id": "4431671",
@@ -297,7 +297,7 @@
           "score": 71.25,
           "confidence": 71,
           "tier": "B",
-          "reason": "L10 60% | L5 60% | USG 32% | MIN 34.7 | AST matchup 1.15x | Home boost | Anti-correlation: same team as Tyrese Maxey"
+          "reason": "L10 60% | L5 60% | USG 32% | MIN 34.7 | AST matchup 1.14x | Home boost | Anti-correlation: same team as Tyrese Maxey"
         },
         {
           "player_id": "3934672",
@@ -305,10 +305,10 @@
           "team": "NY",
           "opponent": "ATL",
           "line": "6+ AST",
-          "score": 70.25,
-          "confidence": 70,
+          "score": 70.79,
+          "confidence": 71,
           "tier": "B",
-          "reason": "L10 70% | L5 60% | USG 33% | MIN 35.4 | AST matchup 1.25x"
+          "reason": "L10 70% | L5 60% | USG 34% | MIN 34.4 | AST matchup 1.25x"
         },
         {
           "player_id": "3112335",
@@ -322,15 +322,15 @@
           "reason": "L10 70% | L5 60% | USG 34% | MIN 37.5 | AST matchup 1.25x | Anti-correlation: same team as Jamal Murray"
         },
         {
-          "player_id": "3136195",
-          "player_name": "Karl-Anthony Towns",
-          "team": "NY",
-          "opponent": "ATL",
-          "line": "4+ AST",
-          "score": 68.85,
+          "player_id": "4701230",
+          "player_name": "Jalen Johnson",
+          "team": "ATL",
+          "opponent": "NY",
+          "line": "5+ AST",
+          "score": 68.66,
           "confidence": 69,
           "tier": "B",
-          "reason": "L10 80% | L5 80% | USG 23% | MIN 32.1 | AST matchup 1.25x | Anti-correlation: same team as Jalen Brunson"
+          "reason": "L10 70% | L5 80% | USG 26% | MIN 34.8 | AST matchup 1.19x | Home boost"
         }
       ]
     },
@@ -355,10 +355,10 @@
           "team": "NY",
           "opponent": "ATL",
           "line": "7+ REB",
-          "score": 77.24,
+          "score": 76.92,
           "confidence": 77,
           "tier": "B",
-          "reason": "L10 70% | L5 100% | USG 19% | MIN 36.4 | REB matchup 1.22x"
+          "reason": "L10 70% | L5 100% | USG 19% | MIN 34.8 | REB matchup 1.22x"
         },
         {
           "player_id": "3917376",
@@ -377,10 +377,10 @@
           "team": "DEN",
           "opponent": "MIN",
           "line": "4+ REB",
-          "score": 73.23,
+          "score": 73.38,
           "confidence": 73,
           "tier": "C",
-          "reason": "L10 80% | L5 80% | USG 32% | MIN 38.1 | REB matchup 0.97x"
+          "reason": "L10 80% | L5 80% | USG 32% | MIN 38.1 | REB matchup 0.98x"
         },
         {
           "player_id": "3112335",
@@ -388,10 +388,10 @@
           "team": "DEN",
           "opponent": "MIN",
           "line": "13+ REB",
-          "score": 71.66,
+          "score": 71.81,
           "confidence": 72,
           "tier": "C",
-          "reason": "L10 70% | L5 80% | USG 34% | MIN 37.5 | REB matchup 0.97x | Anti-correlation: same team as Jamal Murray"
+          "reason": "L10 70% | L5 80% | USG 34% | MIN 37.5 | REB matchup 0.98x | Anti-correlation: same team as Jamal Murray"
         },
         {
           "player_id": "4431671",
@@ -432,21 +432,21 @@
           "team": "PHI",
           "opponent": "BOS",
           "line": "4+ REB",
-          "score": 68.43,
-          "confidence": 68,
+          "score": 68.58,
+          "confidence": 69,
           "tier": "C",
           "reason": "L10 90% | L5 80% | USG 18% | MIN 34.4 | REB matchup 0.97x | Home boost"
         },
         {
-          "player_id": "5124612",
-          "player_name": "VJ Edgecombe",
-          "team": "PHI",
-          "opponent": "BOS",
-          "line": "6+ REB",
-          "score": 63.18,
-          "confidence": 63,
+          "player_id": "4701230",
+          "player_name": "Jalen Johnson",
+          "team": "ATL",
+          "opponent": "NY",
+          "line": "8+ REB",
+          "score": 68.1,
+          "confidence": 68,
           "tier": "C",
-          "reason": "L10 80% | L5 60% | USG 20% | MIN 36.6 | REB matchup 0.97x | Home boost | Anti-correlation: same team as Paul George"
+          "reason": "L10 80% | L5 80% | USG 26% | MIN 34.8 | REB matchup 0.89x | Home boost"
         }
       ]
     },
@@ -460,10 +460,10 @@
           "team": "PHI",
           "opponent": "BOS",
           "line": "1+ 3PM",
-          "score": 78.71,
+          "score": 79.11,
           "confidence": 79,
           "tier": "C",
-          "reason": "L10 90% | L5 80% | USG 32% | MIN 34.7 | 3PM matchup 0.97x | Home boost"
+          "reason": "L10 90% | L5 80% | USG 32% | MIN 34.7 | 3PM matchup 0.98x | Home boost"
         },
         {
           "player_id": "3917376",
@@ -477,37 +477,15 @@
           "reason": "L10 70% | L5 60% | USG 37% | MIN 35.1 | 3PM matchup 1.25x"
         },
         {
-          "player_id": "4278039",
-          "player_name": "Nickeil Alexander-Walker",
-          "team": "ATL",
-          "opponent": "NY",
-          "line": "3+ 3PM",
-          "score": 72.22,
-          "confidence": 72,
-          "tier": "B",
-          "reason": "L10 90% | L5 80% | USG 23% | MIN 35.8 | 3PM matchup 1.06x | Home boost"
-        },
-        {
           "player_id": "4396971",
           "player_name": "Naz Reid",
           "team": "MIN",
           "opponent": "DEN",
           "line": "1+ 3PM",
-          "score": 70.66,
+          "score": 71.09,
           "confidence": 71,
           "tier": "C",
-          "reason": "L10 90% | L5 100% | USG 22% | MIN 23.6 | 3PM matchup 1.05x | Home boost | Minutes watch"
-        },
-        {
-          "player_id": "3934672",
-          "player_name": "Jalen Brunson",
-          "team": "NY",
-          "opponent": "ATL",
-          "line": "2+ 3PM",
-          "score": 69.44,
-          "confidence": 69,
-          "tier": "C",
-          "reason": "L10 70% | L5 80% | USG 33% | MIN 35.4 | 3PM matchup 0.94x"
+          "reason": "L10 90% | L5 100% | USG 22% | MIN 23.6 | 3PM matchup 1.06x | Home boost | Minutes watch"
         },
         {
           "player_id": "4431678",
@@ -515,10 +493,21 @@
           "team": "PHI",
           "opponent": "BOS",
           "line": "3+ 3PM",
-          "score": 69.21,
-          "confidence": 69,
+          "score": 69.61,
+          "confidence": 70,
           "tier": "C",
-          "reason": "L10 60% | L5 80% | USG 30% | MIN 39.3 | 3PM matchup 0.97x | Home boost | Anti-correlation: same team as Joel Embiid"
+          "reason": "L10 60% | L5 80% | USG 30% | MIN 39.3 | 3PM matchup 0.98x | Home boost | Anti-correlation: same team as Joel Embiid"
+        },
+        {
+          "player_id": "4701230",
+          "player_name": "Jalen Johnson",
+          "team": "ATL",
+          "opponent": "NY",
+          "line": "1+ 3PM",
+          "score": 68.35,
+          "confidence": 68,
+          "tier": "C",
+          "reason": "L10 80% | L5 80% | USG 26% | MIN 34.8 | 3PM matchup 1.00x | Home boost"
         },
         {
           "player_id": "3112335",
@@ -532,28 +521,6 @@
           "reason": "L10 70% | L5 80% | USG 34% | MIN 37.5 | 3PM matchup 0.75x"
         },
         {
-          "player_id": "4701230",
-          "player_name": "Jalen Johnson",
-          "team": "ATL",
-          "opponent": "NY",
-          "line": "1+ 3PM",
-          "score": 66.96,
-          "confidence": 67,
-          "tier": "B",
-          "reason": "L10 70% | L5 80% | USG 26% | MIN 35.8 | 3PM matchup 1.06x | Home boost | Anti-correlation: same team as Nickeil Alexander-Walker"
-        },
-        {
-          "player_id": "3136195",
-          "player_name": "Karl-Anthony Towns",
-          "team": "NY",
-          "opponent": "ATL",
-          "line": "1+ 3PM",
-          "score": 66.9,
-          "confidence": 67,
-          "tier": "C",
-          "reason": "L10 90% | L5 100% | USG 23% | MIN 32.1 | 3PM matchup 0.94x | Anti-correlation: same team as Jalen Brunson"
-        },
-        {
           "player_id": "4065648",
           "player_name": "Jayson Tatum",
           "team": "BOS",
@@ -563,6 +530,39 @@
           "confidence": 67,
           "tier": "B",
           "reason": "L10 60% | L5 60% | USG 32% | MIN 36.7 | 3PM matchup 1.25x | Anti-correlation: same team as Jaylen Brown"
+        },
+        {
+          "player_id": "3064514",
+          "player_name": "Julius Randle",
+          "team": "MIN",
+          "opponent": "DEN",
+          "line": "1+ 3PM",
+          "score": 65.4,
+          "confidence": 65,
+          "tier": "B",
+          "reason": "L10 70% | L5 40% | USG 33% | MIN 32.8 | 3PM matchup 1.06x | Home boost | Anti-correlation: same team as Naz Reid"
+        },
+        {
+          "player_id": "3934672",
+          "player_name": "Jalen Brunson",
+          "team": "NY",
+          "opponent": "ATL",
+          "line": "2+ 3PM",
+          "score": 64.61,
+          "confidence": 65,
+          "tier": "C",
+          "reason": "L10 70% | L5 60% | USG 34% | MIN 34.4 | 3PM matchup 0.96x"
+        },
+        {
+          "player_id": "4593841",
+          "player_name": "Baylor Scheierman",
+          "team": "BOS",
+          "opponent": "PHI",
+          "line": "1+ 3PM",
+          "score": 63.96,
+          "confidence": 64,
+          "tier": "C",
+          "reason": "L10 100% | L5 100% | USG 10% | MIN 13.9 | 3PM matchup 1.25x | Minutes watch | Anti-correlation: same team as Jaylen Brown"
         }
       ]
     },
@@ -627,10 +627,10 @@
           "team": "NY",
           "opponent": "ATL",
           "line": "7+ REB",
-          "score": 77.24,
+          "score": 76.92,
           "confidence": 77,
           "tier": "B",
-          "reason": "L10 70% | L5 100% | USG 19% | MIN 36.4 | REB matchup 1.22x",
+          "reason": "L10 70% | L5 100% | USG 19% | MIN 34.8 | REB matchup 1.22x",
           "market": "REB",
           "ladder": [
             "7+",
@@ -663,23 +663,12 @@
     "market": "PTS",
     "players": [
       {
-        "player_id": "3934672",
-        "player_name": "Jalen Brunson",
-        "team": "NY",
-        "opponent": "ATL",
-        "line": "25+ PTS",
-        "score": 78.39,
-        "confidence": 78,
-        "tier": "A",
-        "reason": "L10 70% | L5 80% | USG 33% | MIN 35.4 | PTS matchup 1.05x"
-      },
-      {
         "player_id": "3112335",
         "player_name": "Nikola Jokic",
         "team": "DEN",
         "opponent": "MIN",
         "line": "24+ PTS",
-        "score": 78.12,
+        "score": 78.11,
         "confidence": 78,
         "tier": "A",
         "reason": "L10 70% | L5 100% | USG 34% | MIN 37.5 | PTS matchup 1.06x"
@@ -690,7 +679,7 @@
         "team": "BOS",
         "opponent": "PHI",
         "line": "23+ PTS",
-        "score": 78.11,
+        "score": 78.1,
         "confidence": 78,
         "tier": "C",
         "reason": "L10 90% | L5 80% | USG 32% | MIN 36.7 | PTS matchup 0.98x"
@@ -707,12 +696,23 @@
         "reason": "L10 60% | L5 80% | USG 32% | MIN 38.1 | PTS matchup 1.06x | Anti-correlation: same team as Nikola Jokic"
       },
       {
+        "player_id": "3934672",
+        "player_name": "Jalen Brunson",
+        "team": "NY",
+        "opponent": "ATL",
+        "line": "24+ PTS",
+        "score": 71.18,
+        "confidence": 71,
+        "tier": "B",
+        "reason": "L10 70% | L5 60% | USG 34% | MIN 34.4 | PTS matchup 1.07x"
+      },
+      {
         "player_id": "4251",
         "player_name": "Paul George",
         "team": "PHI",
         "opponent": "BOS",
         "line": "16+ PTS",
-        "score": 66.96,
+        "score": 66.95,
         "confidence": 67,
         "tier": "C",
         "reason": "L10 80% | L5 100% | USG 18% | MIN 34.4 | PTS matchup 0.96x | Home boost"
@@ -723,7 +723,7 @@
         "team": "BOS",
         "opponent": "PHI",
         "line": "25+ PTS",
-        "score": 62.93,
+        "score": 62.92,
         "confidence": 63,
         "tier": "C",
         "reason": "L10 70% | L5 60% | USG 37% | MIN 35.1 | PTS matchup 0.98x | Anti-correlation: same team as Jayson Tatum"
@@ -734,7 +734,7 @@
         "team": "MIN",
         "opponent": "DEN",
         "line": "20+ PTS",
-        "score": 61.01,
+        "score": 61.0,
         "confidence": 61,
         "tier": "C",
         "reason": "L10 60% | L5 40% | USG 33% | MIN 32.8 | PTS matchup 1.02x | Home boost"
@@ -756,7 +756,7 @@
         "team": "MIN",
         "opponent": "DEN",
         "line": "15+ PTS",
-        "score": 56.53,
+        "score": 56.52,
         "confidence": 57,
         "tier": "C",
         "reason": "L10 70% | L5 40% | USG 28% | MIN 33.4 | PTS matchup 1.02x | Home boost | Anti-correlation: same team as Julius Randle"
@@ -766,11 +766,11 @@
         "player_name": "Karl-Anthony Towns",
         "team": "NY",
         "opponent": "ATL",
-        "line": "19+ PTS",
-        "score": 55.99,
-        "confidence": 56,
+        "line": "17+ PTS",
+        "score": 52.86,
+        "confidence": 53,
         "tier": "B",
-        "reason": "L10 70% | L5 60% | USG 23% | MIN 32.1 | PTS matchup 1.05x | Anti-correlation: same team as Jalen Brunson"
+        "reason": "L10 70% | L5 60% | USG 22% | MIN 31.3 | PTS matchup 1.07x | Anti-correlation: same team as Jalen Brunson"
       }
     ]
   },
@@ -778,30 +778,30 @@
     {
       "game_id": "401869393",
       "matchup": "NY @ ATL",
-      "time": "5:37 - 4th",
+      "time": "Final",
       "top_signals": [
-        {
-          "market": "PTS",
-          "player_name": "Jalen Brunson",
-          "line": "25+ PTS",
-          "score": 78.39,
-          "confidence": 78,
-          "tier": "A"
-        },
         {
           "market": "REB",
           "player_name": "OG Anunoby",
           "line": "7+ REB",
-          "score": 77.24,
+          "score": 76.92,
           "confidence": 77,
           "tier": "B"
         },
         {
-          "market": "3PM",
-          "player_name": "Nickeil Alexander-Walker",
-          "line": "3+ 3PM",
-          "score": 72.22,
-          "confidence": 72,
+          "market": "PTS",
+          "player_name": "Jalen Brunson",
+          "line": "24+ PTS",
+          "score": 71.18,
+          "confidence": 71,
+          "tier": "B"
+        },
+        {
+          "market": "AST",
+          "player_name": "Jalen Brunson",
+          "line": "6+ AST",
+          "score": 70.79,
+          "confidence": 71,
           "tier": "B"
         }
       ],
@@ -812,55 +812,44 @@
             "player_name": "Jalen Brunson",
             "team": "NY",
             "opponent": "ATL",
-            "line": "25+ PTS",
-            "score": 78.39,
-            "confidence": 78,
-            "tier": "A",
-            "reason": "L10 70% | L5 80% | USG 33% | MIN 35.4 | PTS matchup 1.05x"
+            "line": "24+ PTS",
+            "score": 71.18,
+            "confidence": 71,
+            "tier": "B",
+            "reason": "L10 70% | L5 60% | USG 34% | MIN 34.4 | PTS matchup 1.07x"
           },
           {
             "player_id": "3136195",
             "player_name": "Karl-Anthony Towns",
             "team": "NY",
             "opponent": "ATL",
-            "line": "19+ PTS",
-            "score": 55.99,
-            "confidence": 56,
+            "line": "17+ PTS",
+            "score": 52.86,
+            "confidence": 53,
             "tier": "B",
-            "reason": "L10 70% | L5 60% | USG 23% | MIN 32.1 | PTS matchup 1.05x | Anti-correlation: same team as Jalen Brunson"
-          },
-          {
-            "player_id": "3934719",
-            "player_name": "OG Anunoby",
-            "team": "NY",
-            "opponent": "ATL",
-            "line": "18+ PTS",
-            "score": 54.32,
-            "confidence": 54,
-            "tier": "B",
-            "reason": "L10 60% | L5 60% | USG 19% | MIN 36.4 | PTS matchup 1.05x | Anti-correlation: same team as Jalen Brunson"
+            "reason": "L10 70% | L5 60% | USG 22% | MIN 31.3 | PTS matchup 1.07x | Anti-correlation: same team as Jalen Brunson"
           },
           {
             "player_id": "4431680",
             "player_name": "Onyeka Okongwu",
             "team": "ATL",
             "opponent": "NY",
-            "line": "13+ PTS",
-            "score": 46.57,
-            "confidence": 47,
+            "line": "11+ PTS",
+            "score": 44.24,
+            "confidence": 44,
             "tier": "C",
-            "reason": "L10 60% | L5 60% | USG 15% | MIN 32.5 | PTS matchup 0.93x | Home boost"
+            "reason": "L10 70% | L5 60% | USG 14% | MIN 31.8 | PTS matchup 0.91x | Home boost"
           },
           {
             "player_id": "4278039",
             "player_name": "Nickeil Alexander-Walker",
             "team": "ATL",
             "opponent": "NY",
-            "line": "17+ PTS",
-            "score": 35.57,
-            "confidence": 36,
+            "line": "15+ PTS",
+            "score": 42.98,
+            "confidence": 43,
             "tier": "C",
-            "reason": "L10 60% | L5 20% | USG 23% | MIN 35.8 | PTS matchup 0.93x | Home boost | Anti-correlation: same team as Onyeka Okongwu"
+            "reason": "L10 70% | L5 40% | USG 23% | MIN 34.4 | PTS matchup 0.91x | Home boost | Anti-correlation: same team as Onyeka Okongwu"
           },
           {
             "player_id": "3147657",
@@ -868,21 +857,10 @@
             "team": "NY",
             "opponent": "ATL",
             "line": "10+ PTS",
-            "score": 33.98,
+            "score": 34.46,
             "confidence": 34,
             "tier": "C",
-            "reason": "L10 70% | L5 40% | USG 14% | MIN 28.7 | PTS matchup 1.05x | Minutes watch | Anti-correlation: same team as Jalen Brunson"
-          },
-          {
-            "player_id": "4869342",
-            "player_name": "Dyson Daniels",
-            "team": "ATL",
-            "opponent": "NY",
-            "line": "10+ PTS",
-            "score": 30.5,
-            "confidence": 30,
-            "tier": "C",
-            "reason": "L10 60% | L5 20% | USG 15% | MIN 30.8 | PTS matchup 0.93x | Home boost | Anti-correlation: same team as Onyeka Okongwu"
+            "reason": "L10 70% | L5 40% | USG 13% | MIN 27.9 | PTS matchup 1.07x | Minutes watch | Anti-correlation: same team as Jalen Brunson"
           }
         ],
         "REB": [
@@ -892,21 +870,10 @@
             "team": "NY",
             "opponent": "ATL",
             "line": "7+ REB",
-            "score": 77.24,
+            "score": 76.92,
             "confidence": 77,
             "tier": "B",
-            "reason": "L10 70% | L5 100% | USG 19% | MIN 36.4 | REB matchup 1.22x"
-          },
-          {
-            "player_id": "3136195",
-            "player_name": "Karl-Anthony Towns",
-            "team": "NY",
-            "opponent": "ATL",
-            "line": "10+ REB",
-            "score": 62.74,
-            "confidence": 63,
-            "tier": "B",
-            "reason": "L10 70% | L5 60% | USG 23% | MIN 32.1 | REB matchup 1.22x | Anti-correlation: same team as OG Anunoby"
+            "reason": "L10 70% | L5 100% | USG 19% | MIN 34.8 | REB matchup 1.22x"
           },
           {
             "player_id": "4701230",
@@ -914,10 +881,21 @@
             "team": "ATL",
             "opponent": "NY",
             "line": "8+ REB",
-            "score": 62.23,
-            "confidence": 62,
+            "score": 68.1,
+            "confidence": 68,
             "tier": "C",
-            "reason": "L10 80% | L5 60% | USG 26% | MIN 35.8 | REB matchup 0.91x | Home boost"
+            "reason": "L10 80% | L5 80% | USG 26% | MIN 34.8 | REB matchup 0.89x | Home boost"
+          },
+          {
+            "player_id": "3136195",
+            "player_name": "Karl-Anthony Towns",
+            "team": "NY",
+            "opponent": "ATL",
+            "line": "11+ REB",
+            "score": 60.39,
+            "confidence": 60,
+            "tier": "B",
+            "reason": "L10 60% | L5 60% | USG 22% | MIN 31.3 | REB matchup 1.22x | Anti-correlation: same team as OG Anunoby"
           },
           {
             "player_id": "4431680",
@@ -925,21 +903,10 @@
             "team": "ATL",
             "opponent": "NY",
             "line": "6+ REB",
-            "score": 58.11,
-            "confidence": 58,
+            "score": 56.89,
+            "confidence": 57,
             "tier": "C",
-            "reason": "L10 70% | L5 80% | USG 15% | MIN 32.5 | REB matchup 0.91x | Home boost | Anti-correlation: same team as Jalen Johnson"
-          },
-          {
-            "player_id": "4869342",
-            "player_name": "Dyson Daniels",
-            "team": "ATL",
-            "opponent": "NY",
-            "line": "7+ REB",
-            "score": 53.99,
-            "confidence": 54,
-            "tier": "C",
-            "reason": "L10 70% | L5 60% | USG 15% | MIN 30.8 | REB matchup 0.91x | Home boost | Anti-correlation: same team as Jalen Johnson"
+            "reason": "L10 70% | L5 80% | USG 14% | MIN 31.8 | REB matchup 0.89x | Home boost | Anti-correlation: same team as Jalen Johnson"
           },
           {
             "player_id": "4433247",
@@ -947,10 +914,10 @@
             "team": "ATL",
             "opponent": "NY",
             "line": "4+ REB",
-            "score": 53.55,
-            "confidence": 54,
+            "score": 48.15,
+            "confidence": 48,
             "tier": "C",
-            "reason": "L10 70% | L5 80% | USG 16% | MIN 25.5 | REB matchup 0.91x | Home boost | Minutes watch | Anti-correlation: same team as Jalen Johnson"
+            "reason": "L10 70% | L5 60% | USG 17% | MIN 24.9 | REB matchup 0.89x | Home boost | Minutes watch | Anti-correlation: same team as Jalen Johnson"
           },
           {
             "player_id": "4351852",
@@ -958,10 +925,21 @@
             "team": "NY",
             "opponent": "ATL",
             "line": "6+ REB",
-            "score": 41.45,
+            "score": 41.26,
             "confidence": 41,
             "tier": "C",
-            "reason": "L10 60% | L5 60% | USG 7% | MIN 16.1 | REB matchup 1.22x | Minutes watch | Anti-correlation: same team as OG Anunoby"
+            "reason": "L10 60% | L5 60% | USG 7% | MIN 15.2 | REB matchup 1.22x | Minutes watch | Anti-correlation: same team as OG Anunoby"
+          },
+          {
+            "player_id": "4869342",
+            "player_name": "Dyson Daniels",
+            "team": "ATL",
+            "opponent": "NY",
+            "line": "6+ REB",
+            "score": 38.82,
+            "confidence": 39,
+            "tier": "C",
+            "reason": "L10 60% | L5 40% | USG 14% | MIN 27.7 | REB matchup 0.89x | Home boost | Minutes watch | Anti-correlation: same team as Jalen Johnson"
           }
         ],
         "AST": [
@@ -971,21 +949,10 @@
             "team": "NY",
             "opponent": "ATL",
             "line": "6+ AST",
-            "score": 70.25,
-            "confidence": 70,
+            "score": 70.79,
+            "confidence": 71,
             "tier": "B",
-            "reason": "L10 70% | L5 60% | USG 33% | MIN 35.4 | AST matchup 1.25x"
-          },
-          {
-            "player_id": "3136195",
-            "player_name": "Karl-Anthony Towns",
-            "team": "NY",
-            "opponent": "ATL",
-            "line": "4+ AST",
-            "score": 68.85,
-            "confidence": 69,
-            "tier": "B",
-            "reason": "L10 80% | L5 80% | USG 23% | MIN 32.1 | AST matchup 1.25x | Anti-correlation: same team as Jalen Brunson"
+            "reason": "L10 70% | L5 60% | USG 34% | MIN 34.4 | AST matchup 1.25x"
           },
           {
             "player_id": "4701230",
@@ -993,10 +960,10 @@
             "team": "ATL",
             "opponent": "NY",
             "line": "5+ AST",
-            "score": 62.24,
-            "confidence": 62,
+            "score": 68.66,
+            "confidence": 69,
             "tier": "B",
-            "reason": "L10 70% | L5 60% | USG 26% | MIN 35.8 | AST matchup 1.21x | Home boost"
+            "reason": "L10 70% | L5 80% | USG 26% | MIN 34.8 | AST matchup 1.19x | Home boost"
           },
           {
             "player_id": "4278039",
@@ -1004,43 +971,54 @@
             "team": "ATL",
             "opponent": "NY",
             "line": "2+ AST",
-            "score": 58.39,
-            "confidence": 58,
+            "score": 60.27,
+            "confidence": 60,
             "tier": "B",
-            "reason": "L10 60% | L5 60% | USG 23% | MIN 35.8 | AST matchup 1.21x | Home boost | Anti-correlation: same team as Jalen Johnson"
-          },
-          {
-            "player_id": "2490149",
-            "player_name": "CJ McCollum",
-            "team": "ATL",
-            "opponent": "NY",
-            "line": "3+ AST",
-            "score": 56.83,
-            "confidence": 57,
-            "tier": "B",
-            "reason": "L10 70% | L5 40% | USG 26% | MIN 32.6 | AST matchup 1.21x | Home boost | Anti-correlation: same team as Jalen Johnson"
+            "reason": "L10 70% | L5 60% | USG 23% | MIN 34.4 | AST matchup 1.19x | Home boost | Anti-correlation: same team as Jalen Johnson"
           },
           {
             "player_id": "3062679",
             "player_name": "Josh Hart",
             "team": "NY",
             "opponent": "ATL",
-            "line": "4+ AST",
-            "score": 54.45,
+            "line": "3+ AST",
+            "score": 59.86,
+            "confidence": 60,
+            "tier": "B",
+            "reason": "L10 80% | L5 80% | USG 15% | MIN 31.9 | AST matchup 1.25x | Anti-correlation: same team as Jalen Brunson"
+          },
+          {
+            "player_id": "3136195",
+            "player_name": "Karl-Anthony Towns",
+            "team": "NY",
+            "opponent": "ATL",
+            "line": "5+ AST",
+            "score": 59.12,
+            "confidence": 59,
+            "tier": "B",
+            "reason": "L10 60% | L5 60% | USG 22% | MIN 31.3 | AST matchup 1.25x | Anti-correlation: same team as Jalen Brunson"
+          },
+          {
+            "player_id": "2490149",
+            "player_name": "CJ McCollum",
+            "team": "ATL",
+            "opponent": "NY",
+            "line": "2+ AST",
+            "score": 54.23,
             "confidence": 54,
             "tier": "B",
-            "reason": "L10 60% | L5 80% | USG 14% | MIN 33.4 | AST matchup 1.25x | Anti-correlation: same team as Jalen Brunson"
+            "reason": "L10 60% | L5 40% | USG 27% | MIN 31.1 | AST matchup 1.19x | Home boost | Anti-correlation: same team as Jalen Johnson"
           },
           {
             "player_id": "4869342",
             "player_name": "Dyson Daniels",
             "team": "ATL",
             "opponent": "NY",
-            "line": "6+ AST",
-            "score": 53.71,
-            "confidence": 54,
-            "tier": "B",
-            "reason": "L10 60% | L5 60% | USG 15% | MIN 30.8 | AST matchup 1.21x | Home boost | Anti-correlation: same team as Jalen Johnson"
+            "line": "4+ AST",
+            "score": 48.77,
+            "confidence": 49,
+            "tier": "C",
+            "reason": "L10 70% | L5 60% | USG 14% | MIN 27.7 | AST matchup 1.19x | Home boost | Minutes watch | Anti-correlation: same team as Jalen Johnson"
           },
           {
             "player_id": "4277869",
@@ -1048,23 +1026,34 @@
             "team": "NY",
             "opponent": "ATL",
             "line": "2+ AST",
-            "score": 48.15,
-            "confidence": 48,
+            "score": 45.92,
+            "confidence": 46,
             "tier": "C",
-            "reason": "L10 80% | L5 60% | USG 12% | MIN 16.2 | AST matchup 1.25x | Minutes watch | Anti-correlation: same team as Jalen Brunson"
+            "reason": "L10 80% | L5 60% | USG 10% | MIN 12.2 | AST matchup 1.25x | Minutes watch | Anti-correlation: same team as Jalen Brunson"
+          },
+          {
+            "player_id": "3147657",
+            "player_name": "Mikal Bridges",
+            "team": "NY",
+            "opponent": "ATL",
+            "line": "2+ AST",
+            "score": 42.11,
+            "confidence": 42,
+            "tier": "C",
+            "reason": "L10 60% | L5 60% | USG 13% | MIN 27.9 | AST matchup 1.25x | Minutes watch | Anti-correlation: same team as Jalen Brunson"
           }
         ],
         "3PM": [
           {
-            "player_id": "4278039",
-            "player_name": "Nickeil Alexander-Walker",
+            "player_id": "4701230",
+            "player_name": "Jalen Johnson",
             "team": "ATL",
             "opponent": "NY",
-            "line": "3+ 3PM",
-            "score": 72.22,
-            "confidence": 72,
-            "tier": "B",
-            "reason": "L10 90% | L5 80% | USG 23% | MIN 35.8 | 3PM matchup 1.06x | Home boost"
+            "line": "1+ 3PM",
+            "score": 68.35,
+            "confidence": 68,
+            "tier": "C",
+            "reason": "L10 80% | L5 80% | USG 26% | MIN 34.8 | 3PM matchup 1.00x | Home boost"
           },
           {
             "player_id": "3934672",
@@ -1072,21 +1061,21 @@
             "team": "NY",
             "opponent": "ATL",
             "line": "2+ 3PM",
-            "score": 69.44,
-            "confidence": 69,
+            "score": 64.61,
+            "confidence": 65,
             "tier": "C",
-            "reason": "L10 70% | L5 80% | USG 33% | MIN 35.4 | 3PM matchup 0.94x"
+            "reason": "L10 70% | L5 60% | USG 34% | MIN 34.4 | 3PM matchup 0.96x"
           },
           {
-            "player_id": "4701230",
-            "player_name": "Jalen Johnson",
+            "player_id": "4278039",
+            "player_name": "Nickeil Alexander-Walker",
             "team": "ATL",
             "opponent": "NY",
-            "line": "1+ 3PM",
-            "score": 66.96,
-            "confidence": 67,
-            "tier": "B",
-            "reason": "L10 70% | L5 80% | USG 26% | MIN 35.8 | 3PM matchup 1.06x | Home boost | Anti-correlation: same team as Nickeil Alexander-Walker"
+            "line": "3+ 3PM",
+            "score": 59.61,
+            "confidence": 60,
+            "tier": "C",
+            "reason": "L10 80% | L5 60% | USG 23% | MIN 34.4 | 3PM matchup 1.00x | Home boost | Anti-correlation: same team as Jalen Johnson"
           },
           {
             "player_id": "3136195",
@@ -1094,54 +1083,21 @@
             "team": "NY",
             "opponent": "ATL",
             "line": "1+ 3PM",
-            "score": 66.9,
-            "confidence": 67,
-            "tier": "C",
-            "reason": "L10 90% | L5 100% | USG 23% | MIN 32.1 | 3PM matchup 0.94x | Anti-correlation: same team as Jalen Brunson"
-          },
-          {
-            "player_id": "3934719",
-            "player_name": "OG Anunoby",
-            "team": "NY",
-            "opponent": "ATL",
-            "line": "2+ 3PM",
-            "score": 64.67,
-            "confidence": 65,
-            "tier": "C",
-            "reason": "L10 90% | L5 100% | USG 19% | MIN 36.4 | 3PM matchup 0.94x | Anti-correlation: same team as Jalen Brunson"
-          },
-          {
-            "player_id": "2490149",
-            "player_name": "CJ McCollum",
-            "team": "ATL",
-            "opponent": "NY",
-            "line": "2+ 3PM",
-            "score": 58.08,
+            "score": 58.32,
             "confidence": 58,
-            "tier": "B",
-            "reason": "L10 60% | L5 60% | USG 26% | MIN 32.6 | 3PM matchup 1.06x | Home boost | Anti-correlation: same team as Nickeil Alexander-Walker"
-          },
-          {
-            "player_id": "3137259",
-            "player_name": "Gabe Vincent",
-            "team": "ATL",
-            "opponent": "NY",
-            "line": "1+ 3PM",
-            "score": 51.84,
-            "confidence": 52,
             "tier": "C",
-            "reason": "L10 80% | L5 80% | USG 6% | MIN 16.4 | 3PM matchup 1.06x | Home boost | Minutes watch | Anti-correlation: same team as Nickeil Alexander-Walker"
+            "reason": "L10 80% | L5 80% | USG 22% | MIN 31.3 | 3PM matchup 0.96x | Anti-correlation: same team as Jalen Brunson"
           },
           {
             "player_id": "4431680",
             "player_name": "Onyeka Okongwu",
             "team": "ATL",
             "opponent": "NY",
-            "line": "2+ 3PM",
-            "score": 51.71,
-            "confidence": 52,
-            "tier": "B",
-            "reason": "L10 60% | L5 60% | USG 15% | MIN 32.5 | 3PM matchup 1.06x | Home boost | Anti-correlation: same team as Nickeil Alexander-Walker"
+            "line": "1+ 3PM",
+            "score": 58.3,
+            "confidence": 58,
+            "tier": "C",
+            "reason": "L10 80% | L5 80% | USG 14% | MIN 31.8 | 3PM matchup 1.00x | Home boost | Anti-correlation: same team as Jalen Johnson"
           },
           {
             "player_id": "4433247",
@@ -1149,10 +1105,43 @@
             "team": "ATL",
             "opponent": "NY",
             "line": "1+ 3PM",
-            "score": 48.28,
-            "confidence": 48,
+            "score": 51.95,
+            "confidence": 52,
             "tier": "C",
-            "reason": "L10 60% | L5 60% | USG 16% | MIN 25.5 | 3PM matchup 1.06x | Home boost | Minutes watch | Anti-correlation: same team as Nickeil Alexander-Walker"
+            "reason": "L10 60% | L5 80% | USG 17% | MIN 24.9 | 3PM matchup 1.00x | Home boost | Minutes watch | Anti-correlation: same team as Jalen Johnson"
+          },
+          {
+            "player_id": "2490149",
+            "player_name": "CJ McCollum",
+            "team": "ATL",
+            "opponent": "NY",
+            "line": "2+ 3PM",
+            "score": 49.74,
+            "confidence": 50,
+            "tier": "C",
+            "reason": "L10 60% | L5 40% | USG 27% | MIN 31.1 | 3PM matchup 1.00x | Home boost | Anti-correlation: same team as Jalen Johnson"
+          },
+          {
+            "player_id": "3934719",
+            "player_name": "OG Anunoby",
+            "team": "NY",
+            "opponent": "ATL",
+            "line": "3+ 3PM",
+            "score": 47.08,
+            "confidence": 47,
+            "tier": "C",
+            "reason": "L10 60% | L5 60% | USG 19% | MIN 34.8 | 3PM matchup 0.96x | Anti-correlation: same team as Jalen Brunson"
+          },
+          {
+            "player_id": "3137259",
+            "player_name": "Gabe Vincent",
+            "team": "ATL",
+            "opponent": "NY",
+            "line": "1+ 3PM",
+            "score": 46.52,
+            "confidence": 47,
+            "tier": "C",
+            "reason": "L10 70% | L5 80% | USG 5% | MIN 16.1 | 3PM matchup 1.00x | Home boost | Minutes watch | Anti-correlation: same team as Jalen Johnson"
           },
           {
             "player_id": "4869342",
@@ -1160,10 +1149,10 @@
             "team": "ATL",
             "opponent": "NY",
             "line": "1+ 3PM",
-            "score": 46.25,
-            "confidence": 46,
-            "tier": "B",
-            "reason": "L10 60% | L5 40% | USG 15% | MIN 30.8 | 3PM matchup 1.06x | Home boost | Anti-correlation: same team as Nickeil Alexander-Walker"
+            "score": 44.74,
+            "confidence": 45,
+            "tier": "C",
+            "reason": "L10 60% | L5 60% | USG 14% | MIN 27.7 | 3PM matchup 1.00x | Home boost | Minutes watch | Anti-correlation: same team as Jalen Johnson"
           }
         ],
         "ML": [
@@ -1173,10 +1162,10 @@
             "team": "NY",
             "opponent": "ATL",
             "line": "Moneyline",
-            "score": 64.84,
-            "confidence": 65,
+            "score": 66.3,
+            "confidence": 66,
             "tier": "B",
-            "reason": "Recent win 62% | Allow 103.0 PPG"
+            "reason": "Recent win 62% | Allow 100.9 PPG"
           }
         ]
       }
@@ -1184,7 +1173,7 @@
     {
       "game_id": "401869410",
       "matchup": "BOS @ PHI",
-      "time": "11:29 - 3rd",
+      "time": "10:24 - 4th",
       "top_signals": [
         {
           "market": "AST",
@@ -1198,7 +1187,7 @@
           "market": "3PM",
           "player_name": "Joel Embiid",
           "line": "1+ 3PM",
-          "score": 78.71,
+          "score": 79.11,
           "confidence": 79,
           "tier": "C"
         },
@@ -1206,7 +1195,7 @@
           "market": "PTS",
           "player_name": "Jayson Tatum",
           "line": "23+ PTS",
-          "score": 78.11,
+          "score": 78.1,
           "confidence": 78,
           "tier": "C"
         }
@@ -1219,7 +1208,7 @@
             "team": "BOS",
             "opponent": "PHI",
             "line": "23+ PTS",
-            "score": 78.11,
+            "score": 78.1,
             "confidence": 78,
             "tier": "C",
             "reason": "L10 90% | L5 80% | USG 32% | MIN 36.7 | PTS matchup 0.98x"
@@ -1230,7 +1219,7 @@
             "team": "PHI",
             "opponent": "BOS",
             "line": "16+ PTS",
-            "score": 66.96,
+            "score": 66.95,
             "confidence": 67,
             "tier": "C",
             "reason": "L10 80% | L5 100% | USG 18% | MIN 34.4 | PTS matchup 0.96x | Home boost"
@@ -1241,7 +1230,7 @@
             "team": "BOS",
             "opponent": "PHI",
             "line": "25+ PTS",
-            "score": 62.93,
+            "score": 62.92,
             "confidence": 63,
             "tier": "C",
             "reason": "L10 70% | L5 60% | USG 37% | MIN 35.1 | PTS matchup 0.98x | Anti-correlation: same team as Jayson Tatum"
@@ -1274,7 +1263,7 @@
             "team": "BOS",
             "opponent": "PHI",
             "line": "14+ PTS",
-            "score": 39.3,
+            "score": 39.29,
             "confidence": 39,
             "tier": "C",
             "reason": "L10 60% | L5 40% | USG 20% | MIN 31.3 | PTS matchup 0.98x | Anti-correlation: same team as Jayson Tatum"
@@ -1309,8 +1298,8 @@
             "team": "PHI",
             "opponent": "BOS",
             "line": "4+ REB",
-            "score": 68.43,
-            "confidence": 68,
+            "score": 68.58,
+            "confidence": 69,
             "tier": "C",
             "reason": "L10 90% | L5 80% | USG 18% | MIN 34.4 | REB matchup 0.97x | Home boost"
           },
@@ -1320,7 +1309,7 @@
             "team": "PHI",
             "opponent": "BOS",
             "line": "6+ REB",
-            "score": 63.18,
+            "score": 63.33,
             "confidence": 63,
             "tier": "C",
             "reason": "L10 80% | L5 60% | USG 20% | MIN 36.6 | REB matchup 0.97x | Home boost | Anti-correlation: same team as Paul George"
@@ -1331,7 +1320,7 @@
             "team": "PHI",
             "opponent": "BOS",
             "line": "5+ REB",
-            "score": 60.77,
+            "score": 60.92,
             "confidence": 61,
             "tier": "C",
             "reason": "L10 70% | L5 80% | USG 14% | MIN 32.6 | REB matchup 0.97x | Home boost | Anti-correlation: same team as Paul George"
@@ -1375,7 +1364,7 @@
             "team": "PHI",
             "opponent": "BOS",
             "line": "6+ REB",
-            "score": 33.65,
+            "score": 33.8,
             "confidence": 34,
             "tier": "C",
             "reason": "L10 60% | L5 40% | USG 8% | MIN 17.6 | REB matchup 0.97x | Home boost | Minutes watch | Anti-correlation: same team as Paul George"
@@ -1413,7 +1402,7 @@
             "score": 76.38,
             "confidence": 76,
             "tier": "B",
-            "reason": "L10 60% | L5 80% | USG 30% | MIN 39.3 | AST matchup 1.15x | Home boost"
+            "reason": "L10 60% | L5 80% | USG 30% | MIN 39.3 | AST matchup 1.14x | Home boost"
           },
           {
             "player_id": "3059318",
@@ -1424,7 +1413,7 @@
             "score": 71.25,
             "confidence": 71,
             "tier": "B",
-            "reason": "L10 60% | L5 60% | USG 32% | MIN 34.7 | AST matchup 1.15x | Home boost | Anti-correlation: same team as Tyrese Maxey"
+            "reason": "L10 60% | L5 60% | USG 32% | MIN 34.7 | AST matchup 1.14x | Home boost | Anti-correlation: same team as Tyrese Maxey"
           },
           {
             "player_id": "4066354",
@@ -1446,7 +1435,7 @@
             "score": 58.37,
             "confidence": 58,
             "tier": "B",
-            "reason": "L10 70% | L5 60% | USG 20% | MIN 36.6 | AST matchup 1.15x | Home boost | Anti-correlation: same team as Tyrese Maxey"
+            "reason": "L10 70% | L5 60% | USG 20% | MIN 36.6 | AST matchup 1.14x | Home boost | Anti-correlation: same team as Tyrese Maxey"
           },
           {
             "player_id": "3078576",
@@ -1478,10 +1467,10 @@
             "team": "PHI",
             "opponent": "BOS",
             "line": "1+ 3PM",
-            "score": 78.71,
+            "score": 79.11,
             "confidence": 79,
             "tier": "C",
-            "reason": "L10 90% | L5 80% | USG 32% | MIN 34.7 | 3PM matchup 0.97x | Home boost"
+            "reason": "L10 90% | L5 80% | USG 32% | MIN 34.7 | 3PM matchup 0.98x | Home boost"
           },
           {
             "player_id": "3917376",
@@ -1500,10 +1489,10 @@
             "team": "PHI",
             "opponent": "BOS",
             "line": "3+ 3PM",
-            "score": 69.21,
-            "confidence": 69,
+            "score": 69.61,
+            "confidence": 70,
             "tier": "C",
-            "reason": "L10 60% | L5 80% | USG 30% | MIN 39.3 | 3PM matchup 0.97x | Home boost | Anti-correlation: same team as Joel Embiid"
+            "reason": "L10 60% | L5 80% | USG 30% | MIN 39.3 | 3PM matchup 0.98x | Home boost | Anti-correlation: same team as Joel Embiid"
           },
           {
             "player_id": "4065648",
@@ -1550,6 +1539,17 @@
             "reason": "L10 80% | L5 80% | USG 14% | MIN 34.7 | 3PM matchup 1.25x | Anti-correlation: same team as Jaylen Brown"
           },
           {
+            "player_id": "4251",
+            "player_name": "Paul George",
+            "team": "PHI",
+            "opponent": "BOS",
+            "line": "2+ 3PM",
+            "score": 56.1,
+            "confidence": 56,
+            "tier": "C",
+            "reason": "L10 60% | L5 80% | USG 18% | MIN 34.4 | 3PM matchup 0.98x | Home boost | Anti-correlation: same team as Joel Embiid"
+          },
+          {
             "player_id": "4066354",
             "player_name": "Payton Pritchard",
             "team": "BOS",
@@ -1561,26 +1561,15 @@
             "reason": "L10 70% | L5 60% | USG 20% | MIN 31.3 | 3PM matchup 1.25x | Anti-correlation: same team as Jaylen Brown"
           },
           {
-            "player_id": "4251",
-            "player_name": "Paul George",
-            "team": "PHI",
-            "opponent": "BOS",
-            "line": "2+ 3PM",
-            "score": 55.7,
-            "confidence": 56,
-            "tier": "C",
-            "reason": "L10 60% | L5 80% | USG 18% | MIN 34.4 | 3PM matchup 0.97x | Home boost | Anti-correlation: same team as Joel Embiid"
-          },
-          {
             "player_id": "4397014",
             "player_name": "Quentin Grimes",
             "team": "PHI",
             "opponent": "BOS",
             "line": "1+ 3PM",
-            "score": 48.85,
+            "score": 49.25,
             "confidence": 49,
             "tier": "C",
-            "reason": "L10 70% | L5 80% | USG 11% | MIN 23.8 | 3PM matchup 0.97x | Home boost | Minutes watch | Anti-correlation: same team as Joel Embiid"
+            "reason": "L10 70% | L5 80% | USG 11% | MIN 23.8 | 3PM matchup 0.98x | Home boost | Minutes watch | Anti-correlation: same team as Joel Embiid"
           }
         ],
         "ML": [
@@ -1601,7 +1590,7 @@
     {
       "game_id": "401869402",
       "matchup": "DEN @ MIN",
-      "time": "4/30 - 9:30 PM EDT",
+      "time": "3:59 - 1st",
       "top_signals": [
         {
           "market": "AST",
@@ -1623,7 +1612,7 @@
           "market": "PTS",
           "player_name": "Nikola Jokic",
           "line": "24+ PTS",
-          "score": 78.12,
+          "score": 78.11,
           "confidence": 78,
           "tier": "A"
         }
@@ -1636,7 +1625,7 @@
             "team": "DEN",
             "opponent": "MIN",
             "line": "24+ PTS",
-            "score": 78.12,
+            "score": 78.11,
             "confidence": 78,
             "tier": "A",
             "reason": "L10 70% | L5 100% | USG 34% | MIN 37.5 | PTS matchup 1.06x"
@@ -1658,7 +1647,7 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "20+ PTS",
-            "score": 61.01,
+            "score": 61.0,
             "confidence": 61,
             "tier": "C",
             "reason": "L10 60% | L5 40% | USG 33% | MIN 32.8 | PTS matchup 1.02x | Home boost"
@@ -1669,7 +1658,7 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "15+ PTS",
-            "score": 56.53,
+            "score": 56.52,
             "confidence": 57,
             "tier": "C",
             "reason": "L10 70% | L5 40% | USG 28% | MIN 33.4 | PTS matchup 1.02x | Home boost | Anti-correlation: same team as Julius Randle"
@@ -1680,7 +1669,7 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "10+ PTS",
-            "score": 48.68,
+            "score": 48.67,
             "confidence": 49,
             "tier": "C",
             "reason": "L10 70% | L5 60% | USG 22% | MIN 23.6 | PTS matchup 1.02x | Home boost | Minutes watch | Anti-correlation: same team as Julius Randle"
@@ -1691,7 +1680,7 @@
             "team": "DEN",
             "opponent": "MIN",
             "line": "11+ PTS",
-            "score": 45.63,
+            "score": 45.62,
             "confidence": 46,
             "tier": "C",
             "reason": "L10 70% | L5 60% | USG 15% | MIN 29.6 | PTS matchup 1.06x | Minutes watch | Anti-correlation: same team as Nikola Jokic"
@@ -1702,7 +1691,7 @@
             "team": "DEN",
             "opponent": "MIN",
             "line": "10+ PTS",
-            "score": 37.72,
+            "score": 37.71,
             "confidence": 38,
             "tier": "C",
             "reason": "L10 60% | L5 60% | USG 12% | MIN 24.4 | PTS matchup 1.06x | Minutes watch | Anti-correlation: same team as Nikola Jokic"
@@ -1713,7 +1702,7 @@
             "team": "DEN",
             "opponent": "MIN",
             "line": "10+ PTS",
-            "score": 37.65,
+            "score": 37.64,
             "confidence": 38,
             "tier": "B",
             "reason": "L10 60% | L5 40% | USG 13% | MIN 31.7 | PTS matchup 1.06x | Anti-correlation: same team as Nikola Jokic"
@@ -1737,10 +1726,10 @@
             "team": "DEN",
             "opponent": "MIN",
             "line": "4+ REB",
-            "score": 73.23,
+            "score": 73.38,
             "confidence": 73,
             "tier": "C",
-            "reason": "L10 80% | L5 80% | USG 32% | MIN 38.1 | REB matchup 0.97x"
+            "reason": "L10 80% | L5 80% | USG 32% | MIN 38.1 | REB matchup 0.98x"
           },
           {
             "player_id": "3112335",
@@ -1748,10 +1737,10 @@
             "team": "DEN",
             "opponent": "MIN",
             "line": "13+ REB",
-            "score": 71.66,
+            "score": 71.81,
             "confidence": 72,
             "tier": "C",
-            "reason": "L10 70% | L5 80% | USG 34% | MIN 37.5 | REB matchup 0.97x | Anti-correlation: same team as Jamal Murray"
+            "reason": "L10 70% | L5 80% | USG 34% | MIN 37.5 | REB matchup 0.98x | Anti-correlation: same team as Jamal Murray"
           },
           {
             "player_id": "4431671",
@@ -1792,10 +1781,10 @@
             "team": "DEN",
             "opponent": "MIN",
             "line": "4+ REB",
-            "score": 36.51,
+            "score": 36.66,
             "confidence": 37,
             "tier": "C",
-            "reason": "L10 60% | L5 40% | USG 12% | MIN 21.2 | REB matchup 0.97x | Minutes watch | Anti-correlation: same team as Jamal Murray"
+            "reason": "L10 60% | L5 40% | USG 12% | MIN 21.2 | REB matchup 0.98x | Minutes watch | Anti-correlation: same team as Jamal Murray"
           }
         ],
         "AST": [
@@ -1906,10 +1895,10 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "1+ 3PM",
-            "score": 70.66,
+            "score": 71.09,
             "confidence": 71,
             "tier": "C",
-            "reason": "L10 90% | L5 100% | USG 22% | MIN 23.6 | 3PM matchup 1.05x | Home boost | Minutes watch"
+            "reason": "L10 90% | L5 100% | USG 22% | MIN 23.6 | 3PM matchup 1.06x | Home boost | Minutes watch"
           },
           {
             "player_id": "3112335",
@@ -1928,10 +1917,10 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "1+ 3PM",
-            "score": 64.96,
+            "score": 65.4,
             "confidence": 65,
             "tier": "B",
-            "reason": "L10 70% | L5 40% | USG 33% | MIN 32.8 | 3PM matchup 1.05x | Home boost | Anti-correlation: same team as Naz Reid"
+            "reason": "L10 70% | L5 40% | USG 33% | MIN 32.8 | 3PM matchup 1.06x | Home boost | Anti-correlation: same team as Naz Reid"
           },
           {
             "player_id": "3936299",
@@ -1950,10 +1939,10 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "2+ 3PM",
-            "score": 51.44,
-            "confidence": 51,
+            "score": 51.88,
+            "confidence": 52,
             "tier": "C",
-            "reason": "L10 70% | L5 60% | USG 18% | MIN 15.2 | 3PM matchup 1.05x | Home boost | Minutes watch | Anti-correlation: same team as Naz Reid"
+            "reason": "L10 70% | L5 60% | USG 18% | MIN 15.2 | 3PM matchup 1.06x | Home boost | Minutes watch | Anti-correlation: same team as Naz Reid"
           },
           {
             "player_id": "3138196",
@@ -2005,10 +1994,10 @@
             "team": "MIN",
             "opponent": "DEN",
             "line": "1+ 3PM",
-            "score": 35.79,
+            "score": 36.22,
             "confidence": 36,
             "tier": "C",
-            "reason": "L10 60% | L5 40% | USG 7% | MIN 12.7 | 3PM matchup 1.05x | Home boost | Minutes watch | Anti-correlation: same team as Naz Reid"
+            "reason": "L10 60% | L5 40% | USG 7% | MIN 12.7 | 3PM matchup 1.06x | Home boost | Minutes watch | Anti-correlation: same team as Naz Reid"
           }
         ],
         "ML": [
