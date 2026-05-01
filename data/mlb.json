@@ -1,7 +1,7 @@
 {
   "sport": "MLB",
   "date": "2026-04-30",
-  "last_updated": "7:30 PM ET",
+  "last_updated": "8:00 PM ET",
   "pinned_board": {
     "title": "HR Top 10",
     "market": "HR",
@@ -12,10 +12,10 @@
         "team": "PHI",
         "opponent": "SF",
         "line": "HR 1+",
-        "score": 6.38,
-        "confidence": 6,
+        "score": 4.5,
+        "confidence": 4,
         "tier": "PASS",
-        "reason": "HR edge 26.6 | L5 0.40/g | L10 0.30/g | Season 0.35/g | OPS 0.950 | SLG 0.578 | Matchup 0.45 | Batting 1 | Wts T0.42/M0.23/F0.35 | In game (6)",
+        "reason": "HR edge 26.6 | L5 0.40/g | L10 0.30/g | Season 0.35/g | OPS 0.950 | SLG 0.578 | Matchup 0.45 | Batting 1 | Wts T0.42/M0.23/F0.35 | In game (7)",
         "hr_result": "hit",
         "home_runs": 1
       },
@@ -25,10 +25,10 @@
         "team": "PHI",
         "opponent": "SF",
         "line": "HR 1+",
-        "score": 6.38,
-        "confidence": 6,
+        "score": 4.5,
+        "confidence": 4,
         "tier": "PASS",
-        "reason": "HR edge 26.6 | L5 0.40/g | L10 0.30/g | Season 0.35/g | OPS 0.950 | SLG 0.578 | Matchup 0.45 | Batting 1 | Wts T0.42/M0.23/F0.35 | In game (6)",
+        "reason": "HR edge 26.6 | L5 0.40/g | L10 0.30/g | Season 0.35/g | OPS 0.950 | SLG 0.578 | Matchup 0.45 | Batting 1 | Wts T0.42/M0.23/F0.35 | In game (7)",
         "hr_result": "hit",
         "home_runs": 1
       }
@@ -957,14 +957,6 @@
       "top_signals": [
         {
           "market": "Hits",
-          "player_name": "Justin Crawford",
-          "line": "2+ Hits",
-          "score": 26.87,
-          "confidence": 27,
-          "tier": "B"
-        },
-        {
-          "market": "Hits",
           "player_name": "Brandon Marsh",
           "line": "1+ Hit",
           "score": 26.84,
@@ -973,9 +965,17 @@
         },
         {
           "market": "Hits",
+          "player_name": "Justin Crawford",
+          "line": "2+ Hits",
+          "score": 26.8,
+          "confidence": 27,
+          "tier": "B"
+        },
+        {
+          "market": "Hits",
           "player_name": "Casey Schmitt",
           "line": "1+ Hit",
-          "score": 25.67,
+          "score": 25.57,
           "confidence": 26,
           "tier": "B"
         }
@@ -1001,24 +1001,13 @@
             "team": "PHI",
             "opponent": "SF",
             "line": "8+ K",
-            "score": 24.05,
+            "score": 24.06,
             "confidence": 24,
             "tier": "B",
             "reason": "Edge 32.7, trend 0.78, matchup 0.28, form 0.34"
           }
         ],
         "Hits": [
-          {
-            "player_id": "702222-hits",
-            "player_name": "Justin Crawford",
-            "team": "PHI",
-            "opponent": "SF",
-            "line": "2+ Hits",
-            "score": 26.87,
-            "confidence": 27,
-            "tier": "B",
-            "reason": "Edge 58.0, trend 0.70, matchup 0.36, form 0.19"
-          },
           {
             "player_id": "669016-hits",
             "player_name": "Brandon Marsh",
@@ -1031,15 +1020,26 @@
             "reason": "Edge 58.0, trend 0.60, matchup 0.37, form 0.27"
           },
           {
+            "player_id": "702222-hits",
+            "player_name": "Justin Crawford",
+            "team": "PHI",
+            "opponent": "SF",
+            "line": "2+ Hits",
+            "score": 26.8,
+            "confidence": 27,
+            "tier": "B",
+            "reason": "Edge 58.0, trend 0.70, matchup 0.36, form 0.19"
+          },
+          {
             "player_id": "669477-hits",
             "player_name": "Casey Schmitt",
             "team": "SF",
             "opponent": "PHI",
             "line": "1+ Hit",
-            "score": 25.67,
+            "score": 25.57,
             "confidence": 26,
             "tier": "B",
-            "reason": "Edge 58.0, trend 0.30, matchup 0.38, form 0.38"
+            "reason": "Edge 58.0, trend 0.30, matchup 0.38, form 0.37"
           },
           {
             "player_id": "650333-hits",
@@ -1047,10 +1047,10 @@
             "team": "SF",
             "opponent": "PHI",
             "line": "1+ Hit",
-            "score": 24.9,
+            "score": 25.02,
             "confidence": 25,
             "tier": "B",
-            "reason": "Edge 58.0, trend 0.40, matchup 0.38, form 0.20"
+            "reason": "Edge 58.0, trend 0.40, matchup 0.38, form 0.21"
           },
           {
             "player_id": "607208-hits",
@@ -1080,7 +1080,7 @@
             "team": "SF",
             "opponent": "PHI",
             "line": "1+ Hit",
-            "score": 22.93,
+            "score": 22.97,
             "confidence": 23,
             "tier": "B",
             "reason": "Edge 52.0, trend 0.40, matchup 0.36, form 0.21"
@@ -1091,10 +1091,10 @@
             "team": "SF",
             "opponent": "PHI",
             "line": "1+ Hit",
-            "score": 21.56,
-            "confidence": 22,
+            "score": 21.49,
+            "confidence": 21,
             "tier": "C",
-            "reason": "Edge 47.0, trend 0.40, matchup 0.36, form 0.23"
+            "reason": "Edge 47.0, trend 0.40, matchup 0.36, form 0.22"
           },
           {
             "player_id": "642715-hits",
@@ -1102,10 +1102,10 @@
             "team": "SF",
             "opponent": "PHI",
             "line": "1+ Hit",
-            "score": 20.41,
+            "score": 20.39,
             "confidence": 20,
             "tier": "C",
-            "reason": "Edge 42.5, trend 0.60, matchup 0.33, form 0.12"
+            "reason": "Edge 42.5, trend 0.60, matchup 0.32, form 0.12"
           },
           {
             "player_id": "646240-hits",
@@ -1113,7 +1113,7 @@
             "team": "SF",
             "opponent": "PHI",
             "line": "1+ Hit",
-            "score": 19.19,
+            "score": 19.18,
             "confidence": 19,
             "tier": "C",
             "reason": "Edge 40.8, trend 0.50, matchup 0.33, form 0.12"
@@ -1142,14 +1142,6 @@
       "top_signals": [
         {
           "market": "Hits",
-          "player_name": "Justin Crawford",
-          "line": "2+ Hits",
-          "score": 26.87,
-          "confidence": 27,
-          "tier": "B"
-        },
-        {
-          "market": "Hits",
           "player_name": "Brandon Marsh",
           "line": "1+ Hit",
           "score": 26.84,
@@ -1158,9 +1150,17 @@
         },
         {
           "market": "Hits",
+          "player_name": "Justin Crawford",
+          "line": "2+ Hits",
+          "score": 26.8,
+          "confidence": 27,
+          "tier": "B"
+        },
+        {
+          "market": "Hits",
           "player_name": "Casey Schmitt",
           "line": "1+ Hit",
-          "score": 25.67,
+          "score": 25.57,
           "confidence": 26,
           "tier": "B"
         }
@@ -1182,17 +1182,6 @@
         "K": [],
         "Hits": [
           {
-            "player_id": "702222-hits",
-            "player_name": "Justin Crawford",
-            "team": "PHI",
-            "opponent": "SF",
-            "line": "2+ Hits",
-            "score": 26.87,
-            "confidence": 27,
-            "tier": "B",
-            "reason": "Edge 58.0, trend 0.70, matchup 0.36, form 0.19"
-          },
-          {
             "player_id": "669016-hits",
             "player_name": "Brandon Marsh",
             "team": "PHI",
@@ -1204,15 +1193,26 @@
             "reason": "Edge 58.0, trend 0.60, matchup 0.37, form 0.27"
           },
           {
+            "player_id": "702222-hits",
+            "player_name": "Justin Crawford",
+            "team": "PHI",
+            "opponent": "SF",
+            "line": "2+ Hits",
+            "score": 26.8,
+            "confidence": 27,
+            "tier": "B",
+            "reason": "Edge 58.0, trend 0.70, matchup 0.36, form 0.19"
+          },
+          {
             "player_id": "669477-hits",
             "player_name": "Casey Schmitt",
             "team": "SF",
             "opponent": "PHI",
             "line": "1+ Hit",
-            "score": 25.67,
+            "score": 25.57,
             "confidence": 26,
             "tier": "B",
-            "reason": "Edge 58.0, trend 0.30, matchup 0.38, form 0.38"
+            "reason": "Edge 58.0, trend 0.30, matchup 0.38, form 0.37"
           },
           {
             "player_id": "650333-hits",
@@ -1220,10 +1220,10 @@
             "team": "SF",
             "opponent": "PHI",
             "line": "1+ Hit",
-            "score": 24.9,
+            "score": 25.02,
             "confidence": 25,
             "tier": "B",
-            "reason": "Edge 58.0, trend 0.40, matchup 0.38, form 0.20"
+            "reason": "Edge 58.0, trend 0.40, matchup 0.38, form 0.21"
           },
           {
             "player_id": "607208-hits",
@@ -1253,7 +1253,7 @@
             "team": "SF",
             "opponent": "PHI",
             "line": "1+ Hit",
-            "score": 22.93,
+            "score": 22.97,
             "confidence": 23,
             "tier": "B",
             "reason": "Edge 52.0, trend 0.40, matchup 0.36, form 0.21"
@@ -1264,10 +1264,10 @@
             "team": "SF",
             "opponent": "PHI",
             "line": "1+ Hit",
-            "score": 21.56,
-            "confidence": 22,
+            "score": 21.49,
+            "confidence": 21,
             "tier": "C",
-            "reason": "Edge 47.0, trend 0.40, matchup 0.36, form 0.23"
+            "reason": "Edge 47.0, trend 0.40, matchup 0.36, form 0.22"
           },
           {
             "player_id": "642715-hits",
@@ -1275,10 +1275,10 @@
             "team": "SF",
             "opponent": "PHI",
             "line": "1+ Hit",
-            "score": 20.41,
+            "score": 20.39,
             "confidence": 20,
             "tier": "C",
-            "reason": "Edge 42.5, trend 0.60, matchup 0.33, form 0.12"
+            "reason": "Edge 42.5, trend 0.60, matchup 0.32, form 0.12"
           },
           {
             "player_id": "646240-hits",
@@ -1286,7 +1286,7 @@
             "team": "SF",
             "opponent": "PHI",
             "line": "1+ Hit",
-            "score": 19.19,
+            "score": 19.18,
             "confidence": 19,
             "tier": "C",
             "reason": "Edge 40.8, trend 0.50, matchup 0.33, form 0.12"
@@ -2165,7 +2165,7 @@
           "market": "Hits",
           "player_name": "Vladimir Guerrero Jr.",
           "line": "1+ Hit",
-          "score": 28.24,
+          "score": 28.16,
           "confidence": 28,
           "tier": "A"
         },
@@ -2173,7 +2173,7 @@
           "market": "Hits",
           "player_name": "Andr\u00e9s Gim\u00e9nez",
           "line": "2+ Hits",
-          "score": 27.82,
+          "score": 27.75,
           "confidence": 28,
           "tier": "B"
         },
@@ -2181,7 +2181,7 @@
           "market": "Hits",
           "player_name": "Ernie Clement",
           "line": "1+ Hit",
-          "score": 26.61,
+          "score": 26.55,
           "confidence": 27,
           "tier": "B"
         }
@@ -2195,10 +2195,10 @@
             "team": "TOR",
             "opponent": "MIN",
             "line": "7+ K",
-            "score": 23.37,
-            "confidence": 23,
-            "tier": "B",
-            "reason": "Edge 24.7, trend 0.70, matchup 0.30, form 0.66"
+            "score": 20.63,
+            "confidence": 21,
+            "tier": "C",
+            "reason": "Edge 17.4, trend 0.70, matchup 0.30, form 0.67"
           }
         ],
         "Hits": [
@@ -2208,10 +2208,10 @@
             "team": "TOR",
             "opponent": "MIN",
             "line": "1+ Hit",
-            "score": 28.24,
+            "score": 28.16,
             "confidence": 28,
             "tier": "A",
-            "reason": "Edge 58.0, trend 0.60, matchup 0.40, form 0.43"
+            "reason": "Edge 58.0, trend 0.60, matchup 0.40, form 0.42"
           },
           {
             "player_id": "665926-hits",
@@ -2219,10 +2219,10 @@
             "team": "TOR",
             "opponent": "MIN",
             "line": "2+ Hits",
-            "score": 27.82,
+            "score": 27.75,
             "confidence": 28,
             "tier": "B",
-            "reason": "Edge 58.0, trend 0.80, matchup 0.36, form 0.23"
+            "reason": "Edge 58.0, trend 0.80, matchup 0.36, form 0.22"
           },
           {
             "player_id": "676391-hits",
@@ -2230,10 +2230,10 @@
             "team": "TOR",
             "opponent": "MIN",
             "line": "1+ Hit",
-            "score": 26.61,
+            "score": 26.55,
             "confidence": 27,
             "tier": "B",
-            "reason": "Edge 58.0, trend 0.60, matchup 0.38, form 0.24"
+            "reason": "Edge 58.0, trend 0.60, matchup 0.37, form 0.23"
           },
           {
             "player_id": "680777-hits",
@@ -2241,10 +2241,10 @@
             "team": "MIN",
             "opponent": "TOR",
             "line": "1+ Hit",
-            "score": 26.19,
+            "score": 25.51,
             "confidence": 26,
             "tier": "B",
-            "reason": "Edge 56.0, trend 0.50, matchup 0.37, form 0.36"
+            "reason": "Edge 54.2, trend 0.50, matchup 0.37, form 0.35"
           },
           {
             "player_id": "672960-hits",
@@ -2252,21 +2252,10 @@
             "team": "TOR",
             "opponent": "MIN",
             "line": "1+ Hit",
-            "score": 24.41,
+            "score": 24.04,
             "confidence": 24,
             "tier": "B",
-            "reason": "Edge 54.2, trend 0.60, matchup 0.34, form 0.14"
-          },
-          {
-            "player_id": "660821-hits",
-            "player_name": "Jes\u00fas S\u00e1nchez",
-            "team": "TOR",
-            "opponent": "MIN",
-            "line": "1+ Hit",
-            "score": 22.44,
-            "confidence": 22,
-            "tier": "B",
-            "reason": "Edge 45.7, trend 0.60, matchup 0.36, form 0.23"
+            "reason": "Edge 53.0, trend 0.60, matchup 0.34, form 0.14"
           },
           {
             "player_id": "605170-hits",
@@ -2280,15 +2269,26 @@
             "reason": "Edge 49.8, trend 0.50, matchup 0.34, form 0.13"
           },
           {
+            "player_id": "660821-hits",
+            "player_name": "Jes\u00fas S\u00e1nchez",
+            "team": "TOR",
+            "opponent": "MIN",
+            "line": "1+ Hit",
+            "score": 21.98,
+            "confidence": 22,
+            "tier": "C",
+            "reason": "Edge 44.5, trend 0.60, matchup 0.36, form 0.22"
+          },
+          {
             "player_id": "621439-hits",
             "player_name": "Byron Buxton",
             "team": "MIN",
             "opponent": "TOR",
             "line": "1+ Hit",
-            "score": 18.99,
+            "score": 19.17,
             "confidence": 19,
             "tier": "C",
-            "reason": "Edge 40.0, trend 0.40, matchup 0.34, form 0.21"
+            "reason": "Edge 40.0, trend 0.40, matchup 0.35, form 0.23"
           },
           {
             "player_id": "807712-hits",
@@ -2296,10 +2296,10 @@
             "team": "MIN",
             "opponent": "TOR",
             "line": "1+ Hit",
-            "score": 16.72,
-            "confidence": 17,
+            "score": 16.31,
+            "confidence": 16,
             "tier": "C",
-            "reason": "Edge 37.0, trend 0.30, matchup 0.34, form 0.13"
+            "reason": "Edge 35.7, trend 0.30, matchup 0.34, form 0.13"
           }
         ],
         "TB": [],
