@@ -1,7 +1,7 @@
 {
   "sport": "TENNIS",
   "date": "2026-05-01",
-  "last_updated": "12:30 AM ET",
+  "last_updated": "1:00 AM ET",
   "pinned_board": {
     "title": "Match Win Top 10",
     "market": "ML",
@@ -84,17 +84,6 @@
         "reason": "Rank 1 vs 250 | Tournament form 3-0 | Zheng Wushuang vs Veronika Erjavec"
       },
       {
-        "player_id": "3155",
-        "player_name": "Wang Xiyu",
-        "team": "WTA",
-        "opponent": "Polona Hercog",
-        "line": "Match Winner",
-        "score": 95.0,
-        "confidence": 95,
-        "tier": "A",
-        "reason": "Rank 4 vs 250 | Tournament form 2-0 | Polona Hercog vs Wang Xiyu"
-      },
-      {
         "player_id": "3889",
         "player_name": "Katarzyna Kawa",
         "team": "WTA",
@@ -104,6 +93,17 @@
         "confidence": 95,
         "tier": "A",
         "reason": "Rank 3 vs 250 | Tournament form 2-0 | Katarzyna Kawa vs Varvara Panshina"
+      },
+      {
+        "player_id": "3155",
+        "player_name": "Wang Xiyu",
+        "team": "WTA",
+        "opponent": "Polona Hercog",
+        "line": "Match Winner",
+        "score": 95.0,
+        "confidence": 95,
+        "tier": "A",
+        "reason": "Rank 4 vs 250 | Tournament form 2-0 | Polona Hercog vs Wang Xiyu"
       },
       {
         "player_id": "3149",
@@ -1095,84 +1095,9 @@
       }
     },
     {
-      "game_id": "175214",
-      "matchup": "Polona Hercog vs Wang Xiyu",
-      "time": "WTA | Huzhou Open | 5/1 - 12:40 AM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Wang Xiyu",
-          "line": "Match Winner",
-          "score": 95.0,
-          "confidence": 95,
-          "tier": "A",
-          "player_id": "3155"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Wang Xiyu",
-          "line": "Wang Xiyu -1.5 Sets",
-          "score": 82.87,
-          "confidence": 83,
-          "tier": "A",
-          "player_id": "175214-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 21.5 Games",
-          "score": 70.0,
-          "confidence": 70,
-          "tier": "B",
-          "player_id": "175214-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "3155",
-            "player_name": "Wang Xiyu",
-            "team": "WTA",
-            "opponent": "Polona Hercog",
-            "line": "Match Winner",
-            "score": 95.0,
-            "confidence": 95,
-            "tier": "A",
-            "reason": "Rank 4 vs 250 | Tournament form 2-0 | Polona Hercog vs Wang Xiyu"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "175214-ou",
-            "player_name": "Match Total",
-            "team": "WTA",
-            "opponent": "Polona Hercog vs Wang Xiyu",
-            "line": "Under 21.5 Games",
-            "score": 70.0,
-            "confidence": 70,
-            "tier": "B",
-            "reason": "Round Quarterfinal | Rank gap 246"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "175214-sets",
-            "player_name": "Wang Xiyu",
-            "team": "WTA",
-            "opponent": "Polona Hercog",
-            "line": "Wang Xiyu -1.5 Sets",
-            "score": 82.87,
-            "confidence": 83,
-            "tier": "A",
-            "reason": "Best-of-3 | Tournament sets 4-0"
-          }
-        ]
-      }
-    },
-    {
       "game_id": "175215",
       "matchup": "Katarzyna Kawa vs Varvara Panshina",
-      "time": "WTA | Huzhou Open | 5/1 - 12:40 AM EDT",
+      "time": "WTA | Huzhou Open | 1st",
       "top_signals": [
         {
           "market": "ML",
@@ -1238,6 +1163,81 @@
             "line": "Katarzyna Kawa -1.5 Sets",
             "score": 82.12,
             "confidence": 82,
+            "tier": "A",
+            "reason": "Best-of-3 | Tournament sets 4-0"
+          }
+        ]
+      }
+    },
+    {
+      "game_id": "175214",
+      "matchup": "Polona Hercog vs Wang Xiyu",
+      "time": "WTA | Huzhou Open | 1st",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Wang Xiyu",
+          "line": "Match Winner",
+          "score": 95.0,
+          "confidence": 95,
+          "tier": "A",
+          "player_id": "3155"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Wang Xiyu",
+          "line": "Wang Xiyu -1.5 Sets",
+          "score": 82.87,
+          "confidence": 83,
+          "tier": "A",
+          "player_id": "175214-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Under 21.5 Games",
+          "score": 70.0,
+          "confidence": 70,
+          "tier": "B",
+          "player_id": "175214-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "3155",
+            "player_name": "Wang Xiyu",
+            "team": "WTA",
+            "opponent": "Polona Hercog",
+            "line": "Match Winner",
+            "score": 95.0,
+            "confidence": 95,
+            "tier": "A",
+            "reason": "Rank 4 vs 250 | Tournament form 2-0 | Polona Hercog vs Wang Xiyu"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "175214-ou",
+            "player_name": "Match Total",
+            "team": "WTA",
+            "opponent": "Polona Hercog vs Wang Xiyu",
+            "line": "Under 21.5 Games",
+            "score": 70.0,
+            "confidence": 70,
+            "tier": "B",
+            "reason": "Round Quarterfinal | Rank gap 246"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "175214-sets",
+            "player_name": "Wang Xiyu",
+            "team": "WTA",
+            "opponent": "Polona Hercog",
+            "line": "Wang Xiyu -1.5 Sets",
+            "score": 82.87,
+            "confidence": 83,
             "tier": "A",
             "reason": "Best-of-3 | Tournament sets 4-0"
           }
