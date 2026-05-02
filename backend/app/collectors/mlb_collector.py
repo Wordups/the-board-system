@@ -82,7 +82,7 @@ def fetch_team_rosters(team_ids: list[int], season: int) -> dict[int, dict[str, 
     def load(team_id: int) -> tuple[int, dict[str, Any]]:
         params = {
             "rosterType": "active",
-            "hydrate": f"person(stats(type=[season,gameLog],group=[hitting,pitching],season={season}))",
+            "hydrate": f"person(stats(type=[season,gameLog,career,yearByYear],group=[hitting,pitching],season={season}))",
         }
         url = f"{STATS_API_BASE}/teams/{team_id}/roster?{urllib.parse.urlencode(params)}"
         return team_id, fetch_json(url)
@@ -208,6 +208,7 @@ def build_hitter_inputs(
     game_id: str,
     opposing_pitcher: dict[str, Any] | None,
 ) -> list[RawPlayerMarketInput]:
+    season = season_from_game_id(game_id)
     batters = []
     for roster_entry in roster.get("roster", []):
         if roster_entry["position"]["abbreviation"] == "P":
@@ -236,13 +237,27 @@ def build_hitter_inputs(
         recent_10 = game_logs[:10]
 
         season_games = max(parse_int(season_stats.get("gamesPlayed")), 1)
+        season_pa = max(parse_int(season_stats.get("plateAppearances")), 1)
+        season_hr = parse_int(season_stats.get("homeRuns"))
+        season_hits = parse_int(season_stats.get("hits"))
+        season_tb = parse_int(season_stats.get("totalBases"))
         avg = parse_decimal(season_stats.get("avg"))
         ops = parse_decimal(season_stats.get("ops"))
         slg = parse_decimal(season_stats.get("slg"))
-        hr_per_game = parse_int(season_stats.get("homeRuns")) / season_games
-        hits_per_game = parse_int(season_stats.get("hits")) / season_games
-        tb_per_game = parse_int(season_stats.get("totalBases")) / season_games
+        age = parse_int(season_stats.get("age")) or parse_int(person.get("currentAge"))
+        iso = max(slg - avg, 0.0)
+        hr_per_game = season_hr / season_games
+        hits_per_game = season_hits / season_games
+        tb_per_game = season_tb / season_games
 
+        season_pa_per_game = season_pa / season_games
+        season_hr_rate = smoothed_rate(season_hr, season_pa, prior_rate=0.032, stabilization=90)
+        history_metrics = historical_hr_metrics(person, current_season=season)
+
+        recent_5_pa = sum(parse_int(log["stat"].get("plateAppearances")) for log in recent_5)
+        recent_10_pa = sum(parse_int(log["stat"].get("plateAppearances")) for log in recent_10)
+        recent_5_hr_total = sum(parse_int(log["stat"].get("homeRuns")) for log in recent_5)
+        recent_10_hr_total = sum(parse_int(log["stat"].get("homeRuns")) for log in recent_10)
         l5_hr = sum(parse_int(log["stat"].get("homeRuns")) for log in recent_5) / max(len(recent_5), 1)
         l10_hr = sum(parse_int(log["stat"].get("homeRuns")) for log in recent_10) / max(len(recent_10), 1)
         l5_hits = sum(parse_int(log["stat"].get("hits")) for log in recent_5) / max(len(recent_5), 1)
@@ -250,8 +265,51 @@ def build_hitter_inputs(
         l5_tb = sum(parse_int(log["stat"].get("totalBases")) for log in recent_5) / max(len(recent_5), 1)
         l10_tb = sum(parse_int(log["stat"].get("totalBases")) for log in recent_10) / max(len(recent_10), 1)
 
+        l5_hr_rate = smoothed_rate(recent_5_hr_total, recent_5_pa, prior_rate=season_hr_rate, stabilization=12)
+        l10_hr_rate = smoothed_rate(recent_10_hr_total, recent_10_pa, prior_rate=season_hr_rate, stabilization=24)
+
         lineup_boost = max(0.0, (10 - index) / 10.0)
+        playing_time = clamp(season_pa_per_game / 4.4, 0.45, 1.0)
         form_boost = clamp((ops - 0.680) / 0.450, 0.0, 1.0)
+        power_boost = clamp((iso - 0.140) / 0.180, 0.0, 1.0)
+        sample_reliability = clamp(season_pa / 180.0, 0.25, 1.0)
+        projected_pa = clamp(3.15 + playing_time * 0.95 + lineup_boost * 0.55, 3.2, 4.8)
+
+        season_hr_chance = probability_of_event(season_hr_rate, projected_pa)
+        l10_hr_chance = probability_of_event(l10_hr_rate, projected_pa)
+        l5_hr_chance = probability_of_event(l5_hr_rate, projected_pa)
+        historical_hr_chance = probability_of_event(history_metrics["historical_hr_rate"], projected_pa)
+        hr_skill = clamp(
+            season_hr_chance * 0.52 + l10_hr_chance * 0.28 + l5_hr_chance * 0.20,
+            0.0,
+            1.0,
+        )
+        power_history_boost = clamp((historical_hr_chance - 0.14) / 0.18, 0.0, 1.0)
+        unlucky_power_gap = clamp((historical_hr_chance - l10_hr_chance) / 0.12, 0.0, 1.0)
+        unlucky_power_signal = unlucky_power_gap * clamp(power_boost * 0.65 + form_boost * 0.35, 0.0, 1.0)
+        rising_star_signal = rising_star_index(
+            age=age,
+            season_pa=season_pa,
+            season_hr_chance=season_hr_chance,
+            historical_hr_chance=historical_hr_chance,
+            iso=iso,
+            ops=ops,
+            lineup_boost=lineup_boost,
+            sample_reliability=sample_reliability,
+        )
+        adjusted_hr_value = clamp(
+            hr_skill * (0.68 + sample_reliability * 0.24)
+            + power_boost * 0.05
+            + power_history_boost * 0.07
+            + unlucky_power_signal * 0.05,
+            0.0,
+            1.0,
+        )
+        adjusted_hr_value = clamp(
+            adjusted_hr_value + rising_star_signal * 0.05,
+            0.0,
+            1.0,
+        )
 
         results.append(
             RawPlayerMarketInput(
@@ -262,18 +320,31 @@ def build_hitter_inputs(
                 game_id=game_id,
                 market="HR",
                 line="HR 1+",
-                stat_value=clamp(0.48 * hr_per_game + 0.32 * l10_hr + 0.20 * l5_hr, 0.0, 1.0),
-                baseline=0.08,
-                trend=clamp(0.65 * l5_hr + 0.35 * l10_hr, 0.0, 1.0),
-                matchup=clamp(pitcher_matchup * 0.8 + lineup_boost * 0.2, 0.0, 1.0),
-                recent_form=clamp(form_boost * 0.7 + lineup_boost * 0.3, 0.0, 1.0),
+                stat_value=adjusted_hr_value,
+                baseline=0.12,
+                trend=clamp(l5_hr_chance * 0.45 + l10_hr_chance * 0.35 + historical_hr_chance * 0.20, 0.0, 1.0),
+                matchup=clamp(pitcher_matchup * 0.44 + power_boost * 0.28 + power_history_boost * 0.18 + lineup_boost * 0.10, 0.0, 1.0),
+                recent_form=clamp(form_boost * 0.22 + power_boost * 0.24 + playing_time * 0.25 + unlucky_power_signal * 0.18 + rising_star_signal * 0.11, 0.0, 1.0),
                 extra={
+                    "age": age,
                     "season_hr_per_game": round(hr_per_game, 3),
                     "l5_hr_per_game": round(l5_hr, 3),
                     "l10_hr_per_game": round(l10_hr, 3),
+                    "season_hr_probability": round(season_hr_chance, 3),
+                    "l5_hr_probability": round(l5_hr_chance, 3),
+                    "l10_hr_probability": round(l10_hr_chance, 3),
+                    "historical_hr_probability": round(historical_hr_chance, 3),
                     "ops": round(ops, 3),
                     "slg": round(slg, 3),
-                    "lineup_spot": index,
+                    "iso": round(iso, 3),
+                    "sample_reliability": round(sample_reliability, 3),
+                    "projected_pa": round(projected_pa, 2),
+                    "order_estimate": index,
+                    "career_hr_rate": round(history_metrics["career_hr_rate"], 3),
+                    "recent_peak_hr_rate": round(history_metrics["recent_peak_hr_rate"], 3),
+                    "historical_power_index": round(power_history_boost, 3),
+                    "unlucky_power_index": round(unlucky_power_signal, 3),
+                    "rising_star_index": round(rising_star_signal, 3),
                     "pitcher_matchup": round(pitcher_matchup, 3),
                 },
             )
@@ -448,6 +519,90 @@ def get_stat_split(
     return fallback
 
 
+def season_from_game_id(game_id: str) -> int:
+    try:
+        return int(str(game_id).rsplit("-", 3)[-3])
+    except (TypeError, ValueError, IndexError):
+        return today_et().year
+
+
+def historical_hr_metrics(person: dict[str, Any], *, current_season: int) -> dict[str, float]:
+    career_stats_raw = get_stat_split(person, group="hitting", stat_type="career", fallback=[]) or []
+    if isinstance(career_stats_raw, list):
+        career_stats = (career_stats_raw[0] or {}).get("stat", {}) if career_stats_raw else {}
+    else:
+        career_stats = career_stats_raw or {}
+    career_hr = parse_int(career_stats.get("homeRuns"))
+    career_pa = parse_int(career_stats.get("plateAppearances"))
+    career_hr_rate = smoothed_rate(career_hr, career_pa, prior_rate=0.032, stabilization=180)
+
+    year_by_year = get_stat_split(person, group="hitting", stat_type="yearByYear", fallback=[]) or []
+    recent_rates: list[float] = []
+    recent_weighted_total = 0.0
+    recent_weight = 0.0
+    seasons_considered = 0
+    for split in sorted(year_by_year, key=lambda row: parse_int(row.get("season")), reverse=True):
+        season = parse_int(split.get("season"))
+        if season <= 0 or season >= current_season:
+            continue
+        stat = split.get("stat", {})
+        pa = parse_int(stat.get("plateAppearances"))
+        hr = parse_int(stat.get("homeRuns"))
+        if pa < 120:
+            continue
+        rate = smoothed_rate(hr, pa, prior_rate=career_hr_rate, stabilization=60)
+        weight = max(0.25, 1.0 - seasons_considered * 0.18)
+        recent_rates.append(rate)
+        recent_weighted_total += rate * weight
+        recent_weight += weight
+        seasons_considered += 1
+        if seasons_considered == 3:
+            break
+
+    recent_peak_hr_rate = max(recent_rates, default=career_hr_rate)
+    recent_avg_hr_rate = (recent_weighted_total / recent_weight) if recent_weight else career_hr_rate
+    historical_hr_rate = clamp(career_hr_rate * 0.40 + recent_avg_hr_rate * 0.35 + recent_peak_hr_rate * 0.25, 0.0, 1.0)
+
+    return {
+        "career_hr_rate": career_hr_rate,
+        "recent_peak_hr_rate": recent_peak_hr_rate,
+        "recent_avg_hr_rate": recent_avg_hr_rate,
+        "historical_hr_rate": historical_hr_rate,
+    }
+
+
+def rising_star_index(
+    *,
+    age: int,
+    season_pa: int,
+    season_hr_chance: float,
+    historical_hr_chance: float,
+    iso: float,
+    ops: float,
+    lineup_boost: float,
+    sample_reliability: float,
+) -> float:
+    if age <= 0 or age > 27:
+        return 0.0
+    age_boost = clamp((27 - age) / 5.0, 0.0, 1.0)
+    runway = clamp((900 - season_pa) / 900.0, 0.0, 1.0)
+    breakout_gap = clamp((season_hr_chance - historical_hr_chance) / 0.10, 0.0, 1.0)
+    power_quality = clamp((iso - 0.165) / 0.145, 0.0, 1.0)
+    overall_quality = clamp((ops - 0.760) / 0.220, 0.0, 1.0)
+    trust = clamp(sample_reliability, 0.30, 1.0)
+    return clamp(
+        age_boost * 0.24
+        + runway * 0.16
+        + breakout_gap * 0.24
+        + power_quality * 0.18
+        + overall_quality * 0.10
+        + lineup_boost * 0.04
+        + trust * 0.04,
+        0.0,
+        1.0,
+    )
+
+
 def pitcher_matchup_value(probable_pitcher: dict[str, Any] | None) -> float:
     if not probable_pitcher:
         return 0.45
@@ -589,3 +744,19 @@ def innings_to_float(value: Any) -> float:
 
 def clamp(value: float, low: float, high: float) -> float:
     return max(low, min(high, value))
+
+
+def smoothed_rate(count: int, opportunities: int, *, prior_rate: float, stabilization: int) -> float:
+    opportunities = max(opportunities, 0)
+    stabilization = max(stabilization, 0)
+    total_opportunities = opportunities + stabilization
+    if total_opportunities <= 0:
+        return clamp(prior_rate, 0.0, 1.0)
+    return clamp((count + prior_rate * stabilization) / total_opportunities, 0.0, 1.0)
+
+
+def probability_of_event(rate: float, opportunities: float) -> float:
+    opportunities = max(opportunities, 0.0)
+    if rate <= 0.0 or opportunities <= 0.0:
+        return 0.0
+    return clamp(1.0 - ((1.0 - rate) ** opportunities), 0.0, 1.0)

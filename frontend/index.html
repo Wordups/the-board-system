@@ -142,6 +142,7 @@ button { cursor: pointer; border: none; background: none; }
 
 /* PINNED BOARD */
 .pinned-board { position: sticky; top: 104px; }
+.pinned-stack { display: flex; flex-direction: column; gap: 14px; }
 
 .board-card {
   background: var(--surface); border: 1px solid var(--border);
@@ -567,18 +568,13 @@ async function loadSport(sport) {
   }
 }
 
-function renderPinnedBoard(data, sport = "mlb") {
-  const wrap = document.getElementById("pinned-board-wrap");
-  if (!data || !data.pinned_board || !data.pinned_board.players.length) {
-    wrap.innerHTML = "";
-    return;
-  }
-  const pb = data.pinned_board;
-  const players = pb.players;
-  wrap.innerHTML = `
+function renderPinnedSection(board, sport = "mlb") {
+  if (!board || !board.players || !board.players.length) return "";
+  const players = board.players;
+  return `
     <div class="board-card">
       <div class="board-header">
-        <div class="board-title">${esc(pb.title)}</div>
+        <div class="board-title">${esc(board.title)}</div>
         <div class="board-count">${players.length} Players</div>
       </div>
         ${players.map((p, i) => `
@@ -590,11 +586,27 @@ function renderPinnedBoard(data, sport = "mlb") {
               <div class="pinned-meta"><span>${esc(p.team)}</span><span>vs ${esc(p.opponent)}</span></div>
             </div>
           <div class="pinned-line">${esc(p.line)}</div>
-          ${hrResultBadge(p)}
+          ${board.market === "HR" ? hrResultBadge(p) : ""}
           ${tierBadge(p.tier)}
         </div>
       `).join("")}
     </div>`;
+}
+
+function renderPinnedBoards(data, sport = "mlb") {
+  const wrap = document.getElementById("pinned-board-wrap");
+  const sections = [];
+  if (data && data.pinned_board && data.pinned_board.players && data.pinned_board.players.length) {
+    sections.push(renderPinnedSection(data.pinned_board, sport));
+  }
+  if (data && data.consistency_board && data.consistency_board.players && data.consistency_board.players.length) {
+    sections.push(renderPinnedSection(data.consistency_board, sport));
+  }
+  if (!sections.length) {
+    wrap.innerHTML = "";
+    return;
+  }
+  wrap.innerHTML = `<div class="pinned-stack">${sections.join("")}</div>`;
 }
 
 function renderGameView(sport, data) {
@@ -727,7 +739,7 @@ async function switchSport(sport) {
   const data = await loadSport(sport);
 
   if (data && data.pinned_board) {
-    renderPinnedBoard(data, sport);
+    renderPinnedBoards(data, sport);
   } else {
     document.getElementById("pinned-board-wrap").innerHTML = "";
   }

@@ -52,25 +52,46 @@ def build_reason(*, candidate: MlbPlayCandidate, probability_edge: float, suppor
 
 def build_hr_reason(candidate: MlbPlayCandidate, probability_edge: float, support_weights: dict[str, float]) -> str:
     extra = candidate.extra or {}
-    lineup_spot = extra.get("lineup_spot")
+    order_estimate = extra.get("order_estimate")
     ops = extra.get("ops", 0.0)
     slg = extra.get("slg", 0.0)
+    iso = extra.get("iso", 0.0)
     season_hr = extra.get("season_hr_per_game", 0.0)
     l10_hr = extra.get("l10_hr_per_game", 0.0)
     l5_hr = extra.get("l5_hr_per_game", 0.0)
+    season_hr_probability = extra.get("season_hr_probability", 0.0)
+    historical_hr_probability = extra.get("historical_hr_probability", 0.0)
     pitcher_matchup = extra.get("pitcher_matchup", candidate.matchup)
+    projected_pa = extra.get("projected_pa", 0.0)
+    sample_reliability = extra.get("sample_reliability", 0.0)
+    recent_peak_hr_rate = extra.get("recent_peak_hr_rate", 0.0)
+    unlucky_power_index = extra.get("unlucky_power_index", 0.0)
+    rising_star_index = extra.get("rising_star_index", 0.0)
+    age = extra.get("age", 0)
 
     reasons = [
         f"HR edge {probability_edge:.1f}",
         f"L5 {l5_hr:.2f}/g",
         f"L10 {l10_hr:.2f}/g",
         f"Season {season_hr:.2f}/g",
+        f"HR% {season_hr_probability:.2f}",
+        f"HistHR% {historical_hr_probability:.2f}",
         f"OPS {ops:.3f}",
         f"SLG {slg:.3f}",
+        f"ISO {iso:.3f}",
         f"Matchup {pitcher_matchup:.2f}",
+        f"ProjPA {projected_pa:.1f}",
+        f"Sample {sample_reliability:.2f}",
+        f"Peak3Y {recent_peak_hr_rate:.3f}",
     ]
-    if lineup_spot:
-        reasons.append(f"Batting {lineup_spot}")
+    if age:
+        reasons.append(f"Age {age}")
+    if order_estimate:
+        reasons.append(f"Order est. {order_estimate}")
+    if unlucky_power_index >= 0.18:
+        reasons.append(f"Power due {unlucky_power_index:.2f}")
+    if rising_star_index >= 0.22:
+        reasons.append(f"Rising {rising_star_index:.2f}")
     weights = (
         f"Wts T{support_weights['trend']:.2f}"
         f"/M{support_weights['matchup']:.2f}"

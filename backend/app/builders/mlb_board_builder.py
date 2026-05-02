@@ -65,18 +65,10 @@ def build_mlb_board(*, config, paths) -> dict:
                 continue
             market_bucket[candidate.market].append(to_player_row(candidate))
 
-        top_signals = [
-            {
-                "market": candidate.market,
-                "player_name": candidate.player_name,
-                "line": candidate.line,
-                "score": candidate.score,
-                "confidence": candidate.confidence,
-                "tier": candidate.tier,
-            }
-                for candidate in candidates[: config.top_signals_per_game]
-                if candidate.tier != "PASS"
-        ]
+        top_signals = build_market_diverse_top_signals(
+            candidates=candidates,
+            limit=config.top_signals_per_game,
+        )
 
         games_output.append(
             {
@@ -103,6 +95,7 @@ def build_mlb_board(*, config, paths) -> dict:
         game_status_by_id=game_status_by_id,
         game_hr_results_by_id=game_hr_results_by_id,
     )
+    consistency_players = build_consistency_board(processed_games)
     return {
         "sport": "MLB",
         "date": raw_payload["date"],
@@ -112,8 +105,53 @@ def build_mlb_board(*, config, paths) -> dict:
             "market": "HR",
             "players": pinned_players,
         },
+        "consistency_board": {
+            "title": "Consistency Top 10",
+            "market": "MIX",
+            "players": consistency_players,
+        },
         "games": games_output,
     }
+
+
+def build_market_diverse_top_signals(*, candidates, limit: int) -> list[dict]:
+    preferred_markets = ("Hits", "TB", "K", "HR", "ML")
+    selected = []
+    used_markets = set()
+
+    for market in preferred_markets:
+        market_candidate = next(
+            (candidate for candidate in candidates if candidate.tier != "PASS" and candidate.market == market),
+            None,
+        )
+        if market_candidate is None:
+            continue
+        selected.append(market_candidate)
+        used_markets.add((market_candidate.market, market_candidate.player_id))
+        if len(selected) == limit:
+            break
+
+    if len(selected) < limit:
+        for candidate in candidates:
+            key = (candidate.market, candidate.player_id)
+            if candidate.tier == "PASS" or key in used_markets:
+                continue
+            selected.append(candidate)
+            used_markets.add(key)
+            if len(selected) == limit:
+                break
+
+    return [
+        {
+            "market": candidate.market,
+            "player_name": candidate.player_name,
+            "line": candidate.line,
+            "score": candidate.score,
+            "confidence": candidate.confidence,
+            "tier": candidate.tier,
+        }
+        for candidate in selected
+    ]
 
 
 def load_previous_pinned_players(paths) -> dict[str, dict]:
@@ -165,6 +203,48 @@ def build_sticky_hr_board(*, candidates, previous_pinned_players, game_status_by
         reverse=True,
     )
     return sticky_rows[:10]
+
+
+def build_consistency_board(processed_games) -> list[dict]:
+    consistency_markets = {"Hits", "TB", "K"}
+    rows = []
+    for processed_game in processed_games:
+        for candidate in sorted_candidates(processed_game["candidates"]):
+            if candidate.market not in consistency_markets or candidate.tier == "PASS":
+                continue
+            rows.append(
+                {
+                    "player_id": candidate.player_id,
+                    "player_name": candidate.player_name,
+                    "team": candidate.team,
+                    "opponent": candidate.opponent,
+                    "line": candidate.line,
+                    "score": round(apply_consistency_bonus(candidate), 2),
+                    "confidence": candidate.confidence,
+                    "tier": candidate.tier,
+                    "reason": candidate.reason,
+                }
+            )
+
+    rows.sort(
+        key=lambda row: (row["score"], row["confidence"], row["player_name"]),
+        reverse=True,
+    )
+    return rows[:10]
+
+
+def apply_consistency_bonus(candidate) -> float:
+    market_bonus = {
+        "Hits": 3.2,
+        "TB": 1.8,
+        "K": 2.4,
+    }.get(candidate.market, 0.0)
+    tier_bonus = {
+        "A": 1.0,
+        "B": 0.4,
+        "C": 0.0,
+    }.get(candidate.tier, 0.0)
+    return candidate.score + market_bonus + tier_bonus
 
 
 def apply_hr_board_sliding_scale(*, base_score: float, previous_score: float | None, status: dict) -> float:

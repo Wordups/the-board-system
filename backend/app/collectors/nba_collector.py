@@ -344,6 +344,7 @@ def build_game_payload(
     home_team = next(item for item in competition["competitors"] if item["homeAway"] == "home")
     away_abbr = away_team["team"]["abbreviation"]
     home_abbr = home_team["team"]["abbreviation"]
+    series_context = build_series_context(event=event, away_team=away_team, home_team=home_team)
 
     candidates = []
     candidates.extend(
@@ -357,6 +358,7 @@ def build_game_payload(
             opponent_team_stats=team_stats_map.get(home_abbr, {}),
             opponent_summary_profile=team_summary_profiles.get(home_abbr, {}),
             allowance_baselines=allowance_baselines,
+            series_context=series_context,
         )
     )
     candidates.extend(
@@ -370,6 +372,7 @@ def build_game_payload(
             opponent_team_stats=team_stats_map.get(away_abbr, {}),
             opponent_summary_profile=team_summary_profiles.get(away_abbr, {}),
             allowance_baselines=allowance_baselines,
+            series_context=series_context,
         )
     )
     candidates.extend(
@@ -393,6 +396,7 @@ def build_game_payload(
             "game_clock": competition["status"].get("displayClock"),
             "period": competition["status"].get("period"),
         },
+        "series_context": series_context,
         "candidates": candidates,
     }
 
@@ -408,6 +412,7 @@ def build_team_player_candidates(
     opponent_team_stats: dict[str, float],
     opponent_summary_profile: dict[str, float],
     allowance_baselines: dict[str, float],
+    series_context: dict[str, Any],
 ) -> list[dict[str, Any]]:
     active_profiles = []
     for athlete in roster:
@@ -437,6 +442,7 @@ def build_team_player_candidates(
                 opponent_team_stats=opponent_team_stats,
                 opponent_summary_profile=opponent_summary_profile,
                 allowance_baselines=allowance_baselines,
+                series_context=series_context,
             )
             if candidate:
                 candidates.append(candidate)
@@ -456,6 +462,7 @@ def build_market_candidate(
     opponent_team_stats: dict[str, float],
     opponent_summary_profile: dict[str, float],
     allowance_baselines: dict[str, float],
+    series_context: dict[str, Any],
 ) -> dict[str, Any] | None:
     logs = profile["logs"]
     recent_10 = logs[:10]
@@ -478,7 +485,8 @@ def build_market_candidate(
     if l10_hit_rate < 0.60:
         return None
 
-    minutes_projection = profile["minutes_projection"]
+    leverage = playoff_leverage_for_team(series_context=series_context, team_abbr=team_abbr)
+    minutes_projection = profile["minutes_projection"] + leverage["minutes_boost"]
     minutes_flag = minutes_projection < 30.0
     matchup_ratio = market_matchup_ratio(
         market=market,
@@ -500,6 +508,7 @@ def build_market_candidate(
         + (matchup_component * 0.08)
         + (home_component * 0.04)
     )
+    raw_score += leverage["score_boost"]
     if market in {"PTS", "AST", "3PM"} and usage_share < 0.30:
         raw_score -= 5.0
     if minutes_flag:
@@ -534,6 +543,7 @@ def build_market_candidate(
             minutes_projection=minutes_projection,
             matchup_ratio=matchup_ratio,
             is_home=is_home,
+            leverage_label=leverage["label"],
         ),
         "l10_hit_rate": l10_hit_rate,
         "l5_hit_rate": l5_hit_rate,
@@ -648,6 +658,7 @@ def build_market_reason(
     minutes_projection: float,
     matchup_ratio: float,
     is_home: bool,
+    leverage_label: str,
 ) -> str:
     parts = [
         f"L10 {l10_hit_rate:.0%}",
@@ -660,7 +671,80 @@ def build_market_reason(
         parts.append("Home boost")
     if minutes_projection < 30:
         parts.append("Minutes watch")
+    if leverage_label:
+        parts.append(leverage_label)
     return " | ".join(parts)
+
+
+def build_series_context(*, event: dict[str, Any], away_team: dict[str, Any], home_team: dict[str, Any]) -> dict[str, Any]:
+    competition = event["competitions"][0]
+    note = ""
+    notes = competition.get("notes") or []
+    if notes:
+        note = notes[0].get("headline", "")
+    series = competition.get("series") or {}
+    competitors = series.get("competitors") or []
+    wins_by_id = {str(item.get("id")): int(item.get("wins", 0) or 0) for item in competitors}
+    away_id = str(away_team["team"]["id"])
+    home_id = str(home_team["team"]["id"])
+    away_wins = wins_by_id.get(away_id, 0)
+    home_wins = wins_by_id.get(home_id, 0)
+    game_number = parse_series_game_number(note)
+    is_playoffs = event.get("season", {}).get("type") == 3
+
+    return {
+        "is_playoffs": is_playoffs,
+        "series_summary": series.get("summary", ""),
+        "note": note,
+        "game_number": game_number,
+        "away_team": away_team["team"]["abbreviation"],
+        "home_team": home_team["team"]["abbreviation"],
+        "away_wins": away_wins,
+        "home_wins": home_wins,
+    }
+
+
+def parse_series_game_number(note: str) -> int:
+    text = str(note or "")
+    if "Game 7" in text:
+        return 7
+    if "Game 6" in text:
+        return 6
+    if "Game 5" in text:
+        return 5
+    if "Game 4" in text:
+        return 4
+    if "Game 3" in text:
+        return 3
+    if "Game 2" in text:
+        return 2
+    if "Game 1" in text:
+        return 1
+    return 0
+
+
+def playoff_leverage_for_team(*, series_context: dict[str, Any], team_abbr: str) -> dict[str, Any]:
+    if not series_context.get("is_playoffs"):
+        return {"minutes_boost": 0.0, "score_boost": 0.0, "label": ""}
+
+    game_number = int(series_context.get("game_number") or 0)
+    away_team = series_context.get("away_team")
+    home_team = series_context.get("home_team")
+    away_wins = int(series_context.get("away_wins") or 0)
+    home_wins = int(series_context.get("home_wins") or 0)
+    is_away = team_abbr == away_team
+    wins = away_wins if is_away else home_wins
+    opp_wins = home_wins if is_away else away_wins
+
+    if game_number >= 7:
+        return {"minutes_boost": 1.5, "score_boost": 4.0, "label": "Game 7"}
+    if opp_wins == 3:
+        return {"minutes_boost": 1.1, "score_boost": 2.8, "label": "Elimination game"}
+    if wins == 3 and game_number >= 5:
+        return {"minutes_boost": 0.6, "score_boost": 1.4, "label": "Closeout spot"}
+    if game_number >= 5:
+        return {"minutes_boost": 0.35, "score_boost": 0.8, "label": "Late series"}
+    return {"minutes_boost": 0.0, "score_boost": 0.0, "label": ""}
 
 
 def ml_score(*, recent_win_pct: float, season_record: float, avg_points: float, points_allowed: float, is_home: bool) -> float:

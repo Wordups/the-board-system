@@ -1,5 +1,11 @@
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(PROJECT_ROOT / "backend"))
+
 from app.schemas.board_schema import BoardPayload
 
 
@@ -11,6 +17,11 @@ def test_board_schema_accepts_contract_shape():
         "pinned_board": {
             "title": "HR Top 10",
             "market": "HR",
+            "players": [],
+        },
+        "consistency_board": {
+            "title": "Consistency Top 10",
+            "market": "MIX",
             "players": [],
         },
         "games": [
@@ -37,6 +48,7 @@ def test_board_schema_accepts_nba_market_shape():
             "market": "PTS",
             "players": [],
         },
+        "consistency_board": None,
         "games": [
             {
                 "game_id": "0042500115",

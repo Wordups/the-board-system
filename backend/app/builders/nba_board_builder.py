@@ -46,17 +46,10 @@ def build_nba_board(*, config, paths) -> dict:
         for candidate in candidates:
             market_bucket[candidate["market"]].append(to_board_row(candidate))
 
-        top_signals = [
-            {
-                "market": candidate["market"],
-                "player_name": candidate["player_name"],
-                "line": candidate["line"],
-                "score": candidate["score"],
-                "confidence": candidate["confidence"],
-                "tier": candidate["tier"],
-            }
-            for candidate in candidates[: config.top_signals_per_game]
-        ]
+        top_signals = build_market_diverse_top_signals(
+            candidates=candidates,
+            limit=config.top_signals_per_game,
+        )
 
         games_output.append(
             {
@@ -73,6 +66,7 @@ def build_nba_board(*, config, paths) -> dict:
         pinned_candidates.extend(candidate for candidate in candidates if candidate["market"] == "PTS")
 
     pinned_players = [to_board_row(candidate) for candidate in sorted(pinned_candidates, key=lambda row: (row["score"], row["confidence"]), reverse=True)[:10]]
+    consistency_players = build_consistency_board(all_candidates, config.top_market_limit)
     return {
         "sport": "NBA",
         "date": raw_payload["date"],
@@ -84,6 +78,11 @@ def build_nba_board(*, config, paths) -> dict:
             "title": "PTS Top 10",
             "market": "PTS",
             "players": pinned_players,
+        },
+        "consistency_board": {
+            "title": "Consistency Top 10",
+            "market": "MIX",
+            "players": consistency_players,
         },
         "games": games_output,
     }
@@ -123,6 +122,48 @@ def apply_anti_correlation(candidates: list[dict]) -> list[dict]:
             follower["score"] = round(max(follower["score"] - 1.25, 0.0), 2)
             follower["confidence"] = max(1, min(99, round(follower["score"])))
     return candidates
+
+
+def build_market_diverse_top_signals(*, candidates: list[dict], limit: int) -> list[dict]:
+    preferred_markets = ("AST", "REB", "PTS", "3PM", "ML")
+    selected: list[dict] = []
+    used_players: set[str] = set()
+
+    for market in preferred_markets:
+        market_candidate = next(
+            (
+                candidate for candidate in candidates
+                if candidate["market"] == market and candidate["player_name"] not in used_players
+            ),
+            None,
+        )
+        if market_candidate is None:
+            continue
+        selected.append(market_candidate)
+        used_players.add(market_candidate["player_name"])
+        if len(selected) == limit:
+            break
+
+    if len(selected) < limit:
+        for candidate in candidates:
+            if candidate["player_name"] in used_players:
+                continue
+            selected.append(candidate)
+            used_players.add(candidate["player_name"])
+            if len(selected) == limit:
+                break
+
+    return [
+        {
+            "market": candidate["market"],
+            "player_name": candidate["player_name"],
+            "line": candidate["line"],
+            "score": candidate["score"],
+            "confidence": candidate["confidence"],
+            "tier": candidate["tier"],
+        }
+        for candidate in selected
+    ]
 
 
 def build_pick_of_day(processed_games: list[dict], previous_pick: dict | None) -> dict | None:
@@ -251,6 +292,33 @@ def build_section_boards(candidates: list[dict], limit: int) -> dict[str, list[d
         "players": sorted(ladder_candidates, key=lambda row: (row["score"], row["confidence"]), reverse=True)[:5],
     }
     return boards
+
+
+def build_consistency_board(candidates: list[dict], limit: int) -> list[dict]:
+    rows = []
+    for candidate in candidates:
+        if candidate["market"] not in {"PTS", "REB", "AST"}:
+            continue
+        if candidate["tier"] == "C":
+            continue
+        row = to_board_row(candidate)
+        row["score"] = round(consistency_score(candidate), 2)
+        row["confidence"] = max(1, min(99, round(row["score"])))
+        rows.append(row)
+
+    rows.sort(key=lambda row: (row["score"], row["confidence"]), reverse=True)
+    return rows[:limit]
+
+
+def consistency_score(candidate: dict) -> float:
+    market_bonus = {
+        "AST": 3.4,
+        "REB": 2.8,
+        "PTS": 2.0,
+    }.get(candidate["market"], 0.0)
+    hit_rate_bonus = (candidate.get("l10_hit_rate", 0.0) * 4.0) + (candidate.get("l5_hit_rate", 0.0) * 3.0)
+    minute_bonus = min(candidate.get("minutes_projection", 0.0), 40.0) / 10.0
+    return float(candidate["score"]) + market_bonus + hit_rate_bonus + minute_bonus
 
 
 def build_ladder_steps(line: str) -> list[str]:

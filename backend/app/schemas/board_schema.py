@@ -17,4 +17,5 @@ class BoardPayload(BaseModel):
     date: str
     last_updated: str
     pinned_board: PinnedBoard
+    consistency_board: PinnedBoard | None = None
     games: list[GameBoard]
