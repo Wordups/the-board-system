@@ -1,7 +1,7 @@
 {
   "sport": "TENNIS",
   "date": "2026-05-03",
-  "last_updated": "5:30 AM ET",
+  "last_updated": "6:00 AM ET",
   "pinned_board": {
     "title": "Match Win Top 10",
     "market": "ML",
@@ -62,6 +62,17 @@
         "reason": "Rank 250 vs 250 | Tournament form 2-0 | Li Zongyu vs Priska Nugroho"
       },
       {
+        "player_id": "13541",
+        "player_name": "Maria Sara Popa",
+        "team": "WTA",
+        "opponent": "Raluka Serban",
+        "line": "Match Winner",
+        "score": 60.0,
+        "confidence": 60,
+        "tier": "B",
+        "reason": "Rank 250 vs 250 | Tournament form 1-0 | Maria Sara Popa vs Raluka Serban"
+      },
+      {
         "player_id": "10678",
         "player_name": "Lucia Cortez Llorca",
         "team": "WTA",
@@ -82,17 +93,6 @@
         "confidence": 60,
         "tier": "B",
         "reason": "Rank 250 vs 250 | Tournament form 1-0 | Isabella Shinikova vs Tereza Martincova"
-      },
-      {
-        "player_id": "13541",
-        "player_name": "Maria Sara Popa",
-        "team": "WTA",
-        "opponent": "Raluka Serban",
-        "line": "Match Winner",
-        "score": 60.0,
-        "confidence": 60,
-        "tier": "B",
-        "reason": "Rank 250 vs 250 | Tournament form 1-0 | Maria Sara Popa vs Raluka Serban"
       },
       {
         "player_id": "5538",
@@ -647,7 +647,7 @@
     {
       "game_id": "174608",
       "matchup": "Tamara Korpatsch vs Daria Kasatkina",
-      "time": "WTA | Catalonia Open Solgiron\u00e8s | 1st",
+      "time": "WTA | Catalonia Open Solgiron\u00e8s | 2nd",
       "top_signals": [
         {
           "market": "ML",
@@ -1095,9 +1095,84 @@
       }
     },
     {
+      "game_id": "176881",
+      "matchup": "Maria Sara Popa vs Raluka Serban",
+      "time": "WTA | Istanbul Open | 5/3 - 7:00 AM EDT",
+      "top_signals": [
+        {
+          "market": "Sets",
+          "player_name": "Maria Sara Popa",
+          "line": "Over 2.5 Sets",
+          "score": 73.0,
+          "confidence": 73,
+          "tier": "B",
+          "player_id": "176881-sets"
+        },
+        {
+          "market": "ML",
+          "player_name": "Maria Sara Popa",
+          "line": "Match Winner",
+          "score": 60.0,
+          "confidence": 60,
+          "tier": "B",
+          "player_id": "13541"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Under 21.5 Games",
+          "score": 58.0,
+          "confidence": 58,
+          "tier": "C",
+          "player_id": "176881-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "13541",
+            "player_name": "Maria Sara Popa",
+            "team": "WTA",
+            "opponent": "Raluka Serban",
+            "line": "Match Winner",
+            "score": 60.0,
+            "confidence": 60,
+            "tier": "B",
+            "reason": "Rank 250 vs 250 | Tournament form 1-0 | Maria Sara Popa vs Raluka Serban"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "176881-ou",
+            "player_name": "Match Total",
+            "team": "WTA",
+            "opponent": "Maria Sara Popa vs Raluka Serban",
+            "line": "Under 21.5 Games",
+            "score": 58.0,
+            "confidence": 58,
+            "tier": "C",
+            "reason": "Round Qualifying Final | Rank gap 0"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "176881-sets",
+            "player_name": "Maria Sara Popa",
+            "team": "WTA",
+            "opponent": "Raluka Serban",
+            "line": "Over 2.5 Sets",
+            "score": 73.0,
+            "confidence": 73,
+            "tier": "B",
+            "reason": "Best-of-3 | Tournament sets 2-0"
+          }
+        ]
+      }
+    },
+    {
       "game_id": "176879",
       "matchup": "Lucia Cortez Llorca vs Mia Ristic",
-      "time": "WTA | Istanbul Open | 5/3 - 5:40 AM EDT",
+      "time": "WTA | Istanbul Open | 5/3 - 7:00 AM EDT",
       "top_signals": [
         {
           "market": "Sets",
@@ -1172,7 +1247,7 @@
     {
       "game_id": "176880",
       "matchup": "Isabella Shinikova vs Tereza Martincova",
-      "time": "WTA | Istanbul Open | 5/3 - 6:00 AM EDT",
+      "time": "WTA | Istanbul Open | 5/3 - 8:30 AM EDT",
       "top_signals": [
         {
           "market": "Sets",
@@ -1235,81 +1310,6 @@
             "player_name": "Isabella Shinikova",
             "team": "WTA",
             "opponent": "Tereza Martincova",
-            "line": "Over 2.5 Sets",
-            "score": 73.0,
-            "confidence": 73,
-            "tier": "B",
-            "reason": "Best-of-3 | Tournament sets 2-0"
-          }
-        ]
-      }
-    },
-    {
-      "game_id": "176881",
-      "matchup": "Maria Sara Popa vs Raluka Serban",
-      "time": "WTA | Istanbul Open | 5/3 - 7:00 AM EDT",
-      "top_signals": [
-        {
-          "market": "Sets",
-          "player_name": "Maria Sara Popa",
-          "line": "Over 2.5 Sets",
-          "score": 73.0,
-          "confidence": 73,
-          "tier": "B",
-          "player_id": "176881-sets"
-        },
-        {
-          "market": "ML",
-          "player_name": "Maria Sara Popa",
-          "line": "Match Winner",
-          "score": 60.0,
-          "confidence": 60,
-          "tier": "B",
-          "player_id": "13541"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 21.5 Games",
-          "score": 58.0,
-          "confidence": 58,
-          "tier": "C",
-          "player_id": "176881-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "13541",
-            "player_name": "Maria Sara Popa",
-            "team": "WTA",
-            "opponent": "Raluka Serban",
-            "line": "Match Winner",
-            "score": 60.0,
-            "confidence": 60,
-            "tier": "B",
-            "reason": "Rank 250 vs 250 | Tournament form 1-0 | Maria Sara Popa vs Raluka Serban"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "176881-ou",
-            "player_name": "Match Total",
-            "team": "WTA",
-            "opponent": "Maria Sara Popa vs Raluka Serban",
-            "line": "Under 21.5 Games",
-            "score": 58.0,
-            "confidence": 58,
-            "tier": "C",
-            "reason": "Round Qualifying Final | Rank gap 0"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "176881-sets",
-            "player_name": "Maria Sara Popa",
-            "team": "WTA",
-            "opponent": "Raluka Serban",
             "line": "Over 2.5 Sets",
             "score": 73.0,
             "confidence": 73,
