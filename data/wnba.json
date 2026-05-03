@@ -1,7 +1,7 @@
 {
   "sport": "WNBA",
   "date": "2026-05-03",
-  "last_updated": "7:00 PM ET",
+  "last_updated": "7:30 PM ET",
   "hero_pick": {
     "player_id": "dal-moneyline",
     "player_name": "DAL",
@@ -45,6 +45,34 @@
       ]
     },
     {
+      "game_id": "401866519",
+      "matchup": "NY @ CON",
+      "top_score": 81.98,
+      "signals": [
+        {
+          "player_name": "Marine Johannes",
+          "market": "3PM",
+          "line": "4+ 3PM",
+          "score": 85.7,
+          "tier": "B"
+        },
+        {
+          "player_name": "Anneli Maley",
+          "market": "PTS",
+          "line": "12+ PTS",
+          "score": 80.47,
+          "tier": "B"
+        },
+        {
+          "player_name": "Kennedy Burke",
+          "market": "AST",
+          "line": "3+ AST",
+          "score": 79.77,
+          "tier": "B"
+        }
+      ]
+    },
+    {
       "game_id": "401866521",
       "matchup": "LA @ POR",
       "top_score": 81.7,
@@ -68,34 +96,6 @@
           "market": "3PM",
           "line": "4+ 3PM",
           "score": 81.7,
-          "tier": "C"
-        }
-      ]
-    },
-    {
-      "game_id": "401866519",
-      "matchup": "NY @ CON",
-      "top_score": 80.25,
-      "signals": [
-        {
-          "player_name": "Marine Johannes",
-          "market": "3PM",
-          "line": "4+ 3PM",
-          "score": 81.7,
-          "tier": "B"
-        },
-        {
-          "player_name": "Kennedy Burke",
-          "market": "AST",
-          "line": "3+ AST",
-          "score": 79.77,
-          "tier": "B"
-        },
-        {
-          "player_name": "Aneesah Morrow",
-          "market": "REB",
-          "line": "7+ REB",
-          "score": 79.29,
           "tier": "C"
         }
       ]
@@ -140,6 +140,17 @@
           "reason": "Sample 1 | L10 100% | L5 100% | USG 27% | MIN 29.0 | PTS matchup 0.99x | Home boost | Anti-correlation: same team as Aziaha James"
         },
         {
+          "player_id": "4281930",
+          "player_name": "Anneli Maley",
+          "team": "NY",
+          "opponent": "CON",
+          "line": "12+ PTS",
+          "score": 80.47,
+          "confidence": 80,
+          "tier": "B",
+          "reason": "Sample 2 | L10 100% | L5 100% | USG 28% | MIN 27.0 | PTS matchup 0.99x"
+        },
+        {
           "player_id": "4065870",
           "player_name": "Jackie Young",
           "team": "LV",
@@ -149,17 +160,6 @@
           "confidence": 80,
           "tier": "B",
           "reason": "Sample 1 | L10 100% | L5 100% | USG 41% | MIN 26.0 | PTS matchup 1.01x"
-        },
-        {
-          "player_id": "4281930",
-          "player_name": "Anneli Maley",
-          "team": "NY",
-          "opponent": "CON",
-          "line": "12+ PTS",
-          "score": 78.93,
-          "confidence": 79,
-          "tier": "B",
-          "reason": "Sample 2 | L10 100% | L5 100% | USG 26% | MIN 27.0 | PTS matchup 0.99x"
         },
         {
           "player_id": "4433730",
@@ -184,6 +184,17 @@
           "reason": "Sample 1 | L10 100% | L5 100% | USG 25% | MIN 27.0 | PTS matchup 1.01x | Anti-correlation: same team as Jackie Young"
         },
         {
+          "player_id": "4038379",
+          "player_name": "Marine Johannes",
+          "team": "NY",
+          "opponent": "CON",
+          "line": "11+ PTS",
+          "score": 76.15,
+          "confidence": 76,
+          "tier": "B",
+          "reason": "Sample 1 | L10 100% | L5 100% | USG 25% | MIN 29.0 | PTS matchup 0.99x | Anti-correlation: same team as Anneli Maley"
+        },
+        {
           "player_id": "4682797",
           "player_name": "Luisa Geiselsoder",
           "team": "POR",
@@ -204,17 +215,6 @@
           "confidence": 75,
           "tier": "C",
           "reason": "Sample 1 | L10 100% | L5 100% | USG 29% | MIN 20.0 | PTS matchup 1.01x | Minutes watch | Anti-correlation: same team as Jackie Young"
-        },
-        {
-          "player_id": "5208982",
-          "player_name": "Carla Leite",
-          "team": "POR",
-          "opponent": "LA",
-          "line": "12+ PTS",
-          "score": 74.45,
-          "confidence": 74,
-          "tier": "B",
-          "reason": "Sample 1 | L10 100% | L5 100% | USG 42% | MIN 22.0 | PTS matchup 0.80x | Home boost | Minutes watch | Anti-correlation: same team as Luisa Geiselsoder"
         }
       ]
     },
@@ -242,7 +242,18 @@
           "score": 79.7,
           "confidence": 80,
           "tier": "B",
-          "reason": "Sample 1 | L10 100% | L5 100% | USG 36% | MIN 31.0 | AST matchup 0.91x | Home boost"
+          "reason": "Sample 1 | L10 100% | L5 100% | USG 36% | MIN 31.0 | AST matchup 0.90x | Home boost"
+        },
+        {
+          "player_id": "4038379",
+          "player_name": "Marine Johannes",
+          "team": "NY",
+          "opponent": "CON",
+          "line": "3+ AST",
+          "score": 79.32,
+          "confidence": 79,
+          "tier": "B",
+          "reason": "Sample 1 | L10 100% | L5 100% | USG 25% | MIN 29.0 | AST matchup 0.99x"
         },
         {
           "player_id": "4433514",
@@ -264,7 +275,7 @@
           "score": 76.25,
           "confidence": 76,
           "tier": "C",
-          "reason": "Sample 2 | L10 100% | L5 100% | USG 19% | MIN 19.5 | AST matchup 1.15x | Minutes watch"
+          "reason": "Sample 2 | L10 100% | L5 100% | USG 19% | MIN 19.5 | AST matchup 1.14x | Minutes watch"
         },
         {
           "player_id": "2529122",
@@ -275,7 +286,7 @@
           "score": 75.7,
           "confidence": 76,
           "tier": "B",
-          "reason": "Sample 1 | L10 100% | L5 100% | USG 25% | MIN 27.0 | AST matchup 0.91x"
+          "reason": "Sample 1 | L10 100% | L5 100% | USG 25% | MIN 27.0 | AST matchup 0.90x"
         },
         {
           "player_id": "5108051",
@@ -286,7 +297,7 @@
           "score": 75.7,
           "confidence": 76,
           "tier": "C",
-          "reason": "Sample 1 | L10 100% | L5 100% | USG 26% | MIN 21.0 | AST matchup 0.85x | Home boost | Minutes watch"
+          "reason": "Sample 1 | L10 100% | L5 100% | USG 26% | MIN 21.0 | AST matchup 0.84x | Home boost | Minutes watch"
         },
         {
           "player_id": "5208983",
@@ -294,10 +305,10 @@
           "team": "ATL",
           "opponent": "WSH",
           "line": "2+ AST",
-          "score": 75.37,
+          "score": 75.18,
           "confidence": 75,
           "tier": "C",
-          "reason": "Sample 2 | L10 100% | L5 100% | USG 21% | MIN 19.0 | AST matchup 1.00x | Home boost | Minutes watch"
+          "reason": "Sample 2 | L10 100% | L5 100% | USG 21% | MIN 19.0 | AST matchup 0.99x | Home boost | Minutes watch"
         },
         {
           "player_id": "4065870",
@@ -308,7 +319,7 @@
           "score": 74.45,
           "confidence": 74,
           "tier": "B",
-          "reason": "Sample 1 | L10 100% | L5 100% | USG 41% | MIN 26.0 | AST matchup 0.91x | Anti-correlation: same team as Chelsea Gray"
+          "reason": "Sample 1 | L10 100% | L5 100% | USG 41% | MIN 26.0 | AST matchup 0.90x | Anti-correlation: same team as Chelsea Gray"
         },
         {
           "player_id": "4433730",
@@ -319,18 +330,7 @@
           "score": 74.45,
           "confidence": 74,
           "tier": "C",
-          "reason": "Sample 1 | L10 100% | L5 100% | USG 27% | MIN 20.0 | AST matchup 0.91x | Home boost | Minutes watch | Anti-correlation: same team as Aziaha James"
-        },
-        {
-          "player_id": "5208982",
-          "player_name": "Carla Leite",
-          "team": "POR",
-          "opponent": "LA",
-          "line": "5+ AST",
-          "score": 74.45,
-          "confidence": 74,
-          "tier": "B",
-          "reason": "Sample 1 | L10 100% | L5 100% | USG 42% | MIN 22.0 | AST matchup 0.85x | Home boost | Minutes watch | Anti-correlation: same team as Jordan Harrison"
+          "reason": "Sample 1 | L10 100% | L5 100% | USG 27% | MIN 20.0 | AST matchup 0.90x | Home boost | Minutes watch | Anti-correlation: same team as Aziaha James"
         }
       ]
     },
@@ -409,11 +409,11 @@
           "player_name": "Anneli Maley",
           "team": "NY",
           "opponent": "CON",
-          "line": "5+ REB",
+          "line": "6+ REB",
           "score": 76.9,
           "confidence": 77,
           "tier": "B",
-          "reason": "Sample 2 | L10 100% | L5 100% | USG 26% | MIN 27.0 | REB matchup 0.87x"
+          "reason": "Sample 2 | L10 100% | L5 100% | USG 28% | MIN 27.0 | REB matchup 0.87x"
         },
         {
           "player_id": "4433633",
@@ -446,7 +446,7 @@
           "score": 74.45,
           "confidence": 74,
           "tier": "B",
-          "reason": "Sample 1 | L10 100% | L5 100% | USG 23% | MIN 29.0 | REB matchup 0.87x | Anti-correlation: same team as Anneli Maley"
+          "reason": "Sample 1 | L10 100% | L5 100% | USG 25% | MIN 29.0 | REB matchup 0.87x | Anti-correlation: same team as Anneli Maley"
         }
       ]
     },
@@ -466,6 +466,17 @@
           "reason": "Sample 1 | L10 100% | L5 100% | USG 27% | MIN 29.0 | 3PM matchup 1.25x | Home boost"
         },
         {
+          "player_id": "4038379",
+          "player_name": "Marine Johannes",
+          "team": "NY",
+          "opponent": "CON",
+          "line": "4+ 3PM",
+          "score": 85.7,
+          "confidence": 86,
+          "tier": "B",
+          "reason": "Sample 1 | L10 100% | L5 100% | USG 25% | MIN 29.0 | 3PM matchup 1.25x"
+        },
+        {
           "player_id": "4433730",
           "player_name": "Paige Bueckers",
           "team": "DAL",
@@ -475,17 +486,6 @@
           "confidence": 84,
           "tier": "C",
           "reason": "Sample 1 | L10 100% | L5 100% | USG 27% | MIN 20.0 | 3PM matchup 1.25x | Home boost | Minutes watch | Anti-correlation: same team as Maddy Siegrist"
-        },
-        {
-          "player_id": "4038379",
-          "player_name": "Marine Johannes",
-          "team": "NY",
-          "opponent": "CON",
-          "line": "4+ 3PM",
-          "score": 81.7,
-          "confidence": 82,
-          "tier": "B",
-          "reason": "Sample 1 | L10 100% | L5 100% | USG 23% | MIN 29.0 | 3PM matchup 1.25x"
         },
         {
           "player_id": "3065570",
@@ -508,6 +508,17 @@
           "confidence": 76,
           "tier": "C",
           "reason": "Sample 1 | L10 100% | L5 100% | USG 24% | MIN 17.0 | 3PM matchup 1.19x | Minutes watch | Anti-correlation: same team as Kelsey Plum"
+        },
+        {
+          "player_id": "4703579",
+          "player_name": "Derin Erdogan",
+          "team": "NY",
+          "opponent": "CON",
+          "line": "1+ 3PM",
+          "score": 75.81,
+          "confidence": 76,
+          "tier": "C",
+          "reason": "Sample 2 | L10 100% | L5 100% | USG 20% | MIN 16.0 | 3PM matchup 1.25x | Minutes watch | Anti-correlation: same team as Marine Johannes"
         },
         {
           "player_id": "2529122",
@@ -541,17 +552,6 @@
           "confidence": 74,
           "tier": "B",
           "reason": "Sample 1 | L10 100% | L5 100% | USG 42% | MIN 22.0 | 3PM matchup 0.75x | Home boost | Minutes watch | Anti-correlation: same team as Luisa Geiselsoder"
-        },
-        {
-          "player_id": "4703579",
-          "player_name": "Derin Erdogan",
-          "team": "NY",
-          "opponent": "CON",
-          "line": "1+ 3PM",
-          "score": 74.18,
-          "confidence": 74,
-          "tier": "C",
-          "reason": "Sample 2 | L10 100% | L5 100% | USG 18% | MIN 16.0 | 3PM matchup 1.25x | Minutes watch | Anti-correlation: same team as Marine Johannes"
         },
         {
           "player_id": "4898898",
@@ -647,7 +647,7 @@
           "score": 79.7,
           "confidence": 80,
           "tier": "B",
-          "reason": "Sample 1 | L10 100% | L5 100% | USG 36% | MIN 31.0 | AST matchup 0.91x | Home boost",
+          "reason": "Sample 1 | L10 100% | L5 100% | USG 36% | MIN 31.0 | AST matchup 0.90x | Home boost",
           "market": "AST",
           "ladder": [
             "3+",
@@ -696,6 +696,17 @@
         "reason": "Sample 1 | L10 100% | L5 100% | USG 27% | MIN 29.0 | PTS matchup 0.99x | Home boost | Anti-correlation: same team as Aziaha James"
       },
       {
+        "player_id": "4281930",
+        "player_name": "Anneli Maley",
+        "team": "NY",
+        "opponent": "CON",
+        "line": "12+ PTS",
+        "score": 80.47,
+        "confidence": 80,
+        "tier": "B",
+        "reason": "Sample 2 | L10 100% | L5 100% | USG 28% | MIN 27.0 | PTS matchup 0.99x"
+      },
+      {
         "player_id": "4065870",
         "player_name": "Jackie Young",
         "team": "LV",
@@ -705,17 +716,6 @@
         "confidence": 80,
         "tier": "B",
         "reason": "Sample 1 | L10 100% | L5 100% | USG 41% | MIN 26.0 | PTS matchup 1.01x"
-      },
-      {
-        "player_id": "4281930",
-        "player_name": "Anneli Maley",
-        "team": "NY",
-        "opponent": "CON",
-        "line": "12+ PTS",
-        "score": 78.93,
-        "confidence": 79,
-        "tier": "B",
-        "reason": "Sample 2 | L10 100% | L5 100% | USG 26% | MIN 27.0 | PTS matchup 0.99x"
       },
       {
         "player_id": "4433730",
@@ -740,6 +740,17 @@
         "reason": "Sample 1 | L10 100% | L5 100% | USG 25% | MIN 27.0 | PTS matchup 1.01x | Anti-correlation: same team as Jackie Young"
       },
       {
+        "player_id": "4038379",
+        "player_name": "Marine Johannes",
+        "team": "NY",
+        "opponent": "CON",
+        "line": "11+ PTS",
+        "score": 76.15,
+        "confidence": 76,
+        "tier": "B",
+        "reason": "Sample 1 | L10 100% | L5 100% | USG 25% | MIN 29.0 | PTS matchup 0.99x | Anti-correlation: same team as Anneli Maley"
+      },
+      {
         "player_id": "4682797",
         "player_name": "Luisa Geiselsoder",
         "team": "POR",
@@ -760,17 +771,6 @@
         "confidence": 75,
         "tier": "C",
         "reason": "Sample 1 | L10 100% | L5 100% | USG 29% | MIN 20.0 | PTS matchup 1.01x | Minutes watch | Anti-correlation: same team as Jackie Young"
-      },
-      {
-        "player_id": "5208982",
-        "player_name": "Carla Leite",
-        "team": "POR",
-        "opponent": "LA",
-        "line": "12+ PTS",
-        "score": 74.45,
-        "confidence": 74,
-        "tier": "B",
-        "reason": "Sample 1 | L10 100% | L5 100% | USG 42% | MIN 22.0 | PTS matchup 0.80x | Home boost | Minutes watch | Anti-correlation: same team as Luisa Geiselsoder"
       }
     ]
   },
@@ -803,7 +803,7 @@
           "player_id": "5208983",
           "player_name": "Isobel Borlase",
           "line": "2+ AST",
-          "score": 75.37,
+          "score": 75.18,
           "confidence": 75,
           "tier": "C"
         }
@@ -1043,7 +1043,7 @@
             "score": 76.25,
             "confidence": 76,
             "tier": "C",
-            "reason": "Sample 2 | L10 100% | L5 100% | USG 19% | MIN 19.5 | AST matchup 1.15x | Minutes watch"
+            "reason": "Sample 2 | L10 100% | L5 100% | USG 19% | MIN 19.5 | AST matchup 1.14x | Minutes watch"
           },
           {
             "player_id": "5208983",
@@ -1051,10 +1051,10 @@
             "team": "ATL",
             "opponent": "WSH",
             "line": "2+ AST",
-            "score": 75.37,
+            "score": 75.18,
             "confidence": 75,
             "tier": "C",
-            "reason": "Sample 2 | L10 100% | L5 100% | USG 21% | MIN 19.0 | AST matchup 1.00x | Home boost | Minutes watch"
+            "reason": "Sample 2 | L10 100% | L5 100% | USG 21% | MIN 19.0 | AST matchup 0.99x | Home boost | Minutes watch"
           },
           {
             "player_id": "4433690",
@@ -1062,10 +1062,10 @@
             "team": "ATL",
             "opponent": "WSH",
             "line": "2+ AST",
-            "score": 73.16,
+            "score": 72.97,
             "confidence": 73,
             "tier": "B",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 21% | MIN 22.0 | AST matchup 1.00x | Home boost | Minutes watch | Anti-correlation: same team as Isobel Borlase"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 21% | MIN 22.0 | AST matchup 0.99x | Home boost | Minutes watch | Anti-correlation: same team as Isobel Borlase"
           },
           {
             "player_id": "4704180",
@@ -1076,7 +1076,7 @@
             "score": 69.68,
             "confidence": 70,
             "tier": "C",
-            "reason": "Sample 2 | L10 100% | L5 100% | USG 13% | MIN 15.0 | AST matchup 1.15x | Minutes watch | Anti-correlation: same team as Sonia Citron"
+            "reason": "Sample 2 | L10 100% | L5 100% | USG 13% | MIN 15.0 | AST matchup 1.14x | Minutes watch | Anti-correlation: same team as Sonia Citron"
           },
           {
             "player_id": "4433815",
@@ -1087,7 +1087,7 @@
             "score": 67.75,
             "confidence": 68,
             "tier": "C",
-            "reason": "Sample 2 | L10 100% | L5 100% | USG 11% | MIN 19.0 | AST matchup 1.15x | Minutes watch | Anti-correlation: same team as Sonia Citron"
+            "reason": "Sample 2 | L10 100% | L5 100% | USG 11% | MIN 19.0 | AST matchup 1.14x | Minutes watch | Anti-correlation: same team as Sonia Citron"
           },
           {
             "player_id": "4398674",
@@ -1095,10 +1095,10 @@
             "team": "ATL",
             "opponent": "WSH",
             "line": "2+ AST",
-            "score": 63.52,
-            "confidence": 64,
+            "score": 63.33,
+            "confidence": 63,
             "tier": "C",
-            "reason": "Sample 2 | L10 100% | L5 100% | USG 9% | MIN 12.5 | AST matchup 1.00x | Home boost | Minutes watch | Anti-correlation: same team as Isobel Borlase"
+            "reason": "Sample 2 | L10 100% | L5 100% | USG 9% | MIN 12.5 | AST matchup 0.99x | Home boost | Minutes watch | Anti-correlation: same team as Isobel Borlase"
           },
           {
             "player_id": "3907713",
@@ -1106,10 +1106,10 @@
             "team": "ATL",
             "opponent": "WSH",
             "line": "4+ AST",
-            "score": 62.79,
+            "score": 62.6,
             "confidence": 63,
             "tier": "B",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 9% | MIN 22.0 | AST matchup 1.00x | Home boost | Minutes watch | Anti-correlation: same team as Isobel Borlase"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 9% | MIN 22.0 | AST matchup 0.99x | Home boost | Minutes watch | Anti-correlation: same team as Isobel Borlase"
           },
           {
             "player_id": "5105737",
@@ -1120,7 +1120,7 @@
             "score": 61.15,
             "confidence": 61,
             "tier": "C",
-            "reason": "Sample 2 | L10 50% | L5 50% | USG 26% | MIN 24.5 | AST matchup 1.15x | Anti-correlation: same team as Sonia Citron"
+            "reason": "Sample 2 | L10 50% | L5 50% | USG 26% | MIN 24.5 | AST matchup 1.14x | Anti-correlation: same team as Sonia Citron"
           },
           {
             "player_id": "4583144",
@@ -1131,7 +1131,7 @@
             "score": 54.57,
             "confidence": 55,
             "tier": "C",
-            "reason": "Sample 2 | L10 50% | L5 50% | USG 19% | MIN 25.0 | AST matchup 1.15x | Anti-correlation: same team as Sonia Citron"
+            "reason": "Sample 2 | L10 50% | L5 50% | USG 19% | MIN 25.0 | AST matchup 1.14x | Anti-correlation: same team as Sonia Citron"
           },
           {
             "player_id": "4433411",
@@ -1142,7 +1142,7 @@
             "score": 48.51,
             "confidence": 49,
             "tier": "C",
-            "reason": "Sample 2 | L10 50% | L5 50% | USG 17% | MIN 20.0 | AST matchup 1.15x | Minutes watch | Anti-correlation: same team as Sonia Citron"
+            "reason": "Sample 2 | L10 50% | L5 50% | USG 17% | MIN 20.0 | AST matchup 1.14x | Minutes watch | Anti-correlation: same team as Sonia Citron"
           }
         ],
         "3PM": [
@@ -1282,8 +1282,17 @@
           "player_id": "4038379",
           "player_name": "Marine Johannes",
           "line": "4+ 3PM",
-          "score": 81.7,
-          "confidence": 82,
+          "score": 85.7,
+          "confidence": 86,
+          "tier": "B"
+        },
+        {
+          "market": "PTS",
+          "player_id": "4281930",
+          "player_name": "Anneli Maley",
+          "line": "12+ PTS",
+          "score": 80.47,
+          "confidence": 80,
           "tier": "B"
         },
         {
@@ -1294,15 +1303,6 @@
           "score": 79.77,
           "confidence": 80,
           "tier": "B"
-        },
-        {
-          "market": "REB",
-          "player_id": "4684384",
-          "player_name": "Aneesah Morrow",
-          "line": "7+ REB",
-          "score": 79.29,
-          "confidence": 79,
-          "tier": "C"
         }
       ],
       "markets": {
@@ -1313,10 +1313,10 @@
             "team": "NY",
             "opponent": "CON",
             "line": "12+ PTS",
-            "score": 78.93,
-            "confidence": 79,
+            "score": 80.47,
+            "confidence": 80,
             "tier": "B",
-            "reason": "Sample 2 | L10 100% | L5 100% | USG 26% | MIN 27.0 | PTS matchup 0.99x"
+            "reason": "Sample 2 | L10 100% | L5 100% | USG 28% | MIN 27.0 | PTS matchup 0.99x"
           },
           {
             "player_id": "4038379",
@@ -1324,10 +1324,10 @@
             "team": "NY",
             "opponent": "CON",
             "line": "11+ PTS",
-            "score": 70.53,
-            "confidence": 71,
+            "score": 76.15,
+            "confidence": 76,
             "tier": "B",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 23% | MIN 29.0 | PTS matchup 0.99x | Anti-correlation: same team as Anneli Maley"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 25% | MIN 29.0 | PTS matchup 0.99x | Anti-correlation: same team as Anneli Maley"
           },
           {
             "player_id": "5345320",
@@ -1335,10 +1335,10 @@
             "team": "NY",
             "opponent": "CON",
             "line": "11+ PTS",
-            "score": 62.07,
-            "confidence": 62,
+            "score": 63.26,
+            "confidence": 63,
             "tier": "B",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 17% | MIN 22.0 | PTS matchup 0.99x | Minutes watch | Anti-correlation: same team as Anneli Maley"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 19% | MIN 22.0 | PTS matchup 0.99x | Minutes watch | Anti-correlation: same team as Anneli Maley"
           },
           {
             "player_id": "4684384",
@@ -1385,6 +1385,17 @@
             "reason": "Sample 2 | L10 50% | L5 50% | USG 18% | MIN 18.5 | PTS matchup 1.11x | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow"
           },
           {
+            "player_id": "4337216",
+            "player_name": "Han Xu",
+            "team": "NY",
+            "opponent": "CON",
+            "line": "10+ PTS",
+            "score": 48.91,
+            "confidence": 49,
+            "tier": "C",
+            "reason": "Sample 2 | L10 50% | L5 50% | USG 25% | MIN 18.5 | PTS matchup 0.99x | Minutes watch | Anti-correlation: same team as Anneli Maley"
+          },
+          {
             "player_id": "4433635",
             "player_name": "Diamond Miller",
             "team": "CON",
@@ -1405,17 +1416,6 @@
             "confidence": 47,
             "tier": "C",
             "reason": "Sample 2 | L10 50% | L5 50% | USG 14% | MIN 19.0 | PTS matchup 1.11x | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow"
-          },
-          {
-            "player_id": "4337216",
-            "player_name": "Han Xu",
-            "team": "NY",
-            "opponent": "CON",
-            "line": "10+ PTS",
-            "score": 43.28,
-            "confidence": 43,
-            "tier": "C",
-            "reason": "Sample 2 | L10 50% | L5 50% | USG 23% | MIN 18.5 | PTS matchup 0.99x | Minutes watch | Anti-correlation: same team as Anneli Maley"
           }
         ],
         "REB": [
@@ -1435,11 +1435,11 @@
             "player_name": "Anneli Maley",
             "team": "NY",
             "opponent": "CON",
-            "line": "5+ REB",
+            "line": "6+ REB",
             "score": 76.9,
             "confidence": 77,
             "tier": "B",
-            "reason": "Sample 2 | L10 100% | L5 100% | USG 26% | MIN 27.0 | REB matchup 0.87x"
+            "reason": "Sample 2 | L10 100% | L5 100% | USG 28% | MIN 27.0 | REB matchup 0.87x"
           },
           {
             "player_id": "4398966",
@@ -1461,7 +1461,7 @@
             "score": 74.45,
             "confidence": 74,
             "tier": "B",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 23% | MIN 29.0 | REB matchup 0.87x | Anti-correlation: same team as Anneli Maley"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 25% | MIN 29.0 | REB matchup 0.87x | Anti-correlation: same team as Anneli Maley"
           },
           {
             "player_id": "2490553",
@@ -1475,26 +1475,15 @@
             "reason": "Sample 2 | L10 100% | L5 100% | USG 18% | MIN 18.5 | REB matchup 0.97x | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow"
           },
           {
-            "player_id": "4595823",
-            "player_name": "Alex Fowler",
-            "team": "NY",
-            "opponent": "CON",
-            "line": "3+ REB",
-            "score": 66.22,
-            "confidence": 66,
-            "tier": "C",
-            "reason": "Sample 2 | L10 100% | L5 100% | USG 16% | MIN 19.0 | REB matchup 0.87x | Minutes watch | Anti-correlation: same team as Anneli Maley"
-          },
-          {
             "player_id": "2998928",
             "player_name": "Breanna Stewart",
             "team": "NY",
             "opponent": "CON",
             "line": "5+ REB",
-            "score": 65.55,
-            "confidence": 66,
+            "score": 66.92,
+            "confidence": 67,
             "tier": "C",
-            "reason": "Sample 2 | L10 100% | L5 100% | USG 15% | MIN 15.0 | REB matchup 0.87x | Minutes watch | Anti-correlation: same team as Anneli Maley"
+            "reason": "Sample 2 | L10 100% | L5 100% | USG 17% | MIN 15.0 | REB matchup 0.87x | Minutes watch | Anti-correlation: same team as Anneli Maley"
           },
           {
             "player_id": "2999101",
@@ -1502,10 +1491,10 @@
             "team": "NY",
             "opponent": "CON",
             "line": "5+ REB",
-            "score": 63.7,
-            "confidence": 64,
+            "score": 64.89,
+            "confidence": 65,
             "tier": "C",
-            "reason": "Sample 2 | L10 100% | L5 100% | USG 13% | MIN 17.0 | REB matchup 0.87x | Minutes watch | Anti-correlation: same team as Anneli Maley"
+            "reason": "Sample 2 | L10 100% | L5 100% | USG 15% | MIN 17.0 | REB matchup 0.87x | Minutes watch | Anti-correlation: same team as Anneli Maley"
           },
           {
             "player_id": "3922628",
@@ -1528,6 +1517,17 @@
             "confidence": 47,
             "tier": "C",
             "reason": "Sample 2 | L10 50% | L5 50% | USG 14% | MIN 17.0 | REB matchup 0.97x | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow"
+          },
+          {
+            "player_id": "5105732",
+            "player_name": "Raegan Beers",
+            "team": "CON",
+            "opponent": "NY",
+            "line": "3+ REB",
+            "score": 43.3,
+            "confidence": 43,
+            "tier": "C",
+            "reason": "Sample 2 | L10 50% | L5 50% | USG 11% | MIN 12.5 | REB matchup 0.97x | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow"
           }
         ],
         "AST": [
@@ -1543,6 +1543,17 @@
             "reason": "Sample 2 | L10 100% | L5 100% | USG 19% | MIN 22.5 | AST matchup 1.25x | Home boost | Minutes watch"
           },
           {
+            "player_id": "4038379",
+            "player_name": "Marine Johannes",
+            "team": "NY",
+            "opponent": "CON",
+            "line": "3+ AST",
+            "score": 79.32,
+            "confidence": 79,
+            "tier": "B",
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 25% | MIN 29.0 | AST matchup 0.99x"
+          },
+          {
             "player_id": "4433514",
             "player_name": "Saniya Rivers",
             "team": "CON",
@@ -1554,37 +1565,15 @@
             "reason": "Sample 2 | L10 100% | L5 100% | USG 18% | MIN 23.5 | AST matchup 1.25x | Home boost | Minutes watch | Anti-correlation: same team as Kennedy Burke"
           },
           {
-            "player_id": "4038379",
-            "player_name": "Marine Johannes",
-            "team": "NY",
-            "opponent": "CON",
-            "line": "3+ AST",
-            "score": 74.0,
-            "confidence": 74,
-            "tier": "B",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 23% | MIN 29.0 | AST matchup 0.97x"
-          },
-          {
-            "player_id": "4066533",
-            "player_name": "Sabrina Ionescu",
-            "team": "NY",
-            "opponent": "CON",
-            "line": "2+ AST",
-            "score": 64.63,
-            "confidence": 65,
-            "tier": "C",
-            "reason": "Sample 2 | L10 100% | L5 100% | USG 16% | MIN 15.5 | AST matchup 0.97x | Minutes watch | Anti-correlation: same team as Marine Johannes"
-          },
-          {
             "player_id": "5345320",
             "player_name": "Pauline Astier",
             "team": "NY",
             "opponent": "CON",
             "line": "3+ AST",
-            "score": 64.09,
-            "confidence": 64,
+            "score": 66.93,
+            "confidence": 67,
             "tier": "B",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 17% | MIN 22.0 | AST matchup 0.97x | Minutes watch | Anti-correlation: same team as Marine Johannes"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 19% | MIN 22.0 | AST matchup 0.99x | Minutes watch | Anti-correlation: same team as Marine Johannes"
           },
           {
             "player_id": "4281930",
@@ -1592,10 +1581,10 @@
             "team": "NY",
             "opponent": "CON",
             "line": "2+ AST",
-            "score": 53.45,
-            "confidence": 53,
+            "score": 54.77,
+            "confidence": 55,
             "tier": "C",
-            "reason": "Sample 2 | L10 50% | L5 50% | USG 26% | MIN 27.0 | AST matchup 0.97x | Anti-correlation: same team as Marine Johannes"
+            "reason": "Sample 2 | L10 50% | L5 50% | USG 28% | MIN 27.0 | AST matchup 0.99x | Anti-correlation: same team as Marine Johannes"
           },
           {
             "player_id": "2490553",
@@ -1640,6 +1629,17 @@
             "confidence": 48,
             "tier": "C",
             "reason": "Sample 2 | L10 50% | L5 50% | USG 12% | MIN 15.0 | AST matchup 1.25x | Home boost | Minutes watch | Anti-correlation: same team as Kennedy Burke"
+          },
+          {
+            "player_id": "5105732",
+            "player_name": "Raegan Beers",
+            "team": "CON",
+            "opponent": "NY",
+            "line": "2+ AST",
+            "score": 46.92,
+            "confidence": 47,
+            "tier": "C",
+            "reason": "Sample 2 | L10 50% | L5 50% | USG 11% | MIN 12.5 | AST matchup 1.25x | Home boost | Minutes watch | Anti-correlation: same team as Kennedy Burke"
           }
         ],
         "3PM": [
@@ -1649,10 +1649,10 @@
             "team": "NY",
             "opponent": "CON",
             "line": "4+ 3PM",
-            "score": 81.7,
-            "confidence": 82,
+            "score": 85.7,
+            "confidence": 86,
             "tier": "B",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 23% | MIN 29.0 | 3PM matchup 1.25x"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 25% | MIN 29.0 | 3PM matchup 1.25x"
           },
           {
             "player_id": "4703579",
@@ -1660,10 +1660,10 @@
             "team": "NY",
             "opponent": "CON",
             "line": "1+ 3PM",
-            "score": 74.18,
-            "confidence": 74,
+            "score": 75.81,
+            "confidence": 76,
             "tier": "C",
-            "reason": "Sample 2 | L10 100% | L5 100% | USG 18% | MIN 16.0 | 3PM matchup 1.25x | Minutes watch | Anti-correlation: same team as Marine Johannes"
+            "reason": "Sample 2 | L10 100% | L5 100% | USG 20% | MIN 16.0 | 3PM matchup 1.25x | Minutes watch | Anti-correlation: same team as Marine Johannes"
           },
           {
             "player_id": "4898898",
@@ -1696,7 +1696,7 @@
             "score": 61.15,
             "confidence": 61,
             "tier": "C",
-            "reason": "Sample 2 | L10 50% | L5 50% | USG 26% | MIN 27.0 | 3PM matchup 1.25x | Anti-correlation: same team as Marine Johannes"
+            "reason": "Sample 2 | L10 50% | L5 50% | USG 28% | MIN 27.0 | 3PM matchup 1.25x | Anti-correlation: same team as Marine Johannes"
           },
           {
             "player_id": "4684384",
@@ -1708,6 +1708,17 @@
             "confidence": 61,
             "tier": "C",
             "reason": "Sample 2 | L10 50% | L5 50% | USG 25% | MIN 19.5 | 3PM matchup 1.12x | Home boost | Minutes watch | Anti-correlation: same team as Gianna Kneepkens"
+          },
+          {
+            "player_id": "4337216",
+            "player_name": "Han Xu",
+            "team": "NY",
+            "opponent": "CON",
+            "line": "1+ 3PM",
+            "score": 57.15,
+            "confidence": 57,
+            "tier": "C",
+            "reason": "Sample 2 | L10 50% | L5 50% | USG 25% | MIN 18.5 | 3PM matchup 1.25x | Minutes watch | Anti-correlation: same team as Marine Johannes"
           },
           {
             "player_id": "3922628",
@@ -1732,26 +1743,15 @@
             "reason": "Sample 2 | L10 50% | L5 50% | USG 18% | MIN 18.5 | 3PM matchup 1.12x | Home boost | Minutes watch | Anti-correlation: same team as Gianna Kneepkens"
           },
           {
-            "player_id": "4337216",
-            "player_name": "Han Xu",
-            "team": "NY",
-            "opponent": "CON",
-            "line": "1+ 3PM",
-            "score": 53.15,
-            "confidence": 53,
-            "tier": "C",
-            "reason": "Sample 2 | L10 50% | L5 50% | USG 23% | MIN 18.5 | 3PM matchup 1.25x | Minutes watch | Anti-correlation: same team as Marine Johannes"
-          },
-          {
             "player_id": "2998928",
             "player_name": "Breanna Stewart",
             "team": "NY",
             "opponent": "CON",
             "line": "1+ 3PM",
-            "score": 47.05,
-            "confidence": 47,
+            "score": 48.42,
+            "confidence": 48,
             "tier": "C",
-            "reason": "Sample 2 | L10 50% | L5 50% | USG 15% | MIN 15.0 | 3PM matchup 1.25x | Minutes watch | Anti-correlation: same team as Marine Johannes"
+            "reason": "Sample 2 | L10 50% | L5 50% | USG 17% | MIN 15.0 | 3PM matchup 1.25x | Minutes watch | Anti-correlation: same team as Marine Johannes"
           }
         ],
         "ML": [
@@ -1772,7 +1772,7 @@
     {
       "game_id": "401866520",
       "matchup": "LV @ DAL",
-      "time": "5/3 - 7:00 PM EDT",
+      "time": "0.0 - 1st",
       "top_signals": [
         {
           "market": "ML",
@@ -2037,7 +2037,7 @@
             "score": 79.7,
             "confidence": 80,
             "tier": "B",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 36% | MIN 31.0 | AST matchup 0.91x | Home boost"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 36% | MIN 31.0 | AST matchup 0.90x | Home boost"
           },
           {
             "player_id": "2529122",
@@ -2048,7 +2048,7 @@
             "score": 75.7,
             "confidence": 76,
             "tier": "B",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 25% | MIN 27.0 | AST matchup 0.91x"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 25% | MIN 27.0 | AST matchup 0.90x"
           },
           {
             "player_id": "4065870",
@@ -2059,7 +2059,7 @@
             "score": 74.45,
             "confidence": 74,
             "tier": "B",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 41% | MIN 26.0 | AST matchup 0.91x | Anti-correlation: same team as Chelsea Gray"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 41% | MIN 26.0 | AST matchup 0.90x | Anti-correlation: same team as Chelsea Gray"
           },
           {
             "player_id": "4433730",
@@ -2070,7 +2070,7 @@
             "score": 74.45,
             "confidence": 74,
             "tier": "C",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 27% | MIN 20.0 | AST matchup 0.91x | Home boost | Minutes watch | Anti-correlation: same team as Aziaha James"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 27% | MIN 20.0 | AST matchup 0.90x | Home boost | Minutes watch | Anti-correlation: same team as Aziaha James"
           },
           {
             "player_id": "4433633",
@@ -2081,7 +2081,7 @@
             "score": 70.45,
             "confidence": 70,
             "tier": "B",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 24% | MIN 26.0 | AST matchup 0.91x | Anti-correlation: same team as Chelsea Gray"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 24% | MIN 26.0 | AST matchup 0.90x | Anti-correlation: same team as Chelsea Gray"
           },
           {
             "player_id": "4280892",
@@ -2092,7 +2092,7 @@
             "score": 70.45,
             "confidence": 70,
             "tier": "C",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 29% | MIN 20.0 | AST matchup 0.91x | Minutes watch | Anti-correlation: same team as Chelsea Gray"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 29% | MIN 20.0 | AST matchup 0.90x | Minutes watch | Anti-correlation: same team as Chelsea Gray"
           },
           {
             "player_id": "4336633",
@@ -2103,7 +2103,7 @@
             "score": 65.78,
             "confidence": 66,
             "tier": "C",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 17% | MIN 12.0 | AST matchup 0.91x | Home boost | Minutes watch | Anti-correlation: same team as Aziaha James"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 17% | MIN 12.0 | AST matchup 0.90x | Home boost | Minutes watch | Anti-correlation: same team as Aziaha James"
           },
           {
             "player_id": "3913881",
@@ -2114,7 +2114,7 @@
             "score": 63.41,
             "confidence": 63,
             "tier": "C",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 14% | MIN 19.0 | AST matchup 0.91x | Home boost | Minutes watch | Anti-correlation: same team as Aziaha James"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 14% | MIN 19.0 | AST matchup 0.90x | Home boost | Minutes watch | Anti-correlation: same team as Aziaha James"
           },
           {
             "player_id": "2529047",
@@ -2125,7 +2125,7 @@
             "score": 58.48,
             "confidence": 58,
             "tier": "C",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 9% | MIN 15.0 | AST matchup 0.91x | Home boost | Minutes watch | Anti-correlation: same team as Aziaha James"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 9% | MIN 15.0 | AST matchup 0.90x | Home boost | Minutes watch | Anti-correlation: same team as Aziaha James"
           },
           {
             "player_id": "3058908",
@@ -2136,7 +2136,7 @@
             "score": 56.11,
             "confidence": 56,
             "tier": "C",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 6% | MIN 14.0 | AST matchup 0.91x | Home boost | Minutes watch | Anti-correlation: same team as Aziaha James"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 6% | MIN 14.0 | AST matchup 0.90x | Home boost | Minutes watch | Anti-correlation: same team as Aziaha James"
           }
         ],
         "3PM": [
@@ -2269,7 +2269,7 @@
     {
       "game_id": "401866521",
       "matchup": "LA @ POR",
-      "time": "5/3 - 7:00 PM EDT",
+      "time": "1:01 - 1st",
       "top_signals": [
         {
           "market": "ML",
@@ -2534,7 +2534,7 @@
             "score": 75.7,
             "confidence": 76,
             "tier": "C",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 26% | MIN 21.0 | AST matchup 0.85x | Home boost | Minutes watch"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 26% | MIN 21.0 | AST matchup 0.84x | Home boost | Minutes watch"
           },
           {
             "player_id": "5208982",
@@ -2545,7 +2545,7 @@
             "score": 74.45,
             "confidence": 74,
             "tier": "B",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 42% | MIN 22.0 | AST matchup 0.85x | Home boost | Minutes watch | Anti-correlation: same team as Jordan Harrison"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 42% | MIN 22.0 | AST matchup 0.84x | Home boost | Minutes watch | Anti-correlation: same team as Jordan Harrison"
           },
           {
             "player_id": "4609797",
@@ -2553,10 +2553,10 @@
             "team": "LA",
             "opponent": "POR",
             "line": "5+ AST",
-            "score": 74.0,
+            "score": 73.82,
             "confidence": 74,
             "tier": "B",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 25% | MIN 22.0 | AST matchup 0.97x | Minutes watch"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 25% | MIN 22.0 | AST matchup 0.96x | Minutes watch"
           },
           {
             "player_id": "3065570",
@@ -2564,10 +2564,10 @@
             "team": "LA",
             "opponent": "POR",
             "line": "2+ AST",
-            "score": 72.75,
+            "score": 72.57,
             "confidence": 73,
             "tier": "C",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 38% | MIN 21.0 | AST matchup 0.97x | Minutes watch | Anti-correlation: same team as Ta'Niya Latson"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 38% | MIN 21.0 | AST matchup 0.96x | Minutes watch | Anti-correlation: same team as Ta'Niya Latson"
           },
           {
             "player_id": "2566106",
@@ -2575,10 +2575,10 @@
             "team": "LA",
             "opponent": "POR",
             "line": "2+ AST",
-            "score": 62.28,
+            "score": 62.1,
             "confidence": 62,
             "tier": "C",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 15% | MIN 16.0 | AST matchup 0.97x | Minutes watch | Anti-correlation: same team as Ta'Niya Latson"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 15% | MIN 16.0 | AST matchup 0.96x | Minutes watch | Anti-correlation: same team as Ta'Niya Latson"
           },
           {
             "player_id": "3146151",
@@ -2586,10 +2586,10 @@
             "team": "LA",
             "opponent": "POR",
             "line": "3+ AST",
-            "score": 58.58,
-            "confidence": 59,
+            "score": 58.4,
+            "confidence": 58,
             "tier": "B",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 11% | MIN 23.0 | AST matchup 0.97x | Minutes watch | Anti-correlation: same team as Ta'Niya Latson"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 11% | MIN 23.0 | AST matchup 0.96x | Minutes watch | Anti-correlation: same team as Ta'Niya Latson"
           },
           {
             "player_id": "2491214",
@@ -2597,10 +2597,10 @@
             "team": "LA",
             "opponent": "POR",
             "line": "6+ AST",
-            "score": 54.41,
+            "score": 54.23,
             "confidence": 54,
             "tier": "C",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 6% | MIN 15.0 | AST matchup 0.97x | Minutes watch | Anti-correlation: same team as Ta'Niya Latson"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 6% | MIN 15.0 | AST matchup 0.96x | Minutes watch | Anti-correlation: same team as Ta'Niya Latson"
           },
           {
             "player_id": "4595910",
@@ -2611,7 +2611,7 @@
             "score": 29.45,
             "confidence": 29,
             "tier": "C",
-            "reason": "Sample 1 | L10 0% | L5 0% | USG 39% | MIN 28.0 | AST matchup 0.85x | Home boost | Anti-correlation: same team as Jordan Harrison"
+            "reason": "Sample 1 | L10 0% | L5 0% | USG 39% | MIN 28.0 | AST matchup 0.84x | Home boost | Anti-correlation: same team as Jordan Harrison"
           },
           {
             "player_id": "4682797",
@@ -2622,7 +2622,7 @@
             "score": 25.45,
             "confidence": 25,
             "tier": "C",
-            "reason": "Sample 1 | L10 0% | L5 0% | USG 32% | MIN 21.0 | AST matchup 0.85x | Home boost | Minutes watch | Anti-correlation: same team as Jordan Harrison"
+            "reason": "Sample 1 | L10 0% | L5 0% | USG 32% | MIN 21.0 | AST matchup 0.84x | Home boost | Minutes watch | Anti-correlation: same team as Jordan Harrison"
           },
           {
             "player_id": "5209202",
@@ -2633,7 +2633,7 @@
             "score": 25.45,
             "confidence": 25,
             "tier": "C",
-            "reason": "Sample 1 | L10 0% | L5 0% | USG 27% | MIN 21.0 | AST matchup 0.85x | Home boost | Minutes watch | Anti-correlation: same team as Jordan Harrison"
+            "reason": "Sample 1 | L10 0% | L5 0% | USG 27% | MIN 21.0 | AST matchup 0.84x | Home boost | Minutes watch | Anti-correlation: same team as Jordan Harrison"
           }
         ],
         "3PM": [
