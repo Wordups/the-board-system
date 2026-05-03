@@ -1,7 +1,7 @@
 {
   "sport": "TENNIS",
   "date": "2026-05-03",
-  "last_updated": "12:30 AM ET",
+  "last_updated": "1:00 AM ET",
   "pinned_board": {
     "title": "Match Win Top 10",
     "market": "ML",
@@ -62,17 +62,6 @@
         "reason": "Rank 250 vs 250 | Tournament form 1-0 | Peangtarn Plipuech vs Carol Zhao"
       },
       {
-        "player_id": "17166",
-        "player_name": "Chenting Zhu",
-        "team": "WTA",
-        "opponent": "Zheng Wushuang",
-        "line": "Match Winner",
-        "score": 60.0,
-        "confidence": 60,
-        "tier": "B",
-        "reason": "Rank 250 vs 250 | Tournament form 1-0 | Chenting Zhu vs Zheng Wushuang"
-      },
-      {
         "player_id": "5538",
         "player_name": "Hong Yi Cody Wong",
         "team": "WTA",
@@ -115,6 +104,17 @@
         "confidence": 60,
         "tier": "B",
         "reason": "Rank 250 vs 250 | Tournament form 1-0 | Maria Sara Popa vs Raluka Serban"
+      },
+      {
+        "player_id": "3070",
+        "player_name": "Isabella Shinikova",
+        "team": "WTA",
+        "opponent": "Tereza Martincova",
+        "line": "Match Winner",
+        "score": 60.0,
+        "confidence": 60,
+        "tier": "B",
+        "reason": "Rank 250 vs 250 | Tournament form 1-0 | Isabella Shinikova vs Tereza Martincova"
       }
     ]
   },
@@ -722,7 +722,7 @@
     {
       "game_id": "176868",
       "matchup": "Peangtarn Plipuech vs Carol Zhao",
-      "time": "WTA | Jiangxi Open | 2nd",
+      "time": "WTA | Jiangxi Open | 3rd",
       "top_signals": [
         {
           "market": "Sets",
@@ -797,25 +797,16 @@
     {
       "game_id": "176867",
       "matchup": "Chenting Zhu vs Zheng Wushuang",
-      "time": "WTA | Jiangxi Open | 2nd",
+      "time": "WTA | Jiangxi Open | Final",
       "top_signals": [
         {
           "market": "Sets",
-          "player_name": "Chenting Zhu",
+          "player_name": "Zheng Wushuang",
           "line": "Over 2.5 Sets",
-          "score": 73.0,
-          "confidence": 73,
+          "score": 69.4,
+          "confidence": 69,
           "tier": "B",
           "player_id": "176867-sets"
-        },
-        {
-          "market": "ML",
-          "player_name": "Chenting Zhu",
-          "line": "Match Winner",
-          "score": 60.0,
-          "confidence": 60,
-          "tier": "B",
-          "player_id": "17166"
         },
         {
           "market": "O/U",
@@ -825,19 +816,28 @@
           "confidence": 58,
           "tier": "C",
           "player_id": "176867-ou"
+        },
+        {
+          "market": "ML",
+          "player_name": "Zheng Wushuang",
+          "line": "Match Winner",
+          "score": 53.52,
+          "confidence": 54,
+          "tier": "C",
+          "player_id": "2608"
         }
       ],
       "markets": {
         "ML": [
           {
-            "player_id": "17166",
-            "player_name": "Chenting Zhu",
+            "player_id": "2608",
+            "player_name": "Zheng Wushuang",
             "team": "WTA",
-            "opponent": "Zheng Wushuang",
+            "opponent": "Chenting Zhu",
             "line": "Match Winner",
-            "score": 60.0,
-            "confidence": 60,
-            "tier": "B",
+            "score": 53.52,
+            "confidence": 54,
+            "tier": "C",
             "reason": "Rank 250 vs 250 | Tournament form 1-0 | Chenting Zhu vs Zheng Wushuang"
           }
         ],
@@ -857,12 +857,12 @@
         "Sets": [
           {
             "player_id": "176867-sets",
-            "player_name": "Chenting Zhu",
+            "player_name": "Zheng Wushuang",
             "team": "WTA",
-            "opponent": "Zheng Wushuang",
+            "opponent": "Chenting Zhu",
             "line": "Over 2.5 Sets",
-            "score": 73.0,
-            "confidence": 73,
+            "score": 69.4,
+            "confidence": 69,
             "tier": "B",
             "reason": "Best-of-3 | Tournament sets 2-0"
           }
@@ -872,7 +872,7 @@
     {
       "game_id": "176869",
       "matchup": "Hong Yi Cody Wong vs Varvara Panshina",
-      "time": "WTA | Jiangxi Open | 5/3 - 12:40 AM EDT",
+      "time": "WTA | Jiangxi Open | 1st",
       "top_signals": [
         {
           "market": "Sets",
@@ -947,7 +947,7 @@
     {
       "game_id": "176866",
       "matchup": "Li Zongyu vs Priska Nugroho",
-      "time": "WTA | Jiangxi Open | 5/3 - 1:00 AM EDT",
+      "time": "WTA | Jiangxi Open | 5/3 - 1:30 AM EDT",
       "top_signals": [
         {
           "market": "Sets",
