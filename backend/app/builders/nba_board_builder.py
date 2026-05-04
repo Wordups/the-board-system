@@ -3,6 +3,7 @@ from __future__ import annotations
 from collections import defaultdict
 import json
 
+from app.builders.nba_research_board import build_nba_research_board
 from app.builders.universal_game_builder import empty_markets_for
 from app.collectors.nba_collector import NBA_MARKETS, collect_nba_raw_data
 from app.outputs.json_writer import write_json
@@ -84,6 +85,11 @@ def build_nba_board(*, config, paths) -> dict:
             "market": "MIX",
             "players": consistency_players,
         },
+        "research_board": build_nba_research_board(
+            candidates=all_candidates,
+            config=config,
+            paths=paths,
+        ),
         "games": games_output,
     }
 
