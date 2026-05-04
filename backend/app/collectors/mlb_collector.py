@@ -15,6 +15,7 @@ from app.utils.dates import now_et, today_et
 STATS_API_BASE = "https://statsapi.mlb.com/api/v1"
 REQUEST_TIMEOUT = 20
 MAX_WORKERS = 8
+VS_PLAYER_CACHE: dict[tuple[str, str], dict[str, float]] = {}
 
 
 def collect_mlb_raw_data(data_raw_dir: Path) -> dict[str, Any]:
@@ -134,6 +135,16 @@ def build_game_payload(
     home_team = home["team"]
     away_abbr = team_abbreviation(away_team)
     home_abbr = team_abbreviation(home_team)
+    away_pitcher_profile = resolve_pitcher_profile(
+        probable_pitcher=away.get("probablePitcher"),
+        roster=rosters[away_team["id"]],
+        season=season,
+    )
+    home_pitcher_profile = resolve_pitcher_profile(
+        probable_pitcher=home.get("probablePitcher"),
+        roster=rosters[home_team["id"]],
+        season=season,
+    )
 
     players = []
     players.extend(
@@ -142,7 +153,7 @@ def build_game_payload(
             team_abbr=away_abbr,
             opponent_abbr=home_abbr,
             game_id=f"{away_abbr.lower()}-{home_abbr.lower()}-{slate_date}",
-            opposing_pitcher=home.get("probablePitcher"),
+            opposing_pitcher=home_pitcher_profile,
         )
     )
     players.extend(
@@ -151,12 +162,12 @@ def build_game_payload(
             team_abbr=home_abbr,
             opponent_abbr=away_abbr,
             game_id=f"{away_abbr.lower()}-{home_abbr.lower()}-{slate_date}",
-            opposing_pitcher=away.get("probablePitcher"),
+            opposing_pitcher=away_pitcher_profile,
         )
     )
     players.extend(
         build_pitcher_inputs(
-            probable_pitcher=away.get("probablePitcher"),
+            probable_pitcher=away_pitcher_profile,
             roster=rosters[away_team["id"]],
             team_abbr=away_abbr,
             opponent_abbr=home_abbr,
@@ -167,7 +178,7 @@ def build_game_payload(
     )
     players.extend(
         build_pitcher_inputs(
-            probable_pitcher=home.get("probablePitcher"),
+            probable_pitcher=home_pitcher_profile,
             roster=rosters[home_team["id"]],
             team_abbr=home_abbr,
             opponent_abbr=away_abbr,
@@ -253,6 +264,16 @@ def build_hitter_inputs(
         season_pa_per_game = season_pa / season_games
         season_hr_rate = smoothed_rate(season_hr, season_pa, prior_rate=0.032, stabilization=90)
         history_metrics = historical_hr_metrics(person, current_season=season)
+        platoon_edge = platoon_edge_value(person, opposing_pitcher)
+        vs_pitcher = (
+            fetch_vs_pitcher_profile(
+                hitter_id=str(person["id"]),
+                pitcher_id=str(opposing_pitcher.get("id") or ""),
+            )
+            if opposing_pitcher and index <= 6
+            else {}
+        )
+        vs_pitcher_signal = vs_pitcher_value(vs_pitcher)
 
         recent_5_pa = sum(parse_int(log["stat"].get("plateAppearances")) for log in recent_5)
         recent_10_pa = sum(parse_int(log["stat"].get("plateAppearances")) for log in recent_10)
@@ -301,7 +322,9 @@ def build_hitter_inputs(
             hr_skill * (0.68 + sample_reliability * 0.24)
             + power_boost * 0.05
             + power_history_boost * 0.07
-            + unlucky_power_signal * 0.05,
+            + unlucky_power_signal * 0.05
+            + platoon_edge * 0.04
+            + vs_pitcher_signal * 0.06,
             0.0,
             1.0,
         )
@@ -323,8 +346,27 @@ def build_hitter_inputs(
                 stat_value=adjusted_hr_value,
                 baseline=0.12,
                 trend=clamp(l5_hr_chance * 0.45 + l10_hr_chance * 0.35 + historical_hr_chance * 0.20, 0.0, 1.0),
-                matchup=clamp(pitcher_matchup * 0.44 + power_boost * 0.28 + power_history_boost * 0.18 + lineup_boost * 0.10, 0.0, 1.0),
-                recent_form=clamp(form_boost * 0.22 + power_boost * 0.24 + playing_time * 0.25 + unlucky_power_signal * 0.18 + rising_star_signal * 0.11, 0.0, 1.0),
+                matchup=clamp(
+                    pitcher_matchup * 0.34
+                    + power_boost * 0.22
+                    + power_history_boost * 0.12
+                    + lineup_boost * 0.10
+                    + platoon_edge * 0.10
+                    + vs_pitcher_signal * 0.12,
+                    0.0,
+                    1.0,
+                ),
+                recent_form=clamp(
+                    form_boost * 0.22
+                    + power_boost * 0.22
+                    + playing_time * 0.22
+                    + unlucky_power_signal * 0.16
+                    + rising_star_signal * 0.10
+                    + platoon_edge * 0.04
+                    + vs_pitcher_signal * 0.04,
+                    0.0,
+                    1.0,
+                ),
                 extra={
                     "age": age,
                     "season_hr_per_game": round(hr_per_game, 3),
@@ -346,6 +388,18 @@ def build_hitter_inputs(
                     "unlucky_power_index": round(unlucky_power_signal, 3),
                     "rising_star_index": round(rising_star_signal, 3),
                     "pitcher_matchup": round(pitcher_matchup, 3),
+                    "pitcher_name": (opposing_pitcher or {}).get("fullName", ""),
+                    "pitcher_era": round(parse_decimal((opposing_pitcher or {}).get("era")), 2),
+                    "pitcher_whip": round(parse_decimal((opposing_pitcher or {}).get("whip")), 2),
+                    "pitcher_hr9": round(parse_decimal((opposing_pitcher or {}).get("hr9")), 2),
+                    "pitcher_hr_allowed": parse_int((opposing_pitcher or {}).get("homeRunsAllowed")),
+                    "pitcher_hand": (opposing_pitcher or {}).get("pitchHand", ""),
+                    "platoon_edge": round(platoon_edge, 3),
+                    "vs_pitcher_avg": round(vs_pitcher.get("avg", 0.0), 3),
+                    "vs_pitcher_ops": round(vs_pitcher.get("ops", 0.0), 3),
+                    "vs_pitcher_hr": parse_int(vs_pitcher.get("home_runs")),
+                    "vs_pitcher_pa": parse_int(vs_pitcher.get("plate_appearances")),
+                    "vs_pitcher_signal": round(vs_pitcher_signal, 3),
                 },
             )
         )
@@ -361,7 +415,7 @@ def build_hitter_inputs(
                 stat_value=clamp(0.45 * normalize_rate(tb_per_game, 4.0) + 0.35 * normalize_rate(l10_tb, 4.0) + 0.20 * normalize_rate(l5_tb, 4.0), 0.0, 1.0),
                 baseline=0.28,
                 trend=clamp(normalize_rate(l5_tb, 4.0), 0.0, 1.0),
-                matchup=clamp(pitcher_matchup * 0.65 + slg * 0.35, 0.0, 1.0),
+                matchup=clamp(pitcher_matchup * 0.54 + slg * 0.24 + platoon_edge * 0.10 + vs_pitcher_signal * 0.12, 0.0, 1.0),
                 recent_form=clamp(form_boost * 0.5 + avg * 0.5, 0.0, 1.0),
             )
         )
@@ -377,7 +431,7 @@ def build_hitter_inputs(
                 stat_value=clamp(0.45 * hits_per_game + 0.35 * l10_hits + 0.20 * l5_hits, 0.0, 1.0),
                 baseline=0.42,
                 trend=clamp(l5_hits / 2.0, 0.0, 1.0),
-                matchup=clamp(pitcher_matchup * 0.5 + avg * 0.5, 0.0, 1.0),
+                matchup=clamp(pitcher_matchup * 0.38 + avg * 0.42 + platoon_edge * 0.08 + vs_pitcher_signal * 0.12, 0.0, 1.0),
                 recent_form=clamp(avg * 0.6 + form_boost * 0.4, 0.0, 1.0),
             )
         )
@@ -492,6 +546,32 @@ def fetch_person(person_id: int, season: int) -> dict[str, Any]:
     return data["people"][0]
 
 
+def resolve_pitcher_profile(
+    *,
+    probable_pitcher: dict[str, Any] | None,
+    roster: dict[str, Any],
+    season: int,
+) -> dict[str, Any] | None:
+    if not probable_pitcher:
+        return None
+    person = find_person_in_roster(roster, probable_pitcher["id"])
+    if person is None:
+        person = fetch_person(probable_pitcher["id"], season)
+    season_stats = get_stat_split(person, group="pitching", stat_type="season") or {}
+    innings = innings_to_float(season_stats.get("inningsPitched"))
+    home_runs_allowed = parse_int(season_stats.get("homeRuns"))
+    hr9 = (home_runs_allowed * 9.0 / innings) if innings > 0 else 0.0
+    return {
+        "id": person.get("id", probable_pitcher["id"]),
+        "fullName": person.get("fullName", probable_pitcher.get("fullName", "")),
+        "era": parse_decimal(season_stats.get("era")) or parse_decimal(probable_pitcher.get("era")),
+        "whip": parse_decimal(season_stats.get("whip")),
+        "hr9": hr9,
+        "homeRunsAllowed": home_runs_allowed,
+        "pitchHand": ((person.get("pitchHand") or {}).get("code") or ""),
+    }
+
+
 def find_person_in_roster(roster: dict[str, Any], person_id: int) -> dict[str, Any] | None:
     for row in roster.get("roster", []):
         person = row["person"]
@@ -524,6 +604,53 @@ def season_from_game_id(game_id: str) -> int:
         return int(str(game_id).rsplit("-", 3)[-3])
     except (TypeError, ValueError, IndexError):
         return today_et().year
+
+
+def fetch_vs_pitcher_profile(*, hitter_id: str, pitcher_id: str) -> dict[str, float]:
+    if not hitter_id or not pitcher_id:
+        return {}
+    cache_key = (hitter_id, pitcher_id)
+    if cache_key in VS_PLAYER_CACHE:
+        return VS_PLAYER_CACHE[cache_key]
+
+    params = {
+        "hydrate": f"stats(type=[vsPlayer],group=[hitting],opposingPlayerId={pitcher_id})",
+    }
+    url = f"{STATS_API_BASE}/people/{hitter_id}?{urllib.parse.urlencode(params)}"
+    try:
+        payload = fetch_json(url)
+        stat = {}
+        for stats_set in payload.get("people", [{}])[0].get("stats", []):
+            if stats_set.get("group", {}).get("displayName", "").lower() != "hitting":
+                continue
+            splits = stats_set.get("splits") or []
+            if splits:
+                stat = splits[0].get("stat", {})
+                break
+        profile = {
+            "avg": parse_decimal(stat.get("avg")),
+            "ops": parse_decimal(stat.get("ops")),
+            "hits": parse_int(stat.get("hits")),
+            "home_runs": parse_int(stat.get("homeRuns")),
+            "at_bats": parse_int(stat.get("atBats")),
+            "plate_appearances": parse_int(stat.get("plateAppearances")),
+        }
+    except Exception:
+        profile = {}
+
+    VS_PLAYER_CACHE[cache_key] = profile
+    return profile
+
+
+def vs_pitcher_value(vs_pitcher: dict[str, float]) -> float:
+    plate_appearances = parse_int(vs_pitcher.get("plate_appearances"))
+    if plate_appearances <= 0:
+        return 0.0
+    avg_component = clamp((parse_decimal(vs_pitcher.get("avg")) - 0.210) / 0.160, 0.0, 1.0)
+    ops_component = clamp((parse_decimal(vs_pitcher.get("ops")) - 0.650) / 0.450, 0.0, 1.0)
+    hr_component = clamp(parse_int(vs_pitcher.get("home_runs")) / 3.0, 0.0, 1.0)
+    sample_component = clamp(plate_appearances / 14.0, 0.25, 1.0)
+    return clamp((avg_component * 0.30 + ops_component * 0.40 + hr_component * 0.30) * sample_component, 0.0, 1.0)
 
 
 def historical_hr_metrics(person: dict[str, Any], *, current_season: int) -> dict[str, float]:
@@ -603,13 +730,30 @@ def rising_star_index(
     )
 
 
+def platoon_edge_value(person: dict[str, Any], probable_pitcher: dict[str, Any] | None) -> float:
+    if not probable_pitcher:
+        return 0.0
+    batter_side = ((person.get("batSide") or {}).get("code") or "")
+    pitcher_hand = str(probable_pitcher.get("pitchHand") or "")
+    if not batter_side or not pitcher_hand:
+        return 0.0
+    if batter_side == "S":
+        return 0.75
+    return 1.0 if batter_side != pitcher_hand else 0.25
+
+
 def pitcher_matchup_value(probable_pitcher: dict[str, Any] | None) -> float:
     if not probable_pitcher:
         return 0.45
     era = parse_decimal(probable_pitcher.get("era"))
-    if not era:
+    whip = parse_decimal(probable_pitcher.get("whip"))
+    hr9 = parse_decimal(probable_pitcher.get("hr9"))
+    if not any([era, whip, hr9]):
         return 0.45
-    return clamp((era - 2.80) / 4.00, 0.15, 0.90)
+    era_pressure = clamp((era - 3.20) / 2.80, 0.0, 1.0)
+    whip_pressure = clamp((whip - 1.12) / 0.42, 0.0, 1.0)
+    hr9_pressure = clamp((hr9 - 0.90) / 0.80, 0.0, 1.0)
+    return clamp(era_pressure * 0.34 + whip_pressure * 0.31 + hr9_pressure * 0.35, 0.18, 0.94)
 
 
 def team_abbreviation(team: dict[str, Any]) -> str:

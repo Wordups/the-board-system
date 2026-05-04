@@ -326,6 +326,108 @@ button { cursor: pointer; border: none; background: none; }
   background: var(--gold-dim); border-color: rgba(240,180,41,0.3); color: var(--gold);
 }
 
+.board-controls {
+  margin: 16px 0 12px;
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.controls-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 1.4fr) repeat(3, minmax(120px, 0.7fr));
+  gap: 10px;
+}
+
+.board-input,
+.board-select {
+  width: 100%;
+  padding: 9px 11px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.board-input::placeholder { color: var(--text-3); }
+
+.explorer-wrap {
+  margin-top: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.explorer-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.explorer-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 14px; font-weight: 800; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--gold);
+}
+
+.explorer-count {
+  font-size: 11px;
+  color: var(--text-3);
+  font-family: "Barlow Condensed", sans-serif;
+  letter-spacing: 1px;
+}
+
+.explorer-scroll {
+  overflow-x: auto;
+}
+
+.explorer-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.explorer-table th {
+  text-align: left;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-3);
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.explorer-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.explorer-table tr:hover td { background: var(--surface-2); }
+
+.explorer-table tr:last-child td { border-bottom: none; }
+
+.explorer-player {
+  display: flex; align-items: center; gap: 8px;
+  min-width: 0;
+}
+
+.explorer-player-name {
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-weight: 600;
+}
+
+.explorer-empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--text-3);
+  font-size: 12px;
+}
+
 /* MODAL */
 .modal-overlay {
   position: fixed; inset: 0; z-index: 100;
@@ -432,6 +534,11 @@ button { cursor: pointer; border: none; background: none; }
   .modal-overlay { padding: 0; align-items: flex-end; }
   .modal-panel { border-radius: 12px 12px 0 0; width: 100%; max-height: 92vh; }
   .player-table th:nth-child(6), .player-table td:nth-child(6) { display: none; }
+  .controls-row { grid-template-columns: 1fr 1fr; }
+  .explorer-table th:nth-child(3),
+  .explorer-table td:nth-child(3),
+  .explorer-table th:nth-child(6),
+  .explorer-table td:nth-child(6) { display: none; }
 }
 </style>
 </head>
@@ -730,6 +837,149 @@ function renderPlayerTable(players, sport) {
 function closeModal() {
   document.getElementById("modal-overlay").classList.remove("open");
   document.body.style.overflow = "";
+}
+
+function flattenBoardRows(data) {
+  const rows = [];
+  for (const game of data.games || []) {
+    const markets = game.markets || {};
+    for (const [market, players] of Object.entries(markets)) {
+      for (const player of players || []) {
+        rows.push({
+          ...player,
+          market,
+          matchup: game.matchup,
+          time: game.time,
+          game_id: game.game_id,
+        });
+      }
+    }
+  }
+  return rows;
+}
+
+function bindExplorerControls(view, data, sport) {
+  const controls = view.querySelectorAll("[data-role='search'], [data-role='market'], [data-role='tier'], [data-role='sort']");
+  controls.forEach(control => {
+    control.addEventListener("input", () => applyExplorerFilters(view, data, sport));
+    control.addEventListener("change", () => applyExplorerFilters(view, data, sport));
+  });
+}
+
+function applyExplorerFilters(view, data, sport) {
+  const search = (view.querySelector("[data-role='search']")?.value || "").trim().toLowerCase();
+  const market = view.querySelector("[data-role='market']")?.value || "";
+  const tier = view.querySelector("[data-role='tier']")?.value || "";
+  const sort = view.querySelector("[data-role='sort']")?.value || "score-desc";
+
+  let rows = flattenBoardRows(data).filter(row => {
+    if (market && row.market !== market) return false;
+    if (tier && row.tier !== tier) return false;
+    if (!search) return true;
+    const haystack = [row.player_name, row.team, row.opponent, row.matchup, row.line, row.market].join(" ").toLowerCase();
+    return haystack.includes(search);
+  });
+
+  rows.sort((a, b) => {
+    if (sort === "score-asc") return (a.score || 0) - (b.score || 0);
+    if (sort === "player-asc") return String(a.player_name || "").localeCompare(String(b.player_name || ""));
+    if (sort === "game-asc") return String(a.matchup || "").localeCompare(String(b.matchup || ""));
+    if (sort === "market-asc") return String(a.market || "").localeCompare(String(b.market || ""));
+    return (b.score || 0) - (a.score || 0);
+  });
+
+  view.querySelector("[data-role='explorer-count']").textContent = `${rows.length} rows`;
+  const explorer = view.querySelector("[data-role='explorer']");
+  if (!rows.length) {
+    explorer.innerHTML = `<div class="explorer-empty">No rows match your filters.</div>`;
+    return;
+  }
+
+  explorer.innerHTML = `
+    <table class="explorer-table">
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Team</th>
+          <th>Game</th>
+          <th>Market</th>
+          <th>Line</th>
+          <th>Score</th>
+          <th>Tier</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows.map(row => `
+          <tr>
+            <td><div class="explorer-player">${playerFace(row, sport, true)}<span class="explorer-player-name">${esc(row.player_name)}</span></div></td>
+            <td class="player-team-cell">${esc(row.team)} vs ${esc(row.opponent)}</td>
+            <td>${esc(row.matchup)}</td>
+            <td>${marketTag(row.market)}</td>
+            <td class="player-line-cell">${esc(row.line)}</td>
+            <td class="player-score-cell ${scoreClass(row.score)}">${Number(row.score || 0).toFixed(1)}</td>
+            <td>${tierBadge(row.tier)}</td>
+          </tr>`).join("")}
+      </tbody>
+    </table>`;
+}
+
+function renderGameView(sport, data) {
+  const view = document.getElementById(`view-${sport}`);
+  if (!data || !data.games || !data.games.length) {
+    const cs = COMING_SOON[sport];
+    if (cs) {
+      view.innerHTML = `<div class="coming-soon"><div class="coming-soon-icon">${cs.icon}</div><div class="coming-soon-title">${cs.label} Coming Soon</div><div class="coming-soon-sub">Backend pipeline will populate this board automatically.</div></div>`;
+    } else {
+      view.innerHTML = `<div class="coming-soon"><div class="coming-soon-title">No Games Today</div><div class="coming-soon-sub">Check back when the bot runs.</div></div>`;
+    }
+    return;
+  }
+
+  document.getElementById(`tab-count-${sport}`).textContent = data.games.length;
+  const rows = flattenBoardRows(data);
+  const markets = [...new Set(rows.map(row => row.market))].sort();
+
+  view.innerHTML = `
+    <div class="section-label">Today's Games â€” ${esc(data.date || "")}</div>
+    <div class="board-controls">
+      <div class="controls-row">
+        <input class="board-input" data-role="search" type="search" placeholder="Filter player, team, opponent, or game">
+        <select class="board-select" data-role="market">
+          <option value="">All markets</option>
+          ${markets.map(market => `<option value="${esc(market)}">${esc(market)}</option>`).join("")}
+        </select>
+        <select class="board-select" data-role="tier">
+          <option value="">All tiers</option>
+          <option value="A">A only</option>
+          <option value="B">B only</option>
+          <option value="C">C only</option>
+        </select>
+        <select class="board-select" data-role="sort">
+          <option value="score-desc">Score high to low</option>
+          <option value="score-asc">Score low to high</option>
+          <option value="player-asc">Player A-Z</option>
+          <option value="game-asc">Game A-Z</option>
+          <option value="market-asc">Market A-Z</option>
+        </select>
+      </div>
+    </div>
+    <div class="games-grid">
+      ${data.games.map(g => renderGameCard(g, sport)).join("")}
+    </div>
+    <div class="explorer-wrap">
+      <div class="explorer-head">
+        <div class="explorer-title">Board Explorer</div>
+        <div class="explorer-count" data-role="explorer-count">${rows.length} rows</div>
+      </div>
+      <div class="explorer-scroll" data-role="explorer"></div>
+    </div>`;
+
+  view.querySelectorAll(".open-slate-btn").forEach(btn => {
+    const game = data.games.find(g => g.game_id === btn.dataset.gameId);
+    if (game) btn.addEventListener("click", () => openModal(game, sport));
+  });
+  bindExplorerControls(view, data, sport);
+  applyExplorerFilters(view, data, sport);
 }
 
 async function switchSport(sport) {

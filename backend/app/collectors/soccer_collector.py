@@ -77,7 +77,10 @@ def fetch_soccer_events(slate_date) -> list[dict[str, Any]]:
     date_token = slate_date.strftime("%Y%m%d")
     for league in SOCCER_LEAGUES:
         url = f"https://site.api.espn.com/apis/site/v2/sports/soccer/{league['slug']}/scoreboard"
-        payload = espn_get_json(url, {"dates": date_token})
+        try:
+            payload = espn_get_json(url, {"dates": date_token})
+        except requests.RequestException:
+            continue
         for event in payload.get("events", []):
             if event["id"] in seen_ids:
                 continue
@@ -346,12 +349,13 @@ def build_match_market_candidates(
         + home_form.get("goals_against_per_match", baseline["goals_against"])
         + away_form.get("goals_against_per_match", baseline["goals_against"])
     ) / 2.0
-    if total_goal_signal >= 2.7:
+    goal_delta = total_goal_signal - 2.5
+    if goal_delta >= 0.0:
         ou_line = "Over 2.5 Goals"
-        ou_score = normalize_rate(total_goal_signal, 4.2) * 100
+        ou_score = clamp_score(54.0 + goal_delta * 22.0)
     else:
         ou_line = "Under 2.5 Goals"
-        ou_score = normalize_rate(3.2 - total_goal_signal, 3.2) * 100
+        ou_score = clamp_score(54.0 + abs(goal_delta) * 22.0)
 
     return [
         {
@@ -419,6 +423,8 @@ def espn_get_json(url: str, params: dict[str, Any] | None = None) -> dict[str, A
 
 
 def parse_number(value: Any) -> float:
+    if isinstance(value, dict):
+        return parse_number(value.get("value") if "value" in value else value.get("displayValue"))
     try:
         return float(value)
     except (TypeError, ValueError):
@@ -426,6 +432,8 @@ def parse_number(value: Any) -> float:
 
 
 def parse_int(value: Any) -> int:
+    if isinstance(value, dict):
+        return parse_int(value.get("value") if "value" in value else value.get("displayValue"))
     try:
         return int(value)
     except (TypeError, ValueError):
@@ -447,3 +455,7 @@ def normalize_rate(value: float, scale: float) -> float:
 
 def clamp_int(value: float) -> int:
     return max(1, min(99, round(value)))
+
+
+def clamp_score(value: float) -> float:
+    return max(1.0, min(99.0, value))

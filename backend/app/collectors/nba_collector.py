@@ -474,14 +474,17 @@ def build_market_candidate(
     l10_avg = average(log[market] for log in recent_10)
     l5_avg = average(log[market] for log in recent_5)
     split_avg = profile["home_avgs"][market] if is_home else profile["away_avgs"][market]
+    vs_opp_logs = [log for log in logs if log["opponent"] == opponent_abbr][:8]
+    vs_opp_avg = average(log[market] for log in vs_opp_logs) if vs_opp_logs else season_avg
     trend_delta = l5_avg - season_avg
-    projected = (l5_avg * 0.50) + (l10_avg * 0.30) + (season_avg * 0.15) + (split_avg * 0.05)
+    projected = (l5_avg * 0.46) + (l10_avg * 0.26) + (season_avg * 0.14) + (split_avg * 0.04) + (vs_opp_avg * 0.10)
     if is_home:
         projected += home_boost_for_market(market)
 
     line_value = suggested_line(market, projected)
     l10_hit_rate = hit_rate(recent_10, market, line_value)
     l5_hit_rate = hit_rate(recent_5, market, line_value)
+    vs_opp_hit_rate = hit_rate(vs_opp_logs, market, line_value) if vs_opp_logs else l10_hit_rate
     if l10_hit_rate < 0.60:
         return None
 
@@ -498,14 +501,17 @@ def build_market_candidate(
     usage_component = min(usage_share / 0.34, 1.0)
     trend_component = min(max((trend_delta + 4.0) / 8.0, 0.0), 1.0)
     matchup_component = min(max((matchup_ratio - 0.92) / 0.20, 0.0), 1.0)
+    h2h_confidence = min(len(vs_opp_logs) / 4.0, 1.0)
+    h2h_component = min(max((vs_opp_hit_rate - 0.50) / 0.40, 0.0), 1.0) * h2h_confidence
     home_component = 1.0 if is_home else 0.0
 
     raw_score = 100 * (
-        (l10_hit_rate * 0.27)
-        + (l5_hit_rate * 0.27)
+        (l10_hit_rate * 0.25)
+        + (l5_hit_rate * 0.26)
         + (usage_component * 0.23)
         + (trend_component * 0.11)
         + (matchup_component * 0.08)
+        + (h2h_component * 0.03)
         + (home_component * 0.04)
     )
     raw_score += leverage["score_boost"]
@@ -544,9 +550,14 @@ def build_market_candidate(
             matchup_ratio=matchup_ratio,
             is_home=is_home,
             leverage_label=leverage["label"],
+            vs_opp_hit_rate=vs_opp_hit_rate,
+            vs_opp_games=len(vs_opp_logs),
+            vs_opp_avg=vs_opp_avg,
+            opponent_abbr=opponent_abbr,
         ),
         "l10_hit_rate": l10_hit_rate,
         "l5_hit_rate": l5_hit_rate,
+        "vs_opp_hit_rate": vs_opp_hit_rate,
         "usage_pct": usage_share,
         "minutes_projection": minutes_projection,
         "strong_matchup": strong_matchup,
@@ -659,6 +670,10 @@ def build_market_reason(
     matchup_ratio: float,
     is_home: bool,
     leverage_label: str,
+    vs_opp_hit_rate: float,
+    vs_opp_games: int,
+    vs_opp_avg: float,
+    opponent_abbr: str,
 ) -> str:
     parts = [
         f"L10 {l10_hit_rate:.0%}",
@@ -667,6 +682,9 @@ def build_market_reason(
         f"MIN {minutes_projection:.1f}",
         f"{market} matchup {matchup_ratio:.2f}x",
     ]
+    if vs_opp_games:
+        parts.append(f"H2H {vs_opp_hit_rate:.0%} vs {opponent_abbr} ({vs_opp_games}g)")
+        parts.append(f"H2H avg {vs_opp_avg:.1f}")
     if is_home:
         parts.append("Home boost")
     if minutes_projection < 30:

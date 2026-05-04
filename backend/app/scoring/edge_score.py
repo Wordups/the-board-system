@@ -62,12 +62,23 @@ def build_hr_reason(candidate: MlbPlayCandidate, probability_edge: float, suppor
     season_hr_probability = extra.get("season_hr_probability", 0.0)
     historical_hr_probability = extra.get("historical_hr_probability", 0.0)
     pitcher_matchup = extra.get("pitcher_matchup", candidate.matchup)
+    pitcher_name = extra.get("pitcher_name", "")
+    pitcher_era = extra.get("pitcher_era", 0.0)
+    pitcher_whip = extra.get("pitcher_whip", 0.0)
+    pitcher_hr9 = extra.get("pitcher_hr9", 0.0)
+    pitcher_hr_allowed = extra.get("pitcher_hr_allowed", 0)
+    pitcher_hand = extra.get("pitcher_hand", "")
     projected_pa = extra.get("projected_pa", 0.0)
     sample_reliability = extra.get("sample_reliability", 0.0)
     recent_peak_hr_rate = extra.get("recent_peak_hr_rate", 0.0)
     unlucky_power_index = extra.get("unlucky_power_index", 0.0)
     rising_star_index = extra.get("rising_star_index", 0.0)
     age = extra.get("age", 0)
+    platoon_edge = extra.get("platoon_edge", 0.0)
+    vs_pitcher_avg = extra.get("vs_pitcher_avg", 0.0)
+    vs_pitcher_ops = extra.get("vs_pitcher_ops", 0.0)
+    vs_pitcher_hr = extra.get("vs_pitcher_hr", 0)
+    vs_pitcher_pa = extra.get("vs_pitcher_pa", 0)
 
     reasons = [
         f"HR edge {probability_edge:.1f}",
@@ -84,6 +95,26 @@ def build_hr_reason(candidate: MlbPlayCandidate, probability_edge: float, suppor
         f"Sample {sample_reliability:.2f}",
         f"Peak3Y {recent_peak_hr_rate:.3f}",
     ]
+    if pitcher_name:
+        reasons.append(f"vs {pitcher_name}")
+    if pitcher_era:
+        reasons.append(f"ERA {pitcher_era:.2f}")
+    if pitcher_whip:
+        reasons.append(f"WHIP {pitcher_whip:.2f}")
+    if pitcher_hr9:
+        reasons.append(f"HR/9 {pitcher_hr9:.2f}")
+    if pitcher_hr_allowed:
+        reasons.append(f"HR A {int(pitcher_hr_allowed)}")
+    if pitcher_hand:
+        reasons.append(f"Hand {pitcher_hand}")
+    if platoon_edge >= 0.7:
+        reasons.append("Platoon +")
+    elif platoon_edge > 0:
+        reasons.append("Platoon -")
+    if vs_pitcher_pa:
+        reasons.append(f"vsP {vs_pitcher_avg:.3f}/{vs_pitcher_ops:.3f} in {int(vs_pitcher_pa)} PA")
+    if vs_pitcher_hr:
+        reasons.append(f"vsP HR {int(vs_pitcher_hr)}")
     if age:
         reasons.append(f"Age {age}")
     if order_estimate:
