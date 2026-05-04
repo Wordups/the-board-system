@@ -4,6 +4,7 @@ from collections import defaultdict
 import json
 
 from app.builders.board_builder import sorted_candidates, to_player_row
+from app.builders.mlb_research_board import build_mlb_research_board
 from app.builders.universal_game_builder import empty_markets
 from app.collectors.mlb_collector import collect_mlb_raw_data
 from app.models.mlb_model import normalize_mlb_inputs
@@ -110,6 +111,11 @@ def build_mlb_board(*, config, paths) -> dict:
             "market": "MIX",
             "players": consistency_players,
         },
+        "research_board": build_mlb_research_board(
+            candidates=sorted_candidates(pinned_candidates),
+            config=config,
+            paths=paths,
+        ),
         "games": games_output,
     }
 
