@@ -82,6 +82,9 @@ def fetch_soccer_events(slate_date) -> list[dict[str, Any]]:
         except requests.RequestException:
             continue
         for event in payload.get("events", []):
+            status = event.get("competitions", [{}])[0].get("status", {}).get("type", {})
+            if status.get("completed"):
+                continue
             if event["id"] in seen_ids:
                 continue
             seen_ids.add(event["id"])
@@ -343,19 +346,27 @@ def build_match_market_candidates(
         ml_score = normalize_rate(away_strength - home_strength + 1.0, 2.5) * 100
         ml_reason = f"Away form {away_form.get('points_per_match', 0.0):.2f} PPM | Home {home_form.get('points_per_match', 0.0):.2f} PPM"
 
+    home_attack = home_form.get("goals_for_per_match", baseline["goals_for"])
+    away_attack = away_form.get("goals_for_per_match", baseline["goals_for"])
+    home_defense = home_form.get("goals_against_per_match", baseline["goals_against"])
+    away_defense = away_form.get("goals_against_per_match", baseline["goals_against"])
+
     total_goal_signal = (
-        home_form.get("goals_for_per_match", baseline["goals_for"])
-        + away_form.get("goals_for_per_match", baseline["goals_for"])
-        + home_form.get("goals_against_per_match", baseline["goals_against"])
-        + away_form.get("goals_against_per_match", baseline["goals_against"])
-    ) / 2.0
-    goal_delta = total_goal_signal - 2.5
+        ((home_attack + away_defense) / 2.0)
+        + ((away_attack + home_defense) / 2.0)
+    )
+    both_teams_push = min(home_attack, away_attack)
+    defensive_drag = max(0.0, (baseline["goals_against"] * 2.0) - (home_defense + away_defense))
+    attack_bias = (home_attack + away_attack) - (baseline["goals_for"] * 2.0)
+    adjusted_total = total_goal_signal + (attack_bias * 0.18) - (defensive_drag * 0.10)
+
+    goal_delta = adjusted_total - 2.55
     if goal_delta >= 0.0:
         ou_line = "Over 2.5 Goals"
-        ou_score = clamp_score(54.0 + goal_delta * 22.0)
+        ou_score = clamp_score(52.0 + goal_delta * 24.0 + normalize_rate(both_teams_push, baseline["goals_for"] * 1.4) * 9.0)
     else:
         ou_line = "Under 2.5 Goals"
-        ou_score = clamp_score(54.0 + abs(goal_delta) * 22.0)
+        ou_score = clamp_score(52.0 + abs(goal_delta) * 24.0 + normalize_rate(defensive_drag, baseline["goals_against"] * 1.6) * 8.0)
 
     return [
         {
@@ -382,7 +393,7 @@ def build_match_market_candidates(
             "score": round(ou_score, 2),
             "confidence": clamp_int(ou_score),
             "tier": assign_soccer_tier(ou_score),
-            "reason": f"Combined goal profile {total_goal_signal:.2f}",
+            "reason": f"Adj goal profile {adjusted_total:.2f} | BTTS push {both_teams_push:.2f}",
         },
     ]
 

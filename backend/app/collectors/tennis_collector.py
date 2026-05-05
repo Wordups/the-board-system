@@ -16,6 +16,7 @@ TENNIS_TOURS = [
     {"slug": "atp", "label": "ATP"},
     {"slug": "wta", "label": "WTA"},
 ]
+MAX_RANK_FALLBACK = 250
 
 
 def collect_tennis_raw_data(data_raw_dir: Path) -> dict[str, Any]:
@@ -57,9 +58,11 @@ def build_matches_for_tournament(tournament: dict[str, Any], slate_date) -> list
         for competition in grouping.get("competitions", []):
             if competition["date"][:10] != slate_date.isoformat():
                 continue
+            if competition.get("status", {}).get("type", {}).get("completed"):
+                continue
             same_day.append({**competition, "grouping": grouping.get("grouping", {})})
 
-    player_profiles = build_player_profiles(tournament)
+    player_profiles = build_player_profiles(tournament, slate_date.year)
     games = []
     for competition in same_day:
         if len(competition.get("competitors", [])) != 2:
@@ -90,7 +93,7 @@ def build_matches_for_tournament(tournament: dict[str, Any], slate_date) -> list
     return games
 
 
-def build_player_profiles(tournament: dict[str, Any]) -> dict[str, dict[str, Any]]:
+def build_player_profiles(tournament: dict[str, Any], season_year: int) -> dict[str, dict[str, Any]]:
     profiles: dict[str, dict[str, Any]] = {}
     for grouping in tournament.get("groupings", []):
         for competition in grouping.get("competitions", []):
@@ -102,6 +105,7 @@ def build_player_profiles(tournament: dict[str, Any]) -> dict[str, dict[str, Any
                         "player_id": player_id,
                         "player_name": competitor_name(competitor),
                         "rank": current_rank(competitor),
+                        "rank_uncertain": current_rank(competitor) >= MAX_RANK_FALLBACK,
                         "wins": 0,
                         "losses": 0,
                         "sets_won": 0,
@@ -119,6 +123,16 @@ def build_player_profiles(tournament: dict[str, Any]) -> dict[str, dict[str, Any
                             profile["sets_won"] += 1
                         else:
                             profile["sets_lost"] += 1
+
+    resolved_ranks = fetch_player_rank_map(
+        tournament.get("tour_slug", "").lower(),
+        season_year,
+        profiles.keys(),
+    )
+    for player_id, rank_value in resolved_ranks.items():
+        if player_id in profiles and rank_value:
+            profiles[player_id]["rank"] = rank_value
+            profiles[player_id]["rank_uncertain"] = rank_value >= MAX_RANK_FALLBACK
     return profiles
 
 
@@ -136,19 +150,52 @@ def build_match_candidates(
     format_periods = competition.get("format", {}).get("regulation", {}).get("periods", 3)
     best_of = 5 if format_periods >= 5 else 3
 
-    ml_score = 100 * min(0.95, 0.42 + rank_gap / 80.0 + (favorite_form - underdog_form) * 0.18)
-    ml_reason = f"Rank {favorite['rank']} vs {underdog['rank']} | Tournament form {favorite['wins']}-{favorite['losses']}"
+    form_gap = favorite_form - underdog_form
+    rank_signal = max(0.0, min(rank_gap / 85.0, 0.34))
+    form_signal = max(-0.14, min(form_gap * 0.22, 0.14))
+    sample_penalty = 0.04 if favorite["wins"] + favorite["losses"] < 2 or underdog["wins"] + underdog["losses"] < 2 else 0.0
+    rank_penalty = 0.09 if favorite.get("rank_uncertain") or underdog.get("rank_uncertain") else 0.0
+    ml_score = 100 * min(0.9, max(0.48, 0.54 + rank_signal + form_signal - sample_penalty - rank_penalty))
+    ml_reason = (
+        f"Rank {favorite['rank']} vs {underdog['rank']} | "
+        f"Form {favorite['wins']}-{favorite['losses']} vs {underdog['wins']}-{underdog['losses']}"
+        f"{' | Rank est.' if rank_penalty else ''}"
+    )
 
-    close_match = rank_gap <= 18 and abs(favorite_form - underdog_form) <= 0.18
+    close_match = rank_gap <= 16 and abs(form_gap) <= 0.14
+    favorite_clear = rank_gap >= 28 or form_gap >= 0.18
     if best_of == 5:
-        ou_line = "Over 36.5 Games" if close_match else "Under 34.5 Games"
-        sets_line = f"{favorite['player_name']} -1.5 Sets" if rank_gap >= 12 else "Over 3.5 Sets"
+        if close_match:
+            ou_line = "Over 36.5 Games"
+            ou_score = 100 * min(0.8, 0.62 + min(rank_gap / 160.0, 0.05) + max(0.0, 0.10 - abs(form_gap)) - rank_penalty)
+            sets_line = "Over 3.5 Sets"
+            sets_score = 100 * min(0.77, 0.6 + min(rank_gap / 150.0, 0.04) - rank_penalty)
+        elif favorite_clear:
+            ou_line = "Under 34.5 Games"
+            ou_score = 100 * min(0.78, 0.58 + min(rank_gap / 120.0, 0.12) + max(form_gap, 0.0) * 0.1 - rank_penalty)
+            sets_line = f"{favorite['player_name']} -1.5 Sets"
+            sets_score = 100 * min(0.82, 0.64 + min(rank_gap / 95.0, 0.16) + max(form_gap, 0.0) * 0.12 - rank_penalty)
+        else:
+            ou_line = "Over 35.5 Games"
+            ou_score = 100 * max(0.5, 0.59 - rank_penalty)
+            sets_line = "Over 3.5 Sets"
+            sets_score = 100 * max(0.5, 0.57 - rank_penalty)
     else:
-        ou_line = "Over 22.5 Games" if close_match else "Under 21.5 Games"
-        sets_line = f"{favorite['player_name']} -1.5 Sets" if rank_gap >= 12 else "Over 2.5 Sets"
-
-    ou_score = 100 * (0.66 if close_match else 0.58 + min(rank_gap / 120.0, 0.12))
-    sets_score = 100 * (0.63 + min(rank_gap / 100.0, 0.18) + max(favorite_form - underdog_form, 0.0) * 0.10)
+        if close_match:
+            ou_line = "Over 22.5 Games"
+            ou_score = 100 * min(0.77, 0.63 + min(rank_gap / 140.0, 0.05) + max(0.0, 0.10 - abs(form_gap)) - rank_penalty)
+            sets_line = "Over 2.5 Sets"
+            sets_score = 100 * min(0.74, 0.59 + min(rank_gap / 160.0, 0.04) - rank_penalty)
+        elif favorite_clear:
+            ou_line = "Under 21.5 Games"
+            ou_score = 100 * min(0.75, 0.57 + min(rank_gap / 115.0, 0.12) + max(form_gap, 0.0) * 0.1 - rank_penalty)
+            sets_line = f"{favorite['player_name']} -1.5 Sets"
+            sets_score = 100 * min(0.8, 0.63 + min(rank_gap / 90.0, 0.16) + max(form_gap, 0.0) * 0.12 - rank_penalty)
+        else:
+            ou_line = "Over 21.5 Games"
+            ou_score = 100 * max(0.5, 0.58 - rank_penalty)
+            sets_line = "Over 2.5 Sets"
+            sets_score = 100 * max(0.5, 0.56 - rank_penalty)
 
     matchup = f"{player_a['player_name']} vs {player_b['player_name']}"
     return [
@@ -176,7 +223,7 @@ def build_match_candidates(
             "score": round(ou_score, 2),
             "confidence": clamp_int(ou_score),
             "tier": assign_tennis_tier(ou_score),
-            "reason": f"Round {competition.get('round', {}).get('displayName', '')} | Rank gap {rank_gap}",
+            "reason": f"Round {competition.get('round', {}).get('displayName', '')} | Rank gap {rank_gap} | Form gap {form_gap:+.2f}",
         },
         {
             "player_id": f"{competition['id']}-sets",
@@ -189,7 +236,7 @@ def build_match_candidates(
             "score": round(sets_score, 2),
             "confidence": clamp_int(sets_score),
             "tier": assign_tennis_tier(sets_score),
-            "reason": f"Best-of-{best_of} | Tournament sets {favorite['sets_won']}-{favorite['sets_lost']}",
+            "reason": f"Best-of-{best_of} | Sets {favorite['sets_won']}-{favorite['sets_lost']} | Rank gap {rank_gap}",
         },
     ]
 
@@ -205,6 +252,38 @@ def player_form_score(player: dict[str, Any]) -> float:
     win_rate = player["wins"] / matches
     sets_margin = max(player["sets_won"] - player["sets_lost"], 0) / max(player["sets_won"] + player["sets_lost"], 1)
     return min(1.0, win_rate * 0.72 + sets_margin * 0.28)
+
+
+def fetch_player_rank_map(tour_slug: str, season_year: int, player_ids) -> dict[str, int]:
+    if tour_slug not in {"atp", "wta"}:
+        return {}
+
+    rank_map: dict[str, int] = {}
+    session = requests.Session()
+    session.headers.update({"User-Agent": "the-board-system/1.0"})
+    for player_id in sorted({str(pid) for pid in player_ids}):
+        base_url = (
+            f"http://sports.core.api.espn.com/v2/sports/tennis/leagues/{tour_slug}/"
+            f"seasons/{season_year}/players/{player_id}/ranks?lang=en&region=us"
+        )
+        try:
+            index_payload = session.get(base_url, timeout=HTTP_TIMEOUT).json()
+            items = index_payload.get("items", [])
+            if not items:
+                continue
+            ref = items[0].get("$ref")
+            if not ref:
+                continue
+            rank_payload = session.get(ref, timeout=HTTP_TIMEOUT).json()
+            current_rank = (
+                rank_payload.get("rank", {}).get("current")
+                or rank_payload.get("rank", {}).get("value")
+            )
+            if current_rank:
+                rank_map[player_id] = int(current_rank)
+        except Exception:
+            continue
+    return rank_map
 
 
 def default_profile(competitor: dict[str, Any]) -> dict[str, Any]:
@@ -241,11 +320,13 @@ def is_named_competitor(competitor: dict[str, Any]) -> bool:
 def current_rank(competitor: dict[str, Any]) -> int:
     rank = competitor.get("curatedRank", {}).get("current")
     if rank is None:
-        return 250
+        rank = competitor.get("tournamentSeed")
+    if rank is None:
+        return MAX_RANK_FALLBACK
     try:
         return int(rank)
     except (TypeError, ValueError):
-        return 250
+        return MAX_RANK_FALLBACK
 
 
 def assign_tennis_tier(score: float) -> str:
