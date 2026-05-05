@@ -91,6 +91,7 @@ def build_market_research_section(
         key=lambda item: item["score"],
         reverse=True,
     )
+    explicit_play = str(notes.get("meta", {}).get("hr_play_of_day", "")).strip().lower()
     parlays = {
         f"{leg_size}_leg": build_parlay_legs(ranked, leg_size, config)
         for leg_size in config.parlay_leg_sizes
@@ -102,6 +103,10 @@ def build_market_research_section(
     }
     if hr_of_day_count:
         response["hr_of_day"] = ranked[:hr_of_day_count]
+        response["play_of_day"] = next(
+            (row for row in ranked if explicit_play and row["player_name"].lower() == explicit_play),
+            ranked[0] if ranked else None,
+        )
     return response
 
 
@@ -112,7 +117,10 @@ def apply_research_overlay(candidate: MlbPlayCandidate, notes: dict[str, Any]) -
     game_notes = notes.get("game_notes", {}).get(candidate.game_id, [])
     evidence = list(player_notes) + list(pitcher_notes) + list(game_notes)
     overlay_boost = sum(float(note.get("boost", 0.0)) for note in evidence if isinstance(note, dict))
+    explicit_play = str(notes.get("meta", {}).get("hr_play_of_day", "")).strip().lower()
+    play_of_day_boost = 3.5 if candidate.market == "HR" and explicit_play and candidate.player_name.lower() == explicit_play else 0.0
     adjusted_score = round(candidate.score + overlay_boost, 2)
+    adjusted_score = round(adjusted_score + play_of_day_boost, 2)
 
     return {
         "player_id": candidate.player_id,
@@ -127,6 +135,7 @@ def apply_research_overlay(candidate: MlbPlayCandidate, notes: dict[str, Any]) -
         "confidence": candidate.confidence,
         "tier": candidate.tier,
         "reason": candidate.reason,
+        "play_of_day": play_of_day_boost > 0.0,
         "pitcher": extra.get("pitcher_name"),
         "whip": extra.get("pitcher_whip"),
         "hr9": extra.get("pitcher_hr9"),

@@ -27,7 +27,7 @@ def collect_mlb_raw_data(data_raw_dir: Path) -> dict[str, Any]:
         if not schedule_games:
             raise RuntimeError(f"No MLB games found for {slate_date}")
 
-        game_boxscores = fetch_game_boxscores(schedule_games)
+        game_feeds = fetch_game_feeds(schedule_games)
 
         team_ids = sorted(
             {
@@ -50,7 +50,7 @@ def collect_mlb_raw_data(data_raw_dir: Path) -> dict[str, Any]:
                     game=game,
                     rosters=rosters,
                     team_hitting_stats=team_hitting_stats,
-                    game_boxscore=game_boxscores.get(game["gamePk"]),
+                    game_feed=game_feeds.get(game["gamePk"]),
                     season=season,
                     slate_date=slate_date,
                 )
@@ -103,21 +103,16 @@ def fetch_team_hitting_stats(team_ids: list[int], season: int) -> dict[int, dict
         return dict(pool.map(load, team_ids))
 
 
-def fetch_game_boxscores(schedule_games: list[dict[str, Any]]) -> dict[int, dict[str, Any]]:
-    live_or_final = [
-        game for game in schedule_games
-        if build_game_status(game).get("phase") in {"live", "final"}
-    ]
-
+def fetch_game_feeds(schedule_games: list[dict[str, Any]]) -> dict[int, dict[str, Any]]:
     def load(game: dict[str, Any]) -> tuple[int, dict[str, Any]]:
-        url = f"{STATS_API_BASE}/game/{game['gamePk']}/boxscore"
+        url = f"{STATS_API_BASE}.1/game/{game['gamePk']}/feed/live"
         return game["gamePk"], fetch_json(url)
 
-    if not live_or_final:
+    if not schedule_games:
         return {}
 
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
-        return dict(pool.map(load, live_or_final))
+        return dict(pool.map(load, schedule_games))
 
 
 def build_game_payload(
@@ -125,7 +120,7 @@ def build_game_payload(
     game: dict[str, Any],
     rosters: dict[int, dict[str, Any]],
     team_hitting_stats: dict[int, dict[str, Any]],
-    game_boxscore: dict[str, Any] | None,
+    game_feed: dict[str, Any] | None,
     season: int,
     slate_date: str,
 ) -> dict[str, Any]:
@@ -146,6 +141,9 @@ def build_game_payload(
         season=season,
     )
 
+    game_status = build_game_status(game)
+    lineup_context = build_lineup_context(game_feed)
+
     players = []
     players.extend(
         build_hitter_inputs(
@@ -154,6 +152,8 @@ def build_game_payload(
             opponent_abbr=home_abbr,
             game_id=f"{away_abbr.lower()}-{home_abbr.lower()}-{slate_date}",
             opposing_pitcher=home_pitcher_profile,
+            lineup_context=lineup_context["away"],
+            game_status=game_status,
         )
     )
     players.extend(
@@ -163,6 +163,8 @@ def build_game_payload(
             opponent_abbr=away_abbr,
             game_id=f"{away_abbr.lower()}-{home_abbr.lower()}-{slate_date}",
             opposing_pitcher=away_pitcher_profile,
+            lineup_context=lineup_context["home"],
+            game_status=game_status,
         )
     )
     players.extend(
@@ -205,8 +207,8 @@ def build_game_payload(
         "home_team": home_abbr,
         "time": format_game_time(game["gameDate"]),
         "game_date": game["gameDate"],
-        "status": build_game_status(game),
-        "player_hr_results": build_player_hr_results(game_boxscore, build_game_status(game)),
+        "status": game_status,
+        "player_hr_results": build_player_hr_results(game_feed, game_status),
         "players": [player.model_dump() for player in players],
     }
 
@@ -218,6 +220,8 @@ def build_hitter_inputs(
     opponent_abbr: str,
     game_id: str,
     opposing_pitcher: dict[str, Any] | None,
+    lineup_context: dict[str, Any],
+    game_status: dict[str, Any],
 ) -> list[RawPlayerMarketInput]:
     season = season_from_game_id(game_id)
     batters = []
@@ -250,11 +254,46 @@ def build_hitter_inputs(
         ),
         reverse=True,
     )
-    top_batters = batters[:9]
+
+    lineup_confirmed = bool(lineup_context.get("lineup_confirmed"))
+    starter_ids = set(lineup_context.get("starter_ids", []))
+    order_by_player = lineup_context.get("order_by_player", {})
+    status_by_player = lineup_context.get("status_by_player", {})
+
+    if lineup_confirmed:
+        filtered_batters = []
+        for batter in batters:
+            person = batter[1]
+            player_id = str(person["id"])
+            if player_id not in starter_ids:
+                continue
+            filtered_batters.append(batter)
+        top_batters = sorted(
+            filtered_batters,
+            key=lambda item: order_by_player.get(str(item[1]["id"]), 99),
+        )[:9]
+    else:
+        eligible_batters = [
+            batter
+            for batter in batters
+            if status_by_player.get(str(batter[1]["id"]), "Active") == "Active"
+        ]
+        top_batters = eligible_batters[:9]
+
     pitcher_matchup = pitcher_matchup_value(opposing_pitcher)
 
     results: list[RawPlayerMarketInput] = []
     for index, (_, person, season_stats) in enumerate(top_batters, start=1):
+        player_id = str(person["id"])
+        actual_order = order_by_player.get(player_id)
+        order_estimate = actual_order or index
+        player_status = status_by_player.get(player_id, "Active")
+        lineup_uncertainty_penalty = lineup_penalty_value(
+            lineup_confirmed=lineup_confirmed,
+            order_estimate=order_estimate,
+            game_status=game_status,
+        )
+
         game_logs = get_stat_split(person, group="hitting", stat_type="gameLog", fallback=[])
         recent_5 = game_logs[:5]
         recent_10 = game_logs[:10]
@@ -301,12 +340,14 @@ def build_hitter_inputs(
         l5_hr_rate = smoothed_rate(recent_5_hr_total, recent_5_pa, prior_rate=season_hr_rate, stabilization=12)
         l10_hr_rate = smoothed_rate(recent_10_hr_total, recent_10_pa, prior_rate=season_hr_rate, stabilization=24)
 
-        lineup_boost = max(0.0, (10 - index) / 10.0)
+        lineup_boost = max(0.0, (10 - order_estimate) / 10.0)
         playing_time = clamp(season_pa_per_game / 4.4, 0.45, 1.0)
         form_boost = clamp((ops - 0.680) / 0.450, 0.0, 1.0)
         power_boost = clamp((iso - 0.140) / 0.180, 0.0, 1.0)
         sample_reliability = clamp(season_pa / 180.0, 0.25, 1.0)
         projected_pa = clamp(3.15 + playing_time * 0.95 + lineup_boost * 0.55, 3.2, 4.8)
+        if not lineup_confirmed:
+            projected_pa = max(3.0, projected_pa - lineup_uncertainty_penalty * 0.08)
 
         season_hr_chance = probability_of_event(season_hr_rate, projected_pa)
         l10_hr_chance = probability_of_event(l10_hr_rate, projected_pa)
@@ -393,7 +434,10 @@ def build_hitter_inputs(
                     "iso": round(iso, 3),
                     "sample_reliability": round(sample_reliability, 3),
                     "projected_pa": round(projected_pa, 2),
-                    "order_estimate": index,
+                    "order_estimate": order_estimate,
+                    "lineup_confirmed": lineup_confirmed,
+                    "lineup_uncertainty_penalty": round(lineup_uncertainty_penalty, 2),
+                    "player_status": player_status,
                     "career_hr_rate": round(history_metrics["career_hr_rate"], 3),
                     "recent_peak_hr_rate": round(history_metrics["recent_peak_hr_rate"], 3),
                     "historical_power_index": round(power_history_boost, 3),
@@ -429,6 +473,12 @@ def build_hitter_inputs(
                 trend=clamp(normalize_rate(l5_tb, 4.0), 0.0, 1.0),
                 matchup=clamp(pitcher_matchup * 0.54 + slg * 0.24 + platoon_edge * 0.10 + vs_pitcher_signal * 0.12, 0.0, 1.0),
                 recent_form=clamp(form_boost * 0.5 + avg * 0.5, 0.0, 1.0),
+                extra={
+                    "lineup_confirmed": lineup_confirmed,
+                    "lineup_uncertainty_penalty": round(lineup_uncertainty_penalty, 2),
+                    "order_estimate": order_estimate,
+                    "player_status": player_status,
+                },
             )
         )
         results.append(
@@ -445,6 +495,12 @@ def build_hitter_inputs(
                 trend=clamp(l5_hits / 2.0, 0.0, 1.0),
                 matchup=clamp(pitcher_matchup * 0.38 + avg * 0.42 + platoon_edge * 0.08 + vs_pitcher_signal * 0.12, 0.0, 1.0),
                 recent_form=clamp(avg * 0.6 + form_boost * 0.4, 0.0, 1.0),
+                extra={
+                    "lineup_confirmed": lineup_confirmed,
+                    "lineup_uncertainty_penalty": round(lineup_uncertainty_penalty, 2),
+                    "order_estimate": order_estimate,
+                    "player_status": player_status,
+                },
             )
         )
 
@@ -823,14 +879,81 @@ def build_game_status(game: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def build_player_hr_results(game_boxscore: dict[str, Any] | None, status: dict[str, Any]) -> dict[str, dict[str, Any]]:
-    if not game_boxscore:
+def build_lineup_context(game_feed: dict[str, Any] | None) -> dict[str, dict[str, Any]]:
+    empty = {
+        "away": {
+            "lineup_confirmed": False,
+            "starter_ids": [],
+            "order_by_player": {},
+            "status_by_player": {},
+        },
+        "home": {
+            "lineup_confirmed": False,
+            "starter_ids": [],
+            "order_by_player": {},
+            "status_by_player": {},
+        },
+    }
+    if not game_feed:
+        return empty
+
+    boxscore = game_feed.get("liveData", {}).get("boxscore", {})
+    for side in ("away", "home"):
+        team_blob = boxscore.get("teams", {}).get(side, {})
+        batting_order = team_blob.get("battingOrder") or []
+        players = team_blob.get("players", {})
+        starter_ids: list[str] = []
+        order_by_player: dict[str, int] = {}
+        status_by_player: dict[str, str] = {}
+
+        for player_blob in players.values():
+            person = player_blob.get("person", {})
+            player_id = str(person.get("id") or "")
+            if not player_id:
+                continue
+            status_by_player[player_id] = player_blob.get("status", {}).get("description", "Active")
+            batting_slot = parse_int(player_blob.get("battingOrder")) // 100
+            if batting_slot > 0:
+                order_by_player[player_id] = batting_slot
+
+        if batting_order:
+            starter_ids = [str(player_id) for player_id in batting_order]
+            for slot, player_id in enumerate(starter_ids, start=1):
+                order_by_player.setdefault(player_id, slot)
+
+        empty[side] = {
+            "lineup_confirmed": bool(starter_ids),
+            "starter_ids": starter_ids,
+            "order_by_player": order_by_player,
+            "status_by_player": status_by_player,
+        }
+
+    return empty
+
+
+def lineup_penalty_value(*, lineup_confirmed: bool, order_estimate: int, game_status: dict[str, Any]) -> float:
+    if lineup_confirmed:
+        return 0.0
+    minutes_to_start = int(game_status.get("minutes_to_start", 9999))
+    if minutes_to_start <= 90:
+        base_penalty = 2.4
+    elif minutes_to_start <= 240:
+        base_penalty = 1.8
+    else:
+        base_penalty = 1.2
+    lower_order_penalty = max(order_estimate - 6, 0) * 0.18
+    return round(base_penalty + lower_order_penalty, 2)
+
+
+def build_player_hr_results(game_feed: dict[str, Any] | None, status: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    if not game_feed:
         return {}
 
     phase = status.get("phase", "pregame")
     results: dict[str, dict[str, Any]] = {}
+    boxscore = game_feed.get("liveData", {}).get("boxscore", {})
     for side in ("away", "home"):
-        for player_blob in game_boxscore.get("teams", {}).get(side, {}).get("players", {}).values():
+        for player_blob in boxscore.get("teams", {}).get(side, {}).get("players", {}).values():
             person = player_blob.get("person", {})
             player_id = str(person.get("id") or "")
             if not player_id:

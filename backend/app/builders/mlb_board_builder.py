@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 import json
+from pathlib import Path
 
 from app.builders.board_builder import sorted_candidates, to_player_row
 from app.builders.mlb_research_board import build_mlb_research_board
@@ -95,8 +96,14 @@ def build_mlb_board(*, config, paths) -> dict:
         previous_pinned_players=previous_pinned_players,
         game_status_by_id=game_status_by_id,
         game_hr_results_by_id=game_hr_results_by_id,
+        play_of_day_name=load_hr_play_of_day_name(paths.data_raw / "mlb_research_notes.json"),
     )
     consistency_players = build_consistency_board(processed_games)
+    research_board = build_mlb_research_board(
+        candidates=sorted_candidates(pinned_candidates),
+        config=config,
+        paths=paths,
+    )
     return {
         "sport": "MLB",
         "date": raw_payload["date"],
@@ -111,17 +118,13 @@ def build_mlb_board(*, config, paths) -> dict:
             "market": "MIX",
             "players": consistency_players,
         },
-        "research_board": build_mlb_research_board(
-            candidates=sorted_candidates(pinned_candidates),
-            config=config,
-            paths=paths,
-        ),
+        "research_board": research_board,
         "games": games_output,
     }
 
 
 def build_market_diverse_top_signals(*, candidates, limit: int) -> list[dict]:
-    preferred_markets = ("Hits", "TB", "K", "HR", "ML")
+    preferred_markets = ("HR", "Hits", "TB", "K", "ML")
     selected = []
     used_markets = set()
 
@@ -176,8 +179,19 @@ def load_previous_pinned_players(paths) -> dict[str, dict]:
     }
 
 
-def build_sticky_hr_board(*, candidates, previous_pinned_players, game_status_by_id, game_hr_results_by_id) -> list[dict]:
+def load_hr_play_of_day_name(path: Path) -> str:
+    if not path.exists():
+        return ""
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return ""
+    return str(payload.get("meta", {}).get("hr_play_of_day", "")).strip()
+
+
+def build_sticky_hr_board(*, candidates, previous_pinned_players, game_status_by_id, game_hr_results_by_id, play_of_day_name: str = "") -> list[dict]:
     sticky_rows = []
+    play_of_day_lookup = play_of_day_name.lower().strip()
     for candidate in candidates:
         status = game_status_by_id.get(candidate.game_id, {})
         hr_result = game_hr_results_by_id.get(candidate.game_id, {}).get(str(candidate.player_id), {})
@@ -187,6 +201,8 @@ def build_sticky_hr_board(*, candidates, previous_pinned_players, game_status_by
             previous_score=(previous or {}).get("score"),
             status=status,
         )
+        if play_of_day_lookup and candidate.player_name.lower() == play_of_day_lookup:
+            sticky_score = round(sticky_score + 3.5, 2)
         if sticky_score <= 0:
             continue
         sticky_rows.append(
@@ -199,7 +215,7 @@ def build_sticky_hr_board(*, candidates, previous_pinned_players, game_status_by
                 "score": sticky_score,
                 "confidence": to_confidence(sticky_score),
                 "tier": assign_tier(sticky_score),
-                "reason": build_pinned_reason(candidate.reason, status),
+                "reason": build_pinned_reason(candidate.reason, status, is_play_of_day=bool(play_of_day_lookup and candidate.player_name.lower() == play_of_day_lookup)),
                 "hr_result": hr_result.get("result", "pending"),
                 "home_runs": int(hr_result.get("home_runs", 0)),
             }
@@ -286,7 +302,9 @@ def apply_hr_board_sliding_scale(*, base_score: float, previous_score: float | N
     return round(base_score * pregame_factor + sticky_memory, 2)
 
 
-def build_pinned_reason(base_reason: str, status: dict) -> str:
+def build_pinned_reason(base_reason: str, status: dict, is_play_of_day: bool = False) -> str:
+    if is_play_of_day:
+        base_reason = f"{base_reason} | Bot POD"
     phase = status.get("phase", "pregame")
     if phase == "live":
         inning = status.get("current_inning") or "live"

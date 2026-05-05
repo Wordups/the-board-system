@@ -16,6 +16,7 @@ def score_candidate(candidate: MlbPlayCandidate) -> MlbPlayCandidate:
         + candidate.recent_form * support_weights["recent_form"]
     ) * 100
     score = round((probability_edge * 0.62 + support * 0.38) * weight * 0.52, 2)
+    score = round(apply_availability_adjustments(candidate, score), 2)
     candidate.score = score
     candidate.confidence = to_confidence(score)
     candidate.tier = assign_tier(score)
@@ -25,6 +26,12 @@ def score_candidate(candidate: MlbPlayCandidate) -> MlbPlayCandidate:
         support_weights=support_weights,
     )
     return candidate
+
+
+def apply_availability_adjustments(candidate: MlbPlayCandidate, score: float) -> float:
+    extra = candidate.extra or {}
+    lineup_penalty = float(extra.get("lineup_uncertainty_penalty", 0.0) or 0.0)
+    return max(score - lineup_penalty, 0.0)
 
 
 def support_weights_for(market: str) -> dict[str, float]:
@@ -79,6 +86,9 @@ def build_hr_reason(candidate: MlbPlayCandidate, probability_edge: float, suppor
     vs_pitcher_ops = extra.get("vs_pitcher_ops", 0.0)
     vs_pitcher_hr = extra.get("vs_pitcher_hr", 0)
     vs_pitcher_pa = extra.get("vs_pitcher_pa", 0)
+    lineup_confirmed = extra.get("lineup_confirmed")
+    lineup_uncertainty_penalty = extra.get("lineup_uncertainty_penalty", 0.0)
+    player_status = extra.get("player_status", "")
 
     reasons = [
         f"HR edge {probability_edge:.1f}",
@@ -119,6 +129,12 @@ def build_hr_reason(candidate: MlbPlayCandidate, probability_edge: float, suppor
         reasons.append(f"Age {age}")
     if order_estimate:
         reasons.append(f"Order est. {order_estimate}")
+    if lineup_confirmed:
+        reasons.append("Lineup confirmed")
+    elif lineup_uncertainty_penalty:
+        reasons.append(f"Lineup pen {float(lineup_uncertainty_penalty):.1f}")
+    if player_status and player_status != "Active":
+        reasons.append(f"Status {player_status}")
     if unlucky_power_index >= 0.18:
         reasons.append(f"Power due {unlucky_power_index:.2f}")
     if rising_star_index >= 0.22:
