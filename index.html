@@ -604,6 +604,42 @@ button { cursor: pointer; border: none; background: none; }
   min-width: 0;
 }
 
+.explorer-groups {
+  display: flex;
+  flex-direction: column;
+}
+
+.explorer-group {
+  border-bottom: 1px solid var(--border);
+}
+
+.explorer-group:last-child {
+  border-bottom: none;
+}
+
+.explorer-group-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.02);
+  border-bottom: 1px solid var(--border);
+}
+
+.explorer-group-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.explorer-group-meta {
+  font-size: 11px;
+  color: var(--text-3);
+}
+
 .explorer-table {
   width: 100%;
   border-collapse: collapse;
@@ -638,6 +674,11 @@ button { cursor: pointer; border: none; background: none; }
 .explorer-player-name {
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   font-weight: 600;
+}
+
+.explorer-table.compact th:nth-child(2),
+.explorer-table.compact td:nth-child(2) {
+  width: 92px;
 }
 
 .explorer-empty {
@@ -1102,6 +1143,58 @@ function bindExplorerControls(view, data, sport) {
   });
 }
 
+function renderExplorerTableRows(rows, sport, compact = false) {
+  return `
+    <table class="explorer-table ${compact ? "compact" : ""}">
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Team</th>
+          <th>Game</th>
+          <th>Market</th>
+          <th>Line</th>
+          <th>Score</th>
+          <th>Tier</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows.map(row => `
+          <tr>
+            <td><div class="explorer-player">${playerFace(row, sport, true)}${playerButton(row, sport, "explorer-player-name")}</div></td>
+            <td class="player-team-cell">${esc(row.team)} vs ${esc(row.opponent)}</td>
+            <td>${esc(row.matchup)}</td>
+            <td>${marketTag(row.market)}</td>
+            <td class="player-line-cell">${esc(row.line)}</td>
+            <td class="player-score-cell ${scoreClass(row.score)}">${Number(row.score || 0).toFixed(1)}</td>
+            <td>${tierBadge(row.tier)}</td>
+          </tr>`).join("")}
+      </tbody>
+    </table>`;
+}
+
+function renderExplorerGrouped(rows, sport) {
+  const groups = rows.reduce((acc, row) => {
+    const key = row.matchup || "Unknown matchup";
+    if (!acc.has(key)) acc.set(key, []);
+    acc.get(key).push(row);
+    return acc;
+  }, new Map());
+
+  return `<div class="explorer-groups">
+    ${Array.from(groups.entries()).map(([matchup, groupRows]) => {
+      const time = groupRows[0]?.time || "TBD";
+      return `
+        <section class="explorer-group">
+          <div class="explorer-group-head">
+            <div class="explorer-group-title">${esc(matchup)}</div>
+            <div class="explorer-group-meta">${groupRows.length} rows • ${esc(time)}</div>
+          </div>
+          ${renderExplorerTableRows(groupRows, sport, true)}
+        </section>`;
+    }).join("")}
+  </div>`;
+}
+
 function applyExplorerFilters(view, data, sport) {
   const search = (view.querySelector("[data-role='search']")?.value || "").trim().toLowerCase();
   const market = view.querySelector("[data-role='market']")?.value || "";
@@ -1131,32 +1224,10 @@ function applyExplorerFilters(view, data, sport) {
     return;
   }
 
-  explorer.innerHTML = `
-    <table class="explorer-table">
-      <thead>
-        <tr>
-          <th>Player</th>
-          <th>Team</th>
-          <th>Game</th>
-          <th>Market</th>
-          <th>Line</th>
-          <th>Score</th>
-          <th>Tier</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${rows.map(row => `
-          <tr>
-            <td><div class="explorer-player">${playerFace(row, sport, true)}${playerButton(row, sport, "explorer-player-name")}</div></td>
-            <td class="player-team-cell">${esc(row.team)} vs ${esc(row.opponent)}</td>
-            <td>${esc(row.matchup)}</td>
-            <td>${marketTag(row.market)}</td>
-            <td class="player-line-cell">${esc(row.line)}</td>
-            <td class="player-score-cell ${scoreClass(row.score)}">${Number(row.score || 0).toFixed(1)}</td>
-            <td>${tierBadge(row.tier)}</td>
-          </tr>`).join("")}
-      </tbody>
-    </table>`;
+  const useGroupedExplorer = !search && sort === "score-desc";
+  explorer.innerHTML = useGroupedExplorer
+    ? renderExplorerGrouped(rows, sport)
+    : renderExplorerTableRows(rows, sport);
 
   bindPlayerClicks(explorer, data, sport);
 }
