@@ -134,15 +134,17 @@ button { cursor: pointer; border: none; background: none; }
 
 /* MAIN LAYOUT */
 .main {
-  max-width: 1400px; margin: 0 auto; padding: 20px;
-  display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
-  gap: 20px; align-items: start;
+  max-width: 1680px; margin: 0 auto; padding: 20px;
+  display: block;
 }
 
 /* PINNED BOARD */
-.pinned-board { position: sticky; top: 104px; }
-.pinned-stack { display: flex; flex-direction: column; gap: 14px; }
+.pinned-board { display: none; }
+.pinned-stack {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
 
 .board-card {
   background: var(--surface); border: 1px solid var(--border);
@@ -326,17 +328,9 @@ button { cursor: pointer; border: none; background: none; }
   background: var(--gold-dim); border-color: rgba(240,180,41,0.3); color: var(--gold);
 }
 
-.board-controls {
-  margin: 0 0 12px;
-  padding: 12px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-}
-
 .controls-row {
   display: grid;
-  grid-template-columns: minmax(180px, 1.4fr) repeat(3, minmax(120px, 0.7fr));
+  grid-template-columns: minmax(200px, 1.35fr) repeat(3, minmax(112px, 0.72fr));
   gap: 10px;
 }
 
@@ -359,17 +353,37 @@ button { cursor: pointer; border: none; background: none; }
   overflow: hidden;
 }
 
-.sport-layout {
+.workspace-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px) minmax(0, 1fr);
-  gap: 14px;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 16px;
   align-items: start;
 }
 
-.lane-column {
+.workspace-main {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.workspace-rail {
+  position: sticky;
+  top: 104px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.rail-section {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  min-width: 0;
+}
+
+.explorer-column {
   min-width: 0;
 }
 
@@ -563,6 +577,7 @@ button { cursor: pointer; border: none; background: none; }
   padding: 12px 14px;
   background: var(--surface-2);
   border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
 }
 
 .explorer-title {
@@ -578,8 +593,15 @@ button { cursor: pointer; border: none; background: none; }
   letter-spacing: 1px;
 }
 
+.explorer-toolbar {
+  padding: 12px 14px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
 .explorer-scroll {
   overflow-x: auto;
+  min-width: 0;
 }
 
 .explorer-table {
@@ -723,14 +745,11 @@ button { cursor: pointer; border: none; background: none; }
 
 /* RESPONSIVE */
 @media (max-width: 960px) {
-  .main { grid-template-columns: 1fr; }
-  .pinned-board { position: static; }
+  .main { display: block; }
   .pinned-stack { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-  .sport-layout { grid-template-columns: 1fr; }
-  .sport-layout > .lane-column:nth-child(2) { order: 1; }
-  .sport-layout > .lane-column:nth-child(1) { order: 2; }
-  .sport-layout > .lane-column:nth-child(3) { order: 3; }
-  .lane-column { gap: 12px; }
+  .workspace-layout { grid-template-columns: 1fr; }
+  .workspace-rail { position: static; gap: 12px; }
+  .workspace-main, .rail-section { gap: 12px; }
 }
 @media (max-width: 640px) {
   .header-inner, .main, .tabs-inner { padding-left: 14px; padding-right: 14px; }
@@ -738,7 +757,7 @@ button { cursor: pointer; border: none; background: none; }
   .header-meta { flex-direction: column; align-items: flex-end; gap: 4px; }
   .wordmark { font-size: 20px; letter-spacing: 2px; }
   .pinned-stack { grid-template-columns: 1fr; }
-  .board-card, .lane-card, .explorer-wrap, .board-controls, .game-card { border-radius: 9px; }
+  .board-card, .lane-card, .explorer-wrap, .game-card { border-radius: 9px; }
   .modal-overlay { padding: 0; align-items: flex-end; }
   .modal-panel { border-radius: 12px 12px 0 0; width: 100%; max-height: 92vh; }
   .player-panel-overlay { align-items: flex-end; }
@@ -784,7 +803,6 @@ button { cursor: pointer; border: none; background: none; }
 </nav>
 
 <main class="main">
-  <div class="pinned-board" id="pinned-board-wrap"></div>
   <div id="sport-views">
     <div class="sport-view active" id="view-mlb"></div>
     <div class="sport-view" id="view-nba"></div>
@@ -953,12 +971,10 @@ function renderPinnedSection(board, sport = "mlb") {
 }
 
 function renderPinnedBoards(data, sport = "mlb") {
-  const wrap = document.getElementById("pinned-board-wrap");
   const sections = [];
   if (data?.pinned_board?.players?.length) sections.push(renderPinnedSection(data.pinned_board, sport));
   if (data?.consistency_board?.players?.length) sections.push(renderPinnedSection(data.consistency_board, sport));
-  wrap.innerHTML = sections.length ? `<div class="pinned-stack">${sections.join("")}</div>` : "";
-  if (sections.length) bindPlayerClicks(wrap, data, sport);
+  return sections.length ? `<div class="pinned-stack">${sections.join("")}</div>` : "";
 }
 
 function renderSignalPlayer(player, sport) {
@@ -1215,53 +1231,57 @@ function renderGameView(sport, data) {
   const markets = [...new Set(rows.map(row => row.market))].sort();
   const liveGames = data.games.filter(isLiveGame);
   const upcomingGames = data.games.filter(game => !isLiveGame(game));
+  const pinnedMarkup = renderPinnedBoards(data, sport);
 
   view.innerHTML = `
     <div class="section-label">Today's Games - ${esc(data.date || "")}</div>
-    <div class="sport-layout">
-      <div class="lane-column">
-        <div class="lane-label">In Progress</div>
-        <div class="games-grid">
-          ${liveGames.length ? liveGames.map(g => renderGameCard(g, sport)).join("") : laneEmpty("No live games", "These lanes will move here once play starts.")}
-        </div>
-      </div>
-      <div class="lane-column">
-        <div class="board-controls">
-          <div class="controls-row">
-            <input class="board-input" data-role="search" type="search" placeholder="Filter player, team, opponent, or game">
-            <select class="board-select" data-role="market">
-              <option value="">All markets</option>
-              ${markets.map(market => `<option value="${esc(market)}">${esc(market)}</option>`).join("")}
-            </select>
-            <select class="board-select" data-role="tier">
-              <option value="">All tiers</option>
-              <option value="A">A only</option>
-              <option value="B">B only</option>
-              <option value="C">C only</option>
-            </select>
-            <select class="board-select" data-role="sort">
-              <option value="score-desc">Score high to low</option>
-              <option value="score-asc">Score low to high</option>
-              <option value="player-asc">Player A-Z</option>
-              <option value="game-asc">Game A-Z</option>
-              <option value="market-asc">Market A-Z</option>
-            </select>
-          </div>
-        </div>
+    <div class="workspace-layout">
+      <div class="workspace-main">
+        ${pinnedMarkup}
         <div class="explorer-wrap">
           <div class="explorer-head">
             <div class="explorer-title">Board Explorer</div>
             <div class="explorer-count" data-role="explorer-count">${rows.length} rows</div>
           </div>
+          <div class="explorer-toolbar">
+            <div class="controls-row">
+              <input class="board-input" data-role="search" type="search" placeholder="Filter player, team, opponent, or game">
+              <select class="board-select" data-role="market">
+                <option value="">All markets</option>
+                ${markets.map(market => `<option value="${esc(market)}">${esc(market)}</option>`).join("")}
+              </select>
+              <select class="board-select" data-role="tier">
+                <option value="">All tiers</option>
+                <option value="A">A only</option>
+                <option value="B">B only</option>
+                <option value="C">C only</option>
+              </select>
+              <select class="board-select" data-role="sort">
+                <option value="score-desc">Score high to low</option>
+                <option value="score-asc">Score low to high</option>
+                <option value="player-asc">Player A-Z</option>
+                <option value="game-asc">Game A-Z</option>
+                <option value="market-asc">Market A-Z</option>
+              </select>
+            </div>
+          </div>
           <div class="explorer-scroll" data-role="explorer"></div>
         </div>
       </div>
-      <div class="lane-column">
-        <div class="lane-label">Upcoming</div>
-        <div class="games-grid">
-          ${upcomingGames.length ? upcomingGames.map(g => renderGameCard(g, sport)).join("") : laneEmpty("Slate moving", "Everything on this board is already live or final.")}
+      <aside class="workspace-rail">
+        <div class="rail-section">
+          <div class="lane-label">In Progress</div>
+          <div class="games-grid">
+            ${liveGames.length ? liveGames.map(g => renderGameCard(g, sport)).join("") : laneEmpty("No live games", "These lanes will move here once play starts.")}
+          </div>
         </div>
-      </div>
+        <div class="rail-section">
+          <div class="lane-label">Upcoming</div>
+          <div class="games-grid">
+            ${upcomingGames.length ? upcomingGames.map(g => renderGameCard(g, sport)).join("") : laneEmpty("Slate moving", "Everything on this board is already live or final.")}
+          </div>
+        </div>
+      </aside>
     </div>`;
 
   view.querySelectorAll(".open-slate-btn").forEach(btn => {
@@ -1278,10 +1298,6 @@ async function switchSport(sport) {
   document.querySelectorAll(".sport-tab").forEach(t => t.classList.toggle("active", t.dataset.sport === sport));
   document.querySelectorAll(".sport-view").forEach(v => v.classList.toggle("active", v.id === `view-${sport}`));
   const data = await loadSport(sport);
-
-  if (data?.pinned_board) renderPinnedBoards(data, sport);
-  else document.getElementById("pinned-board-wrap").innerHTML = "";
-
   renderGameView(sport, data);
 
   if (data) {
