@@ -222,12 +222,24 @@ def build_hitter_inputs(
     season = season_from_game_id(game_id)
     batters = []
     for roster_entry in roster.get("roster", []):
-        if roster_entry["position"]["abbreviation"] == "P":
-            continue
         person = roster_entry["person"]
         season_stats = get_stat_split(person, group="hitting", stat_type="season")
         if not season_stats:
             continue
+
+        position_abbr = roster_entry["position"]["abbreviation"]
+        season_pa = parse_int(season_stats.get("plateAppearances"))
+        season_hits = parse_int(season_stats.get("hits"))
+        season_ops = parse_decimal(season_stats.get("ops"))
+        is_true_pitcher_only = (
+            position_abbr == "P"
+            and season_pa < 20
+            and season_hits == 0
+            and season_ops <= 0.0
+        )
+        if is_true_pitcher_only:
+            continue
+
         batters.append((roster_entry, person, season_stats))
 
     batters.sort(

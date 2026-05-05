@@ -136,7 +136,7 @@ button { cursor: pointer; border: none; background: none; }
 .main {
   max-width: 1400px; margin: 0 auto; padding: 20px;
   display: grid;
-  grid-template-columns: 280px minmax(0, 1fr);
+  grid-template-columns: 260px minmax(0, 1fr);
   gap: 20px; align-items: start;
 }
 
@@ -245,8 +245,8 @@ button { cursor: pointer; border: none; background: none; }
 
 .games-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 12px;
+  grid-template-columns: 1fr;
+  gap: 10px;
 }
 
 .game-card {
@@ -262,14 +262,14 @@ button { cursor: pointer; border: none; background: none; }
 .game-card:nth-child(4) { animation-delay: 0.20s; }
 
 .game-card-head {
-  padding: 12px 14px 10px; background: var(--surface-2);
+  padding: 10px 12px 8px; background: var(--surface-2);
   border-bottom: 1px solid var(--border);
   display: flex; justify-content: space-between; align-items: flex-start;
 }
 
 .game-matchup {
   font-family: "Barlow Condensed", sans-serif;
-  font-size: 18px; font-weight: 800; letter-spacing: 0.5px; line-height: 1;
+  font-size: 16px; font-weight: 800; letter-spacing: 0.5px; line-height: 1;
 }
 .game-time { font-size: 11px; color: var(--text-3); margin-top: 3px; }
 
@@ -284,7 +284,7 @@ button { cursor: pointer; border: none; background: none; }
   box-shadow: 0 0 6px rgba(34,197,94,0.6);
 }
 
-.game-card-body { padding: 10px 14px 14px; }
+.game-card-body { padding: 9px 12px 12px; }
 .signals-list { display: flex; flex-direction: column; gap: 7px; margin-bottom: 12px; }
 
 .signal-row { display: flex; align-items: center; gap: 8px; }
@@ -327,7 +327,7 @@ button { cursor: pointer; border: none; background: none; }
 }
 
 .board-controls {
-  margin: 16px 0 12px;
+  margin: 0 0 12px;
   padding: 12px;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -353,11 +353,208 @@ button { cursor: pointer; border: none; background: none; }
 .board-input::placeholder { color: var(--text-3); }
 
 .explorer-wrap {
-  margin-top: 14px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 10px;
   overflow: hidden;
+}
+
+.sport-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px) minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.lane-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.lane-label {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  padding: 0 2px;
+}
+
+.lane-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.lane-kicker {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.lane-sub {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.game-card.live { border-color: rgba(34,197,94,0.22); }
+.game-card.scheduled { border-color: rgba(59,130,246,0.18); }
+
+.player-link {
+  appearance: none;
+  border: none;
+  background: none;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+
+.player-link:hover { color: var(--gold); }
+
+.player-link:focus-visible {
+  outline: 1px solid rgba(240,180,41,0.55);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.player-panel-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.58);
+  z-index: 75;
+  display: none;
+  justify-content: flex-end;
+}
+
+.player-panel-overlay.open { display: flex; }
+
+.player-panel {
+  width: min(440px, 100%);
+  height: 100%;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+
+.player-panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 18px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.player-panel-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+}
+
+.player-panel-subtitle {
+  margin-top: 3px;
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.player-panel-body {
+  padding: 16px 18px 22px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.player-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.player-stat-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.player-stat-label {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.player-stat-value {
+  margin-top: 4px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.player-section {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.player-section-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.player-row-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.player-row-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  background: var(--surface);
+}
+
+.player-row-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.player-row-meta {
+  font-size: 11px;
+  color: var(--text-3);
+  margin-top: 4px;
+}
+
+.player-reason {
+  font-size: 12px;
+  color: var(--text-2);
+  margin-top: 8px;
 }
 
 .explorer-head {
@@ -528,17 +725,38 @@ button { cursor: pointer; border: none; background: none; }
 @media (max-width: 960px) {
   .main { grid-template-columns: 1fr; }
   .pinned-board { position: static; }
+  .pinned-stack { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .sport-layout { grid-template-columns: 1fr; }
+  .sport-layout > .lane-column:nth-child(2) { order: 1; }
+  .sport-layout > .lane-column:nth-child(1) { order: 2; }
+  .sport-layout > .lane-column:nth-child(3) { order: 3; }
+  .lane-column { gap: 12px; }
 }
 @media (max-width: 640px) {
   .header-inner, .main, .tabs-inner { padding-left: 14px; padding-right: 14px; }
+  .header-inner { gap: 12px; align-items: flex-start; height: auto; padding-top: 12px; padding-bottom: 12px; }
+  .header-meta { flex-direction: column; align-items: flex-end; gap: 4px; }
+  .wordmark { font-size: 20px; letter-spacing: 2px; }
+  .pinned-stack { grid-template-columns: 1fr; }
+  .board-card, .lane-card, .explorer-wrap, .board-controls, .game-card { border-radius: 9px; }
   .modal-overlay { padding: 0; align-items: flex-end; }
   .modal-panel { border-radius: 12px 12px 0 0; width: 100%; max-height: 92vh; }
+  .player-panel-overlay { align-items: flex-end; }
+  .player-panel { width: 100%; height: auto; max-height: 92vh; border-left: none; border-top: 1px solid var(--border); border-radius: 12px 12px 0 0; }
   .player-table th:nth-child(6), .player-table td:nth-child(6) { display: none; }
-  .controls-row { grid-template-columns: 1fr 1fr; }
+  .controls-row { grid-template-columns: 1fr; }
+  .board-input, .board-select, .open-slate-btn { min-height: 42px; }
+  .games-grid { gap: 8px; }
+  .game-card-head { padding: 9px 10px 7px; }
+  .game-card-body { padding: 8px 10px 10px; }
+  .signal-row { align-items: flex-start; }
+  .signal-line { font-size: 12px; }
   .explorer-table th:nth-child(3),
   .explorer-table td:nth-child(3),
   .explorer-table th:nth-child(6),
   .explorer-table td:nth-child(6) { display: none; }
+  .player-stat-grid { grid-template-columns: 1fr; }
+  .modal-body, .player-panel-body { padding-left: 14px; padding-right: 14px; }
 }
 </style>
 </head>
@@ -591,6 +809,19 @@ button { cursor: pointer; border: none; background: none; }
   </div>
 </div>
 
+<div class="player-panel-overlay" id="player-panel-overlay">
+  <aside class="player-panel">
+    <div class="player-panel-head">
+      <div>
+        <div class="player-panel-title" id="player-panel-title">—</div>
+        <div class="player-panel-subtitle" id="player-panel-subtitle">—</div>
+      </div>
+      <button class="modal-close" id="player-panel-close">✕</button>
+    </div>
+    <div class="player-panel-body" id="player-panel-body"></div>
+  </aside>
+</div>
+
 <script>
 const DATA_FILES = {
   mlb: "data/mlb.json",
@@ -602,19 +833,22 @@ const DATA_FILES = {
 };
 
 const COMING_SOON = {
-  nba: { icon: "🏀", label: "NBA" },
-  wnba: { icon: "🏀", label: "WNBA" },
-  nfl: { icon: "🏈", label: "NFL" },
-  soccer: { icon: "⚽", label: "Soccer" },
-  tennis: { icon: "🎾", label: "Tennis" },
+  nba: { icon: "??", label: "NBA" },
+  wnba: { icon: "??", label: "WNBA" },
+  nfl: { icon: "??", label: "NFL" },
+  soccer: { icon: "?", label: "Soccer" },
+  tennis: { icon: "??", label: "Tennis" },
 };
 
 const cache = {};
 
 function esc(str) {
   return String(str || "")
-    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 function scoreClass(s) {
@@ -622,7 +856,7 @@ function scoreClass(s) {
 }
 
 function tierBadge(tier) {
-  return `<span class="tier-badge tier-${esc(tier)}">${esc(tier)}</span>`;
+  return `<span class="tier-badge tier-${esc(tier)}">${esc(tier || "C")}</span>`;
 }
 
 function marketTag(m) {
@@ -651,10 +885,15 @@ function playerFace(player, sport, small = false) {
   return `<img class="${klass}" src="${src}" alt="${esc(player.player_name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">`;
 }
 
+function playerButton(player, sport, extraClass = "") {
+  if (!player) return "";
+  return `<button class="player-link ${extraClass}" data-player-id="${esc(player.player_id)}" data-sport="${esc(sport)}">${esc(player.player_name)}</button>`;
+}
+
 function hrResultBadge(player) {
   if (!player || !player.hr_result) return "";
   if (player.hr_result === "hit") {
-    return `<span class="result-badge result-hit" title="${esc((player.home_runs || 1) + ' HR')}">✓</span>`;
+    return `<span class="result-badge result-hit" title="${esc((player.home_runs || 1) + " HR")}">?</span>`;
   }
   if (player.hr_result === "miss") {
     return `<span class="result-badge result-miss" title="Final: no HR">x</span>`;
@@ -662,96 +901,81 @@ function hrResultBadge(player) {
   return "";
 }
 
+function normalizeDash(value) {
+  return value || "?";
+}
+
+function isLiveGame(game) {
+  const stamp = `${game?.time || ""} ${game?.status || ""}`.toLowerCase();
+  if (!stamp) return false;
+  if (/(final|ppd|postponed|canceled|cancelled)/.test(stamp)) return false;
+  return /(top|bot|mid|live|q[1-4]|ot|half|inning|set \d|break|suspended|delay|delayed)/.test(stamp);
+}
+
+function laneEmpty(title, text) {
+  return `<div class="lane-card"><div class="lane-kicker">${esc(title)}</div><div class="lane-sub">${esc(text)}</div></div>`;
+}
+
 async function loadSport(sport) {
   if (cache[sport]) return cache[sport];
   try {
-    const r = await fetch(DATA_FILES[sport] + "?v=" + Date.now());
-    if (!r.ok) throw new Error();
+    const r = await fetch(`${DATA_FILES[sport]}?v=${Date.now()}`);
+    if (!r.ok) throw new Error(`Failed to load ${sport}`);
     const data = await r.json();
     cache[sport] = data;
     return data;
-  } catch(e) {
+  } catch (e) {
     return null;
   }
 }
 
 function renderPinnedSection(board, sport = "mlb") {
   if (!board || !board.players || !board.players.length) return "";
-  const players = board.players;
   return `
     <div class="board-card">
       <div class="board-header">
         <div class="board-title">${esc(board.title)}</div>
-        <div class="board-count">${players.length} Players</div>
+        <div class="board-count">${board.players.length} Players</div>
       </div>
-        ${players.map((p, i) => `
-          <div class="pinned-row">
-            <div class="pinned-rank ${i < 3 ? "top" : ""}">${i + 1}</div>
-            ${playerFace(p, sport)}
-            <div class="pinned-info">
-              <div class="pinned-name">${esc(p.player_name)}</div>
-              <div class="pinned-meta"><span>${esc(p.team)}</span><span>vs ${esc(p.opponent)}</span></div>
-            </div>
+      ${board.players.map((p, i) => `
+        <div class="pinned-row">
+          <div class="pinned-rank ${i < 3 ? "top" : ""}">${i + 1}</div>
+          ${playerFace(p, sport)}
+          <div class="pinned-info">
+            <div class="pinned-name">${playerButton(p, sport, "pinned-name")}</div>
+            <div class="pinned-meta"><span>${esc(p.team)}</span><span>vs ${esc(p.opponent)}</span></div>
+          </div>
           <div class="pinned-line">${esc(p.line)}</div>
           ${board.market === "HR" ? hrResultBadge(p) : ""}
           ${tierBadge(p.tier)}
-        </div>
-      `).join("")}
+        </div>`).join("")}
     </div>`;
 }
 
 function renderPinnedBoards(data, sport = "mlb") {
   const wrap = document.getElementById("pinned-board-wrap");
   const sections = [];
-  if (data && data.pinned_board && data.pinned_board.players && data.pinned_board.players.length) {
-    sections.push(renderPinnedSection(data.pinned_board, sport));
-  }
-  if (data && data.consistency_board && data.consistency_board.players && data.consistency_board.players.length) {
-    sections.push(renderPinnedSection(data.consistency_board, sport));
-  }
-  if (!sections.length) {
-    wrap.innerHTML = "";
-    return;
-  }
-  wrap.innerHTML = `<div class="pinned-stack">${sections.join("")}</div>`;
+  if (data?.pinned_board?.players?.length) sections.push(renderPinnedSection(data.pinned_board, sport));
+  if (data?.consistency_board?.players?.length) sections.push(renderPinnedSection(data.consistency_board, sport));
+  wrap.innerHTML = sections.length ? `<div class="pinned-stack">${sections.join("")}</div>` : "";
+  if (sections.length) bindPlayerClicks(wrap, data, sport);
 }
 
-function renderGameView(sport, data) {
-  const view = document.getElementById(`view-${sport}`);
-  if (!data || !data.games || !data.games.length) {
-    const cs = COMING_SOON[sport];
-    if (cs) {
-      view.innerHTML = `<div class="coming-soon"><div class="coming-soon-icon">${cs.icon}</div><div class="coming-soon-title">${cs.label} Coming Soon</div><div class="coming-soon-sub">Backend pipeline will populate this board automatically.</div></div>`;
-    } else {
-      view.innerHTML = `<div class="coming-soon"><div class="coming-soon-title">No Games Today</div><div class="coming-soon-sub">Check back when the bot runs.</div></div>`;
-    }
-    return;
-  }
-
-  document.getElementById(`tab-count-${sport}`).textContent = data.games.length;
-
-  view.innerHTML = `
-    <div class="section-label">Today's Games — ${esc(data.date || "")}</div>
-      <div class="games-grid">
-        ${data.games.map(g => renderGameCard(g, sport)).join("")}
-      </div>`;
-
-    view.querySelectorAll(".open-slate-btn").forEach(btn => {
-      const game = data.games.find(g => g.game_id === btn.dataset.gameId);
-      if (game) btn.addEventListener("click", () => openModal(game, sport));
-    });
-  }
+function renderSignalPlayer(player, sport) {
+  return `<div class="signal-player-wrap">${playerFace(player, sport, true)}<div class="signal-player">${playerButton(player, sport)}</div></div>`;
+}
 
 function renderGameCard(game, sport) {
   const signals = (game.top_signals || []).slice(0, 3);
   const markets = game.markets || {};
   const activeMarkets = Object.keys(markets).filter(k => markets[k] && markets[k].length);
+  const liveClass = isLiveGame(game) ? "live" : "scheduled";
   return `
-    <div class="game-card">
+    <div class="game-card ${liveClass}">
       <div class="game-card-head">
         <div>
           <div class="game-matchup">${esc(game.matchup)}</div>
-          <div class="game-time">${esc(game.time)}</div>
+          <div class="game-time">${esc(game.time || game.status || "TBD")}</div>
         </div>
         <div class="game-market-count">
           <span class="signal-dot"></span>${activeMarkets.length} Markets
@@ -759,61 +983,17 @@ function renderGameCard(game, sport) {
       </div>
       <div class="game-card-body">
         <div class="signals-list">
-            ${signals.map(s => `
-              <div class="signal-row">
-                ${marketTag(s.market)}
-                <div class="signal-player-wrap">${playerFace(s, sport, true)}<div class="signal-player">${esc(s.player_name)}</div></div>
-                <div class="signal-line">${esc(s.line)}</div>
-                ${tierBadge(s.tier)}
-              </div>`).join("")}
+          ${signals.length ? signals.map(s => `
+            <div class="signal-row">
+              ${marketTag(s.market)}
+              ${renderSignalPlayer(s, sport)}
+              <div class="signal-line">${esc(s.line)}</div>
+              ${tierBadge(s.tier)}
+            </div>`).join("") : `<div class="lane-sub">No top signals yet.</div>`}
         </div>
-        <button class="open-slate-btn" data-game-id="${esc(game.game_id)}">Open Full Slate →</button>
+        <button class="open-slate-btn" data-game-id="${esc(game.game_id)}">Open Full Slate</button>
       </div>
     </div>`;
-}
-
-function openModal(game, sport) {
-  const markets = game.markets || {};
-  const activeMarkets = Object.keys(markets).filter(k => markets[k] && markets[k].length);
-
-  document.getElementById("modal-title").textContent = game.matchup;
-  document.getElementById("modal-subtitle").textContent = game.time;
-
-  const tabs = ["all", ...activeMarkets];
-  document.getElementById("modal-tabs").innerHTML = tabs.map(m => `
-    <button class="modal-tab ${m === "all" ? "active" : ""}" data-market="${esc(m)}">
-      ${m === "all" ? "All Markets" : esc(m)}
-    </button>`).join("");
-
-  document.querySelectorAll(".modal-tab").forEach(tab => {
-    tab.addEventListener("click", () => {
-    document.querySelectorAll(".modal-tab").forEach(t => t.classList.remove("active"));
-    tab.classList.add("active");
-    renderModalBody(game, tab.dataset.market, sport);
-  });
-});
-
-  renderModalBody(game, "all", sport);
-  document.getElementById("modal-overlay").classList.add("open");
-  document.body.style.overflow = "hidden";
-}
-
-function renderModalBody(game, filter, sport) {
-  const markets = game.markets || {};
-  const keys = filter === "all" ? Object.keys(markets) : [filter];
-  let html = "";
-
-  for (const market of keys) {
-    const players = (markets[market] || []);
-    if (!players.length) { if (filter !== "all") html += `<div class="empty-market">No picks for ${esc(market)}</div>`; continue; }
-    if (filter === "all") {
-      html += `<div class="market-section"><div class="market-section-title">${esc(market)}</div>${renderPlayerTable(players, sport)}</div>`;
-    } else {
-      html += renderPlayerTable(players, sport);
-    }
-  }
-
-  document.getElementById("modal-body").innerHTML = html || `<div class="empty-market">No data available</div>`;
 }
 
 function renderPlayerTable(players, sport) {
@@ -823,35 +1003,75 @@ function renderPlayerTable(players, sport) {
       <tbody>
         ${players.map(p => `
           <tr>
-            <td class="player-name-cell"><div class="player-name-wrap">${playerFace(p, sport, true)}<span class="player-name-text">${esc(p.player_name)}</span></div></td>
+            <td class="player-name-cell"><div class="player-name-wrap">${playerFace(p, sport, true)}${playerButton(p, sport, "player-name-text")}</div></td>
             <td class="player-team-cell">${esc(p.team)}</td>
             <td class="player-line-cell">${esc(p.line)}</td>
             <td class="player-score-cell ${scoreClass(p.score)}">${Number(p.score || 0).toFixed(1)}</td>
             <td>${tierBadge(p.tier)}</td>
-            <td class="reason-cell">${esc(p.reason || "—")}</td>
+            <td class="reason-cell">${esc(p.reason || "?")}</td>
           </tr>`).join("")}
       </tbody>
     </table>`;
 }
 
+function renderModalBody(game, filter, sport) {
+  const markets = game.markets || {};
+  const keys = filter === "all" ? Object.keys(markets) : [filter];
+  let html = "";
+
+  for (const market of keys) {
+    const players = markets[market] || [];
+    if (!players.length) {
+      if (filter !== "all") html += `<div class="empty-market">No picks for ${esc(market)}</div>`;
+      continue;
+    }
+    html += filter === "all"
+      ? `<div class="market-section"><div class="market-section-title">${esc(market)}</div>${renderPlayerTable(players, sport)}</div>`
+      : renderPlayerTable(players, sport);
+  }
+
+  const body = document.getElementById("modal-body");
+  body.innerHTML = html || `<div class="empty-market">No data available</div>`;
+  bindPlayerClicks(body, cache[sport], sport);
+}
+
+function openModal(game, sport) {
+  const markets = game.markets || {};
+  const activeMarkets = Object.keys(markets).filter(k => markets[k] && markets[k].length);
+  document.getElementById("modal-title").textContent = game.matchup;
+  document.getElementById("modal-subtitle").textContent = game.time || game.status || "TBD";
+
+  const tabs = ["all", ...activeMarkets];
+  document.getElementById("modal-tabs").innerHTML = tabs.map(m => `
+    <button class="modal-tab ${m === "all" ? "active" : ""}" data-market="${esc(m)}">${m === "all" ? "All Markets" : esc(m)}</button>
+  `).join("");
+
+  document.querySelectorAll(".modal-tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".modal-tab").forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      renderModalBody(game, tab.dataset.market, sport);
+    });
+  });
+
+  renderModalBody(game, "all", sport);
+  document.getElementById("modal-overlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
 function closeModal() {
   document.getElementById("modal-overlay").classList.remove("open");
-  document.body.style.overflow = "";
+  if (!document.getElementById("player-panel-overlay").classList.contains("open")) {
+    document.body.style.overflow = "";
+  }
 }
 
 function flattenBoardRows(data) {
   const rows = [];
-  for (const game of data.games || []) {
-    const markets = game.markets || {};
-    for (const [market, players] of Object.entries(markets)) {
+  for (const game of data?.games || []) {
+    for (const [market, players] of Object.entries(game.markets || {})) {
       for (const player of players || []) {
-        rows.push({
-          ...player,
-          market,
-          matchup: game.matchup,
-          time: game.time,
-          game_id: game.game_id,
-        });
+        rows.push({ ...player, market, matchup: game.matchup, time: game.time, game_id: game.game_id });
       }
     }
   }
@@ -911,7 +1131,7 @@ function applyExplorerFilters(view, data, sport) {
       <tbody>
         ${rows.map(row => `
           <tr>
-            <td><div class="explorer-player">${playerFace(row, sport, true)}<span class="explorer-player-name">${esc(row.player_name)}</span></div></td>
+            <td><div class="explorer-player">${playerFace(row, sport, true)}${playerButton(row, sport, "explorer-player-name")}</div></td>
             <td class="player-team-cell">${esc(row.team)} vs ${esc(row.opponent)}</td>
             <td>${esc(row.matchup)}</td>
             <td>${marketTag(row.market)}</td>
@@ -921,6 +1141,61 @@ function applyExplorerFilters(view, data, sport) {
           </tr>`).join("")}
       </tbody>
     </table>`;
+
+  bindPlayerClicks(explorer, data, sport);
+}
+
+function playerReasonList(rows) {
+  if (!rows.length) return `<div class="lane-sub">No signal rows found for this player on the current board.</div>`;
+  return `<div class="player-row-list">${rows.map(row => `
+    <div class="player-row-card">
+      <div class="player-row-top">
+        <div>${marketTag(row.market)}</div>
+        <div class="player-line-cell">${esc(row.line)}</div>
+      </div>
+      <div class="player-row-meta">${esc(row.matchup)} ? ${Number(row.score || 0).toFixed(1)} score ? Tier ${esc(row.tier || "C")}</div>
+      <div class="player-reason">${esc(row.reason || "No edge note yet.")}</div>
+    </div>`).join("")}</div>`;
+}
+
+function openPlayerPanel(playerId, sport, data) {
+  const rows = flattenBoardRows(data).filter(row => String(row.player_id) === String(playerId));
+  if (!rows.length) return;
+  const player = rows[0];
+  document.getElementById("player-panel-title").textContent = player.player_name;
+  document.getElementById("player-panel-subtitle").textContent = `${player.team} vs ${player.opponent} ? ${rows.length} board row${rows.length === 1 ? "" : "s"}`;
+
+  const scoreValues = rows.map(r => Number(r.score || 0));
+  const avgScore = scoreValues.reduce((sum, val) => sum + val, 0) / scoreValues.length;
+  const topTier = rows.map(r => r.tier).sort()[0] || "C";
+  const body = document.getElementById("player-panel-body");
+  body.innerHTML = `
+    <div class="player-stat-grid">
+      <div class="player-stat-card"><div class="player-stat-label">Top Line</div><div class="player-stat-value">${esc(rows[0].line)}</div></div>
+      <div class="player-stat-card"><div class="player-stat-label">Avg Score</div><div class="player-stat-value">${avgScore.toFixed(1)}</div></div>
+      <div class="player-stat-card"><div class="player-stat-label">Best Tier</div><div class="player-stat-value">${esc(topTier)}</div></div>
+      <div class="player-stat-card"><div class="player-stat-label">Markets</div><div class="player-stat-value">${rows.map(r => r.market).filter((v, i, arr) => arr.indexOf(v) === i).join(", ")}</div></div>
+    </div>
+    <div class="player-section">
+      <div class="player-section-title">Board Detail</div>
+      ${playerReasonList(rows)}
+    </div>`;
+
+  document.getElementById("player-panel-overlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closePlayerPanel() {
+  document.getElementById("player-panel-overlay").classList.remove("open");
+  if (!document.getElementById("modal-overlay").classList.contains("open")) {
+    document.body.style.overflow = "";
+  }
+}
+
+function bindPlayerClicks(container, data, sport) {
+  container.querySelectorAll(".player-link").forEach(button => {
+    button.addEventListener("click", () => openPlayerPanel(button.dataset.playerId, button.dataset.sport || sport, data));
+  });
 }
 
 function renderGameView(sport, data) {
@@ -938,46 +1213,63 @@ function renderGameView(sport, data) {
   document.getElementById(`tab-count-${sport}`).textContent = data.games.length;
   const rows = flattenBoardRows(data);
   const markets = [...new Set(rows.map(row => row.market))].sort();
+  const liveGames = data.games.filter(isLiveGame);
+  const upcomingGames = data.games.filter(game => !isLiveGame(game));
 
   view.innerHTML = `
-    <div class="section-label">Today's Games â€” ${esc(data.date || "")}</div>
-    <div class="board-controls">
-      <div class="controls-row">
-        <input class="board-input" data-role="search" type="search" placeholder="Filter player, team, opponent, or game">
-        <select class="board-select" data-role="market">
-          <option value="">All markets</option>
-          ${markets.map(market => `<option value="${esc(market)}">${esc(market)}</option>`).join("")}
-        </select>
-        <select class="board-select" data-role="tier">
-          <option value="">All tiers</option>
-          <option value="A">A only</option>
-          <option value="B">B only</option>
-          <option value="C">C only</option>
-        </select>
-        <select class="board-select" data-role="sort">
-          <option value="score-desc">Score high to low</option>
-          <option value="score-asc">Score low to high</option>
-          <option value="player-asc">Player A-Z</option>
-          <option value="game-asc">Game A-Z</option>
-          <option value="market-asc">Market A-Z</option>
-        </select>
+    <div class="section-label">Today's Games - ${esc(data.date || "")}</div>
+    <div class="sport-layout">
+      <div class="lane-column">
+        <div class="lane-label">In Progress</div>
+        <div class="games-grid">
+          ${liveGames.length ? liveGames.map(g => renderGameCard(g, sport)).join("") : laneEmpty("No live games", "These lanes will move here once play starts.")}
+        </div>
       </div>
-    </div>
-    <div class="games-grid">
-      ${data.games.map(g => renderGameCard(g, sport)).join("")}
-    </div>
-    <div class="explorer-wrap">
-      <div class="explorer-head">
-        <div class="explorer-title">Board Explorer</div>
-        <div class="explorer-count" data-role="explorer-count">${rows.length} rows</div>
+      <div class="lane-column">
+        <div class="board-controls">
+          <div class="controls-row">
+            <input class="board-input" data-role="search" type="search" placeholder="Filter player, team, opponent, or game">
+            <select class="board-select" data-role="market">
+              <option value="">All markets</option>
+              ${markets.map(market => `<option value="${esc(market)}">${esc(market)}</option>`).join("")}
+            </select>
+            <select class="board-select" data-role="tier">
+              <option value="">All tiers</option>
+              <option value="A">A only</option>
+              <option value="B">B only</option>
+              <option value="C">C only</option>
+            </select>
+            <select class="board-select" data-role="sort">
+              <option value="score-desc">Score high to low</option>
+              <option value="score-asc">Score low to high</option>
+              <option value="player-asc">Player A-Z</option>
+              <option value="game-asc">Game A-Z</option>
+              <option value="market-asc">Market A-Z</option>
+            </select>
+          </div>
+        </div>
+        <div class="explorer-wrap">
+          <div class="explorer-head">
+            <div class="explorer-title">Board Explorer</div>
+            <div class="explorer-count" data-role="explorer-count">${rows.length} rows</div>
+          </div>
+          <div class="explorer-scroll" data-role="explorer"></div>
+        </div>
       </div>
-      <div class="explorer-scroll" data-role="explorer"></div>
+      <div class="lane-column">
+        <div class="lane-label">Upcoming</div>
+        <div class="games-grid">
+          ${upcomingGames.length ? upcomingGames.map(g => renderGameCard(g, sport)).join("") : laneEmpty("Slate moving", "Everything on this board is already live or final.")}
+        </div>
+      </div>
     </div>`;
 
   view.querySelectorAll(".open-slate-btn").forEach(btn => {
     const game = data.games.find(g => g.game_id === btn.dataset.gameId);
     if (game) btn.addEventListener("click", () => openModal(game, sport));
   });
+
+  bindPlayerClicks(view, data, sport);
   bindExplorerControls(view, data, sport);
   applyExplorerFilters(view, data, sport);
 }
@@ -985,27 +1277,33 @@ function renderGameView(sport, data) {
 async function switchSport(sport) {
   document.querySelectorAll(".sport-tab").forEach(t => t.classList.toggle("active", t.dataset.sport === sport));
   document.querySelectorAll(".sport-view").forEach(v => v.classList.toggle("active", v.id === `view-${sport}`));
-
   const data = await loadSport(sport);
 
-  if (data && data.pinned_board) {
-    renderPinnedBoards(data, sport);
-  } else {
-    document.getElementById("pinned-board-wrap").innerHTML = "";
-  }
+  if (data?.pinned_board) renderPinnedBoards(data, sport);
+  else document.getElementById("pinned-board-wrap").innerHTML = "";
 
   renderGameView(sport, data);
 
   if (data) {
-    document.getElementById("header-date").textContent = data.date || "—";
-    document.getElementById("header-updated").textContent = data.last_updated || "—";
+    document.getElementById("header-date").textContent = normalizeDash(data.date);
+    document.getElementById("header-updated").textContent = normalizeDash(data.last_updated);
+  } else {
+    document.getElementById("header-date").textContent = "-";
+    document.getElementById("header-updated").textContent = "-";
   }
 }
 
 document.querySelectorAll(".sport-tab").forEach(t => t.addEventListener("click", () => switchSport(t.dataset.sport)));
 document.getElementById("modal-close").addEventListener("click", closeModal);
 document.getElementById("modal-overlay").addEventListener("click", e => { if (e.target.id === "modal-overlay") closeModal(); });
-document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+document.getElementById("player-panel-close").addEventListener("click", closePlayerPanel);
+document.getElementById("player-panel-overlay").addEventListener("click", e => { if (e.target.id === "player-panel-overlay") closePlayerPanel(); });
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    closeModal();
+    closePlayerPanel();
+  }
+});
 
 switchSport("mlb");
 </script>
