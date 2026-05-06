@@ -1356,6 +1356,17 @@ function normalizeDash(value) {
   return value || "?";
 }
 
+function localIsoDate() {
+  const now = new Date();
+  const offset = now.getTimezoneOffset();
+  const local = new Date(now.getTime() - offset * 60000);
+  return local.toISOString().slice(0, 10);
+}
+
+function isTodaySlate(data) {
+  return !!data?.date && data.date === localIsoDate();
+}
+
 function isLiveGame(game) {
   const stamp = `${game?.time || ""} ${game?.status || ""}`.toLowerCase();
   if (!stamp) return false;
@@ -1691,29 +1702,40 @@ async function renderPicksView() {
   const view = document.getElementById("view-picks");
   const loaded = await Promise.all(SPORT_ORDER.map(async sport => [sport, await loadSport(sport)]));
   const active = loaded.filter(([, data]) => !!data);
-  document.getElementById("tab-count-picks").textContent = String(active.length || "?");
+  const todayActive = active.filter(([, data]) => isTodaySlate(data));
+  const lookahead = active.filter(([, data]) => !isTodaySlate(data));
+  document.getElementById("tab-count-picks").textContent = String(todayActive.length || "0");
 
-  const cards = active.map(([sport, data]) => renderSportPickCard(sport, data)).filter(Boolean);
+  const cards = todayActive.map(([sport, data]) => renderSportPickCard(sport, data)).filter(Boolean);
   view.innerHTML = `
     <div class="section-label">Picks of the Day</div>
     <div class="picks-board">
-      ${renderPicksHero(active)}
+      ${renderPicksHero(todayActive)}
       <div class="lane-card">
         <div class="lane-kicker">Cross-Sport Daily Board</div>
         <div class="lane-sub">Best straight first, then 2-leg and 3-leg combinations for each sport when the slate supports it.</div>
       </div>
+      ${lookahead.length ? `
+      <div class="lane-card">
+        <div class="lane-kicker">Not On Today's Slate</div>
+        <div class="lane-sub">${esc(lookahead.map(([sport, data]) => `${SPORT_LABELS[sport] || sport.toUpperCase()} ${data?.date || ""}`).join(" • "))}</div>
+      </div>` : ""}
       <div class="picks-grid">
         ${cards.length ? cards.join("") : `<div class="lane-card"><div class="lane-kicker">No picks loaded</div><div class="lane-sub">The board will populate once the sport feeds refresh.</div></div>`}
       </div>
     </div>`;
 
-  for (const [sport, data] of active) {
+  for (const [sport, data] of todayActive) {
     bindPlayerClicks(view, data, sport);
   }
 
-  if (active.length) {
-    const latest = active.map(([, data]) => data?.last_updated || "").find(Boolean);
+  if (todayActive.length) {
+    const latest = todayActive.map(([, data]) => data?.last_updated || "").find(Boolean);
     document.getElementById("header-date").textContent = normalizeDash("Cross-Sport");
+    document.getElementById("header-updated").textContent = normalizeDash(latest);
+  } else if (lookahead.length) {
+    const latest = lookahead.map(([, data]) => data?.last_updated || "").find(Boolean);
+    document.getElementById("header-date").textContent = normalizeDash("Next Slate");
     document.getElementById("header-updated").textContent = normalizeDash(latest);
   }
 }
