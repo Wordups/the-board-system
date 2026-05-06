@@ -689,6 +689,175 @@ button { cursor: pointer; border: none; background: none; }
   gap: 16px;
 }
 
+.picks-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background:
+    radial-gradient(circle at 18% 22%, rgba(240,180,41,0.22), transparent 36%),
+    radial-gradient(circle at 82% 24%, rgba(59,130,246,0.18), transparent 34%),
+    radial-gradient(circle at 64% 78%, rgba(239,68,68,0.18), transparent 38%),
+    linear-gradient(135deg, #111111 0%, #0a0a0a 58%, #131313 100%);
+  min-height: 220px;
+}
+
+.picks-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(115deg, rgba(255,255,255,0.04), transparent 35%),
+    linear-gradient(180deg, transparent, rgba(0,0,0,0.35));
+  pointer-events: none;
+}
+
+.picks-hero-inner {
+  position: relative;
+  z-index: 1;
+  padding: 20px 22px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.9fr);
+  gap: 18px;
+  align-items: end;
+}
+
+.picks-hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.picks-hero-kicker {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.picks-hero-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.picks-hero-sub {
+  max-width: 700px;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.picks-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.hero-chip,
+.reason-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.picks-hero-stack {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 10px;
+  min-width: 0;
+}
+
+.hero-player {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  padding: 14px;
+  min-height: 148px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.hero-player::before {
+  content: "";
+  position: absolute;
+  inset: auto -10% -35% auto;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(240,180,41,0.10);
+  filter: blur(16px);
+}
+
+.hero-player-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.hero-player-face {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.08);
+}
+
+.hero-player-rank {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.hero-player-name {
+  margin-top: 10px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: 0.4px;
+}
+
+.hero-player-meta {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.hero-player-line {
+  margin-top: 10px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--gold);
+}
+
 .picks-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -698,7 +867,7 @@ button { cursor: pointer; border: none; background: none; }
 .pick-sport-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
 }
 
@@ -707,8 +876,10 @@ button { cursor: pointer; border: none; background: none; }
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 12px 16px;
-  background: var(--surface-2);
+  padding: 14px 16px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)),
+    var(--surface-2);
   border-bottom: 1px solid var(--border);
 }
 
@@ -730,6 +901,47 @@ button { cursor: pointer; border: none; background: none; }
   flex-direction: column;
   gap: 12px;
   padding: 14px 16px 16px;
+}
+
+.pick-poster {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(240,180,41,0.14), transparent 34%),
+    linear-gradient(145deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+    var(--surface-2);
+  padding: 14px;
+}
+
+.pick-poster::after {
+  content: "";
+  position: absolute;
+  inset: auto -5% -35% auto;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+  filter: blur(18px);
+}
+
+.pick-poster-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+}
+
+.pick-poster-face {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: rgba(255,255,255,0.08);
+  border: 2px solid rgba(255,255,255,0.12);
 }
 
 .pick-block {
@@ -784,6 +996,12 @@ button { cursor: pointer; border: none; background: none; }
   color: var(--text-2);
 }
 
+.pick-main-reason {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
 .pick-line-wrap {
   display: flex;
   align-items: center;
@@ -801,6 +1019,11 @@ button { cursor: pointer; border: none; background: none; }
 
 .pick-empty {
   font-size: 12px;
+  color: var(--text-3);
+}
+
+.pick-sport-footnote {
+  font-size: 11px;
   color: var(--text-3);
 }
 
@@ -915,6 +1138,8 @@ button { cursor: pointer; border: none; background: none; }
   .workspace-rail { position: static; gap: 12px; }
   .workspace-main, .rail-section { gap: 12px; }
   .picks-grid { grid-template-columns: 1fr; }
+  .picks-hero-inner { grid-template-columns: 1fr; }
+  .picks-hero-stack { justify-content: flex-start; }
 }
 @media (max-width: 640px) {
   .header-inner, .main, .tabs-inner { padding-left: 14px; padding-right: 14px; }
@@ -929,6 +1154,13 @@ button { cursor: pointer; border: none; background: none; }
   .player-panel { width: 100%; height: auto; max-height: 92vh; border-left: none; border-top: 1px solid var(--border); border-radius: 12px 12px 0 0; }
   .player-table th:nth-child(6), .player-table td:nth-child(6) { display: none; }
   .controls-row { grid-template-columns: 1fr; }
+  .picks-hero { min-height: 0; }
+  .picks-hero-inner { padding: 16px; gap: 14px; }
+  .picks-hero-title { font-size: 28px; }
+  .picks-hero-stack { flex-direction: column; align-items: stretch; }
+  .hero-player { min-height: 0; }
+  .pick-poster-inner { grid-template-columns: 58px minmax(0, 1fr); }
+  .pick-poster-face { width: 58px; height: 58px; }
   .board-input, .board-select, .open-slate-btn { min-height: 42px; }
   .games-grid { gap: 8px; }
   .game-card-head { padding: 9px 10px 7px; }
@@ -1207,18 +1439,97 @@ function deriveSportPicks(sport, data) {
   return null;
 }
 
+function shortSportLabel(sport) {
+  return (SPORT_LABELS[sport] || sport || "").toUpperCase();
+}
+
+function summarizePickReason(row, sport) {
+  if (!row?.reason) return [];
+  const tokens = String(row.reason).split("|").map(part => part.trim()).filter(Boolean);
+  const sportRules = {
+    mlb: [/edge/i, /^L5/i, /^matchup/i, /^WHIP/i, /^RISP/i, /^vs /i, /^order/i],
+    nba: [/edge/i, /^L5/i, /matchup/i, /usage/i, /minutes/i, /h2h/i],
+    wnba: [/^L5/i, /matchup/i, /^Prev/i, /^Pre/i, /Uptick/i, /Decline/i],
+    soccer: [/edge/i, /^L5/i, /matchup/i, /goals/i, /xg/i],
+    tennis: [/edge/i, /^L5/i, /matchup/i, /h2h/i, /surface/i],
+  };
+  const patterns = sportRules[sport] || [/edge/i, /^L5/i, /matchup/i];
+  const keepers = [];
+  for (const token of tokens) {
+    if (patterns.some(pattern => pattern.test(token))) keepers.push(token);
+    if (keepers.length === 4) break;
+  }
+  return keepers.length ? keepers : tokens.slice(0, 3);
+}
+
+function renderReasonChips(row, sport) {
+  const chips = summarizePickReason(row, sport);
+  if (!chips.length) return `<span class="pick-empty">No edge note yet.</span>`;
+  return chips.map(chip => `<span class="reason-chip">${esc(chip)}</span>`).join("");
+}
+
+function renderPosterHeroPlayer(row, sport, label) {
+  if (!row) return "";
+  const face = playerHeadshot(row, sport);
+  return `
+    <article class="hero-player">
+      <div>
+        <div class="hero-player-top">
+          ${face ? `<img class="hero-player-face" src="${face}" alt="${esc(row.player_name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">` : `<div class="hero-player-face"></div>`}
+          <div class="hero-player-rank">${esc(label)}</div>
+        </div>
+        <div class="hero-player-name">${playerButton(row, sport)}</div>
+        <div class="hero-player-meta">${esc(row.team)} vs ${esc(row.opponent)}${row.market ? ` ? ${esc(row.market)}` : ""}</div>
+      </div>
+      <div class="hero-player-line">${esc(row.line || "No line")}</div>
+    </article>`;
+}
+
+function renderPicksHero(active) {
+  const heroRows = active
+    .map(([sport, data]) => ({ sport, data, picks: deriveSportPicks(sport, data) }))
+    .filter(item => item.picks?.straight)
+    .slice(0, 3);
+  if (!heroRows.length) return "";
+  const latest = heroRows.map(item => item.data?.last_updated || "").find(Boolean) || "";
+  const sports = heroRows.map(item => shortSportLabel(item.sport));
+  return `
+    <section class="picks-hero">
+      <div class="picks-hero-inner">
+        <div class="picks-hero-copy">
+          <div class="picks-hero-kicker">Daily Poster Board</div>
+          <div class="picks-hero-title">Best Straight. Clean Stacks. Cross-Sport Edge.</div>
+          <div class="picks-hero-sub">Updated from the live board feed once the sport models refresh. We keep the view lean: best straight first, then the cleanest 2-leg and 3-leg stacks when the slate supports them.</div>
+          <div class="picks-hero-meta">
+            <span class="hero-chip">${esc(`Sports ${sports.join(" / ")}`)}</span>
+            <span class="hero-chip">${esc(`Updated ${latest || "-"}`)}</span>
+          </div>
+        </div>
+        <div class="picks-hero-stack">
+          ${heroRows.map((item, index) => renderPosterHeroPlayer(item.picks.straight, item.sport, index === 0 ? "Top Play" : `${shortSportLabel(item.sport)} Lead`)).join("")}
+        </div>
+      </div>
+    </section>`;
+}
+
 function renderPickRow(row, sport) {
   if (!row) return `<div class="pick-empty">No straight play available.</div>`;
+  const face = playerHeadshot(row, sport);
   return `
-    <div class="pick-main-row">
-      <div>
-        <div class="pick-main-name">${playerButton(row, sport)}</div>
-        <div class="pick-main-meta">${esc(row.team)} vs ${esc(row.opponent)}${row.market ? ` • ${esc(row.market)}` : ""}</div>
-        <div class="pick-main-reason">${esc(row.reason || "No edge note yet.")}</div>
-      </div>
-      <div class="pick-line-wrap">
-        <div class="pick-line">${esc(row.line)}</div>
-        ${tierBadge(row.tier)}
+    <div class="pick-poster">
+      <div class="pick-poster-inner">
+        ${face ? `<img class="pick-poster-face" src="${face}" alt="${esc(row.player_name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">` : `<div class="pick-poster-face"></div>`}
+        <div class="pick-main-row">
+          <div>
+            <div class="pick-main-name">${playerButton(row, sport)}</div>
+            <div class="pick-main-meta">${esc(row.team)} vs ${esc(row.opponent)}${row.market ? ` ? ${esc(row.market)}` : ""}</div>
+            <div class="pick-main-reason">${renderReasonChips(row, sport)}</div>
+          </div>
+          <div class="pick-line-wrap">
+            <div class="pick-line">${esc(row.line)}</div>
+            ${tierBadge(row.tier)}
+          </div>
+        </div>
       </div>
     </div>`;
 }
@@ -1231,7 +1542,7 @@ function renderParlayBlock(title, legs, sport) {
         <div class="parlay-leg">
           <div>
             <div class="pinned-name">${playerButton(row, sport)}</div>
-            <div class="parlay-leg-meta">${esc(row.team)} vs ${esc(row.opponent)}${row.market ? ` • ${esc(row.market)}` : ""}</div>
+            <div class="parlay-leg-meta">${esc(row.team)} vs ${esc(row.opponent)}${row.market ? ` ? ${esc(row.market)}` : ""}</div>
             <div class="parlay-leg-reason">${esc(row.reason || "No edge note yet.")}</div>
           </div>
           <div class="pick-line-wrap">
@@ -1258,6 +1569,7 @@ function renderSportPickCard(sport, data) {
         </div>
         ${renderParlayBlock("2-Leg", picks.twoLeg, sport)}
         ${renderParlayBlock("3-Leg", picks.threeLeg, sport)}
+        <div class="pick-sport-footnote">Poster logic favors edge, L5 form, and matchup context for the sport rather than dumping the full raw reason string.</div>
       </div>
     </section>`;
 }
@@ -1266,12 +1578,13 @@ async function renderPicksView() {
   const view = document.getElementById("view-picks");
   const loaded = await Promise.all(SPORT_ORDER.map(async sport => [sport, await loadSport(sport)]));
   const active = loaded.filter(([, data]) => !!data);
-  document.getElementById("tab-count-picks").textContent = String(active.length || "—");
+  document.getElementById("tab-count-picks").textContent = String(active.length || "?");
 
   const cards = active.map(([sport, data]) => renderSportPickCard(sport, data)).filter(Boolean);
   view.innerHTML = `
     <div class="section-label">Picks of the Day</div>
     <div class="picks-board">
+      ${renderPicksHero(active)}
       <div class="lane-card">
         <div class="lane-kicker">Cross-Sport Daily Board</div>
         <div class="lane-sub">Best straight first, then 2-leg and 3-leg combinations for each sport when the slate supports it.</div>
