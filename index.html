@@ -110,6 +110,7 @@ button { cursor: pointer; border: none; background: none; }
   transition: color 0.15s, border-color 0.15s; white-space: nowrap;
 }
 .sport-tab:hover { color: var(--text-2); }
+.sport-tab[data-sport="picks"].active { border-bottom-color: var(--gold); color: var(--text); }
 .sport-tab[data-sport="mlb"].active { border-bottom-color: var(--mlb); color: var(--text); }
 .sport-tab[data-sport="nba"].active { border-bottom-color: var(--nba); color: var(--text); }
 .sport-tab[data-sport="wnba"].active { border-bottom-color: var(--wnba); color: var(--text); }
@@ -118,6 +119,7 @@ button { cursor: pointer; border: none; background: none; }
 .sport-tab[data-sport="tennis"].active { border-bottom-color: var(--tennis); color: var(--text); }
 
 .tab-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.sport-tab[data-sport="picks"] .tab-dot { background: var(--gold); }
 .sport-tab[data-sport="mlb"] .tab-dot { background: var(--mlb); }
 .sport-tab[data-sport="nba"] .tab-dot { background: var(--nba); }
 .sport-tab[data-sport="wnba"] .tab-dot { background: var(--wnba); }
@@ -681,6 +683,127 @@ button { cursor: pointer; border: none; background: none; }
   width: 92px;
 }
 
+.picks-board {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.picks-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.pick-sport-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.pick-sport-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.pick-sport-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+
+.pick-sport-meta {
+  font-size: 11px;
+  color: var(--text-3);
+}
+
+.pick-sport-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 16px 16px;
+}
+
+.pick-block {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.pick-block-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.pick-main-row,
+.parlay-leg {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.parlay-leg + .parlay-leg {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.pick-main-name {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.pick-main-meta,
+.parlay-leg-meta {
+  margin-top: 3px;
+  font-size: 11px;
+  color: var(--text-3);
+}
+
+.pick-main-reason,
+.parlay-leg-reason {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.pick-line-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.pick-line {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+.pick-empty {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
 .explorer-empty {
   padding: 24px;
   text-align: center;
@@ -791,6 +914,7 @@ button { cursor: pointer; border: none; background: none; }
   .workspace-layout { grid-template-columns: 1fr; }
   .workspace-rail { position: static; gap: 12px; }
   .workspace-main, .rail-section { gap: 12px; }
+  .picks-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
   .header-inner, .main, .tabs-inner { padding-left: 14px; padding-right: 14px; }
@@ -834,7 +958,8 @@ button { cursor: pointer; border: none; background: none; }
 
 <nav class="sport-tabs">
   <div class="tabs-inner">
-    <button class="sport-tab active" data-sport="mlb"><span class="tab-dot"></span>MLB<span class="tab-count" id="tab-count-mlb">0</span></button>
+    <button class="sport-tab active" data-sport="picks"><span class="tab-dot"></span>Picks of the Day<span class="tab-count" id="tab-count-picks">—</span></button>
+    <button class="sport-tab" data-sport="mlb"><span class="tab-dot"></span>MLB<span class="tab-count" id="tab-count-mlb">0</span></button>
     <button class="sport-tab" data-sport="nba"><span class="tab-dot"></span>NBA<span class="tab-count" id="tab-count-nba">—</span></button>
     <button class="sport-tab" data-sport="wnba"><span class="tab-dot"></span>WNBA<span class="tab-count" id="tab-count-wnba">—</span></button>
     <button class="sport-tab" data-sport="nfl"><span class="tab-dot"></span>NFL<span class="tab-count" id="tab-count-nfl">—</span></button>
@@ -845,7 +970,8 @@ button { cursor: pointer; border: none; background: none; }
 
 <main class="main">
   <div id="sport-views">
-    <div class="sport-view active" id="view-mlb"></div>
+    <div class="sport-view active" id="view-picks"></div>
+    <div class="sport-view" id="view-mlb"></div>
     <div class="sport-view" id="view-nba"></div>
     <div class="sport-view" id="view-wnba"></div>
     <div class="sport-view" id="view-nfl"></div>
@@ -883,6 +1009,7 @@ button { cursor: pointer; border: none; background: none; }
 
 <script>
 const DATA_FILES = {
+  picks: null,
   mlb: "data/mlb.json",
   nba: "data/nba.json",
   wnba: "data/wnba.json",
@@ -900,6 +1027,16 @@ const COMING_SOON = {
 };
 
 const cache = {};
+const SPORT_ORDER = ["mlb", "nba", "wnba", "soccer", "tennis"];
+const SPORT_LABELS = {
+  picks: "Picks of the Day",
+  mlb: "MLB",
+  nba: "NBA",
+  wnba: "WNBA",
+  nfl: "NFL",
+  soccer: "Soccer",
+  tennis: "Tennis",
+};
 
 function esc(str) {
   return String(str || "")
@@ -976,6 +1113,7 @@ function laneEmpty(title, text) {
 }
 
 async function loadSport(sport) {
+  if (sport === "picks") return null;
   if (cache[sport]) return cache[sport];
   try {
     const r = await fetch(`${DATA_FILES[sport]}?v=${Date.now()}`);
@@ -985,6 +1123,172 @@ async function loadSport(sport) {
     return data;
   } catch (e) {
     return null;
+  }
+}
+
+function cloneRow(row, marketOverride = "") {
+  if (!row) return null;
+  return {
+    player_id: row.player_id,
+    player_name: row.player_name,
+    team: row.team,
+    opponent: row.opponent,
+    line: row.line,
+    score: row.score,
+    tier: row.tier || "C",
+    reason: row.reason || "",
+    market: marketOverride || row.market || "",
+  };
+}
+
+function deriveSportPicks(sport, data) {
+  if (!data) return null;
+
+  if (sport === "mlb") {
+    const hr = data.daily_hr_picks || {};
+    return {
+      straight: cloneRow(hr.single, "HR"),
+      twoLeg: (hr.two_leg?.legs || []).map(row => cloneRow(row, "HR")).filter(Boolean),
+      threeLeg: (hr.three_leg?.legs || []).map(row => cloneRow(row, "HR")).filter(Boolean),
+    };
+  }
+
+  if (sport === "nba") {
+    const straight = cloneRow(data.hero_pick, data.hero_pick?.market || "");
+    const safe = (data.research_board?.safe_plays?.players || []).map(row => cloneRow(row, row.market)).filter(Boolean);
+    return {
+      straight,
+      twoLeg: safe.slice(0, 2),
+      threeLeg: safe.slice(0, 3),
+    };
+  }
+
+  if (sport === "wnba") {
+    const straight = cloneRow(data.hero_pick, data.hero_pick?.market || "");
+    const pool = [
+      ...(data.section_boards?.PTS?.players || []),
+      ...(data.section_boards?.AST?.players || []),
+      ...(data.section_boards?.REB?.players || []),
+      ...(data.section_boards?.["3PM"]?.players || []),
+    ];
+    const deduped = [];
+    const seen = new Set();
+    for (const row of pool) {
+      const key = `${row.player_id}:${row.line}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      deduped.push(cloneRow(row, row.market || ""));
+    }
+    return {
+      straight,
+      twoLeg: deduped.slice(0, 2),
+      threeLeg: deduped.slice(0, 3),
+    };
+  }
+
+  if (sport === "soccer") {
+    const top = (data.pinned_board?.players || []).map(row => cloneRow(row, data.pinned_board?.market || "GS"));
+    return {
+      straight: top[0] || null,
+      twoLeg: top.slice(0, 2),
+      threeLeg: top.slice(0, 3),
+    };
+  }
+
+  if (sport === "tennis") {
+    const top = (data.pinned_board?.players || []).map(row => cloneRow(row, data.pinned_board?.market || "ML"));
+    return {
+      straight: top[0] || null,
+      twoLeg: top.slice(0, 2),
+      threeLeg: top.slice(0, 3),
+    };
+  }
+
+  return null;
+}
+
+function renderPickRow(row, sport) {
+  if (!row) return `<div class="pick-empty">No straight play available.</div>`;
+  return `
+    <div class="pick-main-row">
+      <div>
+        <div class="pick-main-name">${playerButton(row, sport)}</div>
+        <div class="pick-main-meta">${esc(row.team)} vs ${esc(row.opponent)}${row.market ? ` • ${esc(row.market)}` : ""}</div>
+        <div class="pick-main-reason">${esc(row.reason || "No edge note yet.")}</div>
+      </div>
+      <div class="pick-line-wrap">
+        <div class="pick-line">${esc(row.line)}</div>
+        ${tierBadge(row.tier)}
+      </div>
+    </div>`;
+}
+
+function renderParlayBlock(title, legs, sport) {
+  return `
+    <div class="pick-block">
+      <div class="pick-block-title">${esc(title)}</div>
+      ${legs?.length ? legs.map(row => `
+        <div class="parlay-leg">
+          <div>
+            <div class="pinned-name">${playerButton(row, sport)}</div>
+            <div class="parlay-leg-meta">${esc(row.team)} vs ${esc(row.opponent)}${row.market ? ` • ${esc(row.market)}` : ""}</div>
+            <div class="parlay-leg-reason">${esc(row.reason || "No edge note yet.")}</div>
+          </div>
+          <div class="pick-line-wrap">
+            <div class="pick-line">${esc(row.line)}</div>
+            ${tierBadge(row.tier)}
+          </div>
+        </div>`).join("") : `<div class="pick-empty">Not enough clean legs on this slate yet.</div>`}
+    </div>`;
+}
+
+function renderSportPickCard(sport, data) {
+  const picks = deriveSportPicks(sport, data);
+  if (!picks || (!picks.straight && !(picks.twoLeg || []).length && !(picks.threeLeg || []).length)) return "";
+  return `
+    <section class="pick-sport-card">
+      <div class="pick-sport-head">
+        <div class="pick-sport-title">${esc(SPORT_LABELS[sport] || sport.toUpperCase())}</div>
+        <div class="pick-sport-meta">${esc(data?.last_updated || "")}</div>
+      </div>
+      <div class="pick-sport-body">
+        <div class="pick-block">
+          <div class="pick-block-title">Best Straight</div>
+          ${renderPickRow(picks.straight, sport)}
+        </div>
+        ${renderParlayBlock("2-Leg", picks.twoLeg, sport)}
+        ${renderParlayBlock("3-Leg", picks.threeLeg, sport)}
+      </div>
+    </section>`;
+}
+
+async function renderPicksView() {
+  const view = document.getElementById("view-picks");
+  const loaded = await Promise.all(SPORT_ORDER.map(async sport => [sport, await loadSport(sport)]));
+  const active = loaded.filter(([, data]) => !!data);
+  document.getElementById("tab-count-picks").textContent = String(active.length || "—");
+
+  const cards = active.map(([sport, data]) => renderSportPickCard(sport, data)).filter(Boolean);
+  view.innerHTML = `
+    <div class="section-label">Picks of the Day</div>
+    <div class="picks-board">
+      <div class="lane-card">
+        <div class="lane-kicker">Cross-Sport Daily Board</div>
+        <div class="lane-sub">Best straight first, then 2-leg and 3-leg combinations for each sport when the slate supports it.</div>
+      </div>
+      <div class="picks-grid">
+        ${cards.length ? cards.join("") : `<div class="lane-card"><div class="lane-kicker">No picks loaded</div><div class="lane-sub">The board will populate once the sport feeds refresh.</div></div>`}
+      </div>
+    </div>`;
+
+  for (const [sport, data] of active) {
+    bindPlayerClicks(view, data, sport);
+  }
+
+  if (active.length) {
+    const latest = active.map(([, data]) => data?.last_updated || "").find(Boolean);
+    document.getElementById("header-date").textContent = normalizeDash("Cross-Sport");
+    document.getElementById("header-updated").textContent = normalizeDash(latest);
   }
 }
 
@@ -1368,6 +1672,10 @@ function renderGameView(sport, data) {
 async function switchSport(sport) {
   document.querySelectorAll(".sport-tab").forEach(t => t.classList.toggle("active", t.dataset.sport === sport));
   document.querySelectorAll(".sport-view").forEach(v => v.classList.toggle("active", v.id === `view-${sport}`));
+  if (sport === "picks") {
+    await renderPicksView();
+    return;
+  }
   const data = await loadSport(sport);
   renderGameView(sport, data);
 
@@ -1392,7 +1700,7 @@ document.addEventListener("keydown", e => {
   }
 });
 
-switchSport("mlb");
+switchSport("picks");
 </script>
 </body>
 </html>
