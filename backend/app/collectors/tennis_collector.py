@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import timedelta
 from pathlib import Path
 import json
 from typing import Any
@@ -21,13 +22,10 @@ MAX_RANK_FALLBACK = 250
 
 def collect_tennis_raw_data(data_raw_dir: Path) -> dict[str, Any]:
     raw_path = data_raw_dir / "tennis_raw.json"
-    slate_date = today_et()
+    requested_date = today_et()
 
     try:
-        tournaments = fetch_tennis_tournaments(slate_date)
-        games = []
-        for tournament in tournaments:
-            games.extend(build_matches_for_tournament(tournament, slate_date))
+        slate_date, tournaments, games = fetch_target_tennis_slate(requested_date)
         payload = {
             "sport": "TENNIS",
             "date": slate_date.isoformat(),
@@ -50,6 +48,18 @@ def fetch_tennis_tournaments(slate_date) -> list[dict[str, Any]]:
         for event in payload.get("events", []):
             tournaments.append({**event, "tour": tour["label"], "tour_slug": tour["slug"]})
     return tournaments
+
+
+def fetch_target_tennis_slate(start_date) -> tuple[Any, list[dict[str, Any]], list[dict[str, Any]]]:
+    for offset in range(0, 8):
+        slate_date = start_date + timedelta(days=offset)
+        tournaments = fetch_tennis_tournaments(slate_date)
+        games = []
+        for tournament in tournaments:
+            games.extend(build_matches_for_tournament(tournament, slate_date))
+        if games:
+            return slate_date, tournaments, games
+    return start_date, [], []
 
 
 def build_matches_for_tournament(tournament: dict[str, Any], slate_date) -> list[dict[str, Any]]:

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 import json
 from typing import Any
@@ -28,10 +28,10 @@ SOCCER_LEAGUES = [
 
 def collect_soccer_raw_data(data_raw_dir: Path) -> dict[str, Any]:
     raw_path = data_raw_dir / "soccer_raw.json"
-    slate_date = today_et()
+    requested_date = today_et()
 
     try:
-        events = fetch_soccer_events(slate_date)
+        slate_date, events = fetch_target_soccer_events(requested_date)
         if not events:
             payload = {
                 "sport": "SOCCER",
@@ -96,6 +96,15 @@ def fetch_soccer_events(slate_date) -> list[dict[str, Any]]:
                 }
             )
     return events
+
+
+def fetch_target_soccer_events(start_date) -> tuple[Any, list[dict[str, Any]]]:
+    for offset in range(0, 8):
+        slate_date = start_date + timedelta(days=offset)
+        events = fetch_soccer_events(slate_date)
+        if events:
+            return slate_date, events
+    return start_date, []
 
 
 def fetch_team_rosters(team_keys: set[tuple[str, str]]) -> dict[tuple[str, str], list[dict[str, Any]]]:
