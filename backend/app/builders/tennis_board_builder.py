@@ -7,6 +7,57 @@ from app.collectors.tennis_collector import TENNIS_MARKETS, collect_tennis_raw_d
 from app.utils.dates import timestamp_et
 
 
+def build_tennis_top_signals(candidates: list[dict], limit: int) -> list[dict]:
+    preferred_markets = ("ML", "Sets", "O/U")
+    selected: list[dict] = []
+    used_keys: set[tuple[str, str]] = set()
+    player_counts: dict[str, int] = {}
+
+    for market in preferred_markets:
+        market_rows = [
+            candidate for candidate in candidates
+            if candidate["market"] == market
+            and (candidate["player_name"], candidate["market"]) not in used_keys
+            and (market != "O/U" or candidate["tier"] in {"A", "B"})
+            and (market == "O/U" or player_counts.get(candidate["player_name"], 0) < 2)
+        ]
+        if not market_rows:
+            continue
+        best = market_rows[0]
+        selected.append(best)
+        used_keys.add((best["player_name"], best["market"]))
+        player_counts[best["player_name"]] = player_counts.get(best["player_name"], 0) + 1
+        if len(selected) >= limit:
+            break
+
+    if len(selected) < limit:
+        for candidate in candidates:
+            if (candidate["player_name"], candidate["market"]) in used_keys:
+                continue
+            if candidate["market"] == "O/U" and candidate["tier"] not in {"A", "B"}:
+                continue
+            if candidate["market"] != "O/U" and player_counts.get(candidate["player_name"], 0) >= 2:
+                continue
+            selected.append(candidate)
+            used_keys.add((candidate["player_name"], candidate["market"]))
+            player_counts[candidate["player_name"]] = player_counts.get(candidate["player_name"], 0) + 1
+            if len(selected) >= limit:
+                break
+
+    return [
+        {
+            "market": candidate["market"],
+            "player_name": candidate["player_name"],
+            "line": candidate["line"],
+            "score": candidate["score"],
+            "confidence": candidate["confidence"],
+            "tier": candidate["tier"],
+            "player_id": str(candidate["player_id"]),
+        }
+        for candidate in selected
+    ]
+
+
 def build_tennis_board(*, config, paths) -> dict:
     raw_payload = collect_tennis_raw_data(paths.data_raw)
     games_output = []
@@ -23,18 +74,7 @@ def build_tennis_board(*, config, paths) -> dict:
                 "game_id": raw_game["game_id"],
                 "matchup": f'{raw_game["player_a"]} vs {raw_game["player_b"]}',
                 "time": f'{raw_game["tour"]} | {raw_game["tournament"]} | {raw_game["time"]}',
-                "top_signals": [
-                    {
-                        "market": candidate["market"],
-                        "player_name": candidate["player_name"],
-                        "line": candidate["line"],
-                        "score": candidate["score"],
-                        "confidence": candidate["confidence"],
-                        "tier": candidate["tier"],
-                        "player_id": str(candidate["player_id"]),
-                    }
-                    for candidate in ranked[: config.top_signals_per_game]
-                ],
+                "top_signals": build_tennis_top_signals(ranked, config.top_signals_per_game),
                 "markets": {
                     **empty_markets_for(TENNIS_MARKETS),
                     **{market: rows[: config.top_market_limit] for market, rows in market_bucket.items()},

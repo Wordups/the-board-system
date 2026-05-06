@@ -7,6 +7,51 @@ from app.collectors.soccer_collector import SOCCER_MARKETS, collect_soccer_raw_d
 from app.utils.dates import timestamp_et
 
 
+def build_soccer_top_signals(candidates: list[dict], limit: int) -> list[dict]:
+    preferred_markets = ("GS", "AST", "OU", "ML")
+    selected: list[dict] = []
+    used_players: set[str] = set()
+
+    for market in preferred_markets:
+        market_rows = [
+            candidate for candidate in candidates
+            if candidate["market"] == market
+            and candidate["player_name"] not in used_players
+            and (market not in {"OU", "ML"} or candidate["tier"] in {"A", "B"})
+        ]
+        if not market_rows:
+            continue
+        best = market_rows[0]
+        selected.append(best)
+        used_players.add(best["player_name"])
+        if len(selected) >= limit:
+            break
+
+    if len(selected) < limit:
+        for candidate in candidates:
+            if candidate["player_name"] in used_players:
+                continue
+            if candidate["market"] in {"OU", "ML"} and candidate["tier"] not in {"A", "B"}:
+                continue
+            selected.append(candidate)
+            used_players.add(candidate["player_name"])
+            if len(selected) >= limit:
+                break
+
+    return [
+        {
+            "market": candidate["market"],
+            "player_name": candidate["player_name"],
+            "line": candidate["line"],
+            "score": candidate["score"],
+            "confidence": candidate["confidence"],
+            "tier": candidate["tier"],
+            "player_id": str(candidate["player_id"]),
+        }
+        for candidate in selected
+    ]
+
+
 def build_soccer_board(*, config, paths) -> dict:
     raw_payload = collect_soccer_raw_data(paths.data_raw)
     games_output = []
@@ -23,18 +68,7 @@ def build_soccer_board(*, config, paths) -> dict:
                 "game_id": raw_game["game_id"],
                 "matchup": f'{raw_game["away_team"]} @ {raw_game["home_team"]}',
                 "time": f'{raw_game["league"]} | {raw_game["time"]}',
-                "top_signals": [
-                    {
-                        "market": candidate["market"],
-                        "player_name": candidate["player_name"],
-                        "line": candidate["line"],
-                        "score": candidate["score"],
-                        "confidence": candidate["confidence"],
-                        "tier": candidate["tier"],
-                        "player_id": str(candidate["player_id"]),
-                    }
-                    for candidate in ranked[: config.top_signals_per_game]
-                ],
+                "top_signals": build_soccer_top_signals(ranked, config.top_signals_per_game),
                 "markets": {
                     **empty_markets_for(SOCCER_MARKETS),
                     **{market: rows[: config.top_market_limit] for market, rows in market_bucket.items()},
