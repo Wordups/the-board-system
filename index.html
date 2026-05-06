@@ -694,12 +694,18 @@ button { cursor: pointer; border: none; background: none; }
   overflow: hidden;
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.08);
+  background: linear-gradient(135deg, #111111 0%, #090909 58%, #121212 100%);
+  min-height: 320px;
+}
+
+.picks-hero-art {
+  position: absolute;
+  inset: 0;
   background:
-    radial-gradient(circle at 18% 22%, rgba(240,180,41,0.22), transparent 36%),
-    radial-gradient(circle at 82% 24%, rgba(59,130,246,0.18), transparent 34%),
-    radial-gradient(circle at 64% 78%, rgba(239,68,68,0.18), transparent 38%),
-    linear-gradient(135deg, #111111 0%, #0a0a0a 58%, #131313 100%);
-  min-height: 220px;
+    linear-gradient(90deg, rgba(0,0,0,0.86) 0%, rgba(0,0,0,0.62) 42%, rgba(0,0,0,0.45) 72%, rgba(0,0,0,0.72) 100%),
+    url("assets/picks-poster-bg.png") center center / cover no-repeat;
+  transform: scale(1.02);
+  filter: saturate(1.05) contrast(1.04);
 }
 
 .picks-hero::after {
@@ -707,25 +713,27 @@ button { cursor: pointer; border: none; background: none; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(115deg, rgba(255,255,255,0.04), transparent 35%),
-    linear-gradient(180deg, transparent, rgba(0,0,0,0.35));
+    linear-gradient(115deg, rgba(255,255,255,0.06), transparent 38%),
+    linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.48));
   pointer-events: none;
 }
 
 .picks-hero-inner {
   position: relative;
   z-index: 1;
-  padding: 20px 22px;
+  padding: 24px;
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.9fr);
-  gap: 18px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
   align-items: end;
+  min-height: 320px;
 }
 
 .picks-hero-copy {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-width: 720px;
 }
 
 .picks-hero-kicker {
@@ -739,16 +747,18 @@ button { cursor: pointer; border: none; background: none; }
 
 .picks-hero-title {
   font-family: "Barlow Condensed", sans-serif;
-  font-size: 34px;
+  font-size: 46px;
   font-weight: 900;
   letter-spacing: 1px;
   line-height: 0.95;
   text-transform: uppercase;
+  max-width: 9ch;
+  text-wrap: balance;
 }
 
 .picks-hero-sub {
-  max-width: 700px;
-  font-size: 13px;
+  max-width: 620px;
+  font-size: 14px;
   color: var(--text-2);
 }
 
@@ -779,9 +789,10 @@ button { cursor: pointer; border: none; background: none; }
 .picks-hero-stack {
   display: flex;
   align-items: flex-end;
-  justify-content: flex-end;
-  gap: 10px;
+  justify-content: stretch;
+  gap: 12px;
   min-width: 0;
+  width: 100%;
 }
 
 .hero-player {
@@ -790,40 +801,43 @@ button { cursor: pointer; border: none; background: none; }
   min-width: 0;
   border-radius: 12px;
   border: 1px solid rgba(255,255,255,0.08);
-  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-  padding: 14px;
-  min-height: 148px;
+  background: linear-gradient(180deg, rgba(17,17,17,0.76), rgba(17,17,17,0.52));
+  padding: 14px 14px 16px;
+  min-height: 176px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
 }
 
 .hero-player::before {
   content: "";
   position: absolute;
-  inset: auto -10% -35% auto;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: rgba(240,180,41,0.10);
-  filter: blur(16px);
+  inset: 0;
+  background: linear-gradient(180deg, rgba(240,180,41,0.12), transparent 35%);
+  opacity: 0.75;
 }
 
 .hero-player-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 10px;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-player-face {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+  width: 84px;
+  height: 84px;
+  border-radius: 18px;
   object-fit: cover;
-  border: 2px solid rgba(255,255,255,0.14);
+  object-position: center top;
+  border: 2px solid rgba(255,255,255,0.12);
   background: rgba(255,255,255,0.08);
+  box-shadow: 0 16px 30px rgba(0,0,0,0.36);
 }
 
 .hero-player-rank {
@@ -838,24 +852,30 @@ button { cursor: pointer; border: none; background: none; }
 .hero-player-name {
   margin-top: 10px;
   font-family: "Barlow Condensed", sans-serif;
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 900;
   line-height: 0.95;
   letter-spacing: 0.4px;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-player-meta {
   margin-top: 6px;
   font-size: 12px;
   color: var(--text-2);
+  position: relative;
+  z-index: 1;
 }
 
 .hero-player-line {
-  margin-top: 10px;
+  margin-top: 12px;
   font-family: "Barlow Condensed", sans-serif;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 800;
   color: var(--gold);
+  position: relative;
+  z-index: 1;
 }
 
 .picks-grid {
@@ -1138,7 +1158,8 @@ button { cursor: pointer; border: none; background: none; }
   .workspace-rail { position: static; gap: 12px; }
   .workspace-main, .rail-section { gap: 12px; }
   .picks-grid { grid-template-columns: 1fr; }
-  .picks-hero-inner { grid-template-columns: 1fr; }
+  .picks-hero { min-height: 0; }
+  .picks-hero-inner { grid-template-columns: 1fr; min-height: 0; }
   .picks-hero-stack { justify-content: flex-start; }
 }
 @media (max-width: 640px) {
@@ -1155,10 +1176,12 @@ button { cursor: pointer; border: none; background: none; }
   .player-table th:nth-child(6), .player-table td:nth-child(6) { display: none; }
   .controls-row { grid-template-columns: 1fr; }
   .picks-hero { min-height: 0; }
-  .picks-hero-inner { padding: 16px; gap: 14px; }
-  .picks-hero-title { font-size: 28px; }
+  .picks-hero-art { background-position: 62% center; }
+  .picks-hero-inner { padding: 16px; gap: 14px; min-height: 0; }
+  .picks-hero-title { font-size: 32px; }
   .picks-hero-stack { flex-direction: column; align-items: stretch; }
   .hero-player { min-height: 0; }
+  .hero-player-face { width: 72px; height: 72px; border-radius: 16px; }
   .pick-poster-inner { grid-template-columns: 58px minmax(0, 1fr); }
   .pick-poster-face { width: 58px; height: 58px; }
   .board-input, .board-select, .open-slate-btn { min-height: 42px; }
@@ -1479,7 +1502,7 @@ function renderPosterHeroPlayer(row, sport, label) {
           <div class="hero-player-rank">${esc(label)}</div>
         </div>
         <div class="hero-player-name">${playerButton(row, sport)}</div>
-        <div class="hero-player-meta">${esc(row.team)} vs ${esc(row.opponent)}${row.market ? ` ? ${esc(row.market)}` : ""}</div>
+        <div class="hero-player-meta">${esc(row.team)} vs ${esc(row.opponent)}${row.market ? ` • ${esc(row.market)}` : ""}</div>
       </div>
       <div class="hero-player-line">${esc(row.line || "No line")}</div>
     </article>`;
@@ -1495,11 +1518,12 @@ function renderPicksHero(active) {
   const sports = heroRows.map(item => shortSportLabel(item.sport));
   return `
     <section class="picks-hero">
+      <div class="picks-hero-art" aria-hidden="true"></div>
       <div class="picks-hero-inner">
         <div class="picks-hero-copy">
           <div class="picks-hero-kicker">Daily Poster Board</div>
-          <div class="picks-hero-title">Best Straight. Clean Stacks. Cross-Sport Edge.</div>
-          <div class="picks-hero-sub">Updated from the live board feed once the sport models refresh. We keep the view lean: best straight first, then the cleanest 2-leg and 3-leg stacks when the slate supports them.</div>
+          <div class="picks-hero-title">Daily edges, stacked like a real card.</div>
+          <div class="picks-hero-sub">Straight play first. Then the cleanest two-leg and three-leg builds the slate actually supports. Real headshots, tighter edge chips, and a true poster surface instead of a plain list.</div>
           <div class="picks-hero-meta">
             <span class="hero-chip">${esc(`Sports ${sports.join(" / ")}`)}</span>
             <span class="hero-chip">${esc(`Updated ${latest || "-"}`)}</span>
@@ -1522,7 +1546,7 @@ function renderPickRow(row, sport) {
         <div class="pick-main-row">
           <div>
             <div class="pick-main-name">${playerButton(row, sport)}</div>
-            <div class="pick-main-meta">${esc(row.team)} vs ${esc(row.opponent)}${row.market ? ` ? ${esc(row.market)}` : ""}</div>
+            <div class="pick-main-meta">${esc(row.team)} vs ${esc(row.opponent)}${row.market ? ` • ${esc(row.market)}` : ""}</div>
             <div class="pick-main-reason">${renderReasonChips(row, sport)}</div>
           </div>
           <div class="pick-line-wrap">
@@ -1542,7 +1566,7 @@ function renderParlayBlock(title, legs, sport) {
         <div class="parlay-leg">
           <div>
             <div class="pinned-name">${playerButton(row, sport)}</div>
-            <div class="parlay-leg-meta">${esc(row.team)} vs ${esc(row.opponent)}${row.market ? ` ? ${esc(row.market)}` : ""}</div>
+            <div class="parlay-leg-meta">${esc(row.team)} vs ${esc(row.opponent)}${row.market ? ` • ${esc(row.market)}` : ""}</div>
             <div class="parlay-leg-reason">${esc(row.reason || "No edge note yet.")}</div>
           </div>
           <div class="pick-line-wrap">
