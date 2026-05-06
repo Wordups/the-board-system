@@ -1,4 +1,4 @@
-name: Refresh Live Boards
+name: Refresh All Boards
 
 on:
   schedule:
@@ -22,14 +22,12 @@ jobs:
           python-version: "3.11"
 
       - name: Install backend dependencies
-        run: |
-          pip install -r backend/requirements.txt
+        run: pip install -r backend/requirements.txt
 
-      - name: Run live board refresh
-        run: |
-          python backend/scripts/run_all.py
+      - name: Run all board refreshes
+        run: python backend/scripts/run_all.py
 
-      - name: Commit updated board data
+      - name: Commit refreshed board data
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
@@ -38,5 +36,5 @@ jobs:
           git add backend/data_final/wnba.json frontend/data/wnba.json data/wnba.json
           git add backend/data_final/soccer.json frontend/data/soccer.json data/soccer.json
           git add backend/data_final/tennis.json frontend/data/tennis.json data/tennis.json
-          git commit -m "refresh live boards" || echo "No changes to commit"
+          git commit -m "refresh all boards" || echo "No changes to commit"
           git push
