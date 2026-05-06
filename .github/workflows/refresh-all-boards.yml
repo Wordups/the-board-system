@@ -31,6 +31,7 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
+          git add backend/data_final/picks.json frontend/data/picks.json data/picks.json
           git add backend/data_final/mlb.json frontend/data/mlb.json data/mlb.json
           git add backend/data_final/nba.json frontend/data/nba.json data/nba.json
           git add backend/data_final/wnba.json frontend/data/wnba.json data/wnba.json

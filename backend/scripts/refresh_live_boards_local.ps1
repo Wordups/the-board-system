@@ -23,6 +23,7 @@ Set-Location $repoRoot
 Write-Log "Board rebuild finished."
 
 git add `
+    backend/data_final/picks.json frontend/data/picks.json data/picks.json `
     backend/data_final/mlb.json frontend/data/mlb.json data/mlb.json `
     backend/data_final/nba.json frontend/data/nba.json data/nba.json `
     backend/data_final/wnba.json frontend/data/wnba.json data/wnba.json `
