@@ -104,6 +104,7 @@ def build_mlb_board(*, config, paths) -> dict:
         config=config,
         paths=paths,
     )
+    hr_daily_picks = build_hr_daily_picks(research_board)
     return {
         "sport": "MLB",
         "date": raw_payload["date"],
@@ -118,6 +119,7 @@ def build_mlb_board(*, config, paths) -> dict:
             "market": "MIX",
             "players": consistency_players,
         },
+        "daily_hr_picks": hr_daily_picks,
         "research_board": research_board,
         "games": games_output,
     }
@@ -314,3 +316,53 @@ def build_pinned_reason(base_reason: str, status: dict, is_play_of_day: bool = F
     if status.get("is_lineup_window"):
         return f"{base_reason} | Near first pitch"
     return base_reason
+
+
+def build_hr_daily_picks(research_board: dict) -> dict:
+    hr_section = research_board.get("home_run", {}) if isinstance(research_board, dict) else {}
+    top_candidates = hr_section.get("top_candidates", []) or []
+    parlays = hr_section.get("parlays", {}) or {}
+    play_of_day = hr_section.get("play_of_day") or (top_candidates[0] if top_candidates else None)
+
+    return {
+        "title": "HR Pick of the Day",
+        "single": simplify_hr_pick(play_of_day),
+        "two_leg": simplify_hr_parlay(parlays.get("2_leg", [])),
+        "three_leg": simplify_hr_parlay(parlays.get("3_leg", [])),
+    }
+
+
+def simplify_hr_pick(row: dict | None) -> dict | None:
+    if not row:
+        return None
+    return {
+        "player_id": str(row.get("player_id", "")),
+        "player_name": row.get("player_name"),
+        "team": row.get("team"),
+        "opponent": row.get("opponent"),
+        "line": row.get("line"),
+        "score": round(float(row.get("score", 0.0)), 2),
+        "tier": row.get("tier"),
+        "reason": row.get("reason"),
+        "play_of_day": bool(row.get("play_of_day")),
+        "pitcher": row.get("pitcher"),
+    }
+
+
+def simplify_hr_parlay(rows: list[dict]) -> dict:
+    legs = [
+        {
+            "player_name": row.get("player_name"),
+            "team": row.get("team"),
+            "opponent": row.get("opponent"),
+            "line": row.get("line"),
+            "score": round(float(row.get("score", 0.0)), 2),
+            "tier": row.get("tier"),
+            "reason": row.get("reason"),
+        }
+        for row in rows
+    ]
+    return {
+        "legs": legs,
+        "count": len(legs),
+    }
