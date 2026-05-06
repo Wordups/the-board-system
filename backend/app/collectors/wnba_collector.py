@@ -29,6 +29,7 @@ ESPN_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/
 ESPN_TEAM_ROSTER_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/{team_id}/roster"
 ESPN_TEAM_SCHEDULE_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/{team_id}/schedule"
 ESPN_SUMMARY_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/summary"
+WNBA_STATS_URL = "https://stats.wnba.com/stats/leaguedashplayerstats"
 WNBA_MARKETS = ["PTS", "REB", "AST", "3PM", "ML"]
 
 
@@ -46,8 +47,14 @@ def collect_wnba_raw_data(data_raw_dir: Path) -> dict[str, Any]:
         roster_map = fetch_team_rosters(today_teams)
         active_players = collect_active_players(roster_map)
         recent_game_ids = fetch_recent_game_ids(today_teams, season_year=slate_date.year, season_type_id=season_type_id)
-        summary_cache = fetch_game_summaries({game_id for ids in recent_game_ids.values() for game_id in ids})
-        player_log_map = build_player_log_map(active_players, recent_game_ids=recent_game_ids, summary_cache=summary_cache)
+        summary_cache = fetch_game_summaries({ref["game_id"] for refs in recent_game_ids.values() for ref in refs})
+        official_profiles = fetch_official_player_profiles(season_year=slate_date.year)
+        player_log_map = build_player_log_map(
+            active_players,
+            recent_game_ids=recent_game_ids,
+            summary_cache=summary_cache,
+            official_profiles=official_profiles,
+        )
         team_summary_profiles = build_team_summary_profiles(recent_game_ids=recent_game_ids, summary_cache=summary_cache)
         allowance_baselines = build_allowance_baselines(team_summary_profiles)
 
@@ -125,29 +132,55 @@ def collect_active_players(roster_map: dict[str, list[dict[str, Any]]]) -> list[
     return players
 
 
-def fetch_recent_game_ids(team_map: dict[str, int], *, season_year: int, season_type_id: int) -> dict[str, list[str]]:
-    recent_by_team: dict[str, list[str]] = {}
+def fetch_recent_game_ids(team_map: dict[str, int], *, season_year: int, season_type_id: int) -> dict[str, list[dict[str, Any]]]:
+    recent_by_team: dict[str, list[dict[str, Any]]] = {}
 
     for team_abbr, team_id in team_map.items():
-        current_events = espn_get_json(
-            ESPN_TEAM_SCHEDULE_URL.format(team_id=team_id),
-            {"season": season_year, "seasontype": season_type_id},
-        ).get("events", [])
-        regular_events = []
-        if season_type_id != 2:
-            regular_events = espn_get_json(
-                ESPN_TEAM_SCHEDULE_URL.format(team_id=team_id),
-                {"season": season_year, "seasontype": 2},
-            ).get("events", [])
+        schedule_specs = [
+            {"season": season_year, "seasontype": season_type_id, "label": "current"},
+            {"season": season_year, "seasontype": 1, "label": "preseason"},
+            {"season": season_year, "seasontype": 2, "label": "regular"},
+            {"season": season_year - 1, "seasontype": 2, "label": "prev_regular"},
+            {"season": season_year - 1, "seasontype": 3, "label": "prev_playoffs"},
+        ]
 
-        merged = dedupe_events(current_events + regular_events)
+        pulled_events: list[dict[str, Any]] = []
+        seen_schedule_keys: set[tuple[int, int]] = set()
+        for spec in schedule_specs:
+            key = (spec["season"], spec["seasontype"])
+            if key in seen_schedule_keys:
+                continue
+            seen_schedule_keys.add(key)
+            events = espn_get_json(
+                ESPN_TEAM_SCHEDULE_URL.format(team_id=team_id),
+                {"season": spec["season"], "seasontype": spec["seasontype"]},
+            ).get("events", [])
+            for event in events:
+                pulled_events.append(
+                    {
+                        **event,
+                        "_season_year": spec["season"],
+                        "_season_type_id": spec["seasontype"],
+                        "_season_bucket": spec["label"],
+                    }
+                )
+
+        merged = dedupe_events(pulled_events)
         completed = [
             event
             for event in merged
             if event.get("competitions", [{}])[0].get("status", {}).get("type", {}).get("completed")
         ]
         completed.sort(key=lambda row: parse_event_datetime(row["date"]), reverse=True)
-        recent_by_team[team_abbr] = [str(event["id"]) for event in completed[:8]]
+        recent_by_team[team_abbr] = [
+            {
+                "game_id": str(event["id"]),
+                "season_year": int(event.get("_season_year", season_year)),
+                "season_type_id": int(event.get("_season_type_id", season_type_id)),
+                "season_bucket": event.get("_season_bucket", "current"),
+            }
+            for event in completed[:12]
+        ]
 
     return recent_by_team
 
@@ -163,17 +196,111 @@ def fetch_game_summaries(game_ids: set[str]) -> dict[str, dict[str, Any]]:
         return dict(pool.map(load, sorted(game_ids)))
 
 
+def fetch_official_player_profiles(*, season_year: int) -> dict[str, dict[str, dict[str, float]]]:
+    official_profiles: dict[str, dict[str, dict[str, float]]] = {}
+    stat_specs = [
+        ("preseason_avgs", season_year, "Pre Season"),
+        ("current_reg_avgs", season_year, "Regular Season"),
+        ("previous_avgs", season_year - 1, "Regular Season"),
+    ]
+    for bucket, query_season, season_type in stat_specs:
+        try:
+            rows = fetch_wnba_stats_rows(season=query_season, season_type=season_type)
+        except requests.RequestException:
+            continue
+        for row in rows:
+            player_key = normalize_player_name(str(row.get("PLAYER_NAME", "")))
+            if not player_key:
+                continue
+            official_profiles.setdefault(player_key, {})[bucket] = {
+                "PTS": float(row.get("PTS", 0.0) or 0.0),
+                "REB": float(row.get("REB", 0.0) or 0.0),
+                "AST": float(row.get("AST", 0.0) or 0.0),
+                "3PM": float(row.get("FG3M", 0.0) or 0.0),
+                "MIN": float(row.get("MIN", 0.0) or 0.0),
+                "GP": float(row.get("GP", 0.0) or 0.0),
+            }
+    return official_profiles
+
+
+def fetch_wnba_stats_rows(*, season: int, season_type: str) -> list[dict[str, Any]]:
+    payload = requests.get(
+        WNBA_STATS_URL,
+        params={
+            "College": "",
+            "Conference": "",
+            "Country": "",
+            "DateFrom": "",
+            "DateTo": "",
+            "Division": "",
+            "DraftPick": "",
+            "DraftYear": "",
+            "GameScope": "",
+            "GameSegment": "",
+            "Height": "",
+            "LastNGames": "0",
+            "LeagueID": "10",
+            "Location": "",
+            "MeasureType": "Base",
+            "Month": "0",
+            "OpponentTeamID": "0",
+            "Outcome": "",
+            "PORound": "0",
+            "PaceAdjust": "N",
+            "PerMode": "PerGame",
+            "Period": "0",
+            "PlayerExperience": "",
+            "PlayerPosition": "",
+            "PlusMinus": "N",
+            "Rank": "N",
+            "Season": str(season),
+            "SeasonSegment": "",
+            "SeasonType": season_type,
+            "ShotClockRange": "",
+            "StarterBench": "",
+            "TeamID": "0",
+            "TwoWay": "0",
+            "VsConference": "",
+            "VsDivision": "",
+        },
+        headers={
+            "User-Agent": "Mozilla/5.0",
+            "Referer": "https://stats.wnba.com/",
+            "Origin": "https://stats.wnba.com",
+            "Accept": "application/json, text/plain, */*",
+            "x-nba-stats-origin": "stats",
+            "x-nba-stats-token": "true",
+        },
+        timeout=12,
+    )
+    payload.raise_for_status()
+    data = payload.json()
+    result_sets = data.get("resultSets") or []
+    if not result_sets:
+        return []
+    first = result_sets[0]
+    headers = first.get("headers") or []
+    rows = first.get("rowSet") or []
+    return [dict(zip(headers, row)) for row in rows]
+
+
+def normalize_player_name(value: str) -> str:
+    return "".join(ch.lower() for ch in value if ch.isalnum())
+
+
 def build_player_log_map(
     active_players: list[dict[str, Any]],
     *,
-    recent_game_ids: dict[str, list[str]],
+    recent_game_ids: dict[str, list[dict[str, Any]]],
     summary_cache: dict[str, dict[str, Any]],
+    official_profiles: dict[str, dict[str, dict[str, float]]] | None = None,
 ) -> dict[str, dict[str, Any]]:
     active_by_id = {player["athlete_id"]: player for player in active_players}
     logs_by_player: dict[str, list[dict[str, Any]]] = {player["athlete_id"]: [] for player in active_players}
 
-    for team_abbr, game_ids in recent_game_ids.items():
-        for game_id in game_ids:
+    for team_abbr, game_refs in recent_game_ids.items():
+        for game_ref in game_refs:
+            game_id = str(game_ref["game_id"])
             payload = summary_cache.get(game_id)
             if not payload or "boxscore" not in payload:
                 continue
@@ -199,6 +326,9 @@ def build_player_log_map(
                     game_date=game_date,
                     opponent_abbr=opponent_abbr,
                     is_home=competitors_by_abbr.get(team_abbr, {}).get("homeAway") == "home",
+                    season_year=int(game_ref.get("season_year", game_date.year)),
+                    season_type_id=int(game_ref.get("season_type_id", 2)),
+                    season_bucket=str(game_ref.get("season_bucket", "current")),
                 )
                 if parsed:
                     logs_by_player[athlete_id].append(parsed)
@@ -209,11 +339,35 @@ def build_player_log_map(
         if not logs:
             continue
         player = active_by_id[athlete_id]
+        official_profile = (official_profiles or {}).get(normalize_player_name(player["player_name"]), {})
         season_avgs = average_log_block(logs)
         recent_10 = logs[:10]
         recent_5 = logs[:5]
+        preseason_logs = [log for log in logs if log.get("season_bucket") == "preseason"][:5]
+        previous_logs = [log for log in logs if log.get("season_year", 0) < today_et().year][:12]
         recent_home = [log for log in logs if log["is_home"]][:10]
         recent_away = [log for log in logs if not log["is_home"]][:10]
+        previous_avgs = average_log_block(previous_logs) if previous_logs else season_avgs
+        preseason_avgs = average_log_block(preseason_logs) if preseason_logs else season_avgs
+        official_preseason_avgs = official_profile.get("preseason_avgs")
+        official_previous_avgs = official_profile.get("previous_avgs")
+        official_current_reg_avgs = official_profile.get("current_reg_avgs")
+        if official_preseason_avgs:
+            preseason_avgs = {
+                **preseason_avgs,
+                **{key: float(value) for key, value in official_preseason_avgs.items() if key in preseason_avgs},
+            }
+        if official_previous_avgs:
+            previous_avgs = {
+                **previous_avgs,
+                **{key: float(value) for key, value in official_previous_avgs.items() if key in previous_avgs},
+            }
+        if official_current_reg_avgs and len(logs) < 5:
+            season_avgs = {
+                **season_avgs,
+                **{key: float(value) for key, value in official_current_reg_avgs.items() if key in season_avgs},
+            }
+        trend_map = build_trend_map(recent_5, preseason_logs, previous_logs, season_avgs, previous_avgs)
         player_log_map[athlete_id] = {
             "player_id": athlete_id,
             "player_name": player["player_name"],
@@ -223,16 +377,20 @@ def build_player_log_map(
             "season_avgs": season_avgs,
             "l10_avgs": average_log_block(recent_10),
             "l5_avgs": average_log_block(recent_5),
+            "preseason_avgs": preseason_avgs,
+            "previous_avgs": previous_avgs,
             "home_avgs": average_log_block(recent_home) if recent_home else season_avgs,
             "away_avgs": average_log_block(recent_away) if recent_away else season_avgs,
             "usage_load": average(log["usage_load"] for log in recent_10) if recent_10 else average(log["usage_load"] for log in logs),
             "minutes_projection": project_minutes(recent_5, season_avgs["MIN"]),
             "sample_size": len(logs),
+            "trend_map": trend_map,
+            "official_source": bool(official_profile),
         }
     return player_log_map
 
 
-def parse_summary_player_log(*, athlete_row: dict[str, Any], game_date: datetime, opponent_abbr: str, is_home: bool) -> dict[str, Any] | None:
+def parse_summary_player_log(*, athlete_row: dict[str, Any], game_date: datetime, opponent_abbr: str, is_home: bool, season_year: int, season_type_id: int, season_bucket: str) -> dict[str, Any] | None:
     stats = athlete_row.get("stats", [])
     if not stats:
         return None
@@ -247,6 +405,9 @@ def parse_summary_player_log(*, athlete_row: dict[str, Any], game_date: datetime
         "game_date": game_date,
         "is_home": is_home,
         "opponent": opponent_abbr,
+        "season_year": season_year,
+        "season_type_id": season_type_id,
+        "season_bucket": season_bucket,
         "MIN": minutes,
         "PTS": parse_number(stats[1] if len(stats) > 1 else 0),
         "REB": parse_number(stats[5] if len(stats) > 5 else 0),
@@ -262,14 +423,15 @@ def parse_summary_player_log(*, athlete_row: dict[str, Any], game_date: datetime
 def build_team_summary_profiles(*, recent_game_ids: dict[str, list[str]], summary_cache: dict[str, dict[str, Any]]) -> dict[str, dict[str, float]]:
     profiles: dict[str, dict[str, float]] = {}
 
-    for team_abbr, game_ids in recent_game_ids.items():
+    for team_abbr, game_refs in recent_game_ids.items():
         allowed_pts = []
         allowed_reb = []
         allowed_ast = []
         allowed_3pm = []
         recent_wins = []
 
-        for game_id in game_ids:
+        for game_ref in game_refs:
+            game_id = str(game_ref["game_id"])
             payload = summary_cache.get(game_id)
             if not payload or "boxscore" not in payload:
                 continue
@@ -440,16 +602,22 @@ def build_market_candidate(
     season_avg = profile["season_avgs"][market]
     l10_avg = average(log[market] for log in recent_10)
     l5_avg = average(log[market] for log in recent_5)
+    preseason_avg = profile.get("preseason_avgs", {}).get(market, season_avg)
+    previous_avg = profile.get("previous_avgs", {}).get(market, season_avg)
     split_avg = profile["home_avgs"][market] if is_home else profile["away_avgs"][market]
     trend_delta = l5_avg - season_avg
-    projected = (l5_avg * 0.48) + (l10_avg * 0.27) + (season_avg * 0.15) + (split_avg * 0.10)
+    sample_size = max(1, profile.get("sample_size", len(recent_10)))
+    early_season = sample_size
+    preseason_weight = 0.12 if early_season < 8 else 0.05
+    previous_weight = 0.12 if early_season < 8 else 0.04
+    season_weight = 0.15 if early_season >= 8 else 0.08
+    projected = (l5_avg * 0.43) + (l10_avg * 0.20) + (season_avg * season_weight) + (split_avg * 0.10) + (preseason_avg * preseason_weight) + (previous_avg * previous_weight)
     if is_home:
         projected += home_boost_for_market(market)
 
     line_value = suggested_line(market, projected)
     l10_hit_rate = hit_rate(recent_10, market, line_value)
     l5_hit_rate = hit_rate(recent_5, market, line_value)
-    sample_size = max(1, profile.get("sample_size", len(recent_10)))
     sample_factor = min(sample_size / 5.0, 1.0)
     if sample_size >= 3 and l10_hit_rate < 0.55:
         return None
@@ -466,6 +634,10 @@ def build_market_candidate(
     trend_component = min(max((trend_delta + 3.0) / 6.0, 0.0), 1.0)
     matchup_component = min(max((matchup_ratio - 0.92) / 0.20, 0.0), 1.0)
     home_component = 1.0 if is_home else 0.0
+    trend_profile = profile.get("trend_map", {}).get(market, {})
+    trend_scale = float(trend_profile.get("scale", 0.0))
+    trend_state = trend_profile.get("state", "flat")
+    trend_bonus = trend_scale * 0.08
 
     raw_score = 100 * (
         (l10_hit_rate * 0.27)
@@ -475,6 +647,7 @@ def build_market_candidate(
         + (matchup_component * 0.10)
         + (home_component * 0.04)
         + (sample_factor * 0.06)
+        + trend_bonus
     )
     if market in {"PTS", "AST", "3PM"} and usage_share < 0.24:
         raw_score -= 4.0
@@ -512,12 +685,18 @@ def build_market_candidate(
             matchup_ratio=matchup_ratio,
             sample_size=sample_size,
             is_home=is_home,
+            trend_state=trend_state,
+            trend_scale=trend_scale,
+            preseason_avg=preseason_avg,
+            previous_avg=previous_avg,
         ),
         "l10_hit_rate": l10_hit_rate,
         "l5_hit_rate": l5_hit_rate,
         "usage_pct": usage_share,
         "minutes_projection": minutes_projection,
         "strong_matchup": strong_matchup,
+        "trend_state": trend_state,
+        "trend_scale": trend_scale,
     }
 
 
@@ -613,6 +792,10 @@ def build_market_reason(
     matchup_ratio: float,
     sample_size: int,
     is_home: bool,
+    trend_state: str,
+    trend_scale: float,
+    preseason_avg: float,
+    previous_avg: float,
 ) -> str:
     parts = [
         f"Sample {sample_size}",
@@ -621,12 +804,40 @@ def build_market_reason(
         f"USG {usage_share:.0%}",
         f"MIN {minutes_projection:.1f}",
         f"{market} matchup {matchup_ratio:.2f}x",
+        f"Prev {previous_avg:.1f}",
+        f"Pre {preseason_avg:.1f}",
     ]
+    if trend_state == "uptick":
+        parts.append(f"Uptick {trend_scale:.2f}")
+    elif trend_state == "decline":
+        parts.append(f"Decline {trend_scale:.2f}")
     if is_home:
         parts.append("Home boost")
     if minutes_projection < 24:
         parts.append("Minutes watch")
     return " | ".join(parts)
+
+
+def build_trend_map(recent_logs: list[dict[str, Any]], preseason_logs: list[dict[str, Any]], previous_logs: list[dict[str, Any]], season_avgs: dict[str, float], previous_avgs: dict[str, float]) -> dict[str, dict[str, float | str]]:
+    trend_map: dict[str, dict[str, float | str]] = {}
+    for market in ("PTS", "REB", "AST", "3PM"):
+        recent_avg = average(log[market] for log in recent_logs) if recent_logs else season_avgs.get(market, 0.0)
+        preseason_avg = average(log[market] for log in preseason_logs) if preseason_logs else previous_avgs.get(market, season_avgs.get(market, 0.0))
+        prior_avg = previous_avgs.get(market, season_avgs.get(market, 0.0))
+        baseline = prior_avg if prior_avg > 0 else preseason_avg if preseason_avg > 0 else season_avgs.get(market, 0.0)
+        if baseline <= 0:
+            trend_map[market] = {"state": "flat", "scale": 0.0}
+            continue
+        blended_prior = (baseline * 0.75) + (preseason_avg * 0.25 if preseason_avg > 0 else 0.0)
+        delta_ratio = (recent_avg - blended_prior) / max(blended_prior, 1.0)
+        if delta_ratio >= 0.12:
+            state = "uptick"
+        elif delta_ratio <= -0.12:
+            state = "decline"
+        else:
+            state = "flat"
+        trend_map[market] = {"state": state, "scale": round(abs(delta_ratio), 2)}
+    return trend_map
 
 
 def ml_score(*, recent_win_pct: float, season_record: float, points_allowed: float, is_home: bool) -> float:
