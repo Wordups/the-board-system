@@ -1857,9 +1857,87 @@ function playerReasonList(rows) {
         <div>${marketTag(row.market)}</div>
         <div class="player-line-cell">${esc(row.line)}</div>
       </div>
-      <div class="player-row-meta">${esc(row.matchup)} ? ${Number(row.score || 0).toFixed(1)} score ? Tier ${esc(row.tier || "C")}</div>
+      <div class="player-row-meta">${esc(row.matchup)} • ${Number(row.score || 0).toFixed(1)} score • Tier ${esc(row.tier || "C")}</div>
       <div class="player-reason">${esc(row.reason || "No edge note yet.")}</div>
     </div>`).join("")}</div>`;
+}
+
+function extractRecentFormMetrics(rows, sport) {
+  const metrics = [];
+  const patternMap = {
+    mlb: [
+      { label: "L5", regex: /\bL5\s+([0-9.]+(?:%|\/g)?)/i },
+      { label: "L10", regex: /\bL10\s+([0-9.]+(?:%|\/g)?)/i },
+      { label: "Matchup", regex: /\bMatchup\s+([0-9.]+x?)/i },
+      { label: "WHIP", regex: /\bWHIP\s+([0-9.]+)/i },
+      { label: "RISP", regex: /\bRISP\s+([0-9.]+)/i },
+      { label: "Order", regex: /\bOrder(?: est\.)?\s+([0-9]+)/i },
+    ],
+    nba: [
+      { label: "L5", regex: /\bL5\s+([0-9.]+%?)/i },
+      { label: "L10", regex: /\bL10\s+([0-9.]+%?)/i },
+      { label: "Usage", regex: /\bUSG\s+([0-9.]+%)/i },
+      { label: "Minutes", regex: /\bMIN\s+([0-9.]+)/i },
+      { label: "H2H", regex: /\bH2H\s+([0-9.]+%?)/i },
+      { label: "Matchup", regex: /\bmatchup\s+([0-9.]+x?)/i },
+    ],
+    wnba: [
+      { label: "L5", regex: /\bL5\s+([0-9.]+%?)/i },
+      { label: "L10", regex: /\bL10\s+([0-9.]+%?)/i },
+      { label: "Prev", regex: /\bPrev\s+([0-9.]+)/i },
+      { label: "Pre", regex: /\bPre\s+([0-9.]+)/i },
+      { label: "Trend", regex: /\b(Uptick|Decline)\s+([0-9.]+)/i, joinGroups: true },
+      { label: "Minutes", regex: /\bMIN\s+([0-9.]+)/i },
+    ],
+    soccer: [
+      { label: "L5", regex: /\bL5\s+([0-9.]+%?)/i },
+      { label: "Edge", regex: /\bEdge\s+([0-9.]+)/i },
+      { label: "Matchup", regex: /\bmatchup\s+([0-9.]+x?)/i },
+      { label: "xG", regex: /\bxG\s+([0-9.]+)/i },
+    ],
+    tennis: [
+      { label: "L5", regex: /\bL5\s+([0-9.]+%?)/i },
+      { label: "Edge", regex: /\bEdge\s+([0-9.]+)/i },
+      { label: "H2H", regex: /\bH2H\s+([0-9.]+%?)/i },
+      { label: "Surface", regex: /\bSurface\s+([A-Za-z0-9.%-]+)/i },
+    ],
+  };
+  const patterns = patternMap[sport] || patternMap.mlb;
+  const reasons = rows.map(row => String(row.reason || ""));
+  for (const rule of patterns) {
+    let found = "";
+    for (const reason of reasons) {
+      const match = reason.match(rule.regex);
+      if (match) {
+        found = rule.joinGroups ? match.slice(1).join(" ") : match[1];
+        break;
+      }
+    }
+    if (found) metrics.push({ label: rule.label, value: found });
+  }
+  return metrics.slice(0, 6);
+}
+
+function renderRecentFormSection(rows, sport) {
+  const metrics = extractRecentFormMetrics(rows, sport);
+  if (!metrics.length) {
+    return `
+      <div class="player-section">
+        <div class="player-section-title">Recent Form</div>
+        <div class="lane-sub">Recent form metrics will appear here as the board reasons populate.</div>
+      </div>`;
+  }
+  return `
+    <div class="player-section">
+      <div class="player-section-title">Recent Form</div>
+      <div class="player-stat-grid">
+        ${metrics.map(metric => `
+          <div class="player-stat-card">
+            <div class="player-stat-label">${esc(metric.label)}</div>
+            <div class="player-stat-value">${esc(metric.value)}</div>
+          </div>`).join("")}
+      </div>
+    </div>`;
 }
 
 function openPlayerPanel(playerId, sport, data) {
@@ -1867,7 +1945,7 @@ function openPlayerPanel(playerId, sport, data) {
   if (!rows.length) return;
   const player = rows[0];
   document.getElementById("player-panel-title").textContent = player.player_name;
-  document.getElementById("player-panel-subtitle").textContent = `${player.team} vs ${player.opponent} ? ${rows.length} board row${rows.length === 1 ? "" : "s"}`;
+  document.getElementById("player-panel-subtitle").textContent = `${player.team} vs ${player.opponent} • ${rows.length} board row${rows.length === 1 ? "" : "s"}`;
 
   const scoreValues = rows.map(r => Number(r.score || 0));
   const avgScore = scoreValues.reduce((sum, val) => sum + val, 0) / scoreValues.length;
@@ -1880,6 +1958,7 @@ function openPlayerPanel(playerId, sport, data) {
       <div class="player-stat-card"><div class="player-stat-label">Best Tier</div><div class="player-stat-value">${esc(topTier)}</div></div>
       <div class="player-stat-card"><div class="player-stat-label">Markets</div><div class="player-stat-value">${rows.map(r => r.market).filter((v, i, arr) => arr.indexOf(v) === i).join(", ")}</div></div>
     </div>
+    ${renderRecentFormSection(rows, sport)}
     <div class="player-section">
       <div class="player-section-title">Board Detail</div>
       ${playerReasonList(rows)}
