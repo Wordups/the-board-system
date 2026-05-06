@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 import json
 from typing import Any
@@ -34,10 +34,10 @@ WNBA_MARKETS = ["PTS", "REB", "AST", "3PM", "ML"]
 
 def collect_wnba_raw_data(data_raw_dir: Path) -> dict[str, Any]:
     raw_path = data_raw_dir / "wnba_raw.json"
-    slate_date = today_et()
+    requested_date = today_et()
 
     try:
-        games = fetch_today_games(slate_date)
+        slate_date, games = fetch_target_games(requested_date)
         if not games:
             raise RuntimeError(f"No WNBA games found for {slate_date.isoformat()}")
 
@@ -77,6 +77,15 @@ def collect_wnba_raw_data(data_raw_dir: Path) -> dict[str, Any]:
 def fetch_today_games(slate_date) -> list[dict[str, Any]]:
     payload = espn_get_json(ESPN_SCOREBOARD_URL, {"dates": slate_date.strftime("%Y%m%d")})
     return payload.get("events", [])
+
+
+def fetch_target_games(start_date) -> tuple[Any, list[dict[str, Any]]]:
+    for offset in range(0, 8):
+        slate_date = start_date + timedelta(days=offset)
+        games = fetch_today_games(slate_date)
+        if games:
+            return slate_date, games
+    return start_date, []
 
 
 def extract_today_team_map(games: list[dict[str, Any]]) -> dict[str, int]:
