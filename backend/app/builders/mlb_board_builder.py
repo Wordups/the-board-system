@@ -126,7 +126,7 @@ def build_mlb_board(*, config, paths) -> dict:
 
 
 def build_market_diverse_top_signals(*, candidates, limit: int) -> list[dict]:
-    preferred_markets = ("HR", "Hits", "TB", "K", "ML")
+    preferred_markets = ("HR", "RBI", "Hits", "TB", "K", "ML")
     selected = []
     used_markets = set()
 
@@ -230,7 +230,7 @@ def build_sticky_hr_board(*, candidates, previous_pinned_players, game_status_by
 
 
 def build_consistency_board(processed_games) -> list[dict]:
-    consistency_markets = {"Hits", "TB", "K"}
+    consistency_markets = {"Hits", "TB", "RBI", "K"}
     rows = []
     for processed_game in processed_games:
         for candidate in sorted_candidates(processed_game["candidates"]):

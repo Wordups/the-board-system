@@ -4,6 +4,7 @@ from __future__ import annotations
 def empty_markets() -> dict[str, list]:
     return {
         "HR": [],
+        "RBI": [],
         "K": [],
         "Hits": [],
         "TB": [],

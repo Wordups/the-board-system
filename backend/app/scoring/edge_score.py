@@ -41,6 +41,12 @@ def support_weights_for(market: str) -> dict[str, float]:
             "matchup": 0.23,
             "recent_form": 0.35,
         }
+    if market == "RBI":
+        return {
+            "trend": 0.34,
+            "matchup": 0.33,
+            "recent_form": 0.33,
+        }
     return {
         "trend": 0.35,
         "matchup": 0.25,
@@ -51,6 +57,8 @@ def support_weights_for(market: str) -> dict[str, float]:
 def build_reason(*, candidate: MlbPlayCandidate, probability_edge: float, support_weights: dict[str, float]) -> str:
     if candidate.market == "HR":
         return build_hr_reason(candidate, probability_edge, support_weights)
+    if candidate.market == "RBI":
+        return build_rbi_reason(candidate, probability_edge, support_weights)
     return (
         f"Edge {probability_edge:.1f}, trend {candidate.trend:.2f}, "
         f"matchup {candidate.matchup:.2f}, form {candidate.recent_form:.2f}"
@@ -146,3 +154,23 @@ def build_hr_reason(candidate: MlbPlayCandidate, probability_edge: float, suppor
     )
     reasons.append(weights)
     return " | ".join(reasons)
+
+
+def build_rbi_reason(candidate: MlbPlayCandidate, probability_edge: float, support_weights: dict[str, float]) -> str:
+    extra = candidate.extra or {}
+    return " | ".join(
+        [
+            f"RBI edge {probability_edge:.1f}",
+            f"L5 {float(extra.get('l5_rbi_per_game', 0.0)):.2f}/g",
+            f"L10 {float(extra.get('l10_rbi_per_game', 0.0)):.2f}/g",
+            f"Season {float(extra.get('season_rbi_per_game', 0.0)):.2f}/g",
+            f"Order est. {int(extra.get('order_estimate', 0) or 0)}" if extra.get("order_estimate") else "Order est. -",
+            f"Team R/G {float(extra.get('team_runs_per_game', 0.0)):.2f}",
+            f"Team OBP {float(extra.get('team_obp', 0.0)):.3f}",
+            f"WHIP {float(extra.get('pitcher_whip', 0.0)):.2f}" if extra.get("pitcher_whip") else "WHIP -",
+            f"Platoon {float(extra.get('platoon_edge', 0.0)):.2f}",
+            f"RISP {float(extra.get('risp_signal', 0.0)):.2f}",
+            f"Lineup pen {float(extra.get('lineup_uncertainty_penalty', 0.0)):.1f}" if extra.get("lineup_uncertainty_penalty") else "Lineup pen 0.0",
+            f"Wts T{support_weights['trend']:.2f}/M{support_weights['matchup']:.2f}/F{support_weights['recent_form']:.2f}",
+        ]
+    )

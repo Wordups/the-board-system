@@ -152,6 +152,7 @@ def build_game_payload(
             opponent_abbr=home_abbr,
             game_id=f"{away_abbr.lower()}-{home_abbr.lower()}-{slate_date}",
             opposing_pitcher=home_pitcher_profile,
+            team_hitting=team_hitting_stats[away_team["id"]],
             lineup_context=lineup_context["away"],
             game_status=game_status,
         )
@@ -163,6 +164,7 @@ def build_game_payload(
             opponent_abbr=away_abbr,
             game_id=f"{away_abbr.lower()}-{home_abbr.lower()}-{slate_date}",
             opposing_pitcher=away_pitcher_profile,
+            team_hitting=team_hitting_stats[home_team["id"]],
             lineup_context=lineup_context["home"],
             game_status=game_status,
         )
@@ -220,6 +222,7 @@ def build_hitter_inputs(
     opponent_abbr: str,
     game_id: str,
     opposing_pitcher: dict[str, Any] | None,
+    team_hitting: dict[str, Any],
     lineup_context: dict[str, Any],
     game_status: dict[str, Any],
 ) -> list[RawPlayerMarketInput]:
@@ -281,6 +284,17 @@ def build_hitter_inputs(
         top_batters = eligible_batters[:9]
 
     pitcher_matchup = pitcher_matchup_value(opposing_pitcher)
+    team_games = max(parse_int(team_hitting.get("gamesPlayed")), 1)
+    team_runs_per_game = parse_int(team_hitting.get("runs")) / team_games
+    team_obp = parse_decimal(team_hitting.get("obp"))
+    team_ops = parse_decimal(team_hitting.get("ops"))
+    team_environment = clamp(
+        normalize_rate(team_runs_per_game, 6.2) * 0.46
+        + clamp((team_obp - 0.285) / 0.090, 0.0, 1.0) * 0.34
+        + clamp((team_ops - 0.650) / 0.240, 0.0, 1.0) * 0.20,
+        0.0,
+        1.0,
+    )
 
     results: list[RawPlayerMarketInput] = []
     for index, (_, person, season_stats) in enumerate(top_batters, start=1):
@@ -303,6 +317,7 @@ def build_hitter_inputs(
         season_hr = parse_int(season_stats.get("homeRuns"))
         season_hits = parse_int(season_stats.get("hits"))
         season_tb = parse_int(season_stats.get("totalBases"))
+        season_rbi = parse_int(season_stats.get("rbi"))
         avg = parse_decimal(season_stats.get("avg"))
         ops = parse_decimal(season_stats.get("ops"))
         slg = parse_decimal(season_stats.get("slg"))
@@ -311,6 +326,7 @@ def build_hitter_inputs(
         hr_per_game = season_hr / season_games
         hits_per_game = season_hits / season_games
         tb_per_game = season_tb / season_games
+        rbi_per_game = season_rbi / season_games
 
         season_pa_per_game = season_pa / season_games
         season_hr_rate = smoothed_rate(season_hr, season_pa, prior_rate=0.032, stabilization=90)
@@ -336,6 +352,8 @@ def build_hitter_inputs(
         l10_hits = sum(parse_int(log["stat"].get("hits")) for log in recent_10) / max(len(recent_10), 1)
         l5_tb = sum(parse_int(log["stat"].get("totalBases")) for log in recent_5) / max(len(recent_5), 1)
         l10_tb = sum(parse_int(log["stat"].get("totalBases")) for log in recent_10) / max(len(recent_10), 1)
+        l5_rbi = sum(parse_int(log["stat"].get("rbi")) for log in recent_5) / max(len(recent_5), 1)
+        l10_rbi = sum(parse_int(log["stat"].get("rbi")) for log in recent_10) / max(len(recent_10), 1)
 
         l5_hr_rate = smoothed_rate(recent_5_hr_total, recent_5_pa, prior_rate=season_hr_rate, stabilization=12)
         l10_hr_rate = smoothed_rate(recent_10_hr_total, recent_10_pa, prior_rate=season_hr_rate, stabilization=24)
@@ -455,6 +473,77 @@ def build_hitter_inputs(
                     "vs_pitcher_ops": round(vs_pitcher.get("ops", 0.0), 3),
                     "vs_pitcher_hr": parse_int(vs_pitcher.get("home_runs")),
                     "vs_pitcher_pa": parse_int(vs_pitcher.get("plate_appearances")),
+                    "vs_pitcher_signal": round(vs_pitcher_signal, 3),
+                },
+            )
+        )
+        risp_avg = parse_decimal(season_stats.get("runnersInScoringPosition"))
+        if risp_avg <= 0.0:
+            risp_avg = avg
+        risp_signal = clamp((risp_avg - 0.230) / 0.170, 0.0, 1.0)
+        rbi_line = "1+ RBI" if l5_rbi < 1.05 else "2+ RBI"
+        rbi_skill = clamp(
+            normalize_rate(rbi_per_game, 1.6) * 0.44
+            + normalize_rate(l10_rbi, 1.8) * 0.32
+            + normalize_rate(l5_rbi, 1.8) * 0.24,
+            0.0,
+            1.0,
+        )
+        rbi_matchup = clamp(
+            pitcher_matchup * 0.28
+            + team_environment * 0.28
+            + lineup_boost * 0.20
+            + platoon_edge * 0.10
+            + risp_signal * 0.08
+            + vs_pitcher_signal * 0.06,
+            0.0,
+            1.0,
+        )
+        rbi_recent_form = clamp(
+            normalize_rate(l5_rbi, 1.8) * 0.26
+            + normalize_rate(l10_rbi, 1.8) * 0.20
+            + form_boost * 0.18
+            + team_environment * 0.18
+            + normalize_rate(tb_per_game, 4.0) * 0.10
+            + risp_signal * 0.08,
+            0.0,
+            1.0,
+        )
+        results.append(
+            RawPlayerMarketInput(
+                player_id=f'{person["id"]}-rbi',
+                player_name=person["fullName"],
+                team=team_abbr,
+                opponent=opponent_abbr,
+                game_id=game_id,
+                market="RBI",
+                line=rbi_line,
+                stat_value=rbi_skill,
+                baseline=0.24 if rbi_line == "1+ RBI" else 0.12,
+                trend=clamp(
+                    normalize_rate(l5_rbi, 1.8) * 0.42
+                    + normalize_rate(l10_rbi, 1.8) * 0.34
+                    + normalize_rate(rbi_per_game, 1.6) * 0.24,
+                    0.0,
+                    1.0,
+                ),
+                matchup=rbi_matchup,
+                recent_form=rbi_recent_form,
+                extra={
+                    "lineup_confirmed": lineup_confirmed,
+                    "lineup_uncertainty_penalty": round(lineup_uncertainty_penalty, 2),
+                    "order_estimate": order_estimate,
+                    "player_status": player_status,
+                    "season_rbi_per_game": round(rbi_per_game, 3),
+                    "l5_rbi_per_game": round(l5_rbi, 3),
+                    "l10_rbi_per_game": round(l10_rbi, 3),
+                    "team_runs_per_game": round(team_runs_per_game, 3),
+                    "team_obp": round(team_obp, 3),
+                    "team_ops": round(team_ops, 3),
+                    "pitcher_whip": round(parse_decimal((opposing_pitcher or {}).get("whip")), 2),
+                    "pitcher_name": (opposing_pitcher or {}).get("fullName", ""),
+                    "platoon_edge": round(platoon_edge, 3),
+                    "risp_signal": round(risp_signal, 3),
                     "vs_pitcher_signal": round(vs_pitcher_signal, 3),
                 },
             )
