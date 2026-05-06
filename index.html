@@ -1396,6 +1396,85 @@ function cloneRow(row, marketOverride = "") {
   };
 }
 
+function lineFloorValue(line) {
+  const match = String(line || "").match(/(\d+(?:\.\d+)?)/);
+  return match ? Number(match[1]) : 0;
+}
+
+function desiredLineFloor(sport, market) {
+  const floors = {
+    mlb: { HR: 1, Hits: 2, TB: 2, RBI: 2, K: 6 },
+    nba: { PTS: 15, AST: 5, REB: 6, "3PM": 2 },
+    wnba: { PTS: 12, AST: 4, REB: 5, "3PM": 2 },
+    soccer: { GS: 1 },
+    tennis: { ML: 0, Sets: 2, "O/U": 20.5 },
+  };
+  return (floors[sport] || {})[market] ?? 0;
+}
+
+function propQualityScore(row, sport) {
+  if (!row) return -999;
+  const market = row.market || "";
+  const tierBonus = row.tier === "A" ? 5 : row.tier === "B" ? 2 : row.tier === "C" ? -2 : -6;
+  const marketBonusMap = {
+    mlb: { HR: 4, Hits: 3, TB: 3, RBI: 2, K: 1 },
+    nba: { PTS: 2, AST: 3, REB: 2.5, "3PM": 1 },
+    wnba: { PTS: 2, AST: 3, REB: 2.5, "3PM": 1 },
+    soccer: { GS: 3, OU: 0 },
+    tennis: { ML: 3, Sets: 2, "O/U": 0.5 },
+  };
+  const marketBonus = (marketBonusMap[sport] || {})[market] || 0;
+  const floor = desiredLineFloor(sport, market);
+  const lineValue = lineFloorValue(row.line);
+  const lineBonus = lineValue >= floor ? (lineValue - floor) * 0.6 : -10 - (floor - lineValue) * 3;
+  const reason = String(row.reason || "");
+  const formBonus =
+    (/L5\s+(8|9|100)/i.test(reason) ? 2 : 0) +
+    (/H2H/i.test(reason) ? 1.2 : 0) +
+    (/WHIP/i.test(reason) ? 0.8 : 0) +
+    (/Platoon \+/i.test(reason) ? 0.8 : 0) +
+    (/Rising|Uptick/i.test(reason) ? 0.8 : 0) +
+    (/Decline/i.test(reason) ? -1.4 : 0);
+  return Number(row.score || 0) + tierBonus + marketBonus + lineBonus + formBonus;
+}
+
+function dedupeRows(rows) {
+  const seen = new Set();
+  const deduped = [];
+  for (const row of rows || []) {
+    if (!row) continue;
+    const key = `${row.player_id || row.player_name}:${row.market || ""}:${row.line || ""}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    deduped.push(row);
+  }
+  return deduped;
+}
+
+function selectDailyRows(rows, sport, count, opts = {}) {
+  const { sameGameMax = count, sameTeamMax = count } = opts;
+  const ranked = dedupeRows(rows)
+    .filter(row => row && propQualityScore(row, sport) > 0)
+    .sort((a, b) => propQualityScore(b, sport) - propQualityScore(a, sport));
+
+  const selected = [];
+  const gameCounts = new Map();
+  const teamCounts = new Map();
+
+  for (const row of ranked) {
+    const gameId = row.game_id || `${row.team}-${row.opponent}`;
+    const team = row.team || row.player_name;
+    if ((gameCounts.get(gameId) || 0) >= sameGameMax) continue;
+    if ((teamCounts.get(team) || 0) >= sameTeamMax) continue;
+    selected.push(row);
+    gameCounts.set(gameId, (gameCounts.get(gameId) || 0) + 1);
+    teamCounts.set(team, (teamCounts.get(team) || 0) + 1);
+    if (selected.length >= count) break;
+  }
+
+  return selected;
+}
+
 function deriveSportPicks(sport, data) {
   if (!data) return null;
 
@@ -1409,8 +1488,15 @@ function deriveSportPicks(sport, data) {
   }
 
   if (sport === "nba") {
-    const straight = cloneRow(data.hero_pick, data.hero_pick?.market || "");
-    const safe = (data.research_board?.safe_plays?.players || []).map(row => cloneRow(row, row.market)).filter(Boolean);
+    const pool = [
+      ...(data.research_board?.safe_plays?.players || []),
+      ...(data.research_board?.sections?.PTS || []),
+      ...(data.research_board?.sections?.AST || []),
+      ...(data.research_board?.sections?.REB || []),
+      ...(data.research_board?.sections?.["3PM"] || []),
+    ].map(row => cloneRow(row, row.market)).filter(Boolean);
+    const straight = selectDailyRows(pool, "nba", 1, { sameGameMax: 1, sameTeamMax: 1 })[0] || cloneRow(data.hero_pick, data.hero_pick?.market || "");
+    const safe = selectDailyRows(pool, "nba", 8, { sameGameMax: 2, sameTeamMax: 1 });
     return {
       straight,
       twoLeg: safe.slice(0, 2),
@@ -1419,7 +1505,6 @@ function deriveSportPicks(sport, data) {
   }
 
   if (sport === "wnba") {
-    const straight = cloneRow(data.hero_pick, data.hero_pick?.market || "");
     const pool = [
       ...(data.section_boards?.PTS?.players || []),
       ...(data.section_boards?.AST?.players || []),
@@ -1434,28 +1519,32 @@ function deriveSportPicks(sport, data) {
       seen.add(key);
       deduped.push(cloneRow(row, row.market || ""));
     }
+    const straight = selectDailyRows(deduped, "wnba", 1, { sameGameMax: 1, sameTeamMax: 1 })[0] || cloneRow(data.hero_pick, data.hero_pick?.market || "");
+    const safe = selectDailyRows(deduped, "wnba", 8, { sameGameMax: 2, sameTeamMax: 1 });
     return {
       straight,
-      twoLeg: deduped.slice(0, 2),
-      threeLeg: deduped.slice(0, 3),
+      twoLeg: safe.slice(0, 2),
+      threeLeg: safe.slice(0, 3),
     };
   }
 
   if (sport === "soccer") {
     const top = (data.pinned_board?.players || []).map(row => cloneRow(row, data.pinned_board?.market || "GS"));
+    const picks = selectDailyRows(top, "soccer", 4, { sameGameMax: 1, sameTeamMax: 1 });
     return {
-      straight: top[0] || null,
-      twoLeg: top.slice(0, 2),
-      threeLeg: top.slice(0, 3),
+      straight: picks[0] || top[0] || null,
+      twoLeg: picks.slice(0, 2),
+      threeLeg: picks.slice(0, 3),
     };
   }
 
   if (sport === "tennis") {
     const top = (data.pinned_board?.players || []).map(row => cloneRow(row, data.pinned_board?.market || "ML"));
+    const picks = selectDailyRows(top, "tennis", 4, { sameGameMax: 1, sameTeamMax: 1 });
     return {
-      straight: top[0] || null,
-      twoLeg: top.slice(0, 2),
-      threeLeg: top.slice(0, 3),
+      straight: picks[0] || top[0] || null,
+      twoLeg: picks.slice(0, 2),
+      threeLeg: picks.slice(0, 3),
     };
   }
 

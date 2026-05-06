@@ -24,10 +24,10 @@ def build_nba_board(*, config, paths) -> dict:
         processed_games.append({"raw": raw_game, "candidates": candidates})
         all_candidates.extend(candidates)
 
-    pick_of_day = build_pick_of_day(processed_games, previous_pick)
+    pick_of_day = build_pick_of_day(processed_games, previous_pick, sport="NBA")
     game_clusters = build_game_clusters(processed_games)
     section_boards = build_section_boards(all_candidates, config.top_market_limit)
-    hero_pick = build_hero_pick(pick_of_day, all_candidates)
+    hero_pick = build_hero_pick(pick_of_day, all_candidates, sport="NBA")
 
     write_json(
         paths.data_processed / "nba_processed.json",
@@ -172,20 +172,74 @@ def build_market_diverse_top_signals(*, candidates: list[dict], limit: int) -> l
     ]
 
 
-def build_pick_of_day(processed_games: list[dict], previous_pick: dict | None) -> dict | None:
+def parse_line_floor(line: str) -> float:
+    if not line:
+        return 0.0
+    token = str(line).split()[0]
+    token = token.replace("+", "").replace("-", "")
+    try:
+        return float(token)
+    except ValueError:
+        return 0.0
+
+
+def featured_prop_floor(candidate: dict, sport: str) -> float:
+    market = candidate.get("market")
+    floors = {
+        "NBA": {"PTS": 15.0, "AST": 5.0, "REB": 6.0, "3PM": 2.0},
+        "WNBA": {"PTS": 12.0, "AST": 4.0, "REB": 5.0, "3PM": 2.0},
+    }
+    return floors.get(sport.upper(), floors["NBA"]).get(str(market), 0.0)
+
+
+def is_featured_prop(candidate: dict, sport: str) -> bool:
+    market = candidate.get("market")
+    if market == "ML":
+        return False
+    if candidate.get("tier") not in {"A", "B"}:
+        return False
+    if float(candidate.get("l5_hit_rate", 0.0) or 0.0) < 0.65:
+        return False
+    floor = featured_prop_floor(candidate, sport)
+    value = parse_line_floor(str(candidate.get("line", "")))
+    return value >= floor if floor else True
+
+
+def featured_prop_score(candidate: dict, sport: str) -> float:
+    market_bonus = {"PTS": 1.5, "AST": 2.0, "REB": 1.75, "3PM": 1.0}
+    tier_bonus = {"A": 2.5, "B": 1.0}
+    floor = featured_prop_floor(candidate, sport)
+    value = parse_line_floor(str(candidate.get("line", "")))
+    floor_margin = max(0.0, value - floor) * 0.8
+    h2h_bonus = 0.75 if "H2H" in str(candidate.get("reason", "")) else 0.0
+    return round(
+        float(candidate.get("score", 0.0))
+        + market_bonus.get(str(candidate.get("market")), 0.0)
+        + tier_bonus.get(str(candidate.get("tier")), 0.0)
+        + floor_margin
+        + h2h_bonus,
+        2,
+    )
+
+
+def build_pick_of_day(processed_games: list[dict], previous_pick: dict | None, *, sport: str = "NBA") -> dict | None:
     qualified = []
     for processed_game in processed_games:
         for candidate in processed_game["candidates"]:
-            if candidate["market"] == "ML":
-                continue
-            if candidate["tier"] != "A":
-                continue
-            if candidate.get("l5_hit_rate", 0.0) < 0.70:
-                continue
-            qualified.append(candidate)
+            if is_featured_prop(candidate, sport):
+                qualified.append(candidate)
     if not qualified:
         return previous_pick
-    ranked = sorted(qualified, key=lambda row: (row["score"], row["l5_hit_rate"], row["l10_hit_rate"]), reverse=True)
+    ranked = sorted(
+        qualified,
+        key=lambda row: (
+            featured_prop_score(row, sport),
+            row["score"],
+            row.get("l5_hit_rate", 0.0),
+            row.get("l10_hit_rate", 0.0),
+        ),
+        reverse=True,
+    )
     best = ranked[0]
     return {
         "player_id": str(best["player_id"]),
@@ -201,7 +255,7 @@ def build_pick_of_day(processed_games: list[dict], previous_pick: dict | None) -
     }
 
 
-def build_hero_pick(pick_of_day: dict | None, candidates: list[dict]) -> dict | None:
+def build_hero_pick(pick_of_day: dict | None, candidates: list[dict], *, sport: str = "NBA") -> dict | None:
     if pick_of_day:
         return {
             **pick_of_day,
@@ -209,7 +263,17 @@ def build_hero_pick(pick_of_day: dict | None, candidates: list[dict]) -> dict | 
         }
     if not candidates:
         return None
-    best = sorted(candidates, key=lambda row: (row["score"], row["confidence"]), reverse=True)[0]
+    featured = [candidate for candidate in candidates if is_featured_prop(candidate, sport)]
+    pool = featured or [candidate for candidate in candidates if candidate.get("market") != "ML"] or candidates
+    best = sorted(
+        pool,
+        key=lambda row: (
+            featured_prop_score(row, sport),
+            row["score"],
+            row["confidence"],
+        ),
+        reverse=True,
+    )[0]
     return {
         "player_id": str(best["player_id"]),
         "player_name": best["player_name"],

@@ -31,10 +31,10 @@ def build_wnba_board(*, config, paths) -> dict:
         processed_games.append({"raw": raw_game, "candidates": candidates})
         all_candidates.extend(candidates)
 
-    pick_of_day = build_pick_of_day(processed_games, previous_pick)
+    pick_of_day = build_pick_of_day(processed_games, previous_pick, sport="WNBA")
     game_clusters = build_game_clusters(processed_games)
     section_boards = build_section_boards(all_candidates, config.top_market_limit)
-    hero_pick = build_hero_pick(pick_of_day, all_candidates)
+    hero_pick = build_hero_pick(pick_of_day, all_candidates, sport="WNBA")
 
     write_json(
         paths.data_processed / "wnba_processed.json",
