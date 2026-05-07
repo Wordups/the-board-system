@@ -9,6 +9,7 @@ from app.models.mlb_model import MlbPlayCandidate
 
 def build_mlb_research_board(*, candidates: list[MlbPlayCandidate], config, paths) -> dict[str, Any]:
     notes = load_research_notes(paths.data_raw / "mlb_research_notes.json")
+    hr_feedback = load_recent_hr_feedback(paths.data_final / "history" / "mlb_hr_tracking")
     grouped = {
         "HR": [c for c in candidates if c.market == "HR" and c.tier in {"A", "B"}],
         "Hits": [c for c in candidates if c.market == "Hits" and c.tier != "PASS"],
@@ -36,6 +37,7 @@ def build_mlb_research_board(*, candidates: list[MlbPlayCandidate], config, path
             candidates=grouped["HR"],
             config=config,
             notes=notes,
+            hr_feedback=hr_feedback,
             hr_of_day_count=3,
         ),
         "hits": build_market_research_section(
@@ -44,6 +46,7 @@ def build_mlb_research_board(*, candidates: list[MlbPlayCandidate], config, path
             candidates=grouped["Hits"],
             config=config,
             notes=notes,
+            hr_feedback={},
         ),
         "total_bases": build_market_research_section(
             market_name="TB",
@@ -51,6 +54,7 @@ def build_mlb_research_board(*, candidates: list[MlbPlayCandidate], config, path
             candidates=grouped["TB"],
             config=config,
             notes=notes,
+            hr_feedback={},
         ),
         "strikeouts": build_market_research_section(
             market_name="K",
@@ -58,6 +62,7 @@ def build_mlb_research_board(*, candidates: list[MlbPlayCandidate], config, path
             candidates=grouped["K"],
             config=config,
             notes=notes,
+            hr_feedback={},
         ),
     }
 
@@ -84,10 +89,11 @@ def build_market_research_section(
     candidates: list[MlbPlayCandidate],
     config,
     notes: dict[str, Any],
+    hr_feedback: dict[str, dict[str, Any]],
     hr_of_day_count: int = 0,
 ) -> dict[str, Any]:
     ranked = sorted(
-        (apply_research_overlay(candidate, notes) for candidate in candidates),
+        (apply_research_overlay(candidate, notes, hr_feedback=hr_feedback) for candidate in candidates),
         key=lambda item: item["score"],
         reverse=True,
     )
@@ -121,18 +127,30 @@ def build_market_research_section(
     return response
 
 
-def apply_research_overlay(candidate: MlbPlayCandidate, notes: dict[str, Any]) -> dict[str, Any]:
+def apply_research_overlay(candidate: MlbPlayCandidate, notes: dict[str, Any], *, hr_feedback: dict[str, dict[str, Any]]) -> dict[str, Any]:
     extra = candidate.extra or {}
     player_notes = notes.get("player_notes", {}).get(candidate.player_name, [])
     pitcher_notes = notes.get("pitcher_notes", {}).get(str(extra.get("pitcher_name", "")), [])
     game_notes = notes.get("game_notes", {}).get(candidate.game_id, [])
     evidence = list(player_notes) + list(pitcher_notes) + list(game_notes)
     overlay_boost = sum(float(note.get("boost", 0.0)) for note in evidence if isinstance(note, dict))
+    historical_feedback = hr_feedback.get(normalize_name(candidate.player_name), {})
+    repeat_penalty = float(historical_feedback.get("penalty", 0.0) or 0.0)
     explicit_play = str(notes.get("meta", {}).get("hr_play_of_day", "")).strip().lower()
     play_of_day_boost = 3.5 if candidate.market == "HR" and explicit_play and candidate.player_name.lower() == explicit_play else 0.0
     adjusted_score = round(candidate.score + overlay_boost, 2)
     adjusted_score = round(adjusted_score + play_of_day_boost, 2)
+    adjusted_score = round(max(adjusted_score - repeat_penalty, 0.0), 2)
     hr_bucket = classify_hr_candidate(candidate, adjusted_score)
+    if repeat_penalty > 0:
+        evidence = [
+            {
+                "source": "lazy_agent",
+                "note": historical_feedback.get("summary", "Repeat board fade"),
+                "boost": -repeat_penalty,
+            },
+            *evidence,
+        ]
 
     return {
         "player_id": candidate.player_id,
@@ -144,6 +162,7 @@ def apply_research_overlay(candidate: MlbPlayCandidate, notes: dict[str, Any]) -
         "line": candidate.line,
         "score": adjusted_score,
         "base_score": round(candidate.score, 2),
+        "lazy_penalty": round(repeat_penalty, 2),
         "confidence": candidate.confidence,
         "tier": candidate.tier,
         "reason": candidate.reason,
@@ -175,11 +194,69 @@ def apply_research_overlay(candidate: MlbPlayCandidate, notes: dict[str, Any]) -
         "historical_power_index": extra.get("historical_power_index"),
         "recent_peak_hr_rate": extra.get("recent_peak_hr_rate"),
         "career_hr_rate": extra.get("career_hr_rate"),
+        "appearance_7d": historical_feedback.get("appearances", 0),
+        "hits_7d": historical_feedback.get("hits", 0),
         "evidence": [
             note if isinstance(note, dict) else {"source": "manual", "note": str(note), "boost": 0}
             for note in evidence[:6]
         ],
     }
+
+
+def load_recent_hr_feedback(history_dir: Path, *, lookback_days: int = 7) -> dict[str, dict[str, Any]]:
+    if not history_dir.exists():
+        return {}
+    history_files = sorted(history_dir.glob("*.json"))[-lookback_days:]
+    by_player: dict[str, dict[str, Any]] = {}
+    for path in history_files:
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            continue
+        for row in payload.get("tracked_candidates", []):
+            name_key = normalize_name(row.get("player_name"))
+            if not name_key:
+                continue
+            bucket = by_player.setdefault(
+                name_key,
+                {"appearances": 0, "resolved": 0, "hits": 0, "daily_straight": 0, "daily_legs": 0},
+            )
+            bucket["appearances"] += 1
+            board_tags = row.get("board_tags", {}) or {}
+            if board_tags.get("daily_straight"):
+                bucket["daily_straight"] += 1
+            if board_tags.get("daily_two_leg") or board_tags.get("daily_three_leg"):
+                bucket["daily_legs"] += 1
+            result = row.get("result", {}) or {}
+            status = str(result.get("status", "pending")).lower()
+            if status != "pending":
+                bucket["resolved"] += 1
+                if status == "hit" or int(result.get("home_runs", 0) or 0) > 0:
+                    bucket["hits"] += 1
+
+    for bucket in by_player.values():
+        appearances = int(bucket.get("appearances", 0) or 0)
+        resolved = int(bucket.get("resolved", 0) or 0)
+        hits = int(bucket.get("hits", 0) or 0)
+        daily_straight = int(bucket.get("daily_straight", 0) or 0)
+        penalty = 0.0
+        if appearances >= 7 and resolved >= 4 and hits <= 1:
+            penalty = 4.8
+        elif appearances >= 5 and resolved >= 3 and hits == 0:
+            penalty = 3.6
+        elif appearances >= 4 and daily_straight >= 2 and resolved >= 2 and hits == 0:
+            penalty = 2.8
+        bucket["penalty"] = round(penalty, 2)
+        bucket["summary"] = (
+            f"Shown {appearances}x in 7d, hit {hits} HR"
+            if penalty > 0
+            else f"Shown {appearances}x in 7d, hit {hits} HR"
+        )
+    return by_player
+
+
+def normalize_name(value: Any) -> str:
+    return str(value or "").strip().lower()
 
 
 def classify_hr_candidate(candidate: MlbPlayCandidate, score: float) -> str:

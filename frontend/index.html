@@ -234,6 +234,14 @@ button { cursor: pointer; border: none; background: none; }
   text-align: center;
 }
 
+.core-base-label {
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 2px;
+}
+
 .core-face {
   width: 42px;
   height: 42px;
@@ -2072,7 +2080,7 @@ function sortRowsForPinnedArea(rows = []) {
   });
 }
 
-function renderMlbCoreCard(player, index) {
+function renderMlbCoreCard(player, index, baseLabel = "") {
   return `
     <article class="core-card">
       <div class="core-card-top">
@@ -2083,6 +2091,7 @@ function renderMlbCoreCard(player, index) {
         ${hrResultBadge(player)}
       </div>
       <div class="core-body">
+        ${baseLabel ? `<div class="core-base-label">${esc(baseLabel)}</div>` : ""}
         <div class="core-name">${playerButton(player, "mlb", "core-name")}</div>
         <div class="core-meta"><span>${esc(player.team)}</span><span>vs ${esc(player.opponent)}</span></div>
       </div>
@@ -2141,8 +2150,15 @@ function renderMlbSupportRow(player) {
 function renderMlbPinnedBoards(data) {
   const hrRows = data?.pinned_board?.players || [];
   if (!hrRows.length) return "";
-  const coreRows = hrRows.slice(0, 3);
-  const fringeRows = hrRows.slice(3, 10);
+  const watchRows = data?.watch_board?.players || [];
+  const diamondRows = [
+    hrRows[0] || null,
+    hrRows[1] || null,
+    hrRows[2] || null,
+    watchRows[0] || null,
+  ].filter(Boolean);
+  const diamondLabels = ["Home Plate", "First Base", "Second Base", "Third Base"];
+  const fringeRows = watchRows.slice(1, 8);
   const supportRows = sortRowsForPinnedArea(data?.consistency_board?.players || [])
     .filter((row, index, arr) => {
       const market = String(row.market || "").toUpperCase();
@@ -2157,13 +2173,13 @@ function renderMlbPinnedBoards(data) {
         <div class="board-card mlb-board-compact">
           <div class="board-header">
             <div class="board-header-copy">
-              <div class="board-title">HR Core</div>
-              <div class="board-subtitle">Three true power lanes. Cleaner than the full pool, built to keep the board honest.</div>
+              <div class="board-title">Diamond of the Day</div>
+              <div class="board-subtitle">Start at home plate, then build outward only if the slate still supports it.</div>
             </div>
-            <div class="board-count">${coreRows.length} Plays</div>
+            <div class="board-count">${diamondRows.length} Bases</div>
           </div>
           <div class="core-grid">
-            ${coreRows.map((player, index) => renderMlbCoreCard(player, index)).join("")}
+            ${diamondRows.map((player, index) => renderMlbCoreCard(player, index, diamondLabels[index] || `Base ${index + 1}`)).join("")}
           </div>
         </div>
         ${supportRows.length ? `
