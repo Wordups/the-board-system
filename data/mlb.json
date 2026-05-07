@@ -1,7 +1,7 @@
 {
   "sport": "MLB",
   "date": "2026-05-07",
-  "last_updated": "9:12 AM ET",
+  "last_updated": "9:30 AM ET",
   "pinned_board": {
     "title": "HR Core",
     "market": "HR",
@@ -12,7 +12,7 @@
         "team": "NYY",
         "opponent": "TEX",
         "line": "HR 1+",
-        "score": 41.08,
+        "score": 41.34,
         "confidence": 41,
         "tier": "A",
         "reason": "HR edge 33.6 | L5 0.40/g | L10 0.30/g | Season 0.41/g | HR% 0.28 | HistHR% 0.30 | OPS 1.066 | SLG 0.659 | ISO 0.386 | PowIdx 0.83 | Surge 0.21 | Matchup 0.53 | ProjPA 4.5 | Sample 0.91 | Peak3Y 0.082 | vs MacKenzie Gore | ERA 4.67 | WHIP 1.36 | HR/9 1.30 | HR A 5 | Hand L | Platoon + | vsP 0.429/1.842 in 9 PA | vsP HR 2 | Age 34 | Order est. 1 | Lineup pen 1.8 | Power due 0.22 | L5 XBH 0.40/g | Season XBH 0.57/g | Wts T0.42/M0.28/F0.30",
@@ -46,7 +46,7 @@
         "team": "WSH",
         "opponent": "MIN",
         "line": "HR 1+",
-        "score": 30.96,
+        "score": 31.07,
         "confidence": 31,
         "tier": "A",
         "reason": "HR edge 18.4 | L5 0.20/g | L10 0.30/g | Season 0.27/g | HR% 0.20 | HistHR% 0.17 | OPS 0.893 | SLG 0.507 | ISO 0.268 | PowIdx 0.64 | Surge 0.23 | Matchup 0.94 | ProjPA 4.5 | Sample 0.98 | Peak3Y 0.045 | vs Simeon Woods Richardson | ERA 6.49 | WHIP 1.76 | HR/9 2.08 | HR A 8 | Hand R | Platoon + | Age 23 | Order est. 1 | Lineup pen 1.8 | Rising 0.66 | L5 XBH 0.60/g | Season XBH 0.49/g | Wts T0.42/M0.28/F0.30",
@@ -115,6 +115,23 @@
         "hr_power_index": 0.43
       },
       {
+        "player_id": "677800",
+        "player_name": "Wilyer Abreu",
+        "team": "BOS",
+        "opponent": "TB",
+        "line": "HR 1+",
+        "score": 22.04,
+        "confidence": 22,
+        "tier": "B",
+        "reason": "HR edge 12.6 | L5 0.40/g | L10 0.30/g | Season 0.14/g | HR% 0.14 | HistHR% 0.18 | OPS 0.848 | SLG 0.467 | ISO 0.168 | PowIdx 0.48 | Surge 0.46 | Matchup 0.87 | ProjPA 4.4 | Sample 0.86 | Peak3Y 0.051 | vs Griffin Jax | ERA 5.14 | WHIP 1.50 | HR/9 1.93 | HR A 3 | Hand R | Platoon + | vsP 0.000/0.000 in 2 PA | Age 27 | Order est. 2 | Lineup pen 1.2 | Rising 0.24 | L5 XBH 1.00/g | Season XBH 0.33/g | Wts T0.42/M0.28/F0.30",
+        "hr_result": "pending",
+        "home_runs": 0,
+        "core_bucket": "strong",
+        "projected_pa": 4.42,
+        "power_surge": 0.464,
+        "hr_power_index": 0.484
+      },
+      {
         "player_id": "701398",
         "player_name": "Sal Stewart",
         "team": "CIN",
@@ -135,7 +152,7 @@
   },
   "hr_board_meta": {
     "core_count": 3,
-    "watch_count": 4,
+    "watch_count": 5,
     "full_count": 10
   },
   "consistency_board": {
@@ -176,17 +193,6 @@
         "reason": "Edge 58.0, trend 1.00, matchup 0.43, form 0.36"
       },
       {
-        "player_id": "677800-hits",
-        "player_name": "Wilyer Abreu",
-        "team": "BOS",
-        "opponent": "TB",
-        "line": "2+ Hits",
-        "score": 30.24,
-        "confidence": 28,
-        "tier": "A",
-        "reason": "Edge 58.0, trend 0.80, matchup 0.57, form 0.33"
-      },
-      {
         "player_id": "700250-hits",
         "player_name": "Ben Rice",
         "team": "NYY",
@@ -196,6 +202,17 @@
         "confidence": 28,
         "tier": "A",
         "reason": "Edge 58.0, trend 0.70, matchup 0.37, form 0.61"
+      },
+      {
+        "player_id": "677800-hits",
+        "player_name": "Wilyer Abreu",
+        "team": "BOS",
+        "opponent": "TB",
+        "line": "2+ Hits",
+        "score": 30.07,
+        "confidence": 28,
+        "tier": "A",
+        "reason": "Edge 58.0, trend 0.80, matchup 0.53, form 0.33"
       },
       {
         "player_id": "664728-hits",
@@ -366,6 +383,7 @@
           "line": "HR 1+",
           "score": 35.55,
           "base_score": 35.55,
+          "lazy_penalty": 0.0,
           "confidence": 36,
           "tier": "A",
           "reason": "HR edge 33.6 | L5 0.40/g | L10 0.30/g | Season 0.41/g | HR% 0.28 | HistHR% 0.30 | OPS 1.066 | SLG 0.659 | ISO 0.386 | PowIdx 0.83 | Surge 0.21 | Matchup 0.53 | ProjPA 4.5 | Sample 0.91 | Peak3Y 0.082 | vs MacKenzie Gore | ERA 4.67 | WHIP 1.36 | HR/9 1.30 | HR A 5 | Hand L | Platoon + | vsP 0.429/1.842 in 9 PA | vsP HR 2 | Age 34 | Order est. 1 | Lineup pen 1.8 | Power due 0.22 | L5 XBH 0.40/g | Season XBH 0.57/g | Wts T0.42/M0.28/F0.30",
@@ -397,6 +415,8 @@
           "historical_power_index": 0.895,
           "recent_peak_hr_rate": 0.082,
           "career_hr_rate": 0.073,
+          "appearance_7d": 4,
+          "hits_7d": 0,
           "evidence": []
         },
         {
@@ -409,6 +429,7 @@
           "line": "HR 1+",
           "score": 29.28,
           "base_score": 29.28,
+          "lazy_penalty": 0.0,
           "confidence": 29,
           "tier": "A",
           "reason": "HR edge 24.6 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.22 | HistHR% 0.27 | OPS 0.871 | SLG 0.519 | ISO 0.312 | PowIdx 0.68 | Surge 0.25 | Matchup 0.38 | ProjPA 4.5 | Sample 0.92 | Peak3Y 0.076 | vs J.T. Ginn | ERA 4.30 | WHIP 1.26 | HR/9 1.23 | HR A 4 | Hand R | Platoon + | Age 33 | Order est. 1 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.51/g | Wts T0.42/M0.28/F0.30",
@@ -440,6 +461,8 @@
           "historical_power_index": 0.715,
           "recent_peak_hr_rate": 0.076,
           "career_hr_rate": 0.062,
+          "appearance_7d": 4,
+          "hits_7d": 0,
           "evidence": []
         },
         {
@@ -452,6 +475,7 @@
           "line": "HR 1+",
           "score": 29.13,
           "base_score": 29.13,
+          "lazy_penalty": 0.0,
           "confidence": 29,
           "tier": "A",
           "reason": "HR edge 25.4 | L5 0.60/g | L10 0.50/g | Season 0.38/g | HR% 0.25 | HistHR% 0.17 | OPS 1.091 | SLG 0.720 | ISO 0.393 | PowIdx 0.58 | Surge 0.29 | Matchup 0.46 | ProjPA 4.1 | Sample 0.64 | Peak3Y 0.051 | vs Christian Scott | ERA 4.26 | WHIP 1.26 | HR/9 1.42 | HR A 1 | Hand R | Platoon + | Age 28 | Order est. 6 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.66/g | Wts T0.42/M0.28/F0.30",
@@ -483,6 +507,8 @@
           "historical_power_index": 0.197,
           "recent_peak_hr_rate": 0.051,
           "career_hr_rate": 0.044,
+          "appearance_7d": 4,
+          "hits_7d": 0,
           "evidence": []
         },
         {
@@ -495,6 +521,7 @@
           "line": "HR 1+",
           "score": 26.73,
           "base_score": 26.73,
+          "lazy_penalty": 0.0,
           "confidence": 27,
           "tier": "B",
           "reason": "HR edge 21.9 | L5 0.60/g | L10 0.30/g | Season 0.29/g | HR% 0.21 | HistHR% 0.21 | OPS 0.906 | SLG 0.546 | ISO 0.294 | PowIdx 0.62 | Surge 0.35 | Matchup 0.45 | ProjPA 4.3 | Sample 0.77 | Peak3Y 0.056 | vs Zac Gallen | ERA 4.45 | WHIP 1.52 | HR/9 0.56 | HR A 2 | Hand R | Platoon + | vsP 0.500/1.667 in 3 PA | Age 31 | Order est. 4 | Lineup pen 1.2 | L5 XBH 0.80/g | Season XBH 0.55/g | Wts T0.42/M0.28/F0.30",
@@ -526,6 +553,8 @@
           "historical_power_index": 0.386,
           "recent_peak_hr_rate": 0.056,
           "career_hr_rate": 0.052,
+          "appearance_7d": 2,
+          "hits_7d": 1,
           "evidence": []
         },
         {
@@ -538,6 +567,7 @@
           "line": "HR 1+",
           "score": 26.72,
           "base_score": 26.72,
+          "lazy_penalty": 0.0,
           "confidence": 27,
           "tier": "B",
           "reason": "HR edge 18.4 | L5 0.20/g | L10 0.30/g | Season 0.27/g | HR% 0.20 | HistHR% 0.17 | OPS 0.893 | SLG 0.507 | ISO 0.268 | PowIdx 0.64 | Surge 0.23 | Matchup 0.94 | ProjPA 4.5 | Sample 0.98 | Peak3Y 0.045 | vs Simeon Woods Richardson | ERA 6.49 | WHIP 1.76 | HR/9 2.08 | HR A 8 | Hand R | Platoon + | Age 23 | Order est. 1 | Lineup pen 1.8 | Rising 0.66 | L5 XBH 0.60/g | Season XBH 0.49/g | Wts T0.42/M0.28/F0.30",
@@ -569,6 +599,8 @@
           "historical_power_index": 0.155,
           "recent_peak_hr_rate": 0.045,
           "career_hr_rate": 0.04,
+          "appearance_7d": 1,
+          "hits_7d": 0,
           "evidence": []
         },
         {
@@ -581,6 +613,7 @@
           "line": "HR 1+",
           "score": 26.32,
           "base_score": 26.32,
+          "lazy_penalty": 0.0,
           "confidence": 26,
           "tier": "B",
           "reason": "HR edge 18.6 | L5 0.20/g | L10 0.40/g | Season 0.25/g | HR% 0.20 | HistHR% 0.13 | OPS 0.960 | SLG 0.559 | ISO 0.260 | PowIdx 0.60 | Surge 0.14 | Matchup 0.94 | ProjPA 4.3 | Sample 0.84 | Peak3Y 0.033 | vs Simeon Woods Richardson | ERA 6.49 | WHIP 1.76 | HR/9 2.08 | HR A 8 | Hand R | Platoon + | vsP 0.200/1.000 in 5 PA | vsP HR 1 | Age 25 | Order est. 3 | Lineup pen 1.8 | Rising 0.66 | L5 XBH 0.20/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
@@ -612,6 +645,8 @@
           "historical_power_index": 0.0,
           "recent_peak_hr_rate": 0.033,
           "career_hr_rate": 0.03,
+          "appearance_7d": 1,
+          "hits_7d": 0,
           "evidence": []
         },
         {
@@ -624,6 +659,7 @@
           "line": "HR 1+",
           "score": 24.86,
           "base_score": 24.86,
+          "lazy_penalty": 0.0,
           "confidence": 25,
           "tier": "B",
           "reason": "HR edge 21.3 | L5 0.80/g | L10 0.50/g | Season 0.18/g | HR% 0.16 | HistHR% 0.15 | OPS 0.941 | SLG 0.550 | ISO 0.242 | PowIdx 0.43 | Surge 0.45 | Matchup 0.18 | ProjPA 4.3 | Sample 0.77 | Peak3Y 0.037 | vs Seth Lugo | ERA 2.68 | WHIP 1.24 | HR/9 0.21 | HR A 1 | Hand R | Platoon + | Age 24 | Order est. 3 | Lineup pen 1.2 | Rising 0.53 | L5 XBH 0.80/g | Season XBH 0.47/g | Wts T0.42/M0.28/F0.30",
@@ -655,49 +691,8 @@
           "historical_power_index": 0.056,
           "recent_peak_hr_rate": 0.037,
           "career_hr_rate": 0.037,
-          "evidence": []
-        },
-        {
-          "player_id": "677800",
-          "player_name": "Wilyer Abreu",
-          "team": "BOS",
-          "opponent": "TB",
-          "game_id": "tb-bos-2026-05-07",
-          "market": "HR",
-          "line": "HR 1+",
-          "score": 24.46,
-          "base_score": 24.46,
-          "confidence": 24,
-          "tier": "B",
-          "reason": "HR edge 14.3 | L5 0.40/g | L10 0.30/g | Season 0.14/g | HR% 0.14 | HistHR% 0.18 | OPS 0.848 | SLG 0.467 | ISO 0.168 | PowIdx 0.52 | Surge 0.46 | Matchup 0.87 | ProjPA 4.4 | Sample 0.86 | Peak3Y 0.051 | vs Griffin Jax | ERA 5.14 | WHIP 1.50 | HR/9 1.93 | HR A 3 | Hand R | Platoon + | vsP 0.400/1.400 in 5 PA | vsP HR 1 | Age 27 | Order est. 2 | Lineup pen 1.2 | Rising 0.24 | L5 XBH 1.00/g | Season XBH 0.33/g | Wts T0.42/M0.28/F0.30",
-          "play_of_day": false,
-          "hr_bucket": "core",
-          "pitcher": "Griffin Jax",
-          "whip": 1.5,
-          "hr9": 1.93,
-          "hr_allowed": 3,
-          "vs_pitcher_avg": 0.4,
-          "vs_pitcher_ops": 1.4,
-          "vs_pitcher_hr": 1,
-          "order_estimate": 2,
-          "projected_pa": 4.42,
-          "lineup_confirmed": false,
-          "lineup_uncertainty_penalty": 1.2,
-          "season_hr_probability": 0.135,
-          "l10_hr_probability": 0.232,
-          "l5_hr_probability": 0.29,
-          "historical_hr_probability": 0.178,
-          "season_hr_per_game": 0.139,
-          "l10_hr_per_game": 0.3,
-          "l5_hr_per_game": 0.4,
-          "ops": 0.848,
-          "slg": 0.467,
-          "iso": 0.168,
-          "sample_reliability": 0.861,
-          "age": 27,
-          "historical_power_index": 0.213,
-          "recent_peak_hr_rate": 0.051,
-          "career_hr_rate": 0.039,
+          "appearance_7d": 4,
+          "hits_7d": 0,
           "evidence": []
         },
         {
@@ -710,6 +705,7 @@
           "line": "HR 1+",
           "score": 23.5,
           "base_score": 23.5,
+          "lazy_penalty": 0.0,
           "confidence": 24,
           "tier": "B",
           "reason": "HR edge 16.7 | L5 0.00/g | L10 0.20/g | Season 0.25/g | HR% 0.20 | HistHR% 0.24 | OPS 0.816 | SLG 0.474 | ISO 0.222 | PowIdx 0.56 | Surge 0.12 | Matchup 0.56 | ProjPA 4.5 | Sample 0.86 | Peak3Y 0.068 | vs Jake Bennett | ERA 1.80 | WHIP 1.40 | HR/9 1.80 | HR A 1 | Hand L | Platoon + | Age 22 | Order est. 1 | Lineup pen 1.2 | Rising 0.54 | Season XBH 0.33/g | Wts T0.42/M0.28/F0.30",
@@ -741,6 +737,54 @@
           "historical_power_index": 0.535,
           "recent_peak_hr_rate": 0.068,
           "career_hr_rate": 0.056,
+          "appearance_7d": 2,
+          "hits_7d": 0,
+          "evidence": []
+        },
+        {
+          "player_id": "677800",
+          "player_name": "Wilyer Abreu",
+          "team": "BOS",
+          "opponent": "TB",
+          "game_id": "tb-bos-2026-05-07",
+          "market": "HR",
+          "line": "HR 1+",
+          "score": 23.2,
+          "base_score": 23.2,
+          "lazy_penalty": 0.0,
+          "confidence": 23,
+          "tier": "B",
+          "reason": "HR edge 12.6 | L5 0.40/g | L10 0.30/g | Season 0.14/g | HR% 0.14 | HistHR% 0.18 | OPS 0.848 | SLG 0.467 | ISO 0.168 | PowIdx 0.48 | Surge 0.46 | Matchup 0.87 | ProjPA 4.4 | Sample 0.86 | Peak3Y 0.051 | vs Griffin Jax | ERA 5.14 | WHIP 1.50 | HR/9 1.93 | HR A 3 | Hand R | Platoon + | vsP 0.000/0.000 in 2 PA | Age 27 | Order est. 2 | Lineup pen 1.2 | Rising 0.24 | L5 XBH 1.00/g | Season XBH 0.33/g | Wts T0.42/M0.28/F0.30",
+          "play_of_day": false,
+          "hr_bucket": "strong",
+          "pitcher": "Griffin Jax",
+          "whip": 1.5,
+          "hr9": 1.93,
+          "hr_allowed": 3,
+          "vs_pitcher_avg": 0.0,
+          "vs_pitcher_ops": 0.0,
+          "vs_pitcher_hr": 0,
+          "order_estimate": 2,
+          "projected_pa": 4.42,
+          "lineup_confirmed": false,
+          "lineup_uncertainty_penalty": 1.2,
+          "season_hr_probability": 0.135,
+          "l10_hr_probability": 0.232,
+          "l5_hr_probability": 0.29,
+          "historical_hr_probability": 0.178,
+          "season_hr_per_game": 0.139,
+          "l10_hr_per_game": 0.3,
+          "l5_hr_per_game": 0.4,
+          "ops": 0.848,
+          "slg": 0.467,
+          "iso": 0.168,
+          "sample_reliability": 0.861,
+          "age": 27,
+          "historical_power_index": 0.213,
+          "recent_peak_hr_rate": 0.051,
+          "career_hr_rate": 0.039,
+          "appearance_7d": 1,
+          "hits_7d": 0,
           "evidence": []
         },
         {
@@ -753,6 +797,7 @@
           "line": "HR 1+",
           "score": 23.18,
           "base_score": 23.18,
+          "lazy_penalty": 0.0,
           "confidence": 23,
           "tier": "B",
           "reason": "HR edge 19.1 | L5 0.40/g | L10 0.20/g | Season 0.24/g | HR% 0.19 | HistHR% 0.20 | OPS 0.813 | SLG 0.482 | ISO 0.237 | PowIdx 0.48 | Surge 0.51 | Matchup 0.18 | ProjPA 4.4 | Sample 0.89 | Peak3Y 0.050 | vs Shota Imanaga | ERA 2.40 | WHIP 0.85 | HR/9 0.65 | HR A 3 | Hand L | Platoon + | Age 22 | Order est. 2 | Lineup pen 1.2 | Rising 0.55 | L5 XBH 1.00/g | Season XBH 0.41/g | Wts T0.42/M0.28/F0.30",
@@ -784,6 +829,8 @@
           "historical_power_index": 0.344,
           "recent_peak_hr_rate": 0.05,
           "career_hr_rate": 0.05,
+          "appearance_7d": 1,
+          "hits_7d": 0,
           "evidence": []
         },
         {
@@ -796,6 +843,7 @@
           "line": "HR 1+",
           "score": 23.01,
           "base_score": 23.01,
+          "lazy_penalty": 0.0,
           "confidence": 23,
           "tier": "B",
           "reason": "HR edge 18.2 | L5 0.60/g | L10 0.40/g | Season 0.26/g | HR% 0.19 | HistHR% 0.15 | OPS 0.890 | SLG 0.511 | ISO 0.263 | PowIdx 0.49 | Surge 0.31 | Matchup 0.43 | ProjPA 4.4 | Sample 0.89 | Peak3Y 0.038 | vs Rhett Lowder | ERA 5.09 | WHIP 1.39 | HR/9 0.25 | HR A 1 | Hand R | Platoon + | vsP 0.333/0.666 in 3 PA | Age 31 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
@@ -827,6 +875,8 @@
           "historical_power_index": 0.08,
           "recent_peak_hr_rate": 0.038,
           "career_hr_rate": 0.039,
+          "appearance_7d": 1,
+          "hits_7d": 0,
           "evidence": []
         },
         {
@@ -839,6 +889,7 @@
           "line": "HR 1+",
           "score": 22.8,
           "base_score": 22.8,
+          "lazy_penalty": 0.0,
           "confidence": 23,
           "tier": "B",
           "reason": "HR edge 19.5 | L5 0.40/g | L10 0.40/g | Season 0.26/g | HR% 0.20 | HistHR% 0.17 | OPS 0.779 | SLG 0.473 | ISO 0.223 | PowIdx 0.48 | Surge 0.31 | Matchup 0.45 | ProjPA 4.4 | Sample 0.89 | Peak3Y 0.046 | vs Zac Gallen | ERA 4.45 | WHIP 1.52 | HR/9 0.56 | HR A 2 | Hand R | Platoon + | vsP 0.200/0.573 in 11 PA | Age 27 | Order est. 2 | Lineup pen 1.2 | Rising 0.34 | L5 XBH 0.40/g | Season XBH 0.43/g | Wts T0.42/M0.28/F0.30",
@@ -870,6 +921,8 @@
           "historical_power_index": 0.163,
           "recent_peak_hr_rate": 0.046,
           "career_hr_rate": 0.039,
+          "appearance_7d": 1,
+          "hits_7d": 0,
           "evidence": []
         }
       ],
@@ -1038,18 +1091,6 @@
             "hr_bucket": "core"
           },
           {
-            "player_name": "Wilyer Abreu",
-            "team": "BOS",
-            "opponent": "TB",
-            "line": "HR 1+",
-            "score": 24.46,
-            "tier": "B",
-            "reason": "HR edge 14.3 | L5 0.40/g | L10 0.30/g | Season 0.14/g | HR% 0.14 | HistHR% 0.18 | OPS 0.848 | SLG 0.467 | ISO 0.168 | PowIdx 0.52 | Surge 0.46 | Matchup 0.87 | ProjPA 4.4 | Sample 0.86 | Peak3Y 0.051 | vs Griffin Jax | ERA 5.14 | WHIP 1.50 | HR/9 1.93 | HR A 3 | Hand R | Platoon + | vsP 0.400/1.400 in 5 PA | vsP HR 1 | Age 27 | Order est. 2 | Lineup pen 1.2 | Rising 0.24 | L5 XBH 1.00/g | Season XBH 0.33/g | Wts T0.42/M0.28/F0.30",
-            "pitcher": "Griffin Jax",
-            "evidence": [],
-            "hr_bucket": "core"
-          },
-          {
             "player_name": "Junior Caminero",
             "team": "TB",
             "opponent": "BOS",
@@ -1060,6 +1101,18 @@
             "pitcher": "Jake Bennett",
             "evidence": [],
             "hr_bucket": "core"
+          },
+          {
+            "player_name": "Mickey Moniak",
+            "team": "COL",
+            "opponent": "NYM",
+            "line": "HR 1+",
+            "score": 29.13,
+            "tier": "A",
+            "reason": "HR edge 25.4 | L5 0.60/g | L10 0.50/g | Season 0.38/g | HR% 0.25 | HistHR% 0.17 | OPS 1.091 | SLG 0.720 | ISO 0.393 | PowIdx 0.58 | Surge 0.29 | Matchup 0.46 | ProjPA 4.1 | Sample 0.64 | Peak3Y 0.051 | vs Christian Scott | ERA 4.26 | WHIP 1.26 | HR/9 1.42 | HR A 1 | Hand R | Platoon + | Age 28 | Order est. 6 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.66/g | Wts T0.42/M0.28/F0.30",
+            "pitcher": "Christian Scott",
+            "evidence": [],
+            "hr_bucket": "strong"
           }
         ]
       },
@@ -1074,6 +1127,7 @@
           "line": "HR 1+",
           "score": 35.55,
           "base_score": 35.55,
+          "lazy_penalty": 0.0,
           "confidence": 36,
           "tier": "A",
           "reason": "HR edge 33.6 | L5 0.40/g | L10 0.30/g | Season 0.41/g | HR% 0.28 | HistHR% 0.30 | OPS 1.066 | SLG 0.659 | ISO 0.386 | PowIdx 0.83 | Surge 0.21 | Matchup 0.53 | ProjPA 4.5 | Sample 0.91 | Peak3Y 0.082 | vs MacKenzie Gore | ERA 4.67 | WHIP 1.36 | HR/9 1.30 | HR A 5 | Hand L | Platoon + | vsP 0.429/1.842 in 9 PA | vsP HR 2 | Age 34 | Order est. 1 | Lineup pen 1.8 | Power due 0.22 | L5 XBH 0.40/g | Season XBH 0.57/g | Wts T0.42/M0.28/F0.30",
@@ -1105,6 +1159,8 @@
           "historical_power_index": 0.895,
           "recent_peak_hr_rate": 0.082,
           "career_hr_rate": 0.073,
+          "appearance_7d": 4,
+          "hits_7d": 0,
           "evidence": []
         },
         {
@@ -1117,6 +1173,7 @@
           "line": "HR 1+",
           "score": 29.28,
           "base_score": 29.28,
+          "lazy_penalty": 0.0,
           "confidence": 29,
           "tier": "A",
           "reason": "HR edge 24.6 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.22 | HistHR% 0.27 | OPS 0.871 | SLG 0.519 | ISO 0.312 | PowIdx 0.68 | Surge 0.25 | Matchup 0.38 | ProjPA 4.5 | Sample 0.92 | Peak3Y 0.076 | vs J.T. Ginn | ERA 4.30 | WHIP 1.26 | HR/9 1.23 | HR A 4 | Hand R | Platoon + | Age 33 | Order est. 1 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.51/g | Wts T0.42/M0.28/F0.30",
@@ -1148,6 +1205,8 @@
           "historical_power_index": 0.715,
           "recent_peak_hr_rate": 0.076,
           "career_hr_rate": 0.062,
+          "appearance_7d": 4,
+          "hits_7d": 0,
           "evidence": []
         },
         {
@@ -1160,6 +1219,7 @@
           "line": "HR 1+",
           "score": 26.72,
           "base_score": 26.72,
+          "lazy_penalty": 0.0,
           "confidence": 27,
           "tier": "B",
           "reason": "HR edge 18.4 | L5 0.20/g | L10 0.30/g | Season 0.27/g | HR% 0.20 | HistHR% 0.17 | OPS 0.893 | SLG 0.507 | ISO 0.268 | PowIdx 0.64 | Surge 0.23 | Matchup 0.94 | ProjPA 4.5 | Sample 0.98 | Peak3Y 0.045 | vs Simeon Woods Richardson | ERA 6.49 | WHIP 1.76 | HR/9 2.08 | HR A 8 | Hand R | Platoon + | Age 23 | Order est. 1 | Lineup pen 1.8 | Rising 0.66 | L5 XBH 0.60/g | Season XBH 0.49/g | Wts T0.42/M0.28/F0.30",
@@ -1191,6 +1251,8 @@
           "historical_power_index": 0.155,
           "recent_peak_hr_rate": 0.045,
           "career_hr_rate": 0.04,
+          "appearance_7d": 1,
+          "hits_7d": 0,
           "evidence": []
         }
       ],
@@ -1205,6 +1267,7 @@
           "line": "HR 1+",
           "score": 29.13,
           "base_score": 29.13,
+          "lazy_penalty": 0.0,
           "confidence": 29,
           "tier": "A",
           "reason": "HR edge 25.4 | L5 0.60/g | L10 0.50/g | Season 0.38/g | HR% 0.25 | HistHR% 0.17 | OPS 1.091 | SLG 0.720 | ISO 0.393 | PowIdx 0.58 | Surge 0.29 | Matchup 0.46 | ProjPA 4.1 | Sample 0.64 | Peak3Y 0.051 | vs Christian Scott | ERA 4.26 | WHIP 1.26 | HR/9 1.42 | HR A 1 | Hand R | Platoon + | Age 28 | Order est. 6 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.66/g | Wts T0.42/M0.28/F0.30",
@@ -1236,6 +1299,8 @@
           "historical_power_index": 0.197,
           "recent_peak_hr_rate": 0.051,
           "career_hr_rate": 0.044,
+          "appearance_7d": 4,
+          "hits_7d": 0,
           "evidence": []
         },
         {
@@ -1248,6 +1313,7 @@
           "line": "HR 1+",
           "score": 26.73,
           "base_score": 26.73,
+          "lazy_penalty": 0.0,
           "confidence": 27,
           "tier": "B",
           "reason": "HR edge 21.9 | L5 0.60/g | L10 0.30/g | Season 0.29/g | HR% 0.21 | HistHR% 0.21 | OPS 0.906 | SLG 0.546 | ISO 0.294 | PowIdx 0.62 | Surge 0.35 | Matchup 0.45 | ProjPA 4.3 | Sample 0.77 | Peak3Y 0.056 | vs Zac Gallen | ERA 4.45 | WHIP 1.52 | HR/9 0.56 | HR A 2 | Hand R | Platoon + | vsP 0.500/1.667 in 3 PA | Age 31 | Order est. 4 | Lineup pen 1.2 | L5 XBH 0.80/g | Season XBH 0.55/g | Wts T0.42/M0.28/F0.30",
@@ -1279,6 +1345,8 @@
           "historical_power_index": 0.386,
           "recent_peak_hr_rate": 0.056,
           "career_hr_rate": 0.052,
+          "appearance_7d": 2,
+          "hits_7d": 1,
           "evidence": []
         },
         {
@@ -1291,6 +1359,7 @@
           "line": "HR 1+",
           "score": 24.86,
           "base_score": 24.86,
+          "lazy_penalty": 0.0,
           "confidence": 25,
           "tier": "B",
           "reason": "HR edge 21.3 | L5 0.80/g | L10 0.50/g | Season 0.18/g | HR% 0.16 | HistHR% 0.15 | OPS 0.941 | SLG 0.550 | ISO 0.242 | PowIdx 0.43 | Surge 0.45 | Matchup 0.18 | ProjPA 4.3 | Sample 0.77 | Peak3Y 0.037 | vs Seth Lugo | ERA 2.68 | WHIP 1.24 | HR/9 0.21 | HR A 1 | Hand R | Platoon + | Age 24 | Order est. 3 | Lineup pen 1.2 | Rising 0.53 | L5 XBH 0.80/g | Season XBH 0.47/g | Wts T0.42/M0.28/F0.30",
@@ -1322,6 +1391,8 @@
           "historical_power_index": 0.056,
           "recent_peak_hr_rate": 0.037,
           "career_hr_rate": 0.037,
+          "appearance_7d": 4,
+          "hits_7d": 0,
           "evidence": []
         }
       ],
@@ -1337,6 +1408,7 @@
           "line": "HR 1+",
           "score": 35.55,
           "base_score": 35.55,
+          "lazy_penalty": 0.0,
           "confidence": 36,
           "tier": "A",
           "reason": "HR edge 33.6 | L5 0.40/g | L10 0.30/g | Season 0.41/g | HR% 0.28 | HistHR% 0.30 | OPS 1.066 | SLG 0.659 | ISO 0.386 | PowIdx 0.83 | Surge 0.21 | Matchup 0.53 | ProjPA 4.5 | Sample 0.91 | Peak3Y 0.082 | vs MacKenzie Gore | ERA 4.67 | WHIP 1.36 | HR/9 1.30 | HR A 5 | Hand L | Platoon + | vsP 0.429/1.842 in 9 PA | vsP HR 2 | Age 34 | Order est. 1 | Lineup pen 1.8 | Power due 0.22 | L5 XBH 0.40/g | Season XBH 0.57/g | Wts T0.42/M0.28/F0.30",
@@ -1368,6 +1440,8 @@
           "historical_power_index": 0.895,
           "recent_peak_hr_rate": 0.082,
           "career_hr_rate": 0.073,
+          "appearance_7d": 4,
+          "hits_7d": 0,
           "evidence": []
         },
         {
@@ -1380,6 +1454,7 @@
           "line": "HR 1+",
           "score": 29.28,
           "base_score": 29.28,
+          "lazy_penalty": 0.0,
           "confidence": 29,
           "tier": "A",
           "reason": "HR edge 24.6 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.22 | HistHR% 0.27 | OPS 0.871 | SLG 0.519 | ISO 0.312 | PowIdx 0.68 | Surge 0.25 | Matchup 0.38 | ProjPA 4.5 | Sample 0.92 | Peak3Y 0.076 | vs J.T. Ginn | ERA 4.30 | WHIP 1.26 | HR/9 1.23 | HR A 4 | Hand R | Platoon + | Age 33 | Order est. 1 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.51/g | Wts T0.42/M0.28/F0.30",
@@ -1411,6 +1486,8 @@
           "historical_power_index": 0.715,
           "recent_peak_hr_rate": 0.076,
           "career_hr_rate": 0.062,
+          "appearance_7d": 4,
+          "hits_7d": 0,
           "evidence": []
         },
         {
@@ -1423,6 +1500,7 @@
           "line": "HR 1+",
           "score": 29.13,
           "base_score": 29.13,
+          "lazy_penalty": 0.0,
           "confidence": 29,
           "tier": "A",
           "reason": "HR edge 25.4 | L5 0.60/g | L10 0.50/g | Season 0.38/g | HR% 0.25 | HistHR% 0.17 | OPS 1.091 | SLG 0.720 | ISO 0.393 | PowIdx 0.58 | Surge 0.29 | Matchup 0.46 | ProjPA 4.1 | Sample 0.64 | Peak3Y 0.051 | vs Christian Scott | ERA 4.26 | WHIP 1.26 | HR/9 1.42 | HR A 1 | Hand R | Platoon + | Age 28 | Order est. 6 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.66/g | Wts T0.42/M0.28/F0.30",
@@ -1454,6 +1532,8 @@
           "historical_power_index": 0.197,
           "recent_peak_hr_rate": 0.051,
           "career_hr_rate": 0.044,
+          "appearance_7d": 4,
+          "hits_7d": 0,
           "evidence": []
         }
       ],
@@ -1467,6 +1547,7 @@
         "line": "HR 1+",
         "score": 35.55,
         "base_score": 35.55,
+        "lazy_penalty": 0.0,
         "confidence": 36,
         "tier": "A",
         "reason": "HR edge 33.6 | L5 0.40/g | L10 0.30/g | Season 0.41/g | HR% 0.28 | HistHR% 0.30 | OPS 1.066 | SLG 0.659 | ISO 0.386 | PowIdx 0.83 | Surge 0.21 | Matchup 0.53 | ProjPA 4.5 | Sample 0.91 | Peak3Y 0.082 | vs MacKenzie Gore | ERA 4.67 | WHIP 1.36 | HR/9 1.30 | HR A 5 | Hand L | Platoon + | vsP 0.429/1.842 in 9 PA | vsP HR 2 | Age 34 | Order est. 1 | Lineup pen 1.8 | Power due 0.22 | L5 XBH 0.40/g | Season XBH 0.57/g | Wts T0.42/M0.28/F0.30",
@@ -1498,6 +1579,8 @@
         "historical_power_index": 0.895,
         "recent_peak_hr_rate": 0.082,
         "career_hr_rate": 0.073,
+        "appearance_7d": 4,
+        "hits_7d": 0,
         "evidence": []
       }
     },
@@ -1577,6 +1660,17 @@
             "reason": "HR edge 33.6 | L5 0.40/g | L10 0.30/g | Season 0.41/g | HR% 0.28 | HistHR% 0.30 | OPS 1.066 | SLG 0.659 | ISO 0.386 | PowIdx 0.83 | Surge 0.21 | Matchup 0.53 | ProjPA 4.5 | Sample 0.91 | Peak3Y 0.082 | vs MacKenzie Gore | ERA 4.67 | WHIP 1.36 | HR/9 1.30 | HR A 5 | Hand L | Platoon + | vsP 0.429/1.842 in 9 PA | vsP HR 2 | Age 34 | Order est. 1 | Lineup pen 1.8 | Power due 0.22 | L5 XBH 0.40/g | Season XBH 0.57/g | Wts T0.42/M0.28/F0.30"
           },
           {
+            "player_id": "608369",
+            "player_name": "Corey Seager",
+            "team": "TEX",
+            "opponent": "NYY",
+            "line": "HR 1+",
+            "score": 21.93,
+            "confidence": 22,
+            "tier": "C",
+            "reason": "HR edge 18.0 | L5 0.40/g | L10 0.30/g | Season 0.20/g | HR% 0.17 | HistHR% 0.21 | OPS 0.734 | SLG 0.420 | ISO 0.206 | PowIdx 0.52 | Surge 0.26 | Matchup 0.18 | ProjPA 4.4 | Sample 0.85 | Peak3Y 0.060 | vs Paul Blackburn | ERA 3.21 | WHIP 1.36 | Hand R | Platoon + | vsP 0.429/1.786 in 8 PA | vsP HR 2 | Age 32 | Order est. 1 | Lineup pen 1.8 | L5 XBH 0.40/g | Season XBH 0.37/g | Wts T0.42/M0.28/F0.30"
+          },
+          {
             "player_id": "700250",
             "player_name": "Ben Rice",
             "team": "NYY",
@@ -1586,17 +1680,6 @@
             "confidence": 22,
             "tier": "C",
             "reason": "HR edge 19.2 | L5 0.20/g | L10 0.30/g | Season 0.36/g | HR% 0.25 | HistHR% 0.18 | OPS 1.214 | SLG 0.759 | ISO 0.416 | PowIdx 0.51 | Surge 0.26 | Matchup 0.53 | ProjPA 4.1 | Sample 0.74 | Peak3Y 0.049 | vs MacKenzie Gore | ERA 4.67 | WHIP 1.36 | HR/9 1.30 | HR A 5 | Hand L | Platoon - | Age 27 | Order est. 6 | Lineup pen 1.8 | Rising 0.61 | L5 XBH 0.80/g | Season XBH 0.64/g | Wts T0.42/M0.28/F0.30"
-          },
-          {
-            "player_id": "608369",
-            "player_name": "Corey Seager",
-            "team": "TEX",
-            "opponent": "NYY",
-            "line": "HR 1+",
-            "score": 21.18,
-            "confidence": 21,
-            "tier": "C",
-            "reason": "HR edge 17.0 | L5 0.40/g | L10 0.30/g | Season 0.20/g | HR% 0.17 | HistHR% 0.21 | OPS 0.734 | SLG 0.420 | ISO 0.206 | PowIdx 0.50 | Surge 0.26 | Matchup 0.18 | ProjPA 4.4 | Sample 0.85 | Peak3Y 0.060 | vs Paul Blackburn | ERA 3.21 | WHIP 1.36 | Hand R | Platoon + | vsP 0.400/1.500 in 6 PA | vsP HR 1 | Age 32 | Order est. 1 | Lineup pen 1.8 | L5 XBH 0.40/g | Season XBH 0.37/g | Wts T0.42/M0.28/F0.30"
           }
         ],
         "RBI": [
@@ -1687,10 +1770,10 @@
             "team": "TEX",
             "opponent": "NYY",
             "line": "1+ Hit",
-            "score": 22.21,
+            "score": 22.31,
             "confidence": 22,
             "tier": "B",
-            "reason": "Edge 53.0, trend 0.60, matchup 0.28, form 0.18"
+            "reason": "Edge 53.0, trend 0.60, matchup 0.30, form 0.18"
           },
           {
             "player_id": "592450-hits",
@@ -2093,10 +2176,10 @@
             "team": "CLE",
             "opponent": "KC",
             "line": "2+ Hits",
-            "score": 21.98,
+            "score": 22.27,
             "confidence": 22,
-            "tier": "C",
-            "reason": "Edge 50.0, trend 0.70, matchup 0.25, form 0.13"
+            "tier": "B",
+            "reason": "Edge 50.0, trend 0.70, matchup 0.31, form 0.13"
           },
           {
             "player_id": "695506-hits",
@@ -2613,10 +2696,10 @@
             "team": "AZ",
             "opponent": "PIT",
             "line": "HR 1+",
-            "score": 17.19,
+            "score": 17.49,
             "confidence": 17,
             "tier": "C",
-            "reason": "HR edge 10.6 | L5 0.20/g | L10 0.20/g | Season 0.12/g | HR% 0.13 | HistHR% 0.17 | OPS 0.842 | SLG 0.487 | ISO 0.231 | PowIdx 0.44 | Surge 0.27 | Matchup 0.18 | ProjPA 4.4 | Sample 0.77 | Peak3Y 0.047 | vs Mitch Keller | ERA 2.85 | WHIP 1.05 | HR/9 0.22 | HR A 1 | Hand R | Platoon + | vsP 0.111/0.384 in 11 PA | Age 25 | Order est. 2 | Lineup pen 1.2 | Rising 0.41 | L5 XBH 0.60/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30"
+            "reason": "HR edge 11.0 | L5 0.20/g | L10 0.20/g | Season 0.12/g | HR% 0.13 | HistHR% 0.17 | OPS 0.842 | SLG 0.487 | ISO 0.231 | PowIdx 0.45 | Surge 0.27 | Matchup 0.18 | ProjPA 4.4 | Sample 0.77 | Peak3Y 0.047 | vs Mitch Keller | ERA 2.85 | WHIP 1.05 | HR/9 0.22 | HR A 1 | Hand R | Platoon + | vsP 0.250/0.750 in 6 PA | Age 25 | Order est. 2 | Lineup pen 1.2 | Rising 0.41 | L5 XBH 0.60/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30"
           },
           {
             "player_id": "656811",
@@ -2648,7 +2731,7 @@
             "team": "AZ",
             "opponent": "PIT",
             "line": "2+ RBI",
-            "score": 23.15,
+            "score": 23.18,
             "confidence": 23,
             "tier": "B",
             "reason": "RBI edge 38.5 | L5 1.40/g | L10 0.90/g | Season 0.58/g | Order est. 2 | Team R/G 4.54 | Team OBP 0.303 | WHIP 1.05 | Platoon 1.00 | RISP 0.15 | Lineup pen 1.2 | Wts T0.34/M0.33/F0.33"
@@ -2728,7 +2811,7 @@
             "team": "AZ",
             "opponent": "PIT",
             "line": "1+ Hit",
-            "score": 23.25,
+            "score": 23.3,
             "confidence": 23,
             "tier": "B",
             "reason": "Edge 53.9, trend 0.50, matchup 0.26, form 0.30"
@@ -3227,9 +3310,9 @@
       "top_signals": [
         {
           "market": "HR",
-          "player_name": "Wilyer Abreu",
+          "player_name": "Junior Caminero",
           "line": "HR 1+",
-          "score": 24.46,
+          "score": 23.5,
           "confidence": 24,
           "tier": "B"
         },
@@ -3245,24 +3328,13 @@
           "market": "TB",
           "player_name": "Wilyer Abreu",
           "line": "2+ TB",
-          "score": 24.88,
+          "score": 24.69,
           "confidence": 25,
           "tier": "B"
         }
       ],
       "markets": {
         "HR": [
-          {
-            "player_id": "677800",
-            "player_name": "Wilyer Abreu",
-            "team": "BOS",
-            "opponent": "TB",
-            "line": "HR 1+",
-            "score": 24.46,
-            "confidence": 24,
-            "tier": "B",
-            "reason": "HR edge 14.3 | L5 0.40/g | L10 0.30/g | Season 0.14/g | HR% 0.14 | HistHR% 0.18 | OPS 0.848 | SLG 0.467 | ISO 0.168 | PowIdx 0.52 | Surge 0.46 | Matchup 0.87 | ProjPA 4.4 | Sample 0.86 | Peak3Y 0.051 | vs Griffin Jax | ERA 5.14 | WHIP 1.50 | HR/9 1.93 | HR A 3 | Hand R | Platoon + | vsP 0.400/1.400 in 5 PA | vsP HR 1 | Age 27 | Order est. 2 | Lineup pen 1.2 | Rising 0.24 | L5 XBH 1.00/g | Season XBH 0.33/g | Wts T0.42/M0.28/F0.30"
-          },
           {
             "player_id": "691406",
             "player_name": "Junior Caminero",
@@ -3273,6 +3345,17 @@
             "confidence": 24,
             "tier": "B",
             "reason": "HR edge 16.7 | L5 0.00/g | L10 0.20/g | Season 0.25/g | HR% 0.20 | HistHR% 0.24 | OPS 0.816 | SLG 0.474 | ISO 0.222 | PowIdx 0.56 | Surge 0.12 | Matchup 0.56 | ProjPA 4.5 | Sample 0.86 | Peak3Y 0.068 | vs Jake Bennett | ERA 1.80 | WHIP 1.40 | HR/9 1.80 | HR A 1 | Hand L | Platoon + | Age 22 | Order est. 1 | Lineup pen 1.2 | Rising 0.54 | Season XBH 0.33/g | Wts T0.42/M0.28/F0.30"
+          },
+          {
+            "player_id": "677800",
+            "player_name": "Wilyer Abreu",
+            "team": "BOS",
+            "opponent": "TB",
+            "line": "HR 1+",
+            "score": 23.2,
+            "confidence": 23,
+            "tier": "B",
+            "reason": "HR edge 12.6 | L5 0.40/g | L10 0.30/g | Season 0.14/g | HR% 0.14 | HistHR% 0.18 | OPS 0.848 | SLG 0.467 | ISO 0.168 | PowIdx 0.48 | Surge 0.46 | Matchup 0.87 | ProjPA 4.4 | Sample 0.86 | Peak3Y 0.051 | vs Griffin Jax | ERA 5.14 | WHIP 1.50 | HR/9 1.93 | HR A 3 | Hand R | Platoon + | vsP 0.000/0.000 in 2 PA | Age 27 | Order est. 2 | Lineup pen 1.2 | Rising 0.24 | L5 XBH 1.00/g | Season XBH 0.33/g | Wts T0.42/M0.28/F0.30"
           },
           {
             "player_id": "666018",
@@ -3340,10 +3423,10 @@
             "team": "BOS",
             "opponent": "TB",
             "line": "2+ Hits",
-            "score": 28.44,
+            "score": 28.27,
             "confidence": 28,
             "tier": "A",
-            "reason": "Edge 58.0, trend 0.80, matchup 0.57, form 0.33"
+            "reason": "Edge 58.0, trend 0.80, matchup 0.53, form 0.33"
           },
           {
             "player_id": "666018-hits",
@@ -3441,10 +3524,10 @@
             "team": "BOS",
             "opponent": "TB",
             "line": "2+ TB",
-            "score": 24.88,
+            "score": 24.69,
             "confidence": 25,
             "tier": "B",
-            "reason": "Edge 36.1, trend 0.85, matchup 0.71, form 0.34"
+            "reason": "Edge 36.1, trend 0.85, matchup 0.68, form 0.34"
           },
           {
             "player_id": "650490-tb",
@@ -3481,7 +3564,7 @@
           "market": "RBI",
           "player_name": "Alec Burleson",
           "line": "1+ RBI",
-          "score": 17.23,
+          "score": 17.28,
           "confidence": 17,
           "tier": "C"
         },
@@ -3545,7 +3628,7 @@
             "team": "STL",
             "opponent": "SD",
             "line": "1+ RBI",
-            "score": 17.23,
+            "score": 17.28,
             "confidence": 17,
             "tier": "C",
             "reason": "RBI edge 24.6 | L5 1.00/g | L10 0.70/g | Season 0.83/g | Order est. 3 | Team R/G 4.83 | Team OBP 0.325 | WHIP 1.13 | Platoon 1.00 | RISP 0.22 | Lineup pen 1.2 | Wts T0.34/M0.33/F0.33"
@@ -3593,10 +3676,10 @@
             "team": "STL",
             "opponent": "SD",
             "line": "1+ Hit",
-            "score": 24.83,
+            "score": 24.9,
             "confidence": 25,
             "tier": "B",
-            "reason": "Edge 57.6, trend 0.60, matchup 0.26, form 0.26"
+            "reason": "Edge 57.6, trend 0.60, matchup 0.27, form 0.26"
           },
           {
             "player_id": "802139-hits",
