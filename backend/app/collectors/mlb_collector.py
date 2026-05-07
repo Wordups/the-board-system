@@ -404,6 +404,35 @@ def build_hitter_inputs(
             0.0,
             1.0,
         )
+        hr_power_index = clamp(
+            power_boost * 0.25
+            + power_history_boost * 0.15
+            + platoon_edge * 0.12
+            + vs_pitcher_signal * 0.14
+            + pitcher_matchup * 0.18
+            + lineup_boost * 0.08
+            + clamp(projected_pa / 4.8, 0.0, 1.0) * 0.08,
+            0.0,
+            1.0,
+        )
+        recent_xbh = sum(
+            parse_int(log["stat"].get("doubles"))
+            + parse_int(log["stat"].get("triples"))
+            + parse_int(log["stat"].get("homeRuns"))
+            for log in recent_5
+        )
+        season_xbh = parse_int(season_stats.get("doubles")) + parse_int(season_stats.get("triples")) + season_hr
+        season_xbh_per_game = season_xbh / season_games
+        l5_xbh_per_game = recent_xbh / max(len(recent_5), 1)
+        power_surge = clamp(
+            normalize_rate(l5_xbh_per_game, 2.0) * 0.38
+            + unlucky_power_signal * 0.18
+            + rising_star_signal * 0.16
+            + clamp((l5_hr_chance - season_hr_chance) / 0.10, 0.0, 1.0) * 0.18
+            + clamp((l5_xbh_per_game - season_xbh_per_game) / 1.2, 0.0, 1.0) * 0.10,
+            0.0,
+            1.0,
+        )
 
         results.append(
             RawPlayerMarketInput(
@@ -469,6 +498,14 @@ def build_hitter_inputs(
                     "pitcher_hr_allowed": parse_int((opposing_pitcher or {}).get("homeRunsAllowed")),
                     "pitcher_hand": (opposing_pitcher or {}).get("pitchHand", ""),
                     "platoon_edge": round(platoon_edge, 3),
+                    "lineup_boost": round(lineup_boost, 3),
+                    "playing_time": round(playing_time, 3),
+                    "form_boost": round(form_boost, 3),
+                    "power_boost": round(power_boost, 3),
+                    "power_surge": round(power_surge, 3),
+                    "hr_power_index": round(hr_power_index, 3),
+                    "season_xbh_per_game": round(season_xbh_per_game, 3),
+                    "l5_xbh_per_game": round(l5_xbh_per_game, 3),
                     "vs_pitcher_avg": round(vs_pitcher.get("avg", 0.0), 3),
                     "vs_pitcher_ops": round(vs_pitcher.get("ops", 0.0), 3),
                     "vs_pitcher_hr": parse_int(vs_pitcher.get("home_runs")),

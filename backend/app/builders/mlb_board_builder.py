@@ -16,6 +16,10 @@ from app.scoring.tiers import assign_tier
 from app.utils.dates import timestamp_et
 
 
+def is_public_hr_candidate(candidate) -> bool:
+    return candidate.market != "HR" or candidate.tier in {"A", "B"}
+
+
 def build_mlb_board(*, config, paths) -> dict:
     raw_payload = collect_mlb_raw_data(paths.data_raw)
     games_output = []
@@ -88,7 +92,7 @@ def build_mlb_board(*, config, paths) -> dict:
             }
         )
         pinned_candidates.extend(
-            candidate for candidate in candidates if candidate.market == "HR" and candidate.tier != "PASS"
+            candidate for candidate in candidates if candidate.market == "HR" and is_public_hr_candidate(candidate)
         )
     previous_pinned_players = load_previous_pinned_players(paths)
     pinned_players = build_sticky_hr_board(
@@ -97,6 +101,11 @@ def build_mlb_board(*, config, paths) -> dict:
         game_status_by_id=game_status_by_id,
         game_hr_results_by_id=game_hr_results_by_id,
         play_of_day_name=load_hr_play_of_day_name(paths.data_raw / "mlb_research_notes.json"),
+    )
+    hr_core_players, hr_watch_players = split_hr_board_players(
+        pinned_players,
+        core_count=config.hr_core_count,
+        watch_count=config.hr_watch_count,
     )
     consistency_players = build_consistency_board(processed_games)
     research_board = build_mlb_research_board(
@@ -110,9 +119,19 @@ def build_mlb_board(*, config, paths) -> dict:
         "date": raw_payload["date"],
         "last_updated": timestamp_et(),
         "pinned_board": {
-            "title": "HR Top 10",
+            "title": "HR Core",
             "market": "HR",
-            "players": pinned_players,
+            "players": hr_core_players,
+        },
+        "watch_board": {
+            "title": "HR Watchlist",
+            "market": "HR",
+            "players": hr_watch_players,
+        },
+        "hr_board_meta": {
+            "core_count": len(hr_core_players),
+            "watch_count": len(hr_watch_players),
+            "full_count": len(pinned_players),
         },
         "consistency_board": {
             "title": "Consistency Top 10",
@@ -126,13 +145,19 @@ def build_mlb_board(*, config, paths) -> dict:
 
 
 def build_market_diverse_top_signals(*, candidates, limit: int) -> list[dict]:
-    preferred_markets = ("HR", "RBI", "Hits", "TB", "K", "ML")
+    preferred_markets = ("HR", "RBI", "TB", "K", "Hits", "ML")
     selected = []
     used_markets = set()
 
     for market in preferred_markets:
         market_candidate = next(
-            (candidate for candidate in candidates if candidate.tier != "PASS" and candidate.market == market),
+            (
+                candidate
+                for candidate in candidates
+                if candidate.tier != "PASS"
+                and candidate.market == market
+                and (market != "HR" or is_public_hr_candidate(candidate))
+            ),
             None,
         )
         if market_candidate is None:
@@ -146,6 +171,8 @@ def build_market_diverse_top_signals(*, candidates, limit: int) -> list[dict]:
         for candidate in candidates:
             key = (candidate.market, candidate.player_id)
             if candidate.tier == "PASS" or key in used_markets:
+                continue
+            if candidate.market == "HR" and not is_public_hr_candidate(candidate):
                 continue
             selected.append(candidate)
             used_markets.add(key)
@@ -220,6 +247,10 @@ def build_sticky_hr_board(*, candidates, previous_pinned_players, game_status_by
                 "reason": build_pinned_reason(candidate.reason, status, is_play_of_day=bool(play_of_day_lookup and candidate.player_name.lower() == play_of_day_lookup)),
                 "hr_result": hr_result.get("result", "pending"),
                 "home_runs": int(hr_result.get("home_runs", 0)),
+                "core_bucket": classify_hr_bucket(candidate, sticky_score),
+                "projected_pa": round(float((candidate.extra or {}).get("projected_pa", 0.0) or 0.0), 2),
+                "power_surge": round(float((candidate.extra or {}).get("power_surge", 0.0) or 0.0), 3),
+                "hr_power_index": round(float((candidate.extra or {}).get("hr_power_index", 0.0) or 0.0), 3),
             }
         )
     sticky_rows.sort(
@@ -227,6 +258,42 @@ def build_sticky_hr_board(*, candidates, previous_pinned_players, game_status_by
         reverse=True,
     )
     return sticky_rows[:10]
+
+
+def classify_hr_bucket(candidate, sticky_score: float) -> str:
+    extra = candidate.extra or {}
+    projected_pa = float(extra.get("projected_pa", 0.0) or 0.0)
+    power_surge = float(extra.get("power_surge", 0.0) or 0.0)
+    hr_power_index = float(extra.get("hr_power_index", 0.0) or 0.0)
+    pitcher_hr9 = float(extra.get("pitcher_hr9", 0.0) or 0.0)
+    order_estimate = int(extra.get("order_estimate", 9) or 9)
+    if (
+        candidate.tier in {"A", "B"}
+        and sticky_score >= 22
+        and projected_pa >= 3.9
+        and hr_power_index >= 0.52
+        and order_estimate <= 5
+        and (power_surge >= 0.38 or pitcher_hr9 >= 1.15)
+    ):
+        return "core"
+    if sticky_score >= 18 and hr_power_index >= 0.4:
+        return "strong"
+    return "fringe"
+
+
+def split_hr_board_players(players: list[dict], *, core_count: int, watch_count: int) -> tuple[list[dict], list[dict]]:
+    core_players = [player for player in players if player.get("core_bucket") == "core"]
+    if len(core_players) < core_count:
+        for player in players:
+            if player in core_players:
+                continue
+            core_players.append(player)
+            if len(core_players) >= core_count:
+                break
+
+    core_lookup = {str(player.get("player_id")) for player in core_players}
+    watch_players = [player for player in players if str(player.get("player_id")) not in core_lookup][:watch_count]
+    return core_players[:core_count], watch_players
 
 
 def build_consistency_board(processed_games) -> list[dict]:
@@ -259,8 +326,9 @@ def build_consistency_board(processed_games) -> list[dict]:
 
 def apply_consistency_bonus(candidate) -> float:
     market_bonus = {
-        "Hits": 3.2,
-        "TB": 1.8,
+        "Hits": 0.8,
+        "TB": 2.4,
+        "RBI": 2.1,
         "K": 2.4,
     }.get(candidate.market, 0.0)
     tier_bonus = {
@@ -321,8 +389,9 @@ def build_pinned_reason(base_reason: str, status: dict, is_play_of_day: bool = F
 def build_hr_daily_picks(research_board: dict) -> dict:
     hr_section = research_board.get("home_run", {}) if isinstance(research_board, dict) else {}
     top_candidates = hr_section.get("top_candidates", []) or []
+    core_candidates = hr_section.get("core_candidates", []) or top_candidates
     parlays = hr_section.get("parlays", {}) or {}
-    play_of_day = hr_section.get("play_of_day") or (top_candidates[0] if top_candidates else None)
+    play_of_day = hr_section.get("play_of_day") or (core_candidates[0] if core_candidates else top_candidates[0] if top_candidates else None)
 
     return {
         "title": "HR Pick of the Day",

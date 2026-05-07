@@ -16,6 +16,8 @@ def score_candidate(candidate: MlbPlayCandidate) -> MlbPlayCandidate:
         + candidate.recent_form * support_weights["recent_form"]
     ) * 100
     score = round((probability_edge * 0.62 + support * 0.38) * weight * 0.52, 2)
+    if candidate.market == "HR":
+        score = round(apply_hr_quality_adjustments(candidate, score), 2)
     score = round(apply_availability_adjustments(candidate, score), 2)
     candidate.score = score
     candidate.confidence = to_confidence(score)
@@ -34,12 +36,48 @@ def apply_availability_adjustments(candidate: MlbPlayCandidate, score: float) ->
     return max(score - lineup_penalty, 0.0)
 
 
+def apply_hr_quality_adjustments(candidate: MlbPlayCandidate, score: float) -> float:
+    extra = candidate.extra or {}
+    projected_pa = float(extra.get("projected_pa", 0.0) or 0.0)
+    order_estimate = int(extra.get("order_estimate", 9) or 9)
+    hr_power_index = float(extra.get("hr_power_index", 0.0) or 0.0)
+    power_surge = float(extra.get("power_surge", 0.0) or 0.0)
+    power_boost = float(extra.get("power_boost", 0.0) or 0.0)
+    platoon_edge = float(extra.get("platoon_edge", 0.0) or 0.0)
+    pitcher_hr9 = float(extra.get("pitcher_hr9", 0.0) or 0.0)
+    historical_hr_probability = float(extra.get("historical_hr_probability", 0.0) or 0.0)
+    season_hr_probability = float(extra.get("season_hr_probability", 0.0) or 0.0)
+    sample_reliability = float(extra.get("sample_reliability", 0.0) or 0.0)
+
+    score += hr_power_index * 5.4
+    score += power_surge * 4.6
+    if projected_pa >= 4.25:
+        score += 1.4
+    elif projected_pa <= 3.55:
+        score -= 1.8
+    if order_estimate >= 7:
+        score -= 1.6
+    elif order_estimate <= 4:
+        score += 1.1
+    if pitcher_hr9 >= 1.35:
+        score += 1.4
+    elif pitcher_hr9 and pitcher_hr9 <= 0.85:
+        score -= 1.3
+    if power_boost <= 0.24 and historical_hr_probability <= 0.17 and season_hr_probability <= 0.18:
+        score -= 2.1
+    if sample_reliability < 0.42 and power_surge < 0.3:
+        score -= 1.1
+    if platoon_edge >= 0.72:
+        score += 0.9
+    return max(score, 0.0)
+
+
 def support_weights_for(market: str) -> dict[str, float]:
     if market == "HR":
         return {
             "trend": 0.42,
-            "matchup": 0.23,
-            "recent_form": 0.35,
+            "matchup": 0.28,
+            "recent_form": 0.30,
         }
     if market == "RBI":
         return {
@@ -88,6 +126,10 @@ def build_hr_reason(candidate: MlbPlayCandidate, probability_edge: float, suppor
     recent_peak_hr_rate = extra.get("recent_peak_hr_rate", 0.0)
     unlucky_power_index = extra.get("unlucky_power_index", 0.0)
     rising_star_index = extra.get("rising_star_index", 0.0)
+    hr_power_index = extra.get("hr_power_index", 0.0)
+    power_surge = extra.get("power_surge", 0.0)
+    l5_xbh_per_game = extra.get("l5_xbh_per_game", 0.0)
+    season_xbh_per_game = extra.get("season_xbh_per_game", 0.0)
     age = extra.get("age", 0)
     platoon_edge = extra.get("platoon_edge", 0.0)
     vs_pitcher_avg = extra.get("vs_pitcher_avg", 0.0)
@@ -108,6 +150,8 @@ def build_hr_reason(candidate: MlbPlayCandidate, probability_edge: float, suppor
         f"OPS {ops:.3f}",
         f"SLG {slg:.3f}",
         f"ISO {iso:.3f}",
+        f"PowIdx {hr_power_index:.2f}",
+        f"Surge {power_surge:.2f}",
         f"Matchup {pitcher_matchup:.2f}",
         f"ProjPA {projected_pa:.1f}",
         f"Sample {sample_reliability:.2f}",
@@ -147,6 +191,10 @@ def build_hr_reason(candidate: MlbPlayCandidate, probability_edge: float, suppor
         reasons.append(f"Power due {unlucky_power_index:.2f}")
     if rising_star_index >= 0.22:
         reasons.append(f"Rising {rising_star_index:.2f}")
+    if l5_xbh_per_game:
+        reasons.append(f"L5 XBH {float(l5_xbh_per_game):.2f}/g")
+    if season_xbh_per_game:
+        reasons.append(f"Season XBH {float(season_xbh_per_game):.2f}/g")
     weights = (
         f"Wts T{support_weights['trend']:.2f}"
         f"/M{support_weights['matchup']:.2f}"

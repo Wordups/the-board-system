@@ -8,6 +8,7 @@ from app.builders.soccer_board_builder import build_soccer_board
 from app.builders.tennis_board_builder import build_tennis_board
 from app.builders.wnba_board_builder import build_wnba_board
 from app.config import build_config
+from app.outputs.mlb_hr_tracking import write_mlb_hr_tracking_snapshot
 from app.outputs.site_exporter import export_board_to_site
 from app.outputs.validator import validate_board_payload
 from app.paths import build_paths
@@ -19,6 +20,7 @@ def run_mlb_pipeline(project_root: Path) -> dict:
     board = build_mlb_board(config=config, paths=paths)
     validate_board_payload(board)
     export_board_to_site(board=board, sport_key="mlb", paths=paths)
+    write_mlb_hr_tracking_snapshot(board=board, paths=paths)
     return board
 
 

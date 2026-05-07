@@ -148,6 +148,261 @@ button { cursor: pointer; border: none; background: none; }
   gap: 14px;
 }
 
+.mlb-board-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.8fr);
+  gap: 14px;
+}
+
+.mlb-board-main,
+.mlb-board-side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.mlb-board-compact .board-header {
+  align-items: flex-start;
+}
+
+.board-header-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.board-subtitle {
+  font-size: 11px;
+  color: var(--text-3);
+  max-width: 34ch;
+}
+
+.core-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 14px;
+}
+
+.core-card {
+  position: relative;
+  min-width: 0;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)), var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.core-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(240,180,41,0.12), transparent 35%);
+  pointer-events: none;
+}
+
+.core-card-top,
+.watchlist-row-top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.core-rank-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.core-rank {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  width: 22px;
+  text-align: center;
+}
+
+.core-face {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+}
+
+.core-body,
+.watchlist-body {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.core-name,
+.watchlist-name {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.core-meta,
+.watchlist-meta {
+  margin-top: 3px;
+  font-size: 11px;
+  color: var(--text-3);
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.core-line-row,
+.watchlist-line-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.core-line {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--gold);
+}
+
+.core-score {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.watchlist-list,
+.support-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.watchlist-row,
+.support-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.watchlist-row:last-child,
+.support-row:last-child {
+  border-bottom: none;
+}
+
+.watchlist-row:hover,
+.support-row:hover {
+  background: var(--surface-2);
+}
+
+.watchlist-rank {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--text-3);
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.watchlist-rank.top {
+  color: var(--gold);
+}
+
+.watchlist-rank-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.support-row {
+  gap: 6px;
+}
+
+.support-row-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.support-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.support-copy {
+  min-width: 0;
+}
+
+.support-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.support-name {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.support-line {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.support-meta {
+  font-size: 11px;
+  color: var(--text-3);
+  margin-top: 2px;
+}
+
+.support-score {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.support-row.hits-muted {
+  opacity: 0.72;
+}
+
 .board-card {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: 10px; overflow: hidden;
@@ -423,6 +678,7 @@ button { cursor: pointer; border: none; background: none; }
 
 .game-card.live { border-color: rgba(34,197,94,0.22); }
 .game-card.scheduled { border-color: rgba(59,130,246,0.18); }
+.game-card.final { border-color: rgba(156,163,175,0.18); }
 
 .player-link {
   appearance: none;
@@ -1154,6 +1410,8 @@ button { cursor: pointer; border: none; background: none; }
 @media (max-width: 960px) {
   .main { display: block; }
   .pinned-stack { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .mlb-board-shell,
+  .core-grid { grid-template-columns: 1fr; }
   .workspace-layout { grid-template-columns: 1fr; }
   .workspace-rail { position: static; gap: 12px; }
   .workspace-main, .rail-section { gap: 12px; }
@@ -1168,6 +1426,12 @@ button { cursor: pointer; border: none; background: none; }
   .header-meta { flex-direction: column; align-items: flex-end; gap: 4px; }
   .wordmark { font-size: 20px; letter-spacing: 2px; }
   .pinned-stack { grid-template-columns: 1fr; }
+  .core-grid { padding: 12px; gap: 10px; }
+  .core-card,
+  .watchlist-row,
+  .support-row { padding-left: 12px; padding-right: 12px; }
+  .core-name,
+  .watchlist-name { font-size: 17px; }
   .board-card, .lane-card, .explorer-wrap, .game-card { border-radius: 9px; }
   .modal-overlay { padding: 0; align-items: flex-end; }
   .modal-panel { border-radius: 12px 12px 0 0; width: 100%; max-height: 92vh; }
@@ -1372,6 +1636,21 @@ function isLiveGame(game) {
   if (!stamp) return false;
   if (/(final|ppd|postponed|canceled|cancelled)/.test(stamp)) return false;
   return /(top|bot|mid|live|q[1-4]|ot|half|inning|set \d|break|suspended|delay|delayed)/.test(stamp);
+}
+
+function isFinalGame(game) {
+  const stamp = `${game?.time || ""} ${game?.status || ""}`.toLowerCase();
+  return /(final|ppd|postponed|canceled|cancelled)/.test(stamp);
+}
+
+function gameSortStamp(game) {
+  const raw = String(game?.game_date || "");
+  const parsed = Date.parse(raw);
+  return Number.isNaN(parsed) ? Number.MAX_SAFE_INTEGER : parsed;
+}
+
+function sortGamesChronologically(games = []) {
+  return [...games].sort((a, b) => gameSortStamp(a) - gameSortStamp(b));
 }
 
 function laneEmpty(title, text) {
@@ -1773,7 +2052,153 @@ function renderPinnedSection(board, sport = "mlb") {
     </div>`;
 }
 
+function marketPriority(row = {}) {
+  const market = String(row.market || "").toUpperCase();
+  if (market === "HR") return 5;
+  if (market === "RBI") return 4;
+  if (market === "TB") return 3;
+  if (market === "K") return 2;
+  if (market === "HITS") return 1;
+  return 0;
+}
+
+function sortRowsForPinnedArea(rows = []) {
+  return [...rows].sort((a, b) => {
+    const marketGap = marketPriority(b) - marketPriority(a);
+    if (marketGap) return marketGap;
+    const scoreGap = Number(b.score || 0) - Number(a.score || 0);
+    if (scoreGap) return scoreGap;
+    return String(a.player || "").localeCompare(String(b.player || ""));
+  });
+}
+
+function renderMlbCoreCard(player, index) {
+  return `
+    <article class="core-card">
+      <div class="core-card-top">
+        <div class="core-rank-wrap">
+          <div class="core-rank">${index + 1}</div>
+          ${playerFace(player, "mlb").replace('class="player-face"', 'class="player-face core-face"')}
+        </div>
+        ${hrResultBadge(player)}
+      </div>
+      <div class="core-body">
+        <div class="core-name">${playerButton(player, "mlb", "core-name")}</div>
+        <div class="core-meta"><span>${esc(player.team)}</span><span>vs ${esc(player.opponent)}</span></div>
+      </div>
+      <div class="core-line-row">
+        <div class="core-line">${esc(player.line)}</div>
+        <div class="core-score">${Number(player.score || 0).toFixed(1)} edge</div>
+        ${tierBadge(player.tier)}
+      </div>
+    </article>`;
+}
+
+function renderMlbWatchlistRow(player, index) {
+  return `
+    <div class="watchlist-row">
+      <div class="watchlist-row-top">
+        <div class="watchlist-rank-wrap">
+          <div class="watchlist-rank ${index < 2 ? "top" : ""}">${index + 4}</div>
+          ${playerFace(player, "mlb", true)}
+          <div class="watchlist-body">
+            <div class="watchlist-name">${playerButton(player, "mlb", "watchlist-name")}</div>
+            <div class="watchlist-meta"><span>${esc(player.team)}</span><span>vs ${esc(player.opponent)}</span></div>
+          </div>
+        </div>
+        ${tierBadge(player.tier)}
+      </div>
+      <div class="watchlist-line-row">
+        <div class="pinned-line">${esc(player.line)}</div>
+        ${hrResultBadge(player)}
+      </div>
+    </div>`;
+}
+
+function renderMlbSupportRow(player) {
+  const market = String(player.market || "").toUpperCase();
+  return `
+    <div class="support-row ${market === "HITS" ? "hits-muted" : ""}">
+      <div class="support-row-top">
+        <div class="support-left">
+          ${marketTag(player.market)}
+          <div class="support-copy">
+            <div class="support-title-row">
+              <div class="support-name">${playerButton(player, "mlb", "support-name")}</div>
+              <div class="support-line">${esc(player.line)}</div>
+            </div>
+            <div class="support-meta">${esc(player.team)} vs ${esc(player.opponent)}</div>
+          </div>
+        </div>
+        <div class="pick-line-wrap">
+          <div class="support-score">${Number(player.score || 0).toFixed(1)}</div>
+          ${tierBadge(player.tier)}
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderMlbPinnedBoards(data) {
+  const hrRows = data?.pinned_board?.players || [];
+  if (!hrRows.length) return "";
+  const coreRows = hrRows.slice(0, 3);
+  const fringeRows = hrRows.slice(3, 10);
+  const supportRows = sortRowsForPinnedArea(data?.consistency_board?.players || [])
+    .filter((row, index, arr) => {
+      const market = String(row.market || "").toUpperCase();
+      if (market !== "HITS") return true;
+      const nonHitsAhead = arr.filter(item => String(item.market || "").toUpperCase() !== "HITS");
+      return !nonHitsAhead.length && index === 0;
+    })
+    .slice(0, 4);
+  return `
+    <div class="mlb-board-shell">
+      <div class="mlb-board-main">
+        <div class="board-card mlb-board-compact">
+          <div class="board-header">
+            <div class="board-header-copy">
+              <div class="board-title">HR Core</div>
+              <div class="board-subtitle">Three true power lanes. Cleaner than the full pool, built to keep the board honest.</div>
+            </div>
+            <div class="board-count">${coreRows.length} Plays</div>
+          </div>
+          <div class="core-grid">
+            ${coreRows.map((player, index) => renderMlbCoreCard(player, index)).join("")}
+          </div>
+        </div>
+        ${supportRows.length ? `
+          <div class="board-card mlb-board-compact">
+            <div class="board-header">
+              <div class="board-header-copy">
+                <div class="board-title">Secondary Lanes</div>
+                <div class="board-subtitle">Support markets stay in view, but power gets the spotlight first.</div>
+              </div>
+              <div class="board-count">${supportRows.length} Rows</div>
+            </div>
+            <div class="support-list">
+              ${supportRows.map(player => renderMlbSupportRow(player)).join("")}
+            </div>
+          </div>` : ""}
+      </div>
+      <div class="mlb-board-side">
+        <div class="board-card mlb-board-compact">
+          <div class="board-header">
+            <div class="board-header-copy">
+              <div class="board-title">Fringe Watchlist</div>
+              <div class="board-subtitle">Still live HR names, just a tier below the core so the pool doesn’t get too loose.</div>
+            </div>
+            <div class="board-count">${fringeRows.length} Names</div>
+          </div>
+          <div class="watchlist-list">
+            ${fringeRows.length ? fringeRows.map((player, index) => renderMlbWatchlistRow(player, index)).join("") : `<div class="lane-card"><div class="lane-sub">No fringe names on this slate yet.</div></div>`}
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
 function renderPinnedBoards(data, sport = "mlb") {
+  if (sport === "mlb") return renderMlbPinnedBoards(data);
   const sections = [];
   if (data?.pinned_board?.players?.length) sections.push(renderPinnedSection(data.pinned_board, sport));
   if (data?.consistency_board?.players?.length) sections.push(renderPinnedSection(data.consistency_board, sport));
@@ -1788,13 +2213,14 @@ function renderGameCard(game, sport) {
   const signals = (game.top_signals || []).slice(0, 3);
   const markets = game.markets || {};
   const activeMarkets = Object.keys(markets).filter(k => markets[k] && markets[k].length);
-  const liveClass = isLiveGame(game) ? "live" : "scheduled";
+  const liveClass = isLiveGame(game) ? "live" : isFinalGame(game) ? "final" : "scheduled";
+  const timeLabel = isFinalGame(game) ? "Final" : (game.time || game.status || "TBD");
   return `
     <div class="game-card ${liveClass}">
       <div class="game-card-head">
         <div>
           <div class="game-matchup">${esc(game.matchup)}</div>
-          <div class="game-time">${esc(game.time || game.status || "TBD")}</div>
+          <div class="game-time">${esc(timeLabel)}</div>
         </div>
         <div class="game-market-count">
           <span class="signal-dot"></span>${activeMarkets.length} Markets
@@ -2141,8 +2567,11 @@ function renderGameView(sport, data) {
   document.getElementById(`tab-count-${sport}`).textContent = data.games.length;
   const rows = flattenBoardRows(data);
   const markets = [...new Set(rows.map(row => row.market))].sort();
-  const liveGames = data.games.filter(isLiveGame);
-  const upcomingGames = data.games.filter(game => !isLiveGame(game));
+  const liveGames = sortGamesChronologically(data.games.filter(isLiveGame));
+  const completedGames = sortGamesChronologically(data.games.filter(isFinalGame));
+  const upcomingGames = sortGamesChronologically(
+    data.games.filter(game => !isLiveGame(game) && !isFinalGame(game))
+  );
   const pinnedMarkup = renderPinnedBoards(data, sport);
 
   view.innerHTML = `
@@ -2190,7 +2619,13 @@ function renderGameView(sport, data) {
         <div class="rail-section">
           <div class="lane-label">Upcoming</div>
           <div class="games-grid">
-            ${upcomingGames.length ? upcomingGames.map(g => renderGameCard(g, sport)).join("") : laneEmpty("Slate moving", "Everything on this board is already live or final.")}
+            ${upcomingGames.length ? upcomingGames.map(g => renderGameCard(g, sport)).join("") : laneEmpty("No upcoming games", "Later first pitches will stay here until they go live.")}
+          </div>
+        </div>
+        <div class="rail-section">
+          <div class="lane-label">Earlier Today</div>
+          <div class="games-grid">
+            ${completedGames.length ? completedGames.map(g => renderGameCard(g, sport)).join("") : laneEmpty("No finals yet", "Finished games will stay here so the slate doesn’t feel like it vanished.")}
           </div>
         </div>
       </aside>
