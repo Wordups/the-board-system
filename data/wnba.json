@@ -1,49 +1,21 @@
 {
   "sport": "WNBA",
   "date": "2026-05-08",
-  "last_updated": "6:31 PM ET",
+  "last_updated": "7:01 PM ET",
   "hero_pick": {
-    "player_id": "4281930",
-    "player_name": "Anneli Maley",
+    "player_id": "5345320",
+    "player_name": "Pauline Astier",
     "team": "NY",
     "opponent": "CON",
-    "market": "PTS",
-    "line": "13+ PTS",
-    "score": 87.48,
-    "confidence": 87,
+    "market": "AST",
+    "line": "4+ AST",
+    "score": 84.13,
+    "confidence": 84,
     "tier": "B",
-    "reason": "Sample 2 | L10 100% | L5 100% | USG 29% | MIN 27.0 | PTS matchup 1.05x | Prev 13.0 | Pre 13.0 | Home boost",
+    "reason": "Sample 1 | L10 100% | L5 100% | USG 26% | MIN 22.0 | AST matchup 1.09x | Prev 4.0 | Pre 4.0 | Home boost | Minutes watch",
     "label": "Pick of the Day"
   },
   "game_clusters": [
-    {
-      "game_id": "401856890",
-      "matchup": "CON @ NY",
-      "top_score": 83.84,
-      "signals": [
-        {
-          "player_name": "Anneli Maley",
-          "market": "PTS",
-          "line": "13+ PTS",
-          "score": 87.48,
-          "tier": "B"
-        },
-        {
-          "player_name": "Breanna Stewart",
-          "market": "AST",
-          "line": "2+ AST",
-          "score": 83.75,
-          "tier": "A"
-        },
-        {
-          "player_name": "Breanna Stewart",
-          "market": "3PM",
-          "line": "1+ 3PM",
-          "score": 80.3,
-          "tier": "A"
-        }
-      ]
-    },
     {
       "game_id": "401856891",
       "matchup": "WSH @ TOR",
@@ -69,6 +41,34 @@
           "line": "4+ AST",
           "score": 79.09,
           "tier": "A"
+        }
+      ]
+    },
+    {
+      "game_id": "401856890",
+      "matchup": "CON @ NY",
+      "top_score": 82.4,
+      "signals": [
+        {
+          "player_name": "Pauline Astier",
+          "market": "AST",
+          "line": "4+ AST",
+          "score": 84.13,
+          "tier": "B"
+        },
+        {
+          "player_name": "Breanna Stewart",
+          "market": "AST",
+          "line": "2+ AST",
+          "score": 82.5,
+          "tier": "A"
+        },
+        {
+          "player_name": "Pauline Astier",
+          "market": "PTS",
+          "line": "12+ PTS",
+          "score": 80.58,
+          "tier": "B"
         }
       ]
     },
@@ -107,15 +107,15 @@
       "market": "PTS",
       "players": [
         {
-          "player_id": "4281930",
-          "player_name": "Anneli Maley",
+          "player_id": "5345320",
+          "player_name": "Pauline Astier",
           "team": "NY",
           "opponent": "CON",
-          "line": "13+ PTS",
-          "score": 87.48,
-          "confidence": 87,
+          "line": "12+ PTS",
+          "score": 80.58,
+          "confidence": 81,
           "tier": "B",
-          "reason": "Sample 2 | L10 100% | L5 100% | USG 29% | MIN 27.0 | PTS matchup 1.05x | Prev 13.0 | Pre 13.0 | Home boost"
+          "reason": "Sample 1 | L10 100% | L5 100% | USG 26% | MIN 22.0 | PTS matchup 1.05x | Prev 12.0 | Pre 12.0 | Home boost | Minutes watch"
         },
         {
           "player_id": "4398577",
@@ -137,7 +137,7 @@
           "score": 72.77,
           "confidence": 73,
           "tier": "A",
-          "reason": "Sample 12 | L10 80% | L5 60% | USG 33% | MIN 25.4 | PTS matchup 1.05x | Prev 18.0 | Pre 10.0 | Home boost | Anti-correlation: same team as Anneli Maley"
+          "reason": "Sample 12 | L10 80% | L5 60% | USG 44% | MIN 25.4 | PTS matchup 1.05x | Prev 18.0 | Pre 10.0 | Home boost | Anti-correlation: same team as Pauline Astier"
         },
         {
           "player_id": "4398935",
@@ -149,17 +149,6 @@
           "confidence": 72,
           "tier": "B",
           "reason": "Sample 12 | L10 70% | L5 80% | USG 45% | MIN 29.7 | PTS matchup 1.03x | Prev 13.0 | Pre 14.0 | Anti-correlation: same team as Miela Sowah"
-        },
-        {
-          "player_id": "5345320",
-          "player_name": "Pauline Astier",
-          "team": "NY",
-          "opponent": "CON",
-          "line": "12+ PTS",
-          "score": 70.55,
-          "confidence": 71,
-          "tier": "B",
-          "reason": "Sample 1 | L10 100% | L5 100% | USG 19% | MIN 22.0 | PTS matchup 1.05x | Prev 12.0 | Pre 12.0 | Home boost | Minutes watch | Anti-correlation: same team as Anneli Maley"
         },
         {
           "player_id": "4790264",
@@ -215,6 +204,17 @@
           "confidence": 62,
           "tier": "B",
           "reason": "Sample 11 | L10 70% | L5 60% | USG 22% | MIN 24.6 | PTS matchup 1.03x | Prev 8.6 | Pre 8.0 | Decline 0.17 | Home boost | Anti-correlation: same team as Marina Mabrey"
+        },
+        {
+          "player_id": "4398911",
+          "player_name": "Shakira Austin",
+          "team": "WSH",
+          "opponent": "TOR",
+          "line": "10+ PTS",
+          "score": 61.92,
+          "confidence": 62,
+          "tier": "B",
+          "reason": "Sample 10 | L10 70% | L5 80% | USG 26% | MIN 23.3 | PTS matchup 0.98x | Prev 12.9 | Pre 12.9 | Decline 0.13 | Minutes watch | Anti-correlation: same team as Kiki Iriafen"
         }
       ]
     },
@@ -223,15 +223,26 @@
       "market": "AST",
       "players": [
         {
+          "player_id": "5345320",
+          "player_name": "Pauline Astier",
+          "team": "NY",
+          "opponent": "CON",
+          "line": "4+ AST",
+          "score": 84.13,
+          "confidence": 84,
+          "tier": "B",
+          "reason": "Sample 1 | L10 100% | L5 100% | USG 26% | MIN 22.0 | AST matchup 1.09x | Prev 4.0 | Pre 4.0 | Home boost | Minutes watch"
+        },
+        {
           "player_id": "2998928",
           "player_name": "Breanna Stewart",
           "team": "NY",
           "opponent": "CON",
           "line": "2+ AST",
-          "score": 83.75,
-          "confidence": 84,
+          "score": 82.5,
+          "confidence": 82,
           "tier": "A",
-          "reason": "Sample 12 | L10 80% | L5 80% | USG 33% | MIN 25.4 | AST matchup 1.09x | Prev 2.4 | Pre 1.0 | Home boost"
+          "reason": "Sample 12 | L10 80% | L5 80% | USG 44% | MIN 25.4 | AST matchup 1.09x | Prev 2.4 | Pre 1.0 | Home boost | Anti-correlation: same team as Pauline Astier"
         },
         {
           "player_id": "4433514",
@@ -256,15 +267,15 @@
           "reason": "Sample 10 | L10 70% | L5 80% | USG 31% | MIN 32.6 | AST matchup 1.05x | Prev 4.5 | Pre 4.5 | Home boost"
         },
         {
-          "player_id": "5345320",
-          "player_name": "Pauline Astier",
+          "player_id": "2999101",
+          "player_name": "Jonquel Jones",
           "team": "NY",
           "opponent": "CON",
-          "line": "4+ AST",
-          "score": 76.09,
-          "confidence": 76,
-          "tier": "B",
-          "reason": "Sample 1 | L10 100% | L5 100% | USG 19% | MIN 22.0 | AST matchup 1.09x | Prev 4.0 | Pre 4.0 | Home boost | Minutes watch | Anti-correlation: same team as Breanna Stewart"
+          "line": "2+ AST",
+          "score": 75.48,
+          "confidence": 75,
+          "tier": "A",
+          "reason": "Sample 11 | L10 70% | L5 60% | USG 27% | MIN 24.9 | AST matchup 1.09x | Prev 3.1 | Pre 1.0 | Decline 0.30 | Home boost | Anti-correlation: same team as Pauline Astier"
         },
         {
           "player_id": "4565505",
@@ -289,17 +300,6 @@
           "reason": "Sample 1 | L10 100% | L5 100% | USG 18% | MIN 14.0 | AST matchup 0.98x | Prev 3.0 | Pre 3.0 | Home boost | Minutes watch"
         },
         {
-          "player_id": "2999101",
-          "player_name": "Jonquel Jones",
-          "team": "NY",
-          "opponent": "CON",
-          "line": "2+ AST",
-          "score": 69.67,
-          "confidence": 70,
-          "tier": "B",
-          "reason": "Sample 11 | L10 70% | L5 60% | USG 20% | MIN 24.9 | AST matchup 1.09x | Prev 3.1 | Pre 1.0 | Decline 0.30 | Home boost | Anti-correlation: same team as Breanna Stewart"
-        },
-        {
           "player_id": "5106232",
           "player_name": "Ashlon Jackson",
           "team": "CON",
@@ -322,15 +322,15 @@
           "reason": "Sample 12 | L10 60% | L5 80% | USG 45% | MIN 29.7 | AST matchup 1.00x | Prev 8.5 | Pre 3.0"
         },
         {
-          "player_id": "4281930",
-          "player_name": "Anneli Maley",
-          "team": "NY",
-          "opponent": "CON",
+          "player_id": "2569044",
+          "player_name": "Temi Fagbenle",
+          "team": "TOR",
+          "opponent": "WSH",
           "line": "2+ AST",
-          "score": 63.58,
-          "confidence": 64,
-          "tier": "C",
-          "reason": "Sample 2 | L10 50% | L5 50% | USG 29% | MIN 27.0 | AST matchup 1.09x | Prev 2.0 | Pre 2.0 | Home boost | Anti-correlation: same team as Breanna Stewart"
+          "score": 62.59,
+          "confidence": 63,
+          "tier": "B",
+          "reason": "Sample 12 | L10 60% | L5 60% | USG 16% | MIN 24.4 | AST matchup 1.05x | Prev 1.5 | Pre 2.0 | Home boost | Anti-correlation: same team as Marina Mabrey"
         }
       ]
     },
@@ -358,7 +358,7 @@
           "score": 78.06,
           "confidence": 78,
           "tier": "B",
-          "reason": "Sample 12 | L10 90% | L5 80% | USG 33% | MIN 25.4 | REB matchup 0.94x | Prev 6.3 | Pre 5.5 | Home boost"
+          "reason": "Sample 12 | L10 90% | L5 80% | USG 44% | MIN 25.4 | REB matchup 0.94x | Prev 6.3 | Pre 5.5 | Home boost"
         },
         {
           "player_id": "4698736",
@@ -474,7 +474,7 @@
           "score": 80.3,
           "confidence": 80,
           "tier": "A",
-          "reason": "Sample 12 | L10 80% | L5 60% | USG 33% | MIN 25.4 | 3PM matchup 1.20x | Prev 1.0 | Pre 1.0 | Home boost"
+          "reason": "Sample 12 | L10 80% | L5 60% | USG 44% | MIN 25.4 | 3PM matchup 1.20x | Prev 1.0 | Pre 1.0 | Home boost"
         },
         {
           "player_id": "4398577",
@@ -588,15 +588,32 @@
           ]
         },
         {
+          "player_id": "5345320",
+          "player_name": "Pauline Astier",
+          "team": "NY",
+          "opponent": "CON",
+          "line": "4+ AST",
+          "score": 84.13,
+          "confidence": 84,
+          "tier": "B",
+          "reason": "Sample 1 | L10 100% | L5 100% | USG 26% | MIN 22.0 | AST matchup 1.09x | Prev 4.0 | Pre 4.0 | Home boost | Minutes watch",
+          "market": "AST",
+          "ladder": [
+            "4+",
+            "6+",
+            "8+"
+          ]
+        },
+        {
           "player_id": "2998928",
           "player_name": "Breanna Stewart",
           "team": "NY",
           "opponent": "CON",
           "line": "2+ AST",
-          "score": 83.75,
-          "confidence": 84,
+          "score": 82.5,
+          "confidence": 82,
           "tier": "A",
-          "reason": "Sample 12 | L10 80% | L5 80% | USG 33% | MIN 25.4 | AST matchup 1.09x | Prev 2.4 | Pre 1.0 | Home boost",
+          "reason": "Sample 12 | L10 80% | L5 80% | USG 44% | MIN 25.4 | AST matchup 1.09x | Prev 2.4 | Pre 1.0 | Home boost | Anti-correlation: same team as Pauline Astier",
           "market": "AST",
           "ladder": [
             "2+",
@@ -637,23 +654,6 @@
             "6+",
             "8+"
           ]
-        },
-        {
-          "player_id": "2998928",
-          "player_name": "Breanna Stewart",
-          "team": "NY",
-          "opponent": "CON",
-          "line": "5+ REB",
-          "score": 78.06,
-          "confidence": 78,
-          "tier": "B",
-          "reason": "Sample 12 | L10 90% | L5 80% | USG 33% | MIN 25.4 | REB matchup 0.94x | Prev 6.3 | Pre 5.5 | Home boost",
-          "market": "REB",
-          "ladder": [
-            "5+",
-            "7+",
-            "9+"
-          ]
         }
       ]
     }
@@ -663,15 +663,15 @@
     "market": "PTS",
     "players": [
       {
-        "player_id": "4281930",
-        "player_name": "Anneli Maley",
+        "player_id": "5345320",
+        "player_name": "Pauline Astier",
         "team": "NY",
         "opponent": "CON",
-        "line": "13+ PTS",
-        "score": 87.48,
-        "confidence": 87,
+        "line": "12+ PTS",
+        "score": 80.58,
+        "confidence": 81,
         "tier": "B",
-        "reason": "Sample 2 | L10 100% | L5 100% | USG 29% | MIN 27.0 | PTS matchup 1.05x | Prev 13.0 | Pre 13.0 | Home boost"
+        "reason": "Sample 1 | L10 100% | L5 100% | USG 26% | MIN 22.0 | PTS matchup 1.05x | Prev 12.0 | Pre 12.0 | Home boost | Minutes watch"
       },
       {
         "player_id": "4398577",
@@ -693,7 +693,7 @@
         "score": 72.77,
         "confidence": 73,
         "tier": "A",
-        "reason": "Sample 12 | L10 80% | L5 60% | USG 33% | MIN 25.4 | PTS matchup 1.05x | Prev 18.0 | Pre 10.0 | Home boost | Anti-correlation: same team as Anneli Maley"
+        "reason": "Sample 12 | L10 80% | L5 60% | USG 44% | MIN 25.4 | PTS matchup 1.05x | Prev 18.0 | Pre 10.0 | Home boost | Anti-correlation: same team as Pauline Astier"
       },
       {
         "player_id": "4398935",
@@ -705,17 +705,6 @@
         "confidence": 72,
         "tier": "B",
         "reason": "Sample 12 | L10 70% | L5 80% | USG 45% | MIN 29.7 | PTS matchup 1.03x | Prev 13.0 | Pre 14.0 | Anti-correlation: same team as Miela Sowah"
-      },
-      {
-        "player_id": "5345320",
-        "player_name": "Pauline Astier",
-        "team": "NY",
-        "opponent": "CON",
-        "line": "12+ PTS",
-        "score": 70.55,
-        "confidence": 71,
-        "tier": "B",
-        "reason": "Sample 1 | L10 100% | L5 100% | USG 19% | MIN 22.0 | PTS matchup 1.05x | Prev 12.0 | Pre 12.0 | Home boost | Minutes watch | Anti-correlation: same team as Anneli Maley"
       },
       {
         "player_id": "4790264",
@@ -771,6 +760,17 @@
         "confidence": 62,
         "tier": "B",
         "reason": "Sample 11 | L10 70% | L5 60% | USG 22% | MIN 24.6 | PTS matchup 1.03x | Prev 8.6 | Pre 8.0 | Decline 0.17 | Home boost | Anti-correlation: same team as Marina Mabrey"
+      },
+      {
+        "player_id": "4398911",
+        "player_name": "Shakira Austin",
+        "team": "WSH",
+        "opponent": "TOR",
+        "line": "10+ PTS",
+        "score": 61.92,
+        "confidence": 62,
+        "tier": "B",
+        "reason": "Sample 10 | L10 70% | L5 80% | USG 26% | MIN 23.3 | PTS matchup 0.98x | Prev 12.9 | Pre 12.9 | Decline 0.13 | Minutes watch | Anti-correlation: same team as Kiki Iriafen"
       }
     ]
   },
@@ -781,12 +781,12 @@
       "time": "5/8 - 7:30 PM EDT",
       "top_signals": [
         {
-          "market": "PTS",
-          "player_id": "4281930",
-          "player_name": "Anneli Maley",
-          "line": "13+ PTS",
-          "score": 87.48,
-          "confidence": 87,
+          "market": "AST",
+          "player_id": "5345320",
+          "player_name": "Pauline Astier",
+          "line": "4+ AST",
+          "score": 84.13,
+          "confidence": 84,
           "tier": "B"
         },
         {
@@ -794,32 +794,32 @@
           "player_id": "2998928",
           "player_name": "Breanna Stewart",
           "line": "2+ AST",
-          "score": 83.75,
-          "confidence": 84,
+          "score": 82.5,
+          "confidence": 82,
           "tier": "A"
         },
         {
-          "market": "3PM",
-          "player_id": "2998928",
-          "player_name": "Breanna Stewart",
-          "line": "1+ 3PM",
-          "score": 80.3,
-          "confidence": 80,
-          "tier": "A"
+          "market": "PTS",
+          "player_id": "5345320",
+          "player_name": "Pauline Astier",
+          "line": "12+ PTS",
+          "score": 80.58,
+          "confidence": 81,
+          "tier": "B"
         }
       ],
       "markets": {
         "PTS": [
           {
-            "player_id": "4281930",
-            "player_name": "Anneli Maley",
+            "player_id": "5345320",
+            "player_name": "Pauline Astier",
             "team": "NY",
             "opponent": "CON",
-            "line": "13+ PTS",
-            "score": 87.48,
-            "confidence": 87,
+            "line": "12+ PTS",
+            "score": 80.58,
+            "confidence": 81,
             "tier": "B",
-            "reason": "Sample 2 | L10 100% | L5 100% | USG 29% | MIN 27.0 | PTS matchup 1.05x | Prev 13.0 | Pre 13.0 | Home boost"
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 26% | MIN 22.0 | PTS matchup 1.05x | Prev 12.0 | Pre 12.0 | Home boost | Minutes watch"
           },
           {
             "player_id": "2998928",
@@ -830,18 +830,7 @@
             "score": 72.77,
             "confidence": 73,
             "tier": "A",
-            "reason": "Sample 12 | L10 80% | L5 60% | USG 33% | MIN 25.4 | PTS matchup 1.05x | Prev 18.0 | Pre 10.0 | Home boost | Anti-correlation: same team as Anneli Maley"
-          },
-          {
-            "player_id": "5345320",
-            "player_name": "Pauline Astier",
-            "team": "NY",
-            "opponent": "CON",
-            "line": "12+ PTS",
-            "score": 70.55,
-            "confidence": 71,
-            "tier": "B",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 19% | MIN 22.0 | PTS matchup 1.05x | Prev 12.0 | Pre 12.0 | Home boost | Minutes watch | Anti-correlation: same team as Anneli Maley"
+            "reason": "Sample 12 | L10 80% | L5 60% | USG 44% | MIN 25.4 | PTS matchup 1.05x | Prev 18.0 | Pre 10.0 | Home boost | Anti-correlation: same team as Pauline Astier"
           },
           {
             "player_id": "4337216",
@@ -849,21 +838,10 @@
             "team": "NY",
             "opponent": "CON",
             "line": "13+ PTS",
-            "score": 56.31,
-            "confidence": 56,
+            "score": 57.73,
+            "confidence": 58,
             "tier": "C",
-            "reason": "Sample 2 | L10 50% | L5 50% | USG 26% | MIN 18.5 | PTS matchup 1.05x | Prev 12.0 | Pre 12.0 | Home boost | Minutes watch | Anti-correlation: same team as Anneli Maley"
-          },
-          {
-            "player_id": "4595823",
-            "player_name": "Alex Fowler",
-            "team": "NY",
-            "opponent": "CON",
-            "line": "8+ PTS",
-            "score": 46.57,
-            "confidence": 47,
-            "tier": "C",
-            "reason": "Sample 2 | L10 50% | L5 50% | USG 18% | MIN 19.0 | PTS matchup 1.05x | Prev 4.0 | Pre 4.0 | Home boost | Minutes watch | Anti-correlation: same team as Anneli Maley"
+            "reason": "Sample 2 | L10 50% | L5 50% | USG 35% | MIN 18.5 | PTS matchup 1.05x | Prev 12.0 | Pre 12.0 | Home boost | Minutes watch | Anti-correlation: same team as Pauline Astier"
           },
           {
             "player_id": "2490553",
@@ -904,10 +882,10 @@
             "team": "NY",
             "opponent": "CON",
             "line": "8+ PTS",
-            "score": 17.29,
-            "confidence": 17,
+            "score": 20.56,
+            "confidence": 21,
             "tier": "C",
-            "reason": "Sample 1 | L10 0% | L5 0% | USG 13% | MIN 12.0 | PTS matchup 1.05x | Prev 2.0 | Pre 2.0 | Home boost | Minutes watch | Anti-correlation: same team as Anneli Maley"
+            "reason": "Sample 1 | L10 0% | L5 0% | USG 18% | MIN 12.0 | PTS matchup 1.05x | Prev 2.0 | Pre 2.0 | Home boost | Minutes watch | Anti-correlation: same team as Pauline Astier"
           },
           {
             "player_id": "5106232",
@@ -919,6 +897,28 @@
             "confidence": 15,
             "tier": "C",
             "reason": "Sample 1 | L10 0% | L5 0% | USG 16% | MIN 26.0 | PTS matchup 0.97x | Prev 1.0 | Pre 1.0 | Anti-correlation: same team as Brittney Griner"
+          },
+          {
+            "player_id": "4898898",
+            "player_name": "Gianna Kneepkens",
+            "team": "CON",
+            "opponent": "NY",
+            "line": "8+ PTS",
+            "score": 10.62,
+            "confidence": 11,
+            "tier": "C",
+            "reason": "Sample 2 | L10 0% | L5 0% | USG 13% | MIN 15.0 | PTS matchup 0.97x | Prev 4.0 | Pre 4.0 | Minutes watch | Anti-correlation: same team as Brittney Griner"
+          },
+          {
+            "player_id": "5105732",
+            "player_name": "Raegan Beers",
+            "team": "CON",
+            "opponent": "NY",
+            "line": "8+ PTS",
+            "score": 9.91,
+            "confidence": 10,
+            "tier": "C",
+            "reason": "Sample 2 | L10 0% | L5 0% | USG 12% | MIN 12.5 | PTS matchup 0.97x | Prev 4.5 | Pre 4.5 | Minutes watch | Anti-correlation: same team as Brittney Griner"
           }
         ],
         "REB": [
@@ -931,7 +931,7 @@
             "score": 78.06,
             "confidence": 78,
             "tier": "B",
-            "reason": "Sample 12 | L10 90% | L5 80% | USG 33% | MIN 25.4 | REB matchup 0.94x | Prev 6.3 | Pre 5.5 | Home boost"
+            "reason": "Sample 12 | L10 90% | L5 80% | USG 44% | MIN 25.4 | REB matchup 0.94x | Prev 6.3 | Pre 5.5 | Home boost"
           },
           {
             "player_id": "2490553",
@@ -967,17 +967,6 @@
             "reason": "Sample 12 | L10 60% | L5 60% | USG 26% | MIN 24.2 | REB matchup 0.94x | Prev 9.3 | Pre 7.5 | Uptick 0.18 | Anti-correlation: same team as Brittney Griner"
           },
           {
-            "player_id": "4281930",
-            "player_name": "Anneli Maley",
-            "team": "NY",
-            "opponent": "CON",
-            "line": "7+ REB",
-            "score": 56.21,
-            "confidence": 56,
-            "tier": "C",
-            "reason": "Sample 2 | L10 50% | L5 50% | USG 29% | MIN 27.0 | REB matchup 0.94x | Prev 6.5 | Pre 6.5 | Home boost | Anti-correlation: same team as Breanna Stewart"
-          },
-          {
             "player_id": "4398966",
             "player_name": "Olivia Nelson-Ododa",
             "team": "CON",
@@ -987,17 +976,6 @@
             "confidence": 52,
             "tier": "C",
             "reason": "Sample 6 | L10 67% | L5 60% | USG 15% | MIN 12.1 | REB matchup 0.94x | Prev 2.5 | Pre 4.0 | Minutes watch | Anti-correlation: same team as Brittney Griner"
-          },
-          {
-            "player_id": "4595823",
-            "player_name": "Alex Fowler",
-            "team": "NY",
-            "opponent": "CON",
-            "line": "3+ REB",
-            "score": 48.55,
-            "confidence": 49,
-            "tier": "C",
-            "reason": "Sample 2 | L10 50% | L5 50% | USG 18% | MIN 19.0 | REB matchup 0.94x | Prev 3.5 | Pre 3.5 | Home boost | Minutes watch | Anti-correlation: same team as Breanna Stewart"
           },
           {
             "player_id": "4433635",
@@ -1030,20 +1008,53 @@
             "score": 27.71,
             "confidence": 28,
             "tier": "C",
-            "reason": "Sample 2 | L10 0% | L5 0% | USG 26% | MIN 18.5 | REB matchup 0.94x | Prev 1.5 | Pre 1.5 | Home boost | Minutes watch | Anti-correlation: same team as Breanna Stewart"
+            "reason": "Sample 2 | L10 0% | L5 0% | USG 35% | MIN 18.5 | REB matchup 0.94x | Prev 1.5 | Pre 1.5 | Home boost | Minutes watch | Anti-correlation: same team as Breanna Stewart"
+          },
+          {
+            "player_id": "5345320",
+            "player_name": "Pauline Astier",
+            "team": "NY",
+            "opponent": "CON",
+            "line": "3+ REB",
+            "score": 26.51,
+            "confidence": 27,
+            "tier": "C",
+            "reason": "Sample 1 | L10 0% | L5 0% | USG 26% | MIN 22.0 | REB matchup 0.94x | Prev 1.0 | Pre 1.0 | Home boost | Minutes watch | Anti-correlation: same team as Breanna Stewart"
+          },
+          {
+            "player_id": "2593770",
+            "player_name": "Betnijah Laney-Hamilton",
+            "team": "NY",
+            "opponent": "CON",
+            "line": "3+ REB",
+            "score": 22.46,
+            "confidence": 22,
+            "tier": "C",
+            "reason": "Sample 1 | L10 0% | L5 0% | USG 18% | MIN 12.0 | REB matchup 0.94x | Prev 0.0 | Pre 0.0 | Home boost | Minutes watch | Anti-correlation: same team as Breanna Stewart"
           }
         ],
         "AST": [
+          {
+            "player_id": "5345320",
+            "player_name": "Pauline Astier",
+            "team": "NY",
+            "opponent": "CON",
+            "line": "4+ AST",
+            "score": 84.13,
+            "confidence": 84,
+            "tier": "B",
+            "reason": "Sample 1 | L10 100% | L5 100% | USG 26% | MIN 22.0 | AST matchup 1.09x | Prev 4.0 | Pre 4.0 | Home boost | Minutes watch"
+          },
           {
             "player_id": "2998928",
             "player_name": "Breanna Stewart",
             "team": "NY",
             "opponent": "CON",
             "line": "2+ AST",
-            "score": 83.75,
-            "confidence": 84,
+            "score": 82.5,
+            "confidence": 82,
             "tier": "A",
-            "reason": "Sample 12 | L10 80% | L5 80% | USG 33% | MIN 25.4 | AST matchup 1.09x | Prev 2.4 | Pre 1.0 | Home boost"
+            "reason": "Sample 12 | L10 80% | L5 80% | USG 44% | MIN 25.4 | AST matchup 1.09x | Prev 2.4 | Pre 1.0 | Home boost | Anti-correlation: same team as Pauline Astier"
           },
           {
             "player_id": "4433514",
@@ -1057,26 +1068,15 @@
             "reason": "Sample 12 | L10 60% | L5 100% | USG 28% | MIN 27.8 | AST matchup 1.01x | Prev 2.4 | Pre 3.5 | Uptick 0.42"
           },
           {
-            "player_id": "5345320",
-            "player_name": "Pauline Astier",
-            "team": "NY",
-            "opponent": "CON",
-            "line": "4+ AST",
-            "score": 76.09,
-            "confidence": 76,
-            "tier": "B",
-            "reason": "Sample 1 | L10 100% | L5 100% | USG 19% | MIN 22.0 | AST matchup 1.09x | Prev 4.0 | Pre 4.0 | Home boost | Minutes watch | Anti-correlation: same team as Breanna Stewart"
-          },
-          {
             "player_id": "2999101",
             "player_name": "Jonquel Jones",
             "team": "NY",
             "opponent": "CON",
             "line": "2+ AST",
-            "score": 69.67,
-            "confidence": 70,
-            "tier": "B",
-            "reason": "Sample 11 | L10 70% | L5 60% | USG 20% | MIN 24.9 | AST matchup 1.09x | Prev 3.1 | Pre 1.0 | Decline 0.30 | Home boost | Anti-correlation: same team as Breanna Stewart"
+            "score": 75.48,
+            "confidence": 75,
+            "tier": "A",
+            "reason": "Sample 11 | L10 70% | L5 60% | USG 27% | MIN 24.9 | AST matchup 1.09x | Prev 3.1 | Pre 1.0 | Decline 0.30 | Home boost | Anti-correlation: same team as Pauline Astier"
           },
           {
             "player_id": "5106232",
@@ -1088,17 +1088,6 @@
             "confidence": 69,
             "tier": "B",
             "reason": "Sample 1 | L10 100% | L5 100% | USG 16% | MIN 26.0 | AST matchup 1.01x | Prev 2.0 | Pre 2.0 | Anti-correlation: same team as Saniya Rivers"
-          },
-          {
-            "player_id": "4281930",
-            "player_name": "Anneli Maley",
-            "team": "NY",
-            "opponent": "CON",
-            "line": "2+ AST",
-            "score": 63.58,
-            "confidence": 64,
-            "tier": "C",
-            "reason": "Sample 2 | L10 50% | L5 50% | USG 29% | MIN 27.0 | AST matchup 1.09x | Prev 2.0 | Pre 2.0 | Home boost | Anti-correlation: same team as Breanna Stewart"
           },
           {
             "player_id": "2490553",
@@ -1143,6 +1132,17 @@
             "confidence": 40,
             "tier": "C",
             "reason": "Sample 2 | L10 50% | L5 50% | USG 13% | MIN 15.0 | AST matchup 1.01x | Prev 1.0 | Pre 1.0 | Minutes watch | Anti-correlation: same team as Saniya Rivers"
+          },
+          {
+            "player_id": "5105732",
+            "player_name": "Raegan Beers",
+            "team": "CON",
+            "opponent": "NY",
+            "line": "2+ AST",
+            "score": 38.9,
+            "confidence": 39,
+            "tier": "C",
+            "reason": "Sample 2 | L10 50% | L5 50% | USG 12% | MIN 12.5 | AST matchup 1.01x | Prev 1.5 | Pre 1.5 | Minutes watch | Anti-correlation: same team as Saniya Rivers"
           }
         ],
         "3PM": [
@@ -1155,7 +1155,7 @@
             "score": 80.3,
             "confidence": 80,
             "tier": "A",
-            "reason": "Sample 12 | L10 80% | L5 60% | USG 33% | MIN 25.4 | 3PM matchup 1.20x | Prev 1.0 | Pre 1.0 | Home boost"
+            "reason": "Sample 12 | L10 80% | L5 60% | USG 44% | MIN 25.4 | 3PM matchup 1.20x | Prev 1.0 | Pre 1.0 | Home boost"
           },
           {
             "player_id": "4433514",
@@ -1180,17 +1180,6 @@
             "reason": "Sample 2 | L10 100% | L5 100% | USG 13% | MIN 15.0 | 3PM matchup 1.07x | Prev 1.0 | Pre 1.0 | Minutes watch | Anti-correlation: same team as Saniya Rivers"
           },
           {
-            "player_id": "4281930",
-            "player_name": "Anneli Maley",
-            "team": "NY",
-            "opponent": "CON",
-            "line": "1+ 3PM",
-            "score": 65.15,
-            "confidence": 65,
-            "tier": "C",
-            "reason": "Sample 2 | L10 50% | L5 50% | USG 29% | MIN 27.0 | 3PM matchup 1.20x | Prev 0.5 | Pre 0.5 | Home boost | Anti-correlation: same team as Breanna Stewart"
-          },
-          {
             "player_id": "4337216",
             "player_name": "Han Xu",
             "team": "NY",
@@ -1199,7 +1188,7 @@
             "score": 61.15,
             "confidence": 61,
             "tier": "C",
-            "reason": "Sample 2 | L10 50% | L5 50% | USG 26% | MIN 18.5 | 3PM matchup 1.20x | Prev 0.5 | Pre 0.5 | Home boost | Minutes watch | Anti-correlation: same team as Breanna Stewart"
+            "reason": "Sample 2 | L10 50% | L5 50% | USG 35% | MIN 18.5 | 3PM matchup 1.20x | Prev 0.5 | Pre 0.5 | Home boost | Minutes watch | Anti-correlation: same team as Breanna Stewart"
           },
           {
             "player_id": "2490553",
@@ -1224,26 +1213,15 @@
             "reason": "Sample 2 | L10 50% | L5 50% | USG 12% | MIN 12.5 | 3PM matchup 1.07x | Prev 0.5 | Pre 0.5 | Minutes watch | Anti-correlation: same team as Saniya Rivers"
           },
           {
-            "player_id": "4595823",
-            "player_name": "Alex Fowler",
-            "team": "NY",
-            "opponent": "CON",
-            "line": "1+ 3PM",
-            "score": 28.99,
-            "confidence": 29,
-            "tier": "C",
-            "reason": "Sample 2 | L10 0% | L5 0% | USG 18% | MIN 19.0 | 3PM matchup 1.20x | Prev 0.0 | Pre 0.0 | Home boost | Minutes watch | Anti-correlation: same team as Breanna Stewart"
-          },
-          {
             "player_id": "5345320",
             "player_name": "Pauline Astier",
             "team": "NY",
             "opponent": "CON",
             "line": "1+ 3PM",
-            "score": 28.66,
-            "confidence": 29,
+            "score": 35.45,
+            "confidence": 35,
             "tier": "C",
-            "reason": "Sample 1 | L10 0% | L5 0% | USG 19% | MIN 22.0 | 3PM matchup 1.20x | Prev 0.0 | Pre 0.0 | Home boost | Minutes watch | Anti-correlation: same team as Breanna Stewart"
+            "reason": "Sample 1 | L10 0% | L5 0% | USG 26% | MIN 22.0 | 3PM matchup 1.20x | Prev 0.0 | Pre 0.0 | Home boost | Minutes watch | Anti-correlation: same team as Breanna Stewart"
           },
           {
             "player_id": "2593770",
@@ -1251,10 +1229,32 @@
             "team": "NY",
             "opponent": "CON",
             "line": "1+ 3PM",
-            "score": 23.23,
+            "score": 27.39,
+            "confidence": 27,
+            "tier": "C",
+            "reason": "Sample 1 | L10 0% | L5 0% | USG 18% | MIN 12.0 | 3PM matchup 1.20x | Prev 0.0 | Pre 0.0 | Home boost | Minutes watch | Anti-correlation: same team as Breanna Stewart"
+          },
+          {
+            "player_id": "5106232",
+            "player_name": "Ashlon Jackson",
+            "team": "CON",
+            "opponent": "NY",
+            "line": "1+ 3PM",
+            "score": 22.93,
             "confidence": 23,
             "tier": "C",
-            "reason": "Sample 1 | L10 0% | L5 0% | USG 13% | MIN 12.0 | 3PM matchup 1.20x | Prev 0.0 | Pre 0.0 | Home boost | Minutes watch | Anti-correlation: same team as Breanna Stewart"
+            "reason": "Sample 1 | L10 0% | L5 0% | USG 16% | MIN 26.0 | 3PM matchup 1.07x | Prev 0.0 | Pre 0.0 | Anti-correlation: same team as Saniya Rivers"
+          },
+          {
+            "player_id": "4433635",
+            "player_name": "Diamond Miller",
+            "team": "CON",
+            "opponent": "NY",
+            "line": "1+ 3PM",
+            "score": 21.04,
+            "confidence": 21,
+            "tier": "C",
+            "reason": "Sample 2 | L10 0% | L5 0% | USG 17% | MIN 17.0 | 3PM matchup 1.07x | Prev 0.0 | Pre 0.0 | Minutes watch | Anti-correlation: same team as Saniya Rivers"
           }
         ],
         "ML": [
