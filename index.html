@@ -457,6 +457,24 @@ button { cursor: pointer; border: none; background: none; }
   background: var(--surface-3); border: 1px solid var(--border);
 }
 
+.sport-fallback {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--surface-3); border: 1px solid var(--border);
+  flex-shrink: 0;
+  font-size: 16px; line-height: 1;
+}
+.player-face.sport-fallback { font-size: 18px; }
+.player-face-sm.sport-fallback { font-size: 14px; }
+.core-face.sport-fallback { font-size: 22px; }
+.hero-player-face.sport-fallback { font-size: 36px; }
+.pick-poster-face.sport-fallback { font-size: 28px; }
+.sport-fallback[data-sport="mlb"] { background: rgba(223,32,32,0.10); border-color: rgba(223,32,32,0.30); }
+.sport-fallback[data-sport="nba"] { background: rgba(29,107,191,0.10); border-color: rgba(29,107,191,0.30); }
+.sport-fallback[data-sport="wnba"] { background: rgba(249,115,22,0.10); border-color: rgba(249,115,22,0.30); }
+.sport-fallback[data-sport="nfl"] { background: rgba(22,163,74,0.10); border-color: rgba(22,163,74,0.30); }
+.sport-fallback[data-sport="soccer"] { background: rgba(14,165,233,0.10); border-color: rgba(14,165,233,0.30); }
+.sport-fallback[data-sport="tennis"] { background: rgba(168,85,247,0.10); border-color: rgba(168,85,247,0.30); }
+
 .pinned-info { flex: 1; min-width: 0; }
 
 .pinned-name {
@@ -1382,8 +1400,13 @@ button { cursor: pointer; border: none; background: none; }
 .summary-line {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 10px;
+}
+
+.summary-line-body {
+  flex: 1;
+  min-width: 0;
 }
 
 .summary-line + .summary-line {
@@ -1728,6 +1751,15 @@ function marketTag(m) {
   return `<span class="market-tag market-${esc(m)}">${esc(m)}</span>`;
 }
 
+const SPORT_ICON = {
+  mlb: "⚾",      // baseball ⚾
+  nba: "🏀",  // basketball 🏀
+  wnba: "🏀", // basketball 🏀
+  nfl: "🏈",  // football 🏈
+  soccer: "⚽",    // soccer ball ⚽
+  tennis: "🎾", // tennis ball 🎾
+};
+
 function playerHeadshot(player, sport) {
   if (!player || !player.player_id) return "";
   const id = esc(player.player_id);
@@ -1743,11 +1775,17 @@ function playerHeadshot(player, sport) {
   return "";
 }
 
+function sportFallback(sport, klass) {
+  const icon = SPORT_ICON[sport] || "";
+  return `<div class="${klass} sport-fallback" data-sport="${esc(sport)}" aria-hidden="true">${icon}</div>`;
+}
+
 function playerFace(player, sport, small = false) {
-  const src = playerHeadshot(player, sport);
-  if (!src) return "";
   const klass = small ? "player-face-sm" : "player-face";
-  return `<img class="${klass}" src="${src}" alt="${esc(player.player_name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">`;
+  const src = playerHeadshot(player, sport);
+  if (!src) return sportFallback(sport, klass);
+  const fallback = sportFallback(sport, klass).replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+  return `<img class="${klass}" src="${src}" alt="${esc(player.player_name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.outerHTML='${fallback}'">`;
 }
 
 function playerButton(player, sport, extraClass = "") {
@@ -2074,7 +2112,7 @@ function renderPosterHeroPlayer(row, sport, label) {
     <article class="hero-player">
       <div>
         <div class="hero-player-top">
-          ${face ? `<img class="hero-player-face" src="${face}" alt="${esc(row.player_name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">` : `<div class="hero-player-face"></div>`}
+          ${face ? `<img class="hero-player-face" src="${face}" alt="${esc(row.player_name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.outerHTML='${sportFallback(sport, "hero-player-face").replace(/'/g, "&#39;").replace(/\"/g, "&quot;")}'">` : sportFallback(sport, "hero-player-face")}
           <div class="hero-player-rank">${esc(label)}</div>
         </div>
         <div class="hero-player-name">${playerButton(row, sport)}</div>
@@ -2122,7 +2160,7 @@ function renderPickRow(row, sport) {
   return `
     <div class="pick-poster">
       <div class="pick-poster-inner">
-        ${face ? `<img class="pick-poster-face" src="${face}" alt="${esc(row.player_name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">` : `<div class="pick-poster-face"></div>`}
+        ${face ? `<img class="pick-poster-face" src="${face}" alt="${esc(row.player_name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.outerHTML='${sportFallback(sport, "pick-poster-face").replace(/'/g, "&#39;").replace(/\"/g, "&quot;")}'">` : sportFallback(sport, "pick-poster-face")}
         <div class="pick-main-row">
           <div>
             <div class="pick-main-name">${playerButton(row, sport)}</div>
@@ -2196,7 +2234,7 @@ async function renderPicksView() {
       </div>
       <div class="pick-sport-body">
         ${renderFrozenDailySummaryCard(sport, data, sourceBoards[sport])}
-        <div class="pick-sport-footnote">Frozen daily card. Sport tabs can keep updating without changing the board you set in the morning.</div>
+        <div class="pick-sport-footnote">Morning Card — locked at the 8 AM ET refresh. Sport tabs keep updating without disturbing this slate.</div>
       </div>
     </section>
   `).filter(Boolean);
@@ -2359,7 +2397,8 @@ function renderFrozenDailySummaryCard(sport, frozen, liveData) {
     const status = isMlb ? resolveHrPickStatus(row, liveData) : null;
     return `
       <div class="summary-line">
-        <div>
+        ${playerFace(row, sport)}
+        <div class="summary-line-body">
           <div class="summary-name">${playerButton(row, sport, "summary-name")}</div>
           <div class="summary-meta">${esc(row.team)} vs ${esc(row.opponent)}${row.market ? ` • ${esc(row.market)}` : ""}</div>
           <div class="summary-chips">
@@ -2375,8 +2414,8 @@ function renderFrozenDailySummaryCard(sport, frozen, liveData) {
     <section class="daily-summary-card">
       <div class="daily-summary-head">
         <div>
-          <div class="daily-summary-title">Frozen Daily Card</div>
-          <div class="daily-summary-sub">This stays visible all day even while the rolling board keeps moving. Green lives here once a pick goes yard.</div>
+          <div class="daily-summary-title">Morning Card</div>
+          <div class="daily-summary-sub">Locked at the 8 AM ET refresh and tracked all day. The rolling board keeps moving — these picks don't.</div>
         </div>
         <div class="pick-sport-meta">${esc(frozen.last_updated || liveData?.last_updated || "")}</div>
       </div>
@@ -2397,13 +2436,15 @@ function renderFrozenDailySummaryCard(sport, frozen, liveData) {
                     ["Third Base", (liveData?.research_board?.home_run?.strong_candidates || [])[0] || null],
                   ].map(([label, row]) => `
                     <div class="summary-line">
-                      <div>
+                      ${row ? playerFace(row, sport) : ""}
+                      <div class="summary-line-body">
                         <div class="daily-summary-label" style="margin-bottom:4px;color:var(--text-2);">${esc(label)}</div>
                         ${row ? `
                           <div class="summary-name">${playerButton(row, sport, "summary-name")}</div>
                           <div class="summary-meta">${esc(row.team)} vs ${esc(row.opponent)}</div>
                           <div class="summary-chips">
                             <span class="reason-chip">${esc(row.line || "No line")}</span>
+                            ${impliedOddsBadge(row)}
                             ${tierBadge(row.tier)}
                             ${renderStatusChip(resolveHrPickStatus(row, liveData))}
                           </div>` : `<div class="summary-empty">Open base.</div>`}

@@ -189,6 +189,9 @@ def derive_sport_picks(sport: str, data: dict) -> dict | None:
     return None
 
 
+MORNING_REFRESH_HOUR_ET = 8
+
+
 def write_picks_snapshot(*, boards: dict[str, dict], paths) -> None:
     snapshot_date = local_iso_date()
     final_path = paths.data_final / "picks.json"
@@ -199,6 +202,12 @@ def write_picks_snapshot(*, boards: dict[str, dict], paths) -> None:
             existing = json.loads(final_path.read_text(encoding="utf-8"))
         except Exception:
             existing = None
+    # Morning gate: hold the picks until the 8 AM ET refresh so the Morning
+    # Card reflects the actual morning slate rather than whatever the cron
+    # produced overnight at midnight ET.
+    now_et = datetime.now(ET)
+    if now_et.hour < MORNING_REFRESH_HOUR_ET:
+        return
     if existing and existing.get("date") == snapshot_date:
         return
 
