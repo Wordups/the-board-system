@@ -1743,15 +1743,15 @@ function playerButton(player, sport, extraClass = "") {
 }
 
 function hrResultBadge(player) {
-  if (!player || !player.hr_result) return "";
+  if (!player) return "";
   if (player.hr_result === "hit") {
     const count = Number(player.home_runs || 1);
     return `<span class="result-badge result-hit" title="${esc(count + " HR")}">${count > 1 ? `${count}HR` : "HR"}</span>`;
   }
   if (player.hr_result === "miss") {
-    return `<span class="result-badge result-miss" title="Final: no HR">0</span>`;
+    return `<span class="result-badge result-miss" title="Final: no HR">Miss</span>`;
   }
-  return "";
+  return `<span class="result-badge result-pending" title="Game has not settled yet.">Pending</span>`;
 }
 
 function rowsForGame(data, team, opponent) {
@@ -2370,7 +2370,7 @@ function renderFrozenDailySummaryCard(sport, frozen, liveData) {
                     ["Home Plate", frozen.straight],
                     ["First Base", frozen.twoLeg?.[1] || frozen.threeLeg?.[1] || null],
                     ["Second Base", frozen.threeLeg?.[2] || null],
-                    ["Third Base", (liveData?.research_board?.home_run?.strong_candidates || [])[0] || null],
+                    ["Third Base", frozen.fourLeg?.[3] || frozen.diamond?.fourth || null],
                   ].map(([label, row]) => `
                     <div class="summary-line">
                       <div>
@@ -2382,7 +2382,7 @@ function renderFrozenDailySummaryCard(sport, frozen, liveData) {
                             <span class="reason-chip">${esc(row.line || "No line")}</span>
                             ${tierBadge(row.tier)}
                             ${renderStatusChip(resolveHrPickStatus(row, liveData))}
-                          </div>` : `<div class="summary-empty">Open base.</div>`}
+                          </div>` : `<div class="summary-empty">Open base — no frozen pick locked for this slot.</div>`}
                       </div>
                     </div>`).join(""))
                 : (frozen.threeLeg || []).length
