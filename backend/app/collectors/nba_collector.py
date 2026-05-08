@@ -15,6 +15,11 @@ from app.scoring.lineups import (
     is_playable,
     lineup_summary_note,
 )
+from app.scoring.value import (
+    find_value_line,
+    format_implied_odds,
+    value_zone,
+)
 from app.utils.dates import now_et, today_et
 
 
@@ -530,12 +535,26 @@ def build_market_candidate(
     if is_home:
         projected += home_boost_for_market(market)
 
-    line_value = suggested_line(market, projected)
-    l10_hit_rate = hit_rate(recent_10, market, line_value)
-    l5_hit_rate = hit_rate(recent_5, market, line_value)
-    vs_opp_hit_rate = hit_rate(vs_opp_logs, market, line_value) if vs_opp_logs else l10_hit_rate
-    if l10_hit_rate < 0.60:
+    # Anchor the line search at the player's career baseline (max of season /
+    # vs-opponent / l10), not engineered floor — same pattern as WNBA.
+    baseline = max(season_avg, vs_opp_avg, l10_avg, 0.0)
+    if baseline <= 0:
+        baseline = max(season_avg, 1.0)
+    valued = find_value_line(
+        market=market,
+        recent_logs=recent_10,
+        baseline=baseline,
+        projection=projected,
+        line_minimums=NBA_LINE_MINIMUMS,
+    )
+    if not valued:
         return None
+    line_value = valued["line"]
+    model_hit_rate = valued["hit_rate"]
+    implied_odds_value = valued["implied_odds"]
+    edge = valued["edge"]
+    zone = valued["zone"]
+    vs_opp_hit_rate = hit_rate(vs_opp_logs, market, line_value) if vs_opp_logs else model_hit_rate
 
     leverage = playoff_leverage_for_team(series_context=series_context, team_abbr=team_abbr)
     minutes_projection = profile["minutes_projection"] + leverage["minutes_boost"]
@@ -554,29 +573,33 @@ def build_market_candidate(
     h2h_component = min(max((vs_opp_hit_rate - 0.50) / 0.40, 0.0), 1.0) * h2h_confidence
     home_component = 1.0 if is_home else 0.0
 
+    # Value-aware score: peak around AIM (~0.50 hit rate), bonuses for
+    # matchup / usage / trend / h2h / home, value-zone bonus on top.
+    aim_proximity = max(0.0, 1.0 - abs(model_hit_rate - 0.50) * 2.0)
     raw_score = 100 * (
-        (l10_hit_rate * 0.25)
-        + (l5_hit_rate * 0.26)
-        + (usage_component * 0.23)
-        + (trend_component * 0.11)
-        + (matchup_component * 0.08)
-        + (h2h_component * 0.03)
-        + (home_component * 0.04)
+        (aim_proximity * 0.30)
+        + (usage_component * 0.20)
+        + (matchup_component * 0.15)
+        + (trend_component * 0.10)
+        + (h2h_component * 0.05)
+        + (home_component * 0.05)
     )
     raw_score += leverage["score_boost"]
+    raw_score += NBA_VALUE_ZONE_BONUS.get(zone, 0.0)
     if market in {"PTS", "AST", "3PM"} and usage_share < 0.30:
         raw_score -= 5.0
     if minutes_flag:
         raw_score -= 4.0
-
     raw_score = max(raw_score, 1.0)
+
     tier = classify_prop_tier(
         market=market,
-        l10_hit_rate=l10_hit_rate,
-        l5_hit_rate=l5_hit_rate,
+        l10_hit_rate=model_hit_rate,
+        l5_hit_rate=model_hit_rate,
         usage_share=usage_share,
         strong_matchup=strong_matchup,
         minutes_projection=minutes_projection,
+        zone=zone,
     )
 
     return {
@@ -590,10 +613,17 @@ def build_market_candidate(
         "score": round(raw_score, 2),
         "confidence": max(1, min(99, round(raw_score))),
         "tier": tier,
+        "implied_odds": format_implied_odds(implied_odds_value),
+        "implied_odds_value": implied_odds_value,
+        "value_zone": zone,
+        "edge": edge,
+        "model_hit_rate": round(model_hit_rate, 3),
         "reason": build_market_reason(
             market=market,
-            l10_hit_rate=l10_hit_rate,
-            l5_hit_rate=l5_hit_rate,
+            model_hit_rate=model_hit_rate,
+            implied_odds=implied_odds_value,
+            edge=edge,
+            zone=zone,
             usage_share=usage_share,
             minutes_projection=minutes_projection,
             matchup_ratio=matchup_ratio,
@@ -603,14 +633,25 @@ def build_market_candidate(
             vs_opp_games=len(vs_opp_logs),
             vs_opp_avg=vs_opp_avg,
             opponent_abbr=opponent_abbr,
+            projected=projected,
+            baseline=baseline,
         ),
-        "l10_hit_rate": l10_hit_rate,
-        "l5_hit_rate": l5_hit_rate,
+        # Legacy fields for shared NBA board builder consumers.
+        "l10_hit_rate": model_hit_rate,
+        "l5_hit_rate": model_hit_rate,
         "vs_opp_hit_rate": vs_opp_hit_rate,
         "usage_pct": usage_share,
         "minutes_projection": minutes_projection,
         "strong_matchup": strong_matchup,
     }
+
+
+# Per-market line floors (no point asking for over 0.5 PTS, etc.).
+NBA_LINE_MINIMUMS = {"PTS": 10, "REB": 4, "AST": 2, "3PM": 1}
+
+# Score bonus per value-zone bucket. AIM and VALUE plays get the biggest
+# bumps; chalk and longshots get less.
+NBA_VALUE_ZONE_BONUS = {"aim": 14.0, "value": 12.0, "lean": 4.0, "longshot": 6.0}
 
 
 def build_moneyline_candidates(
@@ -700,11 +741,20 @@ def classify_prop_tier(
     usage_share: float,
     strong_matchup: bool,
     minutes_projection: float,
+    zone: str = "",
 ) -> str:
+    """Tier the candidate by the value zone the natural line landed in plus
+    supporting context (matchup, usage, minutes). Hit rate alone isn't the
+    gate — the line is already chosen so probability sits near 0.50 by
+    design.
+    """
     usage_gate = 0.24 if market == "REB" else 0.30
-    if l10_hit_rate >= 0.70 and l5_hit_rate >= 0.70 and strong_matchup and minutes_projection >= 30 and usage_share >= usage_gate:
+    base_zones = {"aim", "value", "longshot"}
+    if zone in base_zones and strong_matchup and minutes_projection >= 30 and usage_share >= usage_gate:
         return "A"
-    if l10_hit_rate >= 0.60 and strong_matchup and minutes_projection >= 30:
+    if zone in base_zones and minutes_projection >= 28:
+        return "B"
+    if zone == "lean" and minutes_projection >= 28 and usage_share >= usage_gate:
         return "B"
     return "C"
 
@@ -712,8 +762,10 @@ def classify_prop_tier(
 def build_market_reason(
     *,
     market: str,
-    l10_hit_rate: float,
-    l5_hit_rate: float,
+    model_hit_rate: float,
+    implied_odds: int,
+    edge: float,
+    zone: str,
     usage_share: float,
     minutes_projection: float,
     matchup_ratio: float,
@@ -723,10 +775,16 @@ def build_market_reason(
     vs_opp_games: int,
     vs_opp_avg: float,
     opponent_abbr: str,
+    projected: float,
+    baseline: float,
 ) -> str:
     parts = [
-        f"L10 {l10_hit_rate:.0%}",
-        f"L5 {l5_hit_rate:.0%}",
+        f"Implied {format_implied_odds(implied_odds)}",
+        f"Zone {zone.upper()}",
+        f"Edge {edge:+.2f}",
+        f"Hit% {model_hit_rate:.0%}",
+        f"Proj {projected:.1f}",
+        f"Baseline {baseline:.1f}",
         f"USG {usage_share:.0%}",
         f"MIN {minutes_projection:.1f}",
         f"{market} matchup {matchup_ratio:.2f}x",

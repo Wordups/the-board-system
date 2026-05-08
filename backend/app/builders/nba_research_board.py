@@ -88,6 +88,22 @@ def apply_research_overlay(candidate: dict[str, Any], notes: dict[str, Any]) -> 
             for note in evidence[:6]
         ],
     }
+    # Propagate value-pricing + lineup signals so picks_snapshot.clone_row
+    # can carry them through to the Morning Card.
+    for key in (
+        "implied_odds",
+        "implied_odds_value",
+        "value_zone",
+        "edge",
+        "model_hit_rate",
+        "lineup_status",
+        "team_star_outs",
+        "team_star_gtd",
+        "team_usage_boost",
+        "team_lost_usage",
+    ):
+        if key in candidate:
+            row[key] = candidate[key]
     return row
 
 
