@@ -2290,18 +2290,21 @@ async function renderPicksView() {
     sourceBoards[sport] = await loadSport(sport);
   }
 
-  const cards = sports.map(([sport, data]) => `
-    <section class="pick-sport-card">
-      <div class="pick-sport-head">
-        <div class="pick-sport-title">${esc(data?.label || SPORT_LABELS[sport] || sport.toUpperCase())}</div>
-        <div class="pick-sport-meta">${esc(data?.last_updated || "")}</div>
-      </div>
-      <div class="pick-sport-body">
-        ${renderFrozenDailySummaryCard(sport, data, sourceBoards[sport])}
-        <div class="pick-sport-footnote">Morning Card — locked at the 8 AM ET refresh. Sport tabs keep updating without disturbing this slate.</div>
-      </div>
-    </section>
-  `).filter(Boolean);
+  const cards = sports.map(([sport, data]) => {
+    const frozenMarkup = renderFrozenDailySummaryCard(sport, data, sourceBoards[sport]);
+    if (!frozenMarkup) return "";  // sport had no A-tier rows; drop from Picks of the Day
+    return `
+      <section class="pick-sport-card">
+        <div class="pick-sport-head">
+          <div class="pick-sport-title">${esc(data?.label || SPORT_LABELS[sport] || sport.toUpperCase())}</div>
+          <div class="pick-sport-meta">${esc(data?.last_updated || "")}</div>
+        </div>
+        <div class="pick-sport-body">
+          ${frozenMarkup}
+          <div class="pick-sport-footnote">Morning Card — locked at the 8 AM ET refresh. Sport tabs keep updating without disturbing this slate.</div>
+        </div>
+      </section>`;
+  }).filter(Boolean);
   view.innerHTML = `
     <div class="section-label">Picks of the Day</div>
     <div class="picks-board">

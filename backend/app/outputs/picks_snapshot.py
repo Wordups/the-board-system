@@ -248,13 +248,20 @@ def write_picks_snapshot(*, boards: dict[str, dict], paths) -> None:
     sports = {}
     for sport_key, board in boards.items():
         picks = derive_sport_picks(sport_key, board)
-        if picks and picks.get("straight"):
-            sports[sport_key] = {
-                "label": board.get("sport", sport_key.upper()),
-                "date": board.get("date"),
-                "last_updated": board.get("last_updated"),
-                **picks,
-            }
+        if not picks:
+            continue
+        # Keep the sport on Picks of the Day if any slot has A-tier rows —
+        # don't drop the whole sport just because the top default straight
+        # happened to land tier B.
+        has_any = picks.get("straight") or picks.get("twoLeg") or picks.get("threeLeg")
+        if not has_any:
+            continue
+        sports[sport_key] = {
+            "label": board.get("sport", sport_key.upper()),
+            "date": board.get("date"),
+            "last_updated": board.get("last_updated"),
+            **picks,
+        }
 
     payload = {
         "date": snapshot_date,
