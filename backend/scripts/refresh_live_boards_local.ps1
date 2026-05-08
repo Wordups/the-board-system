@@ -19,6 +19,21 @@ Write-Log "Starting local live board refresh."
 
 Set-Location $repoRoot
 
+# Sync with origin/main FIRST so the regenerate runs against current code,
+# not whatever stale snapshot this checkout last had. Without this the
+# script will happily regenerate JSON under outdated logic and try to
+# push it back over freshly merged work, undoing PR landings.
+git fetch origin main 2>&1 | Out-Null
+$behind = (git rev-list --count HEAD..origin/main).Trim()
+if ($behind -ne "0") {
+    Write-Log "Local main is $behind commits behind origin/main; pulling before regenerate."
+    git pull --ff-only origin main
+    if ($LASTEXITCODE -ne 0) {
+        Write-Log "git pull --ff-only failed (likely uncommitted local changes or diverged history). Aborting refresh — resolve manually."
+        exit 1
+    }
+}
+
 & $pythonExe "backend\scripts\run_all.py"
 Write-Log "Board rebuild finished."
 
