@@ -9,6 +9,12 @@ from typing import Any
 import requests
 
 from app.outputs.json_writer import write_json
+from app.scoring.value import (
+    find_value_line,
+    format_implied_odds,
+    is_marketable,
+    value_zone,
+)
 from app.utils.dates import today_et
 from app.collectors.nba_collector import (
     HTTP_TIMEOUT,
@@ -607,20 +613,57 @@ def build_market_candidate(
     split_avg = profile["home_avgs"][market] if is_home else profile["away_avgs"][market]
     trend_delta = l5_avg - season_avg
     sample_size = max(1, profile.get("sample_size", len(recent_10)))
-    early_season = sample_size
-    preseason_weight = 0.12 if early_season < 8 else 0.05
-    previous_weight = 0.12 if early_season < 8 else 0.04
-    season_weight = 0.15 if early_season >= 8 else 0.08
-    projected = (l5_avg * 0.43) + (l10_avg * 0.20) + (season_avg * season_weight) + (split_avg * 0.10) + (preseason_avg * preseason_weight) + (previous_avg * previous_weight)
+
+    # Marketability gate: drop unknowns with no real body of work AND insufficient
+    # current sample. Mirrors what sportsbooks actually list.
+    if not is_marketable(
+        sample_size=sample_size,
+        previous_avg=previous_avg,
+        previous_avg_floor=MARKETABILITY_FLOORS.get(market, 0.0),
+        minimum_current_sample=5,
+    ):
+        return None
+
+    # Body-of-work-aware projection: lean on previous-season + preseason data
+    # heavily until the current sample fills in.
+    if sample_size < 5:
+        projected = (
+            (l5_avg * 0.20) + (l10_avg * 0.10) + (season_avg * 0.05)
+            + (split_avg * 0.05) + (preseason_avg * 0.25) + (previous_avg * 0.35)
+        )
+    elif sample_size < 8:
+        projected = (
+            (l5_avg * 0.30) + (l10_avg * 0.18) + (season_avg * 0.08)
+            + (split_avg * 0.07) + (preseason_avg * 0.17) + (previous_avg * 0.20)
+        )
+    else:
+        projected = (
+            (l5_avg * 0.43) + (l10_avg * 0.20) + (season_avg * 0.15)
+            + (split_avg * 0.10) + (preseason_avg * 0.05) + (previous_avg * 0.07)
+        )
     if is_home:
         projected += home_boost_for_market(market)
 
-    line_value = suggested_line(market, projected)
-    l10_hit_rate = hit_rate(recent_10, market, line_value)
-    l5_hit_rate = hit_rate(recent_5, market, line_value)
-    sample_factor = min(sample_size / 5.0, 1.0)
-    if sample_size >= 3 and l10_hit_rate < 0.55:
+    # Anchor line search at the player's career baseline, not their floor.
+    baseline = max(previous_avg, preseason_avg, season_avg, 0.0)
+    if baseline <= 0:
+        baseline = max(season_avg, 1.0)
+
+    valued = find_value_line(
+        market=market,
+        recent_logs=recent_10,
+        baseline=baseline,
+        projection=projected,
+        line_minimums=LINE_MINIMUMS,
+    )
+    if not valued:
         return None
+
+    line_value = valued["line"]
+    model_hit_rate = valued["hit_rate"]
+    implied_odds_value = valued["implied_odds"]
+    edge = valued["edge"]
+    zone = valued["zone"]
 
     minutes_projection = profile["minutes_projection"]
     minutes_flag = minutes_projection < 24.0
@@ -639,30 +682,34 @@ def build_market_candidate(
     trend_state = trend_profile.get("state", "flat")
     trend_bonus = trend_scale * 0.08
 
+    # Value-aware score: peak around the AIM zone (~0.50 hit rate), with bonuses
+    # for matchup / usage / trend / home. Hit rate is no longer the dominant
+    # signal — the line is already chosen so probability is in [0.10, 0.80].
+    aim_proximity = max(0.0, 1.0 - abs(model_hit_rate - 0.50) * 2.0)
     raw_score = 100 * (
-        (l10_hit_rate * 0.27)
-        + (l5_hit_rate * 0.22)
+        (aim_proximity * 0.30)
         + (usage_component * 0.20)
-        + (trend_component * 0.11)
-        + (matchup_component * 0.10)
-        + (home_component * 0.04)
-        + (sample_factor * 0.06)
+        + (matchup_component * 0.15)
+        + (trend_component * 0.10)
+        + (home_component * 0.05)
         + trend_bonus
     )
+    raw_score += VALUE_ZONE_BONUS.get(zone, 0.0)
     if market in {"PTS", "AST", "3PM"} and usage_share < 0.24:
         raw_score -= 4.0
     if minutes_flag:
         raw_score -= 4.0
-
     raw_score = max(raw_score, 1.0)
+
     tier = classify_prop_tier(
         market=market,
-        l10_hit_rate=l10_hit_rate,
-        l5_hit_rate=l5_hit_rate,
+        l10_hit_rate=model_hit_rate,
+        l5_hit_rate=model_hit_rate,
         usage_share=usage_share,
         strong_matchup=strong_matchup,
         minutes_projection=minutes_projection,
         sample_size=sample_size,
+        zone=zone,
     )
 
     return {
@@ -676,10 +723,17 @@ def build_market_candidate(
         "score": round(raw_score, 2),
         "confidence": max(1, min(99, round(raw_score))),
         "tier": tier,
+        "implied_odds": format_implied_odds(implied_odds_value),
+        "implied_odds_value": implied_odds_value,
+        "value_zone": zone,
+        "edge": edge,
+        "model_hit_rate": round(model_hit_rate, 3),
         "reason": build_market_reason(
             market=market,
-            l10_hit_rate=l10_hit_rate,
-            l5_hit_rate=l5_hit_rate,
+            model_hit_rate=model_hit_rate,
+            implied_odds=implied_odds_value,
+            edge=edge,
+            zone=zone,
             usage_share=usage_share,
             minutes_projection=minutes_projection,
             matchup_ratio=matchup_ratio,
@@ -689,15 +743,33 @@ def build_market_candidate(
             trend_scale=trend_scale,
             preseason_avg=preseason_avg,
             previous_avg=previous_avg,
+            projected=projected,
+            baseline=baseline,
         ),
-        "l10_hit_rate": l10_hit_rate,
-        "l5_hit_rate": l5_hit_rate,
         "usage_pct": usage_share,
         "minutes_projection": minutes_projection,
         "strong_matchup": strong_matchup,
         "trend_state": trend_state,
         "trend_scale": trend_scale,
+        # Legacy fields for the shared NBA board builder. Under the value-pricing
+        # model the natural line lands at a ~0.50 shrunken hit rate by design,
+        # so populating both with model_hit_rate is intentional.
+        "l10_hit_rate": model_hit_rate,
+        "l5_hit_rate": model_hit_rate,
     }
+
+
+# Marketability floors — minimum previous-season average to be considered for
+# featuring without sufficient current-season sample. Keeps unknowns off the
+# board until they accumulate.
+MARKETABILITY_FLOORS = {"PTS": 8.0, "REB": 3.0, "AST": 2.0, "3PM": 0.7}
+
+# Minimum lines per market (no point asking the model to over 0.5 PTS, etc.).
+LINE_MINIMUMS = {"PTS": 8, "REB": 3, "AST": 2, "3PM": 1}
+
+# Score bonus per value-zone bucket. AIM (~50%) and VALUE (+100/+400) plays
+# get the biggest bumps; chalk and longshots get less or none.
+VALUE_ZONE_BONUS = {"aim": 14.0, "value": 12.0, "lean": 4.0, "longshot": 6.0}
 
 
 def build_moneyline_candidates(
@@ -773,11 +845,19 @@ def classify_prop_tier(
     strong_matchup: bool,
     minutes_projection: float,
     sample_size: int,
+    zone: str = "",
 ) -> str:
+    """Tier the candidate by the value zone the natural line landed in plus
+    the supporting context (matchup, usage, minutes). Hit rate alone isn't
+    the gate — the line is already chosen so probability sits near 0.50.
+    """
     usage_gate = 0.18 if market == "REB" else 0.24
-    if sample_size >= 3 and l10_hit_rate >= 0.70 and l5_hit_rate >= 0.60 and strong_matchup and minutes_projection >= 24 and usage_share >= usage_gate:
+    base_zones = {"aim", "value", "longshot"}
+    if zone in base_zones and strong_matchup and minutes_projection >= 24 and usage_share >= usage_gate:
         return "A"
-    if l10_hit_rate >= 0.60 and minutes_projection >= 22:
+    if zone in base_zones and minutes_projection >= 22:
+        return "B"
+    if zone == "lean" and minutes_projection >= 22 and usage_share >= usage_gate:
         return "B"
     return "C"
 
@@ -785,8 +865,10 @@ def classify_prop_tier(
 def build_market_reason(
     *,
     market: str,
-    l10_hit_rate: float,
-    l5_hit_rate: float,
+    model_hit_rate: float,
+    implied_odds: int,
+    edge: float,
+    zone: str,
     usage_share: float,
     minutes_projection: float,
     matchup_ratio: float,
@@ -796,11 +878,17 @@ def build_market_reason(
     trend_scale: float,
     preseason_avg: float,
     previous_avg: float,
+    projected: float,
+    baseline: float,
 ) -> str:
     parts = [
+        f"Implied {format_implied_odds(implied_odds)}",
+        f"Zone {zone.upper()}",
+        f"Edge {edge:+.2f}",
+        f"Hit% {model_hit_rate:.0%}",
         f"Sample {sample_size}",
-        f"L10 {l10_hit_rate:.0%}",
-        f"L5 {l5_hit_rate:.0%}",
+        f"Proj {projected:.1f}",
+        f"Baseline {baseline:.1f}",
         f"USG {usage_share:.0%}",
         f"MIN {minutes_projection:.1f}",
         f"{market} matchup {matchup_ratio:.2f}x",

@@ -95,7 +95,7 @@ def build_nba_board(*, config, paths) -> dict:
 
 
 def to_board_row(candidate: dict) -> dict:
-    return {
+    row = {
         "player_id": str(candidate["player_id"]),
         "player_name": candidate["player_name"],
         "team": candidate["team"],
@@ -106,6 +106,15 @@ def to_board_row(candidate: dict) -> dict:
         "tier": candidate["tier"],
         "reason": candidate["reason"],
     }
+    if "implied_odds" in candidate:
+        row["implied_odds"] = candidate["implied_odds"]
+    if "value_zone" in candidate:
+        row["value_zone"] = candidate["value_zone"]
+    if "edge" in candidate:
+        row["edge"] = candidate["edge"]
+    if "model_hit_rate" in candidate:
+        row["model_hit_rate"] = candidate["model_hit_rate"]
+    return row
 
 
 def apply_anti_correlation(candidates: list[dict]) -> list[dict]:
@@ -192,17 +201,30 @@ def featured_prop_floor(candidate: dict, sport: str) -> float:
     return floors.get(sport.upper(), floors["NBA"]).get(str(market), 0.0)
 
 
+VALUE_ZONE_FEATURED = {"aim", "value", "lean", "longshot"}
+
+
 def is_featured_prop(candidate: dict, sport: str) -> bool:
     market = candidate.get("market")
     if market == "ML":
         return False
     if candidate.get("tier") not in {"A", "B"}:
         return False
-    if float(candidate.get("l5_hit_rate", 0.0) or 0.0) < 0.65:
+    # Value-pricing path: the natural line by design lands near a 0.50 hit rate,
+    # so the legacy 0.65 cutoff would reject every candidate. Trust the
+    # value-zone classification instead.
+    zone = candidate.get("value_zone")
+    if zone is not None:
+        if zone not in VALUE_ZONE_FEATURED:
+            return False
+    elif float(candidate.get("l5_hit_rate", 0.0) or 0.0) < 0.65:
         return False
     floor = featured_prop_floor(candidate, sport)
     value = parse_line_floor(str(candidate.get("line", "")))
     return value >= floor if floor else True
+
+
+VALUE_ZONE_RANK_BONUS = {"aim": 3.0, "value": 2.5, "longshot": 1.5, "lean": 1.0}
 
 
 def featured_prop_score(candidate: dict, sport: str) -> float:
@@ -212,12 +234,14 @@ def featured_prop_score(candidate: dict, sport: str) -> float:
     value = parse_line_floor(str(candidate.get("line", "")))
     floor_margin = max(0.0, value - floor) * 0.8
     h2h_bonus = 0.75 if "H2H" in str(candidate.get("reason", "")) else 0.0
+    zone_bonus = VALUE_ZONE_RANK_BONUS.get(str(candidate.get("value_zone", "")), 0.0)
     return round(
         float(candidate.get("score", 0.0))
         + market_bonus.get(str(candidate.get("market")), 0.0)
         + tier_bonus.get(str(candidate.get("tier")), 0.0)
         + floor_margin
-        + h2h_bonus,
+        + h2h_bonus
+        + zone_bonus,
         2,
     )
 
@@ -241,18 +265,7 @@ def build_pick_of_day(processed_games: list[dict], previous_pick: dict | None, *
         reverse=True,
     )
     best = ranked[0]
-    return {
-        "player_id": str(best["player_id"]),
-        "player_name": best["player_name"],
-        "team": best["team"],
-        "opponent": best["opponent"],
-        "market": best["market"],
-        "line": best["line"],
-        "score": best["score"],
-        "confidence": best["confidence"],
-        "tier": best["tier"],
-        "reason": best["reason"],
-    }
+    return _summarize_pick(best)
 
 
 def build_hero_pick(pick_of_day: dict | None, candidates: list[dict], *, sport: str = "NBA") -> dict | None:
@@ -275,18 +288,28 @@ def build_hero_pick(pick_of_day: dict | None, candidates: list[dict], *, sport: 
         reverse=True,
     )[0]
     return {
-        "player_id": str(best["player_id"]),
-        "player_name": best["player_name"],
-        "team": best["team"],
-        "opponent": best["opponent"],
-        "market": best["market"],
-        "line": best["line"],
-        "score": best["score"],
-        "confidence": best["confidence"],
-        "tier": best["tier"],
-        "reason": best["reason"],
+        **_summarize_pick(best),
         "label": "Signal Leader",
     }
+
+
+def _summarize_pick(candidate: dict) -> dict:
+    summary = {
+        "player_id": str(candidate["player_id"]),
+        "player_name": candidate["player_name"],
+        "team": candidate["team"],
+        "opponent": candidate["opponent"],
+        "market": candidate["market"],
+        "line": candidate["line"],
+        "score": candidate["score"],
+        "confidence": candidate["confidence"],
+        "tier": candidate["tier"],
+        "reason": candidate["reason"],
+    }
+    for key in ("implied_odds", "value_zone", "edge", "model_hit_rate"):
+        if key in candidate:
+            summary[key] = candidate[key]
+    return summary
 
 
 def build_game_clusters(processed_games: list[dict]) -> list[dict]:

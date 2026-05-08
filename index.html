@@ -1428,6 +1428,19 @@ button { cursor: pointer; border: none; background: none; }
 .status-miss { background: var(--red-dim); color: var(--red); }
 .status-pending { background: var(--surface-3); color: var(--text-2); }
 
+.implied-odds-badge {
+  display: inline-flex; align-items: center;
+  padding: 2px 7px; border-radius: 999px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 10px; font-weight: 800;
+  letter-spacing: 0.6px; flex-shrink: 0;
+  border: 1px solid transparent;
+}
+.implied-odds-badge.zone-aim { background: rgba(59,130,246,0.14); color: var(--blue); border-color: rgba(59,130,246,0.30); }
+.implied-odds-badge.zone-value { background: rgba(34,197,94,0.14); color: var(--green); border-color: rgba(34,197,94,0.30); }
+.implied-odds-badge.zone-longshot { background: rgba(168,85,247,0.14); color: var(--tennis); border-color: rgba(168,85,247,0.30); }
+.implied-odds-badge.zone-lean { background: var(--surface-3); color: var(--text-2); border-color: var(--border-2); }
+
 .summary-stack {
   display: flex;
   flex-direction: column;
@@ -1740,6 +1753,15 @@ function playerFace(player, sport, small = false) {
 function playerButton(player, sport, extraClass = "") {
   if (!player) return "";
   return `<button class="player-link ${extraClass}" data-player-id="${esc(player.player_id)}" data-sport="${esc(sport)}">${esc(player.player_name)}</button>`;
+}
+
+function impliedOddsBadge(player) {
+  const odds = player?.implied_odds;
+  if (!odds) return "";
+  const zone = String(player.value_zone || "aim").toLowerCase();
+  const zoneClass = ["aim", "value", "longshot", "lean"].includes(zone) ? zone : "aim";
+  const title = `Value zone: ${zone.toUpperCase()}${player.edge != null ? ` • Edge ${player.edge >= 0 ? "+" : ""}${Number(player.edge).toFixed(2)}` : ""}`;
+  return `<span class="implied-odds-badge zone-${zoneClass}" title="${esc(title)}">${esc(odds)}</span>`;
 }
 
 function hrResultBadge(player) {
@@ -2219,6 +2241,7 @@ function renderPinnedSection(board, sport = "mlb") {
             <div class="pinned-meta"><span>${esc(p.team)}</span><span>vs ${esc(p.opponent)}</span></div>
           </div>
           <div class="pinned-line">${esc(p.line)}</div>
+          ${impliedOddsBadge(p)}
           ${board.market === "HR" ? hrResultBadge(p) : ""}
           ${tierBadge(p.tier)}
         </div>`).join("")}
@@ -2341,6 +2364,7 @@ function renderFrozenDailySummaryCard(sport, frozen, liveData) {
           <div class="summary-meta">${esc(row.team)} vs ${esc(row.opponent)}${row.market ? ` • ${esc(row.market)}` : ""}</div>
           <div class="summary-chips">
             <span class="reason-chip">${esc(row.line || "No line")}</span>
+            ${impliedOddsBadge(row)}
             ${tierBadge(row.tier)}
             ${status ? renderStatusChip(status) : ""}
           </div>

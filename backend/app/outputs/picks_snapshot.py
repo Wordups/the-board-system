@@ -75,7 +75,7 @@ def prop_quality_score(row: dict, sport: str) -> float:
 def clone_row(row: dict | None, market_override: str = "") -> dict | None:
     if not row:
         return None
-    return {
+    cloned = {
         "player_id": row.get("player_id"),
         "player_name": row.get("player_name"),
         "team": row.get("team"),
@@ -87,6 +87,10 @@ def clone_row(row: dict | None, market_override: str = "") -> dict | None:
         "reason": row.get("reason", ""),
         "market": market_override or row.get("market") or "",
     }
+    for key in ("implied_odds", "value_zone", "edge", "model_hit_rate"):
+        if key in row:
+            cloned[key] = row[key]
+    return cloned
 
 
 def dedupe_rows(rows: list[dict]) -> list[dict]:
