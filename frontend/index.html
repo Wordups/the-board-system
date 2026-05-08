@@ -481,12 +481,14 @@ button { cursor: pointer; border: none; background: none; }
 
 .result-badge {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 20px; height: 20px; border-radius: 4px;
+  min-width: 22px; height: 20px; padding: 0 6px; border-radius: 999px;
   font-family: "Barlow Condensed", sans-serif;
   font-size: 12px; font-weight: 900; flex-shrink: 0;
+  letter-spacing: 0.5px;
 }
 .result-hit { background: var(--green-dim); color: var(--green); }
 .result-miss { background: var(--red-dim); color: var(--red); }
+.result-pending { background: var(--surface-3); color: var(--text-3); }
 
 /* COMING SOON */
 .coming-soon { padding: 48px 20px; text-align: center; }
@@ -1311,6 +1313,132 @@ button { cursor: pointer; border: none; background: none; }
   color: var(--text-3);
 }
 
+.daily-summary-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.daily-summary-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)),
+    var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.daily-summary-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+
+.daily-summary-sub {
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--text-3);
+  max-width: 56ch;
+}
+
+.daily-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 14px 16px 16px;
+}
+
+.daily-summary-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.daily-summary-block {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.daily-summary-label {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.summary-line {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.summary-line + .summary-line {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.summary-name {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.summary-meta {
+  margin-top: 3px;
+  font-size: 11px;
+  color: var(--text-3);
+}
+
+.summary-chips {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+}
+
+.status-hit { background: var(--green-dim); color: var(--green); }
+.status-miss { background: var(--red-dim); color: var(--red); }
+.status-pending { background: var(--surface-3); color: var(--text-2); }
+
+.summary-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.summary-empty {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
 .explorer-empty {
   padding: 24px;
   text-align: center;
@@ -1423,6 +1551,7 @@ button { cursor: pointer; border: none; background: none; }
   .workspace-layout { grid-template-columns: 1fr; }
   .workspace-rail { position: static; gap: 12px; }
   .workspace-main, .rail-section { gap: 12px; }
+  .daily-summary-grid { grid-template-columns: 1fr; }
   .picks-grid { grid-template-columns: 1fr; }
   .picks-hero { min-height: 0; }
   .picks-hero-inner { grid-template-columns: 1fr; min-height: 0; }
@@ -1616,12 +1745,51 @@ function playerButton(player, sport, extraClass = "") {
 function hrResultBadge(player) {
   if (!player || !player.hr_result) return "";
   if (player.hr_result === "hit") {
-    return `<span class="result-badge result-hit" title="${esc((player.home_runs || 1) + " HR")}">?</span>`;
+    const count = Number(player.home_runs || 1);
+    return `<span class="result-badge result-hit" title="${esc(count + " HR")}">${count > 1 ? `${count}HR` : "HR"}</span>`;
   }
   if (player.hr_result === "miss") {
-    return `<span class="result-badge result-miss" title="Final: no HR">x</span>`;
+    return `<span class="result-badge result-miss" title="Final: no HR">0</span>`;
   }
   return "";
+}
+
+function rowsForGame(data, team, opponent) {
+  return flattenBoardRows(data).filter(row =>
+    String(row.team || "").toUpperCase() === String(team || "").toUpperCase() &&
+    String(row.opponent || "").toUpperCase() === String(opponent || "").toUpperCase()
+  );
+}
+
+function resolveHrPickStatus(pick, data) {
+  if (!pick) return { state: "pending", label: "Pending", title: "Game has not settled yet." };
+  const matchingRows = rowsForGame(data, pick.team, pick.opponent).filter(row =>
+    String(row.player_name || "").toUpperCase() === String(pick.player_name || "").toUpperCase()
+  );
+  const hrRow = matchingRows.find(row => String(row.market || "").toUpperCase() === "HR") || matchingRows[0];
+  if (hrRow?.hr_result === "hit") {
+    const count = Number(hrRow.home_runs || 1);
+    return {
+      state: "hit",
+      label: count > 1 ? `${count} HR` : "HR",
+      title: `${pick.player_name} homered${count > 1 ? ` ${count} times` : ""}.`,
+    };
+  }
+  if (hrRow?.hr_result === "miss") {
+    return { state: "miss", label: "Miss", title: `${pick.player_name} finished without a home run.` };
+  }
+  const game = (data?.games || []).find(g =>
+    String(g.away || "").toUpperCase() === String(pick.team || "").toUpperCase() && String(g.home || "").toUpperCase() === String(pick.opponent || "").toUpperCase()
+      || String(g.home || "").toUpperCase() === String(pick.team || "").toUpperCase() && String(g.away || "").toUpperCase() === String(pick.opponent || "").toUpperCase()
+  );
+  if (game && isFinalGame(game)) {
+    return { state: "miss", label: "Miss", title: `${pick.player_name} finished without a home run.` };
+  }
+  return { state: "pending", label: "Pending", title: "Still live or waiting for first pitch." };
+}
+
+function renderStatusChip(status) {
+  return `<span class="status-chip status-${esc(status.state || "pending")}" title="${esc(status.title || "")}">${esc(status.label || "Pending")}</span>`;
 }
 
 function normalizeDash(value) {
@@ -1993,6 +2161,10 @@ async function renderPicksView() {
   const picksPayload = await loadSport("picks");
   const sports = Object.entries(picksPayload?.sports || {});
   document.getElementById("tab-count-picks").textContent = String(sports.length || "0");
+  const sourceBoards = {};
+  for (const [sport] of sports) {
+    sourceBoards[sport] = await loadSport(sport);
+  }
 
   const cards = sports.map(([sport, data]) => `
     <section class="pick-sport-card">
@@ -2001,12 +2173,7 @@ async function renderPicksView() {
         <div class="pick-sport-meta">${esc(data?.last_updated || "")}</div>
       </div>
       <div class="pick-sport-body">
-        <div class="pick-block">
-          <div class="pick-block-title">Best Straight</div>
-          ${renderPickRow(data?.straight, sport)}
-        </div>
-        ${renderParlayBlock("2-Leg", data?.twoLeg || [], sport)}
-        ${renderParlayBlock("3-Leg", data?.threeLeg || [], sport)}
+        ${renderFrozenDailySummaryCard(sport, data, sourceBoards[sport])}
         <div class="pick-sport-footnote">Frozen daily card. Sport tabs can keep updating without changing the board you set in the morning.</div>
       </div>
     </section>
@@ -2025,10 +2192,8 @@ async function renderPicksView() {
     </div>`;
 
   for (const [sport] of sports) {
-    const sourceBoard = await loadSport(sport);
-    if (sourceBoard) {
-      bindPlayerClicks(view, sourceBoard, sport);
-    }
+    const sourceBoard = sourceBoards[sport];
+    if (sourceBoard) bindPlayerClicks(view, sourceBoard, sport);
   }
 
   if (picksPayload?.date) {
@@ -2147,10 +2312,116 @@ function renderMlbSupportRow(player) {
     </div>`;
 }
 
+function collectMlbHrRows(data) {
+  const preferred = [
+    ...(data?.research_board?.home_run?.core_candidates || []),
+    ...(data?.research_board?.home_run?.strong_candidates || []),
+    ...(data?.research_board?.home_run?.fringe_candidates || []),
+    ...(data?.research_board?.home_run?.top_candidates || []),
+  ].filter(Boolean);
+  if (preferred.length) return dedupeRows(preferred);
+  const frozen = [
+    data?.daily_hr_picks?.single,
+    ...(data?.daily_hr_picks?.two_leg?.legs || []),
+    ...(data?.daily_hr_picks?.three_leg?.legs || []),
+  ].filter(Boolean).map(row => ({ ...row, market: "HR" }));
+  return dedupeRows(frozen);
+}
+
+function renderFrozenDailySummaryCard(sport, frozen, liveData) {
+  if (!frozen) return "";
+  const isMlb = sport === "mlb";
+  const summarizeRow = row => {
+    if (!row) return `<div class="summary-empty">No play locked in for this slot.</div>`;
+    const status = isMlb ? resolveHrPickStatus(row, liveData) : null;
+    return `
+      <div class="summary-line">
+        <div>
+          <div class="summary-name">${playerButton(row, sport, "summary-name")}</div>
+          <div class="summary-meta">${esc(row.team)} vs ${esc(row.opponent)}${row.market ? ` • ${esc(row.market)}` : ""}</div>
+          <div class="summary-chips">
+            <span class="reason-chip">${esc(row.line || "No line")}</span>
+            ${tierBadge(row.tier)}
+            ${status ? renderStatusChip(status) : ""}
+          </div>
+        </div>
+      </div>`;
+  };
+  return `
+    <section class="daily-summary-card">
+      <div class="daily-summary-head">
+        <div>
+          <div class="daily-summary-title">Frozen Daily Card</div>
+          <div class="daily-summary-sub">This stays visible all day even while the rolling board keeps moving. Green lives here once a pick goes yard.</div>
+        </div>
+        <div class="pick-sport-meta">${esc(frozen.last_updated || liveData?.last_updated || "")}</div>
+      </div>
+      <div class="daily-summary-grid">
+        <div class="daily-summary-col">
+          <div class="daily-summary-block">
+            <div class="daily-summary-label">Best Straight</div>
+            ${summarizeRow(frozen.straight)}
+          </div>
+          <div class="daily-summary-block">
+            <div class="daily-summary-label">${isMlb ? "Diamond of the Day" : "3-Leg"}</div>
+            <div class="summary-stack">
+              ${isMlb
+                ? ([
+                    ["Home Plate", frozen.straight],
+                    ["First Base", frozen.twoLeg?.[1] || frozen.threeLeg?.[1] || null],
+                    ["Second Base", frozen.threeLeg?.[2] || null],
+                    ["Third Base", (liveData?.research_board?.home_run?.strong_candidates || [])[0] || null],
+                  ].map(([label, row]) => `
+                    <div class="summary-line">
+                      <div>
+                        <div class="daily-summary-label" style="margin-bottom:4px;color:var(--text-2);">${esc(label)}</div>
+                        ${row ? `
+                          <div class="summary-name">${playerButton(row, sport, "summary-name")}</div>
+                          <div class="summary-meta">${esc(row.team)} vs ${esc(row.opponent)}</div>
+                          <div class="summary-chips">
+                            <span class="reason-chip">${esc(row.line || "No line")}</span>
+                            ${tierBadge(row.tier)}
+                            ${renderStatusChip(resolveHrPickStatus(row, liveData))}
+                          </div>` : `<div class="summary-empty">Open base.</div>`}
+                      </div>
+                    </div>`).join(""))
+                : (frozen.threeLeg || []).length
+                  ? frozen.threeLeg.map(summarizeRow).join("")
+                  : `<div class="summary-empty">No 3-leg build on this slate yet.</div>`}
+            </div>
+          </div>
+        </div>
+        <div class="daily-summary-col">
+          <div class="daily-summary-block">
+            <div class="daily-summary-label">2-Leg</div>
+            <div class="summary-stack">
+              ${(frozen.twoLeg || []).length ? frozen.twoLeg.map(summarizeRow).join("") : `<div class="summary-empty">No 2-leg locked yet.</div>`}
+            </div>
+          </div>
+          ${!isMlb ? `
+            <div class="daily-summary-block">
+              <div class="daily-summary-label">3-Leg</div>
+              <div class="summary-stack">
+                ${(frozen.threeLeg || []).length ? frozen.threeLeg.map(summarizeRow).join("") : `<div class="summary-empty">No 3-leg build on this slate yet.</div>`}
+              </div>
+            </div>` : `
+            <div class="daily-summary-block">
+              <div class="daily-summary-label">3-Leg</div>
+              <div class="summary-stack">
+                ${(frozen.threeLeg || []).length ? frozen.threeLeg.map(summarizeRow).join("") : `<div class="summary-empty">No 3-leg build on this slate yet.</div>`}
+              </div>
+            </div>`}
+        </div>
+      </div>
+    </section>`;
+}
+
 function renderMlbPinnedBoards(data) {
-  const hrRows = data?.pinned_board?.players || [];
+  const hrRows = (data?.pinned_board?.players || []).length ? data.pinned_board.players : collectMlbHrRows(data).slice(0, 3);
   if (!hrRows.length) return "";
-  const watchRows = data?.watch_board?.players || [];
+  const watchRows = (data?.watch_board?.players || []).length
+    ? data.watch_board.players
+    : collectMlbHrRows(data).slice(3, 10);
   const diamondRows = [
     hrRows[0] || null,
     hrRows[1] || null,
@@ -2568,7 +2839,7 @@ function bindPlayerClicks(container, data, sport) {
   });
 }
 
-function renderGameView(sport, data) {
+async function renderGameView(sport, data) {
   const view = document.getElementById(`view-${sport}`);
   if (!data || !data.games || !data.games.length) {
     const cs = COMING_SOON[sport];
@@ -2589,11 +2860,14 @@ function renderGameView(sport, data) {
     data.games.filter(game => !isLiveGame(game) && !isFinalGame(game))
   );
   const pinnedMarkup = renderPinnedBoards(data, sport);
+  const picksPayload = await loadSport("picks");
+  const frozenPickMarkup = picksPayload?.sports?.[sport] ? renderFrozenDailySummaryCard(sport, picksPayload.sports[sport], data) : "";
 
   view.innerHTML = `
     <div class="section-label">Today's Games - ${esc(data.date || "")}</div>
     <div class="workspace-layout">
       <div class="workspace-main">
+        ${frozenPickMarkup}
         ${pinnedMarkup}
         <div class="explorer-wrap">
           <div class="explorer-head">
@@ -2665,7 +2939,7 @@ async function switchSport(sport) {
     return;
   }
   const data = await loadSport(sport);
-  renderGameView(sport, data);
+  await renderGameView(sport, data);
 
   if (data) {
     document.getElementById("header-date").textContent = normalizeDash(data.date);
