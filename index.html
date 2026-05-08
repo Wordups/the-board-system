@@ -1152,6 +1152,15 @@ button { cursor: pointer; border: none; background: none; }
   z-index: 1;
 }
 
+.hero-player-chips {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  position: relative;
+  z-index: 1;
+}
+
 .hero-player-line {
   margin-top: 12px;
   font-family: "Barlow Condensed", sans-serif;
@@ -2167,6 +2176,11 @@ function renderPosterHeroPlayer(row, sport, label) {
         </div>
         <div class="hero-player-name">${playerButton(row, sport)}</div>
         <div class="hero-player-meta">${esc(row.team)} vs ${esc(row.opponent)}${row.market ? ` • ${esc(row.market)}` : ""}</div>
+        <div class="hero-player-chips">
+          ${impliedOddsBadge(row)}
+          ${tierBadge(row.tier)}
+          ${lineupBadges(row)}
+        </div>
       </div>
       <div class="hero-player-line">${esc(row.line || "No line")}</div>
     </article>`;
@@ -2312,12 +2326,16 @@ async function renderPicksView() {
   }
 }
 
-function renderPinnedSection(board, sport = "mlb") {
+function renderPinnedSection(board, sport = "mlb", opts = {}) {
   if (!board || !board.players || !board.players.length) return "";
+  const showMarket = !!opts.showMarket;
   return `
     <div class="board-card">
       <div class="board-header">
-        <div class="board-title">${esc(board.title)}</div>
+        <div class="board-header-copy">
+          <div class="board-title">${esc(board.title)}</div>
+          ${board.subtitle ? `<div class="board-subtitle">${esc(board.subtitle)}</div>` : ""}
+        </div>
         <div class="board-count">${board.players.length} Players</div>
       </div>
       ${board.players.map((p, i) => `
@@ -2326,7 +2344,7 @@ function renderPinnedSection(board, sport = "mlb") {
           ${playerFace(p, sport)}
           <div class="pinned-info">
             <div class="pinned-name">${playerButton(p, sport, "pinned-name")}</div>
-            <div class="pinned-meta"><span>${esc(p.team)}</span><span>vs ${esc(p.opponent)}</span></div>
+            <div class="pinned-meta"><span>${esc(p.team)}</span><span>vs ${esc(p.opponent)}</span>${showMarket && p.market ? `<span>${esc(p.market)}</span>` : ""}</div>
           </div>
           <div class="pinned-line">${esc(p.line)}</div>
           ${impliedOddsBadge(p)}
@@ -2605,6 +2623,7 @@ function renderPinnedBoards(data, sport = "mlb") {
   if (sport === "mlb") return renderMlbPinnedBoards(data);
   const sections = [];
   if (data?.pinned_board?.players?.length) sections.push(renderPinnedSection(data.pinned_board, sport));
+  if (data?.best_available_board?.players?.length) sections.push(renderPinnedSection(data.best_available_board, sport, { showMarket: true }));
   if (data?.consistency_board?.players?.length) sections.push(renderPinnedSection(data.consistency_board, sport));
   return sections.length ? `<div class="pinned-stack">${sections.join("")}</div>` : "";
 }

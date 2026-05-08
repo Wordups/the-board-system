@@ -68,6 +68,26 @@ def build_nba_board(*, config, paths) -> dict:
 
     pinned_players = [to_board_row(candidate) for candidate in sorted(pinned_candidates, key=lambda row: (row["score"], row["confidence"]), reverse=True)[:10]]
     consistency_players = build_consistency_board(all_candidates, config.top_market_limit)
+
+    # Best Available: top A-tier candidates across every market (PTS / REB /
+    # AST / 3PM), dedup'd by player+market, capped at 10. Sits next to PTS
+    # Top 10 as the cross-market featured pool.
+    best_available_seen = set()
+    best_available_pool = []
+    for candidate in sorted(all_candidates, key=lambda row: (row["score"], row["confidence"]), reverse=True):
+        if candidate.get("tier") != "A":
+            continue
+        if candidate.get("market") == "ML":
+            continue
+        key = (candidate["player_id"], candidate["market"])
+        if key in best_available_seen:
+            continue
+        best_available_seen.add(key)
+        best_available_pool.append(candidate)
+        if len(best_available_pool) >= 10:
+            break
+    best_available_players = [to_board_row(candidate) for candidate in best_available_pool]
+
     return {
         "sport": "NBA",
         "date": raw_payload["date"],
@@ -79,6 +99,11 @@ def build_nba_board(*, config, paths) -> dict:
             "title": "PTS Top 10",
             "market": "PTS",
             "players": pinned_players,
+        },
+        "best_available_board": {
+            "title": "Best Available",
+            "subtitle": "A-tier across every market",
+            "players": best_available_players,
         },
         "consistency_board": {
             "title": "Consistency Top 10",
@@ -100,6 +125,7 @@ def to_board_row(candidate: dict) -> dict:
         "player_name": candidate["player_name"],
         "team": candidate["team"],
         "opponent": candidate["opponent"],
+        "market": candidate.get("market", ""),
         "line": candidate["line"],
         "score": round(float(candidate["score"]), 2),
         "confidence": int(candidate["confidence"]),

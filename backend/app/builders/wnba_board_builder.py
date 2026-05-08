@@ -86,6 +86,23 @@ def build_wnba_board(*, config, paths) -> dict:
         for candidate in sorted(pinned_candidates, key=lambda row: (row["score"], row["confidence"]), reverse=True)[:10]
     ]
 
+    # Best Available: top A-tier candidates across every market, dedup'd by
+    # (player, market) so the same player doesn't take three rows. Sits
+    # next to PTS Top 10 as the cross-market featured pool.
+    best_available_seen = set()
+    best_available_pool = []
+    for candidate in sorted(all_candidates, key=lambda row: (row["score"], row["confidence"]), reverse=True):
+        if candidate.get("tier") != "A":
+            continue
+        key = (candidate["player_id"], candidate["market"])
+        if key in best_available_seen:
+            continue
+        best_available_seen.add(key)
+        best_available_pool.append(candidate)
+        if len(best_available_pool) >= 10:
+            break
+    best_available_players = [to_board_row(candidate) for candidate in best_available_pool]
+
     return {
         "sport": "WNBA",
         "date": raw_payload["date"],
@@ -97,6 +114,11 @@ def build_wnba_board(*, config, paths) -> dict:
             "title": "PTS Top 10",
             "market": "PTS",
             "players": pinned_players,
+        },
+        "best_available_board": {
+            "title": "Best Available",
+            "subtitle": "A-tier across every market",
+            "players": best_available_players,
         },
         "games": games_output,
     }
