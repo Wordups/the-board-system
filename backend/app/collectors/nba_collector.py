@@ -9,6 +9,12 @@ from typing import Any
 import requests
 
 from app.outputs.json_writer import write_json
+from app.scoring.lineups import (
+    compute_team_lineup_context,
+    extract_injury_status,
+    is_playable,
+    lineup_summary_note,
+)
 from app.utils.dates import now_et, today_et
 
 
@@ -105,19 +111,26 @@ def fetch_team_rosters(team_map: dict[str, int]) -> dict[str, list[dict[str, Any
 
 
 def collect_active_players(roster_map: dict[str, list[dict[str, Any]]]) -> list[dict[str, Any]]:
+    """Return all rostered players tagged with their current injury status.
+
+    Previously this dropped any athlete with a non-empty `injuries` field,
+    which silently removed players like Joel Embiid when Out — and removed
+    the signal needed to boost teammates' usage. Now we keep them in the
+    pool with `injury_status` so downstream code can decide what to drop
+    and how to redistribute usage.
+    """
     players = []
     for team_abbr, roster in roster_map.items():
         for athlete in roster:
             if athlete.get("status", {}).get("type") != "active":
-                continue
-            if athlete.get("injuries"):
-                continue
+                continue  # waived / not on roster
             players.append(
                 {
                     "athlete_id": str(athlete["id"]),
                     "player_name": athlete["displayName"],
                     "team": team_abbr,
                     "position": simplify_position(athlete.get("position", {}).get("abbreviation", "")),
+                    "injury_status": extract_injury_status(athlete),
                 }
             )
     return players
@@ -172,6 +185,7 @@ def parse_player_gamelog(*, player: dict[str, Any], payload: dict[str, Any]) -> 
         "player_name": player["player_name"],
         "team": player["team"],
         "position": player["position"],
+        "injury_status": player.get("injury_status", "ACTIVE"),
         "logs": parsed_logs,
         "season_avgs": season_avgs,
         "l10_avgs": average_log_block(recent_10),
@@ -425,22 +439,31 @@ def build_team_player_candidates(
     allowance_baselines: dict[str, float],
     series_context: dict[str, Any],
 ) -> list[dict[str, Any]]:
-    active_profiles = []
+    # Pull every rostered player's profile + injury status, even ones who
+    # are out tonight, so we can compute the team's lineup picture.
+    roster_profiles = []
     for athlete in roster:
         if athlete.get("status", {}).get("type") != "active":
-            continue
-        if athlete.get("injuries"):
             continue
         profile = player_log_map.get(str(athlete["id"]))
         if not profile:
             continue
-        active_profiles.append(profile)
+        # Roster's injury_status is fresher than the gamelog's snapshot
+        profile["injury_status"] = extract_injury_status(athlete)
+        roster_profiles.append(profile)
 
+    lineup_context = compute_team_lineup_context(roster_profiles)
+    boost_factor = float(lineup_context.get("boost_factor", 1.0))
+    star_outs = lineup_context.get("star_outs", [])
+
+    active_profiles = [p for p in roster_profiles if is_playable(p.get("injury_status", "ACTIVE"))]
     team_usage_total = sum(profile["usage_load"] for profile in active_profiles) or 1.0
     candidates = []
 
     for profile in active_profiles:
-        usage_share = min((profile["usage_load"] / team_usage_total) * 1.8, 0.45)
+        base_share = min((profile["usage_load"] / team_usage_total) * 1.8, 0.45)
+        usage_share = min(base_share * boost_factor, 0.55)
+        status = profile.get("injury_status", "ACTIVE")
         for market in ["PTS", "REB", "AST", "3PM"]:
             candidate = build_market_candidate(
                 market=market,
@@ -455,8 +478,23 @@ def build_team_player_candidates(
                 allowance_baselines=allowance_baselines,
                 series_context=series_context,
             )
-            if candidate:
-                candidates.append(candidate)
+            if not candidate:
+                continue
+            # Annotate with lineup-awareness signals so the frontend and the
+            # picks snapshot can surface them.
+            candidate["lineup_status"] = status
+            candidate["team_star_outs"] = list(star_outs)
+            # Don't surface a player as their own GTD teammate
+            candidate["team_star_gtd"] = [
+                name for name in lineup_context.get("star_gtd", [])
+                if name != profile.get("player_name")
+            ]
+            candidate["team_usage_boost"] = round(boost_factor, 3)
+            candidate["team_lost_usage"] = round(float(lineup_context.get("lost_usage", 0.0)), 2)
+            note = lineup_summary_note(lineup_context, status)
+            if note:
+                candidate["reason"] = f"{candidate['reason']} | {note}"
+            candidates.append(candidate)
 
     return candidates
 

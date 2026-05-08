@@ -106,14 +106,19 @@ def to_board_row(candidate: dict) -> dict:
         "tier": candidate["tier"],
         "reason": candidate["reason"],
     }
-    if "implied_odds" in candidate:
-        row["implied_odds"] = candidate["implied_odds"]
-    if "value_zone" in candidate:
-        row["value_zone"] = candidate["value_zone"]
-    if "edge" in candidate:
-        row["edge"] = candidate["edge"]
-    if "model_hit_rate" in candidate:
-        row["model_hit_rate"] = candidate["model_hit_rate"]
+    for key in (
+        "implied_odds",
+        "value_zone",
+        "edge",
+        "model_hit_rate",
+        "lineup_status",
+        "team_star_outs",
+        "team_star_gtd",
+        "team_usage_boost",
+        "team_lost_usage",
+    ):
+        if key in candidate:
+            row[key] = candidate[key]
     return row
 
 
@@ -306,7 +311,17 @@ def _summarize_pick(candidate: dict) -> dict:
         "tier": candidate["tier"],
         "reason": candidate["reason"],
     }
-    for key in ("implied_odds", "value_zone", "edge", "model_hit_rate"):
+    for key in (
+        "implied_odds",
+        "value_zone",
+        "edge",
+        "model_hit_rate",
+        "lineup_status",
+        "team_star_outs",
+        "team_star_gtd",
+        "team_usage_boost",
+        "team_lost_usage",
+    ):
         if key in candidate:
             summary[key] = candidate[key]
     return summary

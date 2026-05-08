@@ -1464,6 +1464,30 @@ button { cursor: pointer; border: none; background: none; }
 .implied-odds-badge.zone-longshot { background: rgba(168,85,247,0.14); color: var(--tennis); border-color: rgba(168,85,247,0.30); }
 .implied-odds-badge.zone-lean { background: var(--surface-3); color: var(--text-2); border-color: var(--border-2); }
 
+.lineup-badge {
+  display: inline-flex; align-items: center;
+  padding: 2px 7px; border-radius: 999px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 10px; font-weight: 800;
+  letter-spacing: 0.6px; flex-shrink: 0;
+  border: 1px solid transparent;
+}
+.lineup-star-out {
+  background: rgba(240,180,41,0.14);
+  color: var(--gold);
+  border-color: rgba(240,180,41,0.30);
+}
+.lineup-gtd {
+  background: rgba(239,68,68,0.14);
+  color: var(--red);
+  border-color: rgba(239,68,68,0.30);
+}
+.lineup-teammate-gtd {
+  background: rgba(239,68,68,0.10);
+  color: var(--red);
+  border-color: rgba(239,68,68,0.22);
+}
+
 .summary-stack {
   display: flex;
   flex-direction: column;
@@ -1800,6 +1824,32 @@ function impliedOddsBadge(player) {
   const zoneClass = ["aim", "value", "longshot", "lean"].includes(zone) ? zone : "aim";
   const title = `Value zone: ${zone.toUpperCase()}${player.edge != null ? ` • Edge ${player.edge >= 0 ? "+" : ""}${Number(player.edge).toFixed(2)}` : ""}`;
   return `<span class="implied-odds-badge zone-${zoneClass}" title="${esc(title)}">${esc(odds)}</span>`;
+}
+
+function lineupBadges(player) {
+  if (!player) return "";
+  const chips = [];
+  const stars = Array.isArray(player.team_star_outs) ? player.team_star_outs : [];
+  if (stars.length) {
+    const headline = stars[0];
+    const extras = stars.length > 1 ? ` +${stars.length - 1}` : "";
+    const boost = Number(player.team_usage_boost || 1.0);
+    const boostLabel = boost > 1.01 ? ` • Usage ${boost.toFixed(2)}x` : "";
+    const tip = `Star teammate${stars.length > 1 ? "s" : ""} OUT: ${stars.join(", ")}${boostLabel}`;
+    chips.push(`<span class="lineup-badge lineup-star-out" title="${esc(tip)}">★ ${esc(headline)}${esc(extras)} OUT</span>`);
+  }
+  const gtdStars = Array.isArray(player.team_star_gtd) ? player.team_star_gtd : [];
+  if (gtdStars.length) {
+    const headline = gtdStars[0];
+    const extras = gtdStars.length > 1 ? ` +${gtdStars.length - 1}` : "";
+    const tip = `Star teammate${gtdStars.length > 1 ? "s" : ""} GTD — line could move pre-tip: ${gtdStars.join(", ")}`;
+    chips.push(`<span class="lineup-badge lineup-teammate-gtd" title="${esc(tip)}">⚠ ${esc(headline)}${esc(extras)} GTD</span>`);
+  }
+  const status = String(player.lineup_status || "").toUpperCase();
+  if (status === "GTD") {
+    chips.push(`<span class="lineup-badge lineup-gtd" title="Game-time decision — confirm before locking in">GTD</span>`);
+  }
+  return chips.join("");
 }
 
 function hrResultBadge(player) {
@@ -2280,6 +2330,7 @@ function renderPinnedSection(board, sport = "mlb") {
           </div>
           <div class="pinned-line">${esc(p.line)}</div>
           ${impliedOddsBadge(p)}
+          ${lineupBadges(p)}
           ${board.market === "HR" ? hrResultBadge(p) : ""}
           ${tierBadge(p.tier)}
         </div>`).join("")}
@@ -2404,6 +2455,7 @@ function renderFrozenDailySummaryCard(sport, frozen, liveData) {
           <div class="summary-chips">
             <span class="reason-chip">${esc(row.line || "No line")}</span>
             ${impliedOddsBadge(row)}
+            ${lineupBadges(row)}
             ${tierBadge(row.tier)}
             ${status ? renderStatusChip(status) : ""}
           </div>

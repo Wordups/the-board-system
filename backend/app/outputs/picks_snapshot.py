@@ -87,7 +87,17 @@ def clone_row(row: dict | None, market_override: str = "") -> dict | None:
         "reason": row.get("reason", ""),
         "market": market_override or row.get("market") or "",
     }
-    for key in ("implied_odds", "value_zone", "edge", "model_hit_rate"):
+    for key in (
+        "implied_odds",
+        "value_zone",
+        "edge",
+        "model_hit_rate",
+        "lineup_status",
+        "team_star_outs",
+        "team_star_gtd",
+        "team_usage_boost",
+        "team_lost_usage",
+    ):
         if key in row:
             cloned[key] = row[key]
     return cloned
