@@ -2461,8 +2461,13 @@ function collectMlbHrRows(data) {
 function renderFrozenDailySummaryCard(sport, frozen, liveData) {
   if (!frozen) return "";
   const isMlb = sport === "mlb";
+  const isA = row => row?.tier === "A";
+  const aStraight = isA(frozen.straight) ? frozen.straight : null;
+  const aTwoLeg = (frozen.twoLeg || []).filter(isA);
+  const aThreeLeg = (frozen.threeLeg || []).filter(isA);
+  if (!aStraight && !aTwoLeg.length && !aThreeLeg.length) return "";
   const summarizeRow = row => {
-    if (!row) return `<div class="summary-empty">No play locked in for this slot.</div>`;
+    if (!row) return `<div class="summary-empty">No A-tier lock for this slot.</div>`;
     const status = isMlb ? resolveHrPickStatus(row, liveData) : null;
     return `
       <div class="summary-line">
@@ -2485,7 +2490,7 @@ function renderFrozenDailySummaryCard(sport, frozen, liveData) {
       <div class="daily-summary-head">
         <div>
           <div class="daily-summary-title">Morning Card</div>
-          <div class="daily-summary-sub">Locked at the 8 AM ET refresh and tracked all day. The rolling board keeps moving — these picks don't.</div>
+          <div class="daily-summary-sub">A-tier locks only. Frozen at the 8 AM ET refresh and tracked all day — the rolling board keeps moving below, these don't.</div>
         </div>
         <div class="pick-sport-meta">${esc(frozen.last_updated || liveData?.last_updated || "")}</div>
       </div>
@@ -2493,59 +2498,22 @@ function renderFrozenDailySummaryCard(sport, frozen, liveData) {
         <div class="daily-summary-col">
           <div class="daily-summary-block">
             <div class="daily-summary-label">Best Straight</div>
-            ${summarizeRow(frozen.straight)}
+            ${summarizeRow(aStraight)}
           </div>
           <div class="daily-summary-block">
-            <div class="daily-summary-label">${isMlb ? "Diamond of the Day" : "3-Leg"}</div>
+            <div class="daily-summary-label">2-Leg</div>
             <div class="summary-stack">
-              ${isMlb
-                ? ([
-                    ["Home Plate", frozen.straight],
-                    ["First Base", frozen.twoLeg?.[1] || frozen.threeLeg?.[1] || null],
-                    ["Second Base", frozen.threeLeg?.[2] || null],
-                    ["Third Base", (liveData?.research_board?.home_run?.strong_candidates || [])[0] || null],
-                  ].map(([label, row]) => `
-                    <div class="summary-line">
-                      ${row ? playerFace(row, sport) : ""}
-                      <div class="summary-line-body">
-                        <div class="daily-summary-label" style="margin-bottom:4px;color:var(--text-2);">${esc(label)}</div>
-                        ${row ? `
-                          <div class="summary-name">${playerButton(row, sport, "summary-name")}</div>
-                          <div class="summary-meta">${esc(row.team)} vs ${esc(row.opponent)}</div>
-                          <div class="summary-chips">
-                            <span class="reason-chip">${esc(row.line || "No line")}</span>
-                            ${impliedOddsBadge(row)}
-                            ${tierBadge(row.tier)}
-                            ${renderStatusChip(resolveHrPickStatus(row, liveData))}
-                          </div>` : `<div class="summary-empty">Open base.</div>`}
-                      </div>
-                    </div>`).join(""))
-                : (frozen.threeLeg || []).length
-                  ? frozen.threeLeg.map(summarizeRow).join("")
-                  : `<div class="summary-empty">No 3-leg build on this slate yet.</div>`}
+              ${aTwoLeg.length ? aTwoLeg.map(summarizeRow).join("") : `<div class="summary-empty">No A-tier 2-leg lock for today.</div>`}
             </div>
           </div>
         </div>
         <div class="daily-summary-col">
           <div class="daily-summary-block">
-            <div class="daily-summary-label">2-Leg</div>
+            <div class="daily-summary-label">3-Leg</div>
             <div class="summary-stack">
-              ${(frozen.twoLeg || []).length ? frozen.twoLeg.map(summarizeRow).join("") : `<div class="summary-empty">No 2-leg locked yet.</div>`}
+              ${aThreeLeg.length ? aThreeLeg.map(summarizeRow).join("") : `<div class="summary-empty">No A-tier 3-leg build on this slate yet.</div>`}
             </div>
           </div>
-          ${!isMlb ? `
-            <div class="daily-summary-block">
-              <div class="daily-summary-label">3-Leg</div>
-              <div class="summary-stack">
-                ${(frozen.threeLeg || []).length ? frozen.threeLeg.map(summarizeRow).join("") : `<div class="summary-empty">No 3-leg build on this slate yet.</div>`}
-              </div>
-            </div>` : `
-            <div class="daily-summary-block">
-              <div class="daily-summary-label">3-Leg</div>
-              <div class="summary-stack">
-                ${(frozen.threeLeg || []).length ? frozen.threeLeg.map(summarizeRow).join("") : `<div class="summary-empty">No 3-leg build on this slate yet.</div>`}
-              </div>
-            </div>`}
         </div>
       </div>
     </section>`;

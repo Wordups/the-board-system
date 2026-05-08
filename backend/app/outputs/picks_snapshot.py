@@ -139,16 +139,32 @@ def select_daily_rows(rows: list[dict], sport: str, count: int, *, same_game_max
     return selected
 
 
+def _is_a_tier(row: dict | None) -> bool:
+    return bool(row) and str(row.get("tier", "")).upper() == "A"
+
+
 def derive_sport_picks(sport: str, data: dict) -> dict | None:
+    """Derive frozen daily picks for the morning card.
+
+    Strict A-tier policy: only tier=='A' rows can land on the picks of the
+    day. If a sport has no A-tier straight, that sport is dropped from the
+    snapshot entirely. Parlay slots accept only A-tier rows; if there
+    aren't enough, the slot stays short rather than fall back to B/C.
+    """
     if not data or data.get("date") != local_iso_date():
         return None
 
     if sport == "mlb":
         hr = data.get("daily_hr_picks", {})
+        straight = clone_row(hr.get("single"), "HR")
+        two_leg = [clone_row(row, "HR") for row in (hr.get("two_leg", {}).get("legs") or []) if row]
+        three_leg = [clone_row(row, "HR") for row in (hr.get("three_leg", {}).get("legs") or []) if row]
+        if not _is_a_tier(straight):
+            return None
         return {
-            "straight": clone_row(hr.get("single"), "HR"),
-            "twoLeg": [clone_row(row, "HR") for row in (hr.get("two_leg", {}).get("legs") or []) if row],
-            "threeLeg": [clone_row(row, "HR") for row in (hr.get("three_leg", {}).get("legs") or []) if row],
+            "straight": straight,
+            "twoLeg": [row for row in two_leg if _is_a_tier(row)],
+            "threeLeg": [row for row in three_leg if _is_a_tier(row)],
         }
 
     if sport == "nba":
@@ -159,11 +175,13 @@ def derive_sport_picks(sport: str, data: dict) -> dict | None:
             *[clone_row(row, row.get("market", "")) for row in data.get("research_board", {}).get("sections", {}).get("REB", [])],
             *[clone_row(row, row.get("market", "")) for row in data.get("research_board", {}).get("sections", {}).get("3PM", [])],
         ]
-        pool = [row for row in pool if row]
+        pool = [row for row in pool if _is_a_tier(row)]
+        if not pool:
+            return None
         straight = select_daily_rows(pool, "nba", 1, same_game_max=1, same_team_max=1)
         parlay_pool = select_daily_rows(pool, "nba", 8, same_game_max=2, same_team_max=1)
         return {
-            "straight": straight[0] if straight else clone_row(data.get("hero_pick"), data.get("hero_pick", {}).get("market", "")),
+            "straight": straight[0] if straight else None,
             "twoLeg": parlay_pool[:2],
             "threeLeg": parlay_pool[:3],
         }
@@ -175,24 +193,30 @@ def derive_sport_picks(sport: str, data: dict) -> dict | None:
             *[clone_row(row, row.get("market", "")) for row in data.get("section_boards", {}).get("REB", {}).get("players", [])],
             *[clone_row(row, row.get("market", "")) for row in data.get("section_boards", {}).get("3PM", {}).get("players", [])],
         ]
-        pool = [row for row in pool if row]
+        pool = [row for row in pool if _is_a_tier(row)]
+        if not pool:
+            return None
         straight = select_daily_rows(pool, "wnba", 1, same_game_max=1, same_team_max=1)
         parlay_pool = select_daily_rows(pool, "wnba", 8, same_game_max=2, same_team_max=1)
         return {
-            "straight": straight[0] if straight else clone_row(data.get("hero_pick"), data.get("hero_pick", {}).get("market", "")),
+            "straight": straight[0] if straight else None,
             "twoLeg": parlay_pool[:2],
             "threeLeg": parlay_pool[:3],
         }
 
     if sport == "soccer":
         top = [clone_row(row, data.get("pinned_board", {}).get("market", "GS")) for row in data.get("pinned_board", {}).get("players", [])]
-        top = [row for row in top if row]
+        top = [row for row in top if _is_a_tier(row)]
+        if not top:
+            return None
         picks = select_daily_rows(top, "soccer", 4, same_game_max=1, same_team_max=1)
         return {"straight": picks[0] if picks else None, "twoLeg": picks[:2], "threeLeg": picks[:3]}
 
     if sport == "tennis":
         top = [clone_row(row, data.get("pinned_board", {}).get("market", "ML")) for row in data.get("pinned_board", {}).get("players", [])]
-        top = [row for row in top if row]
+        top = [row for row in top if _is_a_tier(row)]
+        if not top:
+            return None
         picks = select_daily_rows(top, "tennis", 4, same_game_max=1, same_team_max=1)
         return {"straight": picks[0] if picks else None, "twoLeg": picks[:2], "threeLeg": picks[:3]}
 
