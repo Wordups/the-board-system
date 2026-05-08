@@ -1428,18 +1428,6 @@ button { cursor: pointer; border: none; background: none; }
 .status-miss { background: var(--red-dim); color: var(--red); }
 .status-pending { background: var(--surface-3); color: var(--text-2); }
 
-.thin-data-badge {
-  display: inline-flex; align-items: center;
-  padding: 2px 7px; border-radius: 999px;
-  background: rgba(240,180,41,0.10);
-  color: var(--gold);
-  border: 1px solid rgba(240,180,41,0.25);
-  font-family: "Barlow Condensed", sans-serif;
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 0.8px; text-transform: uppercase;
-  flex-shrink: 0;
-}
-
 .summary-stack {
   display: flex;
   flex-direction: column;
@@ -1764,18 +1752,6 @@ function hrResultBadge(player) {
     return `<span class="result-badge result-miss" title="Final: no HR">Miss</span>`;
   }
   return `<span class="result-badge result-pending" title="Game has not settled yet.">Pending</span>`;
-}
-
-function sampleFromReason(reason) {
-  const match = String(reason || "").match(/\bSample (\d+)\b(?!\.\d)/i);
-  return match ? Number(match[1]) : null;
-}
-
-function thinDataBadge(player) {
-  const sample = sampleFromReason(player?.reason);
-  if (sample === null || sample > 2) return "";
-  const games = `${sample} game${sample === 1 ? "" : "s"}`;
-  return `<span class="thin-data-badge" title="Only ${games} of current-season form. Treat confidence as conservative.">Thin data</span>`;
 }
 
 function rowsForGame(data, team, opponent) {
@@ -2245,7 +2221,6 @@ function renderPinnedSection(board, sport = "mlb") {
           <div class="pinned-line">${esc(p.line)}</div>
           ${board.market === "HR" ? hrResultBadge(p) : ""}
           ${tierBadge(p.tier)}
-          ${thinDataBadge(p)}
         </div>`).join("")}
     </div>`;
 }
@@ -2368,7 +2343,6 @@ function renderFrozenDailySummaryCard(sport, frozen, liveData) {
             <span class="reason-chip">${esc(row.line || "No line")}</span>
             ${tierBadge(row.tier)}
             ${status ? renderStatusChip(status) : ""}
-            ${thinDataBadge(row)}
           </div>
         </div>
       </div>`;
@@ -2388,55 +2362,52 @@ function renderFrozenDailySummaryCard(sport, frozen, liveData) {
             <div class="daily-summary-label">Best Straight</div>
             ${summarizeRow(frozen.straight)}
           </div>
-          <div class="daily-summary-block">
-            <div class="daily-summary-label">${isMlb ? "Diamond of the Day" : "3-Leg"}</div>
-            <div class="summary-stack">
-              ${isMlb
-                ? ([
-                    ["Home Plate", frozen.straight],
-                    ["First Base", frozen.twoLeg?.[1] || frozen.threeLeg?.[1] || null],
-                    ["Second Base", frozen.threeLeg?.[2] || null],
-                    ["Third Base", frozen.fourLeg?.[3] || frozen.diamond?.fourth || null],
-                  ].map(([label, row]) => `
-                    <div class="summary-line">
-                      <div>
-                        <div class="daily-summary-label" style="margin-bottom:4px;color:var(--text-2);">${esc(label)}</div>
-                        ${row ? `
-                          <div class="summary-name">${playerButton(row, sport, "summary-name")}</div>
-                          <div class="summary-meta">${esc(row.team)} vs ${esc(row.opponent)}</div>
-                          <div class="summary-chips">
-                            <span class="reason-chip">${esc(row.line || "No line")}</span>
-                            ${tierBadge(row.tier)}
-                            ${renderStatusChip(resolveHrPickStatus(row, liveData))}
-                          </div>` : `<div class="summary-empty">Open base — no frozen pick locked for this slot.</div>`}
-                      </div>
-                    </div>`).join(""))
-                : (frozen.threeLeg || []).length
-                  ? frozen.threeLeg.map(summarizeRow).join("")
-                  : `<div class="summary-empty">No 3-leg build on this slate yet.</div>`}
-            </div>
-          </div>
-        </div>
-        <div class="daily-summary-col">
-          <div class="daily-summary-block">
-            <div class="daily-summary-label">2-Leg</div>
-            <div class="summary-stack">
-              ${(frozen.twoLeg || []).length ? frozen.twoLeg.map(summarizeRow).join("") : `<div class="summary-empty">No 2-leg locked yet.</div>`}
-            </div>
-          </div>
-          ${!isMlb ? `
+          ${isMlb ? `
             <div class="daily-summary-block">
-              <div class="daily-summary-label">3-Leg</div>
+              <div class="daily-summary-label">Diamond of the Day</div>
               <div class="summary-stack">
-                ${(frozen.threeLeg || []).length ? frozen.threeLeg.map(summarizeRow).join("") : `<div class="summary-empty">No 3-leg build on this slate yet.</div>`}
+                ${[
+                  ["Home Plate", frozen.straight],
+                  ["First Base", frozen.twoLeg?.[1] || frozen.threeLeg?.[1] || null],
+                  ["Second Base", frozen.threeLeg?.[2] || null],
+                  ["Third Base", frozen.fourLeg?.[3] || frozen.diamond?.fourth || null],
+                ].map(([label, row]) => `
+                  <div class="summary-line">
+                    <div>
+                      <div class="daily-summary-label" style="margin-bottom:4px;color:var(--text-2);">${esc(label)}</div>
+                      ${row ? `
+                        <div class="summary-name">${playerButton(row, sport, "summary-name")}</div>
+                        <div class="summary-meta">${esc(row.team)} vs ${esc(row.opponent)}</div>
+                        <div class="summary-chips">
+                          <span class="reason-chip">${esc(row.line || "No line")}</span>
+                          ${tierBadge(row.tier)}
+                          ${renderStatusChip(resolveHrPickStatus(row, liveData))}
+                        </div>` : `<div class="summary-empty">Open base — no frozen pick locked for this slot.</div>`}
+                    </div>
+                  </div>`).join("")}
               </div>
             </div>` : `
             <div class="daily-summary-block">
-              <div class="daily-summary-label">3-Leg</div>
+              <div class="daily-summary-label">2-Leg</div>
               <div class="summary-stack">
-                ${(frozen.threeLeg || []).length ? frozen.threeLeg.map(summarizeRow).join("") : `<div class="summary-empty">No 3-leg build on this slate yet.</div>`}
+                ${(frozen.twoLeg || []).length ? frozen.twoLeg.map(summarizeRow).join("") : `<div class="summary-empty">No 2-leg locked yet.</div>`}
               </div>
             </div>`}
+        </div>
+        <div class="daily-summary-col">
+          ${isMlb ? `
+            <div class="daily-summary-block">
+              <div class="daily-summary-label">2-Leg</div>
+              <div class="summary-stack">
+                ${(frozen.twoLeg || []).length ? frozen.twoLeg.map(summarizeRow).join("") : `<div class="summary-empty">No 2-leg locked yet.</div>`}
+              </div>
+            </div>` : ""}
+          <div class="daily-summary-block">
+            <div class="daily-summary-label">3-Leg</div>
+            <div class="summary-stack">
+              ${(frozen.threeLeg || []).length ? frozen.threeLeg.map(summarizeRow).join("") : `<div class="summary-empty">No 3-leg build on this slate yet.</div>`}
+            </div>
+          </div>
         </div>
       </div>
     </section>`;
