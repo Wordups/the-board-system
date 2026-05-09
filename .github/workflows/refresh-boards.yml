@@ -11,6 +11,12 @@ on:
 permissions:
   contents: write
 
+# Opt JS actions (checkout, setup-python, etc.) into Node 24 now.
+# GitHub deprecated Node 20 on runners; this removes the warning and
+# matches the runtime that becomes default on 2026-06-02.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 # If a previous run is still going when the next hour fires, let it finish
 # and skip the new one rather than stacking pushes on top of each other.
 concurrency:
