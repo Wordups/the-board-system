@@ -29,7 +29,7 @@ if ($behind -ne "0") {
     Write-Log "Local main is $behind commits behind origin/main; pulling before regenerate."
     git pull --ff-only origin main
     if ($LASTEXITCODE -ne 0) {
-        Write-Log "git pull --ff-only failed (likely uncommitted local changes or diverged history). Aborting refresh — resolve manually."
+        Write-Log "git pull --ff-only failed (likely uncommitted local changes or diverged history). Aborting refresh -- resolve manually."
         exit 1
     }
 }
@@ -61,7 +61,7 @@ Write-Log "Committed refreshed board data."
 
 git push origin main
 if ($LASTEXITCODE -ne 0) {
-    Write-Log "git push origin main FAILED (exit $LASTEXITCODE). Local commit landed but origin is out of sync — resolve manually."
+    Write-Log "git push origin main FAILED (exit $LASTEXITCODE). Local commit landed but origin is out of sync -- resolve manually."
     exit 1
 }
 Write-Log "Pushed refreshed board data to origin/main."
