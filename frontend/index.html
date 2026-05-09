@@ -3057,7 +3057,13 @@ async function renderGameView(sport, data) {
   );
   const pinnedMarkup = renderPinnedBoards(data, sport);
   const picksPayload = await loadSport("picks");
-  const frozenPickMarkup = picksPayload?.sports?.[sport] ? renderFrozenDailySummaryCard(sport, picksPayload.sports[sport], data) : "";
+  // MLB / NBA / WNBA tabs no longer duplicate the Morning Card —
+  // it lives on the Cross-Sport Daily Board on Picks of the Day.
+  // Soccer / Tennis tabs are untouched per spec.
+  const TAB_HIDES_FROZEN_CARD = new Set(["mlb", "nba", "wnba"]);
+  const frozenPickMarkup = !TAB_HIDES_FROZEN_CARD.has(sport) && picksPayload?.sports?.[sport]
+    ? renderFrozenDailySummaryCard(sport, picksPayload.sports[sport], data)
+    : "";
 
   view.innerHTML = `
     <div class="section-label">Today's Games - ${esc(data.date || "")}</div>
