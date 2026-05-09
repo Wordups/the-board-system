@@ -1288,6 +1288,9 @@ button { cursor: pointer; border: none; background: none; }
   border-top: 1px solid var(--border);
 }
 
+.ultimate-cook { margin-top: 14px; }
+.ultimate-cook .cook-legs { margin-top: 12px; }
+
 .pick-main-name {
   font-family: "Barlow Condensed", sans-serif;
   font-size: 18px;
@@ -2308,6 +2311,63 @@ function renderSportPickCard(sport, data) {
     </section>`;
 }
 
+function formatCookSourceLabel(source) {
+  switch (source) {
+    case "straight": return "Best Straight";
+    case "2-leg":    return "2-Leg";
+    case "3-leg":    return "3-Leg";
+    default:         return source || "";
+  }
+}
+
+function renderCookLeg(leg) {
+  if (!leg) return "";
+  const sportLabel = shortSportLabel(leg.sport) || (leg.sport || "").toUpperCase();
+  const oddsChip = leg.american_odds
+    ? `<span class="implied-odds-badge zone-aim">${esc(leg.american_odds)}</span>`
+    : `<span class="implied-odds-badge zone-aim" title="Odds not yet emitted by the scorer for this leg">—</span>`;
+  const sourceChips = (leg.sources || []).map(s =>
+    `<span class="market-tag">${esc(formatCookSourceLabel(s))}</span>`
+  ).join("");
+  const meta = `${esc(sportLabel)}${leg.team ? ` • ${esc(leg.team)} vs ${esc(leg.opponent || "")}` : ""}${leg.market ? ` • ${esc(leg.market)}` : ""}`;
+  return `
+    <div class="parlay-leg">
+      <div>
+        <div class="pinned-name">${esc(leg.player_name || leg.player_id || "—")}</div>
+        <div class="parlay-leg-meta">${meta}</div>
+        <div class="parlay-leg-reason">${sourceChips}</div>
+      </div>
+      <div class="pick-line-wrap">
+        <div class="pick-line">${esc(leg.line || "")}</div>
+        ${tierBadge(leg.tier)}
+        ${oddsChip}
+        <span class="hero-chip">${esc(leg.status || "Pending")}</span>
+      </div>
+    </div>`;
+}
+
+function renderUltimateCook(cook) {
+  if (!cook || !Array.isArray(cook.legs) || !cook.legs.length) return "";
+  const americanLabel = cook.combined_american_odds || "—";
+  const decimalLabel = (cook.combined_decimal_odds != null)
+    ? Number(cook.combined_decimal_odds).toFixed(2) + "x"
+    : "—";
+  const summary = cook.header_summary || `$${cook.stake_usd ?? 10} stake — payout pending`;
+  return `
+    <section class="lane-card ultimate-cook">
+      <div class="lane-kicker">${esc(cook.title || "Ultimate Cook")}</div>
+      <div class="lane-sub">${esc(summary)}</div>
+      <div class="picks-hero-meta">
+        <span class="hero-chip">${esc(`Combined ${americanLabel}`)}</span>
+        <span class="hero-chip">${esc(`Decimal ${decimalLabel}`)}</span>
+        <span class="hero-chip">${esc(`Status ${cook.status || "Pending"}`)}</span>
+      </div>
+      <div class="cook-legs">
+        ${cook.legs.map(renderCookLeg).join("")}
+      </div>
+    </section>`;
+}
+
 async function renderPicksView() {
   const view = document.getElementById("view-picks");
   const picksPayload = await loadSport("picks");
@@ -2344,6 +2404,7 @@ async function renderPicksView() {
       <div class="picks-grid">
         ${cards.length ? cards.join("") : `<div class="lane-card"><div class="lane-kicker">No picks loaded</div><div class="lane-sub">The board will populate once the sport feeds refresh.</div></div>`}
       </div>
+      ${renderUltimateCook(picksPayload?.ultimate_cook)}
     </div>`;
 
   for (const [sport] of sports) {

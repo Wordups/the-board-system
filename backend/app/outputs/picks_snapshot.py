@@ -226,6 +226,128 @@ def derive_sport_picks(sport: str, data: dict) -> dict | None:
 MORNING_REFRESH_HOUR_ET = 8
 
 
+def _american_to_decimal(american) -> float | None:
+    if american is None:
+        return None
+    s = str(american).strip()
+    if not s:
+        return None
+    try:
+        n = int(s.replace("+", ""))
+    except ValueError:
+        return None
+    if n == 0:
+        return None
+    if n > 0:
+        return 1.0 + n / 100.0
+    return 1.0 + 100.0 / abs(n)
+
+
+def _decimal_to_american_str(decimal_odds: float) -> str:
+    if decimal_odds <= 1.0:
+        return "+0"
+    if decimal_odds >= 2.0:
+        return f"+{round((decimal_odds - 1.0) * 100)}"
+    return f"{round(-100.0 / (decimal_odds - 1.0))}"
+
+
+def _build_ultimate_cook(sports: dict[str, dict], frozen_at_iso: str) -> dict | None:
+    """Mechanical concatenation of every leg already on Picks of the Day.
+
+    Dedupe key: (sport, player_id_or_name, market, line). Daily Edges legs are
+    the same rows as per-sport `straight`, so they collapse into the straight
+    entry on dedupe.
+
+    TODO: per-leg status (Win/Loss/Push) is not yet emitted by the
+    scoring/grading pipeline. All legs and the parlay status default
+    to "Pending" until grading writeback exists.
+    """
+    legs: list[dict] = []
+    keyed: dict[tuple, dict] = {}
+    for sport_key, board in sports.items():
+        ordered: list[tuple[dict, str]] = []
+        if board.get("straight"):
+            ordered.append((board["straight"], "straight"))
+        for row in board.get("twoLeg") or []:
+            if row:
+                ordered.append((row, "2-leg"))
+        for row in board.get("threeLeg") or []:
+            if row:
+                ordered.append((row, "3-leg"))
+
+        for row, source in ordered:
+            ident = row.get("player_id") or row.get("player_name") or ""
+            key = (sport_key, ident, row.get("market") or "", row.get("line") or "")
+            existing = keyed.get(key)
+            if existing:
+                if source not in existing["sources"]:
+                    existing["sources"].append(source)
+                continue
+            implied = row.get("implied_odds")
+            decimal = _american_to_decimal(implied)
+            leg = {
+                "sport": sport_key,
+                "player_id": row.get("player_id"),
+                "player_name": row.get("player_name"),
+                "team": row.get("team"),
+                "opponent": row.get("opponent"),
+                "market": row.get("market"),
+                "line": row.get("line"),
+                "tier": row.get("tier"),
+                "american_odds": str(implied) if implied not in (None, "") else None,
+                "decimal_odds": round(decimal, 4) if decimal is not None else None,
+                "sources": [source],
+                "status": "Pending",
+            }
+            keyed[key] = leg
+            legs.append(leg)
+
+    if not legs:
+        return None
+
+    for leg in legs:
+        leg["sources"].sort()
+
+    priced_decimals = [leg["decimal_odds"] for leg in legs if leg["decimal_odds"] is not None]
+    priced_count = len(priced_decimals)
+    total_count = len(legs)
+    stake = 10
+
+    if priced_decimals:
+        combined_decimal = 1.0
+        for d in priced_decimals:
+            combined_decimal *= d
+        combined_decimal = round(combined_decimal, 4)
+        combined_american = _decimal_to_american_str(combined_decimal)
+        payout = round(stake * combined_decimal, 2)
+        header_summary = (
+            f"$10 stake → ${payout:.2f} payout "
+            f"(computed from {priced_count} of {total_count} priced legs)"
+        )
+    else:
+        combined_decimal = None
+        combined_american = None
+        payout = None
+        header_summary = (
+            f"$10 stake → no priced legs available "
+            f"(0 of {total_count} priced legs)"
+        )
+
+    return {
+        "title": "Ultimate Cook",
+        "legs": legs,
+        "stake_usd": stake,
+        "priced_legs_count": priced_count,
+        "total_legs_count": total_count,
+        "combined_american_odds": combined_american,
+        "combined_decimal_odds": combined_decimal,
+        "payout_usd": payout,
+        "header_summary": header_summary,
+        "status": "Pending",
+        "frozen_at": frozen_at_iso,
+    }
+
+
 def write_picks_snapshot(*, boards: dict[str, dict], paths) -> None:
     snapshot_date = local_iso_date()
     final_path = paths.data_final / "picks.json"
@@ -264,12 +386,16 @@ def write_picks_snapshot(*, boards: dict[str, dict], paths) -> None:
         }
 
     write_moment_utc = datetime.now(ZoneInfo("UTC")).replace(microsecond=0)
+    updated_at_iso = write_moment_utc.isoformat().replace("+00:00", "Z")
     payload = {
         "date": snapshot_date,
         "last_updated": format_et_timestamp(datetime.now(ET)),
-        "updated_at": write_moment_utc.isoformat().replace("+00:00", "Z"),
+        "updated_at": updated_at_iso,
         "sports": sports,
     }
+    cook = _build_ultimate_cook(sports, updated_at_iso)
+    if cook is not None:
+        payload["ultimate_cook"] = cook
     write_json(final_path, payload)
     shutil.copy2(final_path, paths.frontend_data / "picks.json")
     shutil.copy2(final_path, paths.pages_data / "picks.json")
