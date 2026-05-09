@@ -1,0 +1,117 @@
+name: Refresh live boards
+
+on:
+  schedule:
+    # Top of every hour, UTC. GitHub may delay scheduled runs under load,
+    # which is normal and expected — do not tighten this to sub-hourly.
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+# GITHUB_TOKEN needs write to commit refreshed JSON back to main.
+permissions:
+  contents: write
+
+# If a previous run is still going when the next hour fires, let it finish
+# and skip the new one rather than stacking pushes on top of each other.
+concurrency:
+  group: refresh-boards
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          # Need a real token (not the default ephemeral one) so the push
+          # back to main is authenticated as GITHUB_TOKEN with contents:write.
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Full history isn't needed; shallow clone keeps the run fast.
+          fetch-depth: 1
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements.txt
+
+      - name: Run pipeline
+        id: pipeline
+        run: |
+          python backend/scripts/run_all.py
+        # If run_all.py crashes, the next step prints FAILED-PIPELINE and
+        # the job exits non-zero. We catch this with `if: failure()`.
+
+      - name: Report pipeline failure
+        if: failure() && steps.pipeline.conclusion == 'failure'
+        run: |
+          echo "FAILED-PIPELINE"
+          exit 1
+
+      - name: Stage refreshed JSON
+        id: stage
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Add only the three data directories. Use --ignore-errors so a
+          # missing glob (e.g. an empty data/ in a future refactor) doesn't
+          # blow up the whole run.
+          git add --ignore-errors \
+            backend/data_final/*.json \
+            frontend/data/*.json \
+            data/*.json
+
+          # Detect whether anything actually changed in the index.
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: No-op exit when boards are unchanged
+        if: steps.stage.outputs.changed == 'false'
+        run: |
+          echo "NO-CHANGES"
+
+      - name: Commit and push
+        if: steps.stage.outputs.changed == 'true'
+        id: push
+        run: |
+          set +e
+          git commit -m "Refresh live boards"
+          commit_status=$?
+          if [ "$commit_status" -ne 0 ]; then
+            echo "FAILED-PIPELINE"
+            exit 1
+          fi
+
+          # Rebase onto latest origin/main in case another run (or a human
+          # PR merge) landed something while the pipeline was running.
+          # Without this, a parallel commit causes the push to be rejected.
+          git pull --rebase origin main
+          rebase_status=$?
+          if [ "$rebase_status" -ne 0 ]; then
+            echo "FAILED-PUSH"
+            exit 1
+          fi
+
+          git push origin main
+          push_status=$?
+          if [ "$push_status" -ne 0 ]; then
+            echo "FAILED-PUSH"
+            exit 1
+          fi
+
+          short_sha=$(git rev-parse --short HEAD)
+          echo "LANDED: ${short_sha}"
