@@ -2389,7 +2389,7 @@ async function renderPicksView() {
         </div>
         <div class="pick-sport-body">
           ${frozenMarkup}
-          <div class="pick-sport-footnote">Morning Card — locked at the 8 AM ET refresh. Sport tabs keep updating without disturbing this slate.</div>
+          <div class="pick-sport-footnote">Morning Card — locked at the 10:30 AM ET refresh. Sport tabs keep updating without disturbing this slate.</div>
         </div>
       </section>`;
   }).filter(Boolean);
@@ -2582,7 +2582,7 @@ function renderFrozenDailySummaryCard(sport, frozen, liveData) {
       <div class="daily-summary-head">
         <div>
           <div class="daily-summary-title">Morning Card</div>
-          <div class="daily-summary-sub">A-tier locks only. Frozen at the 8 AM ET refresh and tracked all day — the rolling board keeps moving below, these don't.</div>
+          <div class="daily-summary-sub">A-tier locks only. Frozen at the 10:30 AM ET refresh and tracked all day — the rolling board keeps moving below, these don't.</div>
         </div>
         <div class="pick-sport-meta">${esc(frozen.last_updated || liveData?.last_updated || "")}</div>
       </div>

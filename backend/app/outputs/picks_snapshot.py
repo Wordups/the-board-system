@@ -223,7 +223,8 @@ def derive_sport_picks(sport: str, data: dict) -> dict | None:
     return None
 
 
-MORNING_REFRESH_HOUR_ET = 8
+MORNING_REFRESH_HOUR_ET = 10
+MORNING_REFRESH_MINUTE_ET = 30
 
 
 def _american_to_decimal(american) -> float | None:
@@ -358,11 +359,11 @@ def write_picks_snapshot(*, boards: dict[str, dict], paths) -> None:
             existing = json.loads(final_path.read_text(encoding="utf-8"))
         except Exception:
             existing = None
-    # Morning gate: hold the picks until the 8 AM ET refresh so the Morning
+    # Morning gate: hold the picks until the 10:30 AM ET refresh so the Morning
     # Card reflects the actual morning slate rather than whatever the cron
     # produced overnight at midnight ET.
     now_et = datetime.now(ET)
-    if now_et.hour < MORNING_REFRESH_HOUR_ET:
+    if (now_et.hour, now_et.minute) < (MORNING_REFRESH_HOUR_ET, MORNING_REFRESH_MINUTE_ET):
         return
     if existing and existing.get("date") == snapshot_date:
         return
