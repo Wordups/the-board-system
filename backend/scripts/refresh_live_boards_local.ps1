@@ -53,7 +53,15 @@ if ($LASTEXITCODE -eq 0) {
 
 $commitMessage = "Refresh live boards"
 git commit -m $commitMessage
+if ($LASTEXITCODE -ne 0) {
+    Write-Log "git commit FAILED (exit $LASTEXITCODE). Aborting before push."
+    exit 1
+}
 Write-Log "Committed refreshed board data."
 
 git push origin main
+if ($LASTEXITCODE -ne 0) {
+    Write-Log "git push origin main FAILED (exit $LASTEXITCODE). Local commit landed but origin is out of sync — resolve manually."
+    exit 1
+}
 Write-Log "Pushed refreshed board data to origin/main."
