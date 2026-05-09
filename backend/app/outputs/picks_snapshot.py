@@ -263,9 +263,11 @@ def write_picks_snapshot(*, boards: dict[str, dict], paths) -> None:
             **picks,
         }
 
+    write_moment_utc = datetime.now(ZoneInfo("UTC")).replace(microsecond=0)
     payload = {
         "date": snapshot_date,
         "last_updated": format_et_timestamp(datetime.now(ET)),
+        "updated_at": write_moment_utc.isoformat().replace("+00:00", "Z"),
         "sports": sports,
     }
     write_json(final_path, payload)

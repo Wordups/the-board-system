@@ -1772,6 +1772,30 @@ function esc(str) {
     .replace(/'/g, "&#39;");
 }
 
+// Format ISO 8601 UTC (e.g. "2026-05-09T14:30:00Z") as ET wall-clock
+// string ("10:30 AM ET"). Returns "" on parse failure so callers can
+// fall back to legacy per-sport last_updated.
+function formatUpdatedAt(iso) {
+  if (!iso) return "";
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return "";
+  try {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    }).formatToParts(d);
+    const hour = parts.find(p => p.type === "hour")?.value;
+    const minute = parts.find(p => p.type === "minute")?.value;
+    const ampm = parts.find(p => p.type === "dayPeriod")?.value;
+    if (!hour || !minute || !ampm) return "";
+    return `${hour}:${minute} ${ampm} ET`;
+  } catch (e) {
+    return "";
+  }
+}
+
 function scoreClass(s) {
   return s >= 30 ? "score-high" : s >= 20 ? "score-mid" : "score-low";
 }
@@ -2186,7 +2210,7 @@ function renderPosterHeroPlayer(row, sport, label) {
     </article>`;
 }
 
-function renderPicksHero(active) {
+function renderPicksHero(active, updatedAtIso) {
   const heroRows = active
     .map(([sport, data]) => ({
       sport,
@@ -2196,7 +2220,11 @@ function renderPicksHero(active) {
     .filter(item => item.picks?.straight)
     .slice(0, 3);
   if (!heroRows.length) return "";
-  const latest = heroRows.map(item => item.data?.last_updated || "").find(Boolean) || "";
+  // Single source of truth: picks.json top-level updated_at (ISO 8601 UTC,
+  // written by write_picks_snapshot at freeze time). Fall back to the
+  // legacy per-sport last_updated scan only if updated_at is missing.
+  const latest = formatUpdatedAt(updatedAtIso)
+    || (heroRows.map(item => item.data?.last_updated || "").find(Boolean) || "");
   const sports = heroRows.map(item => shortSportLabel(item.sport));
   return `
     <section class="picks-hero">
@@ -2308,7 +2336,7 @@ async function renderPicksView() {
   view.innerHTML = `
     <div class="section-label">Picks of the Day</div>
     <div class="picks-board">
-      ${renderPicksHero(sports.map(([sport, data]) => [sport, { ...data, sport: SPORT_LABELS[sport] || sport.toUpperCase() }]))}
+      ${renderPicksHero(sports.map(([sport, data]) => [sport, { ...data, sport: SPORT_LABELS[sport] || sport.toUpperCase() }]), picksPayload?.updated_at)}
       <div class="lane-card">
         <div class="lane-kicker">Cross-Sport Daily Board</div>
         <div class="lane-sub">Best straight first, then 2-leg and 3-leg combinations for each sport when the slate supports it. This board stays fixed for the day.</div>
