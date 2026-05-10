@@ -1291,6 +1291,21 @@ button { cursor: pointer; border: none; background: none; }
 .ultimate-cook { margin-top: 14px; }
 .ultimate-cook .cook-legs { margin-top: 12px; }
 
+.game-env {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  padding: 4px 8px;
+  margin: 6px 12px 0;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface-3, rgba(255,255,255,0.04));
+  color: var(--text-2);
+}
+.game-env.env-boost    { color: var(--green); border-color: rgba(34,197,94,0.30); background: rgba(34,197,94,0.08); }
+.game-env.env-suppress { color: var(--tennis); border-color: rgba(168,85,247,0.30); background: rgba(168,85,247,0.08); }
+.game-env.env-neutral  {}
+
 .pick-main-name {
   font-family: "Barlow Condensed", sans-serif;
   font-size: 18px;
@@ -2698,6 +2713,15 @@ function renderGameCard(game, sport) {
   const activeMarkets = Object.keys(markets).filter(k => markets[k] && markets[k].length);
   const liveClass = isLiveGame(game) ? "live" : isFinalGame(game) ? "final" : "scheduled";
   const timeLabel = isFinalGame(game) ? "Final" : (game.time || game.status || "TBD");
+  // Park + wind environment chip — display only, never feeds scoring.
+  // Renders only when the backend env enrichment populated game.env.
+  const env = game.env;
+  const leanClass = env && env.hr_lean === "HR boost" ? "env-boost"
+                  : env && env.hr_lean === "HR suppress" ? "env-suppress"
+                  : "env-neutral";
+  const envChip = env && env.summary_chip
+    ? `<div class="game-env ${leanClass}">${esc(env.summary_chip)}</div>`
+    : "";
   return `
     <div class="game-card ${liveClass}">
       <div class="game-card-head">
@@ -2709,6 +2733,7 @@ function renderGameCard(game, sport) {
           <span class="signal-dot"></span>${activeMarkets.length} Markets
         </div>
       </div>
+      ${envChip}
       <div class="game-card-body">
         <div class="signals-list">
           ${signals.length ? signals.map(s => `

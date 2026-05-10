@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from app.builders.mlb_board_builder import build_mlb_board
+from app.builders.mlb_environment import enrich_board_with_environment
 from app.builders.nba_board_builder import build_nba_board
 from app.builders.soccer_board_builder import build_soccer_board
 from app.builders.tennis_board_builder import build_tennis_board
@@ -19,6 +20,11 @@ def run_mlb_pipeline(project_root: Path) -> dict:
     paths = build_paths(project_root)
     board = build_mlb_board(config=config, paths=paths)
     validate_board_payload(board)
+    # Display-only enrichment — adds park + wind chip per game. Runs AFTER
+    # the validator so the strict schema check sees the original board, and
+    # any weather-API failure leaves the env field absent (silent degrade).
+    # Hard Non-Goal #1 holds: nothing here feeds backend/app/scoring/.
+    enrich_board_with_environment(board)
     export_board_to_site(board=board, sport_key="mlb", paths=paths)
     write_mlb_hr_tracking_snapshot(board=board, paths=paths)
     return board
