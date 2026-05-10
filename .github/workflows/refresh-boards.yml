@@ -5,6 +5,13 @@ on:
     # Top of every hour, UTC. GitHub may delay scheduled runs under load,
     # which is normal and expected — do not tighten this to sub-hourly.
     - cron: "0 * * * *"
+    # Fire AT the 10:30 AM ET freeze gate so picks.json writes the moment
+    # the gate opens, not at the next top-of-hour 30 minutes later.
+    # GitHub cron is UTC-only; both DST offsets are listed because the
+    # write_picks_snapshot date-check (`existing.date == snapshot_date`)
+    # makes the off-season trigger a harmless no-op the same day.
+    - cron: "30 14 * * *"  # 10:30 AM EDT  (Mar–Nov)
+    - cron: "30 15 * * *"  # 10:30 AM EST  (Nov–Mar)
   workflow_dispatch:
 
 # GITHUB_TOKEN needs write to commit refreshed JSON back to main.
