@@ -2394,7 +2394,10 @@ async function renderPicksView() {
   }
 
   const cards = sports.map(([sport, data]) => {
-    const frozenMarkup = renderFrozenDailySummaryCard(sport, data, sourceBoards[sport]);
+    // Picks of the Day uses compact mode — the per-sport card already
+    // shows the sport label + time chip in pick-sport-head, so the inner
+    // "Morning Card" head + footnote chatter is redundant here.
+    const frozenMarkup = renderFrozenDailySummaryCard(sport, data, sourceBoards[sport], { compact: true });
     if (!frozenMarkup) return "";  // sport had no A-tier rows; drop from Picks of the Day
     return `
       <section class="pick-sport-card">
@@ -2404,7 +2407,6 @@ async function renderPicksView() {
         </div>
         <div class="pick-sport-body">
           ${frozenMarkup}
-          <div class="pick-sport-footnote">Morning Card — locked at the 10:30 AM ET refresh. Sport tabs keep updating without disturbing this slate.</div>
         </div>
       </section>`;
   }).filter(Boolean);
@@ -2565,7 +2567,7 @@ function collectMlbHrRows(data) {
   return dedupeRows(frozen);
 }
 
-function renderFrozenDailySummaryCard(sport, frozen, liveData) {
+function renderFrozenDailySummaryCard(sport, frozen, liveData, options = {}) {
   if (!frozen) return "";
   const isMlb = sport === "mlb";
   const isA = row => row?.tier === "A";
@@ -2594,13 +2596,13 @@ function renderFrozenDailySummaryCard(sport, frozen, liveData) {
   };
   return `
     <section class="daily-summary-card">
-      <div class="daily-summary-head">
+      ${options.compact ? "" : `<div class="daily-summary-head">
         <div>
           <div class="daily-summary-title">Morning Card</div>
           <div class="daily-summary-sub">A-tier locks only. Frozen at the 10:30 AM ET refresh and tracked all day — the rolling board keeps moving below, these don't.</div>
         </div>
         <div class="pick-sport-meta">${esc(frozen.last_updated || liveData?.last_updated || "")}</div>
-      </div>
+      </div>`}
       <div class="daily-summary-grid">
         <div class="daily-summary-col">
           <div class="daily-summary-block">
