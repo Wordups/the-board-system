@@ -1,7 +1,7 @@
 {
   "sport": "WNBA",
   "date": "2026-05-10",
-  "last_updated": "5:51 PM ET",
+  "last_updated": "6:51 PM ET",
   "hero_pick": {
     "player_id": "3149391",
     "player_name": "A'ja Wilson",
@@ -79,7 +79,7 @@
     {
       "game_id": "401856896",
       "matchup": "SEA @ CON",
-      "top_score": 81.83,
+      "top_score": 82.42,
       "signals": [
         {
           "player_name": "Flau'jae Johnson",
@@ -89,18 +89,18 @@
           "tier": "A"
         },
         {
+          "player_name": "Saniya Rivers",
+          "market": "AST",
+          "line": "4+ AST",
+          "score": 82.3,
+          "tier": "B"
+        },
+        {
           "player_name": "Aneesah Morrow",
           "market": "REB",
           "line": "10+ REB",
           "score": 81.13,
           "tier": "B"
-        },
-        {
-          "player_name": "Flau'jae Johnson",
-          "market": "PTS",
-          "line": "16+ PTS",
-          "score": 80.53,
-          "tier": "A"
         }
       ]
     }
@@ -239,6 +239,22 @@
           "model_hit_rate": 0.429
         },
         {
+          "player_id": "4684384",
+          "player_name": "Aneesah Morrow",
+          "team": "CON",
+          "opponent": "SEA",
+          "market": "PTS",
+          "line": "14+ PTS",
+          "score": 75.21,
+          "confidence": 75,
+          "tier": "B",
+          "reason": "Implied +180 | Zone VALUE | Edge -1.10 | Hit% 36% | Sample 12 | Proj 12.9 | Baseline 14.5 | USG 26% | MIN 24.7 | PTS matchup 1.00x | Prev 9.5 | Pre 14.5 | Uptick 0.34 | Home boost",
+          "implied_odds": "+180",
+          "value_zone": "value",
+          "edge": -1.1,
+          "model_hit_rate": 0.357
+        },
+        {
           "player_id": "5220150",
           "player_name": "Dominique Malonga",
           "team": "SEA",
@@ -253,22 +269,6 @@
           "value_zone": "aim",
           "edge": -0.21,
           "model_hit_rate": 0.5
-        },
-        {
-          "player_id": "4398935",
-          "player_name": "Veronica Burton",
-          "team": "GS",
-          "opponent": "PHX",
-          "market": "PTS",
-          "line": "14+ PTS",
-          "score": 73.95,
-          "confidence": 74,
-          "tier": "B",
-          "reason": "Implied -133 | Zone AIM | Edge -0.61 | Hit% 57% | Sample 12 | Proj 13.4 | Baseline 14.0 | USG 37% | MIN 29.4 | PTS matchup 1.00x | Prev 13.2 | Pre 14.0 | Home boost | Anti-correlation: same team as Janelle Salaun",
-          "implied_odds": "-133",
-          "value_zone": "aim",
-          "edge": -0.61,
-          "model_hit_rate": 0.571
         }
       ]
     },
@@ -291,6 +291,22 @@
           "value_zone": "aim",
           "edge": -0.11,
           "model_hit_rate": 0.5
+        },
+        {
+          "player_id": "4433514",
+          "player_name": "Saniya Rivers",
+          "team": "CON",
+          "opponent": "SEA",
+          "market": "AST",
+          "line": "4+ AST",
+          "score": 82.3,
+          "confidence": 82,
+          "tier": "B",
+          "reason": "Implied +133 | Zone AIM | Edge -0.27 | Hit% 43% | Sample 12 | Proj 3.7 | Baseline 3.5 | USG 24% | MIN 25.7 | AST matchup 0.98x | Prev 2.1 | Pre 3.5 | Uptick 0.70 | Home boost",
+          "implied_odds": "+133",
+          "value_zone": "aim",
+          "edge": -0.27,
+          "model_hit_rate": 0.429
         },
         {
           "player_id": "4398911",
@@ -323,22 +339,6 @@
           "value_zone": "aim",
           "edge": -0.86,
           "model_hit_rate": 0.571
-        },
-        {
-          "player_id": "4433514",
-          "player_name": "Saniya Rivers",
-          "team": "CON",
-          "opponent": "SEA",
-          "market": "AST",
-          "line": "4+ AST",
-          "score": 78.3,
-          "confidence": 78,
-          "tier": "B",
-          "reason": "Implied +133 | Zone AIM | Edge -0.27 | Hit% 43% | Sample 12 | Proj 3.7 | Baseline 3.5 | USG 23% | MIN 25.7 | AST matchup 0.98x | Prev 2.1 | Pre 3.5 | Uptick 0.70 | Home boost",
-          "implied_odds": "+133",
-          "value_zone": "aim",
-          "edge": -0.27,
-          "model_hit_rate": 0.429
         },
         {
           "player_id": "4433524",
@@ -500,7 +500,7 @@
           "score": 81.13,
           "confidence": 81,
           "tier": "B",
-          "reason": "Implied -100 | Zone AIM | Edge -0.30 | Hit% 50% | Sample 12 | Proj 9.7 | Baseline 10.0 | USG 24% | MIN 24.7 | REB matchup 1.02x | Prev 10.0 | Pre 7.5 | Home boost",
+          "reason": "Implied -100 | Zone AIM | Edge -0.30 | Hit% 50% | Sample 12 | Proj 9.7 | Baseline 10.0 | USG 26% | MIN 24.7 | REB matchup 1.02x | Prev 10.0 | Pre 7.5 | Home boost",
           "implied_odds": "-100",
           "value_zone": "aim",
           "edge": -0.3,
@@ -580,7 +580,7 @@
           "score": 77.37,
           "confidence": 77,
           "tier": "B",
-          "reason": "Implied +133 | Zone AIM | Edge -0.56 | Hit% 43% | Sample 12 | Proj 2.4 | Baseline 2.8 | USG 23% | MIN 25.7 | REB matchup 1.02x | Prev 2.8 | Pre 1.5 | Decline 0.26 | Home boost | Anti-correlation: same team as Aneesah Morrow",
+          "reason": "Implied +133 | Zone AIM | Edge -0.56 | Hit% 43% | Sample 12 | Proj 2.4 | Baseline 2.8 | USG 24% | MIN 25.7 | REB matchup 1.02x | Prev 2.8 | Pre 1.5 | Decline 0.26 | Home boost | Anti-correlation: same team as Aneesah Morrow",
           "implied_odds": "+133",
           "value_zone": "aim",
           "edge": -0.56,
@@ -596,7 +596,7 @@
           "score": 76.94,
           "confidence": 77,
           "tier": "C",
-          "reason": "Implied -100 | Zone AIM | Edge -0.62 | Hit% 50% | Sample 4 | Proj 3.4 | Baseline 3.2 | USG 22% | MIN 21.5 | REB matchup 1.02x | Prev 3.2 | Pre 2.5 | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow",
+          "reason": "Implied -100 | Zone AIM | Edge -0.62 | Hit% 50% | Sample 4 | Proj 3.4 | Baseline 3.2 | USG 24% | MIN 21.5 | REB matchup 1.02x | Prev 3.2 | Pre 2.5 | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow",
           "implied_odds": "-100",
           "value_zone": "aim",
           "edge": -0.62,
@@ -657,6 +657,22 @@
           "model_hit_rate": 0.429
         },
         {
+          "player_id": "4684384",
+          "player_name": "Aneesah Morrow",
+          "team": "CON",
+          "opponent": "SEA",
+          "market": "3PM",
+          "line": "1+ 3PM",
+          "score": 78.54,
+          "confidence": 79,
+          "tier": "B",
+          "reason": "Implied +133 | Zone AIM | Edge -0.09 | Hit% 43% | Sample 12 | Proj 0.9 | Baseline 0.8 | USG 26% | MIN 24.7 | 3PM matchup 0.99x | Prev 0.6 | Pre 0.5 | Uptick 0.41 | Home boost",
+          "implied_odds": "+133",
+          "value_zone": "aim",
+          "edge": -0.09,
+          "model_hit_rate": 0.429
+        },
+        {
           "player_id": "4432832",
           "player_name": "Zia Cooke",
           "team": "SEA",
@@ -671,6 +687,22 @@
           "value_zone": "aim",
           "edge": -0.85,
           "model_hit_rate": 0.444
+        },
+        {
+          "player_id": "4433635",
+          "player_name": "Diamond Miller",
+          "team": "CON",
+          "opponent": "SEA",
+          "market": "3PM",
+          "line": "1+ 3PM",
+          "score": 75.53,
+          "confidence": 76,
+          "tier": "C",
+          "reason": "Implied -100 | Zone AIM | Edge -0.33 | Hit% 50% | Sample 4 | Proj 0.7 | Baseline 0.8 | USG 24% | MIN 21.5 | 3PM matchup 0.99x | Prev 0.8 | Pre 0.0 | Uptick 0.19 | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow",
+          "implied_odds": "-100",
+          "value_zone": "aim",
+          "edge": -0.33,
+          "model_hit_rate": 0.5
         },
         {
           "player_id": "3058892",
@@ -721,22 +753,6 @@
           "model_hit_rate": 0.462
         },
         {
-          "player_id": "4684384",
-          "player_name": "Aneesah Morrow",
-          "team": "CON",
-          "opponent": "SEA",
-          "market": "3PM",
-          "line": "1+ 3PM",
-          "score": 74.54,
-          "confidence": 75,
-          "tier": "B",
-          "reason": "Implied +133 | Zone AIM | Edge -0.09 | Hit% 43% | Sample 12 | Proj 0.9 | Baseline 0.8 | USG 24% | MIN 24.7 | 3PM matchup 0.99x | Prev 0.6 | Pre 0.5 | Uptick 0.41 | Home boost",
-          "implied_odds": "+133",
-          "value_zone": "aim",
-          "edge": -0.09,
-          "model_hit_rate": 0.429
-        },
-        {
           "player_id": "4038379",
           "player_name": "Marine Johannes",
           "team": "NY",
@@ -751,22 +767,6 @@
           "value_zone": "value",
           "edge": -1.54,
           "model_hit_rate": 0.385
-        },
-        {
-          "player_id": "1068",
-          "player_name": "Nneka Ogwumike",
-          "team": "LA",
-          "opponent": "LV",
-          "market": "3PM",
-          "line": "2+ 3PM",
-          "score": 73.34,
-          "confidence": 73,
-          "tier": "B",
-          "reason": "Implied -117 | Zone AIM | Edge -0.10 | Hit% 54% | Sample 9 | Proj 1.9 | Baseline 2.0 | USG 27% | MIN 29.4 | 3PM matchup 0.93x | Prev 1.9 | Pre 2.0 | Decline 0.16 | Home boost",
-          "implied_odds": "-117",
-          "value_zone": "aim",
-          "edge": -0.1,
-          "model_hit_rate": 0.538
         }
       ]
     },
@@ -826,6 +826,23 @@
           ]
         },
         {
+          "player_id": "4433514",
+          "player_name": "Saniya Rivers",
+          "team": "CON",
+          "opponent": "SEA",
+          "line": "4+ AST",
+          "score": 82.3,
+          "confidence": 82,
+          "tier": "B",
+          "reason": "Implied +133 | Zone AIM | Edge -0.27 | Hit% 43% | Sample 12 | Proj 3.7 | Baseline 3.5 | USG 24% | MIN 25.7 | AST matchup 0.98x | Prev 2.1 | Pre 3.5 | Uptick 0.70 | Home boost",
+          "market": "AST",
+          "ladder": [
+            "4+",
+            "6+",
+            "8+"
+          ]
+        },
+        {
           "player_id": "4398911",
           "player_name": "Shakira Austin",
           "team": "WSH",
@@ -840,23 +857,6 @@
             "3+",
             "5+",
             "7+"
-          ]
-        },
-        {
-          "player_id": "2998928",
-          "player_name": "Breanna Stewart",
-          "team": "NY",
-          "opponent": "WSH",
-          "line": "7+ REB",
-          "score": 81.4,
-          "confidence": 81,
-          "tier": "B",
-          "reason": "Implied -100 | Zone AIM | Edge +0.08 | Hit% 50% | Sample 12 | Proj 7.1 | Baseline 6.6 | USG 43% | MIN 27.0 | REB matchup 1.03x | Prev 6.1 | Pre 5.5 | Uptick 0.31",
-          "market": "REB",
-          "ladder": [
-            "7+",
-            "9+",
-            "11+"
           ]
         }
       ]
@@ -995,6 +995,22 @@
         "model_hit_rate": 0.429
       },
       {
+        "player_id": "4684384",
+        "player_name": "Aneesah Morrow",
+        "team": "CON",
+        "opponent": "SEA",
+        "market": "PTS",
+        "line": "14+ PTS",
+        "score": 75.21,
+        "confidence": 75,
+        "tier": "B",
+        "reason": "Implied +180 | Zone VALUE | Edge -1.10 | Hit% 36% | Sample 12 | Proj 12.9 | Baseline 14.5 | USG 26% | MIN 24.7 | PTS matchup 1.00x | Prev 9.5 | Pre 14.5 | Uptick 0.34 | Home boost",
+        "implied_odds": "+180",
+        "value_zone": "value",
+        "edge": -1.1,
+        "model_hit_rate": 0.357
+      },
+      {
         "player_id": "5220150",
         "player_name": "Dominique Malonga",
         "team": "SEA",
@@ -1009,22 +1025,6 @@
         "value_zone": "aim",
         "edge": -0.21,
         "model_hit_rate": 0.5
-      },
-      {
-        "player_id": "4398935",
-        "player_name": "Veronica Burton",
-        "team": "GS",
-        "opponent": "PHX",
-        "market": "PTS",
-        "line": "14+ PTS",
-        "score": 73.95,
-        "confidence": 74,
-        "tier": "B",
-        "reason": "Implied -133 | Zone AIM | Edge -0.61 | Hit% 57% | Sample 12 | Proj 13.4 | Baseline 14.0 | USG 37% | MIN 29.4 | PTS matchup 1.00x | Prev 13.2 | Pre 14.0 | Home boost | Anti-correlation: same team as Janelle Salaun",
-        "implied_odds": "-133",
-        "value_zone": "aim",
-        "edge": -0.61,
-        "model_hit_rate": 0.571
       }
     ]
   },
@@ -1206,6 +1206,15 @@
           "tier": "A"
         },
         {
+          "market": "AST",
+          "player_id": "4433514",
+          "player_name": "Saniya Rivers",
+          "line": "4+ AST",
+          "score": 82.3,
+          "confidence": 82,
+          "tier": "B"
+        },
+        {
           "market": "REB",
           "player_id": "4684384",
           "player_name": "Aneesah Morrow",
@@ -1213,15 +1222,6 @@
           "score": 81.13,
           "confidence": 81,
           "tier": "B"
-        },
-        {
-          "market": "PTS",
-          "player_id": "4698736",
-          "player_name": "Flau'jae Johnson",
-          "line": "16+ PTS",
-          "score": 80.53,
-          "confidence": 81,
-          "tier": "A"
         }
       ],
       "markets": {
@@ -1241,6 +1241,22 @@
             "value_zone": "aim",
             "edge": -0.8,
             "model_hit_rate": 0.5
+          },
+          {
+            "player_id": "4684384",
+            "player_name": "Aneesah Morrow",
+            "team": "CON",
+            "opponent": "SEA",
+            "market": "PTS",
+            "line": "14+ PTS",
+            "score": 75.21,
+            "confidence": 75,
+            "tier": "B",
+            "reason": "Implied +180 | Zone VALUE | Edge -1.10 | Hit% 36% | Sample 12 | Proj 12.9 | Baseline 14.5 | USG 26% | MIN 24.7 | PTS matchup 1.00x | Prev 9.5 | Pre 14.5 | Uptick 0.34 | Home boost",
+            "implied_odds": "+180",
+            "value_zone": "value",
+            "edge": -1.1,
+            "model_hit_rate": 0.357
           },
           {
             "player_id": "5220150",
@@ -1275,20 +1291,36 @@
             "model_hit_rate": 0.429
           },
           {
-            "player_id": "4684384",
-            "player_name": "Aneesah Morrow",
+            "player_id": "4433635",
+            "player_name": "Diamond Miller",
             "team": "CON",
             "opponent": "SEA",
             "market": "PTS",
-            "line": "14+ PTS",
-            "score": 69.93,
+            "line": "11+ PTS",
+            "score": 72.49,
+            "confidence": 72,
+            "tier": "C",
+            "reason": "Implied -100 | Zone AIM | Edge -0.75 | Hit% 50% | Sample 4 | Proj 10.2 | Baseline 10.8 | USG 24% | MIN 21.5 | PTS matchup 1.00x | Prev 10.8 | Pre 7.0 | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow",
+            "implied_odds": "-100",
+            "value_zone": "aim",
+            "edge": -0.75,
+            "model_hit_rate": 0.5
+          },
+          {
+            "player_id": "4433514",
+            "player_name": "Saniya Rivers",
+            "team": "CON",
+            "opponent": "SEA",
+            "market": "PTS",
+            "line": "10+ PTS",
+            "score": 70.47,
             "confidence": 70,
             "tier": "B",
-            "reason": "Implied +180 | Zone VALUE | Edge -1.10 | Hit% 36% | Sample 12 | Proj 12.9 | Baseline 14.5 | USG 24% | MIN 24.7 | PTS matchup 1.00x | Prev 9.5 | Pre 14.5 | Uptick 0.34 | Home boost",
-            "implied_odds": "+180",
-            "value_zone": "value",
-            "edge": -1.1,
-            "model_hit_rate": 0.357
+            "reason": "Implied +133 | Zone AIM | Edge -2.48 | Hit% 43% | Sample 12 | Proj 7.5 | Baseline 10.5 | USG 24% | MIN 25.7 | PTS matchup 1.00x | Prev 10.5 | Pre 3.0 | Decline 0.33 | Home boost | Anti-correlation: same team as Aneesah Morrow",
+            "implied_odds": "+133",
+            "value_zone": "aim",
+            "edge": -2.48,
+            "model_hit_rate": 0.429
           },
           {
             "player_id": "4432832",
@@ -1307,32 +1339,16 @@
             "model_hit_rate": 0.333
           },
           {
-            "player_id": "4433635",
-            "player_name": "Diamond Miller",
-            "team": "CON",
-            "opponent": "SEA",
-            "market": "PTS",
-            "line": "11+ PTS",
-            "score": 67.29,
-            "confidence": 67,
-            "tier": "C",
-            "reason": "Implied -100 | Zone AIM | Edge -0.75 | Hit% 50% | Sample 4 | Proj 10.2 | Baseline 10.8 | USG 22% | MIN 21.5 | PTS matchup 1.00x | Prev 10.8 | Pre 7.0 | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow",
-            "implied_odds": "-100",
-            "value_zone": "aim",
-            "edge": -0.75,
-            "model_hit_rate": 0.5
-          },
-          {
             "player_id": "2490553",
             "player_name": "Brittney Griner",
             "team": "CON",
             "opponent": "SEA",
             "market": "PTS",
             "line": "14+ PTS",
-            "score": 65.73,
-            "confidence": 66,
+            "score": 66.85,
+            "confidence": 67,
             "tier": "B",
-            "reason": "Implied -100 | Zone AIM | Edge -0.72 | Hit% 50% | Sample 4 | Proj 13.3 | Baseline 13.0 | USG 21% | MIN 23.0 | PTS matchup 1.00x | Prev 13.0 | Pre 11.5 | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow",
+            "reason": "Implied -100 | Zone AIM | Edge -0.72 | Hit% 50% | Sample 4 | Proj 13.3 | Baseline 13.0 | USG 23% | MIN 23.0 | PTS matchup 1.00x | Prev 13.0 | Pre 11.5 | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow",
             "implied_odds": "-100",
             "value_zone": "aim",
             "edge": -0.72,
@@ -1345,29 +1361,13 @@
             "opponent": "SEA",
             "market": "PTS",
             "line": "8+ PTS",
-            "score": 65.69,
-            "confidence": 66,
+            "score": 66.59,
+            "confidence": 67,
             "tier": "B",
-            "reason": "Implied +133 | Zone AIM | Edge -0.46 | Hit% 43% | Sample 12 | Proj 7.5 | Baseline 8.0 | USG 17% | MIN 23.5 | PTS matchup 1.00x | Prev 4.6 | Pre 8.0 | Uptick 0.46 | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow",
+            "reason": "Implied +133 | Zone AIM | Edge -0.46 | Hit% 43% | Sample 12 | Proj 7.5 | Baseline 8.0 | USG 18% | MIN 23.5 | PTS matchup 1.00x | Prev 4.6 | Pre 8.0 | Uptick 0.46 | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow",
             "implied_odds": "+133",
             "value_zone": "aim",
             "edge": -0.46,
-            "model_hit_rate": 0.429
-          },
-          {
-            "player_id": "4433514",
-            "player_name": "Saniya Rivers",
-            "team": "CON",
-            "opponent": "SEA",
-            "market": "PTS",
-            "line": "10+ PTS",
-            "score": 65.26,
-            "confidence": 65,
-            "tier": "B",
-            "reason": "Implied +133 | Zone AIM | Edge -2.48 | Hit% 43% | Sample 12 | Proj 7.5 | Baseline 10.5 | USG 23% | MIN 25.7 | PTS matchup 1.00x | Prev 10.5 | Pre 3.0 | Decline 0.33 | Home boost | Anti-correlation: same team as Aneesah Morrow",
-            "implied_odds": "+133",
-            "value_zone": "aim",
-            "edge": -2.48,
             "model_hit_rate": 0.429
           },
           {
@@ -1398,7 +1398,7 @@
             "score": 81.13,
             "confidence": 81,
             "tier": "B",
-            "reason": "Implied -100 | Zone AIM | Edge -0.30 | Hit% 50% | Sample 12 | Proj 9.7 | Baseline 10.0 | USG 24% | MIN 24.7 | REB matchup 1.02x | Prev 10.0 | Pre 7.5 | Home boost",
+            "reason": "Implied -100 | Zone AIM | Edge -0.30 | Hit% 50% | Sample 12 | Proj 9.7 | Baseline 10.0 | USG 26% | MIN 24.7 | REB matchup 1.02x | Prev 10.0 | Pre 7.5 | Home boost",
             "implied_odds": "-100",
             "value_zone": "aim",
             "edge": -0.3,
@@ -1414,7 +1414,7 @@
             "score": 77.37,
             "confidence": 77,
             "tier": "B",
-            "reason": "Implied +133 | Zone AIM | Edge -0.56 | Hit% 43% | Sample 12 | Proj 2.4 | Baseline 2.8 | USG 23% | MIN 25.7 | REB matchup 1.02x | Prev 2.8 | Pre 1.5 | Decline 0.26 | Home boost | Anti-correlation: same team as Aneesah Morrow",
+            "reason": "Implied +133 | Zone AIM | Edge -0.56 | Hit% 43% | Sample 12 | Proj 2.4 | Baseline 2.8 | USG 24% | MIN 25.7 | REB matchup 1.02x | Prev 2.8 | Pre 1.5 | Decline 0.26 | Home boost | Anti-correlation: same team as Aneesah Morrow",
             "implied_odds": "+133",
             "value_zone": "aim",
             "edge": -0.56,
@@ -1430,7 +1430,7 @@
             "score": 76.94,
             "confidence": 77,
             "tier": "C",
-            "reason": "Implied -100 | Zone AIM | Edge -0.62 | Hit% 50% | Sample 4 | Proj 3.4 | Baseline 3.2 | USG 22% | MIN 21.5 | REB matchup 1.02x | Prev 3.2 | Pre 2.5 | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow",
+            "reason": "Implied -100 | Zone AIM | Edge -0.62 | Hit% 50% | Sample 4 | Proj 3.4 | Baseline 3.2 | USG 24% | MIN 21.5 | REB matchup 1.02x | Prev 3.2 | Pre 2.5 | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow",
             "implied_odds": "-100",
             "value_zone": "aim",
             "edge": -0.62,
@@ -1443,10 +1443,10 @@
             "opponent": "SEA",
             "market": "REB",
             "line": "6+ REB",
-            "score": 75.93,
-            "confidence": 76,
+            "score": 76.78,
+            "confidence": 77,
             "tier": "B",
-            "reason": "Implied -100 | Zone AIM | Edge -0.70 | Hit% 50% | Sample 4 | Proj 5.3 | Baseline 5.2 | USG 21% | MIN 23.0 | REB matchup 1.02x | Prev 5.2 | Pre 4.5 | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow",
+            "reason": "Implied -100 | Zone AIM | Edge -0.70 | Hit% 50% | Sample 4 | Proj 5.3 | Baseline 5.2 | USG 23% | MIN 23.0 | REB matchup 1.02x | Prev 5.2 | Pre 4.5 | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow",
             "implied_odds": "-100",
             "value_zone": "aim",
             "edge": -0.7,
@@ -1459,10 +1459,10 @@
             "opponent": "SEA",
             "market": "REB",
             "line": "3+ REB",
-            "score": 73.71,
-            "confidence": 74,
+            "score": 74.86,
+            "confidence": 75,
             "tier": "B",
-            "reason": "Implied -100 | Zone AIM | Edge +0.41 | Hit% 50% | Sample 12 | Proj 3.4 | Baseline 3.0 | USG 17% | MIN 23.5 | REB matchup 1.02x | Prev 2.8 | Pre 2.5 | Uptick 0.19 | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow",
+            "reason": "Implied -100 | Zone AIM | Edge +0.41 | Hit% 50% | Sample 12 | Proj 3.4 | Baseline 3.0 | USG 18% | MIN 23.5 | REB matchup 1.02x | Prev 2.8 | Pre 2.5 | Uptick 0.19 | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow",
             "implied_odds": "-100",
             "value_zone": "aim",
             "edge": 0.41,
@@ -1557,10 +1557,10 @@
             "opponent": "SEA",
             "market": "AST",
             "line": "4+ AST",
-            "score": 78.3,
-            "confidence": 78,
+            "score": 82.3,
+            "confidence": 82,
             "tier": "B",
-            "reason": "Implied +133 | Zone AIM | Edge -0.27 | Hit% 43% | Sample 12 | Proj 3.7 | Baseline 3.5 | USG 23% | MIN 25.7 | AST matchup 0.98x | Prev 2.1 | Pre 3.5 | Uptick 0.70 | Home boost",
+            "reason": "Implied +133 | Zone AIM | Edge -0.27 | Hit% 43% | Sample 12 | Proj 3.7 | Baseline 3.5 | USG 24% | MIN 25.7 | AST matchup 0.98x | Prev 2.1 | Pre 3.5 | Uptick 0.70 | Home boost",
             "implied_odds": "+133",
             "value_zone": "aim",
             "edge": -0.27,
@@ -1621,10 +1621,10 @@
             "opponent": "SEA",
             "market": "AST",
             "line": "4+ AST",
-            "score": 62.11,
-            "confidence": 62,
+            "score": 63.26,
+            "confidence": 63,
             "tier": "B",
-            "reason": "Implied +250 | Zone VALUE | Edge -1.25 | Hit% 29% | Sample 12 | Proj 2.7 | Baseline 3.5 | USG 17% | MIN 23.5 | AST matchup 0.98x | Prev 0.8 | Pre 3.5 | Uptick 1.23 | Home boost | Minutes watch | Anti-correlation: same team as Saniya Rivers",
+            "reason": "Implied +250 | Zone VALUE | Edge -1.25 | Hit% 29% | Sample 12 | Proj 2.7 | Baseline 3.5 | USG 18% | MIN 23.5 | AST matchup 0.98x | Prev 0.8 | Pre 3.5 | Uptick 1.23 | Home boost | Minutes watch | Anti-correlation: same team as Saniya Rivers",
             "implied_odds": "+250",
             "value_zone": "value",
             "edge": -1.25,
@@ -1685,30 +1685,30 @@
             "opponent": "SEA",
             "market": "AST",
             "line": "2+ AST",
-            "score": 50.47,
-            "confidence": 50,
+            "score": 51.21,
+            "confidence": 51,
             "tier": "C",
-            "reason": "Implied +233 | Zone VALUE | Edge -1.10 | Hit% 30% | Sample 6 | Proj 0.9 | Baseline 0.8 | USG 11% | MIN 13.1 | AST matchup 0.98x | Prev 0.5 | Pre 0.0 | Uptick 0.62 | Home boost | Minutes watch | Anti-correlation: same team as Saniya Rivers",
+            "reason": "Implied +233 | Zone VALUE | Edge -1.10 | Hit% 30% | Sample 6 | Proj 0.9 | Baseline 0.8 | USG 12% | MIN 13.1 | AST matchup 0.98x | Prev 0.5 | Pre 0.0 | Uptick 0.62 | Home boost | Minutes watch | Anti-correlation: same team as Saniya Rivers",
             "implied_odds": "+233",
             "value_zone": "value",
             "edge": -1.1,
             "model_hit_rate": 0.3
           },
           {
-            "player_id": "5106232",
-            "player_name": "Ashlon Jackson",
+            "player_id": "4684384",
+            "player_name": "Aneesah Morrow",
             "team": "CON",
             "opponent": "SEA",
             "market": "AST",
             "line": "2+ AST",
-            "score": 48.67,
-            "confidence": 49,
-            "tier": "C",
-            "reason": "Implied -150 | Zone LEAN | Edge +0.25 | Hit% 60% | Sample 1 | Proj 2.2 | Baseline 2.0 | USG 12% | MIN 26.0 | AST matchup 0.98x | Prev 2.0 | Pre 2.0 | Home boost | Anti-correlation: same team as Saniya Rivers",
-            "implied_odds": "-150",
-            "value_zone": "lean",
-            "edge": 0.25,
-            "model_hit_rate": 0.6
+            "score": 49.55,
+            "confidence": 50,
+            "tier": "B",
+            "reason": "Implied +600 | Zone LONGSHOT | Edge -1.44 | Hit% 14% | Sample 12 | Proj 0.6 | Baseline 0.6 | USG 26% | MIN 24.7 | AST matchup 0.98x | Prev 0.6 | Pre 0.0 | Decline 0.27 | Home boost | Anti-correlation: same team as Saniya Rivers",
+            "implied_odds": "+600",
+            "value_zone": "longshot",
+            "edge": -1.44,
+            "model_hit_rate": 0.143
           }
         ],
         "3PM": [
@@ -1729,6 +1729,22 @@
             "model_hit_rate": 0.5
           },
           {
+            "player_id": "4684384",
+            "player_name": "Aneesah Morrow",
+            "team": "CON",
+            "opponent": "SEA",
+            "market": "3PM",
+            "line": "1+ 3PM",
+            "score": 78.54,
+            "confidence": 79,
+            "tier": "B",
+            "reason": "Implied +133 | Zone AIM | Edge -0.09 | Hit% 43% | Sample 12 | Proj 0.9 | Baseline 0.8 | USG 26% | MIN 24.7 | 3PM matchup 0.99x | Prev 0.6 | Pre 0.5 | Uptick 0.41 | Home boost",
+            "implied_odds": "+133",
+            "value_zone": "aim",
+            "edge": -0.09,
+            "model_hit_rate": 0.429
+          },
+          {
             "player_id": "4432832",
             "player_name": "Zia Cooke",
             "team": "SEA",
@@ -1743,6 +1759,22 @@
             "value_zone": "aim",
             "edge": -0.85,
             "model_hit_rate": 0.444
+          },
+          {
+            "player_id": "4433635",
+            "player_name": "Diamond Miller",
+            "team": "CON",
+            "opponent": "SEA",
+            "market": "3PM",
+            "line": "1+ 3PM",
+            "score": 75.53,
+            "confidence": 76,
+            "tier": "C",
+            "reason": "Implied -100 | Zone AIM | Edge -0.33 | Hit% 50% | Sample 4 | Proj 0.7 | Baseline 0.8 | USG 24% | MIN 21.5 | 3PM matchup 0.99x | Prev 0.8 | Pre 0.0 | Uptick 0.19 | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow",
+            "implied_odds": "-100",
+            "value_zone": "aim",
+            "edge": -0.33,
+            "model_hit_rate": 0.5
           },
           {
             "player_id": "3058892",
@@ -1761,36 +1793,20 @@
             "model_hit_rate": 0.5
           },
           {
-            "player_id": "4684384",
-            "player_name": "Aneesah Morrow",
+            "player_id": "4433514",
+            "player_name": "Saniya Rivers",
             "team": "CON",
             "opponent": "SEA",
             "market": "3PM",
-            "line": "1+ 3PM",
-            "score": 74.54,
-            "confidence": 75,
+            "line": "2+ 3PM",
+            "score": 72.63,
+            "confidence": 73,
             "tier": "B",
-            "reason": "Implied +133 | Zone AIM | Edge -0.09 | Hit% 43% | Sample 12 | Proj 0.9 | Baseline 0.8 | USG 24% | MIN 24.7 | 3PM matchup 0.99x | Prev 0.6 | Pre 0.5 | Uptick 0.41 | Home boost",
-            "implied_odds": "+133",
-            "value_zone": "aim",
-            "edge": -0.09,
-            "model_hit_rate": 0.429
-          },
-          {
-            "player_id": "4433635",
-            "player_name": "Diamond Miller",
-            "team": "CON",
-            "opponent": "SEA",
-            "market": "3PM",
-            "line": "1+ 3PM",
-            "score": 71.53,
-            "confidence": 72,
-            "tier": "C",
-            "reason": "Implied -100 | Zone AIM | Edge -0.33 | Hit% 50% | Sample 4 | Proj 0.7 | Baseline 0.8 | USG 22% | MIN 21.5 | 3PM matchup 0.99x | Prev 0.8 | Pre 0.0 | Uptick 0.19 | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow",
-            "implied_odds": "-100",
-            "value_zone": "aim",
-            "edge": -0.33,
-            "model_hit_rate": 0.5
+            "reason": "Implied +180 | Zone VALUE | Edge -1.25 | Hit% 36% | Sample 12 | Proj 0.8 | Baseline 1.8 | USG 24% | MIN 25.7 | 3PM matchup 0.99x | Prev 1.8 | Pre 0.0 | Decline 0.85 | Home boost | Anti-correlation: same team as Aneesah Morrow",
+            "implied_odds": "+180",
+            "value_zone": "value",
+            "edge": -1.25,
+            "model_hit_rate": 0.357
           },
           {
             "player_id": "5017726",
@@ -1807,22 +1823,6 @@
             "value_zone": "aim",
             "edge": -0.35,
             "model_hit_rate": 0.429
-          },
-          {
-            "player_id": "4433514",
-            "player_name": "Saniya Rivers",
-            "team": "CON",
-            "opponent": "SEA",
-            "market": "3PM",
-            "line": "2+ 3PM",
-            "score": 68.63,
-            "confidence": 69,
-            "tier": "B",
-            "reason": "Implied +180 | Zone VALUE | Edge -1.25 | Hit% 36% | Sample 12 | Proj 0.8 | Baseline 1.8 | USG 23% | MIN 25.7 | 3PM matchup 0.99x | Prev 1.8 | Pre 0.0 | Decline 0.85 | Home boost | Anti-correlation: same team as Aneesah Morrow",
-            "implied_odds": "+180",
-            "value_zone": "value",
-            "edge": -1.25,
-            "model_hit_rate": 0.357
           },
           {
             "player_id": "5220150",
@@ -1863,10 +1863,10 @@
             "opponent": "SEA",
             "market": "3PM",
             "line": "2+ 3PM",
-            "score": 54.66,
-            "confidence": 55,
+            "score": 55.81,
+            "confidence": 56,
             "tier": "B",
-            "reason": "Implied +250 | Zone VALUE | Edge -0.84 | Hit% 29% | Sample 12 | Proj 1.2 | Baseline 2.0 | USG 17% | MIN 23.5 | 3PM matchup 0.99x | Prev 0.4 | Pre 2.0 | Uptick 0.42 | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow",
+            "reason": "Implied +250 | Zone VALUE | Edge -0.84 | Hit% 29% | Sample 12 | Proj 1.2 | Baseline 2.0 | USG 18% | MIN 23.5 | 3PM matchup 0.99x | Prev 0.4 | Pre 2.0 | Uptick 0.42 | Home boost | Minutes watch | Anti-correlation: same team as Aneesah Morrow",
             "implied_odds": "+250",
             "value_zone": "value",
             "edge": -0.84,
@@ -2590,7 +2590,7 @@
     {
       "game_id": "401856898",
       "matchup": "LV @ LA",
-      "time": "5/10 - 6:00 PM EDT",
+      "time": "6:00 - 2nd",
       "top_signals": [
         {
           "market": "3PM",
