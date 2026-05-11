@@ -2653,61 +2653,47 @@ function renderMlbPinnedBoards(data) {
   const watchRows = (data?.watch_board?.players || []).length
     ? data.watch_board.players
     : collectMlbHrRows(data).slice(3, 10);
+  // Diamond of the Day now carries all 10 HR names. First 3 from the core
+  // pinned board, then up to 7 from the watch board, capped at 10. The
+  // separate Fringe Watchlist block is gone — slots 5–10 just show rank.
   const diamondRows = [
     hrRows[0] || null,
     hrRows[1] || null,
     hrRows[2] || null,
-    watchRows[0] || null,
-  ].filter(Boolean);
+    ...watchRows,
+  ].filter(Boolean).slice(0, 10);
   const diamondLabels = ["Home Plate", "First Base", "Second Base", "Third Base"];
-  const fringeRows = watchRows.slice(1, 8);
   // Strikeout Plays takes over the Secondary Lanes slot. Top 5 K rows, A-tier
   // first, then by score. If the slate has zero K candidates, the block hides
   // (same gating pattern as the old Secondary Lanes).
   const kRows = collectMlbKRows(data, 5);
   return `
-    <div class="mlb-board-shell">
-      <div class="mlb-board-main">
+    <div class="mlb-board-main">
+      <div class="board-card mlb-board-compact">
+        <div class="board-header">
+          <div class="board-header-copy">
+            <div class="board-title">Diamond of the Day</div>
+            <div class="board-subtitle">Today's top 10 HR names — base labels on the core four, rank-only past that.</div>
+          </div>
+          <div class="board-count">${diamondRows.length} Names</div>
+        </div>
+        <div class="core-grid">
+          ${diamondRows.map((player, index) => renderMlbCoreCard(player, index, diamondLabels[index] || "")).join("")}
+        </div>
+      </div>
+      ${kRows.length ? `
         <div class="board-card mlb-board-compact">
           <div class="board-header">
             <div class="board-header-copy">
-              <div class="board-title">Diamond of the Day</div>
-              <div class="board-subtitle">Start at home plate, then build outward only if the slate still supports it.</div>
+              <div class="board-title">Strikeout Plays</div>
+              <div class="board-subtitle">Today's pitcher K board, A-tier first then ranked by score.</div>
             </div>
-            <div class="board-count">${diamondRows.length} Bases</div>
+            <div class="board-count">${kRows.length} Arms</div>
           </div>
-          <div class="core-grid">
-            ${diamondRows.map((player, index) => renderMlbCoreCard(player, index, diamondLabels[index] || `Base ${index + 1}`)).join("")}
+          <div class="support-list">
+            ${kRows.map(player => renderMlbSupportRow(player)).join("")}
           </div>
-        </div>
-        ${kRows.length ? `
-          <div class="board-card mlb-board-compact">
-            <div class="board-header">
-              <div class="board-header-copy">
-                <div class="board-title">Strikeout Plays</div>
-                <div class="board-subtitle">Today's pitcher K board, A-tier first then ranked by score.</div>
-              </div>
-              <div class="board-count">${kRows.length} Arms</div>
-            </div>
-            <div class="support-list">
-              ${kRows.map(player => renderMlbSupportRow(player)).join("")}
-            </div>
-          </div>` : ""}
-      </div>
-      <div class="mlb-board-side">
-        <div class="board-card mlb-board-compact">
-          <div class="board-header">
-            <div class="board-header-copy">
-              <div class="board-title">Fringe Watchlist</div>
-              <div class="board-subtitle">Still live HR names, just a tier below the core so the pool doesn’t get too loose.</div>
-            </div>
-            <div class="board-count">${fringeRows.length} Names</div>
-          </div>
-          <div class="watchlist-list">
-            ${fringeRows.length ? fringeRows.map((player, index) => renderMlbWatchlistRow(player, index)).join("") : `<div class="lane-card"><div class="lane-sub">No fringe names on this slate yet.</div></div>`}
-          </div>
-        </div>
-      </div>
+        </div>` : ""}
     </div>`;
 }
 
