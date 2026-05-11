@@ -1,13 +1,13 @@
 {
   "sport": "MLB",
   "date": "2026-05-11",
-  "generated_at": "2026-05-11 1:07 PM ET",
-  "board_last_updated": "1:07 PM ET",
+  "generated_at": "2026-05-11 1:25 PM ET",
+  "board_last_updated": "1:25 PM ET",
   "tracking_version": 1,
   "summary": {
     "pinned_board_title": "HR Core",
-    "tracked_candidate_count": 4,
-    "core_candidate_count": 2,
+    "tracked_candidate_count": 6,
+    "core_candidate_count": 4,
     "fringe_candidate_count": 0
   },
   "daily_picks": {
@@ -55,11 +55,11 @@
         "tier": "B"
       },
       {
-        "player_name": "Yordan Alvarez",
-        "team": "HOU",
-        "opponent": "SEA",
+        "player_name": "Corbin Carroll",
+        "team": "AZ",
+        "opponent": "TEX",
         "line": "HR 1+",
-        "score": 27.93,
+        "score": 23.46,
         "tier": "B"
       }
     ]
@@ -136,14 +136,14 @@
       "tier": "B",
       "reason": "HR edge 25.3 | L5 0.40/g | L10 0.40/g | Season 0.32/g | HR% 0.24 | HistHR% 0.23 | OPS 1.064 | SLG 0.642 | ISO 0.324 | PowIdx 0.62 | Surge 0.22 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.062 | vs George Kirby | ERA 2.94 | WHIP 1.10 | HR/9 0.69 | HR A 4 | Hand R | Platoon + | vsP 0.000/0.000 in 2 PA | Age 29 | Order est. 1 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.56/g | Wts T0.42/M0.28/F0.30",
       "research_rank": 2,
-      "pinned_rank": 3,
+      "pinned_rank": null,
       "core_fringe_tag": "strong",
       "board_tags": {
         "play_of_day": false,
         "daily_straight": false,
         "daily_two_leg": false,
-        "daily_three_leg": true,
-        "pinned_board": true
+        "daily_three_leg": false,
+        "pinned_board": false
       },
       "result": {
         "status": "pending",
@@ -290,6 +290,120 @@
         "historical_power_index": 0.26,
         "recent_peak_hr_rate": 0.049,
         "career_hr_rate": 0.049
+      },
+      "evidence": []
+    },
+    {
+      "player_id": "682998",
+      "player_name": "Corbin Carroll",
+      "team": "AZ",
+      "opponent": "TEX",
+      "game_id": "az-tex-2026-05-11",
+      "market": "HR",
+      "line": "HR 1+",
+      "score": 23.46,
+      "base_score": 23.46,
+      "confidence": 23,
+      "tier": "B",
+      "reason": "HR edge 14.3 | L5 0.20/g | L10 0.20/g | Season 0.14/g | HR% 0.13 | HistHR% 0.17 | OPS 0.843 | SLG 0.492 | ISO 0.234 | PowIdx 0.57 | Surge 0.26 | Matchup 0.50 | ProjPA 4.4 | Sample 0.86 | Peak3Y 0.047 | vs Nathan Eovaldi | ERA 4.15 | WHIP 1.17 | HR/9 1.89 | HR A 10 | Hand R | Platoon + | vsP 0.375/1.250 in 8 PA | vsP HR 1 | Age 25 | Order est. 2 | Lineup pen 1.2 | Rising 0.42 | L5 XBH 0.60/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
+      "research_rank": 5,
+      "pinned_rank": 3,
+      "core_fringe_tag": "core",
+      "board_tags": {
+        "play_of_day": false,
+        "daily_straight": false,
+        "daily_two_leg": false,
+        "daily_three_leg": true,
+        "pinned_board": true
+      },
+      "result": {
+        "status": "pending",
+        "home_runs": 0
+      },
+      "features": {
+        "pitcher_name": "Nathan Eovaldi",
+        "pitcher_whip": 1.17,
+        "pitcher_hr9": 1.89,
+        "pitcher_hr_allowed": 10.0,
+        "vs_pitcher_avg": 0.375,
+        "vs_pitcher_ops": 1.25,
+        "vs_pitcher_hr": 1.0,
+        "order_estimate": 2,
+        "projected_pa": 4.39,
+        "lineup_confirmed": false,
+        "lineup_uncertainty_penalty": 1.2,
+        "season_hr_probability": 0.134,
+        "l10_hr_probability": 0.18,
+        "l5_hr_probability": 0.172,
+        "historical_hr_probability": 0.169,
+        "season_hr_per_game": 0.135,
+        "l10_hr_per_game": 0.2,
+        "l5_hr_per_game": 0.2,
+        "ops": 0.843,
+        "slg": 0.492,
+        "iso": 0.234,
+        "sample_reliability": 0.856,
+        "age": 25.0,
+        "historical_power_index": 0.161,
+        "recent_peak_hr_rate": 0.047,
+        "career_hr_rate": 0.038
+      },
+      "evidence": []
+    },
+    {
+      "player_id": "624413",
+      "player_name": "Pete Alonso",
+      "team": "BAL",
+      "opponent": "NYY",
+      "game_id": "nyy-bal-2026-05-11",
+      "market": "HR",
+      "line": "HR 1+",
+      "score": 22.16,
+      "base_score": 22.16,
+      "confidence": 22,
+      "tier": "B",
+      "reason": "HR edge 15.6 | L5 0.20/g | L10 0.10/g | Season 0.20/g | HR% 0.17 | HistHR% 0.24 | OPS 0.748 | SLG 0.435 | ISO 0.221 | PowIdx 0.53 | Surge 0.13 | Matchup 0.27 | ProjPA 4.4 | Sample 0.98 | Peak3Y 0.069 | vs Ryan Weathers | ERA 3.03 | WHIP 1.19 | HR/9 1.40 | HR A 6 | Hand L | Platoon + | vsP 0.500/1.750 in 4 PA | vsP HR 1 | Age 31 | Order est. 3 | Lineup pen 1.2 | Power due 0.34 | L5 XBH 0.20/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
+      "research_rank": 6,
+      "pinned_rank": null,
+      "core_fringe_tag": "core",
+      "board_tags": {
+        "play_of_day": false,
+        "daily_straight": false,
+        "daily_two_leg": false,
+        "daily_three_leg": false,
+        "pinned_board": false
+      },
+      "result": {
+        "status": "pending",
+        "home_runs": 0
+      },
+      "features": {
+        "pitcher_name": "Ryan Weathers",
+        "pitcher_whip": 1.19,
+        "pitcher_hr9": 1.4,
+        "pitcher_hr_allowed": 6.0,
+        "vs_pitcher_avg": 0.5,
+        "vs_pitcher_ops": 1.75,
+        "vs_pitcher_hr": 1.0,
+        "order_estimate": 3,
+        "projected_pa": 4.37,
+        "lineup_confirmed": false,
+        "lineup_uncertainty_penalty": 1.2,
+        "season_hr_probability": 0.167,
+        "l10_hr_probability": 0.123,
+        "l5_hr_probability": 0.183,
+        "historical_hr_probability": 0.24,
+        "season_hr_per_game": 0.195,
+        "l10_hr_per_game": 0.1,
+        "l5_hr_per_game": 0.2,
+        "ops": 0.748,
+        "slg": 0.435,
+        "iso": 0.221,
+        "sample_reliability": 0.978,
+        "age": 31.0,
+        "historical_power_index": 0.554,
+        "recent_peak_hr_rate": 0.069,
+        "career_hr_rate": 0.059
       },
       "evidence": []
     }
