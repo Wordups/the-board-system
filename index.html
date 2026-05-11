@@ -2551,6 +2551,25 @@ function renderMlbSupportRow(player) {
     </div>`;
 }
 
+function collectMlbKRows(data, limit = 5) {
+  // Walk every game's K market rows and rank: A-tier first, then by score desc.
+  // The K market lives only inside games[].markets.K — no featured board carries
+  // it today, so this surfaces it for the MLB tab's K block.
+  const rows = [];
+  for (const game of (data?.games || [])) {
+    for (const row of ((game.markets && game.markets.K) || [])) {
+      if (row) rows.push(row);
+    }
+  }
+  rows.sort((a, b) => {
+    const tierRank = t => ({ A: 2, B: 1 }[String(t || "C")] || 0);
+    const tg = tierRank(b.tier) - tierRank(a.tier);
+    if (tg) return tg;
+    return Number(b.score || 0) - Number(a.score || 0);
+  });
+  return rows.slice(0, limit);
+}
+
 function collectMlbHrRows(data) {
   const preferred = [
     ...(data?.research_board?.home_run?.core_candidates || []),
@@ -2642,14 +2661,10 @@ function renderMlbPinnedBoards(data) {
   ].filter(Boolean);
   const diamondLabels = ["Home Plate", "First Base", "Second Base", "Third Base"];
   const fringeRows = watchRows.slice(1, 8);
-  const supportRows = sortRowsForPinnedArea(data?.consistency_board?.players || [])
-    .filter((row, index, arr) => {
-      const market = String(row.market || "").toUpperCase();
-      if (market !== "HITS") return true;
-      const nonHitsAhead = arr.filter(item => String(item.market || "").toUpperCase() !== "HITS");
-      return !nonHitsAhead.length && index === 0;
-    })
-    .slice(0, 4);
+  // Strikeout Plays takes over the Secondary Lanes slot. Top 5 K rows, A-tier
+  // first, then by score. If the slate has zero K candidates, the block hides
+  // (same gating pattern as the old Secondary Lanes).
+  const kRows = collectMlbKRows(data, 5);
   return `
     <div class="mlb-board-shell">
       <div class="mlb-board-main">
@@ -2665,17 +2680,17 @@ function renderMlbPinnedBoards(data) {
             ${diamondRows.map((player, index) => renderMlbCoreCard(player, index, diamondLabels[index] || `Base ${index + 1}`)).join("")}
           </div>
         </div>
-        ${supportRows.length ? `
+        ${kRows.length ? `
           <div class="board-card mlb-board-compact">
             <div class="board-header">
               <div class="board-header-copy">
-                <div class="board-title">Secondary Lanes</div>
-                <div class="board-subtitle">Support markets stay in view, but power gets the spotlight first.</div>
+                <div class="board-title">Strikeout Plays</div>
+                <div class="board-subtitle">Today's pitcher K board, A-tier first then ranked by score.</div>
               </div>
-              <div class="board-count">${supportRows.length} Rows</div>
+              <div class="board-count">${kRows.length} Arms</div>
             </div>
             <div class="support-list">
-              ${supportRows.map(player => renderMlbSupportRow(player)).join("")}
+              ${kRows.map(player => renderMlbSupportRow(player)).join("")}
             </div>
           </div>` : ""}
       </div>
