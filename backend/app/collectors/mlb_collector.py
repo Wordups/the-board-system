@@ -486,6 +486,7 @@ def build_hitter_inputs(
                     "lineup_uncertainty_penalty": round(lineup_uncertainty_penalty, 2),
                     "player_status": player_status,
                     "career_hr_rate": round(history_metrics["career_hr_rate"], 3),
+                    "career_games": history_metrics["career_games"],
                     "recent_peak_hr_rate": round(history_metrics["recent_peak_hr_rate"], 3),
                     "historical_power_index": round(power_history_boost, 3),
                     "unlucky_power_index": round(unlucky_power_signal, 3),
@@ -571,6 +572,7 @@ def build_hitter_inputs(
                     "lineup_uncertainty_penalty": round(lineup_uncertainty_penalty, 2),
                     "order_estimate": order_estimate,
                     "player_status": player_status,
+                    "career_games": history_metrics["career_games"],
                     "season_rbi_per_game": round(rbi_per_game, 3),
                     "l5_rbi_per_game": round(l5_rbi, 3),
                     "l10_rbi_per_game": round(l10_rbi, 3),
@@ -604,6 +606,7 @@ def build_hitter_inputs(
                     "lineup_uncertainty_penalty": round(lineup_uncertainty_penalty, 2),
                     "order_estimate": order_estimate,
                     "player_status": player_status,
+                    "career_games": history_metrics["career_games"],
                 },
             )
         )
@@ -626,6 +629,7 @@ def build_hitter_inputs(
                     "lineup_uncertainty_penalty": round(lineup_uncertainty_penalty, 2),
                     "order_estimate": order_estimate,
                     "player_status": player_status,
+                    "career_games": history_metrics["career_games"],
                 },
             )
         )
@@ -855,6 +859,7 @@ def historical_hr_metrics(person: dict[str, Any], *, current_season: int) -> dic
         career_stats = career_stats_raw or {}
     career_hr = parse_int(career_stats.get("homeRuns"))
     career_pa = parse_int(career_stats.get("plateAppearances"))
+    career_games = parse_int(career_stats.get("gamesPlayed"))
     career_hr_rate = smoothed_rate(career_hr, career_pa, prior_rate=0.032, stabilization=180)
 
     year_by_year = get_stat_split(person, group="hitting", stat_type="yearByYear", fallback=[]) or []
@@ -889,6 +894,7 @@ def historical_hr_metrics(person: dict[str, Any], *, current_season: int) -> dic
         "recent_peak_hr_rate": recent_peak_hr_rate,
         "recent_avg_hr_rate": recent_avg_hr_rate,
         "historical_hr_rate": historical_hr_rate,
+        "career_games": career_games,
     }
 
 

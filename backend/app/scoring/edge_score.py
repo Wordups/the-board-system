@@ -22,11 +22,24 @@ def score_candidate(candidate: MlbPlayCandidate) -> MlbPlayCandidate:
     candidate.score = score
     candidate.confidence = to_confidence(score)
     candidate.tier = assign_tier(score)
+
+    # Rule 48: rookies with <25 career MLB games are capped at C-tier.
+    # Minor league stats inflate model output and don't translate to MLB-tier
+    # hit rates. Only applies to hitter markets (HR/Hits/TB/RBI) where
+    # career_games is explicitly populated — K/pitcher markets are excluded.
+    _career_games_raw = candidate.extra.get("career_games")
+    career_games = int(_career_games_raw) if _career_games_raw is not None else None
+    if career_games is not None and career_games < 25 and candidate.tier in ("A", "B"):
+        candidate.tier = "C"
+
     candidate.reason = build_reason(
         candidate=candidate,
         probability_edge=probability_edge,
         support_weights=support_weights,
     )
+    if career_games is not None and career_games < 25:
+        career_label = f"Career {career_games}G" if career_games > 0 else "Career <1G"
+        candidate.reason = f"Rookie cap ({career_label}) | {candidate.reason}"
     return candidate
 
 
