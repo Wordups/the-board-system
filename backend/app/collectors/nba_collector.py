@@ -50,12 +50,17 @@ def collect_nba_raw_data(data_raw_dir: Path) -> dict[str, Any]:
         today_teams = extract_today_team_map(games)
         roster_map = fetch_team_rosters(today_teams)
         active_players = collect_active_players(roster_map)
+        recent_ids = fetch_recent_game_ids(today_teams, season_year=season_year, season_type_id=season_type_id)
+        summary_cache = fetch_game_summaries({game_id for ids in recent_ids.values() for game_id in ids})
         player_log_map = fetch_player_gamelogs(active_players, season_year=season_year)
+        enrich_logs_with_quarter_data(player_log_map, summary_cache)
+        for _profile in player_log_map.values():
+            _profile["quarter_profile"] = quarter_avgs_from_logs(_profile["logs"])
         team_stats_map = fetch_team_statistics(today_teams, season_year=season_year, season_type_id=season_type_id)
         team_summary_profiles = build_team_summary_profiles(
             today_teams=today_teams,
-            season_year=season_year,
-            season_type_id=season_type_id,
+            recent_ids=recent_ids,
+            summary_cache=summary_cache,
         )
         allowance_baselines = build_allowance_baselines(team_summary_profiles)
 
@@ -256,9 +261,7 @@ def flatten_team_statistics(payload: dict[str, Any]) -> dict[str, float]:
     return flat
 
 
-def build_team_summary_profiles(*, today_teams: dict[str, int], season_year: int, season_type_id: int) -> dict[str, dict[str, float]]:
-    recent_ids = fetch_recent_game_ids(today_teams, season_year=season_year, season_type_id=season_type_id)
-    summary_cache = fetch_game_summaries({game_id for ids in recent_ids.values() for game_id in ids})
+def build_team_summary_profiles(*, today_teams: dict[str, int], recent_ids: dict[str, list[str]], summary_cache: dict[str, dict[str, Any]]) -> dict[str, dict[str, float]]:
     profiles: dict[str, dict[str, float]] = {}
 
     for team_abbr, game_ids in recent_ids.items():
@@ -556,6 +559,11 @@ def build_market_candidate(
     zone = valued["zone"]
     vs_opp_hit_rate = hit_rate(vs_opp_logs, market, line_value) if vs_opp_logs else model_hit_rate
 
+    q_profile = profile.get("quarter_profile", {})
+    q4_avg = float(q_profile.get("q4_avg", 0.0))
+    q4_share = float(q_profile.get("q4_share", 0.0))
+    q4_closer = market == "PTS" and q4_share >= 0.28 and int(q_profile.get("sample", 0)) >= 4
+
     leverage = playoff_leverage_for_team(series_context=series_context, team_abbr=team_abbr)
     minutes_projection = profile["minutes_projection"] + leverage["minutes_boost"]
     minutes_flag = minutes_projection < 30.0
@@ -586,6 +594,8 @@ def build_market_candidate(
     )
     raw_score += leverage["score_boost"]
     raw_score += NBA_VALUE_ZONE_BONUS.get(zone, 0.0)
+    if q4_closer:
+        raw_score += 3.0
     if market in {"PTS", "AST", "3PM"} and usage_share < 0.30:
         raw_score -= 5.0
     if minutes_flag:
@@ -635,7 +645,10 @@ def build_market_candidate(
             opponent_abbr=opponent_abbr,
             projected=projected,
             baseline=baseline,
+            q4_avg=q4_avg,
+            q4_closer=q4_closer,
         ),
+        "quarter_profile": q_profile,
         # Legacy fields for shared NBA board builder consumers.
         "l10_hit_rate": model_hit_rate,
         "l5_hit_rate": model_hit_rate,
@@ -777,6 +790,8 @@ def build_market_reason(
     opponent_abbr: str,
     projected: float,
     baseline: float,
+    q4_avg: float = 0.0,
+    q4_closer: bool = False,
 ) -> str:
     parts = [
         f"Implied {format_implied_odds(implied_odds)}",
@@ -798,6 +813,10 @@ def build_market_reason(
         parts.append("Minutes watch")
     if leverage_label:
         parts.append(leverage_label)
+    if q4_closer:
+        parts.append(f"Q4 Closer ({q4_avg:.1f})")
+    elif market == "PTS" and q4_avg >= 3.0:
+        parts.append(f"Q4 {q4_avg:.1f}")
     return " | ".join(parts)
 
 
@@ -1007,3 +1026,66 @@ def average(values) -> float:
     if not values:
         return 0.0
     return float(sum(values) / len(values))
+
+
+def parse_quarter_pts_map(plays: list[dict[str, Any]]) -> dict[str, dict[str, int]]:
+    """Return {athlete_id: {q1,q2,q3,q4}} point totals from a game's play-by-play."""
+    result: dict[str, dict[str, int]] = {}
+    for play in plays:
+        if not play.get("scoringPlay"):
+            continue
+        period = int((play.get("period") or {}).get("number") or 0)
+        if period not in {1, 2, 3, 4}:
+            continue
+        score_value = int(play.get("scoreValue") or 0)
+        if score_value <= 0:
+            continue
+        for participant in play.get("participants", []):
+            athlete_id = str((participant.get("athlete") or {}).get("id") or "")
+            if not athlete_id:
+                continue
+            if athlete_id not in result:
+                result[athlete_id] = {"q1": 0, "q2": 0, "q3": 0, "q4": 0}
+            result[athlete_id][f"q{period}"] += score_value
+            break  # first participant is the scorer; skip assisters
+    return result
+
+
+def enrich_logs_with_quarter_data(player_log_map: dict[str, dict[str, Any]], summary_cache: dict[str, dict[str, Any]]) -> None:
+    """Attach Q1-Q4 point fields to each game log where a play-by-play summary exists."""
+    quarter_maps: dict[str, dict[str, dict[str, int]]] = {}
+    for game_id, payload in summary_cache.items():
+        if not payload:
+            continue
+        plays = payload.get("plays") or []
+        quarter_maps[game_id] = parse_quarter_pts_map(plays)
+
+    for profile in player_log_map.values():
+        athlete_id = str(profile["player_id"])
+        for log in profile["logs"]:
+            q_data = quarter_maps.get(str(log.get("event_id", "")), {}).get(athlete_id, {})
+            if q_data:
+                log["q1_pts"] = q_data["q1"]
+                log["q2_pts"] = q_data["q2"]
+                log["q3_pts"] = q_data["q3"]
+                log["q4_pts"] = q_data["q4"]
+
+
+def quarter_avgs_from_logs(logs: list[dict[str, Any]]) -> dict[str, float | int]:
+    """Compute Q1-Q4 average points from logs that have per-quarter data."""
+    q_logs = [log for log in logs if "q1_pts" in log]
+    if not q_logs:
+        return {"q1_avg": 0.0, "q2_avg": 0.0, "q3_avg": 0.0, "q4_avg": 0.0, "q4_share": 0.0, "sample": 0}
+    q1 = average(log["q1_pts"] for log in q_logs)
+    q2 = average(log["q2_pts"] for log in q_logs)
+    q3 = average(log["q3_pts"] for log in q_logs)
+    q4 = average(log["q4_pts"] for log in q_logs)
+    total = q1 + q2 + q3 + q4 or 1.0
+    return {
+        "q1_avg": round(q1, 2),
+        "q2_avg": round(q2, 2),
+        "q3_avg": round(q3, 2),
+        "q4_avg": round(q4, 2),
+        "q4_share": round(q4 / total, 3),
+        "sample": len(q_logs),
+    }

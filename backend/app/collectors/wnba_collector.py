@@ -21,10 +21,13 @@ from app.collectors.nba_collector import (
     MAX_WORKERS,
     average,
     dedupe_events,
+    enrich_logs_with_quarter_data,
     format_tipoff_time,
     parse_event_datetime,
     parse_made_attempted,
     parse_number,
+    parse_quarter_pts_map,
+    quarter_avgs_from_logs,
     record_win_pct,
     simplify_position,
     translate_espn_status,
@@ -314,6 +317,7 @@ def build_player_log_map(
             competitors_by_abbr = {item.get("team", {}).get("abbreviation"): item for item in header_competitors}
             opponent_abbr = next((abbr for abbr in competitors_by_abbr if abbr != team_abbr), "")
             game_date = extract_summary_date(payload)
+            quarter_pts_map = parse_quarter_pts_map(payload.get("plays") or [])
             team_blocks = payload["boxscore"].get("players", [])
             team_block = next((block for block in team_blocks if block.get("team", {}).get("abbreviation") == team_abbr), None)
             if not team_block:
@@ -335,6 +339,7 @@ def build_player_log_map(
                     season_year=int(game_ref.get("season_year", game_date.year)),
                     season_type_id=int(game_ref.get("season_type_id", 2)),
                     season_bucket=str(game_ref.get("season_bucket", "current")),
+                    quarter_pts=quarter_pts_map.get(athlete_id, {}),
                 )
                 if parsed:
                     logs_by_player[athlete_id].append(parsed)
@@ -392,11 +397,12 @@ def build_player_log_map(
             "sample_size": len(logs),
             "trend_map": trend_map,
             "official_source": bool(official_profile),
+            "quarter_profile": quarter_avgs_from_logs(logs),
         }
     return player_log_map
 
 
-def parse_summary_player_log(*, athlete_row: dict[str, Any], game_date: datetime, opponent_abbr: str, is_home: bool, season_year: int, season_type_id: int, season_bucket: str) -> dict[str, Any] | None:
+def parse_summary_player_log(*, athlete_row: dict[str, Any], game_date: datetime, opponent_abbr: str, is_home: bool, season_year: int, season_type_id: int, season_bucket: str, quarter_pts: dict[str, int] | None = None) -> dict[str, Any] | None:
     stats = athlete_row.get("stats", [])
     if not stats:
         return None
@@ -407,7 +413,7 @@ def parse_summary_player_log(*, athlete_row: dict[str, Any], game_date: datetime
     three_made, three_attempted = parse_made_attempted(stats[3] if len(stats) > 3 else "0-0")
     ftm, fta = parse_made_attempted(stats[4] if len(stats) > 4 else "0-0")
     turnovers = parse_number(stats[7] if len(stats) > 7 else 0)
-    return {
+    log: dict[str, Any] = {
         "game_date": game_date,
         "is_home": is_home,
         "opponent": opponent_abbr,
@@ -424,6 +430,12 @@ def parse_summary_player_log(*, athlete_row: dict[str, Any], game_date: datetime
         "TOV": turnovers,
         "usage_load": fga + (0.44 * fta) + turnovers,
     }
+    if quarter_pts:
+        log["q1_pts"] = quarter_pts.get("q1", 0)
+        log["q2_pts"] = quarter_pts.get("q2", 0)
+        log["q3_pts"] = quarter_pts.get("q3", 0)
+        log["q4_pts"] = quarter_pts.get("q4", 0)
+    return log
 
 
 def build_team_summary_profiles(*, recent_game_ids: dict[str, list[str]], summary_cache: dict[str, dict[str, Any]]) -> dict[str, dict[str, float]]:
@@ -665,6 +677,11 @@ def build_market_candidate(
     edge = valued["edge"]
     zone = valued["zone"]
 
+    q_profile = profile.get("quarter_profile", {})
+    q4_avg = float(q_profile.get("q4_avg", 0.0))
+    q4_share = float(q_profile.get("q4_share", 0.0))
+    q4_closer = market == "PTS" and q4_share >= 0.28 and int(q_profile.get("sample", 0)) >= 4
+
     minutes_projection = profile["minutes_projection"]
     minutes_flag = minutes_projection < 24.0
     matchup_ratio = market_matchup_ratio(
@@ -695,6 +712,8 @@ def build_market_candidate(
         + trend_bonus
     )
     raw_score += VALUE_ZONE_BONUS.get(zone, 0.0)
+    if q4_closer:
+        raw_score += 3.0
     if market in {"PTS", "AST", "3PM"} and usage_share < 0.24:
         raw_score -= 4.0
     if minutes_flag:
@@ -745,7 +764,10 @@ def build_market_candidate(
             previous_avg=previous_avg,
             projected=projected,
             baseline=baseline,
+            q4_avg=q4_avg,
+            q4_closer=q4_closer,
         ),
+        "quarter_profile": q_profile,
         "usage_pct": usage_share,
         "minutes_projection": minutes_projection,
         "strong_matchup": strong_matchup,
@@ -880,6 +902,8 @@ def build_market_reason(
     previous_avg: float,
     projected: float,
     baseline: float,
+    q4_avg: float = 0.0,
+    q4_closer: bool = False,
 ) -> str:
     parts = [
         f"Implied {format_implied_odds(implied_odds)}",
@@ -903,6 +927,10 @@ def build_market_reason(
         parts.append("Home boost")
     if minutes_projection < 24:
         parts.append("Minutes watch")
+    if q4_closer:
+        parts.append(f"Q4 Closer ({q4_avg:.1f})")
+    elif market == "PTS" and q4_avg >= 3.0:
+        parts.append(f"Q4 {q4_avg:.1f}")
     return " | ".join(parts)
 
 
