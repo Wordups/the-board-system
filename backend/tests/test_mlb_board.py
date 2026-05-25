@@ -61,7 +61,8 @@ def test_market_diverse_top_signals_prioritize_consistency_markets():
 
     top_signals = build_market_diverse_top_signals(candidates=candidates, limit=3)
 
-    assert [signal["market"] for signal in top_signals] == ["Hits", "TB", "K"]
+    # preferred_markets order is (HR, RBI, TB, K, Hits) so TB beats Hits regardless of score
+    assert [signal["market"] for signal in top_signals] == ["TB", "K", "Hits"]
 
 
 def test_build_player_hr_results_marks_hit_and_miss():
@@ -85,8 +86,9 @@ def test_build_player_hr_results_marks_hit_and_miss():
             },
         }
     }
+    game_feed = {"liveData": {"boxscore": game_boxscore}}
 
-    results = build_player_hr_results(game_boxscore, {"phase": "final"})
+    results = build_player_hr_results(game_feed, {"phase": "final"})
 
     assert results["1"]["result"] == "hit"
     assert results["1"]["home_runs"] == 1
@@ -231,6 +233,9 @@ def test_hr_inputs_regress_tiny_samples_below_established_sluggers():
         opponent_abbr="BOS",
         game_id="nyy-bos-2026-05-01",
         opposing_pitcher={"era": "4.45"},
+        team_hitting={"gamesPlayed": 30, "runs": 150, "obp": ".320", "ops": ".750"},
+        lineup_context={"lineup_confirmed": False, "starter_ids": [], "order_by_player": {}, "status_by_player": {}},
+        game_status={"phase": "pregame"},
     )
     hr_rows = {player.player_name: player for player in players if player.market == "HR"}
 
@@ -368,6 +373,9 @@ def test_hr_inputs_reward_proven_power_and_unlucky_slugger_profile():
         opponent_abbr="SF",
         game_id="lad-sf-2026-05-01",
         opposing_pitcher={"era": "4.75"},
+        team_hitting={"gamesPlayed": 30, "runs": 150, "obp": ".320", "ops": ".750"},
+        lineup_context={"lineup_confirmed": False, "starter_ids": [], "order_by_player": {}, "status_by_player": {}},
+        game_status={"phase": "pregame"},
     )
     hr_rows = {player.player_name: player for player in players if player.market == "HR"}
 
@@ -508,6 +516,9 @@ def test_hr_inputs_surface_rising_star_breakout_profile():
         opponent_abbr="TEX",
         game_id="sea-tex-2026-05-01",
         opposing_pitcher={"era": "4.65"},
+        team_hitting={"gamesPlayed": 30, "runs": 150, "obp": ".320", "ops": ".750"},
+        lineup_context={"lineup_confirmed": False, "starter_ids": [], "order_by_player": {}, "status_by_player": {}},
+        game_status={"phase": "pregame"},
     )
     hr_rows = {player.player_name: player for player in players if player.market == "HR"}
 

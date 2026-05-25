@@ -825,6 +825,28 @@ button { cursor: pointer; border: none; background: none; }
   margin-bottom: 8px;
 }
 
+.quarter-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.quarter-profile-grid .player-stat-card {
+  text-align: center;
+  padding: 8px 6px;
+}
+.qtr-closer {
+  border-color: var(--gold) !important;
+}
+.qtr-closer .player-stat-label {
+  color: var(--gold);
+}
+.qtr-sample {
+  font-size: 11px;
+  color: var(--text-3);
+  text-align: right;
+}
+
 .player-row-list {
   display: flex;
   flex-direction: column;
@@ -3022,6 +3044,28 @@ function renderRecentFormSection(rows, sport) {
     </div>`;
 }
 
+function renderQuarterProfileSection(rows) {
+  const qp = rows.map(r => r.quarter_profile).find(Boolean);
+  if (!qp || !qp.sample) return "";
+  const q4Closer = (qp.q4_share || 0) >= 0.28 && (qp.sample || 0) >= 4;
+  const qtrCard = (label, val, closer = false) => `
+    <div class="player-stat-card${closer ? " qtr-closer" : ""}">
+      <div class="player-stat-label">${label}${closer ? " ★" : ""}</div>
+      <div class="player-stat-value">${Number(val || 0).toFixed(1)}</div>
+    </div>`;
+  return `
+    <div class="player-section">
+      <div class="player-section-title">Q by Q</div>
+      <div class="quarter-profile-grid">
+        ${qtrCard("Q1", qp.q1_avg)}
+        ${qtrCard("Q2", qp.q2_avg)}
+        ${qtrCard("Q3", qp.q3_avg)}
+        ${qtrCard("Q4", qp.q4_avg, q4Closer)}
+      </div>
+      <div class="qtr-sample">${qp.sample} game${qp.sample === 1 ? "" : "s"} • Q4 ${Math.round((qp.q4_share || 0) * 100)}% of pts${q4Closer ? " • Q4 Closer" : ""}</div>
+    </div>`;
+}
+
 function openPlayerPanel(playerId, sport, data) {
   const rows = flattenBoardRows(data).filter(row => String(row.player_id) === String(playerId));
   if (!rows.length) return;
@@ -3041,6 +3085,7 @@ function openPlayerPanel(playerId, sport, data) {
       <div class="player-stat-card"><div class="player-stat-label">Markets</div><div class="player-stat-value">${rows.map(r => r.market).filter((v, i, arr) => arr.indexOf(v) === i).join(", ")}</div></div>
     </div>
     ${renderRecentFormSection(rows, sport)}
+    ${(sport === "nba" || sport === "wnba") ? renderQuarterProfileSection(rows) : ""}
     <div class="player-section">
       <div class="player-section-title">Board Detail</div>
       ${playerReasonList(rows)}
