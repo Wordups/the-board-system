@@ -485,6 +485,7 @@ button { cursor: pointer; border: none; background: none; }
 
 .pinned-meta { font-size: 11px; color: var(--text-3); margin-top: 1px; display: flex; align-items: center; gap: 5px; }
 .pinned-line { font-family: "Barlow Condensed", sans-serif; font-size: 13px; font-weight: 700; color: var(--gold); flex-shrink: 0; }
+.sim-prob-badge { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 13px; color: var(--blue); background: var(--blue-dim); border-radius: 6px; padding: 2px 7px; flex-shrink: 0; }
 
 .tier-badge {
   display: inline-flex; align-items: center; justify-content: center;
@@ -2486,6 +2487,38 @@ function renderPinnedSection(board, sport = "mlb", opts = {}) {
     </div>`;
 }
 
+// Phase 12: Sim Top 10 board — Monte Carlo hit probability, ranked by Sim %.
+// Sim-% only (no edge): the pipeline has no real sportsbook odds yet.
+function simPct(p) {
+  const v = p ? (p.sim_prob_pct ?? null) : null;
+  return (v === null || v === undefined) ? "—" : Number(v).toFixed(1) + "%";
+}
+
+function renderSimSection(board, sport = "mlb") {
+  if (!board || !board.players || !board.players.length) return "";
+  return `
+    <div class="board-card">
+      <div class="board-header">
+        <div class="board-header-copy">
+          <div class="board-title">${esc(board.title || "Sim Top 10")}</div>
+          <div class="board-subtitle">Monte Carlo hit probability — 2,500 sims per play.</div>
+        </div>
+        <div class="board-count">${board.players.length} Plays</div>
+      </div>
+      ${board.players.map((p, i) => `
+        <div class="pinned-row">
+          <div class="pinned-rank ${i < 3 ? "top" : ""}">${i + 1}</div>
+          ${playerFace(p, sport)}
+          <div class="pinned-info">
+            <div class="pinned-name">${playerButton(p, sport, "pinned-name")}</div>
+            <div class="pinned-meta"><span>${esc(p.team)}</span><span>vs ${esc(p.opponent)}</span>${p.market ? `<span>${esc(p.market)}</span>` : ""}</div>
+          </div>
+          <div class="pinned-line">${esc(p.line)}</div>
+          <span class="sim-prob-badge" title="Simulated hit probability">${simPct(p)}</span>
+        </div>`).join("")}
+    </div>`;
+}
+
 function marketPriority(row = {}) {
   const market = String(row.market || "").toUpperCase();
   if (market === "HR") return 5;
@@ -2716,6 +2749,7 @@ function renderMlbPinnedBoards(data) {
             ${kRows.map(player => renderMlbSupportRow(player)).join("")}
           </div>
         </div>` : ""}
+      ${renderSimSection(data.sim_board, "mlb")}
     </div>`;
 }
 
@@ -2725,6 +2759,7 @@ function renderPinnedBoards(data, sport = "mlb") {
   if (data?.pinned_board?.players?.length) sections.push(renderPinnedSection(data.pinned_board, sport));
   if (data?.best_available_board?.players?.length) sections.push(renderPinnedSection(data.best_available_board, sport, { showMarket: true }));
   if (data?.consistency_board?.players?.length) sections.push(renderPinnedSection(data.consistency_board, sport));
+  if (data?.sim_board?.players?.length) sections.push(renderSimSection(data.sim_board, sport));
   return sections.length ? `<div class="pinned-stack">${sections.join("")}</div>` : "";
 }
 

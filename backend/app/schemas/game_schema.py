@@ -12,6 +12,7 @@ class TopSignal(BaseModel):
     score: float
     confidence: int
     tier: str
+    sim_prob_pct: float | None = None
 
 
 class GameBoard(BaseModel):

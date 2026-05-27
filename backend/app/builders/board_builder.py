@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Iterable
 
 from app.models.mlb_model import MlbPlayCandidate
+from app.sim.sim_engine import sim_prob_pct
 
 
 def to_player_row(candidate: MlbPlayCandidate) -> dict:
@@ -16,6 +17,7 @@ def to_player_row(candidate: MlbPlayCandidate) -> dict:
         "confidence": candidate.confidence,
         "tier": candidate.tier,
         "reason": candidate.reason,
+        "sim_prob_pct": sim_prob_pct(candidate),
     }
 
 

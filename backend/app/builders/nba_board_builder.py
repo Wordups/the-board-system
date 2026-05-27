@@ -7,6 +7,8 @@ from app.builders.nba_research_board import build_nba_research_board
 from app.builders.universal_game_builder import empty_markets_for
 from app.collectors.nba_collector import NBA_MARKETS, collect_nba_raw_data
 from app.outputs.json_writer import write_json
+from app.sim.edge import build_sim_board
+from app.sim.sim_engine import sim_prob_pct, simulate_candidates
 from app.utils.dates import timestamp_et
 
 
@@ -24,6 +26,7 @@ def build_nba_board(*, config, paths) -> dict:
         processed_games.append({"raw": raw_game, "candidates": candidates})
         all_candidates.extend(candidates)
 
+    simulate_candidates(all_candidates, sport="NBA")
     pick_of_day = build_pick_of_day(processed_games, previous_pick, sport="NBA")
     game_clusters = build_game_clusters(processed_games)
     section_boards = build_section_boards(all_candidates, config.top_market_limit)
@@ -115,6 +118,7 @@ def build_nba_board(*, config, paths) -> dict:
             config=config,
             paths=paths,
         ),
+        "sim_board": build_sim_board(all_candidates, sport="NBA"),
         "games": games_output,
     }
 
@@ -131,6 +135,7 @@ def to_board_row(candidate: dict) -> dict:
         "confidence": int(candidate["confidence"]),
         "tier": candidate["tier"],
         "reason": candidate["reason"],
+        "sim_prob_pct": sim_prob_pct(candidate),
     }
     for key in (
         "implied_odds",
@@ -207,6 +212,7 @@ def build_market_diverse_top_signals(*, candidates: list[dict], limit: int) -> l
             "score": candidate["score"],
             "confidence": candidate["confidence"],
             "tier": candidate["tier"],
+            "sim_prob_pct": sim_prob_pct(candidate),
         }
         for candidate in selected
     ]
@@ -336,6 +342,7 @@ def _summarize_pick(candidate: dict) -> dict:
         "confidence": candidate["confidence"],
         "tier": candidate["tier"],
         "reason": candidate["reason"],
+        "sim_prob_pct": sim_prob_pct(candidate),
     }
     for key in (
         "implied_odds",
@@ -374,6 +381,7 @@ def build_game_clusters(processed_games: list[dict]) -> list[dict]:
                         "line": candidate["line"],
                         "score": round(float(candidate["score"]), 2),
                         "tier": candidate["tier"],
+                        "sim_prob_pct": sim_prob_pct(candidate),
                     }
                     for candidate in top_candidates
                 ],
@@ -416,6 +424,7 @@ def build_section_boards(candidates: list[dict], limit: int) -> dict[str, list[d
                     "tier": candidate["tier"],
                     "reason": candidate["reason"],
                     "market": candidate["market"],
+                    "sim_prob_pct": sim_prob_pct(candidate),
                     "ladder": build_ladder_steps(candidate["line"]),
                 }
             )
