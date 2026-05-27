@@ -30,3 +30,8 @@ class BoardPlayer(BaseModel):
     confidence: int = Field(ge=1, le=99)
     tier: str
     reason: str
+    # Phase 12: simulated probability of clearing the line (0-100). Nullable
+    # during parallel rollout. book_odds is reserved for Phase 14 odds ingestion;
+    # edge_pct then slots in as (sim_prob - book_implied) / book_implied.
+    sim_prob_pct: float | None = Field(default=None, ge=0.0, le=100.0)
+    book_odds: float | None = None

@@ -24,6 +24,7 @@ class MlbPlayCandidate:
     confidence: int = 0
     tier: str = "PASS"
     reason: str = ""
+    sim_prob: float | None = None  # Phase 12: simulated clear probability (0..1)
     extra: dict[str, Any] = field(default_factory=dict)
 
 

@@ -14,6 +14,8 @@ from app.builders.nba_board_builder import (
 from app.builders.universal_game_builder import empty_markets_for
 from app.collectors.wnba_collector import WNBA_MARKETS, collect_wnba_raw_data
 from app.outputs.json_writer import write_json
+from app.sim.edge import build_sim_board
+from app.sim.sim_engine import sim_prob_pct, simulate_candidates
 from app.utils.dates import timestamp_et
 
 
@@ -31,6 +33,7 @@ def build_wnba_board(*, config, paths) -> dict:
         processed_games.append({"raw": raw_game, "candidates": candidates})
         all_candidates.extend(candidates)
 
+    simulate_candidates(all_candidates, sport="WNBA")
     pick_of_day = build_pick_of_day(processed_games, previous_pick, sport="WNBA")
     game_clusters = build_game_clusters(processed_games)
     section_boards = build_section_boards(all_candidates, config.top_market_limit)
@@ -63,6 +66,7 @@ def build_wnba_board(*, config, paths) -> dict:
                 "score": candidate["score"],
                 "confidence": candidate["confidence"],
                 "tier": candidate["tier"],
+                "sim_prob_pct": sim_prob_pct(candidate),
             }
             for candidate in candidates[: config.top_signals_per_game]
         ]
@@ -120,6 +124,7 @@ def build_wnba_board(*, config, paths) -> dict:
             "subtitle": "A-tier across every market",
             "players": best_available_players,
         },
+        "sim_board": build_sim_board(all_candidates, sport="WNBA"),
         "games": games_output,
     }
 

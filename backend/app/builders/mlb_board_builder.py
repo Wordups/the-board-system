@@ -13,6 +13,8 @@ from app.outputs.json_writer import write_json
 from app.scoring.edge_score import score_candidate
 from app.scoring.confidence import to_confidence
 from app.scoring.tiers import assign_tier
+from app.sim.edge import build_sim_board
+from app.sim.sim_engine import sim_prob_pct, simulate_candidates
 from app.utils.dates import timestamp_et
 
 
@@ -30,6 +32,7 @@ def build_mlb_board(*, config, paths) -> dict:
     processed_games = []
     for raw_game in raw_payload["games"]:
         candidates = [score_candidate(item) for item in normalize_mlb_inputs(raw_game)]
+        simulate_candidates(candidates, sport="MLB")
         processed_games.append({"raw": raw_game, "candidates": candidates})
         game_status_by_id[raw_game["game_id"]] = raw_game.get("status", {})
         game_hr_results_by_id[raw_game["game_id"]] = raw_game.get("player_hr_results", {})
@@ -53,6 +56,7 @@ def build_mlb_board(*, config, paths) -> dict:
                             "confidence": candidate.confidence,
                             "tier": candidate.tier,
                             "reason": candidate.reason,
+                            "sim_prob_pct": sim_prob_pct(candidate),
                         }
                         for candidate in sorted_candidates(game["candidates"])
                     ],
@@ -114,6 +118,10 @@ def build_mlb_board(*, config, paths) -> dict:
         paths=paths,
     )
     hr_daily_picks = build_hr_daily_picks(research_board)
+    sim_board = build_sim_board(
+        [candidate for game in processed_games for candidate in game["candidates"]],
+        sport="MLB",
+    )
     return {
         "sport": "MLB",
         "date": raw_payload["date"],
@@ -140,6 +148,7 @@ def build_mlb_board(*, config, paths) -> dict:
         },
         "daily_hr_picks": hr_daily_picks,
         "research_board": research_board,
+        "sim_board": sim_board,
         "games": games_output,
     }
 
@@ -187,6 +196,7 @@ def build_market_diverse_top_signals(*, candidates, limit: int) -> list[dict]:
             "score": candidate.score,
             "confidence": candidate.confidence,
             "tier": candidate.tier,
+            "sim_prob_pct": sim_prob_pct(candidate),
         }
         for candidate in selected
     ]
@@ -245,6 +255,7 @@ def build_sticky_hr_board(*, candidates, previous_pinned_players, game_status_by
                 "confidence": to_confidence(sticky_score),
                 "tier": assign_tier(sticky_score),
                 "reason": build_pinned_reason(candidate.reason, status, is_play_of_day=bool(play_of_day_lookup and candidate.player_name.lower() == play_of_day_lookup)),
+                "sim_prob_pct": sim_prob_pct(candidate),
                 "hr_result": hr_result.get("result", "pending"),
                 "home_runs": int(hr_result.get("home_runs", 0)),
                 "core_bucket": classify_hr_bucket(candidate, sticky_score),
@@ -314,6 +325,7 @@ def build_consistency_board(processed_games) -> list[dict]:
                     "confidence": candidate.confidence,
                     "tier": candidate.tier,
                     "reason": candidate.reason,
+                    "sim_prob_pct": sim_prob_pct(candidate),
                 }
             )
 
