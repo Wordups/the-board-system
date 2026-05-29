@@ -2800,9 +2800,44 @@ function renderMlbPinnedBoards(data) {
     </div>`;
 }
 
+function renderDoubleDoubleWatch(dd) {
+  const rows = (dd.players || []).map((p) => {
+    const pr = p.primary || {}, sc = p.secondary || {};
+    const ddTag = p.projected_dd ? `<span class="sim-prob-badge">DD</span>` : "";
+    return `
+      <div class="support-row">
+        <div class="support-row-top">
+          <div class="support-left">
+            ${playerFace(p, "wnba", true)}
+            <div class="support-copy">
+              <div class="support-title-row">
+                <div class="support-name">${playerButton(p, "wnba", "support-name")}</div>
+                <div class="support-line">${esc(pr.market)} ${esc(pr.proj)} · ${esc(sc.market)} ${esc(sc.proj)}</div>
+              </div>
+              <div class="support-meta">${esc(p.team)} vs ${esc(p.opponent)} · ${esc(p.needed_label)}</div>
+            </div>
+          </div>
+          <div class="pick-line-wrap">${ddTag}${tierBadge(p.tier)}</div>
+        </div>
+      </div>`;
+  }).join("");
+  return `
+    <div class="board-card">
+      <div class="board-header">
+        <div class="board-header-copy">
+          <div class="board-title">Double-Double Watch</div>
+          <div class="board-subtitle">${esc(dd.subtitle || "Closest to a double-double")}</div>
+        </div>
+        <div class="board-count">${(dd.players || []).length} Names</div>
+      </div>
+      <div class="support-list">${rows}</div>
+    </div>`;
+}
+
 function renderPinnedBoards(data, sport = "mlb") {
   if (sport === "mlb") return renderMlbPinnedBoards(data);
   const sections = [];
+  if (sport === "wnba" && data?.double_double_watch?.players?.length) sections.push(renderDoubleDoubleWatch(data.double_double_watch));
   if (data?.pinned_board?.players?.length) sections.push(renderPinnedSection(data.pinned_board, sport));
   if (data?.best_available_board?.players?.length) sections.push(renderPinnedSection(data.best_available_board, sport, { showMarket: true }));
   if (data?.consistency_board?.players?.length) sections.push(renderPinnedSection(data.consistency_board, sport));
