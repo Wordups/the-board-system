@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 from app.builders.board_builder import sorted_candidates, to_player_row
+from app.builders.diamond_board_builder import build_diamond, diamond_to_json
 from app.builders.mlb_research_board import build_mlb_research_board
 from app.builders.universal_game_builder import empty_markets
 from app.collectors.mlb_collector import collect_mlb_raw_data
@@ -149,6 +150,7 @@ def build_mlb_board(*, config, paths) -> dict:
         "daily_hr_picks": hr_daily_picks,
         "research_board": research_board,
         "sim_board": sim_board,
+        "diamond": diamond_to_json(build_diamond(games_output, date=raw_payload["date"])),
         "games": games_output,
     }
 

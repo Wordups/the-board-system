@@ -18,4 +18,5 @@ class BoardPayload(BaseModel):
     last_updated: str
     pinned_board: PinnedBoard
     consistency_board: PinnedBoard | None = None
+    diamond: dict | None = None  # Diamond of the Day (view over scored rows)
     games: list[GameBoard]

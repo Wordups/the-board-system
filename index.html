@@ -2680,6 +2680,51 @@ function renderFrozenDailySummaryCard(sport, frozen, liveData, options = {}) {
     </section>`;
 }
 
+function renderDiamondWidget(diamond) {
+  const slots = [["1B", "First Base"], ["2B", "Second Base"], ["3B", "Third Base"], ["HOME", "Home Plate"], ["MOUND", "Mound"]];
+  const picks = diamond.picks || {};
+  const card = (pos, label) => {
+    const pick = picks[pos];
+    if (!pick) {
+      return `<article class="core-card"><div class="core-body"><div class="core-base-label">${esc(label)}</div><div class="core-name">—</div></div></article>`;
+    }
+    const row = { player_id: pick.player_id, player_name: pick.name, team: pick.team, opponent: pick.opponent, line: pick.line, tier: pick.tier };
+    const prob = pick.sim_prob_pct != null ? `${Number(pick.sim_prob_pct).toFixed(0)}%` : "";
+    return `
+      <article class="core-card">
+        <div class="core-card-top">
+          <div class="core-rank-wrap">
+            <div class="core-rank">${esc(pos)}</div>
+            ${playerFace(row, "mlb").replace('class="player-face"', 'class="player-face core-face"')}
+          </div>
+          ${prob ? `<span class="sim-prob-badge">${prob}</span>` : ""}
+        </div>
+        <div class="core-body">
+          <div class="core-base-label">${esc(label)} · ${esc(pick.market)}</div>
+          <div class="core-name">${playerButton(row, "mlb", "core-name")}</div>
+          <div class="core-meta"><span>${esc(pick.team)}</span><span>vs ${esc(pick.opponent)}</span></div>
+        </div>
+        <div class="core-line-row">
+          <div class="core-line">${esc(pick.line)}</div>
+          <div class="core-score">${esc(pick.reasoning ? String(pick.reasoning).split(":")[0] : "")}</div>
+          ${tierBadge(pick.tier)}
+        </div>
+      </article>`;
+  };
+  const floor = diamond.hr_floor || 2;
+  return `
+    <div class="board-card mlb-board-compact">
+      <div class="board-header">
+        <div class="board-header-copy">
+          <div class="board-title">Diamond of the Day</div>
+          <div class="board-subtitle">Table-setter · HR bases · swing · the mound — one play per base.</div>
+        </div>
+        <div class="board-count">${diamond.hr_count}/${floor} HR floor</div>
+      </div>
+      <div class="core-grid">${slots.map(([p, l]) => card(p, l)).join("")}</div>
+    </div>`;
+}
+
 function renderMlbPinnedBoards(data) {
   const hrRows = (data?.pinned_board?.players || []).length ? data.pinned_board.players : collectMlbHrRows(data).slice(0, 3);
   if (!hrRows.length) return "";
@@ -2700,8 +2745,10 @@ function renderMlbPinnedBoards(data) {
   // first, then by score. If the slate has zero K candidates, the block hides
   // (same gating pattern as the old Secondary Lanes).
   const kRows = collectMlbKRows(data, 5);
+  const hasDiamond = data.diamond && data.diamond.picks && Object.keys(data.diamond.picks).length;
   return `
     <div class="mlb-board-main">
+      ${hasDiamond ? renderDiamondWidget(data.diamond) : `
       <div class="board-card mlb-board-compact">
         <div class="board-header">
           <div class="board-header-copy">
@@ -2713,7 +2760,7 @@ function renderMlbPinnedBoards(data) {
         <div class="core-grid">
           ${diamondRows.map((player, index) => renderMlbCoreCard(player, index, diamondLabels[index] || "")).join("")}
         </div>
-      </div>
+      </div>`}
       ${kRows.length ? `
         <div class="board-card mlb-board-compact">
           <div class="board-header">
