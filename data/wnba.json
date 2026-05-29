@@ -1,7 +1,7 @@
 {
   "sport": "WNBA",
   "date": "2026-05-29",
-  "last_updated": "7:36 AM ET",
+  "last_updated": "11:35 AM ET",
   "hero_pick": {
     "player_id": "2529130",
     "player_name": "Natasha Howard",
@@ -21,37 +21,6 @@
     "label": "Pick of the Day"
   },
   "game_clusters": [
-    {
-      "game_id": "401856947",
-      "matchup": "MIN @ CHI",
-      "top_score": 87.96,
-      "signals": [
-        {
-          "player_name": "Natasha Howard",
-          "market": "PTS",
-          "line": "16+ PTS",
-          "score": 90.03,
-          "tier": "B",
-          "sim_prob_pct": 48.2
-        },
-        {
-          "player_name": "Natasha Cloud",
-          "market": "REB",
-          "line": "4+ REB",
-          "score": 87.14,
-          "tier": "B",
-          "sim_prob_pct": 46.4
-        },
-        {
-          "player_name": "Natasha Cloud",
-          "market": "AST",
-          "line": "4+ AST",
-          "score": 86.71,
-          "tier": "B",
-          "sim_prob_pct": 47.3
-        }
-      ]
-    },
     {
       "game_id": "401856948",
       "matchup": "ATL @ POR",
@@ -80,6 +49,37 @@
           "score": 81.65,
           "tier": "B",
           "sim_prob_pct": 46.0
+        }
+      ]
+    },
+    {
+      "game_id": "401856947",
+      "matchup": "MIN @ CHI",
+      "top_score": 86.53,
+      "signals": [
+        {
+          "player_name": "Natasha Howard",
+          "market": "PTS",
+          "line": "16+ PTS",
+          "score": 90.03,
+          "tier": "B",
+          "sim_prob_pct": 48.2
+        },
+        {
+          "player_name": "Courtney Williams",
+          "market": "PTS",
+          "line": "17+ PTS",
+          "score": 84.94,
+          "tier": "B",
+          "sim_prob_pct": 47.2
+        },
+        {
+          "player_name": "Courtney Williams",
+          "market": "3PM",
+          "line": "2+ 3PM",
+          "score": 84.63,
+          "tier": "A",
+          "sim_prob_pct": 46.7
         }
       ]
     },
@@ -314,23 +314,6 @@
           "model_hit_rate": 0.5
         },
         {
-          "player_id": "2529137",
-          "player_name": "Natasha Cloud",
-          "team": "CHI",
-          "opponent": "MIN",
-          "market": "AST",
-          "line": "4+ AST",
-          "score": 86.71,
-          "confidence": 87,
-          "tier": "B",
-          "reason": "Implied -100 | Zone AIM | Edge +0.96 | Hit% 50% | Sample 8 | Proj 5.0 | Baseline 4.1 | USG 21% | MIN 30.2 | AST matchup 0.89x | Prev 2.0 | Pre 4.1 | Uptick 1.90 | Home boost",
-          "sim_prob_pct": 47.3,
-          "implied_odds": "-100",
-          "value_zone": "aim",
-          "edge": 0.96,
-          "model_hit_rate": 0.5
-        },
-        {
           "player_id": "2998938",
           "player_name": "Kahleah Copper",
           "team": "PHX",
@@ -465,6 +448,23 @@
           "value_zone": "aim",
           "edge": -0.06,
           "model_hit_rate": 0.5
+        },
+        {
+          "player_id": "4433791",
+          "player_name": "Olivia Miles",
+          "team": "MIN",
+          "opponent": "CHI",
+          "market": "AST",
+          "line": "6+ AST",
+          "score": 73.23,
+          "confidence": 73,
+          "tier": "B",
+          "reason": "Implied +133 | Zone AIM | Edge -1.01 | Hit% 43% | Sample 10 | Proj 5.0 | Baseline 5.0 | USG 29% | MIN 30.4 | AST matchup 1.03x | Prev 5.0 | Pre 3.0 | Uptick 0.16 | Anti-correlation: same team as Natasha Howard",
+          "sim_prob_pct": 39.1,
+          "implied_odds": "+133",
+          "value_zone": "aim",
+          "edge": -1.01,
+          "model_hit_rate": 0.429
         }
       ]
     },
@@ -487,23 +487,6 @@
           "implied_odds": "-100",
           "value_zone": "aim",
           "edge": 0.3,
-          "model_hit_rate": 0.5
-        },
-        {
-          "player_id": "2529137",
-          "player_name": "Natasha Cloud",
-          "team": "CHI",
-          "opponent": "MIN",
-          "market": "REB",
-          "line": "4+ REB",
-          "score": 87.14,
-          "confidence": 87,
-          "tier": "B",
-          "reason": "Implied -100 | Zone AIM | Edge +0.56 | Hit% 50% | Sample 8 | Proj 4.6 | Baseline 4.1 | USG 21% | MIN 30.2 | REB matchup 1.00x | Prev 2.5 | Pre 4.1 | Uptick 0.92 | Home boost",
-          "sim_prob_pct": 46.4,
-          "implied_odds": "-100",
-          "value_zone": "aim",
-          "edge": 0.56,
           "model_hit_rate": 0.5
         },
         {
@@ -640,6 +623,23 @@
           "implied_odds": "-133",
           "value_zone": "aim",
           "edge": 0.7,
+          "model_hit_rate": 0.571
+        },
+        {
+          "player_id": "3054590",
+          "player_name": "Nia Coffey",
+          "team": "MIN",
+          "opponent": "CHI",
+          "market": "REB",
+          "line": "4+ REB",
+          "score": 78.12,
+          "confidence": 78,
+          "tier": "B",
+          "reason": "Implied -133 | Zone AIM | Edge +0.77 | Hit% 57% | Sample 13 | Proj 4.8 | Baseline 4.3 | USG 15% | MIN 25.3 | REB matchup 1.06x | Prev 2.0 | Pre 3.7 | Uptick 1.15 | Anti-correlation: same team as Natasha Howard",
+          "sim_prob_pct": 54.7,
+          "implied_odds": "-133",
+          "value_zone": "aim",
+          "edge": 0.77,
           "model_hit_rate": 0.571
         }
       ]
@@ -861,42 +861,6 @@
           ]
         },
         {
-          "player_id": "2529137",
-          "player_name": "Natasha Cloud",
-          "team": "CHI",
-          "opponent": "MIN",
-          "line": "4+ REB",
-          "score": 87.14,
-          "confidence": 87,
-          "tier": "B",
-          "reason": "Implied -100 | Zone AIM | Edge +0.56 | Hit% 50% | Sample 8 | Proj 4.6 | Baseline 4.1 | USG 21% | MIN 30.2 | REB matchup 1.00x | Prev 2.5 | Pre 4.1 | Uptick 0.92 | Home boost",
-          "market": "REB",
-          "sim_prob_pct": 46.4,
-          "ladder": [
-            "4+",
-            "6+",
-            "8+"
-          ]
-        },
-        {
-          "player_id": "2529137",
-          "player_name": "Natasha Cloud",
-          "team": "CHI",
-          "opponent": "MIN",
-          "line": "4+ AST",
-          "score": 86.71,
-          "confidence": 87,
-          "tier": "B",
-          "reason": "Implied -100 | Zone AIM | Edge +0.96 | Hit% 50% | Sample 8 | Proj 5.0 | Baseline 4.1 | USG 21% | MIN 30.2 | AST matchup 0.89x | Prev 2.0 | Pre 4.1 | Uptick 1.90 | Home boost",
-          "market": "AST",
-          "sim_prob_pct": 47.3,
-          "ladder": [
-            "4+",
-            "6+",
-            "8+"
-          ]
-        },
-        {
           "player_id": "2998938",
           "player_name": "Kahleah Copper",
           "team": "PHX",
@@ -912,6 +876,42 @@
             "2+",
             "4+",
             "6+"
+          ]
+        },
+        {
+          "player_id": "4433524",
+          "player_name": "Sonia Citron",
+          "team": "WSH",
+          "opponent": "LA",
+          "line": "4+ REB",
+          "score": 84.86,
+          "confidence": 85,
+          "tier": "B",
+          "reason": "Implied -100 | Zone AIM | Edge -0.08 | Hit% 50% | Sample 12 | Proj 3.9 | Baseline 3.3 | USG 21% | MIN 31.7 | REB matchup 1.01x | Prev 3.0 | Pre 2.5 | Uptick 0.46 | Home boost",
+          "market": "REB",
+          "sim_prob_pct": 47.7,
+          "ladder": [
+            "4+",
+            "6+",
+            "8+"
+          ]
+        },
+        {
+          "player_id": "2529130",
+          "player_name": "Natasha Howard",
+          "team": "MIN",
+          "opponent": "CHI",
+          "line": "8+ REB",
+          "score": 84.21,
+          "confidence": 84,
+          "tier": "A",
+          "reason": "Implied -100 | Zone AIM | Edge -0.14 | Hit% 50% | Sample 8 | Proj 7.9 | Baseline 7.5 | USG 31% | MIN 29.3 | REB matchup 1.06x | Prev 7.5 | Pre 2.0 | Uptick 0.37",
+          "market": "REB",
+          "sim_prob_pct": 47.8,
+          "ladder": [
+            "8+",
+            "10+",
+            "12+"
           ]
         }
       ]
@@ -2866,24 +2866,24 @@
           "sim_prob_pct": 48.2
         },
         {
-          "market": "REB",
-          "player_id": "2529137",
-          "player_name": "Natasha Cloud",
-          "line": "4+ REB",
-          "score": 87.14,
-          "confidence": 87,
+          "market": "PTS",
+          "player_id": "2987891",
+          "player_name": "Courtney Williams",
+          "line": "17+ PTS",
+          "score": 84.94,
+          "confidence": 85,
           "tier": "B",
-          "sim_prob_pct": 46.4
+          "sim_prob_pct": 47.2
         },
         {
-          "market": "AST",
-          "player_id": "2529137",
-          "player_name": "Natasha Cloud",
-          "line": "4+ AST",
-          "score": 86.71,
-          "confidence": 87,
-          "tier": "B",
-          "sim_prob_pct": 47.3
+          "market": "3PM",
+          "player_id": "2987891",
+          "player_name": "Courtney Williams",
+          "line": "2+ 3PM",
+          "score": 84.63,
+          "confidence": 85,
+          "tier": "A",
+          "sim_prob_pct": 46.7
         }
       ],
       "markets": {
@@ -2940,21 +2940,21 @@
             "model_hit_rate": 0.5
           },
           {
-            "player_id": "2529137",
-            "player_name": "Natasha Cloud",
+            "player_id": "2491205",
+            "player_name": "Skylar Diggins",
             "team": "CHI",
             "opponent": "MIN",
             "market": "PTS",
-            "line": "11+ PTS",
-            "score": 72.83,
+            "line": "14+ PTS",
+            "score": 73.23,
             "confidence": 73,
             "tier": "B",
-            "reason": "Implied +140 | Zone AIM | Edge +1.02 | Hit% 42% | Sample 8 | Proj 12.0 | Baseline 10.6 | USG 21% | MIN 30.2 | PTS matchup 0.94x | Prev 7.5 | Pre 10.6 | Uptick 0.68 | Home boost | Q4 Closer (3.4)",
-            "sim_prob_pct": 41.2,
-            "implied_odds": "+140",
+            "reason": "Implied -120 | Zone AIM | Edge -0.98 | Hit% 55% | Sample 7 | Proj 13.0 | Baseline 13.4 | USG 34% | MIN 29.1 | PTS matchup 0.94x | Prev 13.4 | Pre 7.0 | Home boost | Q4 3.8",
+            "sim_prob_pct": 51.2,
+            "implied_odds": "-120",
             "value_zone": "aim",
-            "edge": 1.02,
-            "model_hit_rate": 0.417
+            "edge": -0.98,
+            "model_hit_rate": 0.545
           },
           {
             "player_id": "3054590",
@@ -2974,33 +2974,16 @@
             "model_hit_rate": 0.5
           },
           {
-            "player_id": "2491205",
-            "player_name": "Skylar Diggins",
-            "team": "CHI",
-            "opponent": "MIN",
-            "market": "PTS",
-            "line": "14+ PTS",
-            "score": 70.38,
-            "confidence": 70,
-            "tier": "B",
-            "reason": "Implied -120 | Zone AIM | Edge -0.98 | Hit% 55% | Sample 7 | Proj 13.0 | Baseline 13.4 | USG 26% | MIN 29.1 | PTS matchup 0.94x | Prev 13.4 | Pre 7.0 | Home boost | Q4 3.8 | Anti-correlation: same team as Natasha Cloud",
-            "sim_prob_pct": 51.2,
-            "implied_odds": "-120",
-            "value_zone": "aim",
-            "edge": -0.98,
-            "model_hit_rate": 0.545
-          },
-          {
             "player_id": "3142010",
             "player_name": "Azura Stevens",
             "team": "CHI",
             "opponent": "MIN",
             "market": "PTS",
             "line": "8+ PTS",
-            "score": 61.65,
-            "confidence": 62,
+            "score": 65.55,
+            "confidence": 66,
             "tier": "B",
-            "reason": "Implied -100 | Zone AIM | Edge +0.29 | Hit% 50% | Sample 6 | Proj 8.3 | Baseline 7.5 | USG 18% | MIN 22.9 | PTS matchup 0.94x | Prev 7.2 | Pre 7.5 | Uptick 0.16 | Home boost | Minutes watch | Anti-correlation: same team as Natasha Cloud",
+            "reason": "Implied -100 | Zone AIM | Edge +0.29 | Hit% 50% | Sample 6 | Proj 8.3 | Baseline 7.5 | USG 23% | MIN 22.9 | PTS matchup 0.94x | Prev 7.2 | Pre 7.5 | Uptick 0.16 | Home boost | Minutes watch | Anti-correlation: same team as Skylar Diggins",
             "sim_prob_pct": 47.8,
             "implied_odds": "-100",
             "value_zone": "aim",
@@ -3008,21 +2991,38 @@
             "model_hit_rate": 0.5
           },
           {
-            "player_id": "4433405",
-            "player_name": "Kamilla Cardoso",
+            "player_id": "4594786",
+            "player_name": "Sydney Taylor",
             "team": "CHI",
             "opponent": "MIN",
             "market": "PTS",
-            "line": "15+ PTS",
-            "score": 61.3,
+            "line": "14+ PTS",
+            "score": 60.83,
             "confidence": 61,
+            "tier": "C",
+            "reason": "Implied +175 | Zone VALUE | Edge -1.67 | Hit% 36% | Sample 7 | Proj 12.3 | Baseline 14.5 | USG 26% | MIN 12.9 | PTS matchup 0.94x | Prev 11.0 | Pre 14.5 | Decline 0.19 | Home boost | Minutes watch | Q4 Closer (4.2) | Anti-correlation: same team as Skylar Diggins",
+            "sim_prob_pct": 35.5,
+            "implied_odds": "+175",
+            "value_zone": "value",
+            "edge": -1.67,
+            "model_hit_rate": 0.364
+          },
+          {
+            "player_id": "4432865",
+            "player_name": "Jacy Sheldon",
+            "team": "CHI",
+            "opponent": "MIN",
+            "market": "PTS",
+            "line": "8+ PTS",
+            "score": 57.97,
+            "confidence": 58,
             "tier": "B",
-            "reason": "Implied +133 | Zone AIM | Edge -2.21 | Hit% 43% | Sample 12 | Proj 12.8 | Baseline 14.7 | USG 22% | MIN 25.6 | PTS matchup 0.94x | Prev 14.7 | Pre 6.5 | Home boost | Anti-correlation: same team as Natasha Cloud",
-            "sim_prob_pct": 39.1,
-            "implied_odds": "+133",
+            "reason": "Implied +117 | Zone AIM | Edge -1.80 | Hit% 46% | Sample 9 | Proj 6.2 | Baseline 6.6 | USG 17% | MIN 23.6 | PTS matchup 0.94x | Prev 6.6 | Pre 2.5 | Home boost | Minutes watch | Q4 Closer (2.0) | Anti-correlation: same team as Skylar Diggins",
+            "sim_prob_pct": 42.8,
+            "implied_odds": "+117",
             "value_zone": "aim",
-            "edge": -2.21,
-            "model_hit_rate": 0.429
+            "edge": -1.8,
+            "model_hit_rate": 0.462
           },
           {
             "player_id": "2529205",
@@ -3042,41 +3042,24 @@
             "model_hit_rate": 0.214
           },
           {
-            "player_id": "4432865",
-            "player_name": "Jacy Sheldon",
+            "player_id": "2566186",
+            "player_name": "Rachel Banham",
             "team": "CHI",
             "opponent": "MIN",
             "market": "PTS",
-            "line": "8+ PTS",
-            "score": 55.16,
-            "confidence": 55,
-            "tier": "B",
-            "reason": "Implied +117 | Zone AIM | Edge -1.80 | Hit% 46% | Sample 9 | Proj 6.2 | Baseline 6.6 | USG 13% | MIN 23.6 | PTS matchup 0.94x | Prev 6.6 | Pre 2.5 | Home boost | Minutes watch | Q4 Closer (2.0) | Anti-correlation: same team as Natasha Cloud",
-            "sim_prob_pct": 42.8,
-            "implied_odds": "+117",
+            "line": "10+ PTS",
+            "score": 55.68,
+            "confidence": 56,
+            "tier": "C",
+            "reason": "Implied +133 | Zone AIM | Edge -2.11 | Hit% 43% | Sample 12 | Proj 7.9 | Baseline 10.5 | USG 17% | MIN 17.8 | PTS matchup 0.94x | Prev 9.7 | Pre 10.5 | Decline 0.31 | Home boost | Minutes watch | Anti-correlation: same team as Skylar Diggins",
+            "sim_prob_pct": 39.5,
+            "implied_odds": "+133",
             "value_zone": "aim",
-            "edge": -1.8,
-            "model_hit_rate": 0.462
+            "edge": -2.11,
+            "model_hit_rate": 0.429
           }
         ],
         "REB": [
-          {
-            "player_id": "2529137",
-            "player_name": "Natasha Cloud",
-            "team": "CHI",
-            "opponent": "MIN",
-            "market": "REB",
-            "line": "4+ REB",
-            "score": 87.14,
-            "confidence": 87,
-            "tier": "B",
-            "reason": "Implied -100 | Zone AIM | Edge +0.56 | Hit% 50% | Sample 8 | Proj 4.6 | Baseline 4.1 | USG 21% | MIN 30.2 | REB matchup 1.00x | Prev 2.5 | Pre 4.1 | Uptick 0.92 | Home boost",
-            "sim_prob_pct": 46.4,
-            "implied_odds": "-100",
-            "value_zone": "aim",
-            "edge": 0.56,
-            "model_hit_rate": 0.5
-          },
           {
             "player_id": "2529130",
             "player_name": "Natasha Howard",
@@ -3146,6 +3129,23 @@
             "model_hit_rate": 0.571
           },
           {
+            "player_id": "2491205",
+            "player_name": "Skylar Diggins",
+            "team": "CHI",
+            "opponent": "MIN",
+            "market": "REB",
+            "line": "4+ REB",
+            "score": 76.03,
+            "confidence": 76,
+            "tier": "B",
+            "reason": "Implied +120 | Zone AIM | Edge -0.57 | Hit% 45% | Sample 7 | Proj 3.4 | Baseline 4.0 | USG 34% | MIN 29.1 | REB matchup 1.00x | Prev 4.0 | Pre 1.0 | Home boost",
+            "sim_prob_pct": 42.6,
+            "implied_odds": "+120",
+            "value_zone": "aim",
+            "edge": -0.57,
+            "model_hit_rate": 0.455
+          },
+          {
             "player_id": "4433791",
             "player_name": "Olivia Miles",
             "team": "MIN",
@@ -3163,55 +3163,21 @@
             "model_hit_rate": 0.571
           },
           {
-            "player_id": "2491205",
-            "player_name": "Skylar Diggins",
-            "team": "CHI",
-            "opponent": "MIN",
-            "market": "REB",
-            "line": "4+ REB",
-            "score": 74.78,
-            "confidence": 75,
-            "tier": "B",
-            "reason": "Implied +120 | Zone AIM | Edge -0.57 | Hit% 45% | Sample 7 | Proj 3.4 | Baseline 4.0 | USG 26% | MIN 29.1 | REB matchup 1.00x | Prev 4.0 | Pre 1.0 | Home boost | Anti-correlation: same team as Natasha Cloud",
-            "sim_prob_pct": 42.6,
-            "implied_odds": "+120",
-            "value_zone": "aim",
-            "edge": -0.57,
-            "model_hit_rate": 0.455
-          },
-          {
             "player_id": "4433424",
             "player_name": "Maddy Westbeld",
             "team": "CHI",
             "opponent": "MIN",
             "market": "REB",
             "line": "5+ REB",
-            "score": 68.08,
-            "confidence": 68,
+            "score": 72.18,
+            "confidence": 72,
             "tier": "C",
-            "reason": "Implied -100 | Zone AIM | Edge -0.31 | Hit% 50% | Sample 4 | Proj 4.7 | Baseline 5.0 | USG 15% | MIN 21.8 | REB matchup 1.00x | Prev 4.0 | Pre 5.0 | Home boost | Minutes watch | Anti-correlation: same team as Natasha Cloud",
+            "reason": "Implied -100 | Zone AIM | Edge -0.31 | Hit% 50% | Sample 4 | Proj 4.7 | Baseline 5.0 | USG 19% | MIN 21.8 | REB matchup 1.00x | Prev 4.0 | Pre 5.0 | Home boost | Minutes watch | Anti-correlation: same team as Skylar Diggins",
             "sim_prob_pct": 45.2,
             "implied_odds": "-100",
             "value_zone": "aim",
             "edge": -0.31,
             "model_hit_rate": 0.5
-          },
-          {
-            "player_id": "4433405",
-            "player_name": "Kamilla Cardoso",
-            "team": "CHI",
-            "opponent": "MIN",
-            "market": "REB",
-            "line": "11+ REB",
-            "score": 68.05,
-            "confidence": 68,
-            "tier": "B",
-            "reason": "Implied +180 | Zone VALUE | Edge -2.59 | Hit% 36% | Sample 12 | Proj 8.4 | Baseline 11.0 | USG 22% | MIN 25.6 | REB matchup 1.00x | Prev 11.0 | Pre 4.0 | Home boost | Anti-correlation: same team as Natasha Cloud",
-            "sim_prob_pct": 32.8,
-            "implied_odds": "+180",
-            "value_zone": "value",
-            "edge": -2.59,
-            "model_hit_rate": 0.357
           },
           {
             "player_id": "3142010",
@@ -3220,35 +3186,52 @@
             "opponent": "MIN",
             "market": "REB",
             "line": "10+ REB",
-            "score": 67.01,
-            "confidence": 67,
+            "score": 70.8,
+            "confidence": 71,
             "tier": "B",
-            "reason": "Implied +150 | Zone AIM | Edge -2.11 | Hit% 40% | Sample 6 | Proj 7.9 | Baseline 10.0 | USG 18% | MIN 22.9 | REB matchup 1.00x | Prev 10.0 | Pre 7.2 | Decline 0.30 | Home boost | Minutes watch | Anti-correlation: same team as Natasha Cloud",
+            "reason": "Implied +150 | Zone AIM | Edge -2.11 | Hit% 40% | Sample 6 | Proj 7.9 | Baseline 10.0 | USG 23% | MIN 22.9 | REB matchup 1.00x | Prev 10.0 | Pre 7.2 | Decline 0.30 | Home boost | Minutes watch | Anti-correlation: same team as Skylar Diggins",
             "sim_prob_pct": 37.2,
             "implied_odds": "+150",
             "value_zone": "aim",
             "edge": -2.11,
             "model_hit_rate": 0.4
+          },
+          {
+            "player_id": "2566081",
+            "player_name": "Elizabeth Williams",
+            "team": "CHI",
+            "opponent": "MIN",
+            "market": "REB",
+            "line": "6+ REB",
+            "score": 67.69,
+            "confidence": 68,
+            "tier": "C",
+            "reason": "Implied +117 | Zone AIM | Edge -0.54 | Hit% 46% | Sample 9 | Proj 5.5 | Baseline 5.5 | USG 16% | MIN 17.7 | REB matchup 1.00x | Prev 5.5 | Pre 5.0 | Home boost | Minutes watch | Anti-correlation: same team as Skylar Diggins",
+            "sim_prob_pct": 45.6,
+            "implied_odds": "+117",
+            "value_zone": "aim",
+            "edge": -0.54,
+            "model_hit_rate": 0.462
+          },
+          {
+            "player_id": "4433542",
+            "player_name": "Saylor Poffenbarger",
+            "team": "CHI",
+            "opponent": "MIN",
+            "market": "REB",
+            "line": "6+ REB",
+            "score": 64.93,
+            "confidence": 65,
+            "tier": "B",
+            "reason": "Implied +133 | Zone AIM | Edge +0.08 | Hit% 43% | Sample 3 | Proj 6.1 | Baseline 6.0 | USG 16% | MIN 23.0 | REB matchup 1.00x | Prev 6.0 | Pre 6.0 | Home boost | Minutes watch | Anti-correlation: same team as Skylar Diggins",
+            "sim_prob_pct": 39.7,
+            "implied_odds": "+133",
+            "value_zone": "aim",
+            "edge": 0.08,
+            "model_hit_rate": 0.429
           }
         ],
         "AST": [
-          {
-            "player_id": "2529137",
-            "player_name": "Natasha Cloud",
-            "team": "CHI",
-            "opponent": "MIN",
-            "market": "AST",
-            "line": "4+ AST",
-            "score": 86.71,
-            "confidence": 87,
-            "tier": "B",
-            "reason": "Implied -100 | Zone AIM | Edge +0.96 | Hit% 50% | Sample 8 | Proj 5.0 | Baseline 4.1 | USG 21% | MIN 30.2 | AST matchup 0.89x | Prev 2.0 | Pre 4.1 | Uptick 1.90 | Home boost",
-            "sim_prob_pct": 47.3,
-            "implied_odds": "-100",
-            "value_zone": "aim",
-            "edge": 0.96,
-            "model_hit_rate": 0.5
-          },
           {
             "player_id": "2529130",
             "player_name": "Natasha Howard",
@@ -3284,6 +3267,23 @@
             "model_hit_rate": 0.429
           },
           {
+            "player_id": "2491205",
+            "player_name": "Skylar Diggins",
+            "team": "CHI",
+            "opponent": "MIN",
+            "market": "AST",
+            "line": "6+ AST",
+            "score": 72.21,
+            "confidence": 72,
+            "tier": "B",
+            "reason": "Implied -120 | Zone AIM | Edge -0.26 | Hit% 55% | Sample 7 | Proj 5.7 | Baseline 5.7 | USG 34% | MIN 29.1 | AST matchup 0.89x | Prev 5.7 | Pre 4.0 | Home boost",
+            "sim_prob_pct": 53.0,
+            "implied_odds": "-120",
+            "value_zone": "aim",
+            "edge": -0.26,
+            "model_hit_rate": 0.545
+          },
+          {
             "player_id": "2987891",
             "player_name": "Courtney Williams",
             "team": "MIN",
@@ -3301,21 +3301,21 @@
             "model_hit_rate": 0.429
           },
           {
-            "player_id": "2491205",
-            "player_name": "Skylar Diggins",
+            "player_id": "4594786",
+            "player_name": "Sydney Taylor",
             "team": "CHI",
             "opponent": "MIN",
             "market": "AST",
-            "line": "6+ AST",
-            "score": 70.96,
-            "confidence": 71,
-            "tier": "B",
-            "reason": "Implied -120 | Zone AIM | Edge -0.26 | Hit% 55% | Sample 7 | Proj 5.7 | Baseline 5.7 | USG 26% | MIN 29.1 | AST matchup 0.89x | Prev 5.7 | Pre 4.0 | Home boost | Anti-correlation: same team as Natasha Cloud",
-            "sim_prob_pct": 53.0,
-            "implied_odds": "-120",
+            "line": "2+ AST",
+            "score": 68.59,
+            "confidence": 69,
+            "tier": "C",
+            "reason": "Implied +120 | Zone AIM | Edge -0.30 | Hit% 45% | Sample 7 | Proj 1.7 | Baseline 2.5 | USG 26% | MIN 12.9 | AST matchup 0.89x | Prev 1.4 | Pre 2.5 | Decline 0.41 | Home boost | Minutes watch | Anti-correlation: same team as Skylar Diggins",
+            "sim_prob_pct": 44.2,
+            "implied_odds": "+120",
             "value_zone": "aim",
-            "edge": -0.26,
-            "model_hit_rate": 0.545
+            "edge": -0.3,
+            "model_hit_rate": 0.455
           },
           {
             "player_id": "3054590",
@@ -3352,40 +3352,6 @@
             "model_hit_rate": 0.286
           },
           {
-            "player_id": "4594786",
-            "player_name": "Sydney Taylor",
-            "team": "CHI",
-            "opponent": "MIN",
-            "market": "AST",
-            "line": "2+ AST",
-            "score": 62.8,
-            "confidence": 63,
-            "tier": "C",
-            "reason": "Implied +120 | Zone AIM | Edge -0.30 | Hit% 45% | Sample 7 | Proj 1.7 | Baseline 2.5 | USG 20% | MIN 12.9 | AST matchup 0.89x | Prev 1.4 | Pre 2.5 | Decline 0.41 | Home boost | Minutes watch | Anti-correlation: same team as Natasha Cloud",
-            "sim_prob_pct": 44.2,
-            "implied_odds": "+120",
-            "value_zone": "aim",
-            "edge": -0.3,
-            "model_hit_rate": 0.455
-          },
-          {
-            "player_id": "4433405",
-            "player_name": "Kamilla Cardoso",
-            "team": "CHI",
-            "opponent": "MIN",
-            "market": "AST",
-            "line": "3+ AST",
-            "score": 60.57,
-            "confidence": 61,
-            "tier": "B",
-            "reason": "Implied +180 | Zone VALUE | Edge -0.56 | Hit% 36% | Sample 12 | Proj 2.4 | Baseline 2.7 | USG 22% | MIN 25.6 | AST matchup 0.89x | Prev 2.7 | Pre 0.5 | Uptick 0.22 | Home boost | Anti-correlation: same team as Natasha Cloud",
-            "sim_prob_pct": 33.5,
-            "implied_odds": "+180",
-            "value_zone": "value",
-            "edge": -0.56,
-            "model_hit_rate": 0.357
-          },
-          {
             "player_id": "4280850",
             "player_name": "Maya Caldwell",
             "team": "MIN",
@@ -3401,6 +3367,40 @@
             "value_zone": "aim",
             "edge": -0.19,
             "model_hit_rate": 0.571
+          },
+          {
+            "player_id": "4432865",
+            "player_name": "Jacy Sheldon",
+            "team": "CHI",
+            "opponent": "MIN",
+            "market": "AST",
+            "line": "2+ AST",
+            "score": 58.18,
+            "confidence": 58,
+            "tier": "B",
+            "reason": "Implied -117 | Zone AIM | Edge -0.25 | Hit% 54% | Sample 9 | Proj 1.7 | Baseline 1.9 | USG 17% | MIN 23.6 | AST matchup 0.89x | Prev 1.9 | Pre 1.0 | Decline 0.16 | Home boost | Minutes watch | Anti-correlation: same team as Skylar Diggins",
+            "sim_prob_pct": 50.5,
+            "implied_odds": "-117",
+            "value_zone": "aim",
+            "edge": -0.25,
+            "model_hit_rate": 0.538
+          },
+          {
+            "player_id": "2566081",
+            "player_name": "Elizabeth Williams",
+            "team": "CHI",
+            "opponent": "MIN",
+            "market": "AST",
+            "line": "2+ AST",
+            "score": 53.3,
+            "confidence": 53,
+            "tier": "C",
+            "reason": "Implied +160 | Zone VALUE | Edge -0.39 | Hit% 38% | Sample 9 | Proj 1.6 | Baseline 2.0 | USG 16% | MIN 17.7 | AST matchup 0.89x | Prev 2.0 | Pre 1.3 | Decline 0.40 | Home boost | Minutes watch | Anti-correlation: same team as Skylar Diggins",
+            "sim_prob_pct": 37.0,
+            "implied_odds": "+160",
+            "value_zone": "value",
+            "edge": -0.39,
+            "model_hit_rate": 0.385
           }
         ],
         "3PM": [
@@ -3431,7 +3431,7 @@
             "score": 72.45,
             "confidence": 72,
             "tier": "B",
-            "reason": "Implied -120 | Zone AIM | Edge -0.20 | Hit% 55% | Sample 7 | Proj 0.8 | Baseline 0.9 | USG 26% | MIN 29.1 | 3PM matchup 0.85x | Prev 0.9 | Pre 0.0 | Uptick 0.16 | Home boost",
+            "reason": "Implied -120 | Zone AIM | Edge -0.20 | Hit% 55% | Sample 7 | Proj 0.8 | Baseline 0.9 | USG 34% | MIN 29.1 | 3PM matchup 0.85x | Prev 0.9 | Pre 0.0 | Uptick 0.16 | Home boost",
             "sim_prob_pct": 52.1,
             "implied_odds": "-120",
             "value_zone": "aim",
@@ -3456,6 +3456,23 @@
             "model_hit_rate": 0.357
           },
           {
+            "player_id": "4594786",
+            "player_name": "Sydney Taylor",
+            "team": "CHI",
+            "opponent": "MIN",
+            "market": "3PM",
+            "line": "2+ 3PM",
+            "score": 66.68,
+            "confidence": 67,
+            "tier": "C",
+            "reason": "Implied +120 | Zone AIM | Edge -0.53 | Hit% 45% | Sample 7 | Proj 1.5 | Baseline 1.5 | USG 26% | MIN 12.9 | 3PM matchup 0.85x | Prev 1.3 | Pre 1.5 | Home boost | Minutes watch | Anti-correlation: same team as Skylar Diggins",
+            "sim_prob_pct": 42.5,
+            "implied_odds": "+120",
+            "value_zone": "aim",
+            "edge": -0.53,
+            "model_hit_rate": 0.455
+          },
+          {
             "player_id": "2529205",
             "player_name": "Kayla McBride",
             "team": "MIN",
@@ -3471,23 +3488,6 @@
             "value_zone": "value",
             "edge": -2.33,
             "model_hit_rate": 0.214
-          },
-          {
-            "player_id": "4594786",
-            "player_name": "Sydney Taylor",
-            "team": "CHI",
-            "opponent": "MIN",
-            "market": "3PM",
-            "line": "2+ 3PM",
-            "score": 60.89,
-            "confidence": 61,
-            "tier": "C",
-            "reason": "Implied +120 | Zone AIM | Edge -0.53 | Hit% 45% | Sample 7 | Proj 1.5 | Baseline 1.5 | USG 20% | MIN 12.9 | 3PM matchup 0.85x | Prev 1.3 | Pre 1.5 | Home boost | Minutes watch | Anti-correlation: same team as Skylar Diggins",
-            "sim_prob_pct": 42.5,
-            "implied_odds": "+120",
-            "value_zone": "aim",
-            "edge": -0.53,
-            "model_hit_rate": 0.455
           },
           {
             "player_id": "4280850",
@@ -3507,21 +3507,21 @@
             "model_hit_rate": 0.429
           },
           {
-            "player_id": "2529137",
-            "player_name": "Natasha Cloud",
+            "player_id": "4432865",
+            "player_name": "Jacy Sheldon",
             "team": "CHI",
             "opponent": "MIN",
             "market": "3PM",
-            "line": "2+ 3PM",
-            "score": 58.9,
-            "confidence": 59,
+            "line": "1+ 3PM",
+            "score": 58.41,
+            "confidence": 58,
             "tier": "B",
-            "reason": "Implied +200 | Zone VALUE | Edge -0.93 | Hit% 33% | Sample 8 | Proj 1.1 | Baseline 1.5 | USG 21% | MIN 30.2 | 3PM matchup 0.85x | Prev 1.5 | Pre 1.0 | Decline 0.47 | Home boost | Anti-correlation: same team as Skylar Diggins",
-            "sim_prob_pct": 32.8,
-            "implied_odds": "+200",
-            "value_zone": "value",
-            "edge": -0.93,
-            "model_hit_rate": 0.333
+            "reason": "Implied -117 | Zone AIM | Edge -0.34 | Hit% 54% | Sample 9 | Proj 0.7 | Baseline 0.7 | USG 17% | MIN 23.6 | 3PM matchup 0.85x | Prev 0.7 | Pre 0.0 | Home boost | Minutes watch | Anti-correlation: same team as Skylar Diggins",
+            "sim_prob_pct": 52.9,
+            "implied_odds": "-117",
+            "value_zone": "aim",
+            "edge": -0.34,
+            "model_hit_rate": 0.538
           },
           {
             "player_id": "5345478",
