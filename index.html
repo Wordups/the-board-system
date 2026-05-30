@@ -1767,6 +1767,105 @@ button { cursor: pointer; border: none; background: none; }
   color: var(--text-3); font-family: "Barlow Condensed", sans-serif;
   font-weight: 700; letter-spacing: 0.5px;
 }
+
+/* Parlay Analyzer — full-screen overlay */
+.parlay-page { position: fixed; inset: 0; z-index: 100; background: var(--bg); overflow-y: auto; display: none; }
+.parlay-page.open { display: block; }
+.parlay-page-head {
+  position: sticky; top: 0; z-index: 2;
+  background: rgba(8,8,8,0.96); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 16px; padding: 14px 20px;
+}
+.parlay-back {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--gold); background: transparent;
+  border: 1px solid var(--border); border-radius: 4px;
+  padding: 6px 12px; cursor: pointer;
+}
+.parlay-back:hover { border-color: var(--gold); }
+.parlay-page-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 18px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;
+}
+.parlay-page-meta {
+  margin-left: auto;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-3);
+}
+.parlay-page-body {
+  max-width: 1100px; margin: 0 auto;
+  padding: 24px 20px;
+  display: flex; flex-direction: column; gap: 22px;
+}
+.parlay-recommend {
+  padding: 18px 20px;
+  background: linear-gradient(180deg, rgba(240,180,41,0.16), rgba(240,180,41,0.04));
+  border: 1px solid var(--gold); border-radius: 12px;
+}
+.parlay-recommend .label {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 6px;
+}
+.parlay-recommend .pick {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 22px; font-weight: 800; color: var(--text);
+}
+.parlay-recommend .stats { margin-top: 10px; font-size: 13px; color: var(--text-2); }
+.parlay-recommend .stats strong { color: var(--text); font-weight: 700; }
+.parlay-section-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 13px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 4px;
+}
+.parlay-section-sub { font-size: 11px; color: var(--text-3); margin-bottom: 12px; }
+.parlay-mc-bar {
+  display: flex; gap: 6px; align-items: stretch;
+  height: 160px; padding: 12px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+}
+.parlay-mc-col {
+  flex: 1; min-width: 36px;
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: 4px;
+  position: relative; display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 4px;
+}
+.parlay-mc-col .fill {
+  background: linear-gradient(180deg, rgba(240,180,41,0.45), rgba(240,180,41,0.15));
+  border-top: 2px solid var(--gold); border-radius: 2px;
+}
+.parlay-mc-col .kx {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 10px; font-weight: 800; color: var(--text-3);
+  text-align: center; margin-top: 4px;
+}
+.parlay-mc-col .val {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 11px; font-weight: 800; color: var(--text);
+  position: absolute; top: 6px; left: 0; right: 0; text-align: center;
+}
+.parlay-ladder { display: flex; flex-direction: column; gap: 6px; }
+.parlay-ladder-row {
+  display: flex; gap: 12px; align-items: center;
+  padding: 12px 14px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+}
+.parlay-ladder-row.recommended {
+  border-color: var(--gold); background: rgba(240,180,41,0.08);
+  box-shadow: 0 0 0 1px rgba(240,180,41,0.3);
+}
+.parlay-ladder-k {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 14px; font-weight: 800; color: var(--gold); min-width: 54px;
+}
+.parlay-ladder-picks { font-size: 12px; color: var(--text-2); flex: 1; }
+.parlay-ladder-stats {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 13px; font-weight: 700; color: var(--text-2); white-space: nowrap;
+}
+.parlay-ladder-stats span { color: var(--gold); }
 </style>
 </head>
 <body>
@@ -2919,6 +3018,110 @@ if (!window.__hrBoardHooked) {
     }
   }
 
+  function hrFairAmericanFromProb(prob) {
+    if (!isFinite(prob) || prob <= 0 || prob >= 1) return null;
+    const dec = 1 / prob;
+    return dec >= 2 ? Math.round((dec - 1) * 100) : Math.round(-100 / (dec - 1));
+  }
+  function hrFmtAmer(a) { return a == null ? "—" : (a > 0 ? "+" + a : String(a)); }
+  function hrRunMonteCarlo(legs, trials) {
+    const N = legs.length;
+    const probs = legs.map((l) => Math.max(Math.min(l.simPct / 100, 0.999), 0.001));
+    const counts = new Array(N + 1).fill(0);
+    for (let t = 0; t < trials; t++) {
+      let hits = 0;
+      for (let i = 0; i < N; i++) if (Math.random() < probs[i]) hits++;
+      counts[hits]++;
+    }
+    return counts.map((c) => c / trials);
+  }
+  function hrBuildSubsetLadder(legs) {
+    const sorted = [...legs].sort((a, b) => b.simPct - a.simPct);
+    const rows = [];
+    for (let k = 2; k <= sorted.length; k++) {
+      const subset = sorted.slice(0, k);
+      const prob = subset.reduce((p, l) => p * (l.simPct / 100), 1);
+      rows.push({ k, subset, prob, fair: hrFairAmericanFromProb(prob) });
+    }
+    return rows;
+  }
+  function hrRecommendation(ladder) {
+    let rec = null;
+    for (const row of ladder) if (row.prob >= 0.10) rec = row;
+    return rec || ladder[0] || null;
+  }
+  function hrOpenParlayPage() {
+    const legs = hrParlayLegs();
+    if (legs.length < 2) { hrRenderParlayPanel(); return; }
+    const TRIALS = 25000;
+    const dist = hrRunMonteCarlo(legs, TRIALS);
+    const ladder = hrBuildSubsetLadder(legs);
+    const rec = hrRecommendation(ladder);
+    const expected = dist.reduce((s, p, k) => s + p * k, 0);
+    const maxDist = Math.max(...dist, 0.0001);
+
+    const recHtml = rec ? `
+      <div class="parlay-recommend">
+        <div class="label">Recommended Build</div>
+        <div class="pick">${rec.k}-Leg Parlay &middot; ${(rec.prob * 100).toFixed(1)}% &middot; Fair ${hrFmtAmer(rec.fair)}</div>
+        <div class="stats">${rec.subset.map((l) => `<strong>${hrSafe(l.name)}</strong>`).join(" + ")}</div>
+        <div class="stats" style="margin-top:8px;color:var(--text-3);font-size:11px;">Largest subset with combined model hit rate &ge; 10% (fair odds; no book edge in this repo).</div>
+      </div>` : "";
+    const legsHtml = legs.map((l) =>
+      `<li><span class="leg-name">${hrSafe(l.name)}</span>` +
+      `<span class="leg-prob">${hrSafe(l.team)} ${hrSafe(l.line)} &middot; ${l.simPct.toFixed(0)}%</span></li>`
+    ).join("");
+    const mcHtml = dist.map((p, k) => {
+      const h = Math.round((p / maxDist) * 100);
+      return `<div class="parlay-mc-col" title="${k} of ${legs.length} legs hit">` +
+        `<div class="val">${(p * 100).toFixed(0)}%</div>` +
+        `<div class="fill" style="height:${h}%"></div>` +
+        `<div class="kx">${k}/${legs.length}</div>` +
+        `</div>`;
+    }).join("");
+    const ladderHtml = ladder.map((row) => {
+      const recCls = (rec && row.k === rec.k) ? " recommended" : "";
+      return `<div class="parlay-ladder-row${recCls}">` +
+        `<div class="parlay-ladder-k">${row.k}-leg</div>` +
+        `<div class="parlay-ladder-picks">${row.subset.map((l) => hrSafe(l.name)).join(" + ")}</div>` +
+        `<div class="parlay-ladder-stats">P <span>${(row.prob * 100).toFixed(1)}%</span> &middot; Fair <span>${hrFmtAmer(row.fair)}</span></div>` +
+        `</div>`;
+    }).join("");
+
+    const html = `
+      <div id="parlay-page" class="parlay-page open">
+        <div class="parlay-page-head">
+          <button class="parlay-back" data-parlay-back="1">&larr; Back to Board</button>
+          <div class="parlay-page-title">Parlay Analyzer</div>
+          <div class="parlay-page-meta">${legs.length} selected &middot; ${TRIALS.toLocaleString()} MC trials</div>
+        </div>
+        <div class="parlay-page-body">
+          ${recHtml}
+          <div>
+            <div class="parlay-section-title">Selected Legs</div>
+            <ul class="hr-parlay-legs">${legsHtml}</ul>
+          </div>
+          <div>
+            <div class="parlay-section-title">Monte Carlo Distribution</div>
+            <div class="parlay-section-sub">P(K of ${legs.length} legs hit) over ${TRIALS.toLocaleString()} trials &middot; expected hits ${expected.toFixed(2)}</div>
+            <div class="parlay-mc-bar">${mcHtml}</div>
+          </div>
+          <div>
+            <div class="parlay-section-title">Subset Ladder</div>
+            <div class="parlay-section-sub">Top-K legs by simulated probability &mdash; the recommendation is highlighted.</div>
+            <div class="parlay-ladder">${ladderHtml}</div>
+          </div>
+        </div>
+      </div>`;
+    document.getElementById("parlay-page")?.remove();
+    document.body.insertAdjacentHTML("beforeend", html);
+    document.body.style.overflow = "hidden";
+  }
+  function hrCloseParlayPage() {
+    document.getElementById("parlay-page")?.remove();
+    document.body.style.overflow = "";
+  }
+
   document.addEventListener("click", function (e) {
     // CARD TOGGLE
     const card = e.target.closest(".hr-card[data-hr-id]");
@@ -2942,9 +3145,11 @@ if (!window.__hrBoardHooked) {
       if (document.getElementById("hr-parlay-panel")) hrRenderParlayPanel();
       return;
     }
-    // BUILD PARLAY
-    if (e.target.closest("[data-hr-build]")) { hrRenderParlayPanel(); return; }
-    // PARLAY CLOSE
+    // BUILD PARLAY — opens the full-screen analyzer page
+    if (e.target.closest("[data-hr-build]")) { hrOpenParlayPage(); return; }
+    // PARLAY BACK — closes the analyzer page
+    if (e.target.closest("[data-parlay-back]")) { hrCloseParlayPage(); return; }
+    // INLINE PARLAY PANEL CLOSE (1-leg fallback)
     if (e.target.closest("[data-hr-parlay-close]")) {
       document.getElementById("hr-parlay-panel")?.remove();
       return;
