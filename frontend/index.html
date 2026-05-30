@@ -2776,7 +2776,7 @@ function renderHrCard(p) {
   const sel = hrSelectedIds.has(id);
   const sim = p.sim_prob_pct != null ? `<span class="sim-prob-badge">${Number(p.sim_prob_pct).toFixed(0)}%</span>` : "";
   return `
-    <article class="core-card hr-card ${sel ? "hr-card-selected" : ""}" data-hr-id="${esc(id)}">
+    <article class="core-card hr-card ${sel ? "hr-card-selected" : ""}" data-hr-id="${esc(id)}" data-hr-score="${Number(p.score || 0)}" data-hr-sim="${Number(p.sim_prob_pct || 0)}" data-hr-name="${esc(String(p.player_name || "").toLowerCase())}">
       ${sel ? '<div class="hr-card-tick">✓</div>' : ""}
       <div class="core-card-top">
         <div class="core-rank-wrap">
@@ -2825,15 +2825,70 @@ function renderExpandedHrBoard(data) {
 if (!window.__hrBoardHooked) {
   window.__hrBoardHooked = true;
   document.addEventListener("click", function (e) {
-    const sortBtn = e.target.closest("[data-hr-sort]");
-    if (sortBtn) { hrSortMode = sortBtn.dataset.hrSort; if (typeof renderViews === "function") renderViews(); return; }
-    const clearBtn = e.target.closest("[data-hr-clear]");
-    if (clearBtn) { hrSelectedIds.clear(); if (typeof renderViews === "function") renderViews(); return; }
+    // CARD TOGGLE — pure DOM, no app-level re-render needed.
     const card = e.target.closest(".hr-card[data-hr-id]");
     if (card) {
       const id = card.dataset.hrId;
-      if (hrSelectedIds.has(id)) hrSelectedIds.delete(id); else hrSelectedIds.add(id);
-      if (typeof renderViews === "function") renderViews();
+      const nowSelected = !hrSelectedIds.has(id);
+      if (nowSelected) hrSelectedIds.add(id); else hrSelectedIds.delete(id);
+      card.classList.toggle("hr-card-selected", nowSelected);
+      let tick = card.querySelector(".hr-card-tick");
+      if (nowSelected && !tick) {
+        tick = document.createElement("div");
+        tick.className = "hr-card-tick";
+        tick.textContent = "✓";
+        card.insertBefore(tick, card.firstChild);
+      } else if (!nowSelected && tick) {
+        tick.remove();
+      }
+      const cnt = document.getElementById("hr-selected-count");
+      if (cnt) cnt.textContent = hrSelectedIds.size;
+      const controls = card.closest(".hr-board-card")?.querySelector(".hr-controls");
+      if (controls) {
+        let cb = controls.querySelector("[data-hr-clear]");
+        if (hrSelectedIds.size && !cb) {
+          cb = document.createElement("button");
+          cb.className = "hr-card-clear-btn";
+          cb.setAttribute("data-hr-clear", "1");
+          cb.textContent = "Clear";
+          controls.appendChild(cb);
+        } else if (!hrSelectedIds.size && cb) {
+          cb.remove();
+        }
+      }
+      return;
+    }
+    // SORT — reorder existing card nodes in place.
+    const sortBtn = e.target.closest("[data-hr-sort]");
+    if (sortBtn) {
+      hrSortMode = sortBtn.dataset.hrSort;
+      const controls = sortBtn.closest(".hr-controls");
+      controls?.querySelectorAll("[data-hr-sort]").forEach((b) =>
+        b.classList.toggle("active", b.dataset.hrSort === hrSortMode)
+      );
+      const grid = sortBtn.closest(".hr-board-card")?.querySelector(".core-grid");
+      if (grid) {
+        const cards = Array.from(grid.querySelectorAll(".hr-card[data-hr-id]"));
+        cards.sort((a, b) => {
+          if (hrSortMode === "name") return (a.dataset.hrName || "").localeCompare(b.dataset.hrName || "");
+          if (hrSortMode === "sim") return (Number(b.dataset.hrSim) || 0) - (Number(a.dataset.hrSim) || 0);
+          return (Number(b.dataset.hrScore) || 0) - (Number(a.dataset.hrScore) || 0);
+        });
+        cards.forEach((c) => grid.appendChild(c));
+      }
+      return;
+    }
+    // CLEAR — unmark every selected card.
+    const clearBtn = e.target.closest("[data-hr-clear]");
+    if (clearBtn) {
+      hrSelectedIds.clear();
+      document.querySelectorAll(".hr-card.hr-card-selected").forEach((c) => {
+        c.classList.remove("hr-card-selected");
+        c.querySelector(".hr-card-tick")?.remove();
+      });
+      const cnt = document.getElementById("hr-selected-count");
+      if (cnt) cnt.textContent = "0";
+      clearBtn.remove();
     }
   });
 }
