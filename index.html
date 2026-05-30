@@ -1686,6 +1686,46 @@ button { cursor: pointer; border: none; background: none; }
   .player-stat-grid { grid-template-columns: 1fr; }
   .modal-body, .player-panel-body { padding-left: 14px; padding-right: 14px; }
 }
+
+/* HR Board (Expanded) */
+.hr-board-card .board-header { gap: 12px; flex-wrap: wrap; }
+.hr-controls { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.hr-sort-btn {
+  padding: 4px 10px; background: var(--surface-2); border: 1px solid var(--border);
+  color: var(--text-2); border-radius: 4px; cursor: pointer;
+  font-family: "Barlow Condensed", sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.hr-sort-btn:hover { color: var(--text); border-color: var(--border-2); }
+.hr-sort-btn.active { background: var(--gold-dim); border-color: rgba(240,180,41,0.40); color: var(--gold); }
+.hr-selected-count {
+  font-family: "Barlow Condensed", sans-serif; font-size: 11px; font-weight: 700;
+  color: var(--text-3); letter-spacing: 1px; text-transform: uppercase;
+  padding-left: 10px; margin-left: 4px; border-left: 1px solid var(--border);
+}
+.hr-selected-count span { color: var(--gold); }
+.hr-card-clear-btn {
+  padding: 4px 10px; background: transparent; border: 1px solid var(--border);
+  color: var(--text-3); border-radius: 4px; cursor: pointer;
+  font-family: "Barlow Condensed", sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.hr-card-clear-btn:hover { border-color: var(--red); color: var(--red); }
+.hr-card { cursor: pointer; transition: transform 0.15s, border-color 0.15s, background 0.15s; }
+.hr-card:hover { border-color: rgba(240,180,41,0.40); transform: translateY(-2px); }
+.hr-card-selected { background: var(--gold-dim); border-color: var(--gold); }
+.hr-card-selected .core-name { color: var(--gold); }
+.hr-card .player-link { pointer-events: none; }
+.hr-card-tick {
+  position: absolute; top: 8px; right: 8px;
+  width: 20px; height: 20px; border-radius: 4px;
+  border: 1px solid var(--border-2); background: var(--surface-3);
+  font-size: 12px; color: var(--gold); font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none; z-index: 2;
+}
+.hr-card-selected .hr-card-tick { background: var(--gold); color: var(--bg); border-color: var(--gold); }
 </style>
 </head>
 <body>
@@ -2680,6 +2720,102 @@ function renderFrozenDailySummaryCard(sport, frozen, liveData, options = {}) {
     </section>`;
 }
 
+let hrSelectedIds = new Set();
+let hrSortMode = "score";
+
+function collectAllHrPicks(data) {
+  const seen = new Set();
+  const pool = [];
+  const add = (rows) => {
+    for (const r of (rows || [])) {
+      if (!r || r.player_id == null) continue;
+      const id = String(r.player_id);
+      if (seen.has(id)) continue;
+      seen.add(id);
+      pool.push(r);
+    }
+  };
+  add(data?.pinned_board?.players);
+  add(data?.watch_board?.players);
+  for (const g of (data?.games || [])) add(g.markets?.HR || []);
+  return pool;
+}
+
+function sortHrPicks(rows) {
+  const s = [...rows];
+  if (hrSortMode === "score") s.sort((a, b) => (Number(b.score) || 0) - (Number(a.score) || 0));
+  else if (hrSortMode === "sim") s.sort((a, b) => (Number(b.sim_prob_pct) || 0) - (Number(a.sim_prob_pct) || 0));
+  else if (hrSortMode === "name") s.sort((a, b) => String(a.player_name || "").localeCompare(String(b.player_name || "")));
+  return s;
+}
+
+function renderHrCard(p) {
+  const id = String(p.player_id);
+  const sel = hrSelectedIds.has(id);
+  const sim = p.sim_prob_pct != null ? `<span class="sim-prob-badge">${Number(p.sim_prob_pct).toFixed(0)}%</span>` : "";
+  return `
+    <article class="core-card hr-card ${sel ? "hr-card-selected" : ""}" data-hr-id="${esc(id)}">
+      <div class="hr-card-tick">${sel ? "✓" : "+"}</div>
+      <div class="core-card-top">
+        <div class="core-rank-wrap">
+          ${playerFace(p, "mlb").replace('class="player-face"', 'class="player-face core-face"')}
+        </div>
+        ${sim}
+      </div>
+      <div class="core-body">
+        <div class="core-name">${playerButton(p, "mlb", "core-name")}</div>
+        <div class="core-meta"><span>${esc(p.team)}</span><span>vs ${esc(p.opponent)}</span></div>
+      </div>
+      <div class="core-line-row">
+        <div class="core-line">${esc(p.line)}</div>
+        <div class="core-score">${Number(p.score || 0).toFixed(1)}</div>
+        ${tierBadge(p.tier)}
+      </div>
+    </article>`;
+}
+
+function renderExpandedHrBoard(data) {
+  const pool = collectAllHrPicks(data);
+  if (!pool.length) return "";
+  const rows = sortHrPicks(pool);
+  const clearBtn = hrSelectedIds.size
+    ? `<button class="hr-card-clear-btn" data-hr-clear="1">Clear</button>`
+    : "";
+  return `
+    <div class="board-card hr-board-card">
+      <div class="board-header">
+        <div class="board-header-copy">
+          <div class="board-title">HR Board</div>
+          <div class="board-subtitle">${pool.length} HR picks — click cards to select for parlays</div>
+        </div>
+        <div class="hr-controls">
+          <button class="hr-sort-btn ${hrSortMode === "score" ? "active" : ""}" data-hr-sort="score">Score</button>
+          <button class="hr-sort-btn ${hrSortMode === "sim" ? "active" : ""}" data-hr-sort="sim">Sim</button>
+          <button class="hr-sort-btn ${hrSortMode === "name" ? "active" : ""}" data-hr-sort="name">A-Z</button>
+          <span class="hr-selected-count">Selected <span id="hr-selected-count">${hrSelectedIds.size}</span></span>
+          ${clearBtn}
+        </div>
+      </div>
+      <div class="core-grid">${rows.map(renderHrCard).join("")}</div>
+    </div>`;
+}
+
+if (!window.__hrBoardHooked) {
+  window.__hrBoardHooked = true;
+  document.addEventListener("click", function (e) {
+    const sortBtn = e.target.closest("[data-hr-sort]");
+    if (sortBtn) { hrSortMode = sortBtn.dataset.hrSort; if (typeof renderViews === "function") renderViews(); return; }
+    const clearBtn = e.target.closest("[data-hr-clear]");
+    if (clearBtn) { hrSelectedIds.clear(); if (typeof renderViews === "function") renderViews(); return; }
+    const card = e.target.closest(".hr-card[data-hr-id]");
+    if (card) {
+      const id = card.dataset.hrId;
+      if (hrSelectedIds.has(id)) hrSelectedIds.delete(id); else hrSelectedIds.add(id);
+      if (typeof renderViews === "function") renderViews();
+    }
+  });
+}
+
 function renderDiamondWidget(diamond) {
   const slots = [["1B", "First Base"], ["2B", "Second Base"], ["3B", "Third Base"], ["HOME", "Home Plate"], ["MOUND", "Mound"]];
   const picks = diamond.picks || {};
@@ -2761,6 +2897,7 @@ function renderMlbPinnedBoards(data) {
           ${diamondRows.map((player, index) => renderMlbCoreCard(player, index, diamondLabels[index] || "")).join("")}
         </div>
       </div>`}
+      ${renderExpandedHrBoard(data)}
       ${kRows.length ? `
         <div class="board-card mlb-board-compact">
           <div class="board-header">
