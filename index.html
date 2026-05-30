@@ -1726,6 +1726,47 @@ button { cursor: pointer; border: none; background: none; }
   pointer-events: none; z-index: 2;
 }
 .hr-card-selected .hr-card-tick { background: var(--gold); color: var(--bg); border-color: var(--gold); }
+
+/* HR Board — parlay panel */
+.hr-parlay-btn {
+  padding: 4px 12px; background: var(--gold-dim); border: 1px solid rgba(240,180,41,0.4);
+  color: var(--gold); border-radius: 4px; cursor: pointer;
+  font-family: "Barlow Condensed", sans-serif; font-size: 11px; font-weight: 800;
+  letter-spacing: 1px; text-transform: uppercase;
+  transition: background 0.15s, border-color 0.15s;
+}
+.hr-parlay-btn:hover { background: rgba(240,180,41,0.22); border-color: var(--gold); }
+.hr-parlay-panel {
+  margin-top: 12px; padding: 14px 16px;
+  background: var(--surface); border: 1px solid rgba(240,180,41,0.5);
+  border-radius: 10px;
+}
+.hr-parlay-head {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.hr-parlay-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 14px; font-weight: 800; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--gold);
+}
+.hr-parlay-stats {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 13px; font-weight: 700; color: var(--text-2);
+  margin-left: auto;
+}
+.hr-parlay-stats span { color: var(--gold); }
+.hr-parlay-legs { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.hr-parlay-legs li {
+  font-size: 12px; padding: 8px 10px;
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 6px; display: flex; justify-content: space-between; gap: 10px; align-items: center;
+}
+.hr-parlay-legs .leg-name { color: var(--text); font-weight: 700; }
+.hr-parlay-legs .leg-prob {
+  color: var(--text-3); font-family: "Barlow Condensed", sans-serif;
+  font-weight: 700; letter-spacing: 0.5px;
+}
 </style>
 </head>
 <body>
@@ -2754,7 +2795,7 @@ function renderHrCard(p) {
   const sel = hrSelectedIds.has(id);
   const sim = p.sim_prob_pct != null ? `<span class="sim-prob-badge">${Number(p.sim_prob_pct).toFixed(0)}%</span>` : "";
   return `
-    <article class="core-card hr-card ${sel ? "hr-card-selected" : ""}" data-hr-id="${esc(id)}" data-hr-score="${Number(p.score || 0)}" data-hr-sim="${Number(p.sim_prob_pct || 0)}" data-hr-name="${esc(String(p.player_name || "").toLowerCase())}">
+    <article class="core-card hr-card ${sel ? "hr-card-selected" : ""}" data-hr-id="${esc(id)}" data-hr-score="${Number(p.score || 0)}" data-hr-sim="${Number(p.sim_prob_pct || 0)}" data-hr-name="${esc(String(p.player_name || "").toLowerCase())}" data-hr-market="${esc(p.market || "HR")}" data-hr-line="${esc(p.line || "")}" data-hr-team="${esc(p.team || "")}">
       ${sel ? '<div class="hr-card-tick">✓</div>' : ""}
       <div class="core-card-top">
         <div class="core-rank-wrap">
@@ -2802,8 +2843,84 @@ function renderExpandedHrBoard(data) {
 
 if (!window.__hrBoardHooked) {
   window.__hrBoardHooked = true;
+
+  function hrSafe(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, (m) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+  }
+  function hrParlayLegs() {
+    const legs = [];
+    document.querySelectorAll(".hr-card.hr-card-selected[data-hr-id]").forEach((c) => {
+      const name = c.querySelector(".core-name")?.textContent?.trim() || c.dataset.hrName || "?";
+      legs.push({
+        name,
+        team: c.dataset.hrTeam || "",
+        market: c.dataset.hrMarket || "",
+        line: c.dataset.hrLine || "",
+        simPct: Number(c.dataset.hrSim) || 0,
+      });
+    });
+    return legs;
+  }
+  function hrParlayMath(legs) {
+    if (!legs.length) return { prob: 0, american: null };
+    const prob = legs.reduce((p, l) => p * (Math.max(l.simPct, 0.001) / 100), 1);
+    if (!isFinite(prob) || prob <= 0) return { prob: 0, american: null };
+    const dec = 1 / prob;
+    const american = dec >= 2 ? Math.round((dec - 1) * 100) : Math.round(-100 / (dec - 1));
+    return { prob, american };
+  }
+  function hrRenderParlayPanel() {
+    const existing = document.getElementById("hr-parlay-panel");
+    const legs = hrParlayLegs();
+    if (!legs.length) { if (existing) existing.remove(); return; }
+    const { prob, american } = hrParlayMath(legs);
+    const amStr = american == null ? "—" : (american > 0 ? `+${american}` : String(american));
+    const legsHtml = legs.map((l) =>
+      `<li><span class="leg-name">${hrSafe(l.name)}</span>` +
+      `<span class="leg-prob">${hrSafe(l.team)} ${hrSafe(l.line)} · ${l.simPct.toFixed(0)}%</span></li>`
+    ).join("");
+    const html = `
+      <div id="hr-parlay-panel" class="hr-parlay-panel">
+        <div class="hr-parlay-head">
+          <div class="hr-parlay-title">${legs.length}-Leg Parlay</div>
+          <div class="hr-parlay-stats">Combined <span>${(prob * 100).toFixed(1)}%</span> &middot; Fair <span>${amStr}</span></div>
+          <button class="hr-card-clear-btn" data-hr-parlay-close="1">Close</button>
+        </div>
+        <ul class="hr-parlay-legs">${legsHtml}</ul>
+      </div>`;
+    const board = document.querySelector(".hr-board-card");
+    if (!board) return;
+    if (existing) existing.outerHTML = html;
+    else board.insertAdjacentHTML("afterend", html);
+  }
+  function hrSyncActionButtons() {
+    const controls = document.querySelector(".hr-board-card .hr-controls");
+    if (!controls) return;
+    const has = hrSelectedIds.size > 0;
+    let buildBtn = controls.querySelector("[data-hr-build]");
+    if (has && !buildBtn) {
+      buildBtn = document.createElement("button");
+      buildBtn.className = "hr-parlay-btn";
+      buildBtn.setAttribute("data-hr-build", "1");
+      buildBtn.textContent = "Build Parlay";
+      controls.appendChild(buildBtn);
+    } else if (!has && buildBtn) {
+      buildBtn.remove();
+    }
+    let clearBtn = controls.querySelector("[data-hr-clear]");
+    if (has && !clearBtn) {
+      clearBtn = document.createElement("button");
+      clearBtn.className = "hr-card-clear-btn";
+      clearBtn.setAttribute("data-hr-clear", "1");
+      clearBtn.textContent = "Clear";
+      controls.appendChild(clearBtn);
+    } else if (!has && clearBtn) {
+      clearBtn.remove();
+    }
+  }
+
   document.addEventListener("click", function (e) {
-    // CARD TOGGLE — pure DOM, no app-level re-render needed.
+    // CARD TOGGLE
     const card = e.target.closest(".hr-card[data-hr-id]");
     if (card) {
       const id = card.dataset.hrId;
@@ -2821,27 +2938,23 @@ if (!window.__hrBoardHooked) {
       }
       const cnt = document.getElementById("hr-selected-count");
       if (cnt) cnt.textContent = hrSelectedIds.size;
-      const controls = card.closest(".hr-board-card")?.querySelector(".hr-controls");
-      if (controls) {
-        let cb = controls.querySelector("[data-hr-clear]");
-        if (hrSelectedIds.size && !cb) {
-          cb = document.createElement("button");
-          cb.className = "hr-card-clear-btn";
-          cb.setAttribute("data-hr-clear", "1");
-          cb.textContent = "Clear";
-          controls.appendChild(cb);
-        } else if (!hrSelectedIds.size && cb) {
-          cb.remove();
-        }
-      }
+      hrSyncActionButtons();
+      if (document.getElementById("hr-parlay-panel")) hrRenderParlayPanel();
       return;
     }
-    // SORT — reorder existing card nodes in place.
+    // BUILD PARLAY
+    if (e.target.closest("[data-hr-build]")) { hrRenderParlayPanel(); return; }
+    // PARLAY CLOSE
+    if (e.target.closest("[data-hr-parlay-close]")) {
+      document.getElementById("hr-parlay-panel")?.remove();
+      return;
+    }
+    // SORT
     const sortBtn = e.target.closest("[data-hr-sort]");
     if (sortBtn) {
       hrSortMode = sortBtn.dataset.hrSort;
-      const controls = sortBtn.closest(".hr-controls");
-      controls?.querySelectorAll("[data-hr-sort]").forEach((b) =>
+      const ctrls = sortBtn.closest(".hr-controls");
+      ctrls?.querySelectorAll("[data-hr-sort]").forEach((b) =>
         b.classList.toggle("active", b.dataset.hrSort === hrSortMode)
       );
       const grid = sortBtn.closest(".hr-board-card")?.querySelector(".core-grid");
@@ -2856,9 +2969,8 @@ if (!window.__hrBoardHooked) {
       }
       return;
     }
-    // CLEAR — unmark every selected card.
-    const clearBtn = e.target.closest("[data-hr-clear]");
-    if (clearBtn) {
+    // CLEAR
+    if (e.target.closest("[data-hr-clear]")) {
       hrSelectedIds.clear();
       document.querySelectorAll(".hr-card.hr-card-selected").forEach((c) => {
         c.classList.remove("hr-card-selected");
@@ -2866,7 +2978,8 @@ if (!window.__hrBoardHooked) {
       });
       const cnt = document.getElementById("hr-selected-count");
       if (cnt) cnt.textContent = "0";
-      clearBtn.remove();
+      hrSyncActionButtons();
+      document.getElementById("hr-parlay-panel")?.remove();
     }
   });
 }
