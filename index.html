@@ -2755,7 +2755,7 @@ function renderHrCard(p) {
   const sim = p.sim_prob_pct != null ? `<span class="sim-prob-badge">${Number(p.sim_prob_pct).toFixed(0)}%</span>` : "";
   return `
     <article class="core-card hr-card ${sel ? "hr-card-selected" : ""}" data-hr-id="${esc(id)}">
-      <div class="hr-card-tick">${sel ? "✓" : "+"}</div>
+      ${sel ? '<div class="hr-card-tick">✓</div>' : ""}
       <div class="core-card-top">
         <div class="core-rank-wrap">
           ${playerFace(p, "mlb").replace('class="player-face"', 'class="player-face core-face"')}
