@@ -1882,6 +1882,40 @@ button { cursor: pointer; border: none; background: none; }
   transition: color 0.15s, background 0.15s, border-color 0.15s;
 }
 .page-cat-chip:hover { color: var(--text); background: var(--surface-2); border-color: var(--border-2); }
+
+/* Collapsible board sections + rail lanes. Header (or lane label) is clickable;
+   chevron rotates to communicate state. CSS handles the show/hide so a single
+   class flip on the section is enough. */
+.board-card .board-header,
+.rail-section > .lane-label {
+  cursor: pointer; user-select: none;
+}
+.board-card .board-header::after,
+.rail-section > .lane-label::after {
+  content: "\025be"; /* ▾ */
+  font-size: 10px; color: var(--text-3);
+  margin-left: 8px; display: inline-block;
+  transition: transform 0.18s ease;
+}
+.board-card.collapsed .board-header::after,
+.rail-section.collapsed > .lane-label::after {
+  transform: rotate(-90deg);
+}
+.board-card.collapsed > .board-header ~ * { display: none; }
+.rail-section.collapsed > :not(.lane-label) { display: none; }
+
+/* Per-section sort dropdown — slots into the board-header, right side. */
+.board-sort {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  color: var(--text-2);
+  background: var(--bg);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 3px 8px; margin-right: 8px;
+  cursor: pointer;
+}
+.board-sort:hover { border-color: var(--border-2); color: var(--text); }
 </style>
 </head>
 <body>
@@ -2580,20 +2614,69 @@ function renderUltimateCook(cook) {
     </section>`;
 }
 
+// Wire collapsible toggles on every .board-card and .rail-section, plus a
+// generic sort dropdown on board-cards whose rows already carry data-sort-*.
+// Idempotent: re-renders with the same DOM nodes won't double-bind.
+function enhanceBoardCards(viewEl) {
+  viewEl.querySelectorAll(".board-card, .rail-section").forEach(section => {
+    if (section.dataset.collapsibleBound === "1") return;
+    section.dataset.collapsibleBound = "1";
+    const header = section.matches(".board-card")
+      ? section.querySelector(":scope > .board-header")
+      : section.querySelector(":scope > .lane-label");
+    if (!header) return;
+    header.addEventListener("click", e => {
+      // Clicks on real controls inside the header (sort select, buttons, links)
+      // should not also toggle the collapse — they have their own meaning.
+      if (e.target.closest(".board-sort, button, select, input, a")) return;
+      section.classList.toggle("collapsed");
+    });
+  });
+  viewEl.querySelectorAll(".board-card").forEach(card => {
+    if (card.dataset.sortBound === "1") return;
+    const rows = Array.from(card.querySelectorAll(":scope > .pinned-row[data-sort-name]"));
+    if (rows.length < 2) return;
+    const header = card.querySelector(":scope > .board-header");
+    if (!header) return;
+    card.dataset.sortBound = "1";
+    const select = document.createElement("select");
+    select.className = "board-sort";
+    select.setAttribute("aria-label", "Sort this section");
+    select.innerHTML =
+      `<option value="">Sort</option>` +
+      `<option value="score-desc">Score ↓</option>` +
+      `<option value="sim-desc">Hit % ↓</option>` +
+      `<option value="name-asc">Name A-Z</option>`;
+    const count = header.querySelector(".board-count");
+    if (count) header.insertBefore(select, count); else header.appendChild(select);
+    select.addEventListener("change", () => {
+      const mode = select.value;
+      if (!mode) return;
+      const current = Array.from(card.querySelectorAll(":scope > .pinned-row[data-sort-name]"));
+      current.sort((a, b) => {
+        if (mode === "name-asc") return a.dataset.sortName.localeCompare(b.dataset.sortName);
+        if (mode === "sim-desc") return Number(b.dataset.sortSim || 0) - Number(a.dataset.sortSim || 0);
+        return Number(b.dataset.sortScore || 0) - Number(a.dataset.sortScore || 0);
+      });
+      current.forEach(row => card.appendChild(row));
+    });
+  });
+}
+
 function buildCategoryNav(viewEl) {
   // Drop any previous TOC strip first (re-renders should not stack).
   viewEl.querySelector(":scope > .page-cat-nav")?.remove();
-  const cards = Array.from(
-    viewEl.querySelectorAll(".board-card, .pick-sport-card, .daily-summary-card, .explorer-wrap")
+  const sections = Array.from(
+    viewEl.querySelectorAll(".board-card, .pick-sport-card, .daily-summary-card, .explorer-wrap, .rail-section")
   );
   const items = [];
-  cards.forEach((card, i) => {
-    const title = card.querySelector(
-      ".board-title, .pick-sport-title, .explorer-title, .daily-summary-title"
+  sections.forEach((section, i) => {
+    const title = section.querySelector(
+      ".board-title, .pick-sport-title, .explorer-title, .daily-summary-title, :scope > .lane-label"
     )?.textContent?.trim();
     if (!title) return;
     const slug = "cat-" + title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") + "-" + i;
-    card.id = slug;
+    section.id = slug;
     items.push({ label: title, slug });
   });
   if (items.length < 2) return;
@@ -2606,7 +2689,10 @@ function buildCategoryNav(viewEl) {
     a.addEventListener("click", e => {
       e.preventDefault();
       const id = a.getAttribute("href").slice(1);
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      const target = document.getElementById(id);
+      if (!target) return;
+      target.classList.remove("collapsed"); // expand on jump so the user lands on content, not a header
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
 }
@@ -2661,6 +2747,7 @@ async function renderPicksView() {
     document.getElementById("header-date").textContent = normalizeDash(picksPayload.date);
     document.getElementById("header-updated").textContent = normalizeDash(picksPayload.last_updated || "");
   }
+  enhanceBoardCards(view);
   buildCategoryNav(view);
 }
 
@@ -2677,7 +2764,7 @@ function renderPinnedSection(board, sport = "mlb", opts = {}) {
         <div class="board-count">${board.players.length} Players</div>
       </div>
       ${board.players.map((p, i) => `
-        <div class="pinned-row">
+        <div class="pinned-row" data-sort-name="${esc(String(p.player_name || "").toLowerCase())}" data-sort-score="${Number(p.score || 0)}" data-sort-sim="${Number(p.sim_prob_pct || 0)}">
           <div class="pinned-rank ${i < 3 ? "top" : ""}">${i + 1}</div>
           ${playerFace(p, sport)}
           <div class="pinned-info">
@@ -2712,7 +2799,7 @@ function renderSimSection(board, sport = "mlb") {
         <div class="board-count">${board.players.length} Plays</div>
       </div>
       ${board.players.map((p, i) => `
-        <div class="pinned-row">
+        <div class="pinned-row" data-sort-name="${esc(String(p.player_name || "").toLowerCase())}" data-sort-score="${Number(p.score || 0)}" data-sort-sim="${Number(p.sim_prob_pct || 0)}">
           <div class="pinned-rank ${i < 3 ? "top" : ""}">${i + 1}</div>
           ${playerFace(p, sport)}
           <div class="pinned-info">
@@ -3982,6 +4069,7 @@ async function renderGameView(sport, data) {
   bindPlayerClicks(view, data, sport);
   bindExplorerControls(view, data, sport);
   applyExplorerFilters(view, data, sport);
+  enhanceBoardCards(view);
   buildCategoryNav(view);
 }
 
