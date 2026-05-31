@@ -1882,6 +1882,40 @@ button { cursor: pointer; border: none; background: none; }
   transition: color 0.15s, background 0.15s, border-color 0.15s;
 }
 .page-cat-chip:hover { color: var(--text); background: var(--surface-2); border-color: var(--border-2); }
+
+/* Collapsible board sections + rail lanes. Header (or lane label) is clickable;
+   chevron rotates to communicate state. CSS handles the show/hide so a single
+   class flip on the section is enough. */
+.board-card .board-header,
+.rail-section > .lane-label {
+  cursor: pointer; user-select: none;
+}
+.board-card .board-header::after,
+.rail-section > .lane-label::after {
+  content: "\025be"; /* ▾ */
+  font-size: 10px; color: var(--text-3);
+  margin-left: 8px; display: inline-block;
+  transition: transform 0.18s ease;
+}
+.board-card.collapsed .board-header::after,
+.rail-section.collapsed > .lane-label::after {
+  transform: rotate(-90deg);
+}
+.board-card.collapsed > .board-header ~ * { display: none; }
+.rail-section.collapsed > :not(.lane-label) { display: none; }
+
+/* Per-section sort dropdown — slots into the board-header, right side. */
+.board-sort {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  color: var(--text-2);
+  background: var(--bg);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 3px 8px; margin-right: 8px;
+  cursor: pointer;
+}
+.board-sort:hover { border-color: var(--border-2); color: var(--text); }
 </style>
 </head>
 <body>
@@ -2580,20 +2614,80 @@ function renderUltimateCook(cook) {
     </section>`;
 }
 
+// Wire collapsible toggles on every .board-card and .rail-section, plus a
+// generic sort dropdown on board-cards whose rows already carry data-sort-*.
+// Idempotent: re-renders with the same DOM nodes won't double-bind.
+function enhanceBoardCards(viewEl) {
+  viewEl.querySelectorAll(".board-card, .rail-section").forEach(section => {
+    if (section.dataset.collapsibleBound === "1") return;
+    section.dataset.collapsibleBound = "1";
+    const header = section.matches(".board-card")
+      ? section.querySelector(":scope > .board-header")
+      : section.querySelector(":scope > .lane-label");
+    if (!header) return;
+    header.addEventListener("click", e => {
+      // Clicks on real controls inside the header (sort select, buttons, links)
+      // should not also toggle the collapse — they have their own meaning.
+      if (e.target.closest(".board-sort, button, select, input, a")) return;
+      section.classList.toggle("collapsed");
+    });
+  });
+  viewEl.querySelectorAll(".board-card").forEach(card => {
+    if (card.dataset.sortBound === "1") return;
+    // Rows tagged with data-sort-name anywhere inside this card, excluding any
+    // nested .board-card's rows. The single-parent check ensures we sort within
+    // one row container (pinned-row, support-list, core-grid, watchlist-grid...)
+    // and never scramble layout when a card mixes structures.
+    const allTagged = Array.from(card.querySelectorAll("[data-sort-name]"));
+    const rows = allTagged.filter(r => r.closest(".board-card") === card);
+    if (rows.length < 2) return;
+    const parent = rows[0].parentElement;
+    if (!rows.every(r => r.parentElement === parent)) return;
+    const header = card.querySelector(":scope > .board-header");
+    if (!header) return;
+    card.dataset.sortBound = "1";
+    const select = document.createElement("select");
+    select.className = "board-sort";
+    select.setAttribute("aria-label", "Sort this section");
+    // Build options based on which keys actually vary across rows. A key with a
+    // single value (e.g. score=0 everywhere) would no-op; hide it instead.
+    const varies = (key) => new Set(rows.map(r => r.dataset[key] || "")).size > 1;
+    const opts = [`<option value="">Sort</option>`];
+    if (varies("sortScore")) opts.push(`<option value="score-desc">Score ↓</option>`);
+    if (varies("sortSim")) opts.push(`<option value="sim-desc">Hit % ↓</option>`);
+    if (varies("sortName")) opts.push(`<option value="name-asc">Name A-Z</option>`);
+    if (opts.length < 2) return;  // nothing useful to sort by
+    select.innerHTML = opts.join("");
+    const count = header.querySelector(".board-count");
+    if (count) header.insertBefore(select, count); else header.appendChild(select);
+    select.addEventListener("change", () => {
+      const mode = select.value;
+      if (!mode) return;
+      const current = Array.from(parent.querySelectorAll(":scope > [data-sort-name]"));
+      current.sort((a, b) => {
+        if (mode === "name-asc") return (a.dataset.sortName || "").localeCompare(b.dataset.sortName || "");
+        if (mode === "sim-desc") return Number(b.dataset.sortSim || 0) - Number(a.dataset.sortSim || 0);
+        return Number(b.dataset.sortScore || 0) - Number(a.dataset.sortScore || 0);
+      });
+      current.forEach(row => parent.appendChild(row));
+    });
+  });
+}
+
 function buildCategoryNav(viewEl) {
   // Drop any previous TOC strip first (re-renders should not stack).
   viewEl.querySelector(":scope > .page-cat-nav")?.remove();
-  const cards = Array.from(
-    viewEl.querySelectorAll(".board-card, .pick-sport-card, .daily-summary-card, .explorer-wrap")
+  const sections = Array.from(
+    viewEl.querySelectorAll(".board-card, .pick-sport-card, .daily-summary-card, .explorer-wrap, .rail-section")
   );
   const items = [];
-  cards.forEach((card, i) => {
-    const title = card.querySelector(
-      ".board-title, .pick-sport-title, .explorer-title, .daily-summary-title"
+  sections.forEach((section, i) => {
+    const title = section.querySelector(
+      ".board-title, .pick-sport-title, .explorer-title, .daily-summary-title, :scope > .lane-label"
     )?.textContent?.trim();
     if (!title) return;
     const slug = "cat-" + title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") + "-" + i;
-    card.id = slug;
+    section.id = slug;
     items.push({ label: title, slug });
   });
   if (items.length < 2) return;
@@ -2606,7 +2700,10 @@ function buildCategoryNav(viewEl) {
     a.addEventListener("click", e => {
       e.preventDefault();
       const id = a.getAttribute("href").slice(1);
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      const target = document.getElementById(id);
+      if (!target) return;
+      target.classList.remove("collapsed"); // expand on jump so the user lands on content, not a header
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
 }
@@ -2661,6 +2758,7 @@ async function renderPicksView() {
     document.getElementById("header-date").textContent = normalizeDash(picksPayload.date);
     document.getElementById("header-updated").textContent = normalizeDash(picksPayload.last_updated || "");
   }
+  enhanceBoardCards(view);
   buildCategoryNav(view);
 }
 
@@ -2677,7 +2775,7 @@ function renderPinnedSection(board, sport = "mlb", opts = {}) {
         <div class="board-count">${board.players.length} Players</div>
       </div>
       ${board.players.map((p, i) => `
-        <div class="pinned-row">
+        <div class="pinned-row" data-sort-name="${esc(String(p.player_name || "").toLowerCase())}" data-sort-score="${Number(p.score || 0)}" data-sort-sim="${Number(p.sim_prob_pct || 0)}">
           <div class="pinned-rank ${i < 3 ? "top" : ""}">${i + 1}</div>
           ${playerFace(p, sport)}
           <div class="pinned-info">
@@ -2712,7 +2810,7 @@ function renderSimSection(board, sport = "mlb") {
         <div class="board-count">${board.players.length} Plays</div>
       </div>
       ${board.players.map((p, i) => `
-        <div class="pinned-row">
+        <div class="pinned-row" data-sort-name="${esc(String(p.player_name || "").toLowerCase())}" data-sort-score="${Number(p.score || 0)}" data-sort-sim="${Number(p.sim_prob_pct || 0)}">
           <div class="pinned-rank ${i < 3 ? "top" : ""}">${i + 1}</div>
           ${playerFace(p, sport)}
           <div class="pinned-info">
@@ -2747,7 +2845,7 @@ function sortRowsForPinnedArea(rows = []) {
 
 function renderMlbCoreCard(player, index, baseLabel = "") {
   return `
-    <article class="core-card">
+    <article class="core-card" data-sort-name="${esc(String(player.player_name || "").toLowerCase())}" data-sort-score="${Number(player.score || 0)}" data-sort-sim="${Number(player.sim_prob_pct || 0)}">
       <div class="core-card-top">
         <div class="core-rank-wrap">
           <div class="core-rank">${index + 1}</div>
@@ -2770,7 +2868,7 @@ function renderMlbCoreCard(player, index, baseLabel = "") {
 
 function renderMlbWatchlistRow(player, index) {
   return `
-    <div class="watchlist-row">
+    <div class="watchlist-row" data-sort-name="${esc(String(player.player_name || "").toLowerCase())}" data-sort-score="${Number(player.score || 0)}" data-sort-sim="${Number(player.sim_prob_pct || 0)}">
       <div class="watchlist-row-top">
         <div class="watchlist-rank-wrap">
           <div class="watchlist-rank ${index < 2 ? "top" : ""}">${index + 4}</div>
@@ -2792,7 +2890,7 @@ function renderMlbWatchlistRow(player, index) {
 function renderMlbSupportRow(player) {
   const market = String(player.market || "").toUpperCase();
   return `
-    <div class="support-row ${market === "HITS" ? "hits-muted" : ""}">
+    <div class="support-row ${market === "HITS" ? "hits-muted" : ""}" data-sort-name="${esc(String(player.player_name || "").toLowerCase())}" data-sort-score="${Number(player.score || 0)}" data-sort-sim="${Number(player.sim_prob_pct || 0)}">
       <div class="support-row-top">
         <div class="support-left">
           ${marketTag(player.market)}
@@ -3455,8 +3553,12 @@ function renderDoubleDoubleWatch(dd) {
   const rows = (dd.players || []).map((p) => {
     const pr = p.primary || {}, sc = p.secondary || {};
     const ddTag = p.projected_dd ? `<span class="sim-prob-badge">DD</span>` : "";
+    // Sort hooks: name + a "DD likelihood" composite (projection sum, with a
+    // bump when projected_dd is true) so a Score/Hit% sort surfaces the
+    // closest-to-DD names first.
+    const ddScore = (Number(pr.proj || 0) + Number(sc.proj || 0)) + (p.projected_dd ? 5 : 0);
     return `
-      <div class="support-row">
+      <div class="support-row" data-sort-name="${esc(String(p.player_name || "").toLowerCase())}" data-sort-score="${ddScore}" data-sort-sim="${p.projected_dd ? 100 : 0}">
         <div class="support-row-top">
           <div class="support-left">
             ${playerFace(p, "wnba", true)}
@@ -3489,7 +3591,7 @@ function renderMatchupEdge(me) {
   const rows = (me.matchups || []).map((m) => {
     const t = m.target || {};
     return `
-      <div class="support-row">
+      <div class="support-row" data-sort-name="${esc(String(t.player_name || m.matchup_label || "").toLowerCase())}" data-sort-score="${Number(m.matchup_ratio || 0)}" data-sort-sim="${Number(t.sim_prob_pct || 0)}">
         <div class="support-row-top">
           <div class="support-left">
             ${marketTag(m.market)}
@@ -3982,6 +4084,7 @@ async function renderGameView(sport, data) {
   bindPlayerClicks(view, data, sport);
   bindExplorerControls(view, data, sport);
   applyExplorerFilters(view, data, sport);
+  enhanceBoardCards(view);
   buildCategoryNav(view);
 }
 
