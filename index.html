@@ -2862,6 +2862,9 @@ function renderFrozenDailySummaryCard(sport, frozen, liveData, options = {}) {
 
 let hrSelectedIds = new Set();
 let hrSortMode = "score";
+const HR_MC_TRIALS = 25000;
+const HR_RHO_SAME = 0.20;   // same-game correlation (park, weather, pitcher, game total)
+const HR_RHO_CROSS = 0.00;  // cross-game baseline (raise if a slate-wide factor lands)
 
 function collectAllHrPicks(data) {
   const seen = new Set();
@@ -2894,7 +2897,7 @@ function renderHrCard(p) {
   const sel = hrSelectedIds.has(id);
   const sim = p.sim_prob_pct != null ? `<span class="sim-prob-badge">${Number(p.sim_prob_pct).toFixed(0)}%</span>` : "";
   return `
-    <article class="core-card hr-card ${sel ? "hr-card-selected" : ""}" data-hr-id="${esc(id)}" data-hr-score="${Number(p.score || 0)}" data-hr-sim="${Number(p.sim_prob_pct || 0)}" data-hr-name="${esc(String(p.player_name || "").toLowerCase())}" data-hr-market="${esc(p.market || "HR")}" data-hr-line="${esc(p.line || "")}" data-hr-team="${esc(p.team || "")}">
+    <article class="core-card hr-card ${sel ? "hr-card-selected" : ""}" data-hr-id="${esc(id)}" data-hr-score="${Number(p.score || 0)}" data-hr-sim="${Number(p.sim_prob_pct || 0)}" data-hr-name="${esc(String(p.player_name || "").toLowerCase())}" data-hr-market="${esc(p.market || "HR")}" data-hr-line="${esc(p.line || "")}" data-hr-team="${esc(p.team || "")}" data-hr-opp="${esc(p.opponent || "")}">
       ${sel ? '<div class="hr-card-tick">✓</div>' : ""}
       <div class="core-card-top">
         <div class="core-rank-wrap">
@@ -2948,11 +2951,18 @@ if (!window.__hrBoardHooked) {
   }
   function hrParlayLegs() {
     const legs = [];
-    document.querySelectorAll(".hr-card.hr-card-selected[data-hr-id]").forEach((c) => {
+    document.querySelectorAll(".hr-card.hr-card-selected[data-hr-id]").forEach((c, i) => {
       const name = c.querySelector(".core-name")?.textContent?.trim() || c.dataset.hrName || "?";
+      const team = c.dataset.hrTeam || "";
+      const opp = c.dataset.hrOpp || "";
+      // game key = sorted "team@opp" so direction-agnostic; legs without both
+      // get a unique sentinel so they never accidentally cluster.
+      const game = team && opp ? [team, opp].slice().sort().join("@") : `__solo_${c.dataset.hrId || i}`;
       legs.push({
         name,
-        team: c.dataset.hrTeam || "",
+        team,
+        opp,
+        game,
         market: c.dataset.hrMarket || "",
         line: c.dataset.hrLine || "",
         simPct: Number(c.dataset.hrSim) || 0,
@@ -3024,24 +3034,125 @@ if (!window.__hrBoardHooked) {
     return dec >= 2 ? Math.round((dec - 1) * 100) : Math.round(-100 / (dec - 1));
   }
   function hrFmtAmer(a) { return a == null ? "—" : (a > 0 ? "+" + a : String(a)); }
-  function hrRunMonteCarlo(legs, trials) {
-    const N = legs.length;
-    const probs = legs.map((l) => Math.max(Math.min(l.simPct / 100, 0.999), 0.001));
-    const counts = new Array(N + 1).fill(0);
-    for (let t = 0; t < trials; t++) {
-      let hits = 0;
-      for (let i = 0; i < N; i++) if (Math.random() < probs[i]) hits++;
-      counts[hits]++;
+  // Standard-normal inverse CDF (Acklam's rational approximation, max abs err ~1.15e-9).
+  function hrInvNormCdf(p) {
+    if (p <= 0) return -Infinity;
+    if (p >= 1) return Infinity;
+    const a = [-3.969683028665376e+01, 2.209460984245205e+02, -2.759285104469687e+02, 1.383577518672690e+02, -3.066479806614716e+01, 2.506628277459239e+00];
+    const b = [-5.447609879822406e+01, 1.615858368580409e+02, -1.556989798598866e+02, 6.680131188771972e+01, -1.328068155288572e+01];
+    const c = [-7.784894002430293e-03, -3.223964580411365e-01, -2.400758277161838e+00, -2.549732539343734e+00, 4.374664141464968e+00, 2.938163982698783e+00];
+    const d = [7.784695709041462e-03, 3.224671290700398e-01, 2.445134137142996e+00, 3.754408661907416e+00];
+    const pLow = 0.02425, pHigh = 1 - pLow;
+    let q, r, x;
+    if (p < pLow) {
+      q = Math.sqrt(-2 * Math.log(p));
+      x = (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) / ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);
+    } else if (p <= pHigh) {
+      q = p - 0.5; r = q * q;
+      x = (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q / (((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1);
+    } else {
+      q = Math.sqrt(-2 * Math.log(1 - p));
+      x = -(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) / ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);
     }
-    return counts.map((c) => c / trials);
+    return x;
   }
-  function hrBuildSubsetLadder(legs) {
-    const sorted = [...legs].sort((a, b) => b.simPct - a.simPct);
+  function hrBoxMullerPair() {
+    let u1, u2;
+    do { u1 = Math.random(); } while (u1 === 0);
+    u2 = Math.random();
+    const r = Math.sqrt(-2 * Math.log(u1));
+    const theta = 2 * Math.PI * u2;
+    return [r * Math.cos(theta), r * Math.sin(theta)];
+  }
+  function hrFillStdNorms(arr) {
+    for (let i = 0; i < arr.length; i += 2) {
+      const [a, b] = hrBoxMullerPair();
+      arr[i] = a;
+      if (i + 1 < arr.length) arr[i + 1] = b;
+    }
+  }
+  function hrCholesky(M) {
+    const N = M.length;
+    const L = Array.from({ length: N }, () => new Float64Array(N));
+    for (let i = 0; i < N; i++) {
+      for (let j = 0; j <= i; j++) {
+        let s = M[i][j];
+        for (let k = 0; k < j; k++) s -= L[i][k] * L[j][k];
+        if (i === j) { if (s <= 0) s = 1e-10; L[i][j] = Math.sqrt(s); }
+        else L[i][j] = s / L[j][j];
+      }
+    }
+    return L;
+  }
+  function hrBuildSigma(legs, rhoSame, rhoCross) {
+    const N = legs.length;
+    const M = Array.from({ length: N }, () => new Float64Array(N));
+    for (let i = 0; i < N; i++) {
+      M[i][i] = 1.0;
+      for (let j = 0; j < i; j++) {
+        const same = legs[i].game && legs[j].game && legs[i].game === legs[j].game;
+        const rho = same ? rhoSame : rhoCross;
+        M[i][j] = rho; M[j][i] = rho;
+      }
+    }
+    return M;
+  }
+  // Gaussian-copula Monte Carlo. Marginals exact (z_i < Phi^{-1}(p_i)); joint
+  // behavior comes from Sigma. Returns trial bitmasks so any subset's joint
+  // prob can be read straight from the trials (no closed-form leakage).
+  function hrRunCorrelatedMC(legs, trials, rhoSame, rhoCross) {
+    const N = legs.length;
+    if (!N) return { trialMasks: new Uint32Array(0), countDist: [1], empiricalP: [], expectedHits: 0 };
+    if (N > 32) throw new Error("hrRunCorrelatedMC: supports up to 32 legs");
+    const probs = legs.map((l) => Math.max(Math.min(l.simPct / 100, 0.999), 0.001));
+    const thr = probs.map(hrInvNormCdf);
+    const L = hrCholesky(hrBuildSigma(legs, rhoSame, rhoCross));
+    const n = new Float64Array(N);
+    const z = new Float64Array(N);
+    const trialMasks = new Uint32Array(trials);
+    const countDist = new Array(N + 1).fill(0);
+    const hits = new Array(N).fill(0);
+    for (let t = 0; t < trials; t++) {
+      hrFillStdNorms(n);
+      for (let i = 0; i < N; i++) {
+        let s = 0;
+        for (let k = 0; k <= i; k++) s += L[i][k] * n[k];
+        z[i] = s;
+      }
+      let mask = 0, k = 0;
+      for (let i = 0; i < N; i++) {
+        if (z[i] < thr[i]) { mask |= (1 << i); k++; hits[i]++; }
+      }
+      trialMasks[t] = mask;
+      countDist[k]++;
+    }
+    return {
+      trialMasks,
+      countDist: countDist.map((c) => c / trials),
+      empiricalP: hits.map((h) => h / trials),
+      expectedHits: countDist.reduce((s, c, k) => s + (c / trials) * k, 0),
+    };
+  }
+  function hrSubsetProb(trialMasks, idx) {
+    if (!idx.length || !trialMasks.length) return 0;
+    const want = idx.reduce((m, i) => m | (1 << i), 0);
+    let h = 0;
+    for (let t = 0; t < trialMasks.length; t++) {
+      if ((trialMasks[t] & want) === want) h++;
+    }
+    return h / trialMasks.length;
+  }
+  // Subset ladder: top-K legs by sim, joint pulled straight from the
+  // correlated MC trials — NOT an independent product.
+  function hrBuildSubsetLadder(legs, mcResult) {
+    const orderedIdx = legs.map((_, i) => i).sort((a, b) => legs[b].simPct - legs[a].simPct);
     const rows = [];
-    for (let k = 2; k <= sorted.length; k++) {
-      const subset = sorted.slice(0, k);
-      const prob = subset.reduce((p, l) => p * (l.simPct / 100), 1);
-      rows.push({ k, subset, prob, fair: hrFairAmericanFromProb(prob) });
+    for (let k = 2; k <= orderedIdx.length; k++) {
+      const idx = orderedIdx.slice(0, k);
+      const subset = idx.map((i) => legs[i]);
+      const prob = hrSubsetProb(mcResult.trialMasks, idx);
+      const sameGame = subset.every((l) => l.game && l.game === subset[0].game);
+      rows.push({ k, subset, prob, fair: hrFairAmericanFromProb(prob), sameGame });
     }
     return rows;
   }
@@ -3053,24 +3164,29 @@ if (!window.__hrBoardHooked) {
   function hrOpenParlayPage() {
     const legs = hrParlayLegs();
     if (legs.length < 2) { hrRenderParlayPanel(); return; }
-    const TRIALS = 25000;
-    const dist = hrRunMonteCarlo(legs, TRIALS);
-    const ladder = hrBuildSubsetLadder(legs);
+    const mc = hrRunCorrelatedMC(legs, HR_MC_TRIALS, HR_RHO_SAME, HR_RHO_CROSS);
+    const ladder = hrBuildSubsetLadder(legs, mc);
     const rec = hrRecommendation(ladder);
-    const expected = dist.reduce((s, p, k) => s + p * k, 0);
+    const dist = mc.countDist;
+    const expected = mc.expectedHits;
     const maxDist = Math.max(...dist, 0.0001);
+    const anySame = ladder.some((r) => r.sameGame);
+    const rhoNote = anySame
+      ? `ρ same-game = ${HR_RHO_SAME.toFixed(2)} &middot; ρ cross-game = ${HR_RHO_CROSS.toFixed(2)}`
+      : `ρ cross-game = ${HR_RHO_CROSS.toFixed(2)} (no same-game stacks)`;
 
     const recHtml = rec ? `
       <div class="parlay-recommend">
-        <div class="label">Recommended Build</div>
+        <div class="label">Recommended Build${rec.sameGame ? " &middot; Same-Game Stack" : ""}</div>
         <div class="pick">${rec.k}-Leg Parlay &middot; ${(rec.prob * 100).toFixed(1)}% &middot; Fair ${hrFmtAmer(rec.fair)}</div>
         <div class="stats">${rec.subset.map((l) => `<strong>${hrSafe(l.name)}</strong>`).join(" + ")}</div>
-        <div class="stats" style="margin-top:8px;color:var(--text-3);font-size:11px;">Largest subset with combined model hit rate &ge; 10% (fair odds; no book edge in this repo).</div>
+        <div class="stats" style="margin-top:8px;color:var(--text-3);font-size:11px;">Largest subset with combined sim hit rate &ge; 10%, joint pulled from the correlated MC trials (not a product). No book edge in this repo.</div>
       </div>` : "";
-    const legsHtml = legs.map((l) =>
-      `<li><span class="leg-name">${hrSafe(l.name)}</span>` +
-      `<span class="leg-prob">${hrSafe(l.team)} ${hrSafe(l.line)} &middot; ${l.simPct.toFixed(0)}%</span></li>`
-    ).join("");
+    const legsHtml = legs.map((l, i) => {
+      const empPct = (mc.empiricalP[i] || 0) * 100;
+      return `<li><span class="leg-name">${hrSafe(l.name)}</span>` +
+        `<span class="leg-prob">${hrSafe(l.team)}${l.opp ? " @ " + hrSafe(l.opp) : ""} ${hrSafe(l.line)} &middot; target ${l.simPct.toFixed(0)}% / sim ${empPct.toFixed(0)}%</span></li>`;
+    }).join("");
     const mcHtml = dist.map((p, k) => {
       const h = Math.round((p / maxDist) * 100);
       return `<div class="parlay-mc-col" title="${k} of ${legs.length} legs hit">` +
@@ -3081,8 +3197,9 @@ if (!window.__hrBoardHooked) {
     }).join("");
     const ladderHtml = ladder.map((row) => {
       const recCls = (rec && row.k === rec.k) ? " recommended" : "";
+      const tag = row.sameGame ? ` <span style="font-size:10px;color:var(--text-3);">[same game]</span>` : "";
       return `<div class="parlay-ladder-row${recCls}">` +
-        `<div class="parlay-ladder-k">${row.k}-leg</div>` +
+        `<div class="parlay-ladder-k">${row.k}-leg${tag}</div>` +
         `<div class="parlay-ladder-picks">${row.subset.map((l) => hrSafe(l.name)).join(" + ")}</div>` +
         `<div class="parlay-ladder-stats">P <span>${(row.prob * 100).toFixed(1)}%</span> &middot; Fair <span>${hrFmtAmer(row.fair)}</span></div>` +
         `</div>`;
@@ -3093,22 +3210,23 @@ if (!window.__hrBoardHooked) {
         <div class="parlay-page-head">
           <button class="parlay-back" data-parlay-back="1">&larr; Back to Board</button>
           <div class="parlay-page-title">Parlay Analyzer</div>
-          <div class="parlay-page-meta">${legs.length} selected &middot; ${TRIALS.toLocaleString()} MC trials</div>
+          <div class="parlay-page-meta">${legs.length} selected &middot; ${HR_MC_TRIALS.toLocaleString()} MC trials &middot; ${rhoNote}</div>
         </div>
         <div class="parlay-page-body">
           ${recHtml}
           <div>
             <div class="parlay-section-title">Selected Legs</div>
             <ul class="hr-parlay-legs">${legsHtml}</ul>
+            <div class="parlay-section-sub" style="margin-top:6px;">Marginal check &mdash; sim % should match target % within ±1pp; that's how we know the copula preserves each leg's hit rate.</div>
           </div>
           <div>
             <div class="parlay-section-title">Monte Carlo Distribution</div>
-            <div class="parlay-section-sub">P(K of ${legs.length} legs hit) over ${TRIALS.toLocaleString()} trials &middot; expected hits ${expected.toFixed(2)}</div>
+            <div class="parlay-section-sub">P(K of ${legs.length} legs hit) over ${HR_MC_TRIALS.toLocaleString()} trials &middot; expected hits ${expected.toFixed(2)} &middot; same-game legs share ρ=${HR_RHO_SAME.toFixed(2)} (fatter tails)</div>
             <div class="parlay-mc-bar">${mcHtml}</div>
           </div>
           <div>
             <div class="parlay-section-title">Subset Ladder</div>
-            <div class="parlay-section-sub">Top-K legs by simulated probability &mdash; the recommendation is highlighted.</div>
+            <div class="parlay-section-sub">Top-K legs by simulated probability &mdash; joint probability is read straight from the correlated trials, NOT an independent product.</div>
             <div class="parlay-ladder">${ladderHtml}</div>
           </div>
         </div>
