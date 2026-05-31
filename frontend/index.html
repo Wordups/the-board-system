@@ -1888,6 +1888,22 @@ button { cursor: pointer; border: none; background: none; }
   font-size: 13px; font-weight: 700; color: var(--text-2); white-space: nowrap;
 }
 .parlay-ladder-stats span { color: var(--gold); }
+.page-cat-nav {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  padding: 10px 14px; margin: 0 0 16px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+}
+.page-cat-chip {
+  display: inline-flex; align-items: center;
+  padding: 6px 12px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
+  color: var(--text-2);
+  background: var(--bg); border: 1px solid var(--border); border-radius: 999px;
+  text-decoration: none; white-space: nowrap; cursor: pointer;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+.page-cat-chip:hover { color: var(--text); background: var(--surface-2); border-color: var(--border-2); }
 </style>
 </head>
 <body>
@@ -2586,6 +2602,37 @@ function renderUltimateCook(cook) {
     </section>`;
 }
 
+function buildCategoryNav(viewEl) {
+  // Drop any previous TOC strip first (re-renders should not stack).
+  viewEl.querySelector(":scope > .page-cat-nav")?.remove();
+  const cards = Array.from(
+    viewEl.querySelectorAll(".board-card, .pick-sport-card, .daily-summary-card, .explorer-wrap")
+  );
+  const items = [];
+  cards.forEach((card, i) => {
+    const title = card.querySelector(
+      ".board-title, .pick-sport-title, .explorer-title, .daily-summary-title"
+    )?.textContent?.trim();
+    if (!title) return;
+    const slug = "cat-" + title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") + "-" + i;
+    card.id = slug;
+    items.push({ label: title, slug });
+  });
+  if (items.length < 2) return;
+  const html =
+    `<nav class="page-cat-nav" aria-label="Sections on this page">` +
+    items.map(it => `<a class="page-cat-chip" href="#${it.slug}">${it.label}</a>`).join("") +
+    `</nav>`;
+  viewEl.insertAdjacentHTML("afterbegin", html);
+  viewEl.querySelectorAll(":scope > .page-cat-nav .page-cat-chip").forEach(a => {
+    a.addEventListener("click", e => {
+      e.preventDefault();
+      const id = a.getAttribute("href").slice(1);
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+}
+
 async function renderPicksView() {
   const view = document.getElementById("view-picks");
   const picksPayload = await loadSport("picks");
@@ -2636,6 +2683,7 @@ async function renderPicksView() {
     document.getElementById("header-date").textContent = normalizeDash(picksPayload.date);
     document.getElementById("header-updated").textContent = normalizeDash(picksPayload.last_updated || "");
   }
+  buildCategoryNav(view);
 }
 
 function renderPinnedSection(board, sport = "mlb", opts = {}) {
@@ -3976,6 +4024,7 @@ async function renderGameView(sport, data) {
   bindPlayerClicks(view, data, sport);
   bindExplorerControls(view, data, sport);
   applyExplorerFilters(view, data, sport);
+  buildCategoryNav(view);
 }
 
 async function switchSport(sport) {
