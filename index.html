@@ -2861,7 +2861,7 @@ function renderFrozenDailySummaryCard(sport, frozen, liveData, options = {}) {
 }
 
 let hrSelectedIds = new Set();
-let hrSortMode = "score";
+let hrSortMode = "sim";
 const HR_MC_TRIALS = 25000;
 const HR_RHO_SAME = 0.20;   // same-game correlation (park, weather, pitcher, game total)
 const HR_RHO_CROSS = 0.00;  // cross-game baseline (raise if a slate-wide factor lands)
@@ -2886,9 +2886,8 @@ function collectAllHrPicks(data) {
 
 function sortHrPicks(rows) {
   const s = [...rows];
-  if (hrSortMode === "score") s.sort((a, b) => (Number(b.score) || 0) - (Number(a.score) || 0));
-  else if (hrSortMode === "sim") s.sort((a, b) => (Number(b.sim_prob_pct) || 0) - (Number(a.sim_prob_pct) || 0));
-  else if (hrSortMode === "name") s.sort((a, b) => String(a.player_name || "").localeCompare(String(b.player_name || "")));
+  if (hrSortMode === "name") s.sort((a, b) => String(a.player_name || "").localeCompare(String(b.player_name || "")));
+  else s.sort((a, b) => (Number(b.sim_prob_pct) || 0) - (Number(a.sim_prob_pct) || 0));
   return s;
 }
 
@@ -2932,8 +2931,7 @@ function renderExpandedHrBoard(data) {
           <div class="board-subtitle">${pool.length} HR picks — click cards to select for parlays</div>
         </div>
         <div class="hr-controls">
-          <button class="hr-sort-btn ${hrSortMode === "score" ? "active" : ""}" data-hr-sort="score">Score</button>
-          <button class="hr-sort-btn ${hrSortMode === "sim" ? "active" : ""}" data-hr-sort="sim">Sim</button>
+          <button class="hr-sort-btn ${hrSortMode === "sim" ? "active" : ""}" data-hr-sort="sim">Hit %</button>
           <button class="hr-sort-btn ${hrSortMode === "name" ? "active" : ""}" data-hr-sort="name">A-Z</button>
           <span class="hr-selected-count">Selected <span id="hr-selected-count">${hrSelectedIds.size}</span></span>
           ${clearBtn}
@@ -3285,8 +3283,7 @@ if (!window.__hrBoardHooked) {
         const cards = Array.from(grid.querySelectorAll(".hr-card[data-hr-id]"));
         cards.sort((a, b) => {
           if (hrSortMode === "name") return (a.dataset.hrName || "").localeCompare(b.dataset.hrName || "");
-          if (hrSortMode === "sim") return (Number(b.dataset.hrSim) || 0) - (Number(a.dataset.hrSim) || 0);
-          return (Number(b.dataset.hrScore) || 0) - (Number(a.dataset.hrScore) || 0);
+          return (Number(b.dataset.hrSim) || 0) - (Number(a.dataset.hrSim) || 0);
         });
         cards.forEach((c) => grid.appendChild(c));
       }
