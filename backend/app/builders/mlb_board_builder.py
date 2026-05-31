@@ -4,13 +4,24 @@ from collections import defaultdict
 import json
 from pathlib import Path
 
-from app.builders.board_builder import sorted_candidates, to_player_row
+from app.builders.board_builder import (
+    is_publishable_candidate,
+    sorted_candidates,
+    to_player_row,
+)
 from app.builders.diamond_board_builder import build_diamond, diamond_to_json
 from app.builders.mlb_research_board import build_mlb_research_board
 from app.builders.universal_game_builder import empty_markets
 from app.collectors.mlb_collector import collect_mlb_raw_data
 from app.models.mlb_model import normalize_mlb_inputs
 from app.outputs.json_writer import write_json
+from app.scoring.calibration_guardrail import (
+    DEFAULT_THRESHOLD,
+    market_key_from_board,
+    play_from_extra,
+    baseline as guardrail_baseline,
+    status_for,
+)
 from app.scoring.edge_score import score_candidate
 from app.scoring.confidence import to_confidence
 from app.scoring.tiers import assign_tier
@@ -23,6 +34,61 @@ def is_public_hr_candidate(candidate) -> bool:
     return candidate.market != "HR" or candidate.tier in {"A", "B"}
 
 
+def apply_calibration_gate(candidates, *, threshold: float = DEFAULT_THRESHOLD) -> list[dict]:
+    """Run each candidate's sim_prob against its market-specific closed-form
+    baseline. Mutates candidate.extra with calibration_status / baseline_prob_pct
+    / calibration_gap_pp. Hard-flagged candidates get held_for_calibration=True
+    (filtered out at every emission site via is_publishable_candidate).
+
+    Returns the list of held rows for the public 'held_for_calibration' section
+    of the board JSON — drift transparency, not noise.
+    """
+    held: list[dict] = []
+    for candidate in candidates:
+        if candidate.sim_prob is None:
+            continue
+        extra = candidate.extra if candidate.extra is not None else {}
+        market_key = market_key_from_board(candidate.market, candidate.line)
+        if market_key is None:
+            continue
+        play = play_from_extra(
+            name=candidate.player_name,
+            market_key=market_key,
+            sim_prob=float(candidate.sim_prob),
+            extra=extra,
+        )
+        if play is None:
+            extra["calibration_status"] = "unmodeled"
+            candidate.extra = extra
+            continue
+        b = guardrail_baseline(play)
+        gap = float(candidate.sim_prob) - b
+        status = status_for(market_key, gap, threshold)
+        extra["baseline_prob_pct"] = round(b * 100, 1)
+        extra["calibration_gap_pp"] = round(gap * 100, 1)
+        extra["calibration_status"] = status
+        extra["calibration_market_key"] = market_key
+        candidate.extra = extra
+        if status == "flag":
+            extra["held_for_calibration"] = True
+            held.append(
+                {
+                    "player_id": candidate.player_id,
+                    "player_name": candidate.player_name,
+                    "team": candidate.team,
+                    "opponent": candidate.opponent,
+                    "market": candidate.market,
+                    "line": candidate.line,
+                    "sim_prob_pct": sim_prob_pct(candidate),
+                    "baseline_prob_pct": round(b * 100, 1),
+                    "calibration_gap_pp": round(gap * 100, 1),
+                    "reason": f"sim {b*100:.1f}% +{gap*100:.1f}pp over baseline ({market_key})",
+                }
+            )
+    held.sort(key=lambda r: r["calibration_gap_pp"], reverse=True)
+    return held
+
+
 def build_mlb_board(*, config, paths) -> dict:
     raw_payload = collect_mlb_raw_data(paths.data_raw)
     games_output = []
@@ -31,9 +97,11 @@ def build_mlb_board(*, config, paths) -> dict:
     game_hr_results_by_id = {}
 
     processed_games = []
+    held_for_calibration: list[dict] = []
     for raw_game in raw_payload["games"]:
         candidates = [score_candidate(item) for item in normalize_mlb_inputs(raw_game)]
         simulate_candidates(candidates, sport="MLB")
+        held_for_calibration.extend(apply_calibration_gate(candidates))
         processed_games.append({"raw": raw_game, "candidates": candidates})
         game_status_by_id[raw_game["game_id"]] = raw_game.get("status", {})
         game_hr_results_by_id[raw_game["game_id"]] = raw_game.get("player_hr_results", {})
@@ -72,7 +140,7 @@ def build_mlb_board(*, config, paths) -> dict:
         candidates = sorted_candidates(processed_game["candidates"])
         market_bucket = defaultdict(list)
         for candidate in candidates:
-            if candidate.tier == "PASS":
+            if not is_publishable_candidate(candidate):
                 continue
             market_bucket[candidate.market].append(to_player_row(candidate))
 
@@ -97,7 +165,11 @@ def build_mlb_board(*, config, paths) -> dict:
             }
         )
         pinned_candidates.extend(
-            candidate for candidate in candidates if candidate.market == "HR" and is_public_hr_candidate(candidate)
+            candidate
+            for candidate in candidates
+            if candidate.market == "HR"
+            and is_public_hr_candidate(candidate)
+            and is_publishable_candidate(candidate)
         )
     previous_pinned_players = load_previous_pinned_players(paths)
     pinned_players = build_sticky_hr_board(
@@ -127,6 +199,12 @@ def build_mlb_board(*, config, paths) -> dict:
         "sport": "MLB",
         "date": raw_payload["date"],
         "last_updated": timestamp_et(),
+        "calibration": {
+            "threshold_pp": round(DEFAULT_THRESHOLD * 100, 1),
+            "mode": "hard",
+            "held_count": len(held_for_calibration),
+            "held_for_calibration": held_for_calibration,
+        },
         "pinned_board": {
             "title": "HR Core",
             "market": "HR",
@@ -165,7 +243,7 @@ def build_market_diverse_top_signals(*, candidates, limit: int) -> list[dict]:
             (
                 candidate
                 for candidate in candidates
-                if candidate.tier != "PASS"
+                if is_publishable_candidate(candidate)
                 and candidate.market == market
                 and (market != "HR" or is_public_hr_candidate(candidate))
             ),
@@ -181,7 +259,7 @@ def build_market_diverse_top_signals(*, candidates, limit: int) -> list[dict]:
     if len(selected) < limit:
         for candidate in candidates:
             key = (candidate.market, candidate.player_id)
-            if candidate.tier == "PASS" or key in used_markets:
+            if not is_publishable_candidate(candidate) or key in used_markets:
                 continue
             if candidate.market == "HR" and not is_public_hr_candidate(candidate):
                 continue
@@ -314,7 +392,7 @@ def build_consistency_board(processed_games) -> list[dict]:
     rows = []
     for processed_game in processed_games:
         for candidate in sorted_candidates(processed_game["candidates"]):
-            if candidate.market not in consistency_markets or candidate.tier == "PASS":
+            if candidate.market not in consistency_markets or not is_publishable_candidate(candidate):
                 continue
             rows.append(
                 {
