@@ -3437,10 +3437,43 @@ function renderDoubleDoubleWatch(dd) {
     </div>`;
 }
 
+function renderMatchupEdge(me) {
+  const rows = (me.matchups || []).map((m) => {
+    const t = m.target || {};
+    return `
+      <div class="support-row">
+        <div class="support-row-top">
+          <div class="support-left">
+            ${marketTag(m.market)}
+            <div class="support-copy">
+              <div class="support-title-row">
+                <div class="support-name">${esc(m.matchup_label)}</div>
+              </div>
+              <div class="support-meta">Target: ${esc(t.player_name)} (${esc(t.team)} · ${esc(t.line)})</div>
+            </div>
+          </div>
+          <div class="pick-line-wrap"><span class="sim-prob-badge">${esc(m.matchup_ratio)}x</span>${tierBadge(t.tier)}</div>
+        </div>
+      </div>`;
+  }).join("");
+  return `
+    <div class="board-card">
+      <div class="board-header">
+        <div class="board-header-copy">
+          <div class="board-title">Matchup Edge</div>
+          <div class="board-subtitle">${esc(me.subtitle || "Defenses bleeding a market")}</div>
+        </div>
+        <div class="board-count">${(me.matchups || []).length} Edges</div>
+      </div>
+      <div class="support-list">${rows}</div>
+    </div>`;
+}
+
 function renderPinnedBoards(data, sport = "mlb") {
   if (sport === "mlb") return renderMlbPinnedBoards(data);
   const sections = [];
   if (sport === "wnba" && data?.double_double_watch?.players?.length) sections.push(renderDoubleDoubleWatch(data.double_double_watch));
+  if (sport === "wnba" && data?.matchup_edge?.matchups?.length) sections.push(renderMatchupEdge(data.matchup_edge));
   if (data?.pinned_board?.players?.length) sections.push(renderPinnedSection(data.pinned_board, sport));
   if (data?.best_available_board?.players?.length) sections.push(renderPinnedSection(data.best_available_board, sport, { showMarket: true }));
   if (data?.consistency_board?.players?.length) sections.push(renderPinnedSection(data.consistency_board, sport));

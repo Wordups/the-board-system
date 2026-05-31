@@ -13,6 +13,7 @@ from app.builders.nba_board_builder import (
 )
 from app.builders.universal_game_builder import empty_markets_for
 from app.builders.wnba_double_double import build_double_double_watch
+from app.builders.wnba_matchup_edge import build_matchup_edge
 from app.collectors.wnba_collector import WNBA_MARKETS, collect_wnba_raw_data
 from app.outputs.json_writer import write_json
 from app.sim.edge import build_sim_board
@@ -127,6 +128,7 @@ def build_wnba_board(*, config, paths) -> dict:
         },
         "sim_board": build_sim_board(all_candidates, sport="WNBA"),
         "double_double_watch": build_double_double_watch(all_candidates),
+        "matchup_edge": build_matchup_edge(all_candidates),
         "games": games_output,
     }
 
