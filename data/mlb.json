@@ -1,11 +1,11 @@
 {
   "sport": "MLB",
   "date": "2026-06-01",
-  "last_updated": "2:03 AM ET",
+  "last_updated": "8:37 AM ET",
   "calibration": {
     "threshold_pp": 15.0,
     "mode": "hard",
-    "held_count": 107,
+    "held_count": 108,
     "held_for_calibration": [
       {
         "player_id": "690993-hits",
@@ -306,6 +306,18 @@
         "baseline_prob_pct": 75.9,
         "calibration_gap_pp": 17.4,
         "reason": "sim 75.9% +17.4pp over baseline (hits_1)"
+      },
+      {
+        "player_id": "689414",
+        "player_name": "Liam Hicks",
+        "team": "MIA",
+        "opponent": "WSH",
+        "market": "HR",
+        "line": "HR 1+",
+        "sim_prob_pct": 33.9,
+        "baseline_prob_pct": 18.7,
+        "calibration_gap_pp": 15.2,
+        "reason": "sim 18.7% +15.2pp over baseline (hr_1)"
       },
       {
         "player_id": "664728-hits",
@@ -1303,8 +1315,8 @@
         "team": "LAA",
         "opponent": "COL",
         "line": "HR 1+",
-        "score": 28.89,
-        "confidence": 29,
+        "score": 32.93,
+        "confidence": 33,
         "tier": "A",
         "reason": "HR edge 22.1 | L5 0.40/g | L10 0.20/g | Season 0.24/g | HR% 0.19 | HistHR% 0.24 | OPS 0.903 | SLG 0.493 | ISO 0.251 | PowIdx 0.73 | Surge 0.28 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.072 | vs Kyle Freeland | ERA 8.08 | WHIP 1.75 | HR/9 2.55 | HR A 12 | Hand L | Platoon + | vsP 0.222/1.084 in 12 PA | vsP HR 1 | Age 34 | Order est. 2 | Lineup pen 1.2 | Power due 0.27 | L5 XBH 0.40/g | Season XBH 0.41/g | Wts T0.42/M0.28/F0.30",
         "sim_prob_pct": 32.4,
@@ -1321,8 +1333,8 @@
         "team": "LAA",
         "opponent": "COL",
         "line": "HR 1+",
-        "score": 23.07,
-        "confidence": 23,
+        "score": 26.3,
+        "confidence": 26,
         "tier": "B",
         "reason": "HR edge 14.5 | L5 0.40/g | L10 0.30/g | Season 0.17/g | HR% 0.15 | HistHR% 0.17 | OPS 0.766 | SLG 0.427 | ISO 0.196 | PowIdx 0.55 | Surge 0.36 | Matchup 0.94 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.046 | vs Kyle Freeland | ERA 8.08 | WHIP 1.75 | HR/9 2.55 | HR A 12 | Hand L | Platoon + | vsP 0.333/0.666 in 3 PA | Age 25 | Order est. 1 | Lineup pen 1.2 | Rising 0.32 | L5 XBH 0.60/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
         "sim_prob_pct": 27.4,
@@ -1339,8 +1351,8 @@
         "team": "STL",
         "opponent": "TEX",
         "line": "HR 1+",
-        "score": 24.52,
-        "confidence": 25,
+        "score": 24.5,
+        "confidence": 24,
         "tier": "B",
         "reason": "HR edge 16.8 | L5 0.20/g | L10 0.30/g | Season 0.27/g | HR% 0.21 | HistHR% 0.12 | OPS 0.908 | SLG 0.551 | ISO 0.261 | PowIdx 0.39 | Surge 0.24 | Matchup 0.42 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.034 | vs Jacob deGrom | ERA 3.77 | WHIP 1.01 | HR/9 1.96 | HR A 13 | Hand R | Platoon - | Age 24 | Order est. 4 | Lineup pen 1.2 | Rising 0.72 | L5 XBH 0.60/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
         "sim_prob_pct": 29.5,
@@ -1446,7 +1458,7 @@
         "team": "MIA",
         "opponent": "WSH",
         "line": "2+ RBI",
-        "score": 33.92,
+        "score": 34.0,
         "confidence": 31,
         "tier": "A",
         "reason": "RBI edge 55.0 | L5 2.40/g | L10 1.20/g | Season 0.79/g | Order est. 4 | Team R/G 4.17 | Team OBP 0.318 | WHIP 1.41 | Platoon 1.00 | RISP 0.22 | Lineup pen 1.2 | Wts T0.34/M0.33/F0.33",
@@ -3093,7 +3105,7 @@
           "market": "RBI",
           "player_name": "Liam Hicks",
           "line": "2+ RBI",
-          "score": 30.82,
+          "score": 30.9,
           "confidence": 31,
           "tier": "A",
           "sim_prob_pct": 68.9
@@ -3139,21 +3151,6 @@
             "calibration_status": "ok",
             "baseline_prob_pct": 17.7,
             "calibration_gap_pp": 10.5
-          },
-          {
-            "player_id": "689414",
-            "player_name": "Liam Hicks",
-            "team": "MIA",
-            "opponent": "WSH",
-            "line": "HR 1+",
-            "score": 20.63,
-            "confidence": 21,
-            "tier": "C",
-            "reason": "HR edge 19.5 | L5 0.60/g | L10 0.30/g | Season 0.19/g | HR% 0.18 | HistHR% 0.09 | OPS 0.812 | SLG 0.468 | ISO 0.200 | PowIdx 0.39 | Surge 0.45 | Matchup 0.27 | ProjPA 4.2 | Sample 1.00 | Peak3Y 0.017 | vs Cade Cavalli | ERA 3.62 | WHIP 1.41 | HR/9 0.45 | HR A 3 | Hand R | Platoon + | vsP 0.333/0.833 in 4 PA | Age 27 | Order est. 4 | Lineup pen 1.2 | Rising 0.46 | L5 XBH 0.80/g | Season XBH 0.28/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 32.9,
-            "calibration_status": "ok",
-            "baseline_prob_pct": 18.7,
-            "calibration_gap_pp": 14.2
           }
         ],
         "RBI": [
@@ -3163,7 +3160,7 @@
             "team": "MIA",
             "opponent": "WSH",
             "line": "2+ RBI",
-            "score": 30.82,
+            "score": 30.9,
             "confidence": 31,
             "tier": "A",
             "reason": "RBI edge 55.0 | L5 2.40/g | L10 1.20/g | Season 0.79/g | Order est. 4 | Team R/G 4.17 | Team OBP 0.318 | WHIP 1.41 | Platoon 1.00 | RISP 0.22 | Lineup pen 1.2 | Wts T0.34/M0.33/F0.33",
@@ -3246,11 +3243,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.0,
         "park_factor_rhb": 0.99,
-        "wind_mph": 5,
-        "wind_deg": 165,
-        "wind_label": "OUT",
-        "hr_lean": "HR boost",
-        "summary_chip": "Nationals Park \u00b7 5mph OUT (HR boost)"
+        "wind_mph": 7,
+        "wind_deg": 20,
+        "wind_label": "IN",
+        "hr_lean": "HR suppress",
+        "summary_chip": "Nationals Park \u00b7 7mph IN (HR suppress)"
       }
     },
     {
@@ -3408,11 +3405,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.18,
         "park_factor_rhb": 1.16,
-        "wind_mph": 4,
-        "wind_deg": 11,
-        "wind_label": "IN",
+        "wind_mph": 2,
+        "wind_deg": 283,
+        "wind_label": "CROSS",
         "hr_lean": "HR boost",
-        "summary_chip": "Great American Ball Park \u00b7 4mph IN (HR boost)"
+        "summary_chip": "Great American Ball Park \u00b7 2mph CROSS (HR boost)"
       }
     },
     {
@@ -3540,11 +3537,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.0,
         "park_factor_rhb": 0.98,
-        "wind_mph": 6,
-        "wind_deg": 127,
-        "wind_label": "CROSS",
-        "hr_lean": "neutral",
-        "summary_chip": "Target Field \u00b7 6mph CROSS"
+        "wind_mph": 5,
+        "wind_deg": 104,
+        "wind_label": "IN",
+        "hr_lean": "HR suppress",
+        "summary_chip": "Target Field \u00b7 5mph IN (HR suppress)"
       }
     },
     {
@@ -3793,11 +3790,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.93,
         "park_factor_rhb": 0.95,
-        "wind_mph": 3,
-        "wind_deg": 127,
-        "wind_label": "CROSS",
+        "wind_mph": 5,
+        "wind_deg": 121,
+        "wind_label": "IN",
         "hr_lean": "HR suppress",
-        "summary_chip": "Busch Stadium \u00b7 3mph CROSS (HR suppress)"
+        "summary_chip": "Busch Stadium \u00b7 5mph IN (HR suppress)"
       }
     },
     {
@@ -3871,14 +3868,14 @@
             "team": "LAA",
             "opponent": "COL",
             "line": "HR 1+",
-            "score": 19.85,
-            "confidence": 20,
+            "score": 17.98,
+            "confidence": 18,
             "tier": "C",
-            "reason": "HR edge 10.4 | L5 0.20/g | L10 0.10/g | Season 0.16/g | HR% 0.15 | HistHR% 0.18 | OPS 0.683 | SLG 0.389 | ISO 0.177 | PowIdx 0.55 | Surge 0.12 | Matchup 0.94 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.049 | vs Kyle Freeland | ERA 8.08 | WHIP 1.75 | HR/9 2.55 | HR A 12 | Hand L | Platoon + | vsP 0.313/0.794 in 17 PA | vsP HR 1 | Age 34 | Order est. 4 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.33/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 23.1,
+            "reason": "HR edge 7.8 | L5 0.20/g | L10 0.10/g | Season 0.16/g | HR% 0.15 | HistHR% 0.18 | OPS 0.683 | SLG 0.389 | ISO 0.177 | PowIdx 0.49 | Surge 0.12 | Matchup 0.94 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.049 | vs Kyle Freeland | ERA 8.08 | WHIP 1.75 | HR/9 2.55 | HR A 12 | Hand L | Platoon + | vsP 0.000/0.000 in 3 PA | Age 34 | Order est. 4 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.33/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 20.0,
             "calibration_status": "ok",
             "baseline_prob_pct": 14.7,
-            "calibration_gap_pp": 8.4
+            "calibration_gap_pp": 5.3
           },
           {
             "player_id": "696100",
@@ -3939,11 +3936,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.0,
         "park_factor_rhb": 1.02,
-        "wind_mph": 4,
-        "wind_deg": 216,
-        "wind_label": "OUT",
-        "hr_lean": "HR boost",
-        "summary_chip": "Angel Stadium \u00b7 4mph OUT (HR boost)"
+        "wind_mph": 3,
+        "wind_deg": 172,
+        "wind_label": "CROSS",
+        "hr_lean": "neutral",
+        "summary_chip": "Angel Stadium \u00b7 3mph CROSS"
       }
     },
     {
@@ -4040,21 +4037,6 @@
             "calibration_status": "ok",
             "baseline_prob_pct": 19.9,
             "calibration_gap_pp": 10.5
-          },
-          {
-            "player_id": "660271",
-            "player_name": "Shohei Ohtani",
-            "team": "LAD",
-            "opponent": "AZ",
-            "line": "HR 1+",
-            "score": 16.94,
-            "confidence": 17,
-            "tier": "C",
-            "reason": "HR edge 14.1 | L5 0.00/g | L10 0.30/g | Season 0.17/g | HR% 0.16 | HistHR% 0.28 | OPS 0.895 | SLG 0.493 | ISO 0.213 | PowIdx 0.48 | Surge 0.04 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.075 | vs Eduardo Rodriguez | ERA 2.31 | WHIP 1.21 | HR/9 0.68 | HR A 5 | Hand L | Platoon - | vsP 0.250/0.923 in 26 PA | vsP HR 1 | Age 31 | Order est. 1 | Lineup pen 1.2 | Power due 0.20 | Season XBH 0.40/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 26.1,
-            "calibration_status": "ok",
-            "baseline_prob_pct": 14.8,
-            "calibration_gap_pp": 11.3
           }
         ],
         "RBI": [
