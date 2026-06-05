@@ -1,11 +1,11 @@
 {
   "sport": "MLB",
   "date": "2026-06-05",
-  "last_updated": "1:18 AM ET",
+  "last_updated": "5:52 AM ET",
   "calibration": {
     "threshold_pp": 15.0,
     "mode": "hard",
-    "held_count": 177,
+    "held_count": 178,
     "held_for_calibration": [
       {
         "player_id": "642715-hits",
@@ -510,6 +510,18 @@
         "baseline_prob_pct": 67.2,
         "calibration_gap_pp": 16.4,
         "reason": "sim 67.2% +16.4pp over baseline (hits_1)"
+      },
+      {
+        "player_id": "592450",
+        "player_name": "Aaron Judge",
+        "team": "NYY",
+        "opponent": "BOS",
+        "market": "HR",
+        "line": "HR 1+",
+        "sim_prob_pct": 39.5,
+        "baseline_prob_pct": 23.6,
+        "calibration_gap_pp": 15.9,
+        "reason": "sim 23.6% +15.9pp over baseline (hr_1)"
       },
       {
         "player_id": "680776-hits",
@@ -2143,9 +2155,9 @@
         "team": "WSH",
         "opponent": "AZ",
         "line": "HR 1+",
-        "score": 26.55,
-        "confidence": 27,
-        "tier": "B",
+        "score": 30.27,
+        "confidence": 30,
+        "tier": "A",
         "reason": "HR edge 19.9 | L5 0.20/g | L10 0.30/g | Season 0.25/g | HR% 0.20 | HistHR% 0.17 | OPS 0.928 | SLG 0.527 | ISO 0.263 | PowIdx 0.64 | Surge 0.23 | Matchup 0.82 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.045 | vs Merrill Kelly | ERA 5.06 | WHIP 1.46 | HR/9 1.69 | HR A 10 | Hand R | Platoon + | vsP 0.333/1.666 in 3 PA | vsP HR 1 | Age 23 | Order est. 1 | Lineup pen 1.2 | Rising 0.65 | L5 XBH 0.60/g | Season XBH 0.49/g | Wts T0.42/M0.28/F0.30",
         "sim_prob_pct": 32.5,
         "hr_result": "pending",
@@ -2161,9 +2173,9 @@
         "team": "PHI",
         "opponent": "CWS",
         "line": "HR 1+",
-        "score": 26.51,
-        "confidence": 27,
-        "tier": "B",
+        "score": 30.23,
+        "confidence": 30,
+        "tier": "A",
         "reason": "HR edge 26.0 | L5 0.40/g | L10 0.30/g | Season 0.39/g | HR% 0.29 | HistHR% 0.27 | OPS 0.944 | SLG 0.592 | ISO 0.359 | PowIdx 0.61 | Surge 0.14 | Matchup 0.43 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Anthony Kay | ERA 3.77 | WHIP 1.40 | HR/9 1.26 | HR A 8 | Hand L | Platoon - | vsP 0.000/1.000 in 1 PA | Age 33 | Order est. 2 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.56/g | Wts T0.42/M0.28/F0.30",
         "sim_prob_pct": 38.9,
         "hr_result": "pending",
@@ -2179,8 +2191,8 @@
         "team": "COL",
         "opponent": "MIL",
         "line": "HR 1+",
-        "score": 23.12,
-        "confidence": 23,
+        "score": 26.36,
+        "confidence": 26,
         "tier": "B",
         "reason": "HR edge 16.9 | L5 0.20/g | L10 0.10/g | Season 0.26/g | HR% 0.22 | HistHR% 0.22 | OPS 0.816 | SLG 0.502 | ISO 0.258 | PowIdx 0.57 | Surge 0.20 | Matchup 0.94 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.056 | vs Brandon Sproat | ERA 6.24 | WHIP 1.53 | HR/9 1.84 | HR A 10 | Hand R | Platoon - | Age 26 | Order est. 1 | Lineup pen 1.2 | Power due 0.32 | Rising 0.39 | L5 XBH 0.40/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
         "sim_prob_pct": 27.8,
@@ -2203,9 +2215,9 @@
         "team": "HOU",
         "opponent": "ATH",
         "line": "HR 1+",
-        "score": 32.73,
-        "confidence": 33,
-        "tier": "A",
+        "score": 27.63,
+        "confidence": 28,
+        "tier": "B",
         "reason": "HR edge 26.7 | L5 0.40/g | L10 0.40/g | Season 0.33/g | HR% 0.26 | HistHR% 0.23 | OPS 1.077 | SLG 0.649 | ISO 0.333 | PowIdx 0.65 | Surge 0.19 | Matchup 0.34 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.062 | vs Jack Perkins | ERA 5.46 | WHIP 1.21 | HR/9 0.32 | HR A 1 | Hand R | Platoon + | Age 29 | Order est. 1 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.54/g | Wts T0.42/M0.28/F0.30",
         "sim_prob_pct": 37.3,
         "hr_result": "pending",
@@ -2214,24 +2226,6 @@
         "projected_pa": 4.49,
         "power_surge": 0.194,
         "hr_power_index": 0.654
-      },
-      {
-        "player_id": "664040",
-        "player_name": "Brandon Lowe",
-        "team": "PIT",
-        "opponent": "ATL",
-        "line": "HR 1+",
-        "score": 25.97,
-        "confidence": 26,
-        "tier": "B",
-        "reason": "HR edge 19.1 | L5 0.60/g | L10 0.30/g | Season 0.26/g | HR% 0.21 | HistHR% 0.21 | OPS 0.873 | SLG 0.532 | ISO 0.275 | PowIdx 0.44 | Surge 0.35 | Matchup 0.18 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.056 | vs Mart\u00edn P\u00e9rez | ERA 2.79 | WHIP 1.06 | HR/9 1.05 | HR A 6 | Hand L | Platoon - | vsP 0.000/0.000 in 1 PA | Age 31 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.80/g | Season XBH 0.53/g | Wts T0.42/M0.28/F0.30",
-        "sim_prob_pct": 32.3,
-        "hr_result": "pending",
-        "home_runs": 0,
-        "core_bucket": "strong",
-        "projected_pa": 4.39,
-        "power_surge": 0.355,
-        "hr_power_index": 0.439
       },
       {
         "player_id": "700250",
@@ -2270,24 +2264,6 @@
         "hr_power_index": 0.507
       },
       {
-        "player_id": "592450",
-        "player_name": "Aaron Judge",
-        "team": "NYY",
-        "opponent": "BOS",
-        "line": "HR 1+",
-        "score": 23.82,
-        "confidence": 24,
-        "tier": "B",
-        "reason": "HR edge 24.1 | L5 0.40/g | L10 0.30/g | Season 0.29/g | HR% 0.23 | HistHR% 0.30 | OPS 0.908 | SLG 0.533 | ISO 0.285 | PowIdx 0.54 | Surge 0.28 | Matchup 0.18 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.082 | vs Sonny Gray | ERA 3.06 | WHIP 1.20 | HR/9 0.72 | HR A 4 | Hand R | Platoon - | vsP 0.333/0.666 in 3 PA | Age 34 | Order est. 2 | Lineup pen 1.2 | Power due 0.26 | L5 XBH 0.40/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
-        "sim_prob_pct": 35.2,
-        "hr_result": "pending",
-        "home_runs": 0,
-        "core_bucket": "strong",
-        "projected_pa": 4.44,
-        "power_surge": 0.276,
-        "hr_power_index": 0.543
-      },
-      {
         "player_id": "669127",
         "player_name": "Shea Langeliers",
         "team": "ATH",
@@ -2304,12 +2280,30 @@
         "projected_pa": 4.44,
         "power_surge": 0.356,
         "hr_power_index": 0.444
+      },
+      {
+        "player_id": "664040",
+        "player_name": "Brandon Lowe",
+        "team": "PIT",
+        "opponent": "ATL",
+        "line": "HR 1+",
+        "score": 21.88,
+        "confidence": 22,
+        "tier": "C",
+        "reason": "HR edge 19.1 | L5 0.60/g | L10 0.30/g | Season 0.26/g | HR% 0.21 | HistHR% 0.21 | OPS 0.873 | SLG 0.532 | ISO 0.275 | PowIdx 0.44 | Surge 0.35 | Matchup 0.18 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.056 | vs Mart\u00edn P\u00e9rez | ERA 2.79 | WHIP 1.06 | HR/9 1.05 | HR A 6 | Hand L | Platoon - | vsP 0.000/0.000 in 1 PA | Age 31 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.80/g | Season XBH 0.53/g | Wts T0.42/M0.28/F0.30",
+        "sim_prob_pct": 32.3,
+        "hr_result": "pending",
+        "home_runs": 0,
+        "core_bucket": "strong",
+        "projected_pa": 4.39,
+        "power_surge": 0.355,
+        "hr_power_index": 0.439
       }
     ]
   },
   "hr_board_meta": {
     "core_count": 3,
-    "watch_count": 6,
+    "watch_count": 5,
     "full_count": 10
   },
   "consistency_board": {
@@ -2322,7 +2316,7 @@
         "team": "MIA",
         "opponent": "TB",
         "line": "2+ RBI",
-        "score": 33.65,
+        "score": 33.68,
         "confidence": 31,
         "tier": "A",
         "reason": "RBI edge 54.4 | L5 2.40/g | L10 1.20/g | Season 0.77/g | Order est. 4 | Team R/G 4.25 | Team OBP 0.322 | WHIP 1.02 | Platoon 1.00 | RISP 0.22 | Lineup pen 1.2 | Wts T0.34/M0.33/F0.33",
@@ -2771,52 +2765,6 @@
           "evidence": []
         },
         {
-          "player_id": "592450",
-          "player_name": "Aaron Judge",
-          "team": "NYY",
-          "opponent": "BOS",
-          "game_id": "bos-nyy-2026-06-05",
-          "market": "HR",
-          "line": "HR 1+",
-          "score": 25.07,
-          "base_score": 25.07,
-          "lazy_penalty": 0.0,
-          "confidence": 25,
-          "tier": "B",
-          "reason": "HR edge 24.1 | L5 0.40/g | L10 0.30/g | Season 0.29/g | HR% 0.23 | HistHR% 0.30 | OPS 0.908 | SLG 0.533 | ISO 0.285 | PowIdx 0.54 | Surge 0.28 | Matchup 0.18 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.082 | vs Sonny Gray | ERA 3.06 | WHIP 1.20 | HR/9 0.72 | HR A 4 | Hand R | Platoon - | vsP 0.333/0.666 in 3 PA | Age 34 | Order est. 2 | Lineup pen 1.2 | Power due 0.26 | L5 XBH 0.40/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
-          "play_of_day": false,
-          "hr_bucket": "strong",
-          "pitcher": "Sonny Gray",
-          "whip": 1.2,
-          "hr9": 0.72,
-          "hr_allowed": 4,
-          "vs_pitcher_avg": 0.333,
-          "vs_pitcher_ops": 0.666,
-          "vs_pitcher_hr": 0,
-          "order_estimate": 2,
-          "projected_pa": 4.44,
-          "lineup_confirmed": false,
-          "lineup_uncertainty_penalty": 1.2,
-          "season_hr_probability": 0.228,
-          "l10_hr_probability": 0.255,
-          "l5_hr_probability": 0.314,
-          "historical_hr_probability": 0.299,
-          "season_hr_per_game": 0.288,
-          "l10_hr_per_game": 0.3,
-          "l5_hr_per_game": 0.4,
-          "ops": 0.908,
-          "slg": 0.533,
-          "iso": 0.285,
-          "sample_reliability": 1.0,
-          "age": 34,
-          "historical_power_index": 0.885,
-          "recent_peak_hr_rate": 0.082,
-          "career_hr_rate": 0.072,
-          "appearance_7d": 7,
-          "hits_7d": 0,
-          "evidence": []
-        },
-        {
           "player_id": "669127",
           "player_name": "Shea Langeliers",
           "team": "ATH",
@@ -3089,6 +3037,52 @@
           "recent_peak_hr_rate": 0.034,
           "career_hr_rate": 0.032,
           "appearance_7d": 0,
+          "hits_7d": 0,
+          "evidence": []
+        },
+        {
+          "player_id": "621566",
+          "player_name": "Matt Olson",
+          "team": "ATL",
+          "opponent": "PIT",
+          "game_id": "pit-atl-2026-06-05",
+          "market": "HR",
+          "line": "HR 1+",
+          "score": 22.62,
+          "base_score": 22.62,
+          "lazy_penalty": 0.0,
+          "confidence": 23,
+          "tier": "B",
+          "reason": "HR edge 19.2 | L5 0.00/g | L10 0.20/g | Season 0.27/g | HR% 0.22 | HistHR% 0.24 | OPS 0.898 | SLG 0.555 | ISO 0.286 | PowIdx 0.61 | Surge 0.11 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.073 | vs Mitch Keller | ERA 4.35 | WHIP 1.17 | HR/9 0.53 | HR A 4 | Hand R | Platoon + | vsP 0.500/1.500 in 2 PA | Age 32 | Order est. 1 | Lineup pen 1.2 | Power due 0.19 | L5 XBH 0.40/g | Season XBH 0.57/g | Wts T0.42/M0.28/F0.30",
+          "play_of_day": false,
+          "hr_bucket": "strong",
+          "pitcher": "Mitch Keller",
+          "whip": 1.17,
+          "hr9": 0.53,
+          "hr_allowed": 4,
+          "vs_pitcher_avg": 0.5,
+          "vs_pitcher_ops": 1.5,
+          "vs_pitcher_hr": 0,
+          "order_estimate": 1,
+          "projected_pa": 4.5,
+          "lineup_confirmed": false,
+          "lineup_uncertainty_penalty": 1.2,
+          "season_hr_probability": 0.222,
+          "l10_hr_probability": 0.203,
+          "l5_hr_probability": 0.088,
+          "historical_hr_probability": 0.236,
+          "season_hr_per_game": 0.27,
+          "l10_hr_per_game": 0.2,
+          "l5_hr_per_game": 0.0,
+          "ops": 0.898,
+          "slg": 0.555,
+          "iso": 0.286,
+          "sample_reliability": 1.0,
+          "age": 32,
+          "historical_power_index": 0.531,
+          "recent_peak_hr_rate": 0.073,
+          "career_hr_rate": 0.055,
+          "appearance_7d": 4,
           "hits_7d": 0,
           "evidence": []
         }
@@ -3572,20 +3566,20 @@
           "game_id": "tb-mia-2026-06-05",
           "market": "HR",
           "line": "HR 1+",
-          "score": 22.07,
-          "base_score": 22.07,
+          "score": 22.45,
+          "base_score": 22.45,
           "lazy_penalty": 0.0,
           "confidence": 22,
           "tier": "B",
-          "reason": "HR edge 19.9 | L5 0.60/g | L10 0.30/g | Season 0.20/g | HR% 0.18 | HistHR% 0.09 | OPS 0.827 | SLG 0.475 | ISO 0.207 | PowIdx 0.38 | Surge 0.45 | Matchup 0.18 | ProjPA 4.2 | Sample 1.00 | Peak3Y 0.017 | vs Drew Rasmussen | ERA 3.36 | WHIP 1.02 | HR/9 1.22 | HR A 8 | Hand R | Platoon + | vsP 0.250/0.708 in 9 PA | Age 27 | Order est. 4 | Lineup pen 1.2 | Rising 0.48 | L5 XBH 0.80/g | Season XBH 0.28/g | Wts T0.42/M0.28/F0.30",
+          "reason": "HR edge 20.5 | L5 0.60/g | L10 0.30/g | Season 0.20/g | HR% 0.18 | HistHR% 0.09 | OPS 0.827 | SLG 0.475 | ISO 0.207 | PowIdx 0.39 | Surge 0.45 | Matchup 0.18 | ProjPA 4.2 | Sample 1.00 | Peak3Y 0.017 | vs Drew Rasmussen | ERA 3.36 | WHIP 1.02 | HR/9 1.22 | HR A 8 | Hand R | Platoon + | vsP 0.333/0.833 in 6 PA | Age 27 | Order est. 4 | Lineup pen 1.2 | Rising 0.48 | L5 XBH 0.80/g | Season XBH 0.28/g | Wts T0.42/M0.28/F0.30",
           "play_of_day": false,
           "hr_bucket": "fringe",
           "pitcher": "Drew Rasmussen",
           "whip": 1.02,
           "hr9": 1.22,
           "hr_allowed": 8,
-          "vs_pitcher_avg": 0.25,
-          "vs_pitcher_ops": 0.708,
+          "vs_pitcher_avg": 0.333,
+          "vs_pitcher_ops": 0.833,
           "vs_pitcher_hr": 0,
           "order_estimate": 4,
           "projected_pa": 4.21,
@@ -3870,13 +3864,13 @@
         "sim_prob_pct": 63.0
       },
       {
-        "player_id": "656941",
-        "player_name": "Kyle Schwarber",
-        "team": "PHI",
-        "opponent": "CWS",
+        "player_id": "592450",
+        "player_name": "Aaron Judge",
+        "team": "NYY",
+        "opponent": "BOS",
         "market": "HR",
         "line": "HR 1+",
-        "sim_prob_pct": 38.9
+        "sim_prob_pct": 39.5
       },
       {
         "player_id": "645277-hits",
@@ -4092,11 +4086,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.06,
         "park_factor_rhb": 1.04,
-        "wind_mph": 6,
-        "wind_deg": 186,
+        "wind_mph": 7,
+        "wind_deg": 194,
         "wind_label": "OUT",
         "hr_lean": "HR boost",
-        "summary_chip": "Wrigley Field \u00b7 6mph OUT (HR boost)"
+        "summary_chip": "Wrigley Field \u00b7 7mph OUT (HR boost)"
       }
     },
     {
@@ -4252,11 +4246,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.94,
         "park_factor_rhb": 0.92,
-        "wind_mph": 4,
-        "wind_deg": 221,
+        "wind_mph": 5,
+        "wind_deg": 205,
         "wind_label": "OUT",
         "hr_lean": "neutral",
-        "summary_chip": "Comerica Park \u00b7 4mph OUT"
+        "summary_chip": "Comerica Park \u00b7 5mph OUT"
       }
     },
     {
@@ -4400,11 +4394,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.1,
         "park_factor_rhb": 1.1,
-        "wind_mph": 4,
-        "wind_deg": 333,
+        "wind_mph": 3,
+        "wind_deg": 149,
         "wind_label": "CROSS",
         "hr_lean": "HR boost",
-        "summary_chip": "Citizens Bank Park \u00b7 4mph CROSS (HR boost)"
+        "summary_chip": "Citizens Bank Park \u00b7 3mph CROSS (HR boost)"
       }
     },
     {
@@ -4458,34 +4452,19 @@
             "calibration_gap_pp": 11.0
           },
           {
-            "player_id": "592450",
-            "player_name": "Aaron Judge",
-            "team": "NYY",
-            "opponent": "BOS",
-            "line": "HR 1+",
-            "score": 25.07,
-            "confidence": 25,
-            "tier": "B",
-            "reason": "HR edge 24.1 | L5 0.40/g | L10 0.30/g | Season 0.29/g | HR% 0.23 | HistHR% 0.30 | OPS 0.908 | SLG 0.533 | ISO 0.285 | PowIdx 0.54 | Surge 0.28 | Matchup 0.18 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.082 | vs Sonny Gray | ERA 3.06 | WHIP 1.20 | HR/9 0.72 | HR A 4 | Hand R | Platoon - | vsP 0.333/0.666 in 3 PA | Age 34 | Order est. 2 | Lineup pen 1.2 | Power due 0.26 | L5 XBH 0.40/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 35.2,
-            "calibration_status": "ok",
-            "baseline_prob_pct": 23.6,
-            "calibration_gap_pp": 11.6
-          },
-          {
             "player_id": "575929",
             "player_name": "Willson Contreras",
             "team": "BOS",
             "opponent": "NYY",
             "line": "HR 1+",
-            "score": 19.6,
+            "score": 20.3,
             "confidence": 20,
             "tier": "C",
-            "reason": "HR edge 11.8 | L5 0.00/g | L10 0.20/g | Season 0.20/g | HR% 0.18 | HistHR% 0.16 | OPS 0.919 | SLG 0.527 | ISO 0.232 | PowIdx 0.50 | Surge 0.00 | Matchup 0.34 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.042 | vs Ryan Weathers | ERA 3.52 | WHIP 1.14 | HR/9 1.55 | HR A 11 | Hand L | Platoon + | vsP 0.333/1.333 in 6 PA | vsP HR 1 | Age 34 | Order est. 3 | Lineup pen 1.2 | Season XBH 0.37/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 24.2,
+            "reason": "HR edge 12.7 | L5 0.00/g | L10 0.20/g | Season 0.20/g | HR% 0.18 | HistHR% 0.16 | OPS 0.919 | SLG 0.527 | ISO 0.232 | PowIdx 0.52 | Surge 0.00 | Matchup 0.34 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.042 | vs Ryan Weathers | ERA 3.52 | WHIP 1.14 | HR/9 1.55 | HR A 11 | Hand L | Platoon + | vsP 0.333/1.222 in 9 PA | vsP HR 1 | Age 34 | Order est. 3 | Lineup pen 1.2 | Season XBH 0.37/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 25.0,
             "calibration_status": "ok",
             "baseline_prob_pct": 18.2,
-            "calibration_gap_pp": 6.0
+            "calibration_gap_pp": 6.8
           },
           {
             "player_id": "677800",
@@ -4576,10 +4555,10 @@
         "park_factor_lhb": 1.18,
         "park_factor_rhb": 1.05,
         "wind_mph": 5,
-        "wind_deg": 257,
-        "wind_label": "OUT",
+        "wind_deg": 322,
+        "wind_label": "CROSS",
         "hr_lean": "HR boost",
-        "summary_chip": "Yankee Stadium \u00b7 5mph OUT (HR boost)"
+        "summary_chip": "Yankee Stadium \u00b7 5mph CROSS (HR boost)"
       }
     },
     {
@@ -4674,16 +4653,16 @@
           "market": "HR",
           "player_name": "Liam Hicks",
           "line": "HR 1+",
-          "score": 22.07,
+          "score": 22.45,
           "confidence": 22,
           "tier": "B",
-          "sim_prob_pct": 33.4
+          "sim_prob_pct": 33.8
         },
         {
           "market": "RBI",
           "player_name": "Liam Hicks",
           "line": "2+ RBI",
-          "score": 30.55,
+          "score": 30.58,
           "confidence": 31,
           "tier": "A",
           "sim_prob_pct": 68.3
@@ -4706,14 +4685,14 @@
             "team": "MIA",
             "opponent": "TB",
             "line": "HR 1+",
-            "score": 22.07,
+            "score": 22.45,
             "confidence": 22,
             "tier": "B",
-            "reason": "HR edge 19.9 | L5 0.60/g | L10 0.30/g | Season 0.20/g | HR% 0.18 | HistHR% 0.09 | OPS 0.827 | SLG 0.475 | ISO 0.207 | PowIdx 0.38 | Surge 0.45 | Matchup 0.18 | ProjPA 4.2 | Sample 1.00 | Peak3Y 0.017 | vs Drew Rasmussen | ERA 3.36 | WHIP 1.02 | HR/9 1.22 | HR A 8 | Hand R | Platoon + | vsP 0.250/0.708 in 9 PA | Age 27 | Order est. 4 | Lineup pen 1.2 | Rising 0.48 | L5 XBH 0.80/g | Season XBH 0.28/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 33.4,
+            "reason": "HR edge 20.5 | L5 0.60/g | L10 0.30/g | Season 0.20/g | HR% 0.18 | HistHR% 0.09 | OPS 0.827 | SLG 0.475 | ISO 0.207 | PowIdx 0.39 | Surge 0.45 | Matchup 0.18 | ProjPA 4.2 | Sample 1.00 | Peak3Y 0.017 | vs Drew Rasmussen | ERA 3.36 | WHIP 1.02 | HR/9 1.22 | HR A 8 | Hand R | Platoon + | vsP 0.333/0.833 in 6 PA | Age 27 | Order est. 4 | Lineup pen 1.2 | Rising 0.48 | L5 XBH 0.80/g | Season XBH 0.28/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 33.8,
             "calibration_status": "ok",
             "baseline_prob_pct": 19.3,
-            "calibration_gap_pp": 14.1
+            "calibration_gap_pp": 14.5
           },
           {
             "player_id": "666018",
@@ -4753,7 +4732,7 @@
             "team": "MIA",
             "opponent": "TB",
             "line": "2+ RBI",
-            "score": 30.55,
+            "score": 30.58,
             "confidence": 31,
             "tier": "A",
             "reason": "RBI edge 54.4 | L5 2.40/g | L10 1.20/g | Season 0.77/g | Order est. 4 | Team R/G 4.25 | Team OBP 0.322 | WHIP 1.02 | Platoon 1.00 | RISP 0.22 | Lineup pen 1.2 | Wts T0.34/M0.33/F0.33",
@@ -4783,7 +4762,7 @@
             "team": "MIA",
             "opponent": "TB",
             "line": "2+ RBI",
-            "score": 20.33,
+            "score": 20.32,
             "confidence": 20,
             "tier": "C",
             "reason": "RBI edge 35.3 | L5 1.20/g | L10 0.90/g | Season 0.56/g | Order est. 6 | Team R/G 4.25 | Team OBP 0.322 | WHIP 1.02 | Platoon 1.00 | RISP 0.00 | Lineup pen 1.2 | Wts T0.34/M0.33/F0.33",
@@ -5026,7 +5005,7 @@
         "park_factor_lhb": 0.97,
         "park_factor_rhb": 1.02,
         "wind_mph": 2,
-        "wind_deg": 111,
+        "wind_deg": 90,
         "wind_label": "IN",
         "hr_lean": "HR suppress",
         "summary_chip": "Truist Park \u00b7 2mph IN (HR suppress)"
@@ -5313,6 +5292,21 @@
             "calibration_status": "ok",
             "baseline_prob_pct": 10.5,
             "calibration_gap_pp": 8.0
+          },
+          {
+            "player_id": "663993",
+            "player_name": "Nathaniel Lowe",
+            "team": "CIN",
+            "opponent": "STL",
+            "line": "HR 1+",
+            "score": 16.68,
+            "confidence": 17,
+            "tier": "C",
+            "reason": "HR edge 11.2 | L5 0.00/g | L10 0.00/g | Season 0.20/g | HR% 0.19 | HistHR% 0.12 | OPS 0.854 | SLG 0.523 | ISO 0.273 | PowIdx 0.57 | Surge 0.06 | Matchup 0.62 | ProjPA 4.0 | Sample 0.82 | Peak3Y 0.033 | vs Kyle Leahy | ERA 4.25 | WHIP 1.56 | HR/9 1.31 | HR A 8 | Hand R | Platoon + | vsP 0.500/1.500 in 6 PA | vsP HR 1 | Age 30 | Order est. 5 | Lineup pen 1.2 | L5 XBH 0.20/g | Season XBH 0.40/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 23.7,
+            "calibration_status": "ok",
+            "baseline_prob_pct": 17.2,
+            "calibration_gap_pp": 6.6
           }
         ],
         "RBI": [
@@ -5414,11 +5408,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.93,
         "park_factor_rhb": 0.95,
-        "wind_mph": 8,
-        "wind_deg": 183,
+        "wind_mph": 7,
+        "wind_deg": 182,
         "wind_label": "CROSS",
         "hr_lean": "HR suppress",
-        "summary_chip": "Busch Stadium \u00b7 8mph CROSS (HR suppress)"
+        "summary_chip": "Busch Stadium \u00b7 7mph CROSS (HR suppress)"
       }
     },
     {
@@ -5614,7 +5608,7 @@
             "score": 20.81,
             "confidence": 21,
             "tier": "C",
-            "reason": "HR edge 16.2 | L5 0.00/g | L10 0.00/g | Season 0.33/g | HR% 0.25 | HistHR% 0.22 | OPS 0.871 | SLG 0.551 | ISO 0.293 | PowIdx 0.49 | Surge 0.20 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.063 | vs Michael Wacha | ERA 3.23 | WHIP 1.12 | HR/9 0.96 | HR A 8 | Hand R | Platoon - | vsP 0.000/0.091 in 11 PA | Age 32 | Order est. 1 | Lineup pen 1.2 | Power due 0.70 | L5 XBH 0.40/g | Season XBH 0.54/g | Wts T0.42/M0.28/F0.30",
+            "reason": "HR edge 16.2 | L5 0.00/g | L10 0.00/g | Season 0.33/g | HR% 0.25 | HistHR% 0.22 | OPS 0.871 | SLG 0.551 | ISO 0.293 | PowIdx 0.49 | Surge 0.20 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.063 | vs Michael Wacha | ERA 3.23 | WHIP 1.12 | HR/9 0.96 | HR A 8 | Hand R | Platoon - | vsP 0.000/0.000 in 2 PA | Age 32 | Order est. 1 | Lineup pen 1.2 | Power due 0.70 | L5 XBH 0.40/g | Season XBH 0.54/g | Wts T0.42/M0.28/F0.30",
             "sim_prob_pct": 28.1,
             "calibration_status": "ok",
             "baseline_prob_pct": 31.5,
@@ -5680,11 +5674,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.0,
         "park_factor_rhb": 0.98,
-        "wind_mph": 6,
-        "wind_deg": 196,
+        "wind_mph": 5,
+        "wind_deg": 183,
         "wind_label": "CROSS",
         "hr_lean": "neutral",
-        "summary_chip": "Target Field \u00b7 6mph CROSS"
+        "summary_chip": "Target Field \u00b7 5mph CROSS"
       }
     },
     {
@@ -5753,6 +5747,21 @@
             "calibration_gap_pp": 8.7
           },
           {
+            "player_id": "668930",
+            "player_name": "Brice Turang",
+            "team": "MIL",
+            "opponent": "COL",
+            "line": "HR 1+",
+            "score": 17.49,
+            "confidence": 17,
+            "tier": "C",
+            "reason": "HR edge 5.5 | L5 0.00/g | L10 0.10/g | Season 0.12/g | HR% 0.12 | HistHR% 0.09 | OPS 0.870 | SLG 0.464 | ISO 0.184 | PowIdx 0.48 | Surge 0.25 | Matchup 0.69 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.027 | vs Ryan Feltner | ERA 4.85 | WHIP 1.31 | HR/9 1.73 | HR A 5 | Hand R | Platoon + | vsP 1.000/2.000 in 2 PA | Age 26 | Order est. 1 | Lineup pen 1.2 | Rising 0.38 | L5 XBH 0.80/g | Season XBH 0.39/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 18.3,
+            "calibration_status": "ok",
+            "baseline_prob_pct": 10.5,
+            "calibration_gap_pp": 7.8
+          },
+          {
             "player_id": "681198",
             "player_name": "TJ Rumfield",
             "team": "COL",
@@ -5766,21 +5775,6 @@
             "calibration_status": "ok",
             "baseline_prob_pct": 12.8,
             "calibration_gap_pp": 7.8
-          },
-          {
-            "player_id": "668930",
-            "player_name": "Brice Turang",
-            "team": "MIL",
-            "opponent": "COL",
-            "line": "HR 1+",
-            "score": 16.7,
-            "confidence": 17,
-            "tier": "C",
-            "reason": "HR edge 4.4 | L5 0.00/g | L10 0.10/g | Season 0.12/g | HR% 0.12 | HistHR% 0.09 | OPS 0.870 | SLG 0.464 | ISO 0.184 | PowIdx 0.45 | Surge 0.25 | Matchup 0.69 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.027 | vs Ryan Feltner | ERA 4.85 | WHIP 1.31 | HR/9 1.73 | HR A 5 | Hand R | Platoon + | vsP 0.182/0.364 in 11 PA | Age 26 | Order est. 1 | Lineup pen 1.2 | Rising 0.38 | L5 XBH 0.80/g | Season XBH 0.39/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 17.0,
-            "calibration_status": "ok",
-            "baseline_prob_pct": 10.5,
-            "calibration_gap_pp": 6.5
           }
         ],
         "RBI": [
@@ -5861,10 +5855,10 @@
             "team": "MIL",
             "opponent": "COL",
             "line": "2+ TB",
-            "score": 16.53,
+            "score": 16.65,
             "confidence": 17,
             "tier": "C",
-            "reason": "Edge 19.6, trend 0.60, matchup 0.58, form 0.35",
+            "reason": "Edge 19.6, trend 0.60, matchup 0.61, form 0.35",
             "sim_prob_pct": 49.4,
             "calibration_status": "ok",
             "baseline_prob_pct": 46.8,
@@ -5879,11 +5873,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.3,
         "park_factor_rhb": 1.28,
-        "wind_mph": 8,
-        "wind_deg": 207,
-        "wind_label": "OUT",
+        "wind_mph": 4,
+        "wind_deg": 49,
+        "wind_label": "IN",
         "hr_lean": "HR boost",
-        "summary_chip": "Coors Field \u00b7 8mph OUT (HR boost)"
+        "summary_chip": "Coors Field \u00b7 4mph IN (HR boost)"
       }
     },
     {
@@ -6151,11 +6145,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.9,
         "park_factor_rhb": 0.92,
-        "wind_mph": 3,
-        "wind_deg": 198,
-        "wind_label": "OUT",
-        "hr_lean": "neutral",
-        "summary_chip": "Petco Park \u00b7 3mph OUT"
+        "wind_mph": 1,
+        "wind_deg": 18,
+        "wind_label": "IN",
+        "hr_lean": "HR suppress",
+        "summary_chip": "Petco Park \u00b7 1mph IN (HR suppress)"
       }
     },
     {
@@ -6342,7 +6336,7 @@
         "park_factor_lhb": 1.02,
         "park_factor_rhb": 1.02,
         "wind_mph": 3,
-        "wind_deg": 259,
+        "wind_deg": 255,
         "wind_label": "CROSS",
         "hr_lean": "neutral",
         "summary_chip": "Dodger Stadium \u00b7 3mph CROSS"
