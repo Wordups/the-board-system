@@ -1,11 +1,11 @@
 {
   "sport": "MLB",
   "date": "2026-06-07",
-  "last_updated": "12:50 PM ET",
+  "last_updated": "1:17 PM ET",
   "calibration": {
     "threshold_pp": 15.0,
     "mode": "hard",
-    "held_count": 177,
+    "held_count": 179,
     "held_for_calibration": [
       {
         "player_id": "643289-hits",
@@ -366,6 +366,18 @@
         "baseline_prob_pct": 57.9,
         "calibration_gap_pp": 15.2,
         "reason": "sim 57.9% +15.2pp over baseline (hits_1)"
+      },
+      {
+        "player_id": "642708",
+        "player_name": "Amed Rosario",
+        "team": "NYY",
+        "opponent": "BOS",
+        "market": "HR",
+        "line": "HR 1+",
+        "sim_prob_pct": 31.8,
+        "baseline_prob_pct": 16.6,
+        "calibration_gap_pp": 15.2,
+        "reason": "sim 16.6% +15.2pp over baseline (hr_1)"
       },
       {
         "player_id": "502671-hits",
@@ -1448,42 +1460,6 @@
         "reason": "sim 29.6% +63.4pp over baseline (hits_2)"
       },
       {
-        "player_id": "545121-hits",
-        "player_name": "Ildemaro Vargas",
-        "team": "AZ",
-        "opponent": "WSH",
-        "market": "Hits",
-        "line": "2+ Hits",
-        "sim_prob_pct": 92.4,
-        "baseline_prob_pct": 40.4,
-        "calibration_gap_pp": 52.0,
-        "reason": "sim 40.4% +52.0pp over baseline (hits_2)"
-      },
-      {
-        "player_id": "680728-hits",
-        "player_name": "Adrian Del Castillo",
-        "team": "AZ",
-        "opponent": "WSH",
-        "market": "Hits",
-        "line": "1+ Hit",
-        "sim_prob_pct": 83.7,
-        "baseline_prob_pct": 52.3,
-        "calibration_gap_pp": 31.4,
-        "reason": "sim 52.3% +31.4pp over baseline (hits_1)"
-      },
-      {
-        "player_id": "678391-hits",
-        "player_name": "Jorbit Vivas",
-        "team": "WSH",
-        "opponent": "AZ",
-        "market": "Hits",
-        "line": "1+ Hit",
-        "sim_prob_pct": 72.5,
-        "baseline_prob_pct": 42.1,
-        "calibration_gap_pp": 30.4,
-        "reason": "sim 42.1% +30.4pp over baseline (hits_1)"
-      },
-      {
         "player_id": "672515-hits",
         "player_name": "Gabriel Moreno",
         "team": "AZ",
@@ -1506,6 +1482,18 @@
         "baseline_prob_pct": 65.0,
         "calibration_gap_pp": 28.2,
         "reason": "sim 65.0% +28.2pp over baseline (hits_1)"
+      },
+      {
+        "player_id": "677588-hits",
+        "player_name": "Jos\u00e9 Tena",
+        "team": "WSH",
+        "opponent": "AZ",
+        "market": "Hits",
+        "line": "1+ Hit",
+        "sim_prob_pct": 66.3,
+        "baseline_prob_pct": 38.8,
+        "calibration_gap_pp": 27.5,
+        "reason": "sim 38.8% +27.5pp over baseline (hits_1)"
       },
       {
         "player_id": "672695-hits",
@@ -1568,16 +1556,16 @@
         "reason": "sim 63.7% +20.8pp over baseline (hits_1)"
       },
       {
-        "player_id": "683083-hits",
-        "player_name": "Nasim Nu\u00f1ez",
+        "player_id": "686611-hits",
+        "player_name": "Dylan Crews",
         "team": "WSH",
         "opponent": "AZ",
         "market": "Hits",
         "line": "1+ Hit",
-        "sim_prob_pct": 67.6,
-        "baseline_prob_pct": 47.5,
-        "calibration_gap_pp": 20.2,
-        "reason": "sim 47.5% +20.2pp over baseline (hits_1)"
+        "sim_prob_pct": 82.2,
+        "baseline_prob_pct": 61.9,
+        "calibration_gap_pp": 20.3,
+        "reason": "sim 61.9% +20.3pp over baseline (hits_1)"
       },
       {
         "player_id": "571448-hits",
@@ -1590,6 +1578,18 @@
         "baseline_prob_pct": 56.9,
         "calibration_gap_pp": 20.2,
         "reason": "sim 56.9% +20.2pp over baseline (hits_1)"
+      },
+      {
+        "player_id": "694371-hits",
+        "player_name": "Tommy Troy",
+        "team": "AZ",
+        "opponent": "WSH",
+        "market": "Hits",
+        "line": "1+ Hit",
+        "sim_prob_pct": 84.1,
+        "baseline_prob_pct": 63.9,
+        "calibration_gap_pp": 20.2,
+        "reason": "sim 63.9% +20.2pp over baseline (hits_1)"
       },
       {
         "player_id": "660688-hits",
@@ -1676,6 +1676,18 @@
         "reason": "sim 38.7% +29.4pp over baseline (tb_2)"
       },
       {
+        "player_id": "500743-hits",
+        "player_name": "Miguel Rojas",
+        "team": "LAD",
+        "opponent": "LAA",
+        "market": "Hits",
+        "line": "1+ Hit",
+        "sim_prob_pct": 76.8,
+        "baseline_prob_pct": 50.4,
+        "calibration_gap_pp": 26.3,
+        "reason": "sim 50.4% +26.3pp over baseline (hits_1)"
+      },
+      {
         "player_id": "672724-hits",
         "player_name": "Oswald Peraza",
         "team": "LAA",
@@ -1686,18 +1698,6 @@
         "baseline_prob_pct": 59.0,
         "calibration_gap_pp": 25.5,
         "reason": "sim 59.0% +25.5pp over baseline (hits_1)"
-      },
-      {
-        "player_id": "669257-hits",
-        "player_name": "Will Smith",
-        "team": "LAD",
-        "opponent": "LAA",
-        "market": "Hits",
-        "line": "1+ Hit",
-        "sim_prob_pct": 81.6,
-        "baseline_prob_pct": 56.7,
-        "calibration_gap_pp": 24.9,
-        "reason": "sim 56.7% +24.9pp over baseline (hits_1)"
       },
       {
         "player_id": "667755",
@@ -1748,6 +1748,18 @@
         "reason": "sim 64.3% +21.9pp over baseline (hits_1)"
       },
       {
+        "player_id": "669743-hits",
+        "player_name": "Alex Call",
+        "team": "LAD",
+        "opponent": "LAA",
+        "market": "Hits",
+        "line": "1+ Hit",
+        "sim_prob_pct": 68.4,
+        "baseline_prob_pct": 46.8,
+        "calibration_gap_pp": 21.6,
+        "reason": "sim 46.8% +21.6pp over baseline (hits_1)"
+      },
+      {
         "player_id": "687263-hits",
         "player_name": "Zach Neto",
         "team": "LAA",
@@ -1784,6 +1796,18 @@
         "reason": "sim 69.2% +19.4pp over baseline (hits_1)"
       },
       {
+        "player_id": "669899-hits",
+        "player_name": "Ryan Ward",
+        "team": "LAD",
+        "opponent": "LAA",
+        "market": "Hits",
+        "line": "1+ Hit",
+        "sim_prob_pct": 81.5,
+        "baseline_prob_pct": 62.4,
+        "calibration_gap_pp": 19.1,
+        "reason": "sim 62.4% +19.1pp over baseline (hits_1)"
+      },
+      {
         "player_id": "660271-hits",
         "player_name": "Shohei Ohtani",
         "team": "LAD",
@@ -1796,6 +1820,18 @@
         "reason": "sim 75.0% +17.7pp over baseline (hits_1)"
       },
       {
+        "player_id": "687221",
+        "player_name": "Dalton Rushing",
+        "team": "LAD",
+        "opponent": "LAA",
+        "market": "HR",
+        "line": "HR 1+",
+        "sim_prob_pct": 34.4,
+        "baseline_prob_pct": 18.1,
+        "calibration_gap_pp": 16.4,
+        "reason": "sim 18.1% +16.4pp over baseline (hr_1)"
+      },
+      {
         "player_id": "665742-hits",
         "player_name": "Juan Soto",
         "team": "NYM",
@@ -1806,18 +1842,6 @@
         "baseline_prob_pct": 34.4,
         "calibration_gap_pp": 58.1,
         "reason": "sim 34.4% +58.1pp over baseline (hits_2)"
-      },
-      {
-        "player_id": "668901-hits",
-        "player_name": "Mark Vientos",
-        "team": "NYM",
-        "opponent": "SD",
-        "market": "Hits",
-        "line": "1+ Hit",
-        "sim_prob_pct": 87.0,
-        "baseline_prob_pct": 59.0,
-        "calibration_gap_pp": 27.9,
-        "reason": "sim 59.0% +27.9pp over baseline (hits_1)"
       },
       {
         "player_id": "669004-hits",
@@ -2143,8 +2167,8 @@
         "team": "PHI",
         "opponent": "CWS",
         "line": "HR 1+",
-        "score": 41.36,
-        "confidence": 41,
+        "score": 41.73,
+        "confidence": 42,
         "tier": "A",
         "reason": "HR edge 27.2 | L5 0.40/g | L10 0.30/g | Season 0.38/g | HR% 0.29 | HistHR% 0.28 | OPS 0.944 | SLG 0.586 | ISO 0.345 | PowIdx 0.73 | Surge 0.16 | Matchup 0.94 | ProjPA 4.6 | Sample 1.00 | Peak3Y 0.076 | vs Tyler Gilbert | ERA 20.25 | WHIP 2.63 | HR/9 6.75 | HR A 2 | Hand L | Platoon - | vsP 1.000/3.000 in 1 PA | Age 33 | Order est. 1 | Lineup confirmed | L5 XBH 0.40/g | Season XBH 0.54/g | Wts T0.42/M0.28/F0.30 | Near first pitch",
         "sim_prob_pct": 40.2,
@@ -2161,8 +2185,8 @@
         "team": "ATH",
         "opponent": "HOU",
         "line": "HR 1+",
-        "score": 38.43,
-        "confidence": 38,
+        "score": 38.78,
+        "confidence": 39,
         "tier": "A",
         "reason": "HR edge 24.1 | L5 0.80/g | L10 0.50/g | Season 0.28/g | HR% 0.22 | HistHR% 0.22 | OPS 0.890 | SLG 0.540 | ISO 0.257 | PowIdx 0.56 | Surge 0.36 | Matchup 0.94 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.058 | vs Mike Burrows | ERA 5.66 | WHIP 1.54 | HR/9 1.98 | HR A 15 | Hand R | Platoon - | Age 28 | Order est. 3 | Lineup confirmed | L5 XBH 0.80/g | Season XBH 0.50/g | Wts T0.42/M0.28/F0.30 | Near first pitch",
         "sim_prob_pct": 36.5,
@@ -2179,8 +2203,8 @@
         "team": "CWS",
         "opponent": "PHI",
         "line": "HR 1+",
-        "score": 36.5,
-        "confidence": 36,
+        "score": 36.83,
+        "confidence": 37,
         "tier": "A",
         "reason": "HR edge 22.4 | L5 0.20/g | L10 0.20/g | Season 0.25/g | HR% 0.21 | HistHR% 0.26 | OPS 0.793 | SLG 0.476 | ISO 0.253 | PowIdx 0.64 | Surge 0.15 | Matchup 0.79 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.071 | vs Aaron Nola | ERA 5.55 | WHIP 1.39 | HR/9 1.61 | HR A 11 | Hand R | Platoon + | Age 24 | Order est. 4 | Lineup confirmed | Power due 0.21 | Rising 0.45 | L5 XBH 0.20/g | Season XBH 0.43/g | Wts T0.42/M0.28/F0.30 | Near first pitch",
         "sim_prob_pct": 35.1,
@@ -2252,24 +2276,6 @@
         "hr_power_index": 0.534
       },
       {
-        "player_id": "700250",
-        "player_name": "Ben Rice",
-        "team": "NYY",
-        "opponent": "BOS",
-        "line": "HR 1+",
-        "score": 27.22,
-        "confidence": 27,
-        "tier": "B",
-        "reason": "HR edge 22.1 | L5 0.20/g | L10 0.30/g | Season 0.31/g | HR% 0.25 | HistHR% 0.20 | OPS 1.050 | SLG 0.652 | ISO 0.347 | PowIdx 0.50 | Surge 0.26 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.049 | vs Ranger Suarez | ERA 3.38 | WHIP 1.16 | HR/9 0.61 | HR A 4 | Hand L | Platoon - | vsP 0.000/0.000 in 3 PA | Age 27 | Order est. 2 | Lineup confirmed | Rising 0.59 | L5 XBH 0.80/g | Season XBH 0.60/g | Wts T0.42/M0.28/F0.30 | Near first pitch",
-        "sim_prob_pct": 34.0,
-        "hr_result": "pending",
-        "home_runs": 0,
-        "core_bucket": "strong",
-        "projected_pa": 4.51,
-        "power_surge": 0.263,
-        "hr_power_index": 0.502
-      },
-      {
         "player_id": "691011",
         "player_name": "Drew Romo",
         "team": "CWS",
@@ -2291,7 +2297,7 @@
   },
   "hr_board_meta": {
     "core_count": 3,
-    "watch_count": 5,
+    "watch_count": 4,
     "full_count": 10
   },
   "consistency_board": {
@@ -2335,15 +2341,27 @@
         "sim_prob_pct": 68.1
       },
       {
+        "player_id": "687221-rbi",
+        "player_name": "Dalton Rushing",
+        "team": "LAD",
+        "opponent": "LAA",
+        "line": "2+ RBI",
+        "score": 32.85,
+        "confidence": 30,
+        "tier": "A",
+        "reason": "RBI edge 48.8 | L5 1.60/g | L10 1.40/g | Season 0.53/g | Order est. 6 | Team R/G 5.23 | Team OBP 0.342 | WHIP 1.21 | Platoon 1.00 | RISP 0.17 | Lineup pen 0.0 | Wts T0.34/M0.33/F0.33",
+        "sim_prob_pct": 62.5
+      },
+      {
         "player_id": "682928-rbi",
         "player_name": "CJ Abrams",
         "team": "WSH",
         "opponent": "AZ",
         "line": "2+ RBI",
-        "score": 30.47,
-        "confidence": 28,
-        "tier": "B",
-        "reason": "RBI edge 49.5 | L5 1.20/g | L10 1.40/g | Season 0.75/g | Order est. 3 | Team R/G 5.40 | Team OBP 0.325 | WHIP 1.19 | Platoon 1.00 | RISP 0.33 | Lineup pen 1.8 | Wts T0.34/M0.33/F0.33",
+        "score": 32.73,
+        "confidence": 30,
+        "tier": "A",
+        "reason": "RBI edge 49.5 | L5 1.20/g | L10 1.40/g | Season 0.75/g | Order est. 4 | Team R/G 5.40 | Team OBP 0.325 | WHIP 1.19 | Platoon 1.00 | RISP 0.33 | Lineup pen 0.0 | Wts T0.34/M0.33/F0.33",
         "sim_prob_pct": 62.7
       },
       {
@@ -2359,24 +2377,12 @@
         "sim_prob_pct": 92.8
       },
       {
-        "player_id": "687221-rbi",
-        "player_name": "Dalton Rushing",
-        "team": "LAD",
-        "opponent": "LAA",
-        "line": "2+ RBI",
-        "score": 29.48,
-        "confidence": 27,
-        "tier": "B",
-        "reason": "RBI edge 48.8 | L5 1.60/g | L10 1.40/g | Season 0.53/g | Order est. 9 | Team R/G 5.23 | Team OBP 0.342 | WHIP 1.21 | Platoon 1.00 | RISP 0.17 | Lineup pen 2.3 | Wts T0.34/M0.33/F0.33",
-        "sim_prob_pct": 62.5
-      },
-      {
         "player_id": "650490-rbi",
         "player_name": "Yandy D\u00edaz",
         "team": "TB",
         "opponent": "MIA",
         "line": "2+ RBI",
-        "score": 28.89,
+        "score": 28.85,
         "confidence": 26,
         "tier": "B",
         "reason": "RBI edge 41.2 | L5 1.20/g | L10 1.00/g | Season 0.71/g | Order est. 1 | Team R/G 4.62 | Team OBP 0.335 | WHIP 1.30 | Platoon 0.25 | RISP 0.56 | Lineup pen 0.0 | Wts T0.34/M0.33/F0.33",
@@ -2937,6 +2943,98 @@
           "evidence": []
         },
         {
+          "player_id": "665742",
+          "player_name": "Juan Soto",
+          "team": "NYM",
+          "opponent": "SD",
+          "game_id": "nym-sd-2026-06-07",
+          "market": "HR",
+          "line": "HR 1+",
+          "score": 24.8,
+          "base_score": 24.8,
+          "lazy_penalty": 0.0,
+          "confidence": 25,
+          "tier": "B",
+          "reason": "HR edge 19.1 | L5 0.00/g | L10 0.10/g | Season 0.28/g | HR% 0.22 | HistHR% 0.22 | OPS 0.902 | SLG 0.537 | ISO 0.257 | PowIdx 0.55 | Surge 0.21 | Matchup 0.24 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.059 | vs Randy V\u00e1squez | ERA 3.31 | WHIP 1.22 | HR/9 1.24 | HR A 9 | Hand R | Platoon + | vsP 0.333/1.666 in 3 PA | vsP HR 1 | Age 27 | Order est. 3 | Lineup confirmed | Power due 0.38 | Rising 0.37 | L5 XBH 0.40/g | Season XBH 0.38/g | Wts T0.42/M0.28/F0.30",
+          "play_of_day": false,
+          "hr_bucket": "core",
+          "pitcher": "Randy V\u00e1squez",
+          "whip": 1.22,
+          "hr9": 1.24,
+          "hr_allowed": 9,
+          "vs_pitcher_avg": 0.333,
+          "vs_pitcher_ops": 1.666,
+          "vs_pitcher_hr": 1,
+          "order_estimate": 3,
+          "projected_pa": 4.46,
+          "lineup_confirmed": true,
+          "lineup_uncertainty_penalty": 0.0,
+          "season_hr_probability": 0.221,
+          "l10_hr_probability": 0.145,
+          "l5_hr_probability": 0.079,
+          "historical_hr_probability": 0.222,
+          "season_hr_per_game": 0.277,
+          "l10_hr_per_game": 0.1,
+          "l5_hr_per_game": 0.0,
+          "ops": 0.902,
+          "slg": 0.537,
+          "iso": 0.257,
+          "sample_reliability": 1.0,
+          "age": 27,
+          "historical_power_index": 0.455,
+          "recent_peak_hr_rate": 0.059,
+          "career_hr_rate": 0.051,
+          "appearance_7d": 0,
+          "hits_7d": 0,
+          "evidence": []
+        },
+        {
+          "player_id": "695578",
+          "player_name": "James Wood",
+          "team": "WSH",
+          "opponent": "AZ",
+          "game_id": "wsh-az-2026-06-07",
+          "market": "HR",
+          "line": "HR 1+",
+          "score": 24.16,
+          "base_score": 24.16,
+          "lazy_penalty": 0.0,
+          "confidence": 24,
+          "tier": "B",
+          "reason": "HR edge 19.8 | L5 0.20/g | L10 0.30/g | Season 0.26/g | HR% 0.21 | HistHR% 0.17 | OPS 0.939 | SLG 0.534 | ISO 0.267 | PowIdx 0.51 | Surge 0.23 | Matchup 0.18 | ProjPA 4.6 | Sample 1.00 | Peak3Y 0.045 | vs Michael Soroka | ERA 3.49 | WHIP 1.19 | HR/9 0.67 | HR A 5 | Hand R | Platoon + | Age 23 | Order est. 1 | Lineup confirmed | Rising 0.67 | L5 XBH 0.60/g | Season XBH 0.49/g | Wts T0.42/M0.28/F0.30",
+          "play_of_day": false,
+          "hr_bucket": "strong",
+          "pitcher": "Michael Soroka",
+          "whip": 1.19,
+          "hr9": 0.67,
+          "hr_allowed": 5,
+          "vs_pitcher_avg": 0.0,
+          "vs_pitcher_ops": 0.0,
+          "vs_pitcher_hr": 0,
+          "order_estimate": 1,
+          "projected_pa": 4.59,
+          "lineup_confirmed": true,
+          "lineup_uncertainty_penalty": 0.0,
+          "season_hr_probability": 0.212,
+          "l10_hr_probability": 0.236,
+          "l5_hr_probability": 0.184,
+          "historical_hr_probability": 0.175,
+          "season_hr_per_game": 0.262,
+          "l10_hr_per_game": 0.3,
+          "l5_hr_per_game": 0.2,
+          "ops": 0.939,
+          "slg": 0.534,
+          "iso": 0.267,
+          "sample_reliability": 1.0,
+          "age": 23,
+          "historical_power_index": 0.194,
+          "recent_peak_hr_rate": 0.045,
+          "career_hr_rate": 0.042,
+          "appearance_7d": 1,
+          "hits_7d": 0,
+          "evidence": []
+        },
+        {
           "player_id": "696100",
           "player_name": "Hunter Goodman",
           "team": "COL",
@@ -2979,98 +3077,6 @@
           "recent_peak_hr_rate": 0.057,
           "career_hr_rate": 0.051,
           "appearance_7d": 1,
-          "hits_7d": 0,
-          "evidence": []
-        },
-        {
-          "player_id": "691011",
-          "player_name": "Drew Romo",
-          "team": "CWS",
-          "opponent": "PHI",
-          "game_id": "cws-phi-2026-06-07",
-          "market": "HR",
-          "line": "HR 1+",
-          "score": 23.32,
-          "base_score": 23.32,
-          "lazy_penalty": 0.0,
-          "confidence": 23,
-          "tier": "B",
-          "reason": "HR edge 17.8 | L5 0.60/g | L10 0.40/g | Season 0.22/g | HR% 0.17 | HistHR% 0.13 | OPS 0.718 | SLG 0.443 | ISO 0.272 | PowIdx 0.50 | Surge 0.40 | Matchup 0.79 | ProjPA 4.0 | Sample 0.45 | Peak3Y 0.034 | vs Aaron Nola | ERA 5.55 | WHIP 1.39 | HR/9 1.61 | HR A 11 | Hand R | Platoon + | Age 24 | Order est. 8 | Lineup confirmed | Rising 0.55 | L5 XBH 0.60/g | Season XBH 0.39/g | Wts T0.42/M0.28/F0.30",
-          "play_of_day": false,
-          "hr_bucket": "strong",
-          "pitcher": "Aaron Nola",
-          "whip": 1.39,
-          "hr9": 1.61,
-          "hr_allowed": 11,
-          "vs_pitcher_avg": 0.0,
-          "vs_pitcher_ops": 0.0,
-          "vs_pitcher_hr": 0,
-          "order_estimate": 8,
-          "projected_pa": 4.02,
-          "lineup_confirmed": true,
-          "lineup_uncertainty_penalty": 0.0,
-          "season_hr_probability": 0.173,
-          "l10_hr_probability": 0.301,
-          "l5_hr_probability": 0.42,
-          "historical_hr_probability": 0.13,
-          "season_hr_per_game": 0.217,
-          "l10_hr_per_game": 0.4,
-          "l5_hr_per_game": 0.6,
-          "ops": 0.718,
-          "slg": 0.443,
-          "iso": 0.272,
-          "sample_reliability": 0.45,
-          "age": 24,
-          "historical_power_index": 0.0,
-          "recent_peak_hr_rate": 0.034,
-          "career_hr_rate": 0.034,
-          "appearance_7d": 2,
-          "hits_7d": 0,
-          "evidence": []
-        },
-        {
-          "player_id": "678246",
-          "player_name": "Miguel Vargas",
-          "team": "CWS",
-          "opponent": "PHI",
-          "game_id": "cws-phi-2026-06-07",
-          "market": "HR",
-          "line": "HR 1+",
-          "score": 22.71,
-          "base_score": 22.71,
-          "lazy_penalty": 0.0,
-          "confidence": 23,
-          "tier": "B",
-          "reason": "HR edge 13.4 | L5 0.20/g | L10 0.10/g | Season 0.24/g | HR% 0.20 | HistHR% 0.12 | OPS 0.869 | SLG 0.496 | ISO 0.253 | PowIdx 0.49 | Surge 0.18 | Matchup 0.79 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.028 | vs Aaron Nola | ERA 5.55 | WHIP 1.39 | HR/9 1.61 | HR A 11 | Hand R | Platoon - | vsP 0.333/1.666 in 3 PA | vsP HR 1 | Age 26 | Order est. 2 | Lineup confirmed | Rising 0.59 | L5 XBH 0.40/g | Season XBH 0.41/g | Wts T0.42/M0.28/F0.30",
-          "play_of_day": false,
-          "hr_bucket": "strong",
-          "pitcher": "Aaron Nola",
-          "whip": 1.39,
-          "hr9": 1.61,
-          "hr_allowed": 11,
-          "vs_pitcher_avg": 0.333,
-          "vs_pitcher_ops": 1.666,
-          "vs_pitcher_hr": 1,
-          "order_estimate": 2,
-          "projected_pa": 4.54,
-          "lineup_confirmed": true,
-          "lineup_uncertainty_penalty": 0.0,
-          "season_hr_probability": 0.203,
-          "l10_hr_probability": 0.145,
-          "l5_hr_probability": 0.206,
-          "historical_hr_probability": 0.119,
-          "season_hr_per_game": 0.238,
-          "l10_hr_per_game": 0.1,
-          "l5_hr_per_game": 0.2,
-          "ops": 0.869,
-          "slg": 0.496,
-          "iso": 0.253,
-          "sample_reliability": 1.0,
-          "age": 26,
-          "historical_power_index": 0.0,
-          "recent_peak_hr_rate": 0.028,
-          "career_hr_rate": 0.031,
-          "appearance_7d": 0,
           "hits_7d": 0,
           "evidence": []
         }
@@ -3252,16 +3258,16 @@
             "hr_bucket": "core"
           },
           {
-            "player_name": "Liam Hicks",
-            "team": "MIA",
-            "opponent": "TB",
+            "player_name": "Juan Soto",
+            "team": "NYM",
+            "opponent": "SD",
             "line": "HR 1+",
-            "score": 28.51,
-            "tier": "A",
-            "reason": "HR edge 20.3 | L5 0.60/g | L10 0.30/g | Season 0.19/g | HR% 0.19 | HistHR% 0.10 | OPS 0.815 | SLG 0.468 | ISO 0.202 | PowIdx 0.50 | Surge 0.45 | Matchup 0.80 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.017 | vs Griffin Jax | ERA 4.76 | WHIP 1.47 | HR/9 1.85 | HR A 7 | Hand R | Platoon + | Age 27 | Order est. 1 | Lineup confirmed | Rising 0.49 | L5 XBH 0.80/g | Season XBH 0.27/g | Wts T0.42/M0.28/F0.30",
-            "pitcher": "Griffin Jax",
+            "score": 24.8,
+            "tier": "B",
+            "reason": "HR edge 19.1 | L5 0.00/g | L10 0.10/g | Season 0.28/g | HR% 0.22 | HistHR% 0.22 | OPS 0.902 | SLG 0.537 | ISO 0.257 | PowIdx 0.55 | Surge 0.21 | Matchup 0.24 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.059 | vs Randy V\u00e1squez | ERA 3.31 | WHIP 1.22 | HR/9 1.24 | HR A 9 | Hand R | Platoon + | vsP 0.333/1.666 in 3 PA | vsP HR 1 | Age 27 | Order est. 3 | Lineup confirmed | Power due 0.38 | Rising 0.37 | L5 XBH 0.40/g | Season XBH 0.38/g | Wts T0.42/M0.28/F0.30",
+            "pitcher": "Randy V\u00e1squez",
             "evidence": [],
-            "hr_bucket": "strong"
+            "hr_bucket": "core"
           }
         ]
       },
@@ -4138,11 +4144,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.97,
         "park_factor_rhb": 1.02,
-        "wind_mph": null,
-        "wind_deg": null,
-        "wind_label": null,
+        "wind_mph": 9,
+        "wind_deg": 204,
+        "wind_label": "CROSS",
         "hr_lean": "neutral",
-        "summary_chip": "Truist Park \u00b7 wind n/a"
+        "summary_chip": "Truist Park \u00b7 9mph CROSS"
       }
     },
     {
@@ -4389,7 +4395,7 @@
         "park_factor_lhb": 1.1,
         "park_factor_rhb": 1.1,
         "wind_mph": 15,
-        "wind_deg": 294,
+        "wind_deg": 296,
         "wind_label": "CROSS",
         "hr_lean": "HR boost",
         "summary_chip": "Citizens Bank Park \u00b7 15mph CROSS (HR boost)"
@@ -4446,21 +4452,6 @@
             "calibration_gap_pp": 7.8
           },
           {
-            "player_id": "642708",
-            "player_name": "Amed Rosario",
-            "team": "NYY",
-            "opponent": "BOS",
-            "line": "HR 1+",
-            "score": 18.89,
-            "confidence": 19,
-            "tier": "C",
-            "reason": "HR edge 14.4 | L5 0.40/g | L10 0.20/g | Season 0.18/g | HR% 0.18 | HistHR% 0.09 | OPS 0.815 | SLG 0.511 | ISO 0.250 | PowIdx 0.45 | Surge 0.26 | Matchup 0.18 | ProjPA 4.2 | Sample 0.57 | Peak3Y 0.029 | vs Ranger Suarez | ERA 3.38 | WHIP 1.16 | HR/9 0.61 | HR A 4 | Hand L | Platoon + | vsP 1.000/3.000 in 3 PA | vsP HR 1 | Age 30 | Order est. 4 | Lineup confirmed | L5 XBH 0.40/g | Season XBH 0.30/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 29.2,
-            "calibration_status": "ok",
-            "baseline_prob_pct": 16.6,
-            "calibration_gap_pp": 12.5
-          },
-          {
             "player_id": "677800",
             "player_name": "Wilyer Abreu",
             "team": "BOS",
@@ -4513,10 +4504,10 @@
             "team": "NYY",
             "opponent": "BOS",
             "line": "1+ Hit",
-            "score": 17.54,
+            "score": 17.84,
             "confidence": 18,
             "tier": "C",
-            "reason": "Edge 34.7, trend 0.40, matchup 0.28, form 0.28",
+            "reason": "Edge 34.7, trend 0.40, matchup 0.34, form 0.28",
             "sim_prob_pct": 76.9,
             "calibration_status": "ok",
             "baseline_prob_pct": 62.6,
@@ -4549,7 +4540,7 @@
         "park_factor_lhb": 1.18,
         "park_factor_rhb": 1.05,
         "wind_mph": 16,
-        "wind_deg": 294,
+        "wind_deg": 295,
         "wind_label": "OUT",
         "hr_lean": "HR boost",
         "summary_chip": "Yankee Stadium \u00b7 16mph OUT (HR boost)"
@@ -4568,14 +4559,14 @@
             "team": "BAL",
             "opponent": "TOR",
             "line": "HR 1+",
-            "score": 18.48,
-            "confidence": 18,
+            "score": 18.74,
+            "confidence": 19,
             "tier": "C",
-            "reason": "HR edge 14.4 | L5 0.20/g | L10 0.30/g | Season 0.20/g | HR% 0.17 | HistHR% 0.18 | OPS 0.706 | SLG 0.424 | ISO 0.199 | PowIdx 0.41 | Surge 0.14 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.051 | vs Kevin Gausman | ERA 3.36 | WHIP 1.09 | HR/9 0.84 | HR A 7 | Hand R | Platoon + | vsP 0.167/0.433 in 19 PA | Age 25 | Order est. 2 | Lineup confirmed | Rising 0.32 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 26.9,
+            "reason": "HR edge 14.8 | L5 0.20/g | L10 0.30/g | Season 0.20/g | HR% 0.17 | HistHR% 0.18 | OPS 0.706 | SLG 0.424 | ISO 0.199 | PowIdx 0.41 | Surge 0.14 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.051 | vs Kevin Gausman | ERA 3.36 | WHIP 1.09 | HR/9 0.84 | HR A 7 | Hand R | Platoon + | vsP 0.333/0.666 in 3 PA | Age 25 | Order est. 2 | Lineup confirmed | Rising 0.32 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 27.3,
             "calibration_status": "ok",
             "baseline_prob_pct": 20.2,
-            "calibration_gap_pp": 6.6
+            "calibration_gap_pp": 7.0
           },
           {
             "player_id": "624413",
@@ -4683,14 +4674,14 @@
             "team": "SEA",
             "opponent": "DET",
             "line": "HR 1+",
-            "score": 21.12,
+            "score": 21.4,
             "confidence": 21,
             "tier": "C",
-            "reason": "HR edge 14.7 | L5 0.40/g | L10 0.20/g | Season 0.14/g | HR% 0.17 | HistHR% 0.15 | OPS 0.871 | SLG 0.529 | ISO 0.254 | PowIdx 0.52 | Surge 0.32 | Matchup 0.72 | ProjPA 4.0 | Sample 0.86 | Peak3Y 0.042 | vs Jack Flaherty | ERA 5.31 | WHIP 1.60 | HR/9 1.25 | HR A 8 | Hand R | Platoon + | vsP 0.143/0.268 in 8 PA | Age 28 | Order est. 6 | Lineup confirmed | L5 XBH 0.60/g | Season XBH 0.34/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 25.4,
+            "reason": "HR edge 15.1 | L5 0.40/g | L10 0.20/g | Season 0.14/g | HR% 0.17 | HistHR% 0.15 | OPS 0.871 | SLG 0.529 | ISO 0.254 | PowIdx 0.52 | Surge 0.32 | Matchup 0.72 | ProjPA 4.0 | Sample 0.86 | Peak3Y 0.042 | vs Jack Flaherty | ERA 5.31 | WHIP 1.60 | HR/9 1.25 | HR A 8 | Hand R | Platoon + | vsP 0.333/0.666 in 3 PA | Age 28 | Order est. 6 | Lineup confirmed | L5 XBH 0.60/g | Season XBH 0.34/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 25.8,
             "calibration_status": "ok",
             "baseline_prob_pct": 14.7,
-            "calibration_gap_pp": 10.7
+            "calibration_gap_pp": 11.1
           },
           {
             "player_id": "693307",
@@ -4698,14 +4689,14 @@
             "team": "DET",
             "opponent": "SEA",
             "line": "HR 1+",
-            "score": 19.57,
-            "confidence": 20,
+            "score": 19.44,
+            "confidence": 19,
             "tier": "C",
-            "reason": "HR edge 14.4 | L5 0.20/g | L10 0.20/g | Season 0.24/g | HR% 0.20 | HistHR% 0.13 | OPS 0.816 | SLG 0.495 | ISO 0.257 | PowIdx 0.44 | Surge 0.17 | Matchup 0.63 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.029 | vs Luis Castillo | ERA 5.53 | WHIP 1.45 | HR/9 1.14 | HR A 7 | Hand R | Platoon - | vsP 0.333/1.000 in 3 PA | Age 27 | Order est. 5 | Lineup confirmed | Rising 0.50 | L5 XBH 0.40/g | Season XBH 0.45/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 26.8,
+            "reason": "HR edge 14.2 | L5 0.20/g | L10 0.20/g | Season 0.24/g | HR% 0.20 | HistHR% 0.13 | OPS 0.816 | SLG 0.495 | ISO 0.257 | PowIdx 0.43 | Surge 0.17 | Matchup 0.63 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.029 | vs Luis Castillo | ERA 5.53 | WHIP 1.45 | HR/9 1.14 | HR A 7 | Hand R | Platoon - | vsP 0.250/0.900 in 5 PA | Age 27 | Order est. 5 | Lineup confirmed | Rising 0.50 | L5 XBH 0.40/g | Season XBH 0.45/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 26.4,
             "calibration_status": "ok",
             "baseline_prob_pct": 21.5,
-            "calibration_gap_pp": 5.3
+            "calibration_gap_pp": 5.0
           },
           {
             "player_id": "806068",
@@ -4745,7 +4736,7 @@
             "team": "DET",
             "opponent": "SEA",
             "line": "1+ RBI",
-            "score": 18.13,
+            "score": 18.12,
             "confidence": 18,
             "tier": "C",
             "reason": "RBI edge 24.4 | L5 1.00/g | L10 0.80/g | Season 0.76/g | Order est. 5 | Team R/G 3.92 | Team OBP 0.315 | WHIP 1.45 | Platoon 0.25 | RISP 0.05 | Lineup pen 0.0 | Wts T0.34/M0.33/F0.33",
@@ -4796,7 +4787,7 @@
         "park_factor_lhb": 0.94,
         "park_factor_rhb": 0.92,
         "wind_mph": 6,
-        "wind_deg": 35,
+        "wind_deg": 52,
         "wind_label": "IN",
         "hr_lean": "HR suppress",
         "summary_chip": "Comerica Park \u00b7 6mph IN (HR suppress)"
@@ -4829,7 +4820,7 @@
           "market": "TB",
           "player_name": "Yandy D\u00edaz",
           "line": "2+ TB",
-          "score": 23.22,
+          "score": 23.17,
           "confidence": 23,
           "tier": "B",
           "sim_prob_pct": 60.0
@@ -4905,7 +4896,7 @@
             "team": "TB",
             "opponent": "MIA",
             "line": "2+ RBI",
-            "score": 26.39,
+            "score": 26.35,
             "confidence": 26,
             "tier": "B",
             "reason": "RBI edge 41.2 | L5 1.20/g | L10 1.00/g | Season 0.71/g | Order est. 1 | Team R/G 4.62 | Team OBP 0.335 | WHIP 1.30 | Platoon 0.25 | RISP 0.56 | Lineup pen 0.0 | Wts T0.34/M0.33/F0.33",
@@ -4967,10 +4958,10 @@
             "team": "TB",
             "opponent": "MIA",
             "line": "2+ TB",
-            "score": 23.22,
+            "score": 23.17,
             "confidence": 23,
             "tier": "B",
-            "reason": "Edge 32.8, trend 0.75, matchup 0.37, form 0.44",
+            "reason": "Edge 32.8, trend 0.75, matchup 0.36, form 0.44",
             "sim_prob_pct": 60.0,
             "calibration_status": "ok",
             "baseline_prob_pct": 56.4,
@@ -5269,7 +5260,7 @@
         "park_factor_lhb": 1.0,
         "park_factor_rhb": 0.98,
         "wind_mph": 12,
-        "wind_deg": 140,
+        "wind_deg": 137,
         "wind_label": "CROSS",
         "hr_lean": "neutral",
         "summary_chip": "Target Field \u00b7 12mph CROSS"
@@ -5484,11 +5475,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.93,
         "park_factor_rhb": 0.95,
-        "wind_mph": null,
-        "wind_deg": null,
-        "wind_label": null,
+        "wind_mph": 9,
+        "wind_deg": 157,
+        "wind_label": "CROSS",
         "hr_lean": "HR suppress",
-        "summary_chip": "Busch Stadium \u00b7 wind n/a (HR suppress)"
+        "summary_chip": "Busch Stadium \u00b7 9mph CROSS (HR suppress)"
       }
     },
     {
@@ -5702,6 +5693,21 @@
             "calibration_gap_pp": 7.5
           },
           {
+            "player_id": "668930",
+            "player_name": "Brice Turang",
+            "team": "MIL",
+            "opponent": "COL",
+            "line": "HR 1+",
+            "score": 18.17,
+            "confidence": 18,
+            "tier": "C",
+            "reason": "HR edge 5.3 | L5 0.00/g | L10 0.10/g | Season 0.15/g | HR% 0.14 | HistHR% 0.10 | OPS 0.891 | SLG 0.486 | ISO 0.204 | PowIdx 0.47 | Surge 0.26 | Matchup 0.94 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.027 | vs Kyle Freeland | ERA 8.06 | WHIP 1.71 | HR/9 2.44 | HR A 13 | Hand L | Platoon - | vsP 0.286/1.000 in 7 PA | vsP HR 1 | Age 26 | Order est. 2 | Lineup confirmed | Rising 0.46 | L5 XBH 0.80/g | Season XBH 0.41/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 18.0,
+            "calibration_status": "ok",
+            "baseline_prob_pct": 15.8,
+            "calibration_gap_pp": 2.2
+          },
+          {
             "player_id": "694192",
             "player_name": "Jackson Chourio",
             "team": "MIL",
@@ -5717,19 +5723,19 @@
             "calibration_gap_pp": 3.3
           },
           {
-            "player_id": "668930",
-            "player_name": "Brice Turang",
+            "player_id": "661388",
+            "player_name": "William Contreras",
             "team": "MIL",
             "opponent": "COL",
             "line": "HR 1+",
-            "score": 16.94,
-            "confidence": 17,
+            "score": 16.04,
+            "confidence": 16,
             "tier": "C",
-            "reason": "HR edge 3.7 | L5 0.00/g | L10 0.10/g | Season 0.15/g | HR% 0.14 | HistHR% 0.10 | OPS 0.891 | SLG 0.486 | ISO 0.204 | PowIdx 0.43 | Surge 0.26 | Matchup 0.94 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.027 | vs Kyle Freeland | ERA 8.06 | WHIP 1.71 | HR/9 2.44 | HR A 13 | Hand L | Platoon - | vsP 0.000/0.000 in 2 PA | Age 26 | Order est. 2 | Lineup confirmed | Rising 0.46 | L5 XBH 0.80/g | Season XBH 0.41/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 16.1,
+            "reason": "HR edge 4.7 | L5 0.20/g | L10 0.10/g | Season 0.09/g | HR% 0.10 | HistHR% 0.13 | OPS 0.733 | SLG 0.391 | ISO 0.108 | PowIdx 0.48 | Surge 0.24 | Matchup 0.94 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.034 | vs Kyle Freeland | ERA 8.06 | WHIP 1.71 | HR/9 2.44 | HR A 13 | Hand L | Platoon + | vsP 0.286/0.875 in 16 PA | vsP HR 1 | Age 28 | Order est. 3 | Lineup confirmed | L5 XBH 0.60/g | Season XBH 0.26/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 16.8,
             "calibration_status": "ok",
-            "baseline_prob_pct": 15.8,
-            "calibration_gap_pp": 0.3
+            "baseline_prob_pct": 7.6,
+            "calibration_gap_pp": 9.3
           }
         ],
         "RBI": [
@@ -5751,7 +5757,7 @@
             "team": "MIL",
             "opponent": "COL",
             "line": "1+ RBI",
-            "score": 19.0,
+            "score": 19.19,
             "confidence": 19,
             "tier": "C",
             "reason": "RBI edge 21.6 | L5 1.00/g | L10 0.80/g | Season 0.66/g | Order est. 3 | Team R/G 5.11 | Team OBP 0.337 | WHIP 1.71 | Platoon 1.00 | RISP 0.31 | Lineup pen 0.0 | Wts T0.34/M0.33/F0.33",
@@ -5794,10 +5800,10 @@
             "team": "MIL",
             "opponent": "COL",
             "line": "2+ TB",
-            "score": 18.68,
+            "score": 18.86,
             "confidence": 19,
             "tier": "C",
-            "reason": "Edge 20.6, trend 0.60, matchup 0.65, form 0.38",
+            "reason": "Edge 20.6, trend 0.60, matchup 0.68, form 0.38",
             "sim_prob_pct": 50.4,
             "calibration_status": "ok",
             "baseline_prob_pct": 47.6,
@@ -5813,10 +5819,10 @@
         "park_factor_lhb": 1.3,
         "park_factor_rhb": 1.28,
         "wind_mph": 4,
-        "wind_deg": 319,
-        "wind_label": "CROSS",
+        "wind_deg": 343,
+        "wind_label": "IN",
         "hr_lean": "HR boost",
-        "summary_chip": "Coors Field \u00b7 4mph CROSS (HR boost)"
+        "summary_chip": "Coors Field \u00b7 4mph IN (HR boost)"
       }
     },
     {
@@ -5825,31 +5831,31 @@
       "time": "3:15 PM ET",
       "top_signals": [
         {
+          "market": "HR",
+          "player_name": "James Wood",
+          "line": "HR 1+",
+          "score": 24.16,
+          "confidence": 24,
+          "tier": "B",
+          "sim_prob_pct": 32.4
+        },
+        {
           "market": "RBI",
           "player_name": "CJ Abrams",
           "line": "2+ RBI",
-          "score": 27.97,
-          "confidence": 28,
-          "tier": "B",
+          "score": 29.63,
+          "confidence": 30,
+          "tier": "A",
           "sim_prob_pct": 62.7
         },
         {
           "market": "TB",
           "player_name": "Corbin Carroll",
           "line": "2+ TB",
-          "score": 16.41,
-          "confidence": 16,
+          "score": 18.21,
+          "confidence": 18,
           "tier": "C",
           "sim_prob_pct": 52.0
-        },
-        {
-          "market": "RBI",
-          "player_name": "Corbin Carroll",
-          "line": "2+ RBI",
-          "score": 22.2,
-          "confidence": 22,
-          "tier": "B",
-          "sim_prob_pct": 48.2
         }
       ],
       "markets": {
@@ -5860,14 +5866,14 @@
             "team": "WSH",
             "opponent": "AZ",
             "line": "HR 1+",
-            "score": 21.92,
-            "confidence": 22,
-            "tier": "C",
-            "reason": "HR edge 19.1 | L5 0.20/g | L10 0.30/g | Season 0.26/g | HR% 0.21 | HistHR% 0.17 | OPS 0.939 | SLG 0.534 | ISO 0.267 | PowIdx 0.50 | Surge 0.23 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.045 | vs Michael Soroka | ERA 3.49 | WHIP 1.19 | HR/9 0.67 | HR A 5 | Hand R | Platoon + | Age 23 | Order est. 1 | Lineup pen 1.8 | Rising 0.67 | L5 XBH 0.60/g | Season XBH 0.49/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 31.7,
+            "score": 24.16,
+            "confidence": 24,
+            "tier": "B",
+            "reason": "HR edge 19.8 | L5 0.20/g | L10 0.30/g | Season 0.26/g | HR% 0.21 | HistHR% 0.17 | OPS 0.939 | SLG 0.534 | ISO 0.267 | PowIdx 0.51 | Surge 0.23 | Matchup 0.18 | ProjPA 4.6 | Sample 1.00 | Peak3Y 0.045 | vs Michael Soroka | ERA 3.49 | WHIP 1.19 | HR/9 0.67 | HR A 5 | Hand R | Platoon + | Age 23 | Order est. 1 | Lineup confirmed | Rising 0.67 | L5 XBH 0.60/g | Season XBH 0.49/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 32.4,
             "calibration_status": "ok",
             "baseline_prob_pct": 25.0,
-            "calibration_gap_pp": 6.7
+            "calibration_gap_pp": 7.4
           },
           {
             "player_id": "682998",
@@ -5875,14 +5881,14 @@
             "team": "AZ",
             "opponent": "WSH",
             "line": "HR 1+",
-            "score": 19.02,
-            "confidence": 19,
+            "score": 21.21,
+            "confidence": 21,
             "tier": "C",
-            "reason": "HR edge 13.3 | L5 0.20/g | L10 0.20/g | Season 0.15/g | HR% 0.14 | HistHR% 0.17 | OPS 0.915 | SLG 0.542 | ISO 0.258 | PowIdx 0.49 | Surge 0.26 | Matchup 0.27 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.047 | vs Cade Cavalli | ERA 3.62 | WHIP 1.42 | HR/9 0.42 | HR A 3 | Hand R | Platoon + | Age 25 | Order est. 2 | Lineup pen 1.8 | Rising 0.47 | L5 XBH 0.60/g | Season XBH 0.53/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 24.5,
+            "reason": "HR edge 13.9 | L5 0.20/g | L10 0.20/g | Season 0.15/g | HR% 0.14 | HistHR% 0.17 | OPS 0.915 | SLG 0.542 | ISO 0.258 | PowIdx 0.50 | Surge 0.26 | Matchup 0.27 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.047 | vs Cade Cavalli | ERA 3.62 | WHIP 1.42 | HR/9 0.42 | HR A 3 | Hand R | Platoon + | Age 25 | Order est. 2 | Lineup confirmed | Rising 0.47 | L5 XBH 0.60/g | Season XBH 0.53/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 24.8,
             "calibration_status": "ok",
             "baseline_prob_pct": 13.1,
-            "calibration_gap_pp": 11.3
+            "calibration_gap_pp": 11.7
           },
           {
             "player_id": "682928",
@@ -5890,14 +5896,29 @@
             "team": "WSH",
             "opponent": "AZ",
             "line": "HR 1+",
-            "score": 18.83,
-            "confidence": 19,
+            "score": 20.71,
+            "confidence": 21,
             "tier": "C",
-            "reason": "HR edge 16.2 | L5 0.20/g | L10 0.40/g | Season 0.20/g | HR% 0.17 | HistHR% 0.13 | OPS 0.908 | SLG 0.526 | ISO 0.240 | PowIdx 0.42 | Surge 0.13 | Matchup 0.18 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.033 | vs Michael Soroka | ERA 3.49 | WHIP 1.19 | HR/9 0.67 | HR A 5 | Hand R | Platoon + | Age 25 | Order est. 3 | Lineup pen 1.8 | Rising 0.55 | L5 XBH 0.20/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 27.8,
+            "reason": "HR edge 16.5 | L5 0.20/g | L10 0.40/g | Season 0.20/g | HR% 0.18 | HistHR% 0.13 | OPS 0.908 | SLG 0.526 | ISO 0.240 | PowIdx 0.41 | Surge 0.13 | Matchup 0.18 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.033 | vs Michael Soroka | ERA 3.49 | WHIP 1.19 | HR/9 0.67 | HR A 5 | Hand R | Platoon + | Age 25 | Order est. 4 | Lineup confirmed | Rising 0.55 | L5 XBH 0.20/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 28.0,
             "calibration_status": "ok",
             "baseline_prob_pct": 17.6,
-            "calibration_gap_pp": 10.2
+            "calibration_gap_pp": 10.4
+          },
+          {
+            "player_id": "606466",
+            "player_name": "Ketel Marte",
+            "team": "AZ",
+            "opponent": "WSH",
+            "line": "HR 1+",
+            "score": 16.42,
+            "confidence": 16,
+            "tier": "C",
+            "reason": "HR edge 10.2 | L5 0.20/g | L10 0.10/g | Season 0.18/g | HR% 0.17 | HistHR% 0.19 | OPS 0.754 | SLG 0.450 | ISO 0.200 | PowIdx 0.41 | Surge 0.09 | Matchup 0.27 | ProjPA 4.6 | Sample 1.00 | Peak3Y 0.059 | vs Cade Cavalli | ERA 3.62 | WHIP 1.42 | HR/9 0.42 | HR A 3 | Hand R | Platoon + | Age 32 | Order est. 1 | Lineup confirmed | L5 XBH 0.20/g | Season XBH 0.40/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 22.2,
+            "calibration_status": "ok",
+            "baseline_prob_pct": 15.7,
+            "calibration_gap_pp": 6.5
           }
         ],
         "RBI": [
@@ -5907,10 +5928,10 @@
             "team": "WSH",
             "opponent": "AZ",
             "line": "2+ RBI",
-            "score": 27.97,
-            "confidence": 28,
-            "tier": "B",
-            "reason": "RBI edge 49.5 | L5 1.20/g | L10 1.40/g | Season 0.75/g | Order est. 3 | Team R/G 5.40 | Team OBP 0.325 | WHIP 1.19 | Platoon 1.00 | RISP 0.33 | Lineup pen 1.8 | Wts T0.34/M0.33/F0.33",
+            "score": 29.63,
+            "confidence": 30,
+            "tier": "A",
+            "reason": "RBI edge 49.5 | L5 1.20/g | L10 1.40/g | Season 0.75/g | Order est. 4 | Team R/G 5.40 | Team OBP 0.325 | WHIP 1.19 | Platoon 1.00 | RISP 0.33 | Lineup pen 0.0 | Wts T0.34/M0.33/F0.33",
             "sim_prob_pct": 62.7,
             "calibration_status": "warn",
             "baseline_prob_pct": 17.3,
@@ -5922,14 +5943,26 @@
             "team": "AZ",
             "opponent": "WSH",
             "line": "2+ RBI",
-            "score": 22.2,
-            "confidence": 22,
+            "score": 24.0,
+            "confidence": 24,
             "tier": "B",
-            "reason": "RBI edge 36.2 | L5 1.40/g | L10 0.90/g | Season 0.49/g | Order est. 2 | Team R/G 4.34 | Team OBP 0.304 | WHIP 1.42 | Platoon 1.00 | RISP 0.32 | Lineup pen 1.8 | Wts T0.34/M0.33/F0.33",
+            "reason": "RBI edge 36.2 | L5 1.40/g | L10 0.90/g | Season 0.49/g | Order est. 2 | Team R/G 4.34 | Team OBP 0.304 | WHIP 1.42 | Platoon 1.00 | RISP 0.32 | Lineup pen 0.0 | Wts T0.34/M0.33/F0.33",
             "sim_prob_pct": 48.2,
             "calibration_status": "warn",
             "baseline_prob_pct": 8.8,
             "calibration_gap_pp": 39.4
+          },
+          {
+            "player_id": "660688-rbi",
+            "player_name": "Keibert Ruiz",
+            "team": "WSH",
+            "opponent": "AZ",
+            "line": "1+ RBI",
+            "score": 17.12,
+            "confidence": 17,
+            "tier": "C",
+            "reason": "RBI edge 22.1 | L5 1.00/g | L10 0.80/g | Season 0.68/g | Order est. 7 | Team R/G 5.40 | Team OBP 0.325 | WHIP 1.19 | Platoon 0.75 | RISP 0.26 | Lineup pen 0.0 | Wts T0.34/M0.33/F0.33",
+            "sim_prob_pct": 47.4
           }
         ],
         "K": [],
@@ -5941,14 +5974,29 @@
             "team": "AZ",
             "opponent": "WSH",
             "line": "2+ TB",
-            "score": 16.41,
-            "confidence": 16,
+            "score": 18.21,
+            "confidence": 18,
             "tier": "C",
             "reason": "Edge 23.9, trend 0.55, matchup 0.38, form 0.40",
             "sim_prob_pct": 52.0,
             "calibration_status": "ok",
             "baseline_prob_pct": 42.2,
             "calibration_gap_pp": 9.8
+          },
+          {
+            "player_id": "682928-tb",
+            "player_name": "CJ Abrams",
+            "team": "WSH",
+            "opponent": "AZ",
+            "line": "2+ TB",
+            "score": 16.27,
+            "confidence": 16,
+            "tier": "C",
+            "reason": "Edge 22.6, trend 0.40, matchup 0.32, form 0.40",
+            "sim_prob_pct": 50.0,
+            "calibration_status": "ok",
+            "baseline_prob_pct": 50.7,
+            "calibration_gap_pp": -0.7
           }
         ],
         "ML": []
@@ -5984,19 +6032,19 @@
           "market": "RBI",
           "player_name": "Dalton Rushing",
           "line": "2+ RBI",
-          "score": 26.98,
-          "confidence": 27,
-          "tier": "B",
+          "score": 29.75,
+          "confidence": 30,
+          "tier": "A",
           "sim_prob_pct": 62.5
         },
         {
-          "market": "TB",
-          "player_name": "Andy Pages",
-          "line": "2+ TB",
-          "score": 16.35,
+          "market": "K",
+          "player_name": "Emmet Sheehan",
+          "line": "6+ K",
+          "score": 16.5,
           "confidence": 16,
           "tier": "C",
-          "sim_prob_pct": 58.4
+          "sim_prob_pct": 53.6
         }
       ],
       "markets": {
@@ -6017,19 +6065,34 @@
             "calibration_gap_pp": 7.7
           },
           {
-            "player_id": "687221",
-            "player_name": "Dalton Rushing",
+            "player_id": "571970",
+            "player_name": "Max Muncy",
             "team": "LAD",
             "opponent": "LAA",
             "line": "HR 1+",
-            "score": 19.57,
-            "confidence": 20,
-            "tier": "C",
-            "reason": "HR edge 22.5 | L5 0.80/g | L10 0.70/g | Season 0.21/g | HR% 0.17 | HistHR% 0.12 | OPS 0.844 | SLG 0.505 | ISO 0.247 | PowIdx 0.37 | Surge 0.57 | Matchup 0.18 | ProjPA 3.7 | Sample 0.61 | Peak3Y 0.029 | vs Jos\u00e9 Soriano | ERA 2.72 | WHIP 1.21 | HR/9 0.83 | HR A 7 | Hand R | Platoon + | Age 25 | Order est. 9 | Lineup pen 2.3 | Rising 0.54 | L5 XBH 1.20/g | Season XBH 0.29/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 32.2,
+            "score": 22.01,
+            "confidence": 22,
+            "tier": "B",
+            "reason": "HR edge 18.1 | L5 0.20/g | L10 0.10/g | Season 0.24/g | HR% 0.21 | HistHR% 0.22 | OPS 0.863 | SLG 0.513 | ISO 0.254 | PowIdx 0.49 | Surge 0.14 | Matchup 0.18 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.061 | vs Jos\u00e9 Soriano | ERA 2.72 | WHIP 1.21 | HR/9 0.83 | HR A 7 | Hand R | Platoon + | vsP 0.200/0.533 in 6 PA | Age 35 | Order est. 4 | Lineup confirmed | Power due 0.31 | L5 XBH 0.20/g | Season XBH 0.36/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 29.7,
             "calibration_status": "ok",
-            "baseline_prob_pct": 18.1,
-            "calibration_gap_pp": 14.2
+            "baseline_prob_pct": 23.1,
+            "calibration_gap_pp": 6.6
+          },
+          {
+            "player_id": "660271",
+            "player_name": "Shohei Ohtani",
+            "team": "LAD",
+            "opponent": "LAA",
+            "line": "HR 1+",
+            "score": 20.76,
+            "confidence": 21,
+            "tier": "C",
+            "reason": "HR edge 15.6 | L5 0.00/g | L10 0.30/g | Season 0.17/g | HR% 0.16 | HistHR% 0.28 | OPS 0.941 | SLG 0.524 | ISO 0.224 | PowIdx 0.54 | Surge 0.04 | Matchup 0.18 | ProjPA 4.6 | Sample 1.00 | Peak3Y 0.075 | vs Jos\u00e9 Soriano | ERA 2.72 | WHIP 1.21 | HR/9 0.83 | HR A 7 | Hand R | Platoon + | vsP 0.000/0.500 in 6 PA | Age 31 | Order est. 1 | Lineup confirmed | Power due 0.24 | Season XBH 0.43/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 27.2,
+            "calibration_status": "ok",
+            "baseline_prob_pct": 14.9,
+            "calibration_gap_pp": 12.4
           },
           {
             "player_id": "687263",
@@ -6045,51 +6108,6 @@
             "calibration_status": "ok",
             "baseline_prob_pct": 18.0,
             "calibration_gap_pp": 7.1
-          },
-          {
-            "player_id": "660271",
-            "player_name": "Shohei Ohtani",
-            "team": "LAD",
-            "opponent": "LAA",
-            "line": "HR 1+",
-            "score": 18.51,
-            "confidence": 19,
-            "tier": "C",
-            "reason": "HR edge 14.9 | L5 0.00/g | L10 0.30/g | Season 0.17/g | HR% 0.16 | HistHR% 0.27 | OPS 0.941 | SLG 0.524 | ISO 0.224 | PowIdx 0.53 | Surge 0.04 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.075 | vs Jos\u00e9 Soriano | ERA 2.72 | WHIP 1.21 | HR/9 0.83 | HR A 7 | Hand R | Platoon + | vsP 0.000/0.333 in 3 PA | Age 31 | Order est. 1 | Lineup pen 1.8 | Power due 0.24 | Season XBH 0.43/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 26.5,
-            "calibration_status": "ok",
-            "baseline_prob_pct": 14.9,
-            "calibration_gap_pp": 11.6
-          },
-          {
-            "player_id": "571970",
-            "player_name": "Max Muncy",
-            "team": "LAD",
-            "opponent": "LAA",
-            "line": "HR 1+",
-            "score": 17.67,
-            "confidence": 18,
-            "tier": "C",
-            "reason": "HR edge 18.0 | L5 0.20/g | L10 0.10/g | Season 0.24/g | HR% 0.20 | HistHR% 0.21 | OPS 0.863 | SLG 0.513 | ISO 0.254 | PowIdx 0.50 | Surge 0.13 | Matchup 0.18 | ProjPA 4.1 | Sample 1.00 | Peak3Y 0.061 | vs Jos\u00e9 Soriano | ERA 2.72 | WHIP 1.21 | HR/9 0.83 | HR A 7 | Hand R | Platoon + | vsP 1.000/2.000 in 1 PA | Age 35 | Order est. 5 | Lineup pen 1.8 | Power due 0.30 | L5 XBH 0.20/g | Season XBH 0.36/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 29.6,
-            "calibration_status": "ok",
-            "baseline_prob_pct": 23.1,
-            "calibration_gap_pp": 6.4
-          },
-          {
-            "player_id": "681624",
-            "player_name": "Andy Pages",
-            "team": "LAD",
-            "opponent": "LAA",
-            "line": "HR 1+",
-            "score": 16.07,
-            "confidence": 16,
-            "tier": "C",
-            "reason": "HR edge 14.2 | L5 0.20/g | L10 0.30/g | Season 0.21/g | HR% 0.19 | HistHR% 0.16 | OPS 0.852 | SLG 0.522 | ISO 0.239 | PowIdx 0.35 | Surge 0.15 | Matchup 0.18 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.043 | vs Jos\u00e9 Soriano | ERA 2.72 | WHIP 1.21 | HR/9 0.83 | HR A 7 | Hand R | Platoon - | vsP 0.000/0.000 in 2 PA | Age 25 | Order est. 2 | Lineup pen 1.8 | Rising 0.48 | L5 XBH 0.20/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 26.2,
-            "calibration_status": "ok",
-            "baseline_prob_pct": 19.2,
-            "calibration_gap_pp": 7.1
           }
         ],
         "RBI": [
@@ -6099,26 +6117,38 @@
             "team": "LAD",
             "opponent": "LAA",
             "line": "2+ RBI",
-            "score": 26.98,
-            "confidence": 27,
-            "tier": "B",
-            "reason": "RBI edge 48.8 | L5 1.60/g | L10 1.40/g | Season 0.53/g | Order est. 9 | Team R/G 5.23 | Team OBP 0.342 | WHIP 1.21 | Platoon 1.00 | RISP 0.17 | Lineup pen 2.3 | Wts T0.34/M0.33/F0.33",
+            "score": 29.75,
+            "confidence": 30,
+            "tier": "A",
+            "reason": "RBI edge 48.8 | L5 1.60/g | L10 1.40/g | Season 0.53/g | Order est. 6 | Team R/G 5.23 | Team OBP 0.342 | WHIP 1.21 | Platoon 1.00 | RISP 0.17 | Lineup pen 0.0 | Wts T0.34/M0.33/F0.33",
             "sim_prob_pct": 62.5,
             "calibration_status": "warn",
             "baseline_prob_pct": 9.9,
             "calibration_gap_pp": 52.6
           },
           {
-            "player_id": "681624-rbi",
-            "player_name": "Andy Pages",
+            "player_id": "669899-rbi",
+            "player_name": "Ryan Ward",
             "team": "LAD",
             "opponent": "LAA",
             "line": "1+ RBI",
-            "score": 21.06,
-            "confidence": 21,
+            "score": 16.84,
+            "confidence": 17,
             "tier": "C",
-            "reason": "RBI edge 33.1 | L5 1.00/g | L10 1.20/g | Season 0.81/g | Order est. 2 | Team R/G 5.23 | Team OBP 0.342 | WHIP 1.21 | Platoon 0.25 | RISP 0.31 | Lineup pen 1.8 | Wts T0.34/M0.33/F0.33",
-            "sim_prob_pct": 56.7
+            "reason": "Rookie cap (Career 6G) | RBI edge 21.7 | L5 0.60/g | L10 0.83/g | Season 0.83/g | Order est. 7 | Team R/G 5.23 | Team OBP 0.342 | WHIP 1.21 | Platoon 1.00 | RISP 0.28 | Lineup pen 0.0 | Wts T0.34/M0.33/F0.33",
+            "sim_prob_pct": 46.1
+          },
+          {
+            "player_id": "518692-rbi",
+            "player_name": "Freddie Freeman",
+            "team": "LAD",
+            "opponent": "LAA",
+            "line": "1+ RBI",
+            "score": 16.2,
+            "confidence": 16,
+            "tier": "C",
+            "reason": "RBI edge 18.2 | L5 0.40/g | L10 1.20/g | Season 0.56/g | Order est. 2 | Team R/G 5.23 | Team OBP 0.342 | WHIP 1.21 | Platoon 1.00 | RISP 0.28 | Lineup pen 0.0 | Wts T0.34/M0.33/F0.33",
+            "sim_prob_pct": 42.4
           }
         ],
         "K": [
@@ -6138,40 +6168,8 @@
             "calibration_gap_pp": 4.2
           }
         ],
-        "Hits": [
-          {
-            "player_id": "681624-hits",
-            "player_name": "Andy Pages",
-            "team": "LAD",
-            "opponent": "LAA",
-            "line": "1+ Hit",
-            "score": 24.62,
-            "confidence": 25,
-            "tier": "B",
-            "reason": "Edge 58.0, trend 0.60, matchup 0.21, form 0.32",
-            "sim_prob_pct": 92.3,
-            "calibration_status": "ok",
-            "baseline_prob_pct": 83.1,
-            "calibration_gap_pp": 9.1
-          }
-        ],
-        "TB": [
-          {
-            "player_id": "681624-tb",
-            "player_name": "Andy Pages",
-            "team": "LAD",
-            "opponent": "LAA",
-            "line": "2+ TB",
-            "score": 16.35,
-            "confidence": 16,
-            "tier": "C",
-            "reason": "Edge 29.6, trend 0.45, matchup 0.25, form 0.33",
-            "sim_prob_pct": 58.4,
-            "calibration_status": "ok",
-            "baseline_prob_pct": 58.1,
-            "calibration_gap_pp": 0.2
-          }
-        ],
+        "Hits": [],
+        "TB": [],
         "ML": []
       },
       "env": {
@@ -6180,18 +6178,37 @@
         "is_dome": false,
         "park_factor_lhb": 1.02,
         "park_factor_rhb": 1.02,
-        "wind_mph": null,
-        "wind_deg": null,
-        "wind_label": null,
-        "hr_lean": "neutral",
-        "summary_chip": "Dodger Stadium \u00b7 wind n/a"
+        "wind_mph": 4,
+        "wind_deg": 223,
+        "wind_label": "OUT",
+        "hr_lean": "HR boost",
+        "summary_chip": "Dodger Stadium \u00b7 4mph OUT (HR boost)"
       }
     },
     {
       "game_id": "nym-sd-2026-06-07",
       "matchup": "NYM @ SD",
       "time": "4:10 PM ET",
-      "top_signals": [],
+      "top_signals": [
+        {
+          "market": "HR",
+          "player_name": "Juan Soto",
+          "line": "HR 1+",
+          "score": 24.8,
+          "confidence": 25,
+          "tier": "B",
+          "sim_prob_pct": 31.5
+        },
+        {
+          "market": "TB",
+          "player_name": "Juan Soto",
+          "line": "2+ TB",
+          "score": 16.09,
+          "confidence": 16,
+          "tier": "C",
+          "sim_prob_pct": 48.4
+        }
+      ],
       "markets": {
         "HR": [
           {
@@ -6200,20 +6217,36 @@
             "team": "NYM",
             "opponent": "SD",
             "line": "HR 1+",
-            "score": 19.14,
-            "confidence": 19,
-            "tier": "C",
-            "reason": "HR edge 17.4 | L5 0.00/g | L10 0.10/g | Season 0.28/g | HR% 0.21 | HistHR% 0.21 | OPS 0.902 | SLG 0.537 | ISO 0.257 | PowIdx 0.51 | Surge 0.20 | Matchup 0.24 | ProjPA 4.2 | Sample 1.00 | Peak3Y 0.059 | vs Randy V\u00e1squez | ERA 3.31 | WHIP 1.22 | HR/9 1.24 | HR A 9 | Hand R | Platoon + | vsP 0.333/1.666 in 3 PA | vsP HR 1 | Age 27 | Order est. 6 | Lineup pen 1.8 | Power due 0.36 | Rising 0.36 | L5 XBH 0.40/g | Season XBH 0.38/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 29.9,
+            "score": 24.8,
+            "confidence": 25,
+            "tier": "B",
+            "reason": "HR edge 19.1 | L5 0.00/g | L10 0.10/g | Season 0.28/g | HR% 0.22 | HistHR% 0.22 | OPS 0.902 | SLG 0.537 | ISO 0.257 | PowIdx 0.55 | Surge 0.21 | Matchup 0.24 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.059 | vs Randy V\u00e1squez | ERA 3.31 | WHIP 1.22 | HR/9 1.24 | HR A 9 | Hand R | Platoon + | vsP 0.333/1.666 in 3 PA | vsP HR 1 | Age 27 | Order est. 3 | Lineup confirmed | Power due 0.38 | Rising 0.37 | L5 XBH 0.40/g | Season XBH 0.38/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 31.5,
             "calibration_status": "ok",
             "baseline_prob_pct": 23.5,
-            "calibration_gap_pp": 6.4
+            "calibration_gap_pp": 8.1
           }
         ],
         "RBI": [],
         "K": [],
         "Hits": [],
-        "TB": [],
+        "TB": [
+          {
+            "player_id": "665742-tb",
+            "player_name": "Juan Soto",
+            "team": "NYM",
+            "opponent": "SD",
+            "line": "2+ TB",
+            "score": 16.09,
+            "confidence": 16,
+            "tier": "C",
+            "reason": "Edge 19.4, trend 0.50, matchup 0.38, form 0.39",
+            "sim_prob_pct": 48.4,
+            "calibration_status": "ok",
+            "baseline_prob_pct": 48.7,
+            "calibration_gap_pp": -0.2
+          }
+        ],
         "ML": []
       },
       "env": {
@@ -6222,11 +6255,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.9,
         "park_factor_rhb": 0.92,
-        "wind_mph": null,
-        "wind_deg": null,
-        "wind_label": null,
-        "hr_lean": "HR suppress",
-        "summary_chip": "Petco Park \u00b7 wind n/a (HR suppress)"
+        "wind_mph": 5,
+        "wind_deg": 215,
+        "wind_label": "OUT",
+        "hr_lean": "neutral",
+        "summary_chip": "Petco Park \u00b7 5mph OUT"
       }
     },
     {
@@ -6282,14 +6315,14 @@
             "team": "SF",
             "opponent": "CHC",
             "line": "HR 1+",
-            "score": 16.78,
+            "score": 17.22,
             "confidence": 17,
             "tier": "C",
-            "reason": "HR edge 7.7 | L5 0.20/g | L10 0.10/g | Season 0.17/g | HR% 0.16 | HistHR% 0.18 | OPS 0.745 | SLG 0.453 | ISO 0.207 | PowIdx 0.43 | Surge 0.15 | Matchup 0.69 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.046 | vs Jameson Taillon | ERA 5.13 | WHIP 1.26 | HR/9 2.70 | HR A 20 | Hand R | Platoon - | vsP 0.150/0.532 in 22 PA | vsP HR 1 | Age 30 | Order est. 2 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.47/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 20.1,
+            "reason": "HR edge 8.3 | L5 0.20/g | L10 0.10/g | Season 0.17/g | HR% 0.16 | HistHR% 0.18 | OPS 0.745 | SLG 0.453 | ISO 0.207 | PowIdx 0.44 | Surge 0.15 | Matchup 0.69 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.046 | vs Jameson Taillon | ERA 5.13 | WHIP 1.26 | HR/9 2.70 | HR A 20 | Hand R | Platoon - | vsP 0.500/2.667 in 3 PA | vsP HR 1 | Age 30 | Order est. 2 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.47/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 20.6,
             "calibration_status": "ok",
             "baseline_prob_pct": 15.1,
-            "calibration_gap_pp": 5.0
+            "calibration_gap_pp": 5.5
           },
           {
             "player_id": "669477",
@@ -6335,11 +6368,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.06,
         "park_factor_rhb": 1.04,
-        "wind_mph": null,
-        "wind_deg": null,
-        "wind_label": null,
+        "wind_mph": 9,
+        "wind_deg": 79,
+        "wind_label": "CROSS",
         "hr_lean": "neutral",
-        "summary_chip": "Wrigley Field \u00b7 wind n/a"
+        "summary_chip": "Wrigley Field \u00b7 9mph CROSS"
       }
     }
   ]
