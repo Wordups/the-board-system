@@ -1,11 +1,11 @@
 {
   "sport": "MLB",
   "date": "2026-06-09",
-  "last_updated": "1:07 PM ET",
+  "last_updated": "1:33 PM ET",
   "calibration": {
     "threshold_pp": 15.0,
     "mode": "hard",
-    "held_count": 181,
+    "held_count": 180,
     "held_for_calibration": [
       {
         "player_id": "683002-hits",
@@ -1796,18 +1796,6 @@
         "reason": "sim 61.6% +22.5pp over baseline (hits_1)"
       },
       {
-        "player_id": "593428-hits",
-        "player_name": "Xander Bogaerts",
-        "team": "SD",
-        "opponent": "CIN",
-        "market": "Hits",
-        "line": "1+ Hit",
-        "sim_prob_pct": 84.8,
-        "baseline_prob_pct": 65.0,
-        "calibration_gap_pp": 19.8,
-        "reason": "sim 65.0% +19.8pp over baseline (hits_1)"
-      },
-      {
         "player_id": "592518-hits",
         "player_name": "Manny Machado",
         "team": "SD",
@@ -2892,20 +2880,20 @@
           "game_id": "atl-cws-2026-06-09",
           "market": "HR",
           "line": "HR 1+",
-          "score": 26.39,
-          "base_score": 26.39,
+          "score": 26.29,
+          "base_score": 26.29,
           "lazy_penalty": 0.0,
           "confidence": 26,
           "tier": "B",
-          "reason": "HR edge 18.2 | L5 0.00/g | L10 0.20/g | Season 0.26/g | HR% 0.21 | HistHR% 0.23 | OPS 0.877 | SLG 0.539 | ISO 0.272 | PowIdx 0.69 | Surge 0.11 | Matchup 0.78 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.073 | vs Erick Fedde | ERA 4.94 | WHIP 1.41 | HR/9 2.01 | HR A 13 | Hand R | Platoon + | vsP 0.200/1.000 in 5 PA | vsP HR 1 | Age 32 | Order est. 1 | Lineup pen 1.2 | Power due 0.18 | L5 XBH 0.40/g | Season XBH 0.55/g | Wts T0.42/M0.28/F0.30",
+          "reason": "HR edge 18.0 | L5 0.00/g | L10 0.20/g | Season 0.26/g | HR% 0.21 | HistHR% 0.23 | OPS 0.877 | SLG 0.539 | ISO 0.272 | PowIdx 0.69 | Surge 0.11 | Matchup 0.78 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.073 | vs Erick Fedde | ERA 4.94 | WHIP 1.41 | HR/9 2.01 | HR A 13 | Hand R | Platoon + | vsP 0.111/0.717 in 11 PA | vsP HR 1 | Age 32 | Order est. 1 | Lineup pen 1.2 | Power due 0.18 | L5 XBH 0.40/g | Season XBH 0.55/g | Wts T0.42/M0.28/F0.30",
           "play_of_day": false,
           "hr_bucket": "core",
           "pitcher": "Erick Fedde",
           "whip": 1.41,
           "hr9": 2.01,
           "hr_allowed": 13,
-          "vs_pitcher_avg": 0.2,
-          "vs_pitcher_ops": 1.0,
+          "vs_pitcher_avg": 0.111,
+          "vs_pitcher_ops": 0.717,
           "vs_pitcher_hr": 1,
           "order_estimate": 1,
           "projected_pa": 4.5,
@@ -4022,14 +4010,14 @@
             "team": "SEA",
             "opponent": "BAL",
             "line": "HR 1+",
-            "score": 18.66,
-            "confidence": 19,
+            "score": 17.9,
+            "confidence": 18,
             "tier": "C",
-            "reason": "HR edge 10.4 | L5 0.00/g | L10 0.00/g | Season 0.19/g | HR% 0.17 | HistHR% 0.18 | OPS 0.767 | SLG 0.452 | ISO 0.196 | PowIdx 0.56 | Surge 0.10 | Matchup 0.81 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.045 | vs Trevor Rogers | ERA 6.29 | WHIP 1.51 | HR/9 1.33 | HR A 8 | Hand L | Platoon + | vsP 0.333/1.000 in 6 PA | Age 25 | Order est. 1 | Lineup pen 1.2 | Power due 0.26 | Rising 0.32 | Season XBH 0.40/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 22.5,
+            "reason": "HR edge 9.4 | L5 0.00/g | L10 0.00/g | Season 0.19/g | HR% 0.17 | HistHR% 0.18 | OPS 0.767 | SLG 0.452 | ISO 0.196 | PowIdx 0.53 | Surge 0.10 | Matchup 0.81 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.045 | vs Trevor Rogers | ERA 6.29 | WHIP 1.51 | HR/9 1.33 | HR A 8 | Hand L | Platoon + | vsP 0.333/0.666 in 3 PA | Age 25 | Order est. 1 | Lineup pen 1.2 | Power due 0.26 | Rising 0.32 | Season XBH 0.40/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 21.5,
             "calibration_status": "ok",
             "baseline_prob_pct": 16.5,
-            "calibration_gap_pp": 6.0
+            "calibration_gap_pp": 5.0
           },
           {
             "player_id": "624413",
@@ -4137,11 +4125,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.05,
         "park_factor_rhb": 1.02,
-        "wind_mph": 4,
-        "wind_deg": 131,
+        "wind_mph": 7,
+        "wind_deg": 123,
         "wind_label": "CROSS",
         "hr_lean": "neutral",
-        "summary_chip": "Camden Yards \u00b7 4mph CROSS"
+        "summary_chip": "Camden Yards \u00b7 7mph CROSS"
       }
     },
     {
@@ -4215,14 +4203,14 @@
             "team": "LAD",
             "opponent": "PIT",
             "line": "HR 1+",
-            "score": 20.4,
+            "score": 19.58,
             "confidence": 20,
             "tier": "C",
-            "reason": "HR edge 16.7 | L5 0.00/g | L10 0.30/g | Season 0.17/g | HR% 0.16 | HistHR% 0.28 | OPS 0.939 | SLG 0.522 | ISO 0.220 | PowIdx 0.57 | Surge 0.04 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.075 | vs Paul Skenes | ERA 2.83 | WHIP 0.90 | HR/9 0.77 | HR A 6 | Hand R | Platoon + | vsP 0.333/1.166 in 6 PA | vsP HR 1 | Age 31 | Order est. 1 | Lineup pen 1.2 | Power due 0.23 | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 28.3,
+            "reason": "HR edge 15.6 | L5 0.00/g | L10 0.30/g | Season 0.17/g | HR% 0.16 | HistHR% 0.28 | OPS 0.939 | SLG 0.522 | ISO 0.220 | PowIdx 0.54 | Surge 0.04 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.075 | vs Paul Skenes | ERA 2.83 | WHIP 0.90 | HR/9 0.77 | HR A 6 | Hand R | Platoon + | vsP 0.182/0.705 in 12 PA | vsP HR 1 | Age 31 | Order est. 1 | Lineup pen 1.2 | Power due 0.23 | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 27.4,
             "calibration_status": "ok",
             "baseline_prob_pct": 14.6,
-            "calibration_gap_pp": 13.7
+            "calibration_gap_pp": 12.7
           },
           {
             "player_id": "681624",
@@ -4416,7 +4404,7 @@
         "park_factor_lhb": 0.85,
         "park_factor_rhb": 0.9,
         "wind_mph": 9,
-        "wind_deg": 187,
+        "wind_deg": 202,
         "wind_label": "CROSS",
         "hr_lean": "HR suppress",
         "summary_chip": "PNC Park \u00b7 9mph CROSS (HR suppress)"
@@ -4683,11 +4671,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.94,
         "park_factor_rhb": 0.92,
-        "wind_mph": 12,
-        "wind_deg": 173,
+        "wind_mph": 10,
+        "wind_deg": 166,
         "wind_label": "OUT",
         "hr_lean": "neutral",
-        "summary_chip": "Comerica Park \u00b7 12mph OUT"
+        "summary_chip": "Comerica Park \u00b7 10mph OUT"
       }
     },
     {
@@ -4976,11 +4964,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.92,
         "park_factor_rhb": 0.93,
-        "wind_mph": 13,
-        "wind_deg": 177,
+        "wind_mph": 14,
+        "wind_deg": 185,
         "wind_label": "OUT",
         "hr_lean": "neutral",
-        "summary_chip": "Progressive Field \u00b7 13mph OUT"
+        "summary_chip": "Progressive Field \u00b7 14mph OUT"
       }
     },
     {
@@ -5208,11 +5196,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.92,
         "park_factor_rhb": 0.94,
-        "wind_mph": 12,
-        "wind_deg": 205,
+        "wind_mph": 11,
+        "wind_deg": 178,
         "wind_label": "CROSS",
         "hr_lean": "HR suppress",
-        "summary_chip": "Citi Field \u00b7 12mph CROSS (HR suppress)"
+        "summary_chip": "Citi Field \u00b7 11mph CROSS (HR suppress)"
       }
     },
     {
@@ -5342,11 +5330,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.86,
         "park_factor_rhb": 0.88,
-        "wind_mph": 7,
-        "wind_deg": 191,
+        "wind_mph": 13,
+        "wind_deg": 200,
         "wind_label": "OUT",
         "hr_lean": "neutral",
-        "summary_chip": "Kauffman Stadium \u00b7 7mph OUT"
+        "summary_chip": "Kauffman Stadium \u00b7 13mph OUT"
       }
     },
     {
@@ -5405,10 +5393,10 @@
             "team": "ATL",
             "opponent": "CWS",
             "line": "HR 1+",
-            "score": 26.39,
+            "score": 26.29,
             "confidence": 26,
             "tier": "B",
-            "reason": "HR edge 18.2 | L5 0.00/g | L10 0.20/g | Season 0.26/g | HR% 0.21 | HistHR% 0.23 | OPS 0.877 | SLG 0.539 | ISO 0.272 | PowIdx 0.69 | Surge 0.11 | Matchup 0.78 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.073 | vs Erick Fedde | ERA 4.94 | WHIP 1.41 | HR/9 2.01 | HR A 13 | Hand R | Platoon + | vsP 0.200/1.000 in 5 PA | vsP HR 1 | Age 32 | Order est. 1 | Lineup pen 1.2 | Power due 0.18 | L5 XBH 0.40/g | Season XBH 0.55/g | Wts T0.42/M0.28/F0.30",
+            "reason": "HR edge 18.0 | L5 0.00/g | L10 0.20/g | Season 0.26/g | HR% 0.21 | HistHR% 0.23 | OPS 0.877 | SLG 0.539 | ISO 0.272 | PowIdx 0.69 | Surge 0.11 | Matchup 0.78 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.073 | vs Erick Fedde | ERA 4.94 | WHIP 1.41 | HR/9 2.01 | HR A 13 | Hand R | Platoon + | vsP 0.111/0.717 in 11 PA | vsP HR 1 | Age 32 | Order est. 1 | Lineup pen 1.2 | Power due 0.18 | L5 XBH 0.40/g | Season XBH 0.55/g | Wts T0.42/M0.28/F0.30",
             "sim_prob_pct": 30.0,
             "calibration_status": "ok",
             "baseline_prob_pct": 21.5,
@@ -5504,11 +5492,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.07,
         "park_factor_rhb": 1.05,
-        "wind_mph": 9,
-        "wind_deg": 198,
+        "wind_mph": 7,
+        "wind_deg": 238,
         "wind_label": "OUT",
         "hr_lean": "HR boost",
-        "summary_chip": "Rate Field \u00b7 9mph OUT (HR boost)"
+        "summary_chip": "Rate Field \u00b7 7mph OUT (HR boost)"
       }
     },
     {
@@ -5605,11 +5593,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.3,
         "park_factor_rhb": 1.28,
-        "wind_mph": 3,
-        "wind_deg": 126,
-        "wind_label": "CROSS",
+        "wind_mph": 4,
+        "wind_deg": 9,
+        "wind_label": "IN",
         "hr_lean": "HR boost",
-        "summary_chip": "Coors Field \u00b7 3mph CROSS (HR boost)"
+        "summary_chip": "Coors Field \u00b7 4mph IN (HR boost)"
       }
     },
     {
@@ -5730,11 +5718,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.0,
         "park_factor_rhb": 1.02,
-        "wind_mph": 3,
-        "wind_deg": 212,
+        "wind_mph": 5,
+        "wind_deg": 240,
         "wind_label": "OUT",
         "hr_lean": "HR boost",
-        "summary_chip": "Angel Stadium \u00b7 3mph OUT (HR boost)"
+        "summary_chip": "Angel Stadium \u00b7 5mph OUT (HR boost)"
       }
     },
     {
@@ -5862,11 +5850,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.9,
         "park_factor_rhb": 0.92,
-        "wind_mph": 3,
-        "wind_deg": 285,
-        "wind_label": "CROSS",
-        "hr_lean": "HR suppress",
-        "summary_chip": "Petco Park \u00b7 3mph CROSS (HR suppress)"
+        "wind_mph": 6,
+        "wind_deg": 236,
+        "wind_label": "OUT",
+        "hr_lean": "neutral",
+        "summary_chip": "Petco Park \u00b7 6mph OUT"
       }
     },
     {
@@ -6025,11 +6013,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.8,
         "park_factor_rhb": 0.95,
-        "wind_mph": 6,
-        "wind_deg": 282,
+        "wind_mph": 9,
+        "wind_deg": 283,
         "wind_label": "OUT",
         "hr_lean": "neutral",
-        "summary_chip": "Oracle Park \u00b7 6mph OUT"
+        "summary_chip": "Oracle Park \u00b7 9mph OUT"
       }
     },
     {
@@ -6196,11 +6184,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.1,
         "park_factor_rhb": 1.05,
-        "wind_mph": 2,
-        "wind_deg": 180,
-        "wind_label": "OUT",
+        "wind_mph": 3,
+        "wind_deg": 294,
+        "wind_label": "CROSS",
         "hr_lean": "HR boost",
-        "summary_chip": "Sutter Health Park \u00b7 2mph OUT (HR boost)"
+        "summary_chip": "Sutter Health Park \u00b7 3mph CROSS (HR boost)"
       }
     }
   ]
