@@ -1,7 +1,7 @@
 {
   "sport": "MLB",
   "date": "2026-06-09",
-  "last_updated": "1:33 PM ET",
+  "last_updated": "2:07 PM ET",
   "calibration": {
     "threshold_pp": 15.0,
     "mode": "hard",
@@ -2460,13 +2460,13 @@
           "reason": "HR edge 24.1 | L5 0.20/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.20 | OPS 1.041 | SLG 0.641 | ISO 0.337 | PowIdx 0.66 | Surge 0.26 | Matchup 0.57 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.049 | vs Slade Cecconi | ERA 4.92 | WHIP 1.43 | HR/9 1.20 | HR A 9 | Hand R | Platoon + | vsP 0.000/0.000 in 3 PA | Age 27 | Order est. 2 | Lineup pen 1.2 | Rising 0.57 | L5 XBH 0.80/g | Season XBH 0.58/g | Wts T0.42/M0.28/F0.30"
         },
         {
-          "player_name": "Colson Montgomery",
-          "team": "CWS",
-          "opponent": "ATL",
+          "player_name": "James Wood",
+          "team": "WSH",
+          "opponent": "SF",
           "line": "HR 1+",
-          "score": 27.76,
-          "tier": "B",
-          "reason": "HR edge 22.5 | L5 0.20/g | L10 0.20/g | Season 0.25/g | HR% 0.21 | HistHR% 0.26 | OPS 0.801 | SLG 0.479 | ISO 0.254 | PowIdx 0.62 | Surge 0.15 | Matchup 0.58 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.071 | vs Grant Holmes | ERA 3.86 | WHIP 1.32 | HR/9 1.71 | HR A 12 | Hand R | Platoon + | Age 24 | Order est. 2 | Lineup pen 1.2 | Power due 0.22 | Rising 0.46 | L5 XBH 0.20/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30"
+          "score": 28.46,
+          "tier": "A",
+          "reason": "HR edge 20.5 | L5 0.20/g | L10 0.30/g | Season 0.25/g | HR% 0.20 | HistHR% 0.17 | OPS 0.930 | SLG 0.526 | ISO 0.261 | PowIdx 0.65 | Surge 0.23 | Matchup 0.84 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.045 | vs Adrian Houser | ERA 5.49 | WHIP 1.58 | HR/9 1.48 | HR A 10 | Hand R | Platoon + | vsP 0.250/1.571 in 7 PA | vsP HR 1 | Age 23 | Order est. 1 | Lineup pen 1.2 | Rising 0.65 | L5 XBH 0.60/g | Season XBH 0.48/g | Wts T0.42/M0.28/F0.30"
         }
       ],
       "count": 3
@@ -2689,6 +2689,52 @@
           "evidence": []
         },
         {
+          "player_id": "695578",
+          "player_name": "James Wood",
+          "team": "WSH",
+          "opponent": "SF",
+          "game_id": "wsh-sf-2026-06-09",
+          "market": "HR",
+          "line": "HR 1+",
+          "score": 28.46,
+          "base_score": 28.46,
+          "lazy_penalty": 0.0,
+          "confidence": 28,
+          "tier": "A",
+          "reason": "HR edge 20.5 | L5 0.20/g | L10 0.30/g | Season 0.25/g | HR% 0.20 | HistHR% 0.17 | OPS 0.930 | SLG 0.526 | ISO 0.261 | PowIdx 0.65 | Surge 0.23 | Matchup 0.84 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.045 | vs Adrian Houser | ERA 5.49 | WHIP 1.58 | HR/9 1.48 | HR A 10 | Hand R | Platoon + | vsP 0.250/1.571 in 7 PA | vsP HR 1 | Age 23 | Order est. 1 | Lineup pen 1.2 | Rising 0.65 | L5 XBH 0.60/g | Season XBH 0.48/g | Wts T0.42/M0.28/F0.30",
+          "play_of_day": false,
+          "hr_bucket": "core",
+          "pitcher": "Adrian Houser",
+          "whip": 1.58,
+          "hr9": 1.48,
+          "hr_allowed": 10,
+          "vs_pitcher_avg": 0.25,
+          "vs_pitcher_ops": 1.571,
+          "vs_pitcher_hr": 1,
+          "order_estimate": 1,
+          "projected_pa": 4.5,
+          "lineup_confirmed": false,
+          "lineup_uncertainty_penalty": 1.2,
+          "season_hr_probability": 0.204,
+          "l10_hr_probability": 0.231,
+          "l5_hr_probability": 0.18,
+          "historical_hr_probability": 0.171,
+          "season_hr_per_game": 0.254,
+          "l10_hr_per_game": 0.3,
+          "l5_hr_per_game": 0.2,
+          "ops": 0.93,
+          "slg": 0.526,
+          "iso": 0.261,
+          "sample_reliability": 1.0,
+          "age": 23,
+          "historical_power_index": 0.174,
+          "recent_peak_hr_rate": 0.045,
+          "career_hr_rate": 0.041,
+          "appearance_7d": 1,
+          "hits_7d": 0,
+          "evidence": []
+        },
+        {
           "player_id": "695657",
           "player_name": "Colson Montgomery",
           "team": "CWS",
@@ -2781,52 +2827,6 @@
           "evidence": []
         },
         {
-          "player_id": "695578",
-          "player_name": "James Wood",
-          "team": "WSH",
-          "opponent": "SF",
-          "game_id": "wsh-sf-2026-06-09",
-          "market": "HR",
-          "line": "HR 1+",
-          "score": 27.19,
-          "base_score": 27.19,
-          "lazy_penalty": 0.0,
-          "confidence": 27,
-          "tier": "B",
-          "reason": "HR edge 18.8 | L5 0.20/g | L10 0.30/g | Season 0.25/g | HR% 0.20 | HistHR% 0.17 | OPS 0.930 | SLG 0.526 | ISO 0.261 | PowIdx 0.61 | Surge 0.23 | Matchup 0.84 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.045 | vs Adrian Houser | ERA 5.49 | WHIP 1.58 | HR/9 1.48 | HR A 10 | Hand R | Platoon + | vsP 0.000/0.000 in 1 PA | Age 23 | Order est. 1 | Lineup pen 1.2 | Rising 0.65 | L5 XBH 0.60/g | Season XBH 0.48/g | Wts T0.42/M0.28/F0.30",
-          "play_of_day": false,
-          "hr_bucket": "core",
-          "pitcher": "Adrian Houser",
-          "whip": 1.58,
-          "hr9": 1.48,
-          "hr_allowed": 10,
-          "vs_pitcher_avg": 0.0,
-          "vs_pitcher_ops": 0.0,
-          "vs_pitcher_hr": 0,
-          "order_estimate": 1,
-          "projected_pa": 4.5,
-          "lineup_confirmed": false,
-          "lineup_uncertainty_penalty": 1.2,
-          "season_hr_probability": 0.204,
-          "l10_hr_probability": 0.231,
-          "l5_hr_probability": 0.18,
-          "historical_hr_probability": 0.171,
-          "season_hr_per_game": 0.254,
-          "l10_hr_per_game": 0.3,
-          "l5_hr_per_game": 0.2,
-          "ops": 0.93,
-          "slg": 0.526,
-          "iso": 0.261,
-          "sample_reliability": 1.0,
-          "age": 23,
-          "historical_power_index": 0.174,
-          "recent_peak_hr_rate": 0.045,
-          "career_hr_rate": 0.041,
-          "appearance_7d": 1,
-          "hits_7d": 0,
-          "evidence": []
-        },
-        {
           "player_id": "664040",
           "player_name": "Brandon Lowe",
           "team": "PIT",
@@ -2880,20 +2880,20 @@
           "game_id": "atl-cws-2026-06-09",
           "market": "HR",
           "line": "HR 1+",
-          "score": 26.29,
-          "base_score": 26.29,
+          "score": 26.39,
+          "base_score": 26.39,
           "lazy_penalty": 0.0,
           "confidence": 26,
           "tier": "B",
-          "reason": "HR edge 18.0 | L5 0.00/g | L10 0.20/g | Season 0.26/g | HR% 0.21 | HistHR% 0.23 | OPS 0.877 | SLG 0.539 | ISO 0.272 | PowIdx 0.69 | Surge 0.11 | Matchup 0.78 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.073 | vs Erick Fedde | ERA 4.94 | WHIP 1.41 | HR/9 2.01 | HR A 13 | Hand R | Platoon + | vsP 0.111/0.717 in 11 PA | vsP HR 1 | Age 32 | Order est. 1 | Lineup pen 1.2 | Power due 0.18 | L5 XBH 0.40/g | Season XBH 0.55/g | Wts T0.42/M0.28/F0.30",
+          "reason": "HR edge 18.2 | L5 0.00/g | L10 0.20/g | Season 0.26/g | HR% 0.21 | HistHR% 0.23 | OPS 0.877 | SLG 0.539 | ISO 0.272 | PowIdx 0.69 | Surge 0.11 | Matchup 0.78 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.073 | vs Erick Fedde | ERA 4.94 | WHIP 1.41 | HR/9 2.01 | HR A 13 | Hand R | Platoon + | vsP 0.200/1.000 in 5 PA | vsP HR 1 | Age 32 | Order est. 1 | Lineup pen 1.2 | Power due 0.18 | L5 XBH 0.40/g | Season XBH 0.55/g | Wts T0.42/M0.28/F0.30",
           "play_of_day": false,
           "hr_bucket": "core",
           "pitcher": "Erick Fedde",
           "whip": 1.41,
           "hr9": 2.01,
           "hr_allowed": 13,
-          "vs_pitcher_avg": 0.111,
-          "vs_pitcher_ops": 0.717,
+          "vs_pitcher_avg": 0.2,
+          "vs_pitcher_ops": 1.0,
           "vs_pitcher_hr": 1,
           "order_estimate": 1,
           "projected_pa": 4.5,
@@ -3110,14 +3110,14 @@
             "hr_bucket": "core"
           },
           {
-            "player_name": "Colson Montgomery",
-            "team": "CWS",
-            "opponent": "ATL",
+            "player_name": "James Wood",
+            "team": "WSH",
+            "opponent": "SF",
             "line": "HR 1+",
-            "score": 27.76,
-            "tier": "B",
-            "reason": "HR edge 22.5 | L5 0.20/g | L10 0.20/g | Season 0.25/g | HR% 0.21 | HistHR% 0.26 | OPS 0.801 | SLG 0.479 | ISO 0.254 | PowIdx 0.62 | Surge 0.15 | Matchup 0.58 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.071 | vs Grant Holmes | ERA 3.86 | WHIP 1.32 | HR/9 1.71 | HR A 12 | Hand R | Platoon + | Age 24 | Order est. 2 | Lineup pen 1.2 | Power due 0.22 | Rising 0.46 | L5 XBH 0.20/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
-            "pitcher": "Grant Holmes",
+            "score": 28.46,
+            "tier": "A",
+            "reason": "HR edge 20.5 | L5 0.20/g | L10 0.30/g | Season 0.25/g | HR% 0.20 | HistHR% 0.17 | OPS 0.930 | SLG 0.526 | ISO 0.261 | PowIdx 0.65 | Surge 0.23 | Matchup 0.84 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.045 | vs Adrian Houser | ERA 5.49 | WHIP 1.58 | HR/9 1.48 | HR A 10 | Hand R | Platoon + | vsP 0.250/1.571 in 7 PA | vsP HR 1 | Age 23 | Order est. 1 | Lineup pen 1.2 | Rising 0.65 | L5 XBH 0.60/g | Season XBH 0.48/g | Wts T0.42/M0.28/F0.30",
+            "pitcher": "Adrian Houser",
             "evidence": [],
             "hr_bucket": "core"
           }
@@ -3148,6 +3148,18 @@
             "hr_bucket": "core"
           },
           {
+            "player_name": "James Wood",
+            "team": "WSH",
+            "opponent": "SF",
+            "line": "HR 1+",
+            "score": 28.46,
+            "tier": "A",
+            "reason": "HR edge 20.5 | L5 0.20/g | L10 0.30/g | Season 0.25/g | HR% 0.20 | HistHR% 0.17 | OPS 0.930 | SLG 0.526 | ISO 0.261 | PowIdx 0.65 | Surge 0.23 | Matchup 0.84 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.045 | vs Adrian Houser | ERA 5.49 | WHIP 1.58 | HR/9 1.48 | HR A 10 | Hand R | Platoon + | vsP 0.250/1.571 in 7 PA | vsP HR 1 | Age 23 | Order est. 1 | Lineup pen 1.2 | Rising 0.65 | L5 XBH 0.60/g | Season XBH 0.48/g | Wts T0.42/M0.28/F0.30",
+            "pitcher": "Adrian Houser",
+            "evidence": [],
+            "hr_bucket": "core"
+          },
+          {
             "player_name": "Colson Montgomery",
             "team": "CWS",
             "opponent": "ATL",
@@ -3156,18 +3168,6 @@
             "tier": "B",
             "reason": "HR edge 22.5 | L5 0.20/g | L10 0.20/g | Season 0.25/g | HR% 0.21 | HistHR% 0.26 | OPS 0.801 | SLG 0.479 | ISO 0.254 | PowIdx 0.62 | Surge 0.15 | Matchup 0.58 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.071 | vs Grant Holmes | ERA 3.86 | WHIP 1.32 | HR/9 1.71 | HR A 12 | Hand R | Platoon + | Age 24 | Order est. 2 | Lineup pen 1.2 | Power due 0.22 | Rising 0.46 | L5 XBH 0.20/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
             "pitcher": "Grant Holmes",
-            "evidence": [],
-            "hr_bucket": "core"
-          },
-          {
-            "player_name": "JJ Bleday",
-            "team": "CIN",
-            "opponent": "SD",
-            "line": "HR 1+",
-            "score": 27.28,
-            "tier": "B",
-            "reason": "HR edge 19.6 | L5 0.40/g | L10 0.40/g | Season 0.27/g | HR% 0.20 | HistHR% 0.14 | OPS 0.931 | SLG 0.568 | ISO 0.295 | PowIdx 0.60 | Surge 0.30 | Matchup 0.83 | ProjPA 4.3 | Sample 0.89 | Peak3Y 0.040 | vs Lucas Giolito | ERA 4.86 | WHIP 1.74 | HR/9 1.62 | HR A 3 | Hand R | Platoon + | Age 28 | Order est. 5 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.54/g | Wts T0.42/M0.28/F0.30",
-            "pitcher": "Lucas Giolito",
             "evidence": [],
             "hr_bucket": "core"
           }
@@ -3198,6 +3198,18 @@
             "hr_bucket": "core"
           },
           {
+            "player_name": "James Wood",
+            "team": "WSH",
+            "opponent": "SF",
+            "line": "HR 1+",
+            "score": 28.46,
+            "tier": "A",
+            "reason": "HR edge 20.5 | L5 0.20/g | L10 0.30/g | Season 0.25/g | HR% 0.20 | HistHR% 0.17 | OPS 0.930 | SLG 0.526 | ISO 0.261 | PowIdx 0.65 | Surge 0.23 | Matchup 0.84 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.045 | vs Adrian Houser | ERA 5.49 | WHIP 1.58 | HR/9 1.48 | HR A 10 | Hand R | Platoon + | vsP 0.250/1.571 in 7 PA | vsP HR 1 | Age 23 | Order est. 1 | Lineup pen 1.2 | Rising 0.65 | L5 XBH 0.60/g | Season XBH 0.48/g | Wts T0.42/M0.28/F0.30",
+            "pitcher": "Adrian Houser",
+            "evidence": [],
+            "hr_bucket": "core"
+          },
+          {
             "player_name": "Colson Montgomery",
             "team": "CWS",
             "opponent": "ATL",
@@ -3218,18 +3230,6 @@
             "tier": "B",
             "reason": "HR edge 19.6 | L5 0.40/g | L10 0.40/g | Season 0.27/g | HR% 0.20 | HistHR% 0.14 | OPS 0.931 | SLG 0.568 | ISO 0.295 | PowIdx 0.60 | Surge 0.30 | Matchup 0.83 | ProjPA 4.3 | Sample 0.89 | Peak3Y 0.040 | vs Lucas Giolito | ERA 4.86 | WHIP 1.74 | HR/9 1.62 | HR A 3 | Hand R | Platoon + | Age 28 | Order est. 5 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.54/g | Wts T0.42/M0.28/F0.30",
             "pitcher": "Lucas Giolito",
-            "evidence": [],
-            "hr_bucket": "core"
-          },
-          {
-            "player_name": "James Wood",
-            "team": "WSH",
-            "opponent": "SF",
-            "line": "HR 1+",
-            "score": 27.19,
-            "tier": "B",
-            "reason": "HR edge 18.8 | L5 0.20/g | L10 0.30/g | Season 0.25/g | HR% 0.20 | HistHR% 0.17 | OPS 0.930 | SLG 0.526 | ISO 0.261 | PowIdx 0.61 | Surge 0.23 | Matchup 0.84 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.045 | vs Adrian Houser | ERA 5.49 | WHIP 1.58 | HR/9 1.48 | HR A 10 | Hand R | Platoon + | vsP 0.000/0.000 in 1 PA | Age 23 | Order est. 1 | Lineup pen 1.2 | Rising 0.65 | L5 XBH 0.60/g | Season XBH 0.48/g | Wts T0.42/M0.28/F0.30",
-            "pitcher": "Adrian Houser",
             "evidence": [],
             "hr_bucket": "core"
           },
@@ -3341,48 +3341,48 @@
           "evidence": []
         },
         {
-          "player_id": "695657",
-          "player_name": "Colson Montgomery",
-          "team": "CWS",
-          "opponent": "ATL",
-          "game_id": "atl-cws-2026-06-09",
+          "player_id": "695578",
+          "player_name": "James Wood",
+          "team": "WSH",
+          "opponent": "SF",
+          "game_id": "wsh-sf-2026-06-09",
           "market": "HR",
           "line": "HR 1+",
-          "score": 27.76,
-          "base_score": 27.76,
+          "score": 28.46,
+          "base_score": 28.46,
           "lazy_penalty": 0.0,
           "confidence": 28,
-          "tier": "B",
-          "reason": "HR edge 22.5 | L5 0.20/g | L10 0.20/g | Season 0.25/g | HR% 0.21 | HistHR% 0.26 | OPS 0.801 | SLG 0.479 | ISO 0.254 | PowIdx 0.62 | Surge 0.15 | Matchup 0.58 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.071 | vs Grant Holmes | ERA 3.86 | WHIP 1.32 | HR/9 1.71 | HR A 12 | Hand R | Platoon + | Age 24 | Order est. 2 | Lineup pen 1.2 | Power due 0.22 | Rising 0.46 | L5 XBH 0.20/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
+          "tier": "A",
+          "reason": "HR edge 20.5 | L5 0.20/g | L10 0.30/g | Season 0.25/g | HR% 0.20 | HistHR% 0.17 | OPS 0.930 | SLG 0.526 | ISO 0.261 | PowIdx 0.65 | Surge 0.23 | Matchup 0.84 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.045 | vs Adrian Houser | ERA 5.49 | WHIP 1.58 | HR/9 1.48 | HR A 10 | Hand R | Platoon + | vsP 0.250/1.571 in 7 PA | vsP HR 1 | Age 23 | Order est. 1 | Lineup pen 1.2 | Rising 0.65 | L5 XBH 0.60/g | Season XBH 0.48/g | Wts T0.42/M0.28/F0.30",
           "play_of_day": false,
           "hr_bucket": "core",
-          "pitcher": "Grant Holmes",
-          "whip": 1.32,
-          "hr9": 1.71,
-          "hr_allowed": 12,
-          "vs_pitcher_avg": 0.0,
-          "vs_pitcher_ops": 0.0,
-          "vs_pitcher_hr": 0,
-          "order_estimate": 2,
-          "projected_pa": 4.4,
+          "pitcher": "Adrian Houser",
+          "whip": 1.58,
+          "hr9": 1.48,
+          "hr_allowed": 10,
+          "vs_pitcher_avg": 0.25,
+          "vs_pitcher_ops": 1.571,
+          "vs_pitcher_hr": 1,
+          "order_estimate": 1,
+          "projected_pa": 4.5,
           "lineup_confirmed": false,
           "lineup_uncertainty_penalty": 1.2,
-          "season_hr_probability": 0.211,
-          "l10_hr_probability": 0.209,
-          "l5_hr_probability": 0.206,
-          "historical_hr_probability": 0.26,
-          "season_hr_per_game": 0.25,
-          "l10_hr_per_game": 0.2,
+          "season_hr_probability": 0.204,
+          "l10_hr_probability": 0.231,
+          "l5_hr_probability": 0.18,
+          "historical_hr_probability": 0.171,
+          "season_hr_per_game": 0.254,
+          "l10_hr_per_game": 0.3,
           "l5_hr_per_game": 0.2,
-          "ops": 0.801,
-          "slg": 0.479,
-          "iso": 0.254,
+          "ops": 0.93,
+          "slg": 0.526,
+          "iso": 0.261,
           "sample_reliability": 1.0,
-          "age": 24,
-          "historical_power_index": 0.666,
-          "recent_peak_hr_rate": 0.071,
-          "career_hr_rate": 0.058,
-          "appearance_7d": 4,
+          "age": 23,
+          "historical_power_index": 0.174,
+          "recent_peak_hr_rate": 0.045,
+          "career_hr_rate": 0.041,
+          "appearance_7d": 1,
           "hits_7d": 0,
           "evidence": []
         }
@@ -4125,11 +4125,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.05,
         "park_factor_rhb": 1.02,
-        "wind_mph": 7,
-        "wind_deg": 123,
+        "wind_mph": 6,
+        "wind_deg": 121,
         "wind_label": "CROSS",
         "hr_lean": "neutral",
-        "summary_chip": "Camden Yards \u00b7 7mph CROSS"
+        "summary_chip": "Camden Yards \u00b7 6mph CROSS"
       }
     },
     {
@@ -4203,14 +4203,14 @@
             "team": "LAD",
             "opponent": "PIT",
             "line": "HR 1+",
-            "score": 19.58,
+            "score": 20.4,
             "confidence": 20,
             "tier": "C",
-            "reason": "HR edge 15.6 | L5 0.00/g | L10 0.30/g | Season 0.17/g | HR% 0.16 | HistHR% 0.28 | OPS 0.939 | SLG 0.522 | ISO 0.220 | PowIdx 0.54 | Surge 0.04 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.075 | vs Paul Skenes | ERA 2.83 | WHIP 0.90 | HR/9 0.77 | HR A 6 | Hand R | Platoon + | vsP 0.182/0.705 in 12 PA | vsP HR 1 | Age 31 | Order est. 1 | Lineup pen 1.2 | Power due 0.23 | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 27.4,
+            "reason": "HR edge 16.7 | L5 0.00/g | L10 0.30/g | Season 0.17/g | HR% 0.16 | HistHR% 0.28 | OPS 0.939 | SLG 0.522 | ISO 0.220 | PowIdx 0.57 | Surge 0.04 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.075 | vs Paul Skenes | ERA 2.83 | WHIP 0.90 | HR/9 0.77 | HR A 6 | Hand R | Platoon + | vsP 0.333/1.166 in 6 PA | vsP HR 1 | Age 31 | Order est. 1 | Lineup pen 1.2 | Power due 0.23 | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 28.3,
             "calibration_status": "ok",
             "baseline_prob_pct": 14.6,
-            "calibration_gap_pp": 12.7
+            "calibration_gap_pp": 13.7
           },
           {
             "player_id": "681624",
@@ -4403,11 +4403,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.85,
         "park_factor_rhb": 0.9,
-        "wind_mph": 9,
-        "wind_deg": 202,
+        "wind_mph": 10,
+        "wind_deg": 209,
         "wind_label": "CROSS",
         "hr_lean": "HR suppress",
-        "summary_chip": "PNC Park \u00b7 9mph CROSS (HR suppress)"
+        "summary_chip": "PNC Park \u00b7 10mph CROSS (HR suppress)"
       }
     },
     {
@@ -4466,14 +4466,14 @@
             "team": "BOS",
             "opponent": "TB",
             "line": "HR 1+",
-            "score": 17.38,
+            "score": 17.07,
             "confidence": 17,
             "tier": "C",
-            "reason": "HR edge 12.3 | L5 0.40/g | L10 0.30/g | Season 0.11/g | HR% 0.12 | HistHR% 0.18 | OPS 0.759 | SLG 0.420 | ISO 0.142 | PowIdx 0.36 | Surge 0.46 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.051 | vs Nick Martinez | ERA 2.29 | WHIP 1.19 | HR/9 0.76 | HR A 6 | Hand R | Platoon + | vsP 0.333/1.666 in 3 PA | vsP HR 1 | Age 27 | Order est. 1 | Lineup pen 1.2 | L5 XBH 1.00/g | Season XBH 0.32/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 24.2,
+            "reason": "HR edge 11.9 | L5 0.40/g | L10 0.30/g | Season 0.11/g | HR% 0.12 | HistHR% 0.18 | OPS 0.759 | SLG 0.420 | ISO 0.142 | PowIdx 0.35 | Surge 0.46 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.051 | vs Nick Martinez | ERA 2.29 | WHIP 1.19 | HR/9 0.76 | HR A 6 | Hand R | Platoon + | vsP 0.167/0.834 in 6 PA | vsP HR 1 | Age 27 | Order est. 1 | Lineup pen 1.2 | L5 XBH 1.00/g | Season XBH 0.32/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 23.9,
             "calibration_status": "ok",
             "baseline_prob_pct": 9.9,
-            "calibration_gap_pp": 14.3
+            "calibration_gap_pp": 14.0
           }
         ],
         "RBI": [
@@ -4545,10 +4545,10 @@
             "team": "BOS",
             "opponent": "TB",
             "line": "2+ TB",
-            "score": 21.22,
+            "score": 21.17,
             "confidence": 21,
             "tier": "C",
-            "reason": "Edge 34.5, trend 0.85, matchup 0.32, form 0.23",
+            "reason": "Edge 34.5, trend 0.85, matchup 0.31, form 0.23",
             "sim_prob_pct": 63.2,
             "calibration_status": "ok",
             "baseline_prob_pct": 49.5,
@@ -4671,11 +4671,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.94,
         "park_factor_rhb": 0.92,
-        "wind_mph": 10,
-        "wind_deg": 166,
+        "wind_mph": 12,
+        "wind_deg": 175,
         "wind_label": "OUT",
         "hr_lean": "neutral",
-        "summary_chip": "Comerica Park \u00b7 10mph OUT"
+        "summary_chip": "Comerica Park \u00b7 12mph OUT"
       }
     },
     {
@@ -4964,11 +4964,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.92,
         "park_factor_rhb": 0.93,
-        "wind_mph": 14,
-        "wind_deg": 185,
+        "wind_mph": 13,
+        "wind_deg": 186,
         "wind_label": "OUT",
         "hr_lean": "neutral",
-        "summary_chip": "Progressive Field \u00b7 14mph OUT"
+        "summary_chip": "Progressive Field \u00b7 13mph OUT"
       }
     },
     {
@@ -5196,11 +5196,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.92,
         "park_factor_rhb": 0.94,
-        "wind_mph": 11,
-        "wind_deg": 178,
+        "wind_mph": 12,
+        "wind_deg": 174,
         "wind_label": "CROSS",
         "hr_lean": "HR suppress",
-        "summary_chip": "Citi Field \u00b7 11mph CROSS (HR suppress)"
+        "summary_chip": "Citi Field \u00b7 12mph CROSS (HR suppress)"
       }
     },
     {
@@ -5330,11 +5330,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.86,
         "park_factor_rhb": 0.88,
-        "wind_mph": 13,
-        "wind_deg": 200,
-        "wind_label": "OUT",
-        "hr_lean": "neutral",
-        "summary_chip": "Kauffman Stadium \u00b7 13mph OUT"
+        "wind_mph": null,
+        "wind_deg": null,
+        "wind_label": null,
+        "hr_lean": "HR suppress",
+        "summary_chip": "Kauffman Stadium \u00b7 wind n/a (HR suppress)"
       }
     },
     {
@@ -5362,12 +5362,12 @@
         },
         {
           "market": "Hits",
-          "player_name": "Tristan Peters",
+          "player_name": "Ronald Acu\u00f1a Jr.",
           "line": "1+ Hit",
-          "score": 17.29,
+          "score": 17.42,
           "confidence": 17,
           "tier": "C",
-          "sim_prob_pct": 76.2
+          "sim_prob_pct": 78.1
         }
       ],
       "markets": {
@@ -5393,10 +5393,10 @@
             "team": "ATL",
             "opponent": "CWS",
             "line": "HR 1+",
-            "score": 26.29,
+            "score": 26.39,
             "confidence": 26,
             "tier": "B",
-            "reason": "HR edge 18.0 | L5 0.00/g | L10 0.20/g | Season 0.26/g | HR% 0.21 | HistHR% 0.23 | OPS 0.877 | SLG 0.539 | ISO 0.272 | PowIdx 0.69 | Surge 0.11 | Matchup 0.78 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.073 | vs Erick Fedde | ERA 4.94 | WHIP 1.41 | HR/9 2.01 | HR A 13 | Hand R | Platoon + | vsP 0.111/0.717 in 11 PA | vsP HR 1 | Age 32 | Order est. 1 | Lineup pen 1.2 | Power due 0.18 | L5 XBH 0.40/g | Season XBH 0.55/g | Wts T0.42/M0.28/F0.30",
+            "reason": "HR edge 18.2 | L5 0.00/g | L10 0.20/g | Season 0.26/g | HR% 0.21 | HistHR% 0.23 | OPS 0.877 | SLG 0.539 | ISO 0.272 | PowIdx 0.69 | Surge 0.11 | Matchup 0.78 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.073 | vs Erick Fedde | ERA 4.94 | WHIP 1.41 | HR/9 2.01 | HR A 13 | Hand R | Platoon + | vsP 0.200/1.000 in 5 PA | vsP HR 1 | Age 32 | Order est. 1 | Lineup pen 1.2 | Power due 0.18 | L5 XBH 0.40/g | Season XBH 0.55/g | Wts T0.42/M0.28/F0.30",
             "sim_prob_pct": 30.0,
             "calibration_status": "ok",
             "baseline_prob_pct": 21.5,
@@ -5453,6 +5453,21 @@
         "K": [],
         "Hits": [
           {
+            "player_id": "660670-hits",
+            "player_name": "Ronald Acu\u00f1a Jr.",
+            "team": "ATL",
+            "opponent": "CWS",
+            "line": "1+ Hit",
+            "score": 17.42,
+            "confidence": 17,
+            "tier": "C",
+            "reason": "Edge 36.9, trend 0.30, matchup 0.53, form 0.26",
+            "sim_prob_pct": 78.1,
+            "calibration_status": "ok",
+            "baseline_prob_pct": 64.9,
+            "calibration_gap_pp": 13.2
+          },
+          {
             "player_id": "671976-hits",
             "player_name": "Tristan Peters",
             "team": "CWS",
@@ -5466,21 +5481,6 @@
             "calibration_status": "ok",
             "baseline_prob_pct": 63.9,
             "calibration_gap_pp": 12.3
-          },
-          {
-            "player_id": "660670-hits",
-            "player_name": "Ronald Acu\u00f1a Jr.",
-            "team": "ATL",
-            "opponent": "CWS",
-            "line": "1+ Hit",
-            "score": 16.89,
-            "confidence": 17,
-            "tier": "C",
-            "reason": "Edge 36.9, trend 0.30, matchup 0.42, form 0.26",
-            "sim_prob_pct": 78.1,
-            "calibration_status": "ok",
-            "baseline_prob_pct": 64.9,
-            "calibration_gap_pp": 13.2
           }
         ],
         "TB": [],
@@ -5492,11 +5492,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.07,
         "park_factor_rhb": 1.05,
-        "wind_mph": 7,
-        "wind_deg": 238,
-        "wind_label": "OUT",
+        "wind_mph": null,
+        "wind_deg": null,
+        "wind_label": null,
         "hr_lean": "HR boost",
-        "summary_chip": "Rate Field \u00b7 7mph OUT (HR boost)"
+        "summary_chip": "Rate Field \u00b7 wind n/a (HR boost)"
       }
     },
     {
@@ -5594,7 +5594,7 @@
         "park_factor_lhb": 1.3,
         "park_factor_rhb": 1.28,
         "wind_mph": 4,
-        "wind_deg": 9,
+        "wind_deg": 16,
         "wind_label": "IN",
         "hr_lean": "HR boost",
         "summary_chip": "Coors Field \u00b7 4mph IN (HR boost)"
@@ -5718,11 +5718,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.0,
         "park_factor_rhb": 1.02,
-        "wind_mph": 5,
-        "wind_deg": 240,
+        "wind_mph": 6,
+        "wind_deg": 244,
         "wind_label": "OUT",
         "hr_lean": "HR boost",
-        "summary_chip": "Angel Stadium \u00b7 5mph OUT (HR boost)"
+        "summary_chip": "Angel Stadium \u00b7 6mph OUT (HR boost)"
       }
     },
     {
@@ -5851,7 +5851,7 @@
         "park_factor_lhb": 0.9,
         "park_factor_rhb": 0.92,
         "wind_mph": 6,
-        "wind_deg": 236,
+        "wind_deg": 246,
         "wind_label": "OUT",
         "hr_lean": "neutral",
         "summary_chip": "Petco Park \u00b7 6mph OUT"
@@ -5866,10 +5866,10 @@
           "market": "HR",
           "player_name": "James Wood",
           "line": "HR 1+",
-          "score": 27.19,
-          "confidence": 27,
-          "tier": "B",
-          "sim_prob_pct": 31.1
+          "score": 28.46,
+          "confidence": 28,
+          "tier": "A",
+          "sim_prob_pct": 33.4
         },
         {
           "market": "RBI",
@@ -5898,14 +5898,14 @@
             "team": "WSH",
             "opponent": "SF",
             "line": "HR 1+",
-            "score": 27.19,
-            "confidence": 27,
-            "tier": "B",
-            "reason": "HR edge 18.8 | L5 0.20/g | L10 0.30/g | Season 0.25/g | HR% 0.20 | HistHR% 0.17 | OPS 0.930 | SLG 0.526 | ISO 0.261 | PowIdx 0.61 | Surge 0.23 | Matchup 0.84 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.045 | vs Adrian Houser | ERA 5.49 | WHIP 1.58 | HR/9 1.48 | HR A 10 | Hand R | Platoon + | vsP 0.000/0.000 in 1 PA | Age 23 | Order est. 1 | Lineup pen 1.2 | Rising 0.65 | L5 XBH 0.60/g | Season XBH 0.48/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 31.1,
+            "score": 28.46,
+            "confidence": 28,
+            "tier": "A",
+            "reason": "HR edge 20.5 | L5 0.20/g | L10 0.30/g | Season 0.25/g | HR% 0.20 | HistHR% 0.17 | OPS 0.930 | SLG 0.526 | ISO 0.261 | PowIdx 0.65 | Surge 0.23 | Matchup 0.84 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.045 | vs Adrian Houser | ERA 5.49 | WHIP 1.58 | HR/9 1.48 | HR A 10 | Hand R | Platoon + | vsP 0.250/1.571 in 7 PA | vsP HR 1 | Age 23 | Order est. 1 | Lineup pen 1.2 | Rising 0.65 | L5 XBH 0.60/g | Season XBH 0.48/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 33.4,
             "calibration_status": "ok",
             "baseline_prob_pct": 24.4,
-            "calibration_gap_pp": 6.7
+            "calibration_gap_pp": 9.0
           },
           {
             "player_id": "682928",
@@ -6003,6 +6003,21 @@
             "calibration_status": "ok",
             "baseline_prob_pct": 50.9,
             "calibration_gap_pp": -0.5
+          },
+          {
+            "player_id": "695578-tb",
+            "player_name": "James Wood",
+            "team": "WSH",
+            "opponent": "SF",
+            "line": "2+ TB",
+            "score": 16.02,
+            "confidence": 16,
+            "tier": "C",
+            "reason": "Edge 19.0, trend 0.40, matchup 0.72, form 0.41",
+            "sim_prob_pct": 46.5,
+            "calibration_status": "ok",
+            "baseline_prob_pct": 45.5,
+            "calibration_gap_pp": 1.0
           }
         ],
         "ML": []
@@ -6091,14 +6106,14 @@
             "team": "MIL",
             "opponent": "ATH",
             "line": "HR 1+",
-            "score": 20.98,
+            "score": 20.65,
             "confidence": 21,
             "tier": "C",
-            "reason": "HR edge 15.2 | L5 0.40/g | L10 0.20/g | Season 0.21/g | HR% 0.19 | HistHR% 0.14 | OPS 0.912 | SLG 0.531 | ISO 0.245 | PowIdx 0.43 | Surge 0.26 | Matchup 0.18 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.042 | vs J.T. Ginn | ERA 2.74 | WHIP 1.08 | HR/9 0.96 | HR A 7 | Hand R | Platoon + | vsP 0.000/1.000 in 1 PA | Age 30 | Order est. 4 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.43/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 28.8,
+            "reason": "HR edge 14.7 | L5 0.40/g | L10 0.20/g | Season 0.21/g | HR% 0.19 | HistHR% 0.14 | OPS 0.912 | SLG 0.531 | ISO 0.245 | PowIdx 0.42 | Surge 0.26 | Matchup 0.18 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.042 | vs J.T. Ginn | ERA 2.74 | WHIP 1.08 | HR/9 0.96 | HR A 7 | Hand R | Platoon + | vsP 0.000/0.333 in 3 PA | Age 30 | Order est. 4 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.43/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 28.4,
             "calibration_status": "ok",
             "baseline_prob_pct": 19.6,
-            "calibration_gap_pp": 9.2
+            "calibration_gap_pp": 8.8
           }
         ],
         "RBI": [
@@ -6185,7 +6200,7 @@
         "park_factor_lhb": 1.1,
         "park_factor_rhb": 1.05,
         "wind_mph": 3,
-        "wind_deg": 294,
+        "wind_deg": 298,
         "wind_label": "CROSS",
         "hr_lean": "HR boost",
         "summary_chip": "Sutter Health Park \u00b7 3mph CROSS (HR boost)"
