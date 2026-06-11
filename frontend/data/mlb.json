@@ -1,7 +1,7 @@
 {
   "sport": "MLB",
   "date": "2026-06-11",
-  "last_updated": "1:48 AM ET",
+  "last_updated": "6:26 AM ET",
   "calibration": {
     "threshold_pp": 15.0,
     "mode": "hard",
@@ -1123,7 +1123,7 @@
         "team": "COL",
         "opponent": "CHC",
         "line": "HR 1+",
-        "score": 28.79,
+        "score": 28.58,
         "confidence": 29,
         "tier": "A",
         "reason": "HR edge 19.4 | L5 0.20/g | L10 0.10/g | Season 0.29/g | HR% 0.24 | HistHR% 0.22 | OPS 0.854 | SLG 0.528 | ISO 0.279 | PowIdx 0.58 | Surge 0.22 | Matchup 0.79 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.057 | vs Edward Cabrera | ERA 4.99 | WHIP 1.42 | HR/9 1.72 | HR A 11 | Hand R | Platoon - | vsP 0.000/0.500 in 2 PA | Age 26 | Order est. 1 | Lineup pen 1.2 | Power due 0.36 | Rising 0.47 | L5 XBH 0.40/g | Season XBH 0.47/g | Wts T0.42/M0.28/F0.30",
@@ -1141,8 +1141,8 @@
         "team": "MIA",
         "opponent": "AZ",
         "line": "HR 1+",
-        "score": 23.89,
-        "confidence": 24,
+        "score": 27.24,
+        "confidence": 27,
         "tier": "B",
         "reason": "HR edge 18.6 | L5 0.60/g | L10 0.30/g | Season 0.18/g | HR% 0.17 | HistHR% 0.09 | OPS 0.818 | SLG 0.470 | ISO 0.205 | PowIdx 0.50 | Surge 0.45 | Matchup 0.93 | ProjPA 4.2 | Sample 1.00 | Peak3Y 0.017 | vs Merrill Kelly | ERA 5.71 | WHIP 1.49 | HR/9 2.01 | HR A 13 | Hand R | Platoon + | vsP 0.000/0.000 in 4 PA | Age 27 | Order est. 4 | Lineup pen 1.2 | Rising 0.45 | L5 XBH 0.80/g | Season XBH 0.29/g | Wts T0.42/M0.28/F0.30",
         "sim_prob_pct": 32.2,
@@ -1159,8 +1159,8 @@
         "team": "CHC",
         "opponent": "COL",
         "line": "HR 1+",
-        "score": 22.41,
-        "confidence": 22,
+        "score": 25.55,
+        "confidence": 26,
         "tier": "B",
         "reason": "HR edge 17.9 | L5 0.60/g | L10 0.40/g | Season 0.23/g | HR% 0.19 | HistHR% 0.15 | OPS 0.838 | SLG 0.490 | ISO 0.260 | PowIdx 0.45 | Surge 0.30 | Matchup 0.38 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.038 | vs Ryan Feltner | ERA 4.22 | WHIP 1.16 | HR/9 1.41 | HR A 5 | Hand R | Platoon + | vsP 0.000/0.000 in 3 PA | Age 31 | Order est. 5 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.47/g | Wts T0.42/M0.28/F0.30",
         "sim_prob_pct": 30.6,
@@ -1248,10 +1248,10 @@
         "team": "LAD",
         "opponent": "PIT",
         "line": "1+ Hit",
-        "score": 26.58,
+        "score": 26.68,
         "confidence": 25,
         "tier": "B",
-        "reason": "Edge 58.0, trend 0.60, matchup 0.24, form 0.32",
+        "reason": "Edge 58.0, trend 0.60, matchup 0.26, form 0.32",
         "sim_prob_pct": 92.3
       },
       {
@@ -1284,7 +1284,7 @@
         "team": "LAD",
         "opponent": "PIT",
         "line": "1+ RBI",
-        "score": 24.5,
+        "score": 24.57,
         "confidence": 22,
         "tier": "B",
         "reason": "RBI edge 33.7 | L5 1.00/g | L10 1.20/g | Season 0.84/g | Order est. 3 | Team R/G 5.37 | Team OBP 0.345 | WHIP 1.23 | Platoon 0.25 | RISP 0.30 | Lineup pen 1.2 | Wts T0.34/M0.33/F0.33",
@@ -2504,11 +2504,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.92,
         "park_factor_rhb": 0.94,
-        "wind_mph": 6,
-        "wind_deg": 249,
-        "wind_label": "OUT",
-        "hr_lean": "neutral",
-        "summary_chip": "Citi Field \u00b7 6mph OUT"
+        "wind_mph": null,
+        "wind_deg": null,
+        "wind_label": null,
+        "hr_lean": "HR suppress",
+        "summary_chip": "Citi Field \u00b7 wind n/a (HR suppress)"
       }
     },
     {
@@ -2618,11 +2618,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.94,
         "park_factor_rhb": 0.92,
-        "wind_mph": 9,
-        "wind_deg": 194,
-        "wind_label": "OUT",
-        "hr_lean": "neutral",
-        "summary_chip": "Comerica Park \u00b7 9mph OUT"
+        "wind_mph": null,
+        "wind_deg": null,
+        "wind_label": null,
+        "hr_lean": "HR suppress",
+        "summary_chip": "Comerica Park \u00b7 wind n/a (HR suppress)"
       }
     },
     {
@@ -2797,7 +2797,7 @@
           "market": "RBI",
           "player_name": "Jake Burger",
           "line": "2+ RBI",
-          "score": 19.57,
+          "score": 19.66,
           "confidence": 20,
           "tier": "C",
           "sim_prob_pct": 43.3
@@ -2806,7 +2806,7 @@
           "market": "TB",
           "player_name": "Jake Burger",
           "line": "2+ TB",
-          "score": 16.95,
+          "score": 17.09,
           "confidence": 17,
           "tier": "C",
           "sim_prob_pct": 55.2
@@ -2822,7 +2822,23 @@
         }
       ],
       "markets": {
-        "HR": [],
+        "HR": [
+          {
+            "player_id": "669394",
+            "player_name": "Jake Burger",
+            "team": "TEX",
+            "opponent": "KC",
+            "line": "HR 1+",
+            "score": 16.87,
+            "confidence": 17,
+            "tier": "C",
+            "reason": "HR edge 12.3 | L5 0.40/g | L10 0.20/g | Season 0.17/g | HR% 0.16 | HistHR% 0.22 | OPS 0.732 | SLG 0.432 | ISO 0.187 | PowIdx 0.35 | Surge 0.33 | Matchup 0.18 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.073 | vs Michael Wacha | ERA 3.44 | WHIP 1.14 | HR/9 1.00 | HR A 9 | Hand R | Platoon - | vsP 0.286/0.873 in 9 PA | Age 30 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.35/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 24.5,
+            "calibration_status": "ok",
+            "baseline_prob_pct": 15.7,
+            "calibration_gap_pp": 8.8
+          }
+        ],
         "RBI": [
           {
             "player_id": "669394-rbi",
@@ -2830,7 +2846,7 @@
             "team": "TEX",
             "opponent": "KC",
             "line": "2+ RBI",
-            "score": 19.57,
+            "score": 19.66,
             "confidence": 20,
             "tier": "C",
             "reason": "RBI edge 33.8 | L5 1.20/g | L10 0.70/g | Season 0.63/g | Order est. 3 | Team R/G 4.04 | Team OBP 0.318 | WHIP 1.14 | Platoon 0.25 | RISP 0.09 | Lineup pen 1.2 | Wts T0.34/M0.33/F0.33",
@@ -2864,10 +2880,10 @@
             "team": "TEX",
             "opponent": "KC",
             "line": "1+ Hit",
-            "score": 18.44,
-            "confidence": 18,
+            "score": 18.57,
+            "confidence": 19,
             "tier": "C",
-            "reason": "Edge 44.9, trend 0.20, matchup 0.22, form 0.34",
+            "reason": "Edge 44.9, trend 0.20, matchup 0.25, form 0.34",
             "sim_prob_pct": 85.3,
             "calibration_status": "ok",
             "baseline_prob_pct": 71.4,
@@ -2881,10 +2897,10 @@
             "team": "TEX",
             "opponent": "KC",
             "line": "2+ TB",
-            "score": 16.95,
+            "score": 17.09,
             "confidence": 17,
             "tier": "C",
-            "reason": "Edge 26.1, trend 0.80, matchup 0.23, form 0.18",
+            "reason": "Edge 26.1, trend 0.80, matchup 0.25, form 0.18",
             "sim_prob_pct": 55.2,
             "calibration_status": "ok",
             "baseline_prob_pct": 44.9,
@@ -2899,11 +2915,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.86,
         "park_factor_rhb": 0.88,
-        "wind_mph": 9,
-        "wind_deg": 152,
-        "wind_label": "OUT",
-        "hr_lean": "neutral",
-        "summary_chip": "Kauffman Stadium \u00b7 9mph OUT"
+        "wind_mph": null,
+        "wind_deg": null,
+        "wind_label": null,
+        "hr_lean": "HR suppress",
+        "summary_chip": "Kauffman Stadium \u00b7 wind n/a (HR suppress)"
       }
     },
     {
@@ -3016,11 +3032,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.3,
         "park_factor_rhb": 1.28,
-        "wind_mph": 11,
-        "wind_deg": 350,
-        "wind_label": "IN",
+        "wind_mph": null,
+        "wind_deg": null,
+        "wind_label": null,
         "hr_lean": "HR boost",
-        "summary_chip": "Coors Field \u00b7 11mph IN (HR boost)"
+        "summary_chip": "Coors Field \u00b7 wind n/a (HR boost)"
       }
     },
     {
@@ -3050,7 +3066,7 @@
           "market": "Hits",
           "player_name": "Andy Pages",
           "line": "1+ Hit",
-          "score": 25.38,
+          "score": 25.48,
           "confidence": 25,
           "tier": "B",
           "sim_prob_pct": 92.3
@@ -3089,6 +3105,21 @@
             "calibration_gap_pp": 12.0
           },
           {
+            "player_id": "681624",
+            "player_name": "Andy Pages",
+            "team": "LAD",
+            "opponent": "PIT",
+            "line": "HR 1+",
+            "score": 17.97,
+            "confidence": 18,
+            "tier": "C",
+            "reason": "HR edge 15.8 | L5 0.20/g | L10 0.30/g | Season 0.22/g | HR% 0.19 | HistHR% 0.16 | OPS 0.850 | SLG 0.523 | ISO 0.242 | PowIdx 0.39 | Surge 0.14 | Matchup 0.28 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.043 | vs Mitch Keller | ERA 4.81 | WHIP 1.23 | HR/9 0.62 | HR A 5 | Hand R | Platoon - | vsP 0.333/1.167 in 4 PA | Age 25 | Order est. 3 | Lineup pen 1.2 | Rising 0.49 | L5 XBH 0.20/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 27.6,
+            "calibration_status": "ok",
+            "baseline_prob_pct": 19.7,
+            "calibration_gap_pp": 7.9
+          },
+          {
             "player_id": "571970",
             "player_name": "Max Muncy",
             "team": "LAD",
@@ -3117,21 +3148,6 @@
             "calibration_status": "ok",
             "baseline_prob_pct": 13.4,
             "calibration_gap_pp": 12.5
-          },
-          {
-            "player_id": "681624",
-            "player_name": "Andy Pages",
-            "team": "LAD",
-            "opponent": "PIT",
-            "line": "HR 1+",
-            "score": 17.16,
-            "confidence": 17,
-            "tier": "C",
-            "reason": "HR edge 14.7 | L5 0.20/g | L10 0.30/g | Season 0.22/g | HR% 0.19 | HistHR% 0.16 | OPS 0.850 | SLG 0.523 | ISO 0.242 | PowIdx 0.37 | Surge 0.14 | Matchup 0.28 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.043 | vs Mitch Keller | ERA 4.81 | WHIP 1.23 | HR/9 0.62 | HR A 5 | Hand R | Platoon - | vsP 0.000/0.500 in 2 PA | Age 25 | Order est. 3 | Lineup pen 1.2 | Rising 0.49 | L5 XBH 0.20/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 26.5,
-            "calibration_status": "ok",
-            "baseline_prob_pct": 19.7,
-            "calibration_gap_pp": 6.8
           }
         ],
         "RBI": [
@@ -3171,7 +3187,7 @@
             "team": "LAD",
             "opponent": "PIT",
             "line": "1+ RBI",
-            "score": 22.0,
+            "score": 22.07,
             "confidence": 22,
             "tier": "B",
             "reason": "RBI edge 33.7 | L5 1.00/g | L10 1.20/g | Season 0.84/g | Order est. 3 | Team R/G 5.37 | Team OBP 0.345 | WHIP 1.23 | Platoon 0.25 | RISP 0.30 | Lineup pen 1.2 | Wts T0.34/M0.33/F0.33",
@@ -3186,10 +3202,10 @@
             "team": "LAD",
             "opponent": "PIT",
             "line": "1+ Hit",
-            "score": 25.38,
+            "score": 25.48,
             "confidence": 25,
             "tier": "B",
-            "reason": "Edge 58.0, trend 0.60, matchup 0.24, form 0.32",
+            "reason": "Edge 58.0, trend 0.60, matchup 0.26, form 0.32",
             "sim_prob_pct": 92.3,
             "calibration_status": "ok",
             "baseline_prob_pct": 83.0,
@@ -3233,10 +3249,10 @@
             "team": "LAD",
             "opponent": "PIT",
             "line": "2+ TB",
-            "score": 17.27,
+            "score": 17.39,
             "confidence": 17,
             "tier": "C",
-            "reason": "Edge 29.7, trend 0.45, matchup 0.30, form 0.33",
+            "reason": "Edge 29.7, trend 0.45, matchup 0.32, form 0.33",
             "sim_prob_pct": 58.5,
             "calibration_status": "ok",
             "baseline_prob_pct": 57.9,
@@ -3251,11 +3267,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.85,
         "park_factor_rhb": 0.9,
-        "wind_mph": 5,
-        "wind_deg": 195,
-        "wind_label": "CROSS",
+        "wind_mph": null,
+        "wind_deg": null,
+        "wind_label": null,
         "hr_lean": "HR suppress",
-        "summary_chip": "PNC Park \u00b7 5mph CROSS (HR suppress)"
+        "summary_chip": "PNC Park \u00b7 wind n/a (HR suppress)"
       }
     },
     {
@@ -3359,11 +3375,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.05,
         "park_factor_rhb": 1.02,
-        "wind_mph": 3,
-        "wind_deg": 340,
-        "wind_label": "CROSS",
+        "wind_mph": null,
+        "wind_deg": null,
+        "wind_label": null,
         "hr_lean": "neutral",
-        "summary_chip": "Camden Yards \u00b7 3mph CROSS"
+        "summary_chip": "Camden Yards \u00b7 wind n/a"
       }
     },
     {
@@ -3457,11 +3473,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.07,
         "park_factor_rhb": 1.05,
-        "wind_mph": 11,
-        "wind_deg": 229,
-        "wind_label": "OUT",
+        "wind_mph": null,
+        "wind_deg": null,
+        "wind_label": null,
         "hr_lean": "HR boost",
-        "summary_chip": "Rate Field \u00b7 11mph OUT (HR boost)"
+        "summary_chip": "Rate Field \u00b7 wind n/a (HR boost)"
       }
     }
   ]
