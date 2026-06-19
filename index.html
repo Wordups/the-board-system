@@ -133,6 +133,8 @@ button { cursor: pointer; border: none; background: none; }
   font-size: 10px; font-weight: 700;
 }
 .sport-tab.active .tab-count { background: var(--gold-dim); color: var(--gold); }
+.sport-tab-disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+.sport-tab-disabled .tab-count { background: var(--surface-3); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.04em; }
 
 /* MAIN LAYOUT */
 .main {
@@ -1934,11 +1936,10 @@ button { cursor: pointer; border: none; background: none; }
   <div class="tabs-inner">
     <button class="sport-tab active" data-sport="picks"><span class="tab-dot"></span>Picks of the Day<span class="tab-count" id="tab-count-picks">—</span></button>
     <button class="sport-tab" data-sport="mlb"><span class="tab-dot"></span>MLB<span class="tab-count" id="tab-count-mlb">0</span></button>
-    <button class="sport-tab" data-sport="nba"><span class="tab-dot"></span>NBA<span class="tab-count" id="tab-count-nba">—</span></button>
     <button class="sport-tab" data-sport="wnba"><span class="tab-dot"></span>WNBA<span class="tab-count" id="tab-count-wnba">—</span></button>
-    <button class="sport-tab" data-sport="nfl"><span class="tab-dot"></span>NFL<span class="tab-count" id="tab-count-nfl">—</span></button>
-    <button class="sport-tab" data-sport="soccer"><span class="tab-dot"></span>Soccer<span class="tab-count" id="tab-count-soccer">—</span></button>
+    <button class="sport-tab" data-sport="soccer"><span class="tab-dot"></span>World Cup<span class="tab-count" id="tab-count-soccer">—</span></button>
     <button class="sport-tab" data-sport="tennis"><span class="tab-dot"></span>Tennis<span class="tab-count" id="tab-count-tennis">—</span></button>
+    <button class="sport-tab sport-tab-disabled" data-sport="nfl" disabled aria-disabled="true" title="Coming soon"><span class="tab-dot"></span>NFL<span class="tab-count" id="tab-count-nfl">Soon</span></button>
   </div>
 </nav>
 
@@ -1946,7 +1947,6 @@ button { cursor: pointer; border: none; background: none; }
   <div id="sport-views">
     <div class="sport-view active" id="view-picks"></div>
     <div class="sport-view" id="view-mlb"></div>
-    <div class="sport-view" id="view-nba"></div>
     <div class="sport-view" id="view-wnba"></div>
     <div class="sport-view" id="view-nfl"></div>
     <div class="sport-view" id="view-soccer"></div>
@@ -1985,7 +1985,6 @@ button { cursor: pointer; border: none; background: none; }
 const DATA_FILES = {
   picks: "data/picks.json",
   mlb: "data/mlb.json",
-  nba: "data/nba.json",
   wnba: "data/wnba.json",
   nfl: "data/nfl.json",
   soccer: "data/soccer.json",
@@ -1993,22 +1992,20 @@ const DATA_FILES = {
 };
 
 const COMING_SOON = {
-  nba: { icon: "??", label: "NBA" },
   wnba: { icon: "??", label: "WNBA" },
   nfl: { icon: "??", label: "NFL" },
-  soccer: { icon: "?", label: "Soccer" },
+  soccer: { icon: "?", label: "World Cup" },
   tennis: { icon: "??", label: "Tennis" },
 };
 
 const cache = {};
-const SPORT_ORDER = ["mlb", "nba", "wnba", "soccer", "tennis"];
+const SPORT_ORDER = ["mlb", "wnba", "soccer", "tennis"];
 const SPORT_LABELS = {
   picks: "Picks of the Day",
   mlb: "MLB",
-  nba: "NBA",
   wnba: "WNBA",
   nfl: "NFL",
-  soccer: "Soccer",
+  soccer: "World Cup",
   tennis: "Tennis",
 };
 
@@ -4013,7 +4010,7 @@ async function renderGameView(sport, data) {
   // MLB / NBA / WNBA tabs no longer duplicate the Morning Card —
   // it lives on the Cross-Sport Daily Board on Picks of the Day.
   // Soccer / Tennis tabs are untouched per spec.
-  const TAB_HIDES_FROZEN_CARD = new Set(["mlb", "nba", "wnba"]);
+  const TAB_HIDES_FROZEN_CARD = new Set(["mlb", "wnba"]);
   const frozenPickMarkup = !TAB_HIDES_FROZEN_CARD.has(sport) && picksPayload?.sports?.[sport]
     ? renderFrozenDailySummaryCard(sport, picksPayload.sports[sport], data)
     : "";
@@ -4107,7 +4104,10 @@ async function switchSport(sport) {
   }
 }
 
-document.querySelectorAll(".sport-tab").forEach(t => t.addEventListener("click", () => switchSport(t.dataset.sport)));
+document.querySelectorAll(".sport-tab").forEach(t => t.addEventListener("click", () => {
+  if (t.disabled || t.classList.contains("sport-tab-disabled")) return; // NFL coming soon — no-op
+  switchSport(t.dataset.sport);
+}));
 document.getElementById("modal-close").addEventListener("click", closeModal);
 document.getElementById("modal-overlay").addEventListener("click", e => { if (e.target.id === "modal-overlay") closeModal(); });
 document.getElementById("player-panel-close").addEventListener("click", closePlayerPanel);
