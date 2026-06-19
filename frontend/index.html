@@ -2501,7 +2501,6 @@ function renderPicksHero(active, updatedAtIso) {
         <div class="picks-hero-copy">
           <div class="picks-hero-kicker">Daily Poster Board</div>
           <div class="picks-hero-title">Daily Edges</div>
-          <div class="picks-hero-sub">Straight play first. Then the cleanest two-leg and three-leg builds the slate actually supports. Real headshots, tighter edge chips, and a true poster surface instead of a plain list.</div>
           <div class="picks-hero-meta">
             <span class="hero-chip">${esc(`Sports ${sports.join(" / ")}`)}</span>
             <span class="hero-chip">${esc(`Updated ${latest || "-"}`)}</span>
@@ -2571,7 +2570,6 @@ function renderSportPickCard(sport, data) {
         </div>
         ${renderParlayBlock("2-Leg", picks.twoLeg, sport)}
         ${renderParlayBlock("3-Leg", picks.threeLeg, sport)}
-        <div class="pick-sport-footnote">Poster logic favors edge, L5 form, and matchup context for the sport rather than dumping the full raw reason string.</div>
       </div>
     </section>`;
 }
@@ -2760,10 +2758,9 @@ async function renderPicksView() {
       ${renderPicksHero(sports.map(([sport, data]) => [sport, { ...data, sport: SPORT_LABELS[sport] || sport.toUpperCase() }]), picksPayload?.updated_at)}
       <div class="lane-card">
         <div class="lane-kicker">Cross-Sport Daily Board</div>
-        <div class="lane-sub">Best straight first, then 2-leg and 3-leg combinations for each sport when the slate supports it. This board stays fixed for the day.</div>
       </div>
       <div class="picks-grid">
-        ${cards.length ? cards.join("") : `<div class="lane-card"><div class="lane-kicker">No picks loaded</div><div class="lane-sub">The board will populate once the sport feeds refresh.</div></div>`}
+        ${cards.length ? cards.join("") : `<div class="lane-card"><div class="lane-kicker">No picks loaded</div></div>`}
       </div>
       ${renderUltimateCook(picksPayload?.ultimate_cook)}
     </div>`;
@@ -2824,7 +2821,6 @@ function renderSimSection(board, sport = "mlb") {
       <div class="board-header">
         <div class="board-header-copy">
           <div class="board-title">${esc(board.title || "Sim Top 10")}</div>
-          <div class="board-subtitle">Monte Carlo hit probability — 2,500 sims per play.</div>
         </div>
         <div class="board-count">${board.players.length} Plays</div>
       </div>
@@ -2996,7 +2992,6 @@ function renderFrozenDailySummaryCard(sport, frozen, liveData, options = {}) {
       ${options.compact ? "" : `<div class="daily-summary-head">
         <div>
           <div class="daily-summary-title">Morning Card</div>
-          <div class="daily-summary-sub">A-tier locks only. Frozen at the 10:30 AM ET refresh and tracked all day — the rolling board keeps moving below, these don't.</div>
         </div>
         <div class="pick-sport-meta">${esc(frozen.last_updated || liveData?.last_updated || "")}</div>
       </div>`}
@@ -3093,7 +3088,6 @@ function renderExpandedHrBoard(data) {
       <div class="board-header">
         <div class="board-header-copy">
           <div class="board-title">HR Board</div>
-          <div class="board-subtitle">${pool.length} HR picks — click cards to select for parlays</div>
         </div>
         <div class="hr-controls">
           <button class="hr-sort-btn ${hrSortMode === "sim" ? "active" : ""}" data-hr-sort="sim">Hit %</button>
@@ -3376,17 +3370,14 @@ if (!window.__hrBoardHooked) {
           ${recHtml}
           <div>
             <div class="parlay-section-title">Selected Legs</div>
-            <div class="parlay-section-sub">target = board's sim probability &middot; sim = empirical hit rate from the ${HR_MC_TRIALS.toLocaleString()} trials (must match target &mdash; marginal-preservation sanity check).</div>
             <ul class="hr-parlay-legs">${legsHtml}</ul>
           </div>
           <div>
             <div class="parlay-section-title">Monte Carlo Distribution</div>
-            <div class="parlay-section-sub">P(K of ${legs.length} legs hit) over ${HR_MC_TRIALS.toLocaleString()} correlated trials &middot; expected hits ${expected.toFixed(2)} &middot; correlation moves variance into the tails, not the mean.</div>
             <div class="parlay-mc-bar">${mcHtml}</div>
           </div>
           <div>
             <div class="parlay-section-title">Subset Ladder</div>
-            <div class="parlay-section-sub">Top-K legs by sim &mdash; joint pulled straight from the correlated trials. Same-game subsets tagged; recommendation highlighted.</div>
             <div class="parlay-ladder">${ladderHtml}</div>
           </div>
         </div>
@@ -3503,7 +3494,6 @@ function renderDiamondWidget(diamond) {
       <div class="board-header">
         <div class="board-header-copy">
           <div class="board-title">Diamond of the Day</div>
-          <div class="board-subtitle">Table-setter · HR bases · swing · the mound — one play per base.</div>
         </div>
         <div class="board-count">${diamond.hr_count}/${floor} HR floor</div>
       </div>
@@ -3539,7 +3529,6 @@ function renderMlbPinnedBoards(data) {
         <div class="board-header">
           <div class="board-header-copy">
             <div class="board-title">Diamond of the Day</div>
-            <div class="board-subtitle">Today's top 10 HR names — base labels on the core four, rank-only past that.</div>
           </div>
           <div class="board-count">${diamondRows.length} Names</div>
         </div>
@@ -3553,7 +3542,6 @@ function renderMlbPinnedBoards(data) {
           <div class="board-header">
             <div class="board-header-copy">
               <div class="board-title">Strikeout Plays</div>
-              <div class="board-subtitle">Today's pitcher K board, A-tier first then ranked by score.</div>
             </div>
             <div class="board-count">${kRows.length} Arms</div>
           </div>
@@ -4032,9 +4020,9 @@ async function renderGameView(sport, data) {
   if (!data || !data.games || !data.games.length) {
     const cs = COMING_SOON[sport];
     if (cs) {
-      view.innerHTML = `<div class="coming-soon"><div class="coming-soon-icon">${cs.icon}</div><div class="coming-soon-title">${cs.label} Coming Soon</div><div class="coming-soon-sub">Backend pipeline will populate this board automatically.</div></div>`;
+      view.innerHTML = `<div class="coming-soon"><div class="coming-soon-icon">${cs.icon}</div><div class="coming-soon-title">${cs.label} Coming Soon</div></div>`;
     } else {
-      view.innerHTML = `<div class="coming-soon"><div class="coming-soon-title">No Games Today</div><div class="coming-soon-sub">Check back when the bot runs.</div></div>`;
+      view.innerHTML = `<div class="coming-soon"><div class="coming-soon-title">No Games Today</div></div>`;
     }
     return;
   }
