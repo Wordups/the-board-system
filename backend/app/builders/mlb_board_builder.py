@@ -22,7 +22,7 @@ from app.scoring.calibration_guardrail import (
     baseline as guardrail_baseline,
     status_for,
 )
-from app.scoring.edge_score import score_candidate
+from app.scoring.edge_score import rescore_with_sim, score_candidate
 from app.scoring.confidence import to_confidence
 from app.scoring.tiers import assign_tier
 from app.sim.edge import build_sim_board
@@ -35,15 +35,17 @@ def is_public_hr_candidate(candidate) -> bool:
 
 
 def apply_calibration_gate(candidates, *, threshold: float = DEFAULT_THRESHOLD) -> list[dict]:
-    """Run each candidate's sim_prob against its market-specific closed-form
-    baseline. Mutates candidate.extra with calibration_status / baseline_prob_pct
-    / calibration_gap_pp. Hard-flagged candidates get held_for_calibration=True
-    (filtered out at every emission site via is_publishable_candidate).
+    """Annotate each candidate with calibration drift metadata (informational
+    only — the hard hold has been REMOVED).
 
-    Returns the list of held rows for the public 'held_for_calibration' section
-    of the board JSON — drift transparency, not noise.
+    Previously this quarantined any play whose sim_prob drifted too far above a
+    closed-form baseline, setting held_for_calibration=True and suppressing it
+    from every board. That hold withheld ~174 picks (most of the HR board). The
+    board's headline number is now the model's actual simulated probability, so
+    nothing is suppressed: this still computes baseline_prob_pct /
+    calibration_gap_pp / calibration_status for transparency, but never sets
+    held_for_calibration and always returns an empty hold list.
     """
-    held: list[dict] = []
     for candidate in candidates:
         if candidate.sim_prob is None:
             continue
@@ -69,24 +71,8 @@ def apply_calibration_gate(candidates, *, threshold: float = DEFAULT_THRESHOLD) 
         extra["calibration_status"] = status
         extra["calibration_market_key"] = market_key
         candidate.extra = extra
-        if status == "flag":
-            extra["held_for_calibration"] = True
-            held.append(
-                {
-                    "player_id": candidate.player_id,
-                    "player_name": candidate.player_name,
-                    "team": candidate.team,
-                    "opponent": candidate.opponent,
-                    "market": candidate.market,
-                    "line": candidate.line,
-                    "sim_prob_pct": sim_prob_pct(candidate),
-                    "baseline_prob_pct": round(b * 100, 1),
-                    "calibration_gap_pp": round(gap * 100, 1),
-                    "reason": f"sim {b*100:.1f}% +{gap*100:.1f}pp over baseline ({market_key})",
-                }
-            )
-    held.sort(key=lambda r: r["calibration_gap_pp"], reverse=True)
-    return held
+        # Hold REMOVED: do not set held_for_calibration; nothing is suppressed.
+    return []
 
 
 def build_mlb_board(*, config, paths) -> dict:
@@ -101,6 +87,10 @@ def build_mlb_board(*, config, paths) -> dict:
     for raw_game in raw_payload["games"]:
         candidates = [score_candidate(item) for item in normalize_mlb_inputs(raw_game)]
         simulate_candidates(candidates, sport="MLB")
+        # Sim probability is the foundational 0-100 score: re-derive score/tier/
+        # confidence from sim_prob now that the sim has run.
+        for candidate in candidates:
+            rescore_with_sim(candidate)
         held_for_calibration.extend(apply_calibration_gate(candidates))
         processed_games.append({"raw": raw_game, "candidates": candidates})
         game_status_by_id[raw_game["game_id"]] = raw_game.get("status", {})
@@ -201,9 +191,9 @@ def build_mlb_board(*, config, paths) -> dict:
         "last_updated": timestamp_et(),
         "calibration": {
             "threshold_pp": round(DEFAULT_THRESHOLD * 100, 1),
-            "mode": "hard",
-            "held_count": len(held_for_calibration),
-            "held_for_calibration": held_for_calibration,
+            "mode": "off",  # hard hold removed — nothing is suppressed
+            "held_count": len(held_for_calibration),  # always 0
+            "held_for_calibration": held_for_calibration,  # always empty
         },
         "pinned_board": {
             "title": "HR Core",

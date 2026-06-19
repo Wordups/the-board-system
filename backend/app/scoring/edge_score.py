@@ -4,9 +4,28 @@ from app.models.mlb_model import MlbPlayCandidate
 from app.scoring.confidence import to_confidence
 from app.scoring.market_weights import MARKET_WEIGHTS
 from app.scoring.tiers import assign_tier
+from app.sim.sim_engine import sim_prob_to_score
+
+
+def edge_score_to_score(edge_score: float) -> float:
+    """Fallback 0-100 score for candidates with no sim probability.
+
+    The legacy edge score lived in a ~0-50 band; double it (clamped) so a
+    candidate without a sim_prob still produces a comparable 0-100 number
+    rather than crashing or zeroing the board. This is a graceful fallback,
+    not the primary path — the sim probability is the foundational score.
+    """
+    return round(max(0.0, min(100.0, float(edge_score) * 2.0)), 2)
 
 
 def score_candidate(candidate: MlbPlayCandidate) -> MlbPlayCandidate:
+    """Compute the edge-based score and reason.
+
+    Runs BEFORE the Monte Carlo sim (sim_prob is not yet available), so the
+    0-100 score it sets here is the *fallback* derived from the edge model.
+    Once the sim has run, ``rescore_with_sim`` overwrites the score with the
+    simulated probability where one exists — the probability IS the score.
+    """
     weight = MARKET_WEIGHTS.get(candidate.market, 1.0)
     probability_edge = max(candidate.stat_value - candidate.baseline, 0.0) * 100
     support_weights = support_weights_for(candidate.market)
@@ -15,31 +34,41 @@ def score_candidate(candidate: MlbPlayCandidate) -> MlbPlayCandidate:
         + candidate.matchup * support_weights["matchup"]
         + candidate.recent_form * support_weights["recent_form"]
     ) * 100
-    score = round((probability_edge * 0.62 + support * 0.38) * weight * 0.52, 2)
+    raw_edge = round((probability_edge * 0.62 + support * 0.38) * weight * 0.52, 2)
     if candidate.market == "HR":
-        score = round(apply_hr_quality_adjustments(candidate, score), 2)
+        raw_edge = round(apply_hr_quality_adjustments(candidate, raw_edge), 2)
+    score = edge_score_to_score(raw_edge)
     score = round(apply_availability_adjustments(candidate, score), 2)
     candidate.score = score
     candidate.confidence = to_confidence(score)
     candidate.tier = assign_tier(score)
-
-    # Rule 48: rookies with <25 career MLB games are capped at C-tier.
-    # Minor league stats inflate model output and don't translate to MLB-tier
-    # hit rates. Only applies to hitter markets (HR/Hits/TB/RBI) where
-    # career_games is explicitly populated — K/pitcher markets are excluded.
-    _career_games_raw = candidate.extra.get("career_games")
-    career_games = int(_career_games_raw) if _career_games_raw is not None else None
-    if career_games is not None and career_games < 25 and candidate.tier in ("A", "B"):
-        candidate.tier = "C"
 
     candidate.reason = build_reason(
         candidate=candidate,
         probability_edge=probability_edge,
         support_weights=support_weights,
     )
-    if career_games is not None and career_games < 25:
-        career_label = f"Career {career_games}G" if career_games > 0 else "Career <1G"
-        candidate.reason = f"Rookie cap ({career_label}) | {candidate.reason}"
+    return candidate
+
+
+def rescore_with_sim(candidate: MlbPlayCandidate) -> MlbPlayCandidate:
+    """Make the simulated clear probability the foundational 0-100 score.
+
+    Called after ``simulate_candidates`` has populated ``sim_prob``. Where a
+    sim probability exists, the score becomes that probability on a 0-100 scale
+    (39.4% HR -> 39.4); confidence and tier are re-derived from it. The lineup-
+    uncertainty penalty is re-applied on top so availability risk still bites.
+
+    Candidates without a sim_prob keep the edge-based fallback score from
+    ``score_candidate`` untouched.
+    """
+    sim_score = sim_prob_to_score(getattr(candidate, "sim_prob", None))
+    if sim_score is None:
+        return candidate
+    score = round(apply_availability_adjustments(candidate, sim_score), 2)
+    candidate.score = score
+    candidate.confidence = to_confidence(score)
+    candidate.tier = assign_tier(score)
     return candidate
 
 

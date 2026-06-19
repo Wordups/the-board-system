@@ -55,3 +55,22 @@ def sim_prob_pct(candidate) -> float | None:
     """Display form of a candidate's simulated probability, e.g. 67.3."""
     sim_prob = get_field(candidate, "sim_prob", None)
     return None if sim_prob is None else round(sim_prob * 100, 1)
+
+
+def sim_prob_to_score(sim_prob: float | None) -> float | None:
+    """Map a simulated clear probability (0..1) to the foundational 0..100 score.
+
+    The board's headline number IS the model's actual probability: a 39.4%
+    simulated HR scores 39.4. The mapping is deliberately the identity on the
+    percentage scale (sim_prob * 100) so the score, the confidence, and the
+    displayed probability are one and the same number. ~40% HR is the practical
+    ceiling, so an elite HR naturally lands near the top of the range; markets
+    with higher achievable probabilities (e.g. 1+ Hit) simply score higher,
+    which is the intended, probability-honest behavior.
+
+    Returns None when no sim probability exists (caller falls back to the edge
+    score; see ``edge_score_to_score``).
+    """
+    if sim_prob is None:
+        return None
+    return round(max(0.0, min(1.0, float(sim_prob))) * 100.0, 2)

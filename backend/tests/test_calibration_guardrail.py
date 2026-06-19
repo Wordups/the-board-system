@@ -146,17 +146,19 @@ def _candidate(market: str, line: str, sim_prob: float, extra: dict) -> MlbPlayC
     return cand
 
 
-def test_apply_calibration_gate_quarantines_goodman_clone():
-    # 2+ Hits at sim 0.94, BA 0.242, 4 AB -> binomial baseline ~0.248, gap ~+0.69 -> FLAG.
+def test_apply_calibration_gate_annotates_but_never_holds():
+    # Hard hold REMOVED. A wildly inflated sim still gets a 'flag' status as
+    # informational drift metadata, but it is NOT held: no held rows are
+    # returned, held_for_calibration is never set, and it stays publishable.
     cand = _candidate(
         "Hits", "2+ Hits", sim_prob=0.941,
         extra={"season_ba": 0.242, "ab_per_game": 4.0},
     )
     held = apply_calibration_gate([cand])
-    assert len(held) == 1
+    assert held == []
     assert cand.extra["calibration_status"] == "flag"
-    assert cand.extra["held_for_calibration"] is True
-    assert not is_publishable_candidate(cand)
+    assert "held_for_calibration" not in cand.extra
+    assert is_publishable_candidate(cand)
 
 
 def test_apply_calibration_gate_passes_calibrated_play():
