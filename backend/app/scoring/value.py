@@ -49,7 +49,13 @@ def format_implied_odds(odds: int) -> str:
 
 
 def value_zone(p: float) -> str:
-    """Bucket a hit-rate probability into a value zone label."""
+    """Bucket a hit-rate probability into a value zone label.
+
+    The chalk/longshot REJECTION has been removed — every probability now gets a
+    descriptive label and is allowed onto the board. 'chalk' and 'longshot' are
+    retained purely as labels (formerly the rejection bands); nothing is dropped
+    on the basis of these zones anymore.
+    """
     if p >= CHALK_PROB_FLOOR:
         return "chalk"
     if p >= AIM_PROB_HIGH:
@@ -58,9 +64,7 @@ def value_zone(p: float) -> str:
         return "aim"
     if p >= VALUE_PROB_LOW:
         return "value"
-    if p >= LONGSHOT_PROB_CEILING:
-        return "longshot"
-    return "reject"
+    return "longshot"
 
 
 def find_value_line(
@@ -78,8 +82,10 @@ def find_value_line(
     the AIM/VALUE zone — the line closest to a 0.50 shrunken hit rate.
 
     Returns dict with keys: line, hit_rate, implied_odds, edge, zone — or
-    None if no line in the player's range lands above the chalk floor and
-    below the longshot ceiling.
+    None only if the player has no recent logs at all. The chalk/longshot
+    rejection band (>=0.80 / <=0.10) has been REMOVED: every line in the
+    player's range is now a valid candidate, so a line is no longer dropped
+    for being too chalky or too long a shot.
     """
     if not recent_logs:
         return None
@@ -90,10 +96,6 @@ def find_value_line(
     for line in range(floor, ceiling + 1):
         hits = sum(1 for log in recent_logs if log.get(market, 0) >= line)
         p = bayesian_hit_rate(hits, n, prior_hit_rate, prior_strength)
-        if p >= CHALK_PROB_FLOOR:
-            continue
-        if p <= LONGSHOT_PROB_CEILING:
-            continue
         candidates.append(
             {
                 "line": line,
