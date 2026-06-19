@@ -132,6 +132,12 @@ def build_mlb_board(*, config, paths) -> dict:
         for candidate in candidates:
             if not is_publishable_candidate(candidate):
                 continue
+            # On the probability-based score, every hitter clears the low C floor
+            # so HR flooded the per-game list (~130+). Limit HR to the public
+            # A/B tier (the genuinely strong homers, >=22% sim) — the same rule
+            # the pinned HR boards already use. Other markets are unaffected.
+            if not is_public_hr_candidate(candidate):
+                continue
             market_bucket[candidate.market].append(to_player_row(candidate))
 
         top_signals = build_market_diverse_top_signals(
