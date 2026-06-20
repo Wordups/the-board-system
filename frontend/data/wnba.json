@@ -1,7 +1,7 @@
 {
   "sport": "WNBA",
   "date": "2026-06-20",
-  "last_updated": "10:06 AM ET",
+  "last_updated": "11:58 AM ET",
   "hero_pick": {
     "player_id": "3904577",
     "player_name": "Arike Ogunbowale",
@@ -257,6 +257,23 @@
           "model_hit_rate": 0.5
         },
         {
+          "player_id": "4433403",
+          "player_name": "Caitlin Clark",
+          "team": "IND",
+          "opponent": "ATL",
+          "market": "PTS",
+          "line": "20+ PTS",
+          "score": 79.6,
+          "confidence": 80,
+          "tier": "B",
+          "reason": "Implied -100 | Zone AIM | Edge +1.26 | Hit% 50% | Sample 11 | Proj 21.3 | Baseline 19.5 | USG 41% | MIN 33.1 | PTS matchup 0.97x | Prev 19.5 | Pre 19.5 | Uptick 0.26 | Q4 3.7",
+          "sim_prob_pct": 47.8,
+          "implied_odds": "-100",
+          "value_zone": "aim",
+          "edge": 1.26,
+          "model_hit_rate": 0.5
+        },
+        {
           "player_id": "2491205",
           "player_name": "Skylar Diggins",
           "team": "CHI",
@@ -271,23 +288,6 @@
           "implied_odds": "-100",
           "value_zone": "aim",
           "edge": -0.03,
-          "model_hit_rate": 0.5
-        },
-        {
-          "player_id": "869",
-          "player_name": "DeWanna Bonner",
-          "team": "PHX",
-          "opponent": "SEA",
-          "market": "PTS",
-          "line": "8+ PTS",
-          "score": 76.72,
-          "confidence": 77,
-          "tier": "B",
-          "reason": "Implied -100 | Zone AIM | Edge +1.36 | Hit% 50% | Sample 12 | Proj 9.4 | Baseline 7.9 | USG 19% | MIN 24.7 | PTS matchup 0.97x | Prev 7.9 | Pre 7.9 | Uptick 0.29 | Home boost | Q4 Closer (2.4)",
-          "sim_prob_pct": 46.3,
-          "implied_odds": "-100",
-          "value_zone": "aim",
-          "edge": 1.36,
           "model_hit_rate": 0.5
         }
       ]
@@ -1058,6 +1058,23 @@
         "model_hit_rate": 0.5
       },
       {
+        "player_id": "4433403",
+        "player_name": "Caitlin Clark",
+        "team": "IND",
+        "opponent": "ATL",
+        "market": "PTS",
+        "line": "20+ PTS",
+        "score": 79.6,
+        "confidence": 80,
+        "tier": "B",
+        "reason": "Implied -100 | Zone AIM | Edge +1.26 | Hit% 50% | Sample 11 | Proj 21.3 | Baseline 19.5 | USG 41% | MIN 33.1 | PTS matchup 0.97x | Prev 19.5 | Pre 19.5 | Uptick 0.26 | Q4 3.7",
+        "sim_prob_pct": 47.8,
+        "implied_odds": "-100",
+        "value_zone": "aim",
+        "edge": 1.26,
+        "model_hit_rate": 0.5
+      },
+      {
         "player_id": "2491205",
         "player_name": "Skylar Diggins",
         "team": "CHI",
@@ -1072,23 +1089,6 @@
         "implied_odds": "-100",
         "value_zone": "aim",
         "edge": -0.03,
-        "model_hit_rate": 0.5
-      },
-      {
-        "player_id": "869",
-        "player_name": "DeWanna Bonner",
-        "team": "PHX",
-        "opponent": "SEA",
-        "market": "PTS",
-        "line": "8+ PTS",
-        "score": 76.72,
-        "confidence": 77,
-        "tier": "B",
-        "reason": "Implied -100 | Zone AIM | Edge +1.36 | Hit% 50% | Sample 12 | Proj 9.4 | Baseline 7.9 | USG 19% | MIN 24.7 | PTS matchup 0.97x | Prev 7.9 | Pre 7.9 | Uptick 0.29 | Home boost | Q4 Closer (2.4)",
-        "sim_prob_pct": 46.3,
-        "implied_odds": "-100",
-        "value_zone": "aim",
-        "edge": 1.36,
         "model_hit_rate": 0.5
       }
     ]
@@ -1310,6 +1310,15 @@
         "sim_prob_pct": 54.8
       },
       {
+        "player_id": "4433403",
+        "player_name": "Caitlin Clark",
+        "team": "IND",
+        "opponent": "ATL",
+        "market": "3PM",
+        "line": "2+ 3PM",
+        "sim_prob_pct": 62.0
+      },
+      {
         "player_id": "3907781",
         "player_name": "Sophie Cunningham",
         "team": "IND",
@@ -1353,15 +1362,6 @@
         "market": "3PM",
         "line": "1+ 3PM",
         "sim_prob_pct": 61.1
-      },
-      {
-        "player_id": "4433431",
-        "player_name": "Te-Hina Paopao",
-        "team": "ATL",
-        "opponent": "IND",
-        "market": "3PM",
-        "line": "1+ 3PM",
-        "sim_prob_pct": 61.0
       }
     ]
   },
@@ -1477,6 +1477,27 @@
         "tier": "B"
       },
       {
+        "player_id": "4433403",
+        "player_name": "Caitlin Clark",
+        "team": "IND",
+        "opponent": "ATL",
+        "combo": "PTS+AST",
+        "primary": {
+          "market": "PTS",
+          "proj": 21.3,
+          "tier": "B"
+        },
+        "secondary": {
+          "market": "AST",
+          "proj": 7.9,
+          "tier": "B"
+        },
+        "needed": 2.1,
+        "needed_label": "2.1 AST from a double-double",
+        "projected_dd": false,
+        "tier": "B"
+      },
+      {
         "player_id": "3142250",
         "player_name": "Jordin Canada",
         "team": "ATL",
@@ -1517,27 +1538,6 @@
         "needed_label": "2.9 REB from a double-double",
         "projected_dd": false,
         "tier": "C"
-      },
-      {
-        "player_id": "4433730",
-        "player_name": "Paige Bueckers",
-        "team": "DAL",
-        "opponent": "CHI",
-        "combo": "PTS+AST",
-        "primary": {
-          "market": "PTS",
-          "proj": 19.2,
-          "tier": "A"
-        },
-        "secondary": {
-          "market": "AST",
-          "proj": 6.9,
-          "tier": "B"
-        },
-        "needed": 3.1,
-        "needed_label": "3.1 AST from a double-double",
-        "projected_dd": false,
-        "tier": "A"
       }
     ]
   },
@@ -1687,6 +1687,23 @@
             "model_hit_rate": 0.5
           },
           {
+            "player_id": "4433403",
+            "player_name": "Caitlin Clark",
+            "team": "IND",
+            "opponent": "ATL",
+            "market": "PTS",
+            "line": "20+ PTS",
+            "score": 79.6,
+            "confidence": 80,
+            "tier": "B",
+            "reason": "Implied -100 | Zone AIM | Edge +1.26 | Hit% 50% | Sample 11 | Proj 21.3 | Baseline 19.5 | USG 41% | MIN 33.1 | PTS matchup 0.97x | Prev 19.5 | Pre 19.5 | Uptick 0.26 | Q4 3.7",
+            "sim_prob_pct": 47.8,
+            "implied_odds": "-100",
+            "value_zone": "aim",
+            "edge": 1.26,
+            "model_hit_rate": 0.5
+          },
+          {
             "player_id": "4398915",
             "player_name": "Naz Hillmon",
             "team": "ATL",
@@ -1702,23 +1719,6 @@
             "value_zone": "aim",
             "edge": 0.53,
             "model_hit_rate": 0.5
-          },
-          {
-            "player_id": "4432831",
-            "player_name": "Aliyah Boston",
-            "team": "IND",
-            "opponent": "ATL",
-            "market": "PTS",
-            "line": "19+ PTS",
-            "score": 71.13,
-            "confidence": 71,
-            "tier": "B",
-            "reason": "Implied +133 | Zone AIM | Edge +0.02 | Hit% 43% | Sample 11 | Proj 19.0 | Baseline 19.0 | USG 45% | MIN 29.1 | PTS matchup 0.97x | Prev 19.0 | Pre 19.0 | Q4 4.8",
-            "sim_prob_pct": 40.8,
-            "implied_odds": "+133",
-            "value_zone": "aim",
-            "edge": 0.02,
-            "model_hit_rate": 0.429
           },
           {
             "player_id": "3142250",
@@ -1738,6 +1738,23 @@
             "model_hit_rate": 0.571
           },
           {
+            "player_id": "4432831",
+            "player_name": "Aliyah Boston",
+            "team": "IND",
+            "opponent": "ATL",
+            "market": "PTS",
+            "line": "19+ PTS",
+            "score": 69.88,
+            "confidence": 70,
+            "tier": "B",
+            "reason": "Implied +133 | Zone AIM | Edge +0.02 | Hit% 43% | Sample 11 | Proj 19.0 | Baseline 19.0 | USG 35% | MIN 29.1 | PTS matchup 0.97x | Prev 19.0 | Pre 19.0 | Q4 4.8 | Anti-correlation: same team as Caitlin Clark",
+            "sim_prob_pct": 40.8,
+            "implied_odds": "+133",
+            "value_zone": "aim",
+            "edge": 0.02,
+            "model_hit_rate": 0.429
+          },
+          {
             "player_id": "3142191",
             "player_name": "Kelsey Mitchell",
             "team": "IND",
@@ -1747,7 +1764,7 @@
             "score": 69.46,
             "confidence": 69,
             "tier": "B",
-            "reason": "Implied +133 | Zone AIM | Edge +0.28 | Hit% 43% | Sample 12 | Proj 20.3 | Baseline 20.0 | USG 44% | MIN 33.9 | PTS matchup 0.97x | Prev 20.0 | Pre 20.0 | Q4 3.6 | Anti-correlation: same team as Aliyah Boston",
+            "reason": "Implied +133 | Zone AIM | Edge +0.28 | Hit% 43% | Sample 12 | Proj 20.3 | Baseline 20.0 | USG 34% | MIN 33.9 | PTS matchup 0.97x | Prev 20.0 | Pre 20.0 | Q4 3.6 | Anti-correlation: same team as Caitlin Clark",
             "sim_prob_pct": 40.5,
             "implied_odds": "+133",
             "value_zone": "aim",
@@ -1778,32 +1795,15 @@
             "opponent": "ATL",
             "market": "PTS",
             "line": "11+ PTS",
-            "score": 56.36,
-            "confidence": 56,
+            "score": 53.34,
+            "confidence": 53,
             "tier": "B",
-            "reason": "Implied -133 | Zone AIM | Edge -0.11 | Hit% 57% | Sample 11 | Proj 10.9 | Baseline 11.0 | USG 19% | MIN 22.5 | PTS matchup 0.97x | Prev 11.0 | Pre 11.0 | Minutes watch | Q4 Closer (3.8) | Anti-correlation: same team as Aliyah Boston",
+            "reason": "Implied -133 | Zone AIM | Edge -0.11 | Hit% 57% | Sample 11 | Proj 10.9 | Baseline 11.0 | USG 15% | MIN 22.5 | PTS matchup 0.97x | Prev 11.0 | Pre 11.0 | Minutes watch | Q4 Closer (3.8) | Anti-correlation: same team as Caitlin Clark",
             "sim_prob_pct": 53.9,
             "implied_odds": "-133",
             "value_zone": "aim",
             "edge": -0.11,
             "model_hit_rate": 0.571
-          },
-          {
-            "player_id": "5017721",
-            "player_name": "Sika Kone",
-            "team": "ATL",
-            "opponent": "IND",
-            "market": "PTS",
-            "line": "8+ PTS",
-            "score": 43.91,
-            "confidence": 44,
-            "tier": "C",
-            "reason": "Implied +367 | Zone VALUE | Edge -5.14 | Hit% 21% | Sample 12 | Proj 2.9 | Baseline 1.9 | USG 5% | MIN 4.6 | PTS matchup 1.01x | Prev 1.9 | Pre 1.9 | Uptick 0.46 | Home boost | Minutes watch | Q4 Closer (1.8) | Anti-correlation: same team as Angel Reese",
-            "sim_prob_pct": 20.8,
-            "implied_odds": "+367",
-            "value_zone": "value",
-            "edge": -5.14,
-            "model_hit_rate": 0.214
           }
         ],
         "REB": [
@@ -1868,7 +1868,7 @@
             "score": 71.14,
             "confidence": 71,
             "tier": "B",
-            "reason": "Implied -100 | Zone AIM | Edge -0.15 | Hit% 50% | Sample 11 | Proj 9.8 | Baseline 9.5 | USG 45% | MIN 29.1 | REB matchup 0.86x | Prev 9.5 | Pre 9.5",
+            "reason": "Implied -100 | Zone AIM | Edge -0.15 | Hit% 50% | Sample 11 | Proj 9.8 | Baseline 9.5 | USG 35% | MIN 29.1 | REB matchup 0.86x | Prev 9.5 | Pre 9.5",
             "sim_prob_pct": 47.8,
             "implied_odds": "-100",
             "value_zone": "aim",
@@ -1893,6 +1893,23 @@
             "model_hit_rate": 0.571
           },
           {
+            "player_id": "4433403",
+            "player_name": "Caitlin Clark",
+            "team": "IND",
+            "opponent": "ATL",
+            "market": "REB",
+            "line": "4+ REB",
+            "score": 67.79,
+            "confidence": 68,
+            "tier": "B",
+            "reason": "Implied -100 | Zone AIM | Edge +0.14 | Hit% 50% | Sample 11 | Proj 4.1 | Baseline 4.5 | USG 41% | MIN 33.1 | REB matchup 0.86x | Prev 4.5 | Pre 4.5 | Anti-correlation: same team as Aliyah Boston",
+            "sim_prob_pct": 47.6,
+            "implied_odds": "-100",
+            "value_zone": "aim",
+            "edge": 0.14,
+            "model_hit_rate": 0.5
+          },
+          {
             "player_id": "4398915",
             "player_name": "Naz Hillmon",
             "team": "ATL",
@@ -1908,40 +1925,6 @@
             "value_zone": "aim",
             "edge": -0.86,
             "model_hit_rate": 0.571
-          },
-          {
-            "player_id": "3142255",
-            "player_name": "Monique Billings",
-            "team": "IND",
-            "opponent": "ATL",
-            "market": "REB",
-            "line": "4+ REB",
-            "score": 54.02,
-            "confidence": 54,
-            "tier": "C",
-            "reason": "Implied -100 | Zone AIM | Edge +0.44 | Hit% 50% | Sample 12 | Proj 4.4 | Baseline 4.4 | USG 11% | MIN 17.9 | REB matchup 0.86x | Prev 4.4 | Pre 4.4 | Minutes watch | Anti-correlation: same team as Aliyah Boston",
-            "sim_prob_pct": 47.2,
-            "implied_odds": "-100",
-            "value_zone": "aim",
-            "edge": 0.44,
-            "model_hit_rate": 0.5
-          },
-          {
-            "player_id": "4398829",
-            "player_name": "Lexie Hull",
-            "team": "IND",
-            "opponent": "ATL",
-            "market": "REB",
-            "line": "5+ REB",
-            "score": 52.96,
-            "confidence": 53,
-            "tier": "C",
-            "reason": "Implied +133 | Zone AIM | Edge -0.40 | Hit% 43% | Sample 12 | Proj 4.6 | Baseline 4.6 | USG 14% | MIN 21.2 | REB matchup 0.86x | Prev 4.6 | Pre 4.6 | Minutes watch | Anti-correlation: same team as Aliyah Boston",
-            "sim_prob_pct": 41.2,
-            "implied_odds": "+133",
-            "value_zone": "aim",
-            "edge": -0.4,
-            "model_hit_rate": 0.429
           },
           {
             "player_id": "5108587",
@@ -1961,21 +1944,38 @@
             "model_hit_rate": 0.429
           },
           {
-            "player_id": "3142191",
-            "player_name": "Kelsey Mitchell",
+            "player_id": "3142255",
+            "player_name": "Monique Billings",
             "team": "IND",
             "opponent": "ATL",
             "market": "REB",
-            "line": "3+ REB",
-            "score": 49.0,
-            "confidence": 49,
-            "tier": "B",
-            "reason": "Implied +367 | Zone VALUE | Edge -1.41 | Hit% 21% | Sample 12 | Proj 1.6 | Baseline 1.5 | USG 44% | MIN 33.9 | REB matchup 0.86x | Prev 1.5 | Pre 1.5 | Anti-correlation: same team as Aliyah Boston",
-            "sim_prob_pct": 21.2,
-            "implied_odds": "+367",
-            "value_zone": "value",
-            "edge": -1.41,
-            "model_hit_rate": 0.214
+            "line": "4+ REB",
+            "score": 51.69,
+            "confidence": 52,
+            "tier": "C",
+            "reason": "Implied -100 | Zone AIM | Edge +0.44 | Hit% 50% | Sample 12 | Proj 4.4 | Baseline 4.4 | USG 9% | MIN 17.9 | REB matchup 0.86x | Prev 4.4 | Pre 4.4 | Minutes watch | Anti-correlation: same team as Aliyah Boston",
+            "sim_prob_pct": 47.2,
+            "implied_odds": "-100",
+            "value_zone": "aim",
+            "edge": 0.44,
+            "model_hit_rate": 0.5
+          },
+          {
+            "player_id": "4398829",
+            "player_name": "Lexie Hull",
+            "team": "IND",
+            "opponent": "ATL",
+            "market": "REB",
+            "line": "5+ REB",
+            "score": 50.09,
+            "confidence": 50,
+            "tier": "C",
+            "reason": "Implied +133 | Zone AIM | Edge -0.40 | Hit% 43% | Sample 12 | Proj 4.6 | Baseline 4.6 | USG 11% | MIN 21.2 | REB matchup 0.86x | Prev 4.6 | Pre 4.6 | Minutes watch | Anti-correlation: same team as Aliyah Boston",
+            "sim_prob_pct": 41.2,
+            "implied_odds": "+133",
+            "value_zone": "aim",
+            "edge": -0.4,
+            "model_hit_rate": 0.429
           }
         ],
         "AST": [
@@ -2031,6 +2031,23 @@
             "model_hit_rate": 0.571
           },
           {
+            "player_id": "4433403",
+            "player_name": "Caitlin Clark",
+            "team": "IND",
+            "opponent": "ATL",
+            "market": "AST",
+            "line": "8+ AST",
+            "score": 73.41,
+            "confidence": 73,
+            "tier": "B",
+            "reason": "Implied -100 | Zone AIM | Edge -0.09 | Hit% 50% | Sample 11 | Proj 7.9 | Baseline 8.1 | USG 41% | MIN 33.1 | AST matchup 0.98x | Prev 8.1 | Pre 8.1",
+            "sim_prob_pct": 45.7,
+            "implied_odds": "-100",
+            "value_zone": "aim",
+            "edge": -0.09,
+            "model_hit_rate": 0.5
+          },
+          {
             "player_id": "3142250",
             "player_name": "Jordin Canada",
             "team": "ATL",
@@ -2054,10 +2071,10 @@
             "opponent": "ATL",
             "market": "AST",
             "line": "3+ AST",
-            "score": 68.89,
-            "confidence": 69,
+            "score": 67.64,
+            "confidence": 68,
             "tier": "B",
-            "reason": "Implied -133 | Zone AIM | Edge -0.13 | Hit% 57% | Sample 12 | Proj 2.9 | Baseline 2.8 | USG 44% | MIN 33.9 | AST matchup 0.98x | Prev 2.8 | Pre 2.8",
+            "reason": "Implied -133 | Zone AIM | Edge -0.13 | Hit% 57% | Sample 12 | Proj 2.9 | Baseline 2.8 | USG 34% | MIN 33.9 | AST matchup 0.98x | Prev 2.8 | Pre 2.8 | Anti-correlation: same team as Caitlin Clark",
             "sim_prob_pct": 52.8,
             "implied_odds": "-133",
             "value_zone": "aim",
@@ -2082,23 +2099,6 @@
             "model_hit_rate": 0.429
           },
           {
-            "player_id": "3907781",
-            "player_name": "Sophie Cunningham",
-            "team": "IND",
-            "opponent": "ATL",
-            "market": "AST",
-            "line": "2+ AST",
-            "score": 58.36,
-            "confidence": 58,
-            "tier": "B",
-            "reason": "Implied -133 | Zone AIM | Edge -0.25 | Hit% 57% | Sample 11 | Proj 1.8 | Baseline 1.5 | USG 19% | MIN 22.5 | AST matchup 0.98x | Prev 1.5 | Pre 1.5 | Uptick 0.16 | Minutes watch | Anti-correlation: same team as Kelsey Mitchell",
-            "sim_prob_pct": 53.7,
-            "implied_odds": "-133",
-            "value_zone": "aim",
-            "edge": -0.25,
-            "model_hit_rate": 0.571
-          },
-          {
             "player_id": "4432831",
             "player_name": "Aliyah Boston",
             "team": "IND",
@@ -2108,12 +2108,29 @@
             "score": 55.92,
             "confidence": 56,
             "tier": "B",
-            "reason": "Implied -180 | Zone LEAN | Edge +0.26 | Hit% 64% | Sample 11 | Proj 3.3 | Baseline 3.0 | USG 45% | MIN 29.1 | AST matchup 0.98x | Prev 3.0 | Pre 3.0 | Uptick 0.20 | Anti-correlation: same team as Kelsey Mitchell",
+            "reason": "Implied -180 | Zone LEAN | Edge +0.26 | Hit% 64% | Sample 11 | Proj 3.3 | Baseline 3.0 | USG 35% | MIN 29.1 | AST matchup 0.98x | Prev 3.0 | Pre 3.0 | Uptick 0.20 | Anti-correlation: same team as Caitlin Clark",
             "sim_prob_pct": 61.4,
             "implied_odds": "-180",
             "value_zone": "lean",
             "edge": 0.26,
             "model_hit_rate": 0.643
+          },
+          {
+            "player_id": "3907781",
+            "player_name": "Sophie Cunningham",
+            "team": "IND",
+            "opponent": "ATL",
+            "market": "AST",
+            "line": "2+ AST",
+            "score": 54.51,
+            "confidence": 55,
+            "tier": "B",
+            "reason": "Implied -133 | Zone AIM | Edge -0.25 | Hit% 57% | Sample 11 | Proj 1.8 | Baseline 1.5 | USG 15% | MIN 22.5 | AST matchup 0.98x | Prev 1.5 | Pre 1.5 | Uptick 0.16 | Minutes watch | Anti-correlation: same team as Caitlin Clark",
+            "sim_prob_pct": 53.7,
+            "implied_odds": "-133",
+            "value_zone": "aim",
+            "edge": -0.25,
+            "model_hit_rate": 0.571
           },
           {
             "player_id": "4433797",
@@ -2122,31 +2139,14 @@
             "opponent": "ATL",
             "market": "AST",
             "line": "2+ AST",
-            "score": 55.33,
-            "confidence": 55,
+            "score": 52.92,
+            "confidence": 53,
             "tier": "C",
-            "reason": "Implied +133 | Zone AIM | Edge -1.24 | Hit% 43% | Sample 12 | Proj 0.8 | Baseline 1.2 | USG 12% | MIN 9.7 | AST matchup 0.98x | Prev 1.2 | Pre 1.2 | Decline 0.83 | Minutes watch | Anti-correlation: same team as Kelsey Mitchell",
+            "reason": "Implied +133 | Zone AIM | Edge -1.24 | Hit% 43% | Sample 12 | Proj 0.8 | Baseline 1.2 | USG 9% | MIN 9.7 | AST matchup 0.98x | Prev 1.2 | Pre 1.2 | Decline 0.83 | Minutes watch | Anti-correlation: same team as Caitlin Clark",
             "sim_prob_pct": 41.4,
             "implied_odds": "+133",
             "value_zone": "aim",
             "edge": -1.24,
-            "model_hit_rate": 0.429
-          },
-          {
-            "player_id": "4433431",
-            "player_name": "Te-Hina Paopao",
-            "team": "ATL",
-            "opponent": "IND",
-            "market": "AST",
-            "line": "2+ AST",
-            "score": 52.79,
-            "confidence": 53,
-            "tier": "C",
-            "reason": "Implied +133 | Zone AIM | Edge -0.11 | Hit% 43% | Sample 12 | Proj 1.9 | Baseline 1.5 | USG 7% | MIN 12.4 | AST matchup 0.97x | Prev 1.5 | Pre 1.5 | Uptick 0.20 | Home boost | Minutes watch | Anti-correlation: same team as Allisha Gray",
-            "sim_prob_pct": 40.8,
-            "implied_odds": "+133",
-            "value_zone": "aim",
-            "edge": -0.11,
             "model_hit_rate": 0.429
           }
         ],
@@ -2203,23 +2203,6 @@
             "model_hit_rate": 0.429
           },
           {
-            "player_id": "4398829",
-            "player_name": "Lexie Hull",
-            "team": "IND",
-            "opponent": "ATL",
-            "market": "3PM",
-            "line": "1+ 3PM",
-            "score": 64.96,
-            "confidence": 65,
-            "tier": "C",
-            "reason": "Implied -100 | Zone AIM | Edge -0.27 | Hit% 50% | Sample 12 | Proj 0.7 | Baseline 0.9 | USG 14% | MIN 21.2 | 3PM matchup 1.04x | Prev 0.9 | Pre 0.9 | Decline 0.32 | Minutes watch",
-            "sim_prob_pct": 47.9,
-            "implied_odds": "-100",
-            "value_zone": "aim",
-            "edge": -0.27,
-            "model_hit_rate": 0.5
-          },
-          {
             "player_id": "3142250",
             "player_name": "Jordin Canada",
             "team": "ATL",
@@ -2243,15 +2226,32 @@
             "opponent": "ATL",
             "market": "3PM",
             "line": "2+ 3PM",
-            "score": 62.98,
-            "confidence": 63,
+            "score": 64.23,
+            "confidence": 64,
             "tier": "B",
-            "reason": "Implied +250 | Zone VALUE | Edge -0.97 | Hit% 29% | Sample 11 | Proj 1.0 | Baseline 1.2 | USG 45% | MIN 29.1 | 3PM matchup 1.04x | Prev 1.2 | Pre 1.2 | Decline 0.15 | Anti-correlation: same team as Lexie Hull",
+            "reason": "Implied +250 | Zone VALUE | Edge -0.97 | Hit% 29% | Sample 11 | Proj 1.0 | Baseline 1.2 | USG 35% | MIN 29.1 | 3PM matchup 1.04x | Prev 1.2 | Pre 1.2 | Decline 0.15",
             "sim_prob_pct": 26.9,
             "implied_odds": "+250",
             "value_zone": "value",
             "edge": -0.97,
             "model_hit_rate": 0.286
+          },
+          {
+            "player_id": "4398829",
+            "player_name": "Lexie Hull",
+            "team": "IND",
+            "opponent": "ATL",
+            "market": "3PM",
+            "line": "1+ 3PM",
+            "score": 60.83,
+            "confidence": 61,
+            "tier": "C",
+            "reason": "Implied -100 | Zone AIM | Edge -0.27 | Hit% 50% | Sample 12 | Proj 0.7 | Baseline 0.9 | USG 11% | MIN 21.2 | 3PM matchup 1.04x | Prev 0.9 | Pre 0.9 | Decline 0.32 | Minutes watch | Anti-correlation: same team as Aliyah Boston",
+            "sim_prob_pct": 47.9,
+            "implied_odds": "-100",
+            "value_zone": "aim",
+            "edge": -0.27,
+            "model_hit_rate": 0.5
           },
           {
             "player_id": "3142191",
@@ -2263,11 +2263,28 @@
             "score": 60.58,
             "confidence": 61,
             "tier": "B",
-            "reason": "Implied -180 | Zone LEAN | Edge -0.02 | Hit% 64% | Sample 12 | Proj 2.0 | Baseline 1.8 | USG 44% | MIN 33.9 | 3PM matchup 1.04x | Prev 1.8 | Pre 1.8 | Uptick 0.20 | Anti-correlation: same team as Lexie Hull",
+            "reason": "Implied -180 | Zone LEAN | Edge -0.02 | Hit% 64% | Sample 12 | Proj 2.0 | Baseline 1.8 | USG 34% | MIN 33.9 | 3PM matchup 1.04x | Prev 1.8 | Pre 1.8 | Uptick 0.20 | Anti-correlation: same team as Aliyah Boston",
             "sim_prob_pct": 60.4,
             "implied_odds": "-180",
             "value_zone": "lean",
             "edge": -0.02,
+            "model_hit_rate": 0.643
+          },
+          {
+            "player_id": "4433403",
+            "player_name": "Caitlin Clark",
+            "team": "IND",
+            "opponent": "ATL",
+            "market": "3PM",
+            "line": "2+ 3PM",
+            "score": 60.03,
+            "confidence": 60,
+            "tier": "B",
+            "reason": "Implied -180 | Zone LEAN | Edge +0.45 | Hit% 64% | Sample 11 | Proj 2.5 | Baseline 2.3 | USG 41% | MIN 33.1 | 3PM matchup 1.04x | Prev 2.3 | Pre 2.3 | Uptick 0.14 | Anti-correlation: same team as Aliyah Boston",
+            "sim_prob_pct": 62.0,
+            "implied_odds": "-180",
+            "value_zone": "lean",
+            "edge": 0.45,
             "model_hit_rate": 0.643
           },
           {
@@ -2294,32 +2311,15 @@
             "opponent": "ATL",
             "market": "3PM",
             "line": "1+ 3PM",
-            "score": 55.83,
-            "confidence": 56,
+            "score": 53.42,
+            "confidence": 53,
             "tier": "C",
-            "reason": "Implied -133 | Zone AIM | Edge -0.23 | Hit% 57% | Sample 12 | Proj 0.8 | Baseline 0.8 | USG 12% | MIN 9.7 | 3PM matchup 1.04x | Prev 0.8 | Pre 0.8 | Minutes watch | Anti-correlation: same team as Lexie Hull",
+            "reason": "Implied -133 | Zone AIM | Edge -0.23 | Hit% 57% | Sample 12 | Proj 0.8 | Baseline 0.8 | USG 9% | MIN 9.7 | 3PM matchup 1.04x | Prev 0.8 | Pre 0.8 | Minutes watch | Anti-correlation: same team as Aliyah Boston",
             "sim_prob_pct": 54.4,
             "implied_odds": "-133",
             "value_zone": "aim",
             "edge": -0.23,
             "model_hit_rate": 0.571
-          },
-          {
-            "player_id": "5208983",
-            "player_name": "Isobel Borlase",
-            "team": "ATL",
-            "opponent": "IND",
-            "market": "3PM",
-            "line": "1+ 3PM",
-            "score": 52.88,
-            "confidence": 53,
-            "tier": "C",
-            "reason": "Implied +133 | Zone AIM | Edge -0.29 | Hit% 43% | Sample 12 | Proj 0.7 | Baseline 0.4 | USG 10% | MIN 15.1 | 3PM matchup 0.85x | Prev 0.4 | Pre 0.4 | Uptick 0.38 | Home boost | Minutes watch | Anti-correlation: same team as Allisha Gray",
-            "sim_prob_pct": 41.4,
-            "implied_odds": "+133",
-            "value_zone": "aim",
-            "edge": -0.29,
-            "model_hit_rate": 0.429
           }
         ],
         "ML": [
