@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 from app.builders.mlb_board_builder import build_mlb_board
@@ -13,6 +14,30 @@ from app.outputs.mlb_hr_tracking import write_mlb_hr_tracking_snapshot
 from app.outputs.site_exporter import export_board_to_site
 from app.outputs.validator import validate_board_payload
 from app.paths import build_paths
+
+
+def _keep_last_good_if_empty(board: dict, *, sport_key: str, paths) -> dict:
+    """Don't let a transient upstream outage wipe a populated board.
+
+    If a fresh build has no games but the previously-exported board still has
+    some, keep the previous one. This protects the live World Cup board: a local
+    run can reach ESPN's WC data, but if the CI runner can't on a given hour the
+    soccer build would come back empty and otherwise overwrite a good board.
+    """
+    if board.get("games"):
+        return board
+    try:
+        prior = json.loads((paths.data_final / f"{sport_key}.json").read_text(encoding="utf-8"))
+    except Exception:
+        return board
+    if prior.get("games"):
+        print(
+            f"[run_all] {sport_key}: fresh build empty — keeping last-good board "
+            f"({len(prior['games'])} games)",
+            flush=True,
+        )
+        return prior
+    return board
 
 
 def run_mlb_pipeline(project_root: Path) -> dict:
@@ -43,6 +68,7 @@ def run_soccer_pipeline(project_root: Path) -> dict:
     config = build_config(project_root)
     paths = build_paths(project_root)
     board = build_soccer_board(config=config, paths=paths)
+    board = _keep_last_good_if_empty(board, sport_key="soccer", paths=paths)
     validate_board_payload(board)
     export_board_to_site(board=board, sport_key="soccer", paths=paths)
     return board

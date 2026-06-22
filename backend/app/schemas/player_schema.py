@@ -35,3 +35,10 @@ class BoardPlayer(BaseModel):
     # edge_pct then slots in as (sim_prob - book_implied) / book_implied.
     sim_prob_pct: float | None = Field(default=None, ge=0.0, le=100.0)
     book_odds: float | None = None
+    # Calibration guardrail (closed-form baseline vs sim_prob). Only present
+    # when the play's market is one the guardrail models AND extra carried the
+    # baseline inputs. Status: 'ok' | 'warn' (soft) | 'flag' (hard, quarantined
+    # before this row is built) | 'unmodeled'.
+    calibration_status: str | None = None
+    baseline_prob_pct: float | None = Field(default=None, ge=0.0, le=100.0)
+    calibration_gap_pp: float | None = None

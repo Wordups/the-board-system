@@ -421,7 +421,39 @@ def build_hitter_inputs(
             + parse_int(log["stat"].get("homeRuns"))
             for log in recent_5
         )
-        season_xbh = parse_int(season_stats.get("doubles")) + parse_int(season_stats.get("triples")) + season_hr
+        season_doubles = parse_int(season_stats.get("doubles"))
+        season_triples = parse_int(season_stats.get("triples"))
+        season_xbh = season_doubles + season_triples + season_hr
+
+        # Calibration guardrail baseline inputs. Per-market closed-form
+        # baselines (binomial over AB for hits/TB, 1-(1-p)^PA for HR, Poisson
+        # for RBI) consume these. Hits/AB use a 60% season + 40% L10 blend
+        # when the L10 AB sample is solid (>=25), else season-only.
+        season_ab = parse_int(season_stats.get("atBats"))
+        l10_ab = sum(parse_int(log["stat"].get("atBats")) for log in recent_10)
+        l10_hits_total = sum(parse_int(log["stat"].get("hits")) for log in recent_10)
+        l10_ba_sample_ok = l10_ab >= 25
+        l10_ba = (l10_hits_total / l10_ab) if l10_ba_sample_ok else avg
+        blended_ba = clamp(0.6 * avg + 0.4 * l10_ba, 0.0, 1.0) if l10_ba_sample_ok else avg
+        season_ab_per_game = season_ab / season_games if season_ab else 0.0
+        l10_ab_per_game = (l10_ab / len(recent_10)) if recent_10 else season_ab_per_game
+        blended_ab_per_game = (
+            0.6 * season_ab_per_game + 0.4 * l10_ab_per_game
+            if len(recent_10) >= 5 and season_ab_per_game else season_ab_per_game
+        )
+        baseline_inputs = {
+            "season_ba": round(blended_ba, 4),
+            "season_ba_unblended": round(avg, 4),
+            "l10_ba": round(l10_ba, 4),
+            "ab_per_game": round(blended_ab_per_game, 2),
+            "season_ab": int(season_ab),
+            "season_hr": int(season_hr),
+            "season_doubles": int(season_doubles),
+            "season_triples": int(season_triples),
+            "rbi_per_game": round(rbi_per_game, 4),
+            "pa_per_game": round(season_pa_per_game, 2),
+            "hr_per_pa": round(season_hr / max(season_pa, 1), 5),
+        }
         season_xbh_per_game = season_xbh / season_games
         l5_xbh_per_game = recent_xbh / max(len(recent_5), 1)
         power_surge = clamp(
@@ -512,6 +544,7 @@ def build_hitter_inputs(
                     "vs_pitcher_hr": parse_int(vs_pitcher.get("home_runs")),
                     "vs_pitcher_pa": parse_int(vs_pitcher.get("plate_appearances")),
                     "vs_pitcher_signal": round(vs_pitcher_signal, 3),
+                    **baseline_inputs,
                 },
             )
         )
@@ -584,6 +617,7 @@ def build_hitter_inputs(
                     "platoon_edge": round(platoon_edge, 3),
                     "risp_signal": round(risp_signal, 3),
                     "vs_pitcher_signal": round(vs_pitcher_signal, 3),
+                    **baseline_inputs,
                 },
             )
         )
@@ -607,6 +641,7 @@ def build_hitter_inputs(
                     "order_estimate": order_estimate,
                     "player_status": player_status,
                     "career_games": history_metrics["career_games"],
+                    **baseline_inputs,
                 },
             )
         )
@@ -630,6 +665,7 @@ def build_hitter_inputs(
                     "order_estimate": order_estimate,
                     "player_status": player_status,
                     "career_games": history_metrics["career_games"],
+                    **baseline_inputs,
                 },
             )
         )
@@ -680,6 +716,18 @@ def build_pitcher_inputs(
     pitch_quality = clamp(((5.00 - era) / 4.5) * 0.45 + ((1.45 - whip) / 0.7) * 0.35 + normalize_rate(l5_ip_avg, 7.0) * 0.20, 0.0, 1.0)
     line_guess = max(4, min(9, round(max(l5_k_avg, season_k_avg))))
 
+    # Calibration guardrail baseline inputs for K (Poisson lambda = K/9 * exp_IP).
+    # exp_ip blends season and L5 form (0.6/0.4) when L5 sample is solid.
+    k9 = (strikeouts * 9.0 / innings) if innings > 0 else 0.0
+    exp_ip = 0.6 * season_ip_avg + 0.4 * l5_ip_avg if l5_ip_avg > 0 else season_ip_avg
+    k_baseline_inputs = {
+        "k9": round(k9, 3),
+        "exp_ip": round(exp_ip, 2),
+        "k_threshold": int(line_guess),
+        "season_ip_avg": round(season_ip_avg, 2),
+        "l5_ip_avg": round(l5_ip_avg, 2),
+    }
+
     return [
         RawPlayerMarketInput(
             player_id=str(person["id"]),
@@ -694,6 +742,7 @@ def build_pitcher_inputs(
             trend=clamp(normalize_rate(l5_k_avg, 10.0), 0.0, 1.0),
             matchup=clamp(opp_k_rate * 1.3, 0.0, 1.0),
             recent_form=clamp(pitch_quality, 0.0, 1.0),
+            extra=k_baseline_inputs,
         )
     ]
 

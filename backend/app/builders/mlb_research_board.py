@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any
 
 from app.models.mlb_model import MlbPlayCandidate
+from app.sim.sim_engine import sim_prob_pct
 
 
 def build_mlb_research_board(*, candidates: list[MlbPlayCandidate], config, paths) -> dict[str, Any]:
@@ -162,6 +163,7 @@ def apply_research_overlay(candidate: MlbPlayCandidate, notes: dict[str, Any], *
         "line": candidate.line,
         "score": adjusted_score,
         "base_score": round(candidate.score, 2),
+        "sim_prob_pct": sim_prob_pct(candidate),
         "lazy_penalty": round(repeat_penalty, 2),
         "confidence": candidate.confidence,
         "tier": candidate.tier,

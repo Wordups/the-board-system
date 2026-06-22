@@ -16,6 +16,9 @@ from app.utils.dates import now_et, today_et
 HTTP_TIMEOUT = 30
 MAX_WORKERS = 8
 SOCCER_MARKETS = ["GS", "AST", "SHOTS", "SOT", "BTTS", "1H", "1HML", "OU", "ML"]
+# World Cup leads the list so its in-tournament fixtures take priority while it
+# is active (Jun-Jul 2026); the domestic leagues are off-season then and only
+# serve as fallbacks once club football resumes.
 SOCCER_LEAGUES = [
     {"slug": "fifa.world", "label": "FIFA World Cup"},
     {"slug": "eng.1", "label": "Premier League"},
@@ -26,6 +29,18 @@ SOCCER_LEAGUES = [
     {"slug": "usa.1", "label": "MLS"},
     {"slug": "uefa.champions", "label": "Champions League"},
 ]
+
+# National-team rosters on the fifa.world endpoint expose a per-player
+# `statistics` block, but it only holds the current World Cup split, which is
+# all-zeros before/early in the tournament. To still rank goalscorers we pull
+# each rostered player's public athlete overview (club + international splits)
+# and aggregate the recent ones into a real scoring profile. These slugs mark
+# the leagues whose rosters need that fallback.
+OVERVIEW_FALLBACK_LEAGUES = {"fifa.world"}
+ATHLETE_OVERVIEW_URL = "https://site.web.api.espn.com/apis/common/v3/sports/soccer/all/athletes/{athlete_id}/overview"
+# Only roll up splits from these recent seasons so the profile reflects current
+# form rather than a player's entire career.
+RECENT_SPLIT_TOKENS = ("2024", "2025", "2026")
 
 
 def collect_soccer_raw_data(data_raw_dir: Path) -> dict[str, Any]:
@@ -51,6 +66,7 @@ def collect_soccer_raw_data(data_raw_dir: Path) -> dict[str, Any]:
         rosters = fetch_team_rosters(team_keys)
         recent_form_map = fetch_team_recent_form(team_keys)
         baseline = build_goal_baseline(recent_form_map)
+        overview_map = fetch_overview_stats_for_leagues(rosters)
 
         payload = {
             "sport": "SOCCER",
@@ -61,6 +77,7 @@ def collect_soccer_raw_data(data_raw_dir: Path) -> dict[str, Any]:
                     rosters=rosters,
                     recent_form_map=recent_form_map,
                     baseline=baseline,
+                    overview_map=overview_map,
                 )
                 for event in events
             ],
@@ -118,6 +135,77 @@ def fetch_team_rosters(team_keys: set[tuple[str, str]]) -> dict[tuple[str, str],
 
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
         return dict(pool.map(load, sorted(team_keys)))
+
+
+def fetch_overview_stats_for_leagues(
+    rosters: dict[tuple[str, str], list[dict[str, Any]]],
+) -> dict[str, dict[str, float]]:
+    """Build {athlete_id: scoring profile} for players whose inline roster
+    statistics are unusable (national-team rosters during the World Cup). We
+    only fetch overviews for those, deduped by athlete id, in parallel.
+    """
+    athlete_ids: set[str] = set()
+    for (league_slug, _team_id), roster in rosters.items():
+        if league_slug not in OVERVIEW_FALLBACK_LEAGUES:
+            continue
+        for athlete in roster:
+            if athlete.get("status", {}).get("type") != "active":
+                continue
+            if athlete.get("injuries"):
+                continue
+            position = (athlete.get("position", {}) or {}).get("abbreviation", "")
+            if position == "G":  # keepers are not goalscorer/assist candidates
+                continue
+            athlete_id = str(athlete.get("id", ""))
+            if athlete_id:
+                athlete_ids.add(athlete_id)
+
+    if not athlete_ids:
+        return {}
+
+    def load(athlete_id: str) -> tuple[str, dict[str, float] | None]:
+        url = ATHLETE_OVERVIEW_URL.format(athlete_id=athlete_id)
+        try:
+            payload = espn_get_json(url)
+        except requests.RequestException:
+            return athlete_id, None
+        return athlete_id, aggregate_overview_stats(payload)
+
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
+        results = pool.map(load, sorted(athlete_ids))
+
+    return {athlete_id: profile for athlete_id, profile in results if profile}
+
+
+def aggregate_overview_stats(payload: dict[str, Any]) -> dict[str, float] | None:
+    """Roll recent club + international season splits into a single scoring
+    profile shaped like flatten_soccer_stats output (appearances, totalGoals,
+    goalAssists, shotsOnTarget, totalShots)."""
+    statistics = payload.get("statistics") or {}
+    names = statistics.get("names") or []
+    splits = statistics.get("splits") or []
+    if not names or not splits:
+        return None
+
+    totals = {"appearances": 0.0, "totalGoals": 0.0, "goalAssists": 0.0, "shotsOnTarget": 0.0, "totalShots": 0.0}
+    matched = False
+    for split in splits:
+        display_name = str(split.get("displayName", ""))
+        if not any(token in display_name for token in RECENT_SPLIT_TOKENS):
+            continue
+        values = dict(zip(names, split.get("stats", [])))
+        # `starts` is the closest appearance proxy the overview exposes; it
+        # undercounts sub appearances but anchors the per-match denominator.
+        totals["appearances"] += parse_number(values.get("starts"))
+        totals["totalGoals"] += parse_number(values.get("totalGoals"))
+        totals["goalAssists"] += parse_number(values.get("goalAssists"))
+        totals["shotsOnTarget"] += parse_number(values.get("shotsOnTarget"))
+        totals["totalShots"] += parse_number(values.get("totalShots"))
+        matched = True
+
+    if not matched or totals["appearances"] <= 0:
+        return None
+    return totals
 
 
 def fetch_team_recent_form(team_keys: set[tuple[str, str]]) -> dict[tuple[str, str], dict[str, float]]:
@@ -179,7 +267,9 @@ def build_game_payload(
     rosters: dict[tuple[str, str], list[dict[str, Any]]],
     recent_form_map: dict[tuple[str, str], dict[str, float]],
     baseline: dict[str, float],
+    overview_map: dict[str, dict[str, float]] | None = None,
 ) -> dict[str, Any]:
+    overview_map = overview_map or {}
     competition = event["competitions"][0]
     competitors = competition["competitors"]
     away = next(row for row in competitors if row["homeAway"] == "away")
@@ -214,6 +304,7 @@ def build_game_payload(
             minimum_appearances=minimum_appearances,
             competition_label=event["league_label"],
             team_expected_goals=match_profile["away_xg"],
+            overview_map=overview_map,
         )
     )
     candidates.extend(
@@ -230,6 +321,7 @@ def build_game_payload(
             minimum_appearances=minimum_appearances,
             competition_label=event["league_label"],
             team_expected_goals=match_profile["home_xg"],
+            overview_map=overview_map,
         )
     )
     candidates.extend(
@@ -270,7 +362,9 @@ def build_team_player_candidates(
     minimum_appearances: int = 3,
     competition_label: str = "Soccer",
     team_expected_goals: float | None = None,
+    overview_map: dict[str, dict[str, float]] | None = None,
 ) -> list[dict[str, Any]]:
+    overview_map = overview_map or {}
     players = []
     position_priors = {
         "F": {"goals": 0.28, "assists": 0.14, "shots": 2.0, "sot": 0.82},
@@ -284,6 +378,13 @@ def build_team_player_candidates(
             continue
         stats = flatten_soccer_stats(athlete.get("statistics", {}))
         appearances = parse_number(stats.get("appearances"))
+        # National-team rosters carry an empty WC split; fall back to the
+        # player's aggregated club + international overview profile.
+        if appearances < 3:
+            overview_stats = overview_map.get(str(athlete.get("id", "")))
+            if overview_stats:
+                stats = overview_stats
+                appearances = parse_number(stats.get("appearances"))
         goals = parse_number(stats.get("totalGoals"))
         assists = parse_number(stats.get("goalAssists"))
         shots_on_target = parse_number(stats.get("shotsOnTarget"))

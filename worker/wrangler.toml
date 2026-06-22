@@ -1,0 +1,10 @@
+name = "ask-the-board"
+main = "ask.js"
+compatibility_date = "2024-12-01"
+
+# The Anthropic API key is set as a Worker secret — NOT in this file and
+# NOT anywhere in the repo. After `wrangler login`, run:
+#
+#   wrangler secret put ANTHROPIC_API_KEY
+#
+# Paste the key when prompted. Then `wrangler deploy` publishes the worker.
