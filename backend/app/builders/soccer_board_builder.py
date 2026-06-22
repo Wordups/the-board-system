@@ -8,7 +8,7 @@ from app.utils.dates import timestamp_et
 
 
 def build_soccer_top_signals(candidates: list[dict], limit: int) -> list[dict]:
-    preferred_markets = ("GS", "AST", "OU", "ML")
+    preferred_markets = ("SOT", "SHOTS", "BTTS", "1H", "ML", "OU", "GS", "AST", "1HML")
     selected: list[dict] = []
     used_players: set[str] = set()
 
@@ -91,7 +91,7 @@ def build_soccer_board(*, config, paths) -> dict:
 
 
 def to_board_row(candidate: dict) -> dict:
-    return {
+    row = {
         "player_id": str(candidate["player_id"]),
         "player_name": candidate["player_name"],
         "team": candidate["team"],
@@ -102,3 +102,7 @@ def to_board_row(candidate: dict) -> dict:
         "tier": candidate["tier"],
         "reason": candidate["reason"],
     }
+    for key in ("sim_prob_pct", "model_hit_rate", "implied_odds", "edge"):
+        if key in candidate:
+            row[key] = candidate[key]
+    return row

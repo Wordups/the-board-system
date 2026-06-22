@@ -4,6 +4,7 @@ import shutil
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
+from app.outputs.browser_bundle import write_browser_bundle
 from app.outputs.json_writer import write_json
 
 
@@ -400,3 +401,4 @@ def write_picks_snapshot(*, boards: dict[str, dict], paths) -> None:
     write_json(final_path, payload)
     shutil.copy2(final_path, paths.frontend_data / "picks.json")
     shutil.copy2(final_path, paths.pages_data / "picks.json")
+    write_browser_bundle(paths)

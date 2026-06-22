@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import shutil
 
+from app.outputs.browser_bundle import write_browser_bundle
 from app.outputs.json_writer import write_json
 
 
@@ -12,3 +13,4 @@ def export_board_to_site(*, board: dict, sport_key: str, paths) -> None:
     paths.pages_data.mkdir(parents=True, exist_ok=True)
     shutil.copy2(final_path, paths.frontend_data / f"{sport_key}.json")
     shutil.copy2(final_path, paths.pages_data / f"{sport_key}.json")
+    write_browser_bundle(paths)
