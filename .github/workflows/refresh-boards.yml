@@ -95,11 +95,23 @@ jobs:
             frontend/data/*.json \
             data/*.json
 
-          # Detect whether anything actually changed in the index.
+          # Detect whether the canonical board data actually changed. The
+          # JSON exports drive this decision; the derived snapshot.js bundle is
+          # intentionally NOT part of the check because it embeds a per-run
+          # timestamp and would otherwise force a commit every single hour.
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
+            # When we're going to commit, also stage the regenerated browser
+            # bundle. The pipeline rewrites these tracked files on every run, so
+            # leaving them unstaged would make `git pull --rebase` in the push
+            # step abort with "cannot pull with rebase: you have unstaged
+            # changes" — which silently broke every refresh after the bundle
+            # was wired into run_all.py.
+            git add --ignore-errors \
+              data/snapshot.js \
+              frontend/data/snapshot.js
           fi
 
       - name: No-op exit when boards are unchanged
