@@ -406,7 +406,7 @@
 
   function pageHead(eyebrow, title, muted, copy, date) {
     return `<header class="page-head">
-      <div><div class="eyebrow">${esc(eyebrow)}</div><h1>${esc(title)}${muted ? ` <em>${esc(muted)}</em>` : ""}</h1><p class="page-copy">${esc(copy)}</p></div>
+      <div><div class="eyebrow">${esc(eyebrow)}</div><h1>${esc(title)}${muted ? ` <em>${esc(muted)}</em>` : ""}</h1>${copy ? `<p class="page-copy">${esc(copy)}</p>` : ""}</div>
       <div class="page-date"><strong>${esc(date || "Slate pending")}</strong><span>Geometry-ranked · market-relative</span></div>
     </header>`;
   }
@@ -476,7 +476,7 @@
     const top = sport === "soccer" ? probabilityLeaders(current, 3) : diversifiedTop(current, 3, 3);
     const limit = limits[sport] || 25;
     const latest = snapshot.sports[sport]?.date || staleInfo().latest;
-    return `${pageHead(`${meta.label} signal field`, meta.label, "market map.", `Scores are normalized inside each ${meta.label} market before geometry is calculated. That stops a 90-point basketball score from automatically outranking a 35-point baseball score.`, latest)}
+    return `${pageHead(`${meta.label} signal field`, meta.label, "market map.", "", latest)}
       ${freshnessBanner(latest)}
       ${metricsMarkup(source, sportGames.length)}
       <div class="section-head"><div><span class="section-kicker">Current profile</span><h2>${sport === "soccer" ? "Highest modeled probabilities" : "Best balanced signals"}</h2></div><p class="section-note">${sport === "soccer" ? "One leader per market; use the probability sort below for the full board." : "These cards exclude hard price and projection conflicts."}</p></div>
