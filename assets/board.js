@@ -391,16 +391,17 @@
     </div>`;
   }
 
-  function metricsMarkup(source, eventCount) {
-    const qualified = source.filter(row => row.geometry >= 74 && row.verdict.label === "Qualified").length;
-    const priced = source.filter(row => row.priceEdge !== null).length;
-    const avgCoverage = source.length ? source.reduce((sum, row) => sum + row.coverage, 0) / source.length : 0;
-    const best = [...source].sort((a, b) => b.geometry - a.geometry)[0];
-    return `<section class="metric-strip" aria-label="Slate summary">
-      <div class="metric"><span class="metric-label">Qualified</span><strong>${qualified}</strong><p>balanced, conflict-free signals</p></div>
-      <div class="metric"><span class="metric-label">Best vector</span><strong>${best?.geometry ?? "—"}</strong><p>${best ? esc(best.playerName) : "No selections"}</p></div>
-      <div class="metric"><span class="metric-label">Price coverage</span><strong>${source.length ? Math.round(priced / source.length * 100) : 0}%</strong><p>odds + probability available</p></div>
-      <div class="metric"><span class="metric-label">Signal coverage</span><strong>${Math.round(avgCoverage * 100)}%</strong><p>${eventCount} events in scope</p></div>
+  function gamesRail(activeGames) {
+    if (!activeGames.length) return "";
+    const ordered = [...activeGames].sort((a, b) => b.rows.length - a.rows.length || String(a.time).localeCompare(String(b.time)));
+    return `<section class="games-rail" aria-label="Games on the slate">
+      ${ordered.map(game => {
+        const best = [...game.rows].sort((a, b) => b.geometry - a.geometry)[0];
+        return `<button class="game-chip" type="button" data-game-id="${esc(game.gameId)}" aria-label="Open recommendations for ${esc(game.matchup)}">
+          <span class="game-chip-top"><span class="game-chip-matchup">${esc(game.matchup)}</span><b>${game.rows.length}</b></span>
+          <span class="game-chip-meta">${esc(game.time)}${best ? ` · top ${best.geometry}` : ""}</span>
+        </button>`;
+      }).join("")}
     </section>`;
   }
 
@@ -422,7 +423,7 @@
       .slice(0, 10);
     return `${pageHead("Decision surface", "Read the field.", "Ignore the noise.", "The Board now promotes balanced signals—not the loudest raw score. Price conflicts, missing inputs, and projection gaps remain visible instead of being averaged away.", date)}
       ${freshnessBanner(date)}
-      ${metricsMarkup(activeRows, activeGames.length)}
+      ${gamesRail(activeGames)}
       <div class="section-head"><div><span class="section-kicker">Diversified top field</span><h2>Five signals worth opening</h2></div><p class="section-note">Maximum two per sport. Duplicate player-market combinations are removed before ranking.</p></div>
       <section class="lead-grid">${top.map(signalCard).join("")}</section>
       <div class="section-head"><div><span class="section-kicker">Next tier</span><h2>The edge queue</h2></div><p class="section-note">A single ranked surface replaces overlapping “top,” “safe,” “sim,” and research boards.</p></div>
@@ -478,7 +479,7 @@
     const latest = snapshot.sports[sport]?.date || staleInfo().latest;
     return `${pageHead(`${meta.label} signal field`, meta.label, "market map.", "", latest)}
       ${freshnessBanner(latest)}
-      ${metricsMarkup(source, sportGames.length)}
+      ${gamesRail(sportGames)}
       <div class="section-head"><div><span class="section-kicker">Current profile</span><h2>${sport === "soccer" ? "Highest modeled probabilities" : "Best balanced signals"}</h2></div><p class="section-note">${sport === "soccer" ? "One leader per market; use the probability sort below for the full board." : "These cards exclude hard price and projection conflicts."}</p></div>
       <section class="lead-grid">${top.map(signalCard).join("")}</section>
       <div class="toolbar" aria-label="Board filters">
@@ -632,10 +633,28 @@
       <section class="drawer-section"><h3>Evidence surfaced</h3><div class="factor-grid">${evidenceCards(row).join("") || `<div class="factor-card"><span>Structured evidence</span><strong>Limited</strong><small>Exporter should emit factor fields directly.</small></div>`}</div></section>
       <section class="drawer-section"><h3>Full model note</h3><details class="reason-box"><summary>Open original scorer output</summary>${esc(row.reason)}</details></section>
       <button class="drawer-action${isSaved ? " saved" : ""}" data-action="toggle-save" data-id="${esc(id)}">${isSaved ? "Remove from My Card" : "Add to My Card"}</button>`;
+    showDrawer();
+  }
+
+  function showDrawer() {
     drawer.classList.add("open");
     drawer.setAttribute("aria-hidden", "false");
     drawerBackdrop.hidden = false;
     document.body.style.overflow = "hidden";
+  }
+
+  function openGameDrawer(gameId) {
+    const game = games.find(item => String(item.gameId) === String(gameId));
+    if (!game) return;
+    const recs = [...game.rows].sort((a, b) => b.geometry - a.geometry);
+    drawerContent.innerHTML = `<div class="drawer-hero"><div><span class="sport-token" data-sport="${esc(game.sport)}">${esc(game.sportLabel)}</span><h2>${esc(game.matchup)}</h2><div class="signal-meta">${esc(game.time)} · ${game.rows.length} recommendation${game.rows.length === 1 ? "" : "s"}</div></div></div>
+      <section class="drawer-section"><h3>Recommendations for this game</h3>
+        ${recs.length ? `<div class="game-rec-list">${recs.map(row => `<div class="game-rec" data-selection-id="${esc(row.id)}" role="button" tabindex="0" aria-label="Open ${esc(row.playerName)} ${esc(row.line)} analysis">
+          <div class="game-rec-main"><span class="market-token">${esc(row.market)}</span><div><strong>${esc(row.playerName)}</strong><span>${esc(row.line)} · ${esc(priceText(row))}</span></div></div>
+          <div class="game-rec-side"><span class="status-token ${esc(row.verdict.tone)}">${esc(row.verdict.label)}</span><b>${row.geometry}</b></div>
+        </div>`).join("")}</div>` : `<div class="empty-state"><strong>No selections for this game.</strong>Nothing was exported for this matchup.</div>`}
+      </section>`;
+    showDrawer();
   }
 
   function evidenceCards(row) {
@@ -706,6 +725,8 @@
   document.addEventListener("click", event => {
     const selection = event.target.closest("[data-selection-id]");
     if (selection) { openDrawer(selection.dataset.selectionId); return; }
+    const gameChip = event.target.closest("[data-game-id]");
+    if (gameChip) { openGameDrawer(gameChip.dataset.gameId); return; }
     const action = event.target.closest("[data-action]");
     if (!action) return;
     if (action.dataset.action === "more") {

@@ -173,6 +173,41 @@ h1 em { color: var(--muted); font-style: normal; font-weight: 500; }
 .metric strong { display: block; margin-top: 12px; font: 500 27px var(--mono); letter-spacing: -.04em; }
 .metric p { margin: 5px 0 0; color: var(--muted); font-size: 11px; }
 
+.games-rail {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 28px;
+  padding-bottom: 4px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.game-chip {
+  flex: 0 0 auto;
+  min-width: 152px;
+  max-width: 220px;
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  background: rgba(16,22,28,.72);
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+.game-chip:hover, .game-chip:focus-visible { background: var(--panel-3); border-color: var(--faint); outline: none; }
+.game-chip-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.game-chip-matchup { overflow: hidden; font: 500 12px var(--mono); letter-spacing: -.02em; white-space: nowrap; text-overflow: ellipsis; }
+.game-chip-top b { flex: 0 0 auto; color: var(--lime); font: 500 12px var(--mono); }
+.game-chip-meta { display: block; margin-top: 6px; color: var(--muted); font: 400 9px var(--mono); }
+
+.game-rec-list { display: grid; gap: 8px; }
+.game-rec { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 13px; background: var(--panel-2); cursor: pointer; transition: background .15s; }
+.game-rec:hover, .game-rec:focus-visible { background: var(--panel-3); outline: none; }
+.game-rec-main { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.game-rec-main strong { display: block; font-size: 12px; }
+.game-rec-main span { color: var(--muted); font: 400 9px var(--mono); }
+.game-rec-side { display: flex; flex: 0 0 auto; align-items: center; gap: 10px; }
+.game-rec-side b { color: var(--lime); font: 500 13px var(--mono); }
+
 .section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin: 34px 0 16px; }
 .section-kicker { color: var(--faint); font: 500 9px var(--mono); letter-spacing: .13em; text-transform: uppercase; }
 .section-head h2 { margin: 4px 0 0; font-size: 22px; letter-spacing: -.03em; }
