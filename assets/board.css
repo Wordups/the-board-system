@@ -235,6 +235,7 @@ h1 em { color: var(--muted); font-style: normal; font-weight: 500; }
 .signal-card::after { content: ""; position: absolute; top: 0; right: 0; width: 16px; height: 16px; border-left: 1px solid var(--line); transform: rotate(-45deg) translate(-6px, -1px); }
 .signal-card:hover { transform: translateY(-3px); border-color: rgba(201,255,61,.35); background-color: var(--panel-2); }
 .signal-card.flagged { border-color: rgba(255,157,85,.25); }
+.flag-chip { margin-left: 6px; color: var(--orange); font-size: 11px; line-height: 1; cursor: help; }
 .signal-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
 .sport-token, .market-token, .tier-token, .status-token {
   display: inline-flex;

@@ -69,6 +69,16 @@
     return odds > 0 ? 100 / (odds + 100) : Math.abs(odds) / (Math.abs(odds) + 100);
   }
 
+  // Fair (no-vig) American odds implied by a model probability. Used when the
+  // export carries no sportsbook line, so every priced sport still shows a
+  // price — the model's own fair line rather than an empty cell.
+  function fairAmerican(prob) {
+    if (prob === null || prob === undefined || !Number.isFinite(prob)) return null;
+    const p = clamp(prob, .02, .98);
+    const odds = p >= .5 ? -Math.round((p / (1 - p)) * 100) : Math.round(((1 - p) / p) * 100);
+    return odds > 0 ? `+${odds}` : String(odds);
+  }
+
   function parseEvidence(reason = "") {
     const text = String(reason);
     const capture = (regex, group = 1) => {
@@ -136,7 +146,15 @@
               : selection.model_hit_rate !== null && selection.model_hit_rate !== undefined
                 ? Number(selection.model_hit_rate)
                 : null;
-            const impliedProbability = americanToProbability(selection.implied_odds ?? selection.book_odds);
+            const realOdds = selection.implied_odds ?? selection.book_odds ?? null;
+            const hasRealPrice = realOdds !== null && realOdds !== undefined && realOdds !== "";
+            // Real book line drives a true value edge. With no book line, fall
+            // back to the model's fair odds so the price is shown (neutral edge).
+            const impliedOdds = hasRealPrice ? realOdds : fairAmerican(probability);
+            const priceIsModel = !hasRealPrice && impliedOdds !== null;
+            const impliedProbability = hasRealPrice
+              ? americanToProbability(realOdds)
+              : (probability !== null ? probability : null);
             const evidence = parseEvidence(selection.reason);
             const threshold = thresholdFromLine(selection.line);
             const id = [sport, event.gameId, selection.player_id || selection.player_name, market, selection.line]
@@ -162,9 +180,10 @@
                 : ({ A: .88, B: .7, C: .52, D: .35 }[String(selection.tier || "C").toUpperCase()] || .5),
               tier: String(selection.tier || "C").toUpperCase(),
               probability,
-              impliedOdds: selection.implied_odds ?? selection.book_odds ?? null,
+              impliedOdds,
               impliedProbability,
-              priceEdge: probability !== null && impliedProbability !== null ? probability - impliedProbability : null,
+              priceIsModel,
+              priceEdge: priceIsModel ? 0 : (probability !== null && impliedProbability !== null ? probability - impliedProbability : null),
               projectionDelta: evidence.projection !== null && threshold !== null ? evidence.projection - threshold : null,
               threshold,
               evidence,
@@ -252,7 +271,8 @@
 
   function verdictFor(row) {
     if (row.priceEdge !== null && row.priceEdge < -.025) return { label: "Price conflict", tone: "negative" };
-    if (row.projectionDelta !== null && row.projectionDelta < 0) return { label: "Line conflict", tone: "negative" };
+    // Projection-below-line is a soft, non-blocking note (see row.flags), not a
+    // hard verdict — it still penalizes the vector but no longer hides the pick.
     if (row.geometry >= 74 && row.coverage >= .7 && row.priceEdge !== null && row.priceEdge >= 0) {
       return { label: "Qualified", tone: "positive" };
     }
@@ -263,7 +283,7 @@
   function diversifiedTop(source, count = 5, maxPerSport = 2) {
     const verdictPriority = { Qualified: 4, Watch: 3, "Model only": 2, Pass: 1 };
     const sorted = [...source]
-      .filter(row => row.verdict.label !== "Price conflict" && row.verdict.label !== "Line conflict")
+      .filter(row => row.verdict.label !== "Price conflict")
       .sort((a, b) => (verdictPriority[b.verdict.label] || 0) - (verdictPriority[a.verdict.label] || 0) || b.geometry - a.geometry || b.score - a.score);
     const result = [];
     const sportCounts = new Map();
@@ -338,13 +358,19 @@
   function priceText(row) {
     if (row.impliedOdds === null || row.impliedOdds === undefined || row.impliedOdds === "") return "No price";
     const value = String(row.impliedOdds);
-    return Number(value) > 0 && !value.startsWith("+") ? `+${value}` : value;
+    const formatted = Number(value) > 0 && !value.startsWith("+") ? `+${value}` : value;
+    return row.priceIsModel ? `${formatted} fair` : formatted;
   }
 
   function edgeText(row) {
     if (row.priceEdge === null) return "Price unverified";
+    if (row.priceIsModel) return "model fair line";
     const points = row.priceEdge * 100;
     return `${points >= 0 ? "+" : ""}${points.toFixed(1)}pp value`;
+  }
+
+  function flagChip(row) {
+    return row.flags.length ? `<span class="flag-chip" title="${esc(row.flags.join(" · "))}" aria-label="${esc(row.flags.length)} caution flag${row.flags.length === 1 ? "" : "s"}">⚑</span>` : "";
   }
 
   function factorSummary(row) {
@@ -359,7 +385,7 @@
     return `<article class="signal-card${row.flags.length ? " flagged" : ""}" data-selection-id="${esc(row.id)}" tabindex="0" role="button" aria-label="Open ${esc(row.playerName)} ${esc(row.line)} analysis">
       <div class="signal-top">
         <span class="sport-token" data-sport="${esc(row.sport)}">${esc(row.sportLabel)} · ${esc(row.market)}</span>
-        <span class="status-token ${esc(row.verdict.tone)}">${esc(row.verdict.label)}</span>
+        <span class="status-token ${esc(row.verdict.tone)}">${esc(row.verdict.label)}</span>${flagChip(row)}
       </div>
       <div class="signal-main">
         <div>
@@ -386,7 +412,7 @@
         <span class="row-number">${row.score.toFixed(1)}</span>
         <span class="row-number ${row.priceEdge !== null && row.priceEdge < 0 ? "warn" : ""}">${esc(probabilityText(row))}</span>
         <span class="geometry-cell"><i class="mini-orbit" style="--score:${row.geometry}"></i>${row.geometry}</span>
-        <span class="status-token ${esc(row.verdict.tone)}">${esc(row.verdict.label)}</span>
+        <span class="status-token ${esc(row.verdict.tone)}">${esc(row.verdict.label)}</span>${flagChip(row)}
       </div>`).join("")}
     </div>`;
   }
@@ -623,8 +649,8 @@
     const factorCards = [
       ["Raw model", row.score.toFixed(1), `Tier ${row.tier}`],
       ["Sim probability", probabilityText(row), row.probability === null ? "Not exported" : "market-relative"],
-      ["Market implied", row.impliedProbability === null ? "—" : `${(row.impliedProbability * 100).toFixed(1)}%`, priceText(row)],
-      ["Price value", row.priceEdge === null ? "—" : `${row.priceEdge >= 0 ? "+" : ""}${(row.priceEdge * 100).toFixed(1)}pp`, row.priceEdge === null ? "unverified" : "model minus implied"],
+      [row.priceIsModel ? "Model fair odds" : "Market implied", row.impliedProbability === null ? "—" : `${(row.impliedProbability * 100).toFixed(1)}%`, priceText(row)],
+      ["Price value", row.priceEdge === null ? "—" : `${row.priceEdge >= 0 ? "+" : ""}${(row.priceEdge * 100).toFixed(1)}pp`, row.priceEdge === null ? "unverified" : row.priceIsModel ? "fair line · no market edge" : "model minus implied"],
       ["Projection", row.evidence.projection === null ? "—" : row.evidence.projection.toFixed(1), row.projectionDelta === null ? "not structured" : `${row.projectionDelta >= 0 ? "+" : ""}${row.projectionDelta.toFixed(1)} vs line`],
       ["Coverage", `${Math.round(row.coverage * 100)}%`, `${DIMENSIONS.filter(d => row.vector[d.key] !== null).length}/5 axes`],
     ];
