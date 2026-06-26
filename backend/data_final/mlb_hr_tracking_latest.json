@@ -1,13 +1,13 @@
 {
   "sport": "MLB",
   "date": "2026-06-26",
-  "generated_at": "2026-06-26 9:11 AM ET",
-  "board_last_updated": "9:11 AM ET",
+  "generated_at": "2026-06-26 12:17 PM ET",
+  "board_last_updated": "12:17 PM ET",
   "tracking_version": 1,
   "summary": {
     "pinned_board_title": "HR Core",
     "tracked_candidate_count": 12,
-    "core_candidate_count": 1,
+    "core_candidate_count": 2,
     "fringe_candidate_count": 1
   },
   "daily_picks": {
@@ -55,12 +55,12 @@
         "tier": "B"
       },
       {
-        "player_name": "Kyle Schwarber",
-        "team": "PHI",
-        "opponent": "NYM",
+        "player_name": "Rafael Devers",
+        "team": "SF",
+        "opponent": "ATL",
         "line": "HR 1+",
-        "score": 36.16,
-        "tier": "A"
+        "score": 24.04,
+        "tier": "B"
       }
     ]
   },
@@ -85,7 +85,7 @@
         "play_of_day": false,
         "daily_straight": false,
         "daily_two_leg": false,
-        "daily_three_leg": true,
+        "daily_three_leg": false,
         "pinned_board": true
       },
       "result": {
@@ -693,26 +693,26 @@
       "evidence": []
     },
     {
-      "player_id": "660271",
-      "player_name": "Shohei Ohtani",
-      "team": "LAD",
-      "opponent": "SD",
-      "game_id": "lad-sd-2026-06-26",
+      "player_id": "691406",
+      "player_name": "Junior Caminero",
+      "team": "TB",
+      "opponent": "AZ",
+      "game_id": "az-tb-2026-06-26",
       "market": "HR",
       "line": "HR 1+",
-      "score": 29.6,
-      "base_score": 29.6,
-      "confidence": 30,
+      "score": 29.12,
+      "base_score": 29.12,
+      "confidence": 29,
       "tier": "B",
-      "reason": "HR edge 19.0 | L5 0.00/g | L10 0.30/g | Season 0.22/g | HR% 0.19 | HistHR% 0.27 | OPS 0.963 | SLG 0.549 | ISO 0.254 | PowIdx 0.59 | Surge 0.04 | Matchup 0.24 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.075 | vs Walker Buehler | ERA 3.96 | WHIP 1.32 | HR/9 0.62 | HR A 5 | Hand R | Platoon + | vsP 0.500/1.100 in 5 PA | Age 31 | Order est. 3 | Lineup pen 1.2 | Power due 0.24 | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
+      "reason": "HR edge 16.5 | L5 0.00/g | L10 0.20/g | Season 0.24/g | HR% 0.21 | HistHR% 0.24 | OPS 0.896 | SLG 0.519 | ISO 0.234 | PowIdx 0.57 | Surge 0.12 | Matchup 0.90 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.068 | vs Zac Gallen | ERA 6.10 | WHIP 1.63 | HR/9 1.47 | HR A 13 | Hand R | Platoon - | vsP 0.500/1.167 in 3 PA | Age 22 | Order est. 1 | Lineup pen 1.2 | Power due 0.20 | Rising 0.56 | Season XBH 0.40/g | Wts T0.42/M0.28/F0.30",
       "research_rank": 12,
       "pinned_rank": null,
-      "core_fringe_tag": "strong",
+      "core_fringe_tag": "core",
       "board_tags": {
         "play_of_day": false,
         "daily_straight": false,
-        "daily_two_leg": false,
-        "daily_three_leg": false,
+        "daily_two_leg": true,
+        "daily_three_leg": true,
         "pinned_board": false
       },
       "result": {
@@ -720,32 +720,32 @@
         "home_runs": 0
       },
       "features": {
-        "pitcher_name": "Walker Buehler",
-        "pitcher_whip": 1.32,
-        "pitcher_hr9": 0.62,
-        "pitcher_hr_allowed": 5.0,
+        "pitcher_name": "Zac Gallen",
+        "pitcher_whip": 1.63,
+        "pitcher_hr9": 1.47,
+        "pitcher_hr_allowed": 13.0,
         "vs_pitcher_avg": 0.5,
-        "vs_pitcher_ops": 1.1,
+        "vs_pitcher_ops": 1.167,
         "vs_pitcher_hr": 0.0,
-        "order_estimate": 3,
-        "projected_pa": 4.39,
+        "order_estimate": 1,
+        "projected_pa": 4.5,
         "lineup_confirmed": false,
         "lineup_uncertainty_penalty": 1.2,
-        "season_hr_probability": 0.188,
-        "l10_hr_probability": 0.225,
-        "l5_hr_probability": 0.07,
-        "historical_hr_probability": 0.271,
-        "season_hr_per_game": 0.221,
-        "l10_hr_per_game": 0.3,
+        "season_hr_probability": 0.208,
+        "l10_hr_probability": 0.191,
+        "l5_hr_probability": 0.076,
+        "historical_hr_probability": 0.237,
+        "season_hr_per_game": 0.244,
+        "l10_hr_per_game": 0.2,
         "l5_hr_per_game": 0.0,
-        "ops": 0.963,
-        "slg": 0.549,
-        "iso": 0.254,
+        "ops": 0.896,
+        "slg": 0.519,
+        "iso": 0.234,
         "sample_reliability": 1.0,
-        "age": 31.0,
-        "historical_power_index": 0.726,
-        "recent_peak_hr_rate": 0.075,
-        "career_hr_rate": 0.062
+        "age": 22.0,
+        "historical_power_index": 0.537,
+        "recent_peak_hr_rate": 0.068,
+        "career_hr_rate": 0.055
       },
       "evidence": []
     }
