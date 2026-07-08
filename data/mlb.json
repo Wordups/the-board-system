@@ -1,7 +1,7 @@
 {
   "sport": "MLB",
   "date": "2026-07-08",
-  "last_updated": "12:40 PM ET",
+  "last_updated": "12:55 PM ET",
   "calibration": {
     "threshold_pp": 15.0,
     "mode": "off",
@@ -242,7 +242,7 @@
         "score": 94.24,
         "confidence": 92,
         "tier": "A",
-        "reason": "Edge 58.0, trend 0.40, matchup 0.23, form 0.14",
+        "reason": "Edge 58.0, trend 0.40, matchup 0.20, form 0.14",
         "sim_prob_pct": 93.6
       },
       {
@@ -2414,7 +2414,7 @@
             "score": 91.28,
             "confidence": 91,
             "tier": "A",
-            "reason": "Edge 58.0, trend 0.40, matchup 0.30, form 0.33",
+            "reason": "Edge 58.0, trend 0.40, matchup 0.32, form 0.33",
             "sim_prob_pct": 93.1,
             "calibration_status": "flag",
             "baseline_prob_pct": 76.8,
@@ -2459,7 +2459,7 @@
             "score": 90.8,
             "confidence": 91,
             "tier": "A",
-            "reason": "Edge 58.0, trend 0.60, matchup 0.24, form 0.24",
+            "reason": "Edge 58.0, trend 0.60, matchup 0.25, form 0.24",
             "sim_prob_pct": 92.6,
             "calibration_status": "flag",
             "baseline_prob_pct": 75.4,
@@ -2504,7 +2504,7 @@
             "score": 87.16,
             "confidence": 87,
             "tier": "A",
-            "reason": "Edge 49.5, trend 0.40, matchup 0.21, form 0.28",
+            "reason": "Edge 49.5, trend 0.40, matchup 0.22, form 0.28",
             "sim_prob_pct": 89.0,
             "calibration_status": "flag",
             "baseline_prob_pct": 68.3,
@@ -2549,7 +2549,7 @@
             "score": 84.28,
             "confidence": 84,
             "tier": "A",
-            "reason": "Edge 44.6, trend 0.40, matchup 0.28, form 0.28",
+            "reason": "Edge 44.6, trend 0.40, matchup 0.30, form 0.28",
             "sim_prob_pct": 86.1,
             "calibration_status": "flag",
             "baseline_prob_pct": 67.9,
@@ -2596,7 +2596,7 @@
             "score": 40.0,
             "confidence": 40,
             "tier": "A",
-            "reason": "Edge 12.7, trend 0.45, matchup 0.25, form 0.23",
+            "reason": "Edge 12.7, trend 0.45, matchup 0.26, form 0.23",
             "sim_prob_pct": 41.8,
             "calibration_status": "ok",
             "baseline_prob_pct": 46.9,
@@ -2611,7 +2611,7 @@
             "score": 38.0,
             "confidence": 38,
             "tier": "A",
-            "reason": "Edge 10.6, trend 0.55, matchup 0.25, form 0.11",
+            "reason": "Edge 10.6, trend 0.55, matchup 0.23, form 0.11",
             "sim_prob_pct": 39.8,
             "calibration_status": "ok",
             "baseline_prob_pct": 34.2,
@@ -2671,7 +2671,7 @@
             "score": 35.72,
             "confidence": 36,
             "tier": "A",
-            "reason": "Edge 8.9, trend 0.20, matchup 0.32, form 0.33",
+            "reason": "Edge 8.9, trend 0.20, matchup 0.34, form 0.33",
             "sim_prob_pct": 37.5,
             "calibration_status": "ok",
             "baseline_prob_pct": 48.0,
@@ -2686,7 +2686,7 @@
             "score": 32.68,
             "confidence": 33,
             "tier": "B",
-            "reason": "Edge 5.9, trend 0.25, matchup 0.24, form 0.29",
+            "reason": "Edge 5.9, trend 0.25, matchup 0.25, form 0.29",
             "sim_prob_pct": 34.5,
             "calibration_status": "ok",
             "baseline_prob_pct": 46.3,
@@ -2730,7 +2730,7 @@
         "park_factor_lhb": 0.8,
         "park_factor_rhb": 0.95,
         "wind_mph": 7,
-        "wind_deg": 276,
+        "wind_deg": 274,
         "wind_label": "OUT",
         "hr_lean": "neutral",
         "summary_chip": "Oracle Park \u00b7 7mph OUT"
@@ -2787,6 +2787,21 @@
             "calibration_gap_pp": 13.4
           },
           {
+            "player_id": "683002",
+            "player_name": "Gunnar Henderson",
+            "team": "BAL",
+            "opponent": "CHC",
+            "line": "HR 1+",
+            "score": 25.04,
+            "confidence": 25,
+            "tier": "B",
+            "reason": "HR edge 14.0 | L5 0.20/g | L10 0.30/g | Season 0.18/g | HR% 0.15 | HistHR% 0.17 | OPS 0.699 | SLG 0.404 | ISO 0.181 | PowIdx 0.49 | Surge 0.15 | Matchup 0.59 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.051 | vs Colin Rea | ERA 4.74 | WHIP 1.43 | HR/9 1.31 | HR A 13 | Hand R | Platoon + | vsP 0.400/0.971 in 7 PA | Age 25 | Order est. 2 | Lineup pen 1.2 | Rising 0.27 | L5 XBH 0.40/g | Season XBH 0.37/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 26.2,
+            "calibration_status": "ok",
+            "baseline_prob_pct": 17.8,
+            "calibration_gap_pp": 8.5
+          },
+          {
             "player_id": "691718",
             "player_name": "Pete Crow-Armstrong",
             "team": "CHC",
@@ -2800,21 +2815,6 @@
             "calibration_status": "ok",
             "baseline_prob_pct": 17.9,
             "calibration_gap_pp": 7.5
-          },
-          {
-            "player_id": "683002",
-            "player_name": "Gunnar Henderson",
-            "team": "BAL",
-            "opponent": "CHC",
-            "line": "HR 1+",
-            "score": 23.48,
-            "confidence": 23,
-            "tier": "B",
-            "reason": "HR edge 12.2 | L5 0.20/g | L10 0.30/g | Season 0.18/g | HR% 0.15 | HistHR% 0.17 | OPS 0.699 | SLG 0.404 | ISO 0.181 | PowIdx 0.45 | Surge 0.15 | Matchup 0.59 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.051 | vs Colin Rea | ERA 4.74 | WHIP 1.43 | HR/9 1.31 | HR A 13 | Hand R | Platoon + | vsP 0.000/0.500 in 2 PA | Age 25 | Order est. 2 | Lineup pen 1.2 | Rising 0.27 | L5 XBH 0.40/g | Season XBH 0.37/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 24.7,
-            "calibration_status": "ok",
-            "baseline_prob_pct": 17.8,
-            "calibration_gap_pp": 6.9
           },
           {
             "player_id": "694212",
@@ -3026,7 +3026,7 @@
             "score": 90.32,
             "confidence": 90,
             "tier": "A",
-            "reason": "Edge 52.5, trend 0.40, matchup 0.39, form 0.24",
+            "reason": "Edge 52.5, trend 0.40, matchup 0.41, form 0.24",
             "sim_prob_pct": 91.5,
             "calibration_status": "flag",
             "baseline_prob_pct": 72.1,
@@ -3071,7 +3071,7 @@
             "score": 87.12,
             "confidence": 87,
             "tier": "A",
-            "reason": "Edge 47.0, trend 0.40, matchup 0.40, form 0.15",
+            "reason": "Edge 47.0, trend 0.40, matchup 0.43, form 0.15",
             "sim_prob_pct": 88.3,
             "calibration_status": "flag",
             "baseline_prob_pct": 63.3,
@@ -3163,7 +3163,7 @@
             "score": 43.16,
             "confidence": 43,
             "tier": "A",
-            "reason": "Edge 16.3, trend 0.40, matchup 0.52, form 0.13",
+            "reason": "Edge 16.3, trend 0.40, matchup 0.55, form 0.13",
             "sim_prob_pct": 44.4,
             "calibration_status": "ok",
             "baseline_prob_pct": 38.5,
@@ -3178,7 +3178,7 @@
             "score": 39.32,
             "confidence": 39,
             "tier": "A",
-            "reason": "Edge 12.0, trend 0.35, matchup 0.50, form 0.24",
+            "reason": "Edge 12.0, trend 0.35, matchup 0.52, form 0.24",
             "sim_prob_pct": 40.5,
             "calibration_status": "ok",
             "baseline_prob_pct": 48.3,
@@ -3312,7 +3312,7 @@
         "park_factor_lhb": 1.05,
         "park_factor_rhb": 1.02,
         "wind_mph": 3,
-        "wind_deg": 215,
+        "wind_deg": 212,
         "wind_label": "OUT",
         "hr_lean": "HR boost",
         "summary_chip": "Camden Yards \u00b7 3mph OUT (HR boost)"
@@ -3853,7 +3853,7 @@
             "score": 28.08,
             "confidence": 28,
             "tier": "B",
-            "reason": "Edge 0.0, trend 0.20, matchup 0.66, form 0.16",
+            "reason": "Edge 0.0, trend 0.20, matchup 0.68, form 0.16",
             "sim_prob_pct": 29.3,
             "calibration_status": "ok",
             "baseline_prob_pct": 31.1,
@@ -3881,11 +3881,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.94,
         "park_factor_rhb": 0.92,
-        "wind_mph": 6,
+        "wind_mph": 7,
         "wind_deg": 250,
         "wind_label": "OUT",
         "hr_lean": "neutral",
-        "summary_chip": "Comerica Park \u00b7 6mph OUT"
+        "summary_chip": "Comerica Park \u00b7 7mph OUT"
       }
     },
     {
@@ -4481,11 +4481,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.85,
         "park_factor_rhb": 0.9,
-        "wind_mph": 2,
-        "wind_deg": 280,
+        "wind_mph": 3,
+        "wind_deg": 274,
         "wind_label": "OUT",
         "hr_lean": "neutral",
-        "summary_chip": "PNC Park \u00b7 2mph OUT"
+        "summary_chip": "PNC Park \u00b7 3mph OUT"
       }
     },
     {
@@ -4532,7 +4532,7 @@
             "score": 28.8,
             "confidence": 29,
             "tier": "B",
-            "reason": "HR edge 18.8 | L5 0.60/g | L10 0.30/g | Season 0.18/g | HR% 0.18 | HistHR% 0.15 | OPS 0.760 | SLG 0.468 | ISO 0.238 | PowIdx 0.45 | Surge 0.32 | Matchup 0.29 | ProjPA 4.0 | Sample 1.00 | Peak3Y 0.048 | vs Tyler Phillips | ERA 3.52 | WHIP 1.38 | HR/9 1.04 | HR A 8 | Hand R | Platoon + | vsP 1.000/3.500 in 2 PA | vsP HR 1 | Age 31 | Order est. 6 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.31/g | Wts T0.42/M0.28/F0.30",
+            "reason": "HR edge 18.8 | L5 0.60/g | L10 0.30/g | Season 0.18/g | HR% 0.18 | HistHR% 0.15 | OPS 0.760 | SLG 0.468 | ISO 0.238 | PowIdx 0.45 | Surge 0.32 | Matchup 0.29 | ProjPA 4.0 | Sample 1.00 | Peak3Y 0.048 | vs Tyler Phillips | ERA 3.52 | WHIP 1.38 | HR/9 1.04 | HR A 8 | Hand R | Platoon + | vsP 1.000/5.000 in 1 PA | vsP HR 1 | Age 31 | Order est. 6 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.31/g | Wts T0.42/M0.28/F0.30",
             "sim_prob_pct": 30.0,
             "calibration_status": "ok",
             "baseline_prob_pct": 16.2,
@@ -5372,7 +5372,7 @@
             "score": 91.52,
             "confidence": 92,
             "tier": "A",
-            "reason": "Edge 58.0, trend 1.00, matchup 0.41, form 0.38",
+            "reason": "Edge 58.0, trend 1.00, matchup 0.37, form 0.38",
             "sim_prob_pct": 92.7,
             "calibration_status": "flag",
             "baseline_prob_pct": 45.0,
@@ -5524,7 +5524,7 @@
             "score": 56.56,
             "confidence": 57,
             "tier": "A",
-            "reason": "Edge 30.8, trend 0.75, matchup 0.48, form 0.40",
+            "reason": "Edge 30.8, trend 0.75, matchup 0.44, form 0.40",
             "sim_prob_pct": 57.8,
             "calibration_status": "ok",
             "baseline_prob_pct": 54.5,
@@ -6272,11 +6272,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.0,
         "park_factor_rhb": 0.99,
-        "wind_mph": 2,
+        "wind_mph": 1,
         "wind_deg": 45,
         "wind_label": "IN",
         "hr_lean": "HR suppress",
-        "summary_chip": "Nationals Park \u00b7 2mph IN (HR suppress)"
+        "summary_chip": "Nationals Park \u00b7 1mph IN (HR suppress)"
       }
     },
     {
@@ -6839,11 +6839,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.92,
         "park_factor_rhb": 0.94,
-        "wind_mph": 5,
-        "wind_deg": 355,
+        "wind_mph": 6,
+        "wind_deg": 7,
         "wind_label": "CROSS",
         "hr_lean": "HR suppress",
-        "summary_chip": "Citi Field \u00b7 5mph CROSS (HR suppress)"
+        "summary_chip": "Citi Field \u00b7 6mph CROSS (HR suppress)"
       }
     },
     {
@@ -6920,7 +6920,7 @@
             "score": 22.8,
             "confidence": 23,
             "tier": "B",
-            "reason": "HR edge 12.2 | L5 0.00/g | L10 0.20/g | Season 0.22/g | HR% 0.19 | HistHR% 0.19 | OPS 0.884 | SLG 0.514 | ISO 0.248 | PowIdx 0.47 | Surge 0.00 | Matchup 0.18 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.048 | vs Chase Burns | ERA 2.40 | WHIP 1.08 | HR/9 1.11 | HR A 12 | Hand R | Platoon + | vsP 0.000/0.000 in 5 PA | Age 33 | Order est. 3 | Lineup pen 1.2 | Season XBH 0.41/g | Wts T0.42/M0.28/F0.30",
+            "reason": "HR edge 12.2 | L5 0.00/g | L10 0.20/g | Season 0.22/g | HR% 0.19 | HistHR% 0.19 | OPS 0.884 | SLG 0.514 | ISO 0.248 | PowIdx 0.47 | Surge 0.00 | Matchup 0.18 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.048 | vs Chase Burns | ERA 2.40 | WHIP 1.08 | HR/9 1.11 | HR A 12 | Hand R | Platoon + | vsP 0.000/0.000 in 2 PA | Age 33 | Order est. 3 | Lineup pen 1.2 | Season XBH 0.41/g | Wts T0.42/M0.28/F0.30",
             "sim_prob_pct": 24.0,
             "calibration_status": "ok",
             "baseline_prob_pct": 19.2,
@@ -7091,7 +7091,7 @@
             "score": 92.44,
             "confidence": 92,
             "tier": "A",
-            "reason": "Edge 58.0, trend 0.40, matchup 0.23, form 0.14",
+            "reason": "Edge 58.0, trend 0.40, matchup 0.20, form 0.14",
             "sim_prob_pct": 93.6,
             "calibration_status": "flag",
             "baseline_prob_pct": 69.4,
@@ -7318,7 +7318,7 @@
             "score": 34.92,
             "confidence": 35,
             "tier": "B",
-            "reason": "Edge 8.0, trend 0.25, matchup 0.25, form 0.12",
+            "reason": "Edge 8.0, trend 0.25, matchup 0.22, form 0.12",
             "sim_prob_pct": 36.1,
             "calibration_status": "ok",
             "baseline_prob_pct": 38.7,
@@ -7406,11 +7406,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.18,
         "park_factor_rhb": 1.16,
-        "wind_mph": 2,
-        "wind_deg": 248,
+        "wind_mph": 3,
+        "wind_deg": 250,
         "wind_label": "OUT",
         "hr_lean": "HR boost",
-        "summary_chip": "Great American Ball Park \u00b7 2mph OUT (HR boost)"
+        "summary_chip": "Great American Ball Park \u00b7 3mph OUT (HR boost)"
       }
     },
     {
@@ -7961,11 +7961,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.0,
         "park_factor_rhb": 0.98,
-        "wind_mph": 6,
-        "wind_deg": 293,
+        "wind_mph": 5,
+        "wind_deg": 285,
         "wind_label": "OUT",
         "hr_lean": "HR boost",
-        "summary_chip": "Target Field \u00b7 6mph OUT (HR boost)"
+        "summary_chip": "Target Field \u00b7 5mph OUT (HR boost)"
       }
     },
     {
@@ -8034,21 +8034,6 @@
             "calibration_gap_pp": 8.8
           },
           {
-            "player_id": "677800",
-            "player_name": "Wilyer Abreu",
-            "team": "BOS",
-            "opponent": "CWS",
-            "line": "HR 1+",
-            "score": 24.32,
-            "confidence": 24,
-            "tier": "B",
-            "reason": "HR edge 13.5 | L5 0.40/g | L10 0.30/g | Season 0.12/g | HR% 0.12 | HistHR% 0.18 | OPS 0.755 | SLG 0.423 | ISO 0.162 | PowIdx 0.40 | Surge 0.45 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.051 | vs Davis Martin | ERA 3.08 | WHIP 1.26 | HR/9 0.56 | HR A 6 | Hand R | Platoon + | vsP 0.400/1.100 in 6 PA | Age 27 | Order est. 1 | Lineup pen 1.2 | L5 XBH 1.00/g | Season XBH 0.36/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 25.5,
-            "calibration_status": "flag",
-            "baseline_prob_pct": 10.2,
-            "calibration_gap_pp": 15.3
-          },
-          {
             "player_id": "691011",
             "player_name": "Drew Romo",
             "team": "CWS",
@@ -8062,6 +8047,21 @@
             "calibration_status": "ok",
             "baseline_prob_pct": 12.5,
             "calibration_gap_pp": 12.8
+          },
+          {
+            "player_id": "677800",
+            "player_name": "Wilyer Abreu",
+            "team": "BOS",
+            "opponent": "CWS",
+            "line": "HR 1+",
+            "score": 22.6,
+            "confidence": 23,
+            "tier": "B",
+            "reason": "HR edge 11.7 | L5 0.40/g | L10 0.30/g | Season 0.12/g | HR% 0.12 | HistHR% 0.18 | OPS 0.755 | SLG 0.423 | ISO 0.162 | PowIdx 0.36 | Surge 0.45 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.051 | vs Davis Martin | ERA 3.08 | WHIP 1.26 | HR/9 0.56 | HR A 6 | Hand R | Platoon + | vsP 0.000/0.333 in 3 PA | Age 27 | Order est. 1 | Lineup pen 1.2 | L5 XBH 1.00/g | Season XBH 0.36/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 23.8,
+            "calibration_status": "ok",
+            "baseline_prob_pct": 10.2,
+            "calibration_gap_pp": 13.6
           }
         ],
         "RBI": [
@@ -8231,7 +8231,7 @@
             "score": 91.52,
             "confidence": 92,
             "tier": "A",
-            "reason": "Edge 58.0, trend 0.80, matchup 0.29, form 0.22",
+            "reason": "Edge 58.0, trend 0.80, matchup 0.26, form 0.22",
             "sim_prob_pct": 92.7,
             "calibration_status": "flag",
             "baseline_prob_pct": 37.8,
@@ -8383,7 +8383,7 @@
             "score": 61.72,
             "confidence": 62,
             "tier": "A",
-            "reason": "Edge 34.4, trend 0.85, matchup 0.33, form 0.21",
+            "reason": "Edge 34.4, trend 0.85, matchup 0.30, form 0.21",
             "sim_prob_pct": 62.9,
             "calibration_status": "ok",
             "baseline_prob_pct": 49.7,
@@ -8547,7 +8547,7 @@
         "park_factor_lhb": 1.07,
         "park_factor_rhb": 1.05,
         "wind_mph": 4,
-        "wind_deg": 225,
+        "wind_deg": 204,
         "wind_label": "OUT",
         "hr_lean": "HR boost",
         "summary_chip": "Rate Field \u00b7 4mph OUT (HR boost)"
@@ -9113,11 +9113,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.93,
         "park_factor_rhb": 0.95,
-        "wind_mph": 2,
+        "wind_mph": 3,
         "wind_deg": 241,
         "wind_label": "OUT",
         "hr_lean": "neutral",
-        "summary_chip": "Busch Stadium \u00b7 2mph OUT"
+        "summary_chip": "Busch Stadium \u00b7 3mph OUT"
       }
     },
     {
@@ -9164,7 +9164,7 @@
             "score": 29.2,
             "confidence": 29,
             "tier": "B",
-            "reason": "HR edge 17.6 | L5 0.40/g | L10 0.30/g | Season 0.21/g | HR% 0.19 | HistHR% 0.17 | OPS 0.777 | SLG 0.454 | ISO 0.225 | PowIdx 0.46 | Surge 0.36 | Matchup 0.24 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.046 | vs MacKenzie Gore | ERA 4.31 | WHIP 1.27 | HR/9 0.84 | HR A 9 | Hand L | Platoon + | vsP 0.000/0.333 in 6 PA | Age 25 | Order est. 1 | Lineup pen 1.2 | Rising 0.37 | L5 XBH 0.60/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
+            "reason": "HR edge 17.6 | L5 0.40/g | L10 0.30/g | Season 0.21/g | HR% 0.19 | HistHR% 0.17 | OPS 0.777 | SLG 0.454 | ISO 0.225 | PowIdx 0.46 | Surge 0.36 | Matchup 0.24 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.046 | vs MacKenzie Gore | ERA 4.31 | WHIP 1.27 | HR/9 0.84 | HR A 9 | Hand L | Platoon + | vsP 0.000/0.667 in 3 PA | Age 25 | Order est. 1 | Lineup pen 1.2 | Rising 0.37 | L5 XBH 0.60/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
             "sim_prob_pct": 30.4,
             "calibration_status": "ok",
             "baseline_prob_pct": 17.7,
@@ -9580,7 +9580,7 @@
             "score": 33.2,
             "confidence": 33,
             "tier": "B",
-            "reason": "Edge 5.9, trend 0.40, matchup 0.37, form 0.13",
+            "reason": "Edge 5.9, trend 0.40, matchup 0.35, form 0.13",
             "sim_prob_pct": 34.4,
             "calibration_status": "ok",
             "baseline_prob_pct": 37.0,
@@ -10239,7 +10239,7 @@
         "park_factor_lhb": 1.02,
         "park_factor_rhb": 1.02,
         "wind_mph": 4,
-        "wind_deg": 201,
+        "wind_deg": 205,
         "wind_label": "OUT",
         "hr_lean": "HR boost",
         "summary_chip": "Dodger Stadium \u00b7 4mph OUT (HR boost)"
@@ -10294,6 +10294,21 @@
             "calibration_status": "ok",
             "baseline_prob_pct": 13.1,
             "calibration_gap_pp": 11.2
+          },
+          {
+            "player_id": "606466",
+            "player_name": "Ketel Marte",
+            "team": "AZ",
+            "opponent": "SD",
+            "line": "HR 1+",
+            "score": 22.52,
+            "confidence": 23,
+            "tier": "B",
+            "reason": "HR edge 11.9 | L5 0.20/g | L10 0.10/g | Season 0.20/g | HR% 0.18 | HistHR% 0.19 | OPS 0.811 | SLG 0.486 | ISO 0.219 | PowIdx 0.44 | Surge 0.09 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.059 | vs Michael King | ERA 3.52 | WHIP 1.16 | HR/9 0.88 | HR A 10 | Hand R | Platoon + | vsP 0.333/0.666 in 6 PA | Age 32 | Order est. 1 | Lineup pen 1.2 | Power due 0.19 | L5 XBH 0.20/g | Season XBH 0.45/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 23.7,
+            "calibration_status": "ok",
+            "baseline_prob_pct": 16.6,
+            "calibration_gap_pp": 7.1
           }
         ],
         "RBI": [
@@ -10508,7 +10523,7 @@
             "score": 90.72,
             "confidence": 91,
             "tier": "A",
-            "reason": "Edge 53.8, trend 0.50, matchup 0.24, form 0.28",
+            "reason": "Edge 53.8, trend 0.50, matchup 0.21, form 0.28",
             "sim_prob_pct": 91.9,
             "calibration_status": "flag",
             "baseline_prob_pct": 63.2,
@@ -10538,7 +10553,7 @@
             "score": 85.48,
             "confidence": 85,
             "tier": "A",
-            "reason": "Edge 46.6, trend 0.40, matchup 0.24, form 0.28",
+            "reason": "Edge 46.6, trend 0.40, matchup 0.25, form 0.28",
             "sim_prob_pct": 86.7,
             "calibration_status": "flag",
             "baseline_prob_pct": 65.6,
@@ -10645,7 +10660,7 @@
             "score": 40.2,
             "confidence": 40,
             "tier": "A",
-            "reason": "Edge 11.4, trend 0.35, matchup 0.29, form 0.28",
+            "reason": "Edge 11.4, trend 0.35, matchup 0.30, form 0.28",
             "sim_prob_pct": 41.4,
             "calibration_status": "ok",
             "baseline_prob_pct": 43.6,
@@ -10675,7 +10690,7 @@
             "score": 34.32,
             "confidence": 34,
             "tier": "B",
-            "reason": "Edge 5.8, trend 0.35, matchup 0.25, form 0.28",
+            "reason": "Edge 5.8, trend 0.35, matchup 0.23, form 0.28",
             "sim_prob_pct": 35.5,
             "calibration_status": "ok",
             "baseline_prob_pct": 32.3,
@@ -10778,11 +10793,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.9,
         "park_factor_rhb": 0.92,
-        "wind_mph": 4,
-        "wind_deg": 300,
+        "wind_mph": 3,
+        "wind_deg": 287,
         "wind_label": "CROSS",
         "hr_lean": "HR suppress",
-        "summary_chip": "Petco Park \u00b7 4mph CROSS (HR suppress)"
+        "summary_chip": "Petco Park \u00b7 3mph CROSS (HR suppress)"
       }
     }
   ]
