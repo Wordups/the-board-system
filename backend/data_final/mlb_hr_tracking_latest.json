@@ -1,44 +1,52 @@
 {
   "sport": "MLB",
   "date": "2026-07-11",
-  "generated_at": "2026-07-11 10:54 AM ET",
-  "board_last_updated": "10:54 AM ET",
+  "generated_at": "2026-07-11 11:27 AM ET",
+  "board_last_updated": "11:27 AM ET",
   "tracking_version": 1,
   "summary": {
     "pinned_board_title": "HR Core",
     "tracked_candidate_count": 12,
-    "core_candidate_count": 3,
+    "core_candidate_count": 4,
     "fringe_candidate_count": 0
   },
   "daily_picks": {
     "single": {
-      "player_name": "Brandon Lowe",
-      "team": "PIT",
-      "opponent": "MIL",
+      "player_name": "Munetaka Murakami",
+      "team": "CWS",
+      "opponent": "ATH",
       "line": "HR 1+",
-      "score": 34.92,
-      "tier": "B"
+      "score": 41.04,
+      "tier": "A"
     },
     "two_leg": [
+      {
+        "player_name": "Munetaka Murakami",
+        "team": "CWS",
+        "opponent": "ATH",
+        "line": "HR 1+",
+        "score": 41.04,
+        "tier": "A"
+      },
       {
         "player_name": "Brandon Lowe",
         "team": "PIT",
         "opponent": "MIL",
         "line": "HR 1+",
         "score": 34.92,
-        "tier": "B"
-      },
-      {
-        "player_name": "Hunter Goodman",
-        "team": "COL",
-        "opponent": "SF",
-        "line": "HR 1+",
-        "score": 31.6,
         "tier": "B"
       }
     ],
     "three_leg": [
       {
+        "player_name": "Munetaka Murakami",
+        "team": "CWS",
+        "opponent": "ATH",
+        "line": "HR 1+",
+        "score": 41.04,
+        "tier": "A"
+      },
+      {
         "player_name": "Brandon Lowe",
         "team": "PIT",
         "opponent": "MIL",
@@ -53,18 +61,67 @@
         "line": "HR 1+",
         "score": 31.6,
         "tier": "B"
-      },
-      {
-        "player_name": "Esmerlyn Valdez",
-        "team": "PIT",
-        "opponent": "MIL",
-        "line": "HR 1+",
-        "score": 31.48,
-        "tier": "B"
       }
     ]
   },
   "tracked_candidates": [
+    {
+      "player_id": "808959",
+      "player_name": "Munetaka Murakami",
+      "team": "CWS",
+      "opponent": "ATH",
+      "game_id": "ath-cws-2026-07-11",
+      "market": "HR",
+      "line": "HR 1+",
+      "score": 41.04,
+      "base_score": 41.04,
+      "confidence": 41,
+      "tier": "A",
+      "reason": "HR edge 29.8 | L5 0.60/g | L10 0.40/g | Season 0.34/g | HR% 0.27 | HistHR% 0.24 | OPS 0.931 | SLG 0.556 | ISO 0.317 | PowIdx 0.54 | Surge 0.40 | Matchup 0.20 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.060 | vs Gage Jump | ERA 3.77 | WHIP 1.30 | HR/9 0.84 | HR A 4 | Hand L | Platoon - | Age 26 | Order est. 2 | Lineup confirmed | Rising 0.56 | L5 XBH 0.60/g | Season XBH 0.43/g | Wts T0.42/M0.28/F0.30",
+      "research_rank": 1,
+      "pinned_rank": 1,
+      "core_fringe_tag": "core",
+      "board_tags": {
+        "play_of_day": false,
+        "daily_straight": true,
+        "daily_two_leg": true,
+        "daily_three_leg": true,
+        "pinned_board": true
+      },
+      "result": {
+        "status": "pending",
+        "home_runs": 0
+      },
+      "features": {
+        "pitcher_name": "Gage Jump",
+        "pitcher_whip": 1.3,
+        "pitcher_hr9": 0.84,
+        "pitcher_hr_allowed": 4.0,
+        "vs_pitcher_avg": 0.0,
+        "vs_pitcher_ops": 0.0,
+        "vs_pitcher_hr": 0.0,
+        "order_estimate": 2,
+        "projected_pa": 4.52,
+        "lineup_confirmed": true,
+        "lineup_uncertainty_penalty": 0.0,
+        "season_hr_probability": 0.27,
+        "l10_hr_probability": 0.331,
+        "l5_hr_probability": 0.415,
+        "historical_hr_probability": 0.243,
+        "season_hr_per_game": 0.345,
+        "l10_hr_per_game": 0.4,
+        "l5_hr_per_game": 0.6,
+        "ops": 0.931,
+        "slg": 0.556,
+        "iso": 0.317,
+        "sample_reliability": 1.0,
+        "age": 26.0,
+        "historical_power_index": 0.574,
+        "recent_peak_hr_rate": 0.06,
+        "career_hr_rate": 0.06
+      },
+      "evidence": []
+    },
     {
       "player_id": "656941",
       "player_name": "Kyle Schwarber",
@@ -78,15 +135,15 @@
       "confidence": 40,
       "tier": "A",
       "reason": "HR edge 27.9 | L5 0.40/g | L10 0.30/g | Season 0.35/g | HR% 0.28 | HistHR% 0.27 | OPS 0.934 | SLG 0.566 | ISO 0.314 | PowIdx 0.64 | Surge 0.16 | Matchup 0.18 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Casey Mize | ERA 2.64 | WHIP 0.98 | HR/9 0.63 | HR A 5 | Hand R | Platoon + | vsP 0.000/0.000 in 2 PA | Age 33 | Order est. 2 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 1,
-      "pinned_rank": 3,
+      "research_rank": 2,
+      "pinned_rank": null,
       "core_fringe_tag": "strong",
       "board_tags": {
         "play_of_day": false,
         "daily_straight": false,
         "daily_two_leg": false,
         "daily_three_leg": false,
-        "pinned_board": true
+        "pinned_board": false
       },
       "result": {
         "status": "pending",
@@ -135,7 +192,7 @@
       "confidence": 37,
       "tier": "A",
       "reason": "HR edge 27.7 | L5 0.40/g | L10 0.40/g | Season 0.32/g | HR% 0.26 | HistHR% 0.23 | OPS 1.038 | SLG 0.621 | ISO 0.309 | PowIdx 0.66 | Surge 0.20 | Matchup 0.28 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.062 | vs Kumar Rocker | ERA 3.95 | WHIP 1.34 | HR/9 0.96 | HR A 9 | Hand R | Platoon + | vsP 0.500/2.333 in 3 PA | vsP HR 1 | Age 29 | Order est. 1 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.49/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 2,
+      "research_rank": 3,
       "pinned_rank": null,
       "core_fringe_tag": "strong",
       "board_tags": {
@@ -175,63 +232,6 @@
         "age": 29.0,
         "historical_power_index": 0.504,
         "recent_peak_hr_rate": 0.062,
-        "career_hr_rate": 0.06
-      },
-      "evidence": []
-    },
-    {
-      "player_id": "808959",
-      "player_name": "Munetaka Murakami",
-      "team": "CWS",
-      "opponent": "ATH",
-      "game_id": "ath-cws-2026-07-11",
-      "market": "HR",
-      "line": "HR 1+",
-      "score": 35.66,
-      "base_score": 35.66,
-      "confidence": 36,
-      "tier": "A",
-      "reason": "HR edge 26.6 | L5 0.60/g | L10 0.40/g | Season 0.34/g | HR% 0.25 | HistHR% 0.22 | OPS 0.931 | SLG 0.556 | ISO 0.317 | PowIdx 0.47 | Surge 0.39 | Matchup 0.20 | ProjPA 4.1 | Sample 1.00 | Peak3Y 0.060 | vs Gage Jump | ERA 3.77 | WHIP 1.30 | HR/9 0.84 | HR A 4 | Hand L | Platoon - | Age 26 | Order est. 7 | Lineup pen 2.0 | Rising 0.53 | L5 XBH 0.60/g | Season XBH 0.43/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 3,
-      "pinned_rank": null,
-      "core_fringe_tag": "strong",
-      "board_tags": {
-        "play_of_day": false,
-        "daily_straight": false,
-        "daily_two_leg": false,
-        "daily_three_leg": false,
-        "pinned_board": false
-      },
-      "result": {
-        "status": "pending",
-        "home_runs": 0
-      },
-      "features": {
-        "pitcher_name": "Gage Jump",
-        "pitcher_whip": 1.3,
-        "pitcher_hr9": 0.84,
-        "pitcher_hr_allowed": 4.0,
-        "vs_pitcher_avg": 0.0,
-        "vs_pitcher_ops": 0.0,
-        "vs_pitcher_hr": 0.0,
-        "order_estimate": 7,
-        "projected_pa": 4.09,
-        "lineup_confirmed": false,
-        "lineup_uncertainty_penalty": 1.98,
-        "season_hr_probability": 0.247,
-        "l10_hr_probability": 0.305,
-        "l5_hr_probability": 0.385,
-        "historical_hr_probability": 0.223,
-        "season_hr_per_game": 0.345,
-        "l10_hr_per_game": 0.4,
-        "l5_hr_per_game": 0.6,
-        "ops": 0.931,
-        "slg": 0.556,
-        "iso": 0.317,
-        "sample_reliability": 1.0,
-        "age": 26.0,
-        "historical_power_index": 0.46,
-        "recent_peak_hr_rate": 0.06,
         "career_hr_rate": 0.06
       },
       "evidence": []
@@ -307,11 +307,11 @@
       "tier": "B",
       "reason": "HR edge 21.7 | L5 0.60/g | L10 0.30/g | Season 0.24/g | HR% 0.21 | HistHR% 0.22 | OPS 0.805 | SLG 0.490 | ISO 0.247 | PowIdx 0.60 | Surge 0.36 | Matchup 0.72 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.056 | vs Brandon Sproat | ERA 5.13 | WHIP 1.37 | HR/9 1.59 | HR A 14 | Hand R | Platoon + | Age 31 | Order est. 2 | Lineup confirmed | L5 XBH 0.80/g | Season XBH 0.48/g | Wts T0.42/M0.28/F0.30",
       "research_rank": 5,
-      "pinned_rank": 1,
+      "pinned_rank": 2,
       "core_fringe_tag": "core",
       "board_tags": {
         "play_of_day": false,
-        "daily_straight": true,
+        "daily_straight": false,
         "daily_two_leg": true,
         "daily_three_leg": true,
         "pinned_board": true
@@ -465,6 +465,63 @@
       "evidence": []
     },
     {
+      "player_id": "695657",
+      "player_name": "Colson Montgomery",
+      "team": "CWS",
+      "opponent": "ATH",
+      "game_id": "ath-cws-2026-07-11",
+      "market": "HR",
+      "line": "HR 1+",
+      "score": 32.68,
+      "base_score": 32.68,
+      "confidence": 33,
+      "tier": "B",
+      "reason": "HR edge 20.0 | L5 0.20/g | L10 0.20/g | Season 0.26/g | HR% 0.22 | HistHR% 0.26 | OPS 0.779 | SLG 0.476 | ISO 0.254 | PowIdx 0.45 | Surge 0.14 | Matchup 0.20 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.071 | vs Gage Jump | ERA 3.77 | WHIP 1.30 | HR/9 0.84 | HR A 4 | Hand L | Platoon - | Age 24 | Order est. 4 | Lineup confirmed | Power due 0.20 | Rising 0.42 | L5 XBH 0.20/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
+      "research_rank": 8,
+      "pinned_rank": null,
+      "core_fringe_tag": "strong",
+      "board_tags": {
+        "play_of_day": false,
+        "daily_straight": false,
+        "daily_two_leg": false,
+        "daily_three_leg": false,
+        "pinned_board": false
+      },
+      "result": {
+        "status": "pending",
+        "home_runs": 0
+      },
+      "features": {
+        "pitcher_name": "Gage Jump",
+        "pitcher_whip": 1.3,
+        "pitcher_hr9": 0.84,
+        "pitcher_hr_allowed": 4.0,
+        "vs_pitcher_avg": 0.0,
+        "vs_pitcher_ops": 0.0,
+        "vs_pitcher_hr": 0.0,
+        "order_estimate": 4,
+        "projected_pa": 4.38,
+        "lineup_confirmed": true,
+        "lineup_uncertainty_penalty": 0.0,
+        "season_hr_probability": 0.223,
+        "l10_hr_probability": 0.213,
+        "l5_hr_probability": 0.21,
+        "historical_hr_probability": 0.261,
+        "season_hr_per_game": 0.258,
+        "l10_hr_per_game": 0.2,
+        "l5_hr_per_game": 0.2,
+        "ops": 0.779,
+        "slg": 0.476,
+        "iso": 0.254,
+        "sample_reliability": 1.0,
+        "age": 24.0,
+        "historical_power_index": 0.672,
+        "recent_peak_hr_rate": 0.071,
+        "career_hr_rate": 0.059
+      },
+      "evidence": []
+    },
+    {
       "player_id": "691406",
       "player_name": "Junior Caminero",
       "team": "TB",
@@ -477,7 +534,7 @@
       "confidence": 32,
       "tier": "B",
       "reason": "HR edge 20.5 | L5 0.00/g | L10 0.20/g | Season 0.30/g | HR% 0.25 | HistHR% 0.24 | OPS 0.927 | SLG 0.557 | ISO 0.277 | PowIdx 0.49 | Surge 0.14 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.068 | vs Logan Gilbert | ERA 3.19 | WHIP 0.95 | HR/9 1.17 | HR A 14 | Hand R | Platoon - | vsP 0.333/0.666 in 3 PA | Age 22 | Order est. 1 | Lineup pen 1.2 | Power due 0.21 | Rising 0.64 | Season XBH 0.45/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 8,
+      "research_rank": 9,
       "pinned_rank": null,
       "core_fringe_tag": "strong",
       "board_tags": {
@@ -534,7 +591,7 @@
       "confidence": 32,
       "tier": "B",
       "reason": "HR edge 23.8 | L5 0.80/g | L10 0.70/g | Season 0.17/g | HR% 0.16 | HistHR% 0.12 | OPS 0.821 | SLG 0.483 | ISO 0.225 | PowIdx 0.42 | Surge 0.55 | Matchup 0.62 | ProjPA 3.8 | Sample 1.00 | Peak3Y 0.029 | vs Brandon Pfaadt | ERA 4.84 | WHIP 1.34 | HR/9 1.49 | HR A 8 | Hand R | Platoon + | Age 25 | Order est. 9 | Lineup pen 1.7 | Rising 0.47 | L5 XBH 1.20/g | Season XBH 0.34/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 9,
+      "research_rank": 10,
       "pinned_rank": null,
       "core_fringe_tag": "strong",
       "board_tags": {
@@ -591,13 +648,13 @@
       "confidence": 32,
       "tier": "B",
       "reason": "HR edge 21.9 | L5 0.20/g | L10 0.10/g | Season 0.31/g | HR% 0.26 | HistHR% 0.22 | OPS 0.862 | SLG 0.539 | ISO 0.287 | PowIdx 0.62 | Surge 0.22 | Matchup 0.85 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.057 | vs Tyler Mahle | ERA 5.70 | WHIP 1.49 | HR/9 1.52 | HR A 12 | Hand R | Platoon - | vsP 0.667/1.667 in 3 PA | Age 26 | Order est. 2 | Lineup pen 1.2 | Power due 0.36 | Rising 0.50 | L5 XBH 0.40/g | Season XBH 0.47/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 10,
-      "pinned_rank": 2,
+      "research_rank": 11,
+      "pinned_rank": 3,
       "core_fringe_tag": "core",
       "board_tags": {
         "play_of_day": false,
         "daily_straight": false,
-        "daily_two_leg": true,
+        "daily_two_leg": false,
         "daily_three_leg": true,
         "pinned_board": true
       },
@@ -648,14 +705,14 @@
       "confidence": 31,
       "tier": "B",
       "reason": "HR edge 19.1 | L5 0.40/g | L10 0.20/g | Season 0.28/g | HR% 0.21 | HistHR% 0.19 | OPS 0.993 | SLG 0.634 | ISO 0.341 | PowIdx 0.57 | Surge 0.38 | Matchup 0.72 | ProjPA 4.3 | Sample 0.51 | Peak3Y 0.047 | vs Brandon Sproat | ERA 5.13 | WHIP 1.37 | HR/9 1.59 | HR A 14 | Hand R | Platoon - | Age 22 | Order est. 4 | Lineup confirmed | Rising 0.77 | L5 XBH 0.40/g | Season XBH 0.52/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 11,
+      "research_rank": 12,
       "pinned_rank": null,
       "core_fringe_tag": "core",
       "board_tags": {
         "play_of_day": false,
         "daily_straight": false,
         "daily_two_leg": false,
-        "daily_three_leg": true,
+        "daily_three_leg": false,
         "pinned_board": false
       },
       "result": {
@@ -687,63 +744,6 @@
         "sample_reliability": 0.511,
         "age": 22.0,
         "historical_power_index": 0.254,
-        "recent_peak_hr_rate": 0.047,
-        "career_hr_rate": 0.047
-      },
-      "evidence": []
-    },
-    {
-      "player_id": "699013",
-      "player_name": "Esmerlyn Valdez",
-      "team": "PIT",
-      "opponent": "MIL",
-      "game_id": "mil-pit-2026-07-11",
-      "market": "HR",
-      "line": "HR 1+",
-      "score": 30.9,
-      "base_score": 30.9,
-      "confidence": 31,
-      "tier": "B",
-      "reason": "HR edge 19.7 | L5 0.40/g | L10 0.20/g | Season 0.28/g | HR% 0.19 | HistHR% 0.17 | OPS 0.993 | SLG 0.634 | ISO 0.341 | PowIdx 0.50 | Surge 0.38 | Matchup 0.18 | ProjPA 3.9 | Sample 0.51 | Peak3Y 0.047 | vs Shane Drohan | ERA 2.97 | WHIP 1.24 | HR/9 0.71 | HR A 5 | Hand L | Platoon + | Age 22 | Order est. 9 | Lineup pen 1.7 | Rising 0.75 | L5 XBH 0.40/g | Season XBH 0.52/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 12,
-      "pinned_rank": null,
-      "core_fringe_tag": "strong",
-      "board_tags": {
-        "play_of_day": false,
-        "daily_straight": false,
-        "daily_two_leg": false,
-        "daily_three_leg": true,
-        "pinned_board": false
-      },
-      "result": {
-        "status": "pending",
-        "home_runs": 0
-      },
-      "features": {
-        "pitcher_name": "Shane Drohan",
-        "pitcher_whip": 1.24,
-        "pitcher_hr9": 0.71,
-        "pitcher_hr_allowed": 5.0,
-        "vs_pitcher_avg": 0.0,
-        "vs_pitcher_ops": 0.0,
-        "vs_pitcher_hr": 0.0,
-        "order_estimate": 9,
-        "projected_pa": 3.86,
-        "lineup_confirmed": false,
-        "lineup_uncertainty_penalty": 1.74,
-        "season_hr_probability": 0.194,
-        "l10_hr_probability": 0.22,
-        "l5_hr_probability": 0.3,
-        "historical_hr_probability": 0.169,
-        "season_hr_per_game": 0.28,
-        "l10_hr_per_game": 0.2,
-        "l5_hr_per_game": 0.4,
-        "ops": 0.993,
-        "slg": 0.634,
-        "iso": 0.341,
-        "sample_reliability": 0.511,
-        "age": 22.0,
-        "historical_power_index": 0.163,
         "recent_peak_hr_rate": 0.047,
         "career_hr_rate": 0.047
       },
