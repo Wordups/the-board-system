@@ -1,8 +1,8 @@
 {
   "sport": "MLB",
   "date": "2026-07-17",
-  "generated_at": "2026-07-17 11:13 AM ET",
-  "board_last_updated": "11:13 AM ET",
+  "generated_at": "2026-07-17 11:51 AM ET",
+  "board_last_updated": "11:51 AM ET",
   "tracking_version": 1,
   "summary": {
     "pinned_board_title": "HR Core",
@@ -16,7 +16,7 @@
       "team": "HOU",
       "opponent": "BAL",
       "line": "HR 1+",
-      "score": 38.36,
+      "score": 39.28,
       "tier": "A"
     },
     "two_leg": [
@@ -25,7 +25,7 @@
         "team": "HOU",
         "opponent": "BAL",
         "line": "HR 1+",
-        "score": 38.36,
+        "score": 39.28,
         "tier": "A"
       },
       {
@@ -43,7 +43,7 @@
         "team": "HOU",
         "opponent": "BAL",
         "line": "HR 1+",
-        "score": 38.36,
+        "score": 39.28,
         "tier": "A"
       },
       {
@@ -55,16 +55,73 @@
         "tier": "A"
       },
       {
-        "player_name": "Brandon Lowe",
-        "team": "PIT",
-        "opponent": "CLE",
+        "player_name": "Matt Olson",
+        "team": "ATL",
+        "opponent": "TEX",
         "line": "HR 1+",
-        "score": 33.72,
+        "score": 33.16,
         "tier": "B"
       }
     ]
   },
   "tracked_candidates": [
+    {
+      "player_id": "670541",
+      "player_name": "Yordan Alvarez",
+      "team": "HOU",
+      "opponent": "BAL",
+      "game_id": "bal-hou-2026-07-17",
+      "market": "HR",
+      "line": "HR 1+",
+      "score": 39.28,
+      "base_score": 39.28,
+      "confidence": 39,
+      "tier": "A",
+      "reason": "HR edge 29.6 | L5 0.40/g | L10 0.40/g | Season 0.32/g | HR% 0.27 | HistHR% 0.23 | OPS 1.059 | SLG 0.633 | ISO 0.315 | PowIdx 0.73 | Surge 0.19 | Matchup 0.46 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.062 | vs Dean Kremer | ERA 4.09 | WHIP 1.00 | HR/9 3.68 | HR A 9 | Hand R | Platoon + | vsP 0.429/1.029 in 10 PA | Age 29 | Order est. 1 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.50/g | Wts T0.42/M0.28/F0.30",
+      "research_rank": 1,
+      "pinned_rank": 1,
+      "core_fringe_tag": "core",
+      "board_tags": {
+        "play_of_day": false,
+        "daily_straight": true,
+        "daily_two_leg": true,
+        "daily_three_leg": true,
+        "pinned_board": true
+      },
+      "result": {
+        "status": "pending",
+        "home_runs": 0
+      },
+      "features": {
+        "pitcher_name": "Dean Kremer",
+        "pitcher_whip": 1.0,
+        "pitcher_hr9": 3.68,
+        "pitcher_hr_allowed": 9.0,
+        "vs_pitcher_avg": 0.429,
+        "vs_pitcher_ops": 1.029,
+        "vs_pitcher_hr": 0.0,
+        "order_estimate": 1,
+        "projected_pa": 4.49,
+        "lineup_confirmed": false,
+        "lineup_uncertainty_penalty": 1.2,
+        "season_hr_probability": 0.266,
+        "l10_hr_probability": 0.316,
+        "l5_hr_probability": 0.305,
+        "historical_hr_probability": 0.231,
+        "season_hr_per_game": 0.323,
+        "l10_hr_per_game": 0.4,
+        "l5_hr_per_game": 0.4,
+        "ops": 1.059,
+        "slg": 0.633,
+        "iso": 0.315,
+        "sample_reliability": 1.0,
+        "age": 29.0,
+        "historical_power_index": 0.506,
+        "recent_peak_hr_rate": 0.062,
+        "career_hr_rate": 0.06
+      },
+      "evidence": []
+    },
     {
       "player_id": "808959",
       "player_name": "Munetaka Murakami",
@@ -78,7 +135,7 @@
       "confidence": 39,
       "tier": "A",
       "reason": "HR edge 29.1 | L5 0.60/g | L10 0.40/g | Season 0.33/g | HR% 0.24 | HistHR% 0.22 | OPS 0.911 | SLG 0.540 | ISO 0.308 | PowIdx 0.55 | Surge 0.39 | Matchup 0.18 | ProjPA 4.1 | Sample 1.00 | Peak3Y 0.059 | vs Spencer Miles | ERA 2.85 | WHIP 1.10 | HR/9 0.60 | HR A 4 | Hand R | Platoon + | Age 26 | Order est. 7 | Lineup pen 1.4 | Rising 0.52 | L5 XBH 0.60/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 1,
+      "research_rank": 2,
       "pinned_rank": null,
       "core_fringe_tag": "strong",
       "board_tags": {
@@ -119,63 +176,6 @@
         "historical_power_index": 0.452,
         "recent_peak_hr_rate": 0.059,
         "career_hr_rate": 0.059
-      },
-      "evidence": []
-    },
-    {
-      "player_id": "670541",
-      "player_name": "Yordan Alvarez",
-      "team": "HOU",
-      "opponent": "BAL",
-      "game_id": "bal-hou-2026-07-17",
-      "market": "HR",
-      "line": "HR 1+",
-      "score": 38.36,
-      "base_score": 38.36,
-      "confidence": 38,
-      "tier": "A",
-      "reason": "HR edge 28.6 | L5 0.40/g | L10 0.40/g | Season 0.32/g | HR% 0.27 | HistHR% 0.23 | OPS 1.059 | SLG 0.633 | ISO 0.315 | PowIdx 0.71 | Surge 0.19 | Matchup 0.46 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.062 | vs Dean Kremer | ERA 4.09 | WHIP 1.00 | HR/9 3.68 | HR A 9 | Hand R | Platoon + | vsP 0.400/0.971 in 7 PA | Age 29 | Order est. 1 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.50/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 2,
-      "pinned_rank": 1,
-      "core_fringe_tag": "core",
-      "board_tags": {
-        "play_of_day": false,
-        "daily_straight": true,
-        "daily_two_leg": true,
-        "daily_three_leg": true,
-        "pinned_board": true
-      },
-      "result": {
-        "status": "pending",
-        "home_runs": 0
-      },
-      "features": {
-        "pitcher_name": "Dean Kremer",
-        "pitcher_whip": 1.0,
-        "pitcher_hr9": 3.68,
-        "pitcher_hr_allowed": 9.0,
-        "vs_pitcher_avg": 0.4,
-        "vs_pitcher_ops": 0.971,
-        "vs_pitcher_hr": 0.0,
-        "order_estimate": 1,
-        "projected_pa": 4.49,
-        "lineup_confirmed": false,
-        "lineup_uncertainty_penalty": 1.2,
-        "season_hr_probability": 0.266,
-        "l10_hr_probability": 0.316,
-        "l5_hr_probability": 0.305,
-        "historical_hr_probability": 0.231,
-        "season_hr_per_game": 0.323,
-        "l10_hr_per_game": 0.4,
-        "l5_hr_per_game": 0.4,
-        "ops": 1.059,
-        "slg": 0.633,
-        "iso": 0.315,
-        "sample_reliability": 1.0,
-        "age": 29.0,
-        "historical_power_index": 0.506,
-        "recent_peak_hr_rate": 0.062,
-        "career_hr_rate": 0.06
       },
       "evidence": []
     },
@@ -408,63 +408,6 @@
       "evidence": []
     },
     {
-      "player_id": "664040",
-      "player_name": "Brandon Lowe",
-      "team": "PIT",
-      "opponent": "CLE",
-      "game_id": "pit-cle-2026-07-17",
-      "market": "HR",
-      "line": "HR 1+",
-      "score": 33.72,
-      "base_score": 33.72,
-      "confidence": 34,
-      "tier": "B",
-      "reason": "HR edge 21.6 | L5 0.60/g | L10 0.30/g | Season 0.23/g | HR% 0.20 | HistHR% 0.21 | OPS 0.803 | SLG 0.487 | ISO 0.241 | PowIdx 0.53 | Surge 0.36 | Matchup 0.29 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.056 | vs Gavin Williams | ERA 3.81 | WHIP 1.15 | HR/9 1.35 | HR A 17 | Hand R | Platoon + | vsP 0.500/1.000 in 2 PA | Age 31 | Order est. 2 | Lineup pen 1.2 | L5 XBH 0.80/g | Season XBH 0.48/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 7,
-      "pinned_rank": 3,
-      "core_fringe_tag": "core",
-      "board_tags": {
-        "play_of_day": false,
-        "daily_straight": false,
-        "daily_two_leg": false,
-        "daily_three_leg": true,
-        "pinned_board": true
-      },
-      "result": {
-        "status": "pending",
-        "home_runs": 0
-      },
-      "features": {
-        "pitcher_name": "Gavin Williams",
-        "pitcher_whip": 1.15,
-        "pitcher_hr9": 1.35,
-        "pitcher_hr_allowed": 17.0,
-        "vs_pitcher_avg": 0.5,
-        "vs_pitcher_ops": 1.0,
-        "vs_pitcher_hr": 0.0,
-        "order_estimate": 2,
-        "projected_pa": 4.44,
-        "lineup_confirmed": false,
-        "lineup_uncertainty_penalty": 1.2,
-        "season_hr_probability": 0.198,
-        "l10_hr_probability": 0.245,
-        "l5_hr_probability": 0.39,
-        "historical_hr_probability": 0.213,
-        "season_hr_per_game": 0.233,
-        "l10_hr_per_game": 0.3,
-        "l5_hr_per_game": 0.6,
-        "ops": 0.803,
-        "slg": 0.487,
-        "iso": 0.241,
-        "sample_reliability": 1.0,
-        "age": 31.0,
-        "historical_power_index": 0.408,
-        "recent_peak_hr_rate": 0.056,
-        "career_hr_rate": 0.051
-      },
-      "evidence": []
-    },
-    {
       "player_id": "621566",
       "player_name": "Matt Olson",
       "team": "ATL",
@@ -477,14 +420,14 @@
       "confidence": 33,
       "tier": "B",
       "reason": "HR edge 22.2 | L5 0.00/g | L10 0.20/g | Season 0.26/g | HR% 0.23 | HistHR% 0.23 | OPS 0.873 | SLG 0.534 | ISO 0.267 | PowIdx 0.66 | Surge 0.10 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.073 | vs Cal Quantrill | ERA 3.11 | WHIP 1.14 | HR/9 1.17 | HR A 6 | Hand R | Platoon + | vsP 0.400/1.338 in 13 PA | vsP HR 1 | Age 32 | Order est. 1 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.52/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 8,
+      "research_rank": 7,
       "pinned_rank": null,
       "core_fringe_tag": "core",
       "board_tags": {
         "play_of_day": false,
         "daily_straight": false,
         "daily_two_leg": false,
-        "daily_three_leg": false,
+        "daily_three_leg": true,
         "pinned_board": false
       },
       "result": {
@@ -518,6 +461,63 @@
         "historical_power_index": 0.53,
         "recent_peak_hr_rate": 0.073,
         "career_hr_rate": 0.055
+      },
+      "evidence": []
+    },
+    {
+      "player_id": "664040",
+      "player_name": "Brandon Lowe",
+      "team": "PIT",
+      "opponent": "CLE",
+      "game_id": "pit-cle-2026-07-17",
+      "market": "HR",
+      "line": "HR 1+",
+      "score": 33.12,
+      "base_score": 33.12,
+      "confidence": 33,
+      "tier": "B",
+      "reason": "HR edge 21.1 | L5 0.60/g | L10 0.30/g | Season 0.23/g | HR% 0.20 | HistHR% 0.21 | OPS 0.803 | SLG 0.487 | ISO 0.241 | PowIdx 0.52 | Surge 0.36 | Matchup 0.29 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.056 | vs Gavin Williams | ERA 3.81 | WHIP 1.15 | HR/9 1.35 | HR A 17 | Hand R | Platoon + | vsP 0.182/0.637 in 11 PA | vsP HR 1 | Age 31 | Order est. 2 | Lineup pen 1.2 | L5 XBH 0.80/g | Season XBH 0.48/g | Wts T0.42/M0.28/F0.30",
+      "research_rank": 8,
+      "pinned_rank": 3,
+      "core_fringe_tag": "core",
+      "board_tags": {
+        "play_of_day": false,
+        "daily_straight": false,
+        "daily_two_leg": false,
+        "daily_three_leg": false,
+        "pinned_board": true
+      },
+      "result": {
+        "status": "pending",
+        "home_runs": 0
+      },
+      "features": {
+        "pitcher_name": "Gavin Williams",
+        "pitcher_whip": 1.15,
+        "pitcher_hr9": 1.35,
+        "pitcher_hr_allowed": 17.0,
+        "vs_pitcher_avg": 0.182,
+        "vs_pitcher_ops": 0.637,
+        "vs_pitcher_hr": 1.0,
+        "order_estimate": 2,
+        "projected_pa": 4.44,
+        "lineup_confirmed": false,
+        "lineup_uncertainty_penalty": 1.2,
+        "season_hr_probability": 0.198,
+        "l10_hr_probability": 0.245,
+        "l5_hr_probability": 0.39,
+        "historical_hr_probability": 0.213,
+        "season_hr_per_game": 0.233,
+        "l10_hr_per_game": 0.3,
+        "l5_hr_per_game": 0.6,
+        "ops": 0.803,
+        "slg": 0.487,
+        "iso": 0.241,
+        "sample_reliability": 1.0,
+        "age": 31.0,
+        "historical_power_index": 0.408,
+        "recent_peak_hr_rate": 0.056,
+        "career_hr_rate": 0.051
       },
       "evidence": []
     },
