@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from app.builders.kalshi_edge import enrich_board_with_kalshi
 from app.builders.mlb_board_builder import build_mlb_board
 from app.builders.mlb_environment import enrich_board_with_environment
 from app.builders.nba_board_builder import build_nba_board
@@ -50,6 +51,12 @@ def run_mlb_pipeline(project_root: Path) -> dict:
     # any weather-API failure leaves the env field absent (silent degrade).
     # Hard Non-Goal #1 holds: nothing here feeds backend/app/scoring/.
     enrich_board_with_environment(board)
+    # Kalshi market-implied probability overlay + edge report. Additive and
+    # display/report-only (REPORT_ONLY — no execution venue wired): annotates
+    # ML rows with `kalshi` and adds top-level `kalshi_edge_board`. Runs AFTER
+    # the validator for the same reason as the env enrichment, and degrades
+    # silently (kalshi: null everywhere) on any Kalshi outage.
+    enrich_board_with_kalshi(board, paths=paths)
     export_board_to_site(board=board, sport_key="mlb", paths=paths)
     write_mlb_hr_tracking_snapshot(board=board, paths=paths)
     return board
