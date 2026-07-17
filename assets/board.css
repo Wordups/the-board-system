@@ -55,6 +55,29 @@ svg { display: block; }
 }
 .skip-link:focus { top: 12px; }
 
+/* Shared board-network tab bar (mirrored on the Market Desk site) */
+.site-switch {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 0 28px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-soft);
+  color: var(--muted);
+  font: 500 10px var(--mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.site-switch::-webkit-scrollbar { display: none; }
+.site-switch-label { margin-right: 10px; color: var(--faint); white-space: nowrap; }
+.site-tab { padding: 5px 13px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); white-space: nowrap; transition: color .18s ease, border-color .18s ease; }
+.site-tab:hover { color: var(--text); border-color: var(--line-strong); }
+.site-tab.active { background: var(--lime); border-color: var(--lime); color: #090c0f; font-weight: 500; box-shadow: 0 0 14px rgba(201, 255, 61, .3); }
+.site-tab.active:hover { color: #090c0f; }
+
 .site-header {
   position: sticky;
   z-index: 60;
