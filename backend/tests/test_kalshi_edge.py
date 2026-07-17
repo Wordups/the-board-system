@@ -8,9 +8,11 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT / "backend"))
 
 from app.builders.kalshi_edge import (
+    DECISION_RULES,
     EDGE_THRESHOLD_PP,
     REPORT_LABEL,
     american_odds,
+    decide_pick,
     enrich_board_with_kalshi,
     model_prob_for_row,
     parse_board_game_id,
@@ -198,6 +200,40 @@ def test_parse_board_game_id():
     assert parse_board_game_id("bad") is None
 
 
+# ---------------------------------------------------------- decision layer
+
+
+def test_decide_pick_edge_band_boundaries():
+    # Implied prob held mid-band (0.50) so only the edge band is in play.
+    assert decide_pick(4.9, 0.50) == "PASS"    # just under the +5 floor
+    assert decide_pick(5.0, 0.50) == "BET"     # floor is inclusive
+    assert decide_pick(25.0, 0.50) == "BET"    # ceiling is inclusive
+    assert decide_pick(25.1, 0.50) == "CHECK"  # past ceiling -> suspect the model
+
+
+def test_decide_pick_implied_prob_band_boundaries():
+    # Edge held mid-band (+10pp) so only the implied-prob band is in play.
+    assert decide_pick(10.0, 0.09) == "PASS"  # longshot, just under floor
+    assert decide_pick(10.0, 0.10) == "BET"   # floor is inclusive
+    assert decide_pick(10.0, 0.80) == "BET"   # ceiling is inclusive
+    assert decide_pick(10.0, 0.81) == "PASS"  # chalk, just over ceiling
+
+
+def test_decide_pick_check_trumps_band_and_negative_edge_passes():
+    # Huge disagreement is CHECK even when the market side is a longshot —
+    # the model claiming +30pp over a 5% market IS the suspected model error.
+    assert decide_pick(30.0, 0.05) == "CHECK"
+    assert decide_pick(-12.0, 0.50) == "PASS"  # model below market: no edge
+    assert decide_pick(0.0, 0.50) == "PASS"
+
+
+def test_decide_pick_unpriced_inputs_pass():
+    # No computable edge or no market price -> can't demonstrate value -> PASS.
+    assert decide_pick(None, 0.50) == "PASS"
+    assert decide_pick(10.0, None) == "PASS"
+    assert decide_pick(None, None) == "PASS"
+
+
 # ------------------------------------------------------------- join layer
 
 
@@ -306,6 +342,100 @@ def test_enrich_board_total_api_failure_never_crashes(monkeypatch, tmp_path):
     report = board["kalshi_edge_board"]
     assert report["available"] is False
     assert report["picks"] == []
+
+
+def test_enrich_board_sets_decision_and_rules(monkeypatch, tmp_path):
+    # Joined row: edge 15.5pp, implied 0.465 -> in both bands -> BET; the edge
+    # report pick carries the same decision; the policy string is on the board.
+    board = board_with_ml_row(
+        game_id="lad-nyy-2026-07-19", team="NYY", opponent="LAD", sim_prob_pct=62.0
+    )
+    markets = [kalshi_market("KXMLBGAME-26JUL191920LADNYY-NYY")]
+    monkeypatch.setattr(
+        "app.builders.kalshi_edge.collect_kalshi_markets",
+        lambda data_raw_dir, series_ticker: markets,
+    )
+
+    enrich_board_with_kalshi(board, paths=FakePaths(tmp_path))
+
+    row = board["games"][0]["markets"]["ML"][0]
+    assert row["decision"] == "BET"
+    assert board["kalshi_edge_board"]["picks"][0]["decision"] == "BET"
+    assert board["decision_rules"] == DECISION_RULES
+    assert DECISION_RULES.count("\n") == 2  # the three-line policy summary
+
+
+def test_enrich_board_huge_divergence_is_check(monkeypatch, tmp_path):
+    # Model 95% vs market ~46.5% -> +48.5pp -> CHECK (probable model error).
+    board = board_with_ml_row(
+        game_id="lad-nyy-2026-07-19", team="NYY", opponent="LAD", sim_prob_pct=95.0
+    )
+    markets = [kalshi_market("KXMLBGAME-26JUL191920LADNYY-NYY")]
+    monkeypatch.setattr(
+        "app.builders.kalshi_edge.collect_kalshi_markets",
+        lambda data_raw_dir, series_ticker: markets,
+    )
+
+    enrich_board_with_kalshi(board, paths=FakePaths(tmp_path))
+
+    row = board["games"][0]["markets"]["ML"][0]
+    assert row["kalshi"]["edge_pp"] == 48.5
+    assert row["decision"] == "CHECK"
+    # Still listed in the edge report (edge >= +5) but labeled CHECK, not BET.
+    assert board["kalshi_edge_board"]["picks"][0]["decision"] == "CHECK"
+
+
+def test_enrich_board_no_market_row_gets_no_market_decision(monkeypatch, tmp_path):
+    board = board_with_ml_row(
+        game_id="sd-kc-2026-07-19", team="KC", opponent="SD", sim_prob_pct=55.0
+    )
+    markets = [kalshi_market("KXMLBGAME-26JUL191920LADNYY-NYY")]
+    monkeypatch.setattr(
+        "app.builders.kalshi_edge.collect_kalshi_markets",
+        lambda data_raw_dir, series_ticker: markets,
+    )
+
+    enrich_board_with_kalshi(board, paths=FakePaths(tmp_path))
+
+    row = board["games"][0]["markets"]["ML"][0]
+    assert row["kalshi"] is None
+    assert row["decision"] == "NO_MARKET"
+    assert board["decision_rules"] == DECISION_RULES
+
+
+def test_enrich_board_unpriced_market_decision_passes(monkeypatch, tmp_path):
+    # Market joins but has no prices -> edge_pp None -> PASS, never a crash.
+    board = board_with_ml_row(
+        game_id="lad-nyy-2026-07-19", team="NYY", opponent="LAD", sim_prob_pct=62.0
+    )
+    markets = [
+        kalshi_market(
+            "KXMLBGAME-26JUL191920LADNYY-NYY", yes_bid=None, yes_ask=None, last_price=None
+        )
+    ]
+    monkeypatch.setattr(
+        "app.builders.kalshi_edge.collect_kalshi_markets",
+        lambda data_raw_dir, series_ticker: markets,
+    )
+
+    enrich_board_with_kalshi(board, paths=FakePaths(tmp_path))
+
+    assert board["games"][0]["markets"]["ML"][0]["decision"] == "PASS"
+
+
+def test_enrich_board_total_failure_still_ships_rules_and_no_market(monkeypatch, tmp_path):
+    board = board_with_ml_row(
+        game_id="lad-nyy-2026-07-19", team="NYY", opponent="LAD", sim_prob_pct=62.0
+    )
+    monkeypatch.setattr(
+        "app.builders.kalshi_edge.collect_kalshi_markets",
+        lambda data_raw_dir, series_ticker: None,
+    )
+
+    enrich_board_with_kalshi(board, paths=FakePaths(tmp_path))
+
+    assert board["games"][0]["markets"]["ML"][0]["decision"] == "NO_MARKET"
+    assert board["decision_rules"] == DECISION_RULES
 
 
 def test_enrich_board_does_not_touch_existing_fields(monkeypatch, tmp_path):
