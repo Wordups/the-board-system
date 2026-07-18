@@ -25,6 +25,7 @@ class MlbPlayCandidate:
     tier: str = "PASS"
     reason: str = ""
     sim_prob: float | None = None  # Phase 12: simulated clear probability (0..1)
+    ladder: dict[int, float] | None = None  # whole-ladder {threshold: prob} (HR only today)
     extra: dict[str, Any] = field(default_factory=dict)
 
 

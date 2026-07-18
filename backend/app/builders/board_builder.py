@@ -32,6 +32,10 @@ def to_player_row(candidate: MlbPlayCandidate) -> dict:
         "reason": candidate.reason,
         "sim_prob_pct": sim_prob_pct(candidate),
     }
+    ladder = getattr(candidate, "ladder", None)
+    if ladder:
+        # Whole-ladder quoting: survival prob at every standard rung (0..1).
+        row["ladder"] = {int(t): round(float(p), 4) for t, p in sorted(ladder.items())}
     cal_status = extra.get("calibration_status")
     if cal_status:
         row["calibration_status"] = cal_status

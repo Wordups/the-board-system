@@ -27,8 +27,11 @@ from typing import Any
 
 from app.connectors.kalshi_connector import (
     DEFAULT_SERIES,
+    PROP_SERIES,
     build_market_lookup,
+    build_prop_lookup,
     collect_kalshi_markets,
+    normalize_player_name,
 )
 
 
@@ -195,4 +198,127 @@ def enrich_board_with_kalshi(
         "available": markets is not None,
         "market_count": len(lookup),
         "picks": edge_picks,
+    }
+
+
+# --------------------------------------------------- whole-ladder edge join
+#
+# Backlog #2 (Copper-20+-vs-25+ lesson, systematized): every player with a
+# modeled `ladder` ({threshold: prob}) gets EACH rung joined to its Kalshi
+# player-prop market (KXWNBAPTS / KXWNBAAST / KXWNBAREB / KXMLBHR, ...) and
+# stamped BET / PASS / CHECK independently by the same decision policy as ML
+# picks. Purely additive: rows gain `kalshi_ladder`, the board gains
+# `ladder_board` (best BET rung per player + the full ladder for display).
+
+
+def build_ladder_rung(threshold: int, model_prob: float | None, summary: dict[str, Any] | None) -> dict[str, Any]:
+    """One rung of a player's ladder, joined (or not) to its Kalshi market."""
+    implied_prob = summary.get("implied_prob") if summary else None
+    edge_pp = (
+        round((model_prob - implied_prob) * 100.0, 1)
+        if model_prob is not None and implied_prob is not None
+        else None
+    )
+    return {
+        "threshold": threshold,
+        "line": f"{threshold}+",
+        "model_prob": round(model_prob, 4) if model_prob is not None else None,
+        "ticker": summary["ticker"] if summary else None,
+        "implied_prob": implied_prob,
+        "edge_pp": edge_pp,
+        "volume": summary.get("volume", 0) if summary else 0,
+        "decision": decide_pick(edge_pp, implied_prob) if summary else "NO_MARKET",
+        "model_fair_american": american_odds(model_prob),
+        "market_american": american_odds(implied_prob),
+    }
+
+
+def _ladder_entry_rank(entry: dict[str, Any]) -> tuple[bool, float, float]:
+    """Sort/dedup rank: has a BET rung, then best BET edge, then best joined edge."""
+    best = entry.get("best")
+    best_edge = float(best["edge_pp"]) if best and best.get("edge_pp") is not None else float("-inf")
+    max_edge = max(
+        (float(rung["edge_pp"]) for rung in entry["ladder"] if rung.get("edge_pp") is not None),
+        default=float("-inf"),
+    )
+    return (best is not None, best_edge, max_edge)
+
+
+def enrich_board_with_ladder(board: dict, *, paths) -> None:
+    """Mutate board in place: join every modeled ladder rung to its Kalshi
+    player-prop market, stamp each rung, and add ``board["ladder_board"]``.
+
+    Additive and report-only, same failure posture as the ML overlay: a total
+    Kalshi failure leaves every rung NO_MARKET and an empty board flagged
+    ``available: False``. Sports with no prop series mapping are untouched.
+    """
+    sport = str(board.get("sport") or "").upper()
+    series_by_market = PROP_SERIES.get(sport)
+    if not series_by_market:
+        return
+
+    date = str(board.get("date") or "")
+    lookups: dict[str, dict] = {}
+    available = False
+    market_count = 0
+    for market_key, series in series_by_market.items():
+        try:
+            markets = collect_kalshi_markets(paths.data_raw, series)
+        except Exception:
+            markets = None
+        if markets is not None:
+            available = True
+        lookups[market_key] = build_prop_lookup(markets)
+        market_count += len(lookups[market_key])
+
+    entries: dict[tuple[str, str], dict[str, Any]] = {}
+    for game in board.get("games") or []:
+        markets_by_key = game.get("markets") or {}
+        for market_key in series_by_market:
+            for row in markets_by_key.get(market_key) or []:
+                ladder = row.get("ladder")
+                if not ladder:
+                    continue
+                lookup = lookups.get(market_key) or {}
+                name_norm = normalize_player_name(row.get("player_name") or "")
+                rungs = []
+                for threshold in sorted(int(t) for t in ladder):
+                    model_prob = ladder.get(threshold, ladder.get(str(threshold)))
+                    summary = lookup.get((date, name_norm, threshold))
+                    rungs.append(build_ladder_rung(threshold, model_prob, summary))
+                row["kalshi_ladder"] = rungs
+
+                if not any(rung["ticker"] for rung in rungs):
+                    continue  # no Kalshi ladder for this player today
+                bets = [rung for rung in rungs if rung["decision"] == "BET"]
+                # Best rung = highest EV per contract among BET stamps
+                # (EV/contract = model_prob - implied_prob = edge_pp / 100).
+                best = max(bets, key=lambda rung: rung["edge_pp"]) if bets else None
+                entry = {
+                    "player_id": row.get("player_id"),
+                    "player_name": row.get("player_name"),
+                    "team": row.get("team"),
+                    "opponent": row.get("opponent"),
+                    "market": market_key,
+                    "game_id": game.get("game_id"),
+                    "headline_line": row.get("line"),
+                    "best": best,
+                    "ladder": rungs,
+                    "label": REPORT_LABEL,
+                }
+                key = (name_norm, market_key)
+                current = entries.get(key)
+                if current is None or _ladder_entry_rank(entry) > _ladder_entry_rank(current):
+                    entries[key] = entry
+
+    players = sorted(entries.values(), key=_ladder_entry_rank, reverse=True)
+    board["ladder_board"] = {
+        "title": "Whole-Ladder Board",
+        "label": REPORT_LABEL,
+        "source": "kalshi",
+        "series": dict(series_by_market),
+        "available": available,
+        "market_count": market_count,
+        "decision_rules": DECISION_RULES,
+        "players": players,
     }
