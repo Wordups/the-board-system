@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from app.builders.kalshi_edge import enrich_board_with_kalshi
+from app.builders.kalshi_edge import enrich_board_with_kalshi, enrich_board_with_ladder
 from app.builders.mlb_board_builder import build_mlb_board
 from app.builders.mlb_environment import enrich_board_with_environment
 from app.builders.nba_board_builder import build_nba_board
@@ -57,6 +57,9 @@ def run_mlb_pipeline(project_root: Path) -> dict:
     # the validator for the same reason as the env enrichment, and degrades
     # silently (kalshi: null everywhere) on any Kalshi outage.
     enrich_board_with_kalshi(board, paths=paths)
+    # Whole-ladder quoting: every modeled rung (1+/2+ HR) joined to its
+    # KXMLBHR market and stamped independently. Additive + report-only.
+    enrich_board_with_ladder(board, paths=paths)
     export_board_to_site(board=board, sport_key="mlb", paths=paths)
     write_mlb_hr_tracking_snapshot(board=board, paths=paths)
     return board
@@ -67,6 +70,9 @@ def run_nba_pipeline(project_root: Path) -> dict:
     paths = build_paths(project_root)
     board = build_nba_board(config=config, paths=paths)
     validate_board_payload(board)
+    # Whole-ladder quoting (PTS/AST/REB rungs vs KXNBA* prop markets).
+    # Additive + report-only; degrades to available: False off-season.
+    enrich_board_with_ladder(board, paths=paths)
     export_board_to_site(board=board, sport_key="nba", paths=paths)
     return board
 
@@ -86,6 +92,10 @@ def run_wnba_pipeline(project_root: Path) -> dict:
     paths = build_paths(project_root)
     board = build_wnba_board(config=config, paths=paths)
     validate_board_payload(board)
+    # Whole-ladder quoting: every PTS/AST/REB rung (10+/15+/20+/25+/30+ ...)
+    # joined to its KXWNBA* prop market and stamped independently — the
+    # Copper-20+-vs-25+ lesson, systematized. Additive + report-only.
+    enrich_board_with_ladder(board, paths=paths)
     export_board_to_site(board=board, sport_key="wnba", paths=paths)
     return board
 

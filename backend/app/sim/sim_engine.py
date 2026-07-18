@@ -18,7 +18,7 @@ from typing import Iterable
 
 import numpy as np
 
-from app.sim.outcome_models import get_field, set_field, simulate
+from app.sim.outcome_models import get_field, set_field, simulate, simulate_ladder
 
 
 @dataclass(slots=True)
@@ -42,12 +42,28 @@ def simulate_candidate(candidate, sport: str, config: SimConfig | None = None) -
     return simulate(candidate, sport, rng, config.n_sims, config.rel_std)
 
 
+def simulate_candidate_ladder(candidate, sport: str, config: SimConfig | None = None) -> dict[int, float] | None:
+    """Whole-ladder survival probabilities {threshold: prob} for the candidate.
+
+    Seeded identically to ``simulate_candidate``, so the ladder value at the
+    headline rung reproduces ``sim_prob`` exactly. None for markets without a
+    modeled ladder (see ``outcome_models.LADDER_RUNGS``).
+    """
+    config = config or SimConfig()
+    rng = np.random.default_rng(_seed_for(candidate, config.base_seed))
+    return simulate_ladder(candidate, sport, rng, config.n_sims, config.rel_std)
+
+
 def simulate_candidates(candidates: Iterable, sport: str, config: SimConfig | None = None):
-    """Set ``.sim_prob`` (0..1) on each candidate in place. Returns the candidates."""
+    """Set ``.sim_prob`` (0..1) on each candidate in place, plus ``.ladder``
+    ({threshold: prob}) for laddered markets. Returns the candidates."""
     config = config or SimConfig()
     materialized = list(candidates)
     for candidate in materialized:
         set_field(candidate, "sim_prob", simulate_candidate(candidate, sport, config))
+        ladder = simulate_candidate_ladder(candidate, sport, config)
+        if ladder is not None:
+            set_field(candidate, "ladder", ladder)
     return materialized
 
 

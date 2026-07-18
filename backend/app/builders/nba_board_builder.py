@@ -150,6 +150,10 @@ def to_board_row(candidate: dict) -> dict:
     ):
         if key in candidate:
             row[key] = candidate[key]
+    ladder = candidate.get("ladder")
+    if ladder:
+        # Whole-ladder quoting: survival prob at every standard rung (0..1).
+        row["ladder"] = {int(t): round(float(p), 4) for t, p in sorted(ladder.items())}
     return row
 
 

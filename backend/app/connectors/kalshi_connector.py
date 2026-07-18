@@ -40,6 +40,7 @@ from __future__ import annotations
 import json
 import re
 import time
+import unicodedata
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -59,6 +60,18 @@ SPORT_SERIES: dict[str, str] = {
     "MLB": "KXMLBGAME",
     "NBA": "KXNBAGAME",
     "NFL": "KXNFLGAME",
+}
+
+# Player-prop ladder series per sport/market (whole-ladder quoting). Verified
+# live 2026-07-18: tickers look like
+#   KXWNBAPTS-26JUL18WSHGS-WSHSCITRON22-20   (Sonia Citron: 20+ points)
+#   KXMLBHR-26JUL181510CINCOL-CINEDELACRUZ44-2 (Elly De La Cruz: 2+ home runs)
+# i.e. SERIES-EVENT-PLAYERTAG-THRESHOLD, with the integer rung as the final
+# segment and the player's display name in title/yes_sub_title before ':'.
+PROP_SERIES: dict[str, dict[str, str]] = {
+    "WNBA": {"PTS": "KXWNBAPTS", "AST": "KXWNBAAST", "REB": "KXWNBAREB"},
+    "NBA": {"PTS": "KXNBAPTS", "AST": "KXNBAAST", "REB": "KXNBAREB"},
+    "MLB": {"HR": "KXMLBHR"},
 }
 
 # Kalshi/legacy code -> repo canonical (MLB StatsAPI) abbreviation. Kalshi's
@@ -255,6 +268,99 @@ def build_market_lookup(
 
 def _lookup_rank(summary: dict[str, Any]) -> tuple[int, int]:
     return (int(summary["implied_prob"] is not None), summary["volume"])
+
+
+# ------------------------------------------------------- player-prop ladders
+
+# Leading YYMONDD of a prop event block ('26JUL18WSHGS', '26JUL181510CINCOL').
+PROP_EVENT_DATE_PATTERN = re.compile(r"^(\d{2})([A-Z]{3})(\d{2})")
+
+
+def normalize_player_name(name: str) -> str:
+    """Join key for player names: ASCII-folded, lowercased, alnum+space only.
+
+    Handles diacritics (Jose Ramirez vs José Ramírez) and punctuation so the
+    board's collector names join Kalshi's display names reliably.
+    """
+    text = unicodedata.normalize("NFKD", str(name or "")).encode("ascii", "ignore").decode("ascii")
+    text = re.sub(r"[^a-z0-9 ]", " ", text.lower())
+    return " ".join(text.split())
+
+
+def parse_prop_ticker(ticker: str) -> dict[str, Any] | None:
+    """'KXWNBAPTS-26JUL18WSHGS-WSHSCITRON22-20' ->
+    {'date': '2026-07-18', 'threshold': 20}. None for non-prop tickers."""
+    parts = (ticker or "").split("-")
+    if len(parts) != 4:
+        return None
+    _series, event, _player_tag, raw_threshold = parts
+    match = PROP_EVENT_DATE_PATTERN.match(event)
+    if not match:
+        return None
+    year_2d, month_name, day = match.groups()
+    month = MONTHS.get(month_name)
+    if month is None:
+        return None
+    day_int = int(day)
+    if not 1 <= day_int <= 31:
+        return None
+    try:
+        threshold = int(raw_threshold)
+    except ValueError:
+        return None
+    if threshold <= 0:
+        return None
+    return {
+        "date": f"{2000 + int(year_2d):04d}-{month:02d}-{day_int:02d}",
+        "threshold": threshold,
+    }
+
+
+def prop_player_name(market: dict[str, Any]) -> str:
+    """Player display name from 'Sonia Citron: 20+ points' style titles."""
+    for field in ("yes_sub_title", "title"):
+        value = market.get(field)
+        if value and ":" in str(value):
+            return str(value).split(":", 1)[0].strip()
+    return ""
+
+
+def summarize_prop_market(market: dict[str, Any]) -> dict[str, Any] | None:
+    """Ticker + date + player + rung threshold + implied probability + volume,
+    or None when the ticker isn't a parseable player-prop ladder market."""
+    parsed = parse_prop_ticker(market.get("ticker") or "")
+    if parsed is None:
+        return None
+    player = prop_player_name(market)
+    if not player:
+        return None
+    return {
+        "ticker": market["ticker"],
+        "player": player,
+        **parsed,
+        "implied_prob": implied_probability(market),
+        "volume": market_volume(market),
+    }
+
+
+def build_prop_lookup(
+    markets: list[dict[str, Any]] | None,
+) -> dict[tuple[str, str, int], dict[str, Any]]:
+    """(date, normalized player name, threshold) -> prop market summary.
+
+    Doubleheaders can quote the same player/rung twice on a date; the priced,
+    higher-volume market wins (same rank rule as the game-winner lookup).
+    """
+    lookup: dict[tuple[str, str, int], dict[str, Any]] = {}
+    for market in markets or []:
+        summary = summarize_prop_market(market)
+        if summary is None:
+            continue
+        key = (summary["date"], normalize_player_name(summary["player"]), summary["threshold"])
+        current = lookup.get(key)
+        if current is None or _lookup_rank(summary) > _lookup_rank(current):
+            lookup[key] = summary
+    return lookup
 
 
 def fetch_json(url: str, *, timeout: int = REQUEST_TIMEOUT) -> dict[str, Any]:

@@ -35,6 +35,29 @@ from app.sim.game_state import sample_state_indices
 
 _EPS = 1e-6
 
+# ---- Whole-ladder quoting (backlog #2: Copper-20+-vs-25+ lesson) ----
+#
+# Kalshi quotes point ladders per player (KXWNBAPTS 10+/15+/20+/25+/30+,
+# KXMLBHR 1+/2+, ...). The model must quote every rung, not one headline
+# line. Rung sets match Kalshi's live conventions (verified 2026-07-18):
+# WNBA PTS ladders at 10/15/20/25/30; AST quotes odd rungs too (3+/5+/7+);
+# REB quotes even rungs 2..12; MLB HR quotes 1+/2+.
+LADDER_RUNGS: dict[str, tuple[int, ...]] = {
+    "PTS": (10, 15, 20, 25, 30),
+    "AST": (2, 3, 4, 5, 6, 7, 8),
+    "REB": (2, 4, 6, 8, 10, 12),
+    "HR": (1, 2),
+}
+
+# Per-market game-level std dev of the underlying stat, as (base, slope) on the
+# headline line L: sigma = base + slope * L. v1 tunables (same spirit as
+# rel_std) — e.g. a 20-point scorer swings ~6 pts game to game.
+LADDER_SIGMA: dict[str, tuple[float, float]] = {
+    "PTS": (2.0, 0.20),
+    "AST": (1.0, 0.20),
+    "REB": (1.2, 0.20),
+}
+
 # Per-state multipliers, indexed to MLB_STATES / NBA_STATES order.
 # volume = opportunity (plate appearances / batters faced / minutes);
 # rate = per-opportunity success rate.
@@ -111,11 +134,12 @@ def _bernoulli_clear(candidate, sport, rng, n, rel_std, central, vol_table, rate
     return float(np.mean(rng.random(n) < p_eff))
 
 
-def _mlb_hr(candidate, sport, rng, n, rel_std) -> float:
+def _mlb_hr_counts(candidate, sport, rng, n, rel_std) -> np.ndarray:
+    """Simulated per-game HR counts (n,). Shared by the headline prob and the
+    ladder so both read the identical sample paths from an identical rng."""
     extra = get_field(candidate, "extra", None) or {}
     p_game = min(max(_stat_value(candidate), _EPS), 1.0 - _EPS)
     pa_mean = float(extra.get("projected_pa") or 4.2)
-    threshold = _parse_threshold(get_field(candidate, "line", ""), 1)
 
     idx = sample_state_indices(rng, n, sport, _context(candidate))
     # Back out the per-PA HR rate that reproduces the per-game probability at
@@ -127,7 +151,12 @@ def _mlb_hr(candidate, sport, rng, n, rel_std) -> float:
         1.0 - _EPS,
     )
     pa_s = np.clip(rng.normal(pa_mean, rel_std * pa_mean, n) * MLB_HITTER_VOL[idx], 0.0, 9.0)
-    hr = rng.binomial(np.rint(pa_s).astype(int), rate_s)
+    return rng.binomial(np.rint(pa_s).astype(int), rate_s)
+
+
+def _mlb_hr(candidate, sport, rng, n, rel_std) -> float:
+    threshold = _parse_threshold(get_field(candidate, "line", ""), 1)
+    hr = _mlb_hr_counts(candidate, sport, rng, n, rel_std)
     return float(np.mean(hr >= threshold))
 
 
@@ -183,4 +212,132 @@ _REGISTRY = {
 def simulate(candidate, sport: str, rng: np.random.Generator, n: int, rel_std: float) -> float:
     """Return the simulated probability (0..1) of clearing the line."""
     model = _REGISTRY.get((sport, get_field(candidate, "market")), _generic_model)
+    return model(candidate, sport, rng, n, rel_std)
+
+
+# ---------------------------------------------------------------- ladder sims
+
+
+def _norm_cdf(x: np.ndarray) -> np.ndarray:
+    """Standard normal CDF (Abramowitz & Stegun 26.2.17, |err| < 7.5e-8).
+
+    NumPy has no erf in core; scipy is not a dependency of this repo, so the
+    polynomial approximation keeps the ladder dependency-free.
+    """
+    x = np.asarray(x, dtype=float)
+    t = 1.0 / (1.0 + 0.2316419 * np.abs(x))
+    poly = t * (
+        0.319381530
+        + t * (-0.356563782 + t * (1.781477937 + t * (-1.821255978 + t * 1.330274429)))
+    )
+    upper = 1.0 - (1.0 / np.sqrt(2.0 * np.pi)) * np.exp(-0.5 * x * x) * poly
+    return np.where(x >= 0.0, upper, 1.0 - upper)
+
+
+# Acklam's inverse-normal coefficients (~1.15e-9 relative error).
+_PPF_A = (-3.969683028665376e01, 2.209460984245205e02, -2.759285104469687e02,
+          1.383577518672690e02, -3.066479806614716e01, 2.506628277459239e00)
+_PPF_B = (-5.447609879822406e01, 1.615858368580409e02, -1.556989798598866e02,
+          6.680131188771972e01, -1.328068155288572e01)
+_PPF_C = (-7.784894002430293e-03, -3.223964580411365e-01, -2.400758277161838e00,
+          -2.549732539343734e00, 4.374664141464968e00, 2.938163982698783e00)
+_PPF_D = (7.784695709041462e-03, 3.224671290700398e-01, 2.445134137142996e00,
+          3.754408661907416e00)
+_PPF_P_LOW = 0.02425
+
+
+def _norm_ppf(p: np.ndarray) -> np.ndarray:
+    """Standard normal inverse CDF (Acklam's algorithm), vectorized."""
+    p = np.clip(np.asarray(p, dtype=float), _EPS, 1.0 - _EPS)
+    out = np.empty_like(p)
+
+    low = p < _PPF_P_LOW
+    high = p > 1.0 - _PPF_P_LOW
+    mid = ~(low | high)
+
+    if np.any(mid):
+        q = p[mid] - 0.5
+        r = q * q
+        num = ((((_PPF_A[0] * r + _PPF_A[1]) * r + _PPF_A[2]) * r + _PPF_A[3]) * r + _PPF_A[4]) * r + _PPF_A[5]
+        den = ((((_PPF_B[0] * r + _PPF_B[1]) * r + _PPF_B[2]) * r + _PPF_B[3]) * r + _PPF_B[4]) * r + 1.0
+        out[mid] = num * q / den
+
+    for mask, prob, sign in ((low, p, 1.0), (high, 1.0 - p, -1.0)):
+        if not np.any(mask):
+            continue
+        q = np.sqrt(-2.0 * np.log(prob[mask]))
+        num = ((((_PPF_C[0] * q + _PPF_C[1]) * q + _PPF_C[2]) * q + _PPF_C[3]) * q + _PPF_C[4]) * q + _PPF_C[5]
+        den = (((_PPF_D[0] * q + _PPF_D[1]) * q + _PPF_D[2]) * q + _PPF_D[3]) * q + 1.0
+        out[mask] = -sign * num / den
+
+    return out
+
+
+def _ladder_thresholds(market: str, headline: int) -> list[int]:
+    rungs = set(LADDER_RUNGS.get(market, ()))
+    if headline > 0:
+        rungs.add(headline)
+    return sorted(rungs)
+
+
+def _mlb_hr_ladder(candidate, sport, rng, n, rel_std) -> dict[int, float] | None:
+    headline = _parse_threshold(get_field(candidate, "line", ""), 1)
+    hr = _mlb_hr_counts(candidate, sport, rng, n, rel_std)
+    return {t: float(np.mean(hr >= t)) for t in _ladder_thresholds("HR", headline)}
+
+
+def _basketball_ladder(candidate, sport, rng, n, rel_std) -> dict[int, float] | None:
+    """Survival probabilities at every rung of the market's line ladder.
+
+    The headline rung replays the exact `_basketball_clear` mechanics (same
+    rng call order, so an identically-seeded rng reproduces `sim_prob` to the
+    bit). Other rungs shift each sim's effective clear probability through a
+    latent-normal stat model anchored at the headline line:
+
+        p_t = Phi(Phi^-1(p_eff) + (L - t) / sigma)
+
+    with sigma the per-market game-level std dev (LADDER_SIGMA). Every rung is
+    resolved against the SAME uniform draws, so rung events are nested and the
+    ladder is monotone non-increasing by construction.
+    """
+    market = get_field(candidate, "market", "")
+    headline = _parse_threshold(get_field(candidate, "line", ""), 0)
+    if headline <= 0:
+        return None
+
+    central = _basketball_clear_prob(candidate)
+    # Same call order as _bernoulli_clear: sample prob, states, then uniforms.
+    p = _sample_prob(rng, central, n, rel_std)
+    idx = sample_state_indices(rng, n, sport, _context(candidate))
+    p_eff = np.clip(p * NBA_VOL[idx] * NBA_RATE[idx], _EPS, 1.0 - _EPS)
+    u = rng.random(n)
+
+    base, slope = LADDER_SIGMA[market]
+    sigma = base + slope * headline
+    z = _norm_ppf(p_eff)
+
+    ladder: dict[int, float] = {}
+    for t in _ladder_thresholds(market, headline):
+        if t == headline:
+            p_t = p_eff  # exact replay of the headline sim
+        else:
+            p_t = _norm_cdf(z + (headline - t) / sigma)
+        ladder[t] = float(np.mean(u < p_t))
+    return ladder
+
+
+_LADDER_REGISTRY = {
+    ("MLB", "HR"): _mlb_hr_ladder,
+    **{(sport, market): _basketball_ladder
+       for sport in ("NBA", "WNBA")
+       for market in ("PTS", "AST", "REB")},
+}
+
+
+def simulate_ladder(candidate, sport: str, rng: np.random.Generator, n: int, rel_std: float) -> dict[int, float] | None:
+    """{threshold: clear probability} across the market's standard rungs plus
+    the headline line. None for markets without a modeled ladder."""
+    model = _LADDER_REGISTRY.get((sport, get_field(candidate, "market")))
+    if model is None:
+        return None
     return model(candidate, sport, rng, n, rel_std)
