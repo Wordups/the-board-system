@@ -33,6 +33,11 @@ from app.connectors.kalshi_connector import (
     collect_kalshi_markets,
     normalize_player_name,
 )
+from app.scoring.prob_shrinkage import (
+    QUARANTINE_DECISION,
+    calibrate_prob,
+    is_quarantined,
+)
 
 
 EDGE_THRESHOLD_PP = 5.0
@@ -114,8 +119,11 @@ def american_odds(prob: float | None) -> int | None:
     return int(round((1.0 - prob) / prob * 100.0))
 
 
-def build_kalshi_block(row: dict[str, Any], summary: dict[str, Any]) -> dict[str, Any]:
-    model_prob = model_prob_for_row(row)
+def build_kalshi_block(
+    row: dict[str, Any], summary: dict[str, Any], *, sport: str | None = None
+) -> dict[str, Any]:
+    cal = calibrate_prob(model_prob_for_row(row), sport=sport, market="ML")
+    model_prob = cal["model_prob"]
     implied_prob = summary.get("implied_prob")
     edge_pp = (
         round((model_prob - implied_prob) * 100.0, 1)
@@ -125,7 +133,9 @@ def build_kalshi_block(row: dict[str, Any], summary: dict[str, Any]) -> dict[str
     return {
         "ticker": summary["ticker"],
         "implied_prob": implied_prob,
-        "model_prob": round(model_prob, 4) if model_prob is not None else None,
+        "model_prob": model_prob,
+        "model_prob_raw": cal["model_prob_raw"],
+        "shrink_pp": cal["shrink_pp"],
         "edge_pp": edge_pp,
         "volume": summary.get("volume", 0),
     }
@@ -150,6 +160,8 @@ def enrich_board_with_kalshi(
         markets = None
     lookup = build_market_lookup(markets)
 
+    sport = str(board.get("sport") or "").upper() or None
+
     edge_picks: list[dict[str, Any]] = []
     for game in board.get("games") or []:
         parsed = parse_board_game_id(game.get("game_id") or "")
@@ -164,7 +176,7 @@ def enrich_board_with_kalshi(
                 row["kalshi"] = None
                 row["decision"] = "NO_MARKET"
                 continue
-            block = build_kalshi_block(row, summary)
+            block = build_kalshi_block(row, summary, sport=sport)
             row["kalshi"] = block
             row["decision"] = decide_pick(block["edge_pp"], block["implied_prob"])
             if block["edge_pp"] is not None and block["edge_pp"] >= EDGE_THRESHOLD_PP:
@@ -177,6 +189,8 @@ def enrich_board_with_kalshi(
                         "line": row.get("line"),
                         "ticker": block["ticker"],
                         "model_prob": block["model_prob"],
+                        "model_prob_raw": block["model_prob_raw"],
+                        "shrink_pp": block["shrink_pp"],
                         "implied_prob": block["implied_prob"],
                         "edge_pp": block["edge_pp"],
                         "decision": row["decision"],
@@ -211,23 +225,40 @@ def enrich_board_with_kalshi(
 # `ladder_board` (best BET rung per player + the full ladder for display).
 
 
-def build_ladder_rung(threshold: int, model_prob: float | None, summary: dict[str, Any] | None) -> dict[str, Any]:
+def build_ladder_rung(
+    threshold: int,
+    model_prob: float | None,
+    summary: dict[str, Any] | None,
+    *,
+    sport: str | None = None,
+    market: str | None = None,
+) -> dict[str, Any]:
     """One rung of a player's ladder, joined (or not) to its Kalshi market."""
+    cal = calibrate_prob(model_prob, sport=sport, market=market)
+    model_prob = cal["model_prob"]
     implied_prob = summary.get("implied_prob") if summary else None
     edge_pp = (
         round((model_prob - implied_prob) * 100.0, 1)
         if model_prob is not None and implied_prob is not None
         else None
     )
+    if not summary:
+        decision = "NO_MARKET"
+    elif cal["quarantined"]:
+        decision = QUARANTINE_DECISION
+    else:
+        decision = decide_pick(edge_pp, implied_prob)
     return {
         "threshold": threshold,
         "line": f"{threshold}+",
-        "model_prob": round(model_prob, 4) if model_prob is not None else None,
+        "model_prob": model_prob,
+        "model_prob_raw": cal["model_prob_raw"],
+        "shrink_pp": cal["shrink_pp"],
         "ticker": summary["ticker"] if summary else None,
         "implied_prob": implied_prob,
         "edge_pp": edge_pp,
         "volume": summary.get("volume", 0) if summary else 0,
-        "decision": decide_pick(edge_pp, implied_prob) if summary else "NO_MARKET",
+        "decision": decision,
         "model_fair_american": american_odds(model_prob),
         "market_american": american_odds(implied_prob),
     }
@@ -285,7 +316,12 @@ def enrich_board_with_ladder(board: dict, *, paths) -> None:
                 for threshold in sorted(int(t) for t in ladder):
                     model_prob = ladder.get(threshold, ladder.get(str(threshold)))
                     summary = lookup.get((date, name_norm, threshold))
-                    rungs.append(build_ladder_rung(threshold, model_prob, summary))
+                    rungs.append(
+                        build_ladder_rung(
+                            threshold, model_prob, summary,
+                            sport=sport, market=market_key,
+                        )
+                    )
                 row["kalshi_ladder"] = rungs
 
                 if not any(rung["ticker"] for rung in rungs):

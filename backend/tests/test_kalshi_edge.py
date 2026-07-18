@@ -252,12 +252,16 @@ def test_enrich_board_attaches_kalshi_block_and_edge_report(monkeypatch, tmp_pat
 
     enrich_board_with_kalshi(board, paths=FakePaths(tmp_path))
 
+    # MLB decile 6 (0.6-0.7) shrinks 21.6pp: 0.62 -> 0.404, so the raw +15.5pp
+    # "edge" collapses to -6.1pp and never reaches the edge report.
     row = board["games"][0]["markets"]["ML"][0]
     assert row["kalshi"] == {
         "ticker": "KXMLBGAME-26JUL191920LADNYY-NYY",
         "implied_prob": 0.465,
-        "model_prob": 0.62,
-        "edge_pp": 15.5,
+        "model_prob": 0.404,
+        "model_prob_raw": 0.62,
+        "shrink_pp": 21.6,
+        "edge_pp": -6.1,
         "volume": 263,
     }
 
@@ -265,12 +269,7 @@ def test_enrich_board_attaches_kalshi_block_and_edge_report(monkeypatch, tmp_pat
     assert report["label"] == REPORT_LABEL
     assert report["available"] is True
     assert report["min_edge_pp"] == EDGE_THRESHOLD_PP
-    assert len(report["picks"]) == 1
-    pick = report["picks"][0]
-    assert pick["edge_pp"] == 15.5
-    assert pick["model_fair_american"] == -163
-    assert pick["market_american"] == 115  # 0.465 implied
-    assert pick["label"] == REPORT_LABEL
+    assert report["picks"] == []  # shrinkage killed the inflated MLB edge
 
 
 def test_enrich_board_below_threshold_gets_block_but_no_report_pick(monkeypatch, tmp_path):
@@ -345,12 +344,18 @@ def test_enrich_board_total_api_failure_never_crashes(monkeypatch, tmp_path):
 
 
 def test_enrich_board_sets_decision_and_rules(monkeypatch, tmp_path):
-    # Joined row: edge 15.5pp, implied 0.465 -> in both bands -> BET; the edge
-    # report pick carries the same decision; the policy string is on the board.
+    # Joined row: model 0.62 shrinks to 0.404 (MLB decile 6, -21.6pp); vs a
+    # 0.30 market that is still a +10.4pp edge -> in both bands -> BET; the
+    # edge report pick carries the same decision plus the raw-prob provenance;
+    # the policy string is on the board.
     board = board_with_ml_row(
         game_id="lad-nyy-2026-07-19", team="NYY", opponent="LAD", sim_prob_pct=62.0
     )
-    markets = [kalshi_market("KXMLBGAME-26JUL191920LADNYY-NYY")]
+    markets = [
+        kalshi_market(
+            "KXMLBGAME-26JUL191920LADNYY-NYY", yes_bid="0.2800", yes_ask="0.3200"
+        )
+    ]
     monkeypatch.setattr(
         "app.builders.kalshi_edge.collect_kalshi_markets",
         lambda data_raw_dir, series_ticker: markets,
@@ -359,18 +364,27 @@ def test_enrich_board_sets_decision_and_rules(monkeypatch, tmp_path):
     enrich_board_with_kalshi(board, paths=FakePaths(tmp_path))
 
     row = board["games"][0]["markets"]["ML"][0]
+    assert row["kalshi"]["edge_pp"] == 10.4
     assert row["decision"] == "BET"
-    assert board["kalshi_edge_board"]["picks"][0]["decision"] == "BET"
+    pick = board["kalshi_edge_board"]["picks"][0]
+    assert pick["decision"] == "BET"
+    assert pick["model_prob_raw"] == 0.62
+    assert pick["shrink_pp"] == 21.6
     assert board["decision_rules"] == DECISION_RULES
     assert DECISION_RULES.count("\n") == 2  # the three-line policy summary
 
 
 def test_enrich_board_huge_divergence_is_check(monkeypatch, tmp_path):
-    # Model 95% vs market ~46.5% -> +48.5pp -> CHECK (probable model error).
+    # Model 95% shrinks to 52.6% (MLB 0.9+ decile, -42.4pp); vs a 20% market
+    # that is still +32.6pp -> CHECK (probable model error even post-shrink).
     board = board_with_ml_row(
         game_id="lad-nyy-2026-07-19", team="NYY", opponent="LAD", sim_prob_pct=95.0
     )
-    markets = [kalshi_market("KXMLBGAME-26JUL191920LADNYY-NYY")]
+    markets = [
+        kalshi_market(
+            "KXMLBGAME-26JUL191920LADNYY-NYY", yes_bid="0.1800", yes_ask="0.2200"
+        )
+    ]
     monkeypatch.setattr(
         "app.builders.kalshi_edge.collect_kalshi_markets",
         lambda data_raw_dir, series_ticker: markets,
@@ -379,7 +393,7 @@ def test_enrich_board_huge_divergence_is_check(monkeypatch, tmp_path):
     enrich_board_with_kalshi(board, paths=FakePaths(tmp_path))
 
     row = board["games"][0]["markets"]["ML"][0]
-    assert row["kalshi"]["edge_pp"] == 48.5
+    assert row["kalshi"]["edge_pp"] == 32.6
     assert row["decision"] == "CHECK"
     # Still listed in the edge report (edge >= +5) but labeled CHECK, not BET.
     assert board["kalshi_edge_board"]["picks"][0]["decision"] == "CHECK"
