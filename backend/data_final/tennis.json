@@ -1,7 +1,7 @@
 {
   "sport": "TENNIS",
   "date": "2026-07-18",
-  "last_updated": "11:33 AM ET",
+  "last_updated": "11:28 AM ET",
   "pinned_board": {
     "title": "Match Win Top 10",
     "market": "ML",
@@ -73,6 +73,17 @@
         "reason": "Rank 123 vs 250 | Form 3-0 vs 3-0 | Rank est. | Francesca Jones vs Martina Trevisan"
       },
       {
+        "player_id": "10064",
+        "player_name": "Gustavo Heide",
+        "team": "ATP",
+        "opponent": "Kilian Feldbausch",
+        "line": "Match Winner",
+        "score": 75.0,
+        "confidence": 75,
+        "tier": "A",
+        "reason": "Rank 136 vs 250 | Form 0-0 vs 0-0 | Rank est. | Kilian Feldbausch vs Gustavo Heide"
+      },
+      {
         "player_id": "1849",
         "player_name": "Hugo Dellien",
         "team": "ATP",
@@ -104,17 +115,6 @@
         "confidence": 75,
         "tier": "A",
         "reason": "Rank 136 vs 250 | Form 0-0 vs 0-0 | Rank est. | Tereza Krejcova vs Veronika Podrez"
-      },
-      {
-        "player_id": "2642",
-        "player_name": "Andrey Rublev",
-        "team": "ATP",
-        "opponent": "Alejandro Tabilo",
-        "line": "Match Winner",
-        "score": 73.29,
-        "confidence": 73,
-        "tier": "B",
-        "reason": "Rank 16 vs 31 | Form 2-0 vs 2-0 | Alejandro Tabilo vs Andrey Rublev"
       }
     ]
   },
@@ -265,6 +265,81 @@
             "confidence": 57,
             "tier": "C",
             "reason": "Best-of-5 | Sets 8-0 | Rank gap 26"
+          }
+        ]
+      }
+    },
+    {
+      "game_id": "183032",
+      "matchup": "Kilian Feldbausch vs Gustavo Heide",
+      "time": "ATP | Generali Open | 7/18 - 8:30 AM EDT",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Gustavo Heide",
+          "line": "Match Winner",
+          "score": 75.0,
+          "confidence": 75,
+          "tier": "A",
+          "player_id": "10064"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Gustavo Heide",
+          "line": "Gustavo Heide -1.5 Sets",
+          "score": 71.0,
+          "confidence": 71,
+          "tier": "B",
+          "player_id": "183032-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Under 34.5 Games",
+          "score": 61.0,
+          "confidence": 61,
+          "tier": "B",
+          "player_id": "183032-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "10064",
+            "player_name": "Gustavo Heide",
+            "team": "ATP",
+            "opponent": "Kilian Feldbausch",
+            "line": "Match Winner",
+            "score": 75.0,
+            "confidence": 75,
+            "tier": "A",
+            "reason": "Rank 136 vs 250 | Form 0-0 vs 0-0 | Rank est. | Kilian Feldbausch vs Gustavo Heide"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "183032-ou",
+            "player_name": "Match Total",
+            "team": "ATP",
+            "opponent": "Kilian Feldbausch vs Gustavo Heide",
+            "line": "Under 34.5 Games",
+            "score": 61.0,
+            "confidence": 61,
+            "tier": "B",
+            "reason": "Round Qualifying 1st Round | Rank gap 114 | Form gap +0.00"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "183032-sets",
+            "player_name": "Gustavo Heide",
+            "team": "ATP",
+            "opponent": "Kilian Feldbausch",
+            "line": "Gustavo Heide -1.5 Sets",
+            "score": 71.0,
+            "confidence": 71,
+            "tier": "B",
+            "reason": "Best-of-5 | Sets 0-0 | Rank gap 114"
           }
         ]
       }
@@ -947,7 +1022,7 @@
     {
       "game_id": "179321",
       "matchup": "Tamara Zidansek vs Paula Badosa",
-      "time": "WTA | Unicredit Iasi Open | 7/18 - 11:50 AM EDT",
+      "time": "WTA | Unicredit Iasi Open | 7/18 - 11:30 AM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -1097,7 +1172,7 @@
     {
       "game_id": "179241",
       "matchup": "Francesca Jones vs Martina Trevisan",
-      "time": "WTA | ATV Bancomat Tennis Open | 7/18 - 11:50 AM EDT",
+      "time": "WTA | ATV Bancomat Tennis Open | 7/18 - 11:30 AM EDT",
       "top_signals": [
         {
           "market": "ML",
