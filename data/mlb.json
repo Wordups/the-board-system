@@ -1,7 +1,7 @@
 {
   "sport": "MLB",
   "date": "2026-07-24",
-  "last_updated": "11:25 AM ET",
+  "last_updated": "11:51 AM ET",
   "calibration": {
     "threshold_pp": 15.0,
     "mode": "off",
@@ -36,7 +36,7 @@
         "team": "PHI",
         "opponent": "NYY",
         "line": "HR 1+",
-        "score": 43.29,
+        "score": 43.26,
         "confidence": 43,
         "tier": "A",
         "reason": "HR edge 27.0 | L5 0.40/g | L10 0.30/g | Season 0.33/g | HR% 0.27 | HistHR% 0.27 | OPS 0.909 | SLG 0.547 | ISO 0.299 | PowIdx 0.62 | Surge 0.17 | Matchup 0.18 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Cam Schlittler | ERA 2.20 | WHIP 0.96 | HR/9 0.88 | HR A 12 | Hand R | Platoon + | Age 33 | Order est. 2 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
@@ -181,22 +181,22 @@
         "hr_power_index": 0.492
       },
       {
-        "player_id": "695578",
-        "player_name": "James Wood",
-        "team": "WSH",
-        "opponent": "AZ",
+        "player_id": "664023",
+        "player_name": "Ian Happ",
+        "team": "CHC",
+        "opponent": "PIT",
         "line": "HR 1+",
         "score": 28.61,
         "confidence": 29,
         "tier": "B",
-        "reason": "HR edge 19.0 | L5 0.20/g | L10 0.30/g | Season 0.27/g | HR% 0.22 | HistHR% 0.17 | OPS 0.948 | SLG 0.551 | ISO 0.281 | PowIdx 0.47 | Surge 0.23 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.045 | vs Eduardo Rodriguez | ERA 2.62 | WHIP 1.22 | HR/9 0.93 | HR A 12 | Hand L | Platoon - | vsP 0.400/1.000 in 5 PA | Age 23 | Order est. 1 | Lineup pen 1.2 | Rising 0.68 | L5 XBH 0.60/g | Season XBH 0.52/g | Wts T0.42/M0.28/F0.30",
+        "reason": "HR edge 18.9 | L5 0.60/g | L10 0.40/g | Season 0.18/g | HR% 0.16 | HistHR% 0.15 | OPS 0.769 | SLG 0.433 | ISO 0.211 | PowIdx 0.44 | Surge 0.31 | Matchup 0.20 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.038 | vs Jared Jones | ERA 4.05 | WHIP 1.10 | HR/9 1.12 | HR A 5 | Hand R | Platoon + | vsP 0.417/1.334 in 12 PA | vsP HR 1 | Age 31 | Order est. 5 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.39/g | Wts T0.42/M0.28/F0.30",
         "sim_prob_pct": 31.3,
         "hr_result": "pending",
         "home_runs": 0,
         "core_bucket": "strong",
-        "projected_pa": 4.5,
-        "power_surge": 0.229,
-        "hr_power_index": 0.465
+        "projected_pa": 4.26,
+        "power_surge": 0.312,
+        "hr_power_index": 0.44
       }
     ]
   },
@@ -857,53 +857,6 @@
           "evidence": []
         },
         {
-          "player_id": "695578",
-          "player_name": "James Wood",
-          "team": "WSH",
-          "opponent": "AZ",
-          "game_id": "az-wsh-2026-07-24",
-          "market": "HR",
-          "line": "HR 1+",
-          "score": 30.12,
-          "base_score": 30.12,
-          "sim_prob_pct": 31.3,
-          "lazy_penalty": 0.0,
-          "confidence": 30,
-          "tier": "B",
-          "reason": "HR edge 19.0 | L5 0.20/g | L10 0.30/g | Season 0.27/g | HR% 0.22 | HistHR% 0.17 | OPS 0.948 | SLG 0.551 | ISO 0.281 | PowIdx 0.47 | Surge 0.23 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.045 | vs Eduardo Rodriguez | ERA 2.62 | WHIP 1.22 | HR/9 0.93 | HR A 12 | Hand L | Platoon - | vsP 0.400/1.000 in 5 PA | Age 23 | Order est. 1 | Lineup pen 1.2 | Rising 0.68 | L5 XBH 0.60/g | Season XBH 0.52/g | Wts T0.42/M0.28/F0.30",
-          "play_of_day": false,
-          "hr_bucket": "strong",
-          "pitcher": "Eduardo Rodriguez",
-          "whip": 1.22,
-          "hr9": 0.93,
-          "hr_allowed": 12,
-          "vs_pitcher_avg": 0.4,
-          "vs_pitcher_ops": 1.0,
-          "vs_pitcher_hr": 0,
-          "order_estimate": 1,
-          "projected_pa": 4.5,
-          "lineup_confirmed": false,
-          "lineup_uncertainty_penalty": 1.2,
-          "season_hr_probability": 0.22,
-          "l10_hr_probability": 0.236,
-          "l5_hr_probability": 0.185,
-          "historical_hr_probability": 0.175,
-          "season_hr_per_game": 0.272,
-          "l10_hr_per_game": 0.3,
-          "l5_hr_per_game": 0.2,
-          "ops": 0.948,
-          "slg": 0.551,
-          "iso": 0.281,
-          "sample_reliability": 1.0,
-          "age": 23,
-          "historical_power_index": 0.196,
-          "recent_peak_hr_rate": 0.045,
-          "career_hr_rate": 0.044,
-          "appearance_7d": 2,
-          "hits_7d": 0,
-          "evidence": []
-        },
-        {
           "player_id": "664023",
           "player_name": "Ian Happ",
           "team": "CHC",
@@ -993,6 +946,53 @@
           "historical_power_index": 0.414,
           "recent_peak_hr_rate": 0.063,
           "career_hr_rate": 0.05,
+          "appearance_7d": 2,
+          "hits_7d": 0,
+          "evidence": []
+        },
+        {
+          "player_id": "695578",
+          "player_name": "James Wood",
+          "team": "WSH",
+          "opponent": "AZ",
+          "game_id": "az-wsh-2026-07-24",
+          "market": "HR",
+          "line": "HR 1+",
+          "score": 29.88,
+          "base_score": 29.88,
+          "sim_prob_pct": 31.1,
+          "lazy_penalty": 0.0,
+          "confidence": 30,
+          "tier": "B",
+          "reason": "HR edge 18.8 | L5 0.20/g | L10 0.30/g | Season 0.27/g | HR% 0.22 | HistHR% 0.17 | OPS 0.948 | SLG 0.551 | ISO 0.281 | PowIdx 0.46 | Surge 0.23 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.045 | vs Eduardo Rodriguez | ERA 2.62 | WHIP 1.22 | HR/9 0.93 | HR A 12 | Hand L | Platoon - | vsP 0.500/1.500 in 2 PA | Age 23 | Order est. 1 | Lineup pen 1.2 | Rising 0.68 | L5 XBH 0.60/g | Season XBH 0.52/g | Wts T0.42/M0.28/F0.30",
+          "play_of_day": false,
+          "hr_bucket": "strong",
+          "pitcher": "Eduardo Rodriguez",
+          "whip": 1.22,
+          "hr9": 0.93,
+          "hr_allowed": 12,
+          "vs_pitcher_avg": 0.5,
+          "vs_pitcher_ops": 1.5,
+          "vs_pitcher_hr": 0,
+          "order_estimate": 1,
+          "projected_pa": 4.5,
+          "lineup_confirmed": false,
+          "lineup_uncertainty_penalty": 1.2,
+          "season_hr_probability": 0.22,
+          "l10_hr_probability": 0.236,
+          "l5_hr_probability": 0.185,
+          "historical_hr_probability": 0.175,
+          "season_hr_per_game": 0.272,
+          "l10_hr_per_game": 0.3,
+          "l5_hr_per_game": 0.2,
+          "ops": 0.948,
+          "slg": 0.551,
+          "iso": 0.281,
+          "sample_reliability": 1.0,
+          "age": 23,
+          "historical_power_index": 0.196,
+          "recent_peak_hr_rate": 0.045,
+          "career_hr_rate": 0.044,
           "appearance_7d": 2,
           "hits_7d": 0,
           "evidence": []
@@ -1105,9 +1105,9 @@
             "team": "SF",
             "opponent": "LAA",
             "line": "HR 1+",
-            "score": 24.52,
+            "score": 23.88,
             "tier": "B",
-            "reason": "HR edge 12.8 | L5 0.00/g | L10 0.10/g | Season 0.20/g | HR% 0.18 | HistHR% 0.20 | OPS 0.780 | SLG 0.468 | ISO 0.226 | PowIdx 0.62 | Surge 0.08 | Matchup 0.82 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.050 | vs Grayson Rodriguez | ERA 8.23 | WHIP 1.77 | HR/9 1.29 | HR A 5 | Hand R | Platoon + | vsP 0.800/1.633 in 6 PA | Age 29 | Order est. 1 | Lineup pen 1.2 | Power due 0.21 | L5 XBH 0.20/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
+            "reason": "HR edge 12.0 | L5 0.00/g | L10 0.10/g | Season 0.20/g | HR% 0.18 | HistHR% 0.20 | OPS 0.780 | SLG 0.468 | ISO 0.226 | PowIdx 0.60 | Surge 0.08 | Matchup 0.82 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.050 | vs Grayson Rodriguez | ERA 8.23 | WHIP 1.77 | HR/9 1.29 | HR A 5 | Hand R | Platoon + | vsP 0.500/1.167 in 3 PA | Age 29 | Order est. 1 | Lineup pen 1.2 | Power due 0.21 | L5 XBH 0.20/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
             "pitcher": "Grayson Rodriguez",
             "evidence": [],
             "hr_bucket": "core"
@@ -1155,9 +1155,9 @@
             "team": "SF",
             "opponent": "LAA",
             "line": "HR 1+",
-            "score": 24.52,
+            "score": 23.88,
             "tier": "B",
-            "reason": "HR edge 12.8 | L5 0.00/g | L10 0.10/g | Season 0.20/g | HR% 0.18 | HistHR% 0.20 | OPS 0.780 | SLG 0.468 | ISO 0.226 | PowIdx 0.62 | Surge 0.08 | Matchup 0.82 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.050 | vs Grayson Rodriguez | ERA 8.23 | WHIP 1.77 | HR/9 1.29 | HR A 5 | Hand R | Platoon + | vsP 0.800/1.633 in 6 PA | Age 29 | Order est. 1 | Lineup pen 1.2 | Power due 0.21 | L5 XBH 0.20/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
+            "reason": "HR edge 12.0 | L5 0.00/g | L10 0.10/g | Season 0.20/g | HR% 0.18 | HistHR% 0.20 | OPS 0.780 | SLG 0.468 | ISO 0.226 | PowIdx 0.60 | Surge 0.08 | Matchup 0.82 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.050 | vs Grayson Rodriguez | ERA 8.23 | WHIP 1.77 | HR/9 1.29 | HR A 5 | Hand R | Platoon + | vsP 0.500/1.167 in 3 PA | Age 29 | Order est. 1 | Lineup pen 1.2 | Power due 0.21 | L5 XBH 0.20/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
             "pitcher": "Grayson Rodriguez",
             "evidence": [],
             "hr_bucket": "core"
@@ -2880,7 +2880,7 @@
               "model_prob_raw": 0.668,
               "shrink_pp": 21.6,
               "edge_pp": -24.3,
-              "volume": 496227
+              "volume": 710268
             },
             "decision": "PASS"
           }
@@ -3461,7 +3461,7 @@
               "model_prob_raw": 0.518,
               "shrink_pp": 8.5,
               "edge_pp": -29.2,
-              "volume": 106191
+              "volume": 108279
             },
             "decision": "PASS"
           }
@@ -3474,7 +3474,7 @@
         "park_factor_lhb": 0.94,
         "park_factor_rhb": 0.92,
         "wind_mph": 5,
-        "wind_deg": 73,
+        "wind_deg": 60,
         "wind_label": "IN",
         "hr_lean": "HR suppress",
         "summary_chip": "Comerica Park \u00b7 5mph IN (HR suppress)"
@@ -3690,7 +3690,7 @@
                 "ticker": "KXMLBHR-26JUL241840CHCPIT-CHCPCROWARMSTRONG4-1",
                 "implied_prob": 0.165,
                 "edge_pp": 9.0,
-                "volume": 3376,
+                "volume": 3387,
                 "decision": "BET",
                 "model_fair_american": 292,
                 "market_american": 506
@@ -3924,7 +3924,7 @@
             "score": 90.2,
             "confidence": 90,
             "tier": "A",
-            "reason": "Edge 54.0, trend 0.40, matchup 0.29, form 0.32",
+            "reason": "Edge 54.0, trend 0.40, matchup 0.27, form 0.32",
             "sim_prob_pct": 91.4,
             "calibration_status": "flag",
             "baseline_prob_pct": 71.2,
@@ -4106,7 +4106,7 @@
             "score": 39.76,
             "confidence": 40,
             "tier": "A",
-            "reason": "Edge 12.8, trend 0.35, matchup 0.34, form 0.33",
+            "reason": "Edge 12.8, trend 0.35, matchup 0.32, form 0.33",
             "sim_prob_pct": 41.0,
             "calibration_status": "ok",
             "baseline_prob_pct": 46.0,
@@ -4192,7 +4192,7 @@
               "model_prob_raw": 0.555,
               "shrink_pp": 8.5,
               "edge_pp": -4.5,
-              "volume": 48657
+              "volume": 56181
             },
             "decision": "PASS"
           }
@@ -4204,11 +4204,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.85,
         "park_factor_rhb": 0.9,
-        "wind_mph": 4,
-        "wind_deg": 99,
+        "wind_mph": 5,
+        "wind_deg": 95,
         "wind_label": "IN",
         "hr_lean": "HR suppress",
-        "summary_chip": "PNC Park \u00b7 4mph IN (HR suppress)"
+        "summary_chip": "PNC Park \u00b7 5mph IN (HR suppress)"
       }
     },
     {
@@ -4220,10 +4220,10 @@
           "market": "HR",
           "player_name": "James Wood",
           "line": "HR 1+",
-          "score": 30.12,
+          "score": 29.88,
           "confidence": 30,
           "tier": "B",
-          "sim_prob_pct": 31.3
+          "sim_prob_pct": 31.1
         },
         {
           "market": "RBI",
@@ -4252,45 +4252,45 @@
             "team": "WSH",
             "opponent": "AZ",
             "line": "HR 1+",
-            "score": 30.12,
+            "score": 29.88,
             "confidence": 30,
             "tier": "B",
-            "reason": "HR edge 19.0 | L5 0.20/g | L10 0.30/g | Season 0.27/g | HR% 0.22 | HistHR% 0.17 | OPS 0.948 | SLG 0.551 | ISO 0.281 | PowIdx 0.47 | Surge 0.23 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.045 | vs Eduardo Rodriguez | ERA 2.62 | WHIP 1.22 | HR/9 0.93 | HR A 12 | Hand L | Platoon - | vsP 0.400/1.000 in 5 PA | Age 23 | Order est. 1 | Lineup pen 1.2 | Rising 0.68 | L5 XBH 0.60/g | Season XBH 0.52/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 31.3,
+            "reason": "HR edge 18.8 | L5 0.20/g | L10 0.30/g | Season 0.27/g | HR% 0.22 | HistHR% 0.17 | OPS 0.948 | SLG 0.551 | ISO 0.281 | PowIdx 0.46 | Surge 0.23 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.045 | vs Eduardo Rodriguez | ERA 2.62 | WHIP 1.22 | HR/9 0.93 | HR A 12 | Hand L | Platoon - | vsP 0.500/1.500 in 2 PA | Age 23 | Order est. 1 | Lineup pen 1.2 | Rising 0.68 | L5 XBH 0.60/g | Season XBH 0.52/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 31.1,
             "ladder": {
-              "1": 0.3132,
-              "2": 0.0432
+              "1": 0.3108,
+              "2": 0.0424
             },
             "calibration_status": "ok",
             "baseline_prob_pct": 25.8,
-            "calibration_gap_pp": 5.6,
+            "calibration_gap_pp": 5.3,
             "kalshi_ladder": [
               {
                 "threshold": 1,
                 "line": "1+",
-                "model_prob": 0.3132,
-                "model_prob_raw": 0.3132,
+                "model_prob": 0.3108,
+                "model_prob_raw": 0.3108,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26JUL241845AZWSH-WSHJWOOD29-1",
                 "implied_prob": 0.225,
-                "edge_pp": 8.8,
-                "volume": 3038,
+                "edge_pp": 8.6,
+                "volume": 3152,
                 "decision": "BET",
-                "model_fair_american": 219,
+                "model_fair_american": 222,
                 "market_american": 344
               },
               {
                 "threshold": 2,
                 "line": "2+",
-                "model_prob": 0.0432,
-                "model_prob_raw": 0.0432,
+                "model_prob": 0.0424,
+                "model_prob_raw": 0.0424,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26JUL241845AZWSH-WSHJWOOD29-2",
                 "implied_prob": 0.015,
-                "edge_pp": 2.8,
+                "edge_pp": 2.7,
                 "volume": 152,
                 "decision": "PASS",
-                "model_fair_american": 2215,
+                "model_fair_american": 2258,
                 "market_american": 6567
               }
             ]
@@ -4323,7 +4323,7 @@
                 "ticker": "KXMLBHR-26JUL241845AZWSH-WSHCABRAMS5-1",
                 "implied_prob": 0.125,
                 "edge_pp": 15.1,
-                "volume": 1349,
+                "volume": 1534,
                 "decision": "BET",
                 "model_fair_american": 262,
                 "market_american": 700
@@ -4350,45 +4350,45 @@
             "team": "WSH",
             "opponent": "AZ",
             "line": "HR 1+",
-            "score": 24.16,
-            "confidence": 24,
+            "score": 23.36,
+            "confidence": 23,
             "tier": "B",
-            "reason": "HR edge 13.3 | L5 0.00/g | L10 0.10/g | Season 0.20/g | HR% 0.18 | HistHR% 0.09 | OPS 0.858 | SLG 0.509 | ISO 0.251 | PowIdx 0.42 | Surge 0.18 | Matchup 0.18 | ProjPA 4.1 | Sample 1.00 | Peak3Y 0.024 | vs Eduardo Rodriguez | ERA 2.62 | WHIP 1.22 | HR/9 0.93 | HR A 12 | Hand L | Platoon + | vsP 0.167/0.834 in 6 PA | vsP HR 1 | Age 25 | Order est. 6 | Lineup pen 1.2 | Rising 0.63 | L5 XBH 0.40/g | Season XBH 0.41/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 25.4,
+            "reason": "HR edge 12.7 | L5 0.00/g | L10 0.10/g | Season 0.20/g | HR% 0.18 | HistHR% 0.09 | OPS 0.858 | SLG 0.509 | ISO 0.251 | PowIdx 0.41 | Surge 0.18 | Matchup 0.18 | ProjPA 4.1 | Sample 1.00 | Peak3Y 0.024 | vs Eduardo Rodriguez | ERA 2.62 | WHIP 1.22 | HR/9 0.93 | HR A 12 | Hand L | Platoon + | vsP 0.000/0.000 in 3 PA | Age 25 | Order est. 6 | Lineup pen 1.2 | Rising 0.63 | L5 XBH 0.40/g | Season XBH 0.41/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 24.6,
             "ladder": {
-              "1": 0.2536,
-              "2": 0.0312
+              "1": 0.2456,
+              "2": 0.0292
             },
             "calibration_status": "ok",
             "baseline_prob_pct": 19.7,
-            "calibration_gap_pp": 5.6,
+            "calibration_gap_pp": 4.8,
             "kalshi_ladder": [
               {
                 "threshold": 1,
                 "line": "1+",
-                "model_prob": 0.2536,
-                "model_prob_raw": 0.2536,
+                "model_prob": 0.2456,
+                "model_prob_raw": 0.2456,
                 "shrink_pp": 0.0,
                 "ticker": null,
                 "implied_prob": null,
                 "edge_pp": null,
                 "volume": 0,
                 "decision": "NO_MARKET",
-                "model_fair_american": 294,
+                "model_fair_american": 307,
                 "market_american": null
               },
               {
                 "threshold": 2,
                 "line": "2+",
-                "model_prob": 0.0312,
-                "model_prob_raw": 0.0312,
+                "model_prob": 0.0292,
+                "model_prob_raw": 0.0292,
                 "shrink_pp": 0.0,
                 "ticker": null,
                 "implied_prob": null,
                 "edge_pp": null,
                 "volume": 0,
                 "decision": "NO_MARKET",
-                "model_fair_american": 3105,
+                "model_fair_american": 3325,
                 "market_american": null
               }
             ]
@@ -4421,7 +4421,7 @@
                 "ticker": "KXMLBHR-26JUL241845AZWSH-AZKMARTE4-1",
                 "implied_prob": 0.215,
                 "edge_pp": 2.1,
-                "volume": 1785,
+                "volume": 1807,
                 "decision": "PASS",
                 "model_fair_american": 324,
                 "market_american": 365
@@ -4748,7 +4748,7 @@
             "score": 81.32,
             "confidence": 81,
             "tier": "A",
-            "reason": "Edge 41.2, trend 0.30, matchup 0.23, form 0.40",
+            "reason": "Edge 41.2, trend 0.30, matchup 0.22, form 0.40",
             "sim_prob_pct": 82.5,
             "calibration_status": "flag",
             "baseline_prob_pct": 64.3,
@@ -4926,7 +4926,7 @@
               "model_prob_raw": 0.55,
               "shrink_pp": 8.5,
               "edge_pp": 0.0,
-              "volume": 41848
+              "volume": 46551
             },
             "decision": "PASS"
           }
@@ -4938,11 +4938,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.0,
         "park_factor_rhb": 0.99,
-        "wind_mph": 6,
-        "wind_deg": 83,
+        "wind_mph": 8,
+        "wind_deg": 101,
         "wind_label": "CROSS",
         "hr_lean": "neutral",
-        "summary_chip": "Nationals Park \u00b7 6mph CROSS"
+        "summary_chip": "Nationals Park \u00b7 8mph CROSS"
       }
     },
     {
@@ -5008,7 +5008,7 @@
                 "ticker": "KXMLBHR-26JUL241845NYYPHI-PHIKSCHWARBER12-1",
                 "implied_prob": 0.265,
                 "edge_pp": 13.9,
-                "volume": 11103,
+                "volume": 11431,
                 "decision": "BET",
                 "model_fair_american": 148,
                 "market_american": 277
@@ -5022,7 +5022,7 @@
                 "ticker": "KXMLBHR-26JUL241845NYYPHI-PHIKSCHWARBER12-2",
                 "implied_prob": 0.035,
                 "edge_pp": 3.5,
-                "volume": 396,
+                "volume": 513,
                 "decision": "PASS",
                 "model_fair_american": 1320,
                 "market_american": 2757
@@ -5202,12 +5202,12 @@
                 "model_prob_raw": 0.232,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26JUL241845NYYPHI-PHIBHARPER3-1",
-                "implied_prob": 0.185,
-                "edge_pp": 4.7,
+                "implied_prob": 0.175,
+                "edge_pp": 5.7,
                 "volume": 8730,
-                "decision": "PASS",
+                "decision": "BET",
                 "model_fair_american": 331,
-                "market_american": 441
+                "market_american": 471
               },
               {
                 "threshold": 2,
@@ -5703,7 +5703,7 @@
               "model_prob_raw": 0.584,
               "shrink_pp": 8.5,
               "edge_pp": -5.6,
-              "volume": 80022
+              "volume": 86183
             },
             "decision": "PASS"
           }
@@ -5715,11 +5715,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.1,
         "park_factor_rhb": 1.1,
-        "wind_mph": 4,
-        "wind_deg": 75,
+        "wind_mph": 5,
+        "wind_deg": 90,
         "wind_label": "CROSS",
         "hr_lean": "HR boost",
-        "summary_chip": "Citizens Bank Park \u00b7 4mph CROSS (HR boost)"
+        "summary_chip": "Citizens Bank Park \u00b7 5mph CROSS (HR boost)"
       }
     },
     {
@@ -5834,7 +5834,7 @@
                 "ticker": "KXMLBHR-26JUL241905ATLBAL-ATLMOLSON28-1",
                 "implied_prob": 0.185,
                 "edge_pp": 6.6,
-                "volume": 5050,
+                "volume": 5356,
                 "decision": "BET",
                 "model_fair_american": 299,
                 "market_american": 441
@@ -5883,7 +5883,7 @@
                 "ticker": "KXMLBHR-26JUL241905ATLBAL-BALGHENDERSON2-1",
                 "implied_prob": 0.175,
                 "edge_pp": 6.5,
-                "volume": 1897,
+                "volume": 1980,
                 "decision": "BET",
                 "model_fair_american": 316,
                 "market_american": 471
@@ -5932,7 +5932,7 @@
                 "ticker": "KXMLBHR-26JUL241905ATLBAL-BALPALONSO25-1",
                 "implied_prob": 0.205,
                 "edge_pp": 3.1,
-                "volume": 5704,
+                "volume": 5862,
                 "decision": "PASS",
                 "model_fair_american": 323,
                 "market_american": 388
@@ -6416,7 +6416,7 @@
               "model_prob_raw": 0.581,
               "shrink_pp": 8.5,
               "edge_pp": 1.1,
-              "volume": 104130
+              "volume": 109131
             },
             "decision": "PASS"
           }
@@ -6428,11 +6428,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.05,
         "park_factor_rhb": 1.02,
-        "wind_mph": 4,
-        "wind_deg": 79,
+        "wind_mph": 6,
+        "wind_deg": 104,
         "wind_label": "CROSS",
         "hr_lean": "neutral",
-        "summary_chip": "Camden Yards \u00b7 4mph CROSS"
+        "summary_chip": "Camden Yards \u00b7 6mph CROSS"
       }
     },
     {
@@ -6547,7 +6547,7 @@
                 "ticker": "KXMLBHR-26JUL241910LADNYM-NYMJSOTO22-1",
                 "implied_prob": 0.205,
                 "edge_pp": 8.7,
-                "volume": 3318,
+                "volume": 4938,
                 "decision": "BET",
                 "model_fair_american": 242,
                 "market_american": 388
@@ -6618,6 +6618,55 @@
             ]
           },
           {
+            "player_id": "571970",
+            "player_name": "Max Muncy",
+            "team": "LAD",
+            "opponent": "NYM",
+            "line": "HR 1+",
+            "score": 25.16,
+            "confidence": 25,
+            "tier": "B",
+            "reason": "HR edge 14.9 | L5 0.20/g | L10 0.10/g | Season 0.21/g | HR% 0.20 | HistHR% 0.21 | OPS 0.868 | SLG 0.511 | ISO 0.249 | PowIdx 0.49 | Surge 0.15 | Matchup 0.56 | ProjPA 4.1 | Sample 1.00 | Peak3Y 0.061 | vs Sean Manaea | ERA 4.74 | WHIP 1.36 | HR/9 1.36 | HR A 12 | Hand L | Platoon - | vsP 0.167/1.042 in 8 PA | vsP HR 1 | Age 35 | Order est. 5 | Lineup pen 1.2 | Power due 0.31 | L5 XBH 0.20/g | Season XBH 0.39/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 26.4,
+            "ladder": {
+              "1": 0.2636,
+              "2": 0.0332
+            },
+            "calibration_status": "ok",
+            "baseline_prob_pct": 20.5,
+            "calibration_gap_pp": 5.9,
+            "kalshi_ladder": [
+              {
+                "threshold": 1,
+                "line": "1+",
+                "model_prob": 0.2636,
+                "model_prob_raw": 0.2636,
+                "shrink_pp": 0.0,
+                "ticker": null,
+                "implied_prob": null,
+                "edge_pp": null,
+                "volume": 0,
+                "decision": "NO_MARKET",
+                "model_fair_american": 279,
+                "market_american": null
+              },
+              {
+                "threshold": 2,
+                "line": "2+",
+                "model_prob": 0.0332,
+                "model_prob_raw": 0.0332,
+                "shrink_pp": 0.0,
+                "ticker": null,
+                "implied_prob": null,
+                "edge_pp": null,
+                "volume": 0,
+                "decision": "NO_MARKET",
+                "model_fair_american": 2912,
+                "market_american": null
+              }
+            ]
+          },
+          {
             "player_id": "660271",
             "player_name": "Shohei Ohtani",
             "team": "LAD",
@@ -6645,7 +6694,7 @@
                 "ticker": "KXMLBHR-26JUL241910LADNYM-LADSOHTANI17-1",
                 "implied_prob": 0.215,
                 "edge_pp": 4.6,
-                "volume": 32316,
+                "volume": 33517,
                 "decision": "PASS",
                 "model_fair_american": 283,
                 "market_american": 365
@@ -6663,55 +6712,6 @@
                 "decision": "PASS",
                 "model_fair_american": 2841,
                 "market_american": 3900
-              }
-            ]
-          },
-          {
-            "player_id": "571970",
-            "player_name": "Max Muncy",
-            "team": "LAD",
-            "opponent": "NYM",
-            "line": "HR 1+",
-            "score": 24.68,
-            "confidence": 25,
-            "tier": "B",
-            "reason": "HR edge 14.5 | L5 0.20/g | L10 0.10/g | Season 0.21/g | HR% 0.20 | HistHR% 0.21 | OPS 0.868 | SLG 0.511 | ISO 0.249 | PowIdx 0.48 | Surge 0.15 | Matchup 0.56 | ProjPA 4.1 | Sample 1.00 | Peak3Y 0.061 | vs Sean Manaea | ERA 4.74 | WHIP 1.36 | HR/9 1.36 | HR A 12 | Hand L | Platoon - | vsP 0.333/1.666 in 3 PA | vsP HR 1 | Age 35 | Order est. 5 | Lineup pen 1.2 | Power due 0.31 | L5 XBH 0.20/g | Season XBH 0.39/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 25.9,
-            "ladder": {
-              "1": 0.2588,
-              "2": 0.0328
-            },
-            "calibration_status": "ok",
-            "baseline_prob_pct": 20.5,
-            "calibration_gap_pp": 5.4,
-            "kalshi_ladder": [
-              {
-                "threshold": 1,
-                "line": "1+",
-                "model_prob": 0.2588,
-                "model_prob_raw": 0.2588,
-                "shrink_pp": 0.0,
-                "ticker": null,
-                "implied_prob": null,
-                "edge_pp": null,
-                "volume": 0,
-                "decision": "NO_MARKET",
-                "model_fair_american": 286,
-                "market_american": null
-              },
-              {
-                "threshold": 2,
-                "line": "2+",
-                "model_prob": 0.0328,
-                "model_prob_raw": 0.0328,
-                "shrink_pp": 0.0,
-                "ticker": null,
-                "implied_prob": null,
-                "edge_pp": null,
-                "volume": 0,
-                "decision": "NO_MARKET",
-                "model_fair_american": 2949,
-                "market_american": null
               }
             ]
           },
@@ -6743,7 +6743,7 @@
                 "ticker": "KXMLBHR-26JUL241910LADNYM-LADMBETTS50-1",
                 "implied_prob": 0.135,
                 "edge_pp": 10.3,
-                "volume": 1610,
+                "volume": 1711,
                 "decision": "BET",
                 "model_fair_american": 321,
                 "market_american": 641
@@ -6932,7 +6932,7 @@
             "score": 91.68,
             "confidence": 92,
             "tier": "A",
-            "reason": "Edge 58.0, trend 0.40, matchup 0.41, form 0.33",
+            "reason": "Edge 58.0, trend 0.40, matchup 0.43, form 0.33",
             "sim_prob_pct": 92.9,
             "calibration_status": "flag",
             "baseline_prob_pct": 72.9,
@@ -7022,7 +7022,7 @@
             "score": 86.56,
             "confidence": 87,
             "tier": "A",
-            "reason": "Edge 47.4, trend 0.40, matchup 0.45, form 0.15",
+            "reason": "Edge 47.4, trend 0.40, matchup 0.35, form 0.15",
             "sim_prob_pct": 87.8,
             "calibration_status": "flag",
             "baseline_prob_pct": 68.8,
@@ -7129,7 +7129,7 @@
             "score": 45.68,
             "confidence": 46,
             "tier": "A",
-            "reason": "Edge 18.4, trend 0.25, matchup 0.50, form 0.34",
+            "reason": "Edge 18.4, trend 0.25, matchup 0.52, form 0.34",
             "sim_prob_pct": 46.9,
             "calibration_status": "ok",
             "baseline_prob_pct": 47.4,
@@ -7204,7 +7204,7 @@
             "score": 35.2,
             "confidence": 35,
             "tier": "A",
-            "reason": "Edge 7.6, trend 0.35, matchup 0.47, form 0.34",
+            "reason": "Edge 7.6, trend 0.35, matchup 0.48, form 0.34",
             "sim_prob_pct": 36.4,
             "calibration_status": "ok",
             "baseline_prob_pct": 35.7,
@@ -7245,7 +7245,7 @@
               "model_prob_raw": 0.602,
               "shrink_pp": 21.6,
               "edge_pp": -16.9,
-              "volume": 335261
+              "volume": 354012
             },
             "decision": "PASS"
           }
@@ -7258,10 +7258,10 @@
         "park_factor_lhb": 0.92,
         "park_factor_rhb": 0.94,
         "wind_mph": 6,
-        "wind_deg": 29,
-        "wind_label": "CROSS",
+        "wind_deg": 34,
+        "wind_label": "IN",
         "hr_lean": "HR suppress",
-        "summary_chip": "Citi Field \u00b7 6mph CROSS (HR suppress)"
+        "summary_chip": "Citi Field \u00b7 6mph IN (HR suppress)"
       }
     },
     {
@@ -7327,7 +7327,7 @@
                 "ticker": "KXMLBHR-26JUL241910CLETB-TBJCAMINERO13-1",
                 "implied_prob": 0.215,
                 "edge_pp": 14.1,
-                "volume": 3804,
+                "volume": 3878,
                 "decision": "BET",
                 "model_fair_american": 181,
                 "market_american": 365
@@ -7878,7 +7878,7 @@
               "model_prob_raw": 0.609,
               "shrink_pp": 21.6,
               "edge_pp": -16.2,
-              "volume": 57722
+              "volume": 62547
             },
             "decision": "PASS"
           }
@@ -8447,7 +8447,7 @@
               "model_prob_raw": 0.537,
               "shrink_pp": 8.5,
               "edge_pp": -10.3,
-              "volume": 36924
+              "volume": 38877
             },
             "decision": "PASS"
           }
@@ -9077,7 +9077,7 @@
               "model_prob_raw": 0.55,
               "shrink_pp": 8.5,
               "edge_pp": -7.0,
-              "volume": 86146
+              "volume": 92961
             },
             "decision": "PASS"
           }
@@ -9089,11 +9089,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.95,
         "park_factor_rhb": 1.1,
-        "wind_mph": 3,
-        "wind_deg": 105,
-        "wind_label": "CROSS",
-        "hr_lean": "neutral",
-        "summary_chip": "Fenway Park \u00b7 3mph CROSS"
+        "wind_mph": 4,
+        "wind_deg": 186,
+        "wind_label": "OUT",
+        "hr_lean": "HR boost",
+        "summary_chip": "Fenway Park \u00b7 4mph OUT (HR boost)"
       }
     },
     {
@@ -9157,12 +9157,12 @@
                 "model_prob_raw": 0.3828,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26JUL241940HOUCWS-HOUYALVAREZ44-1",
-                "implied_prob": 0.27,
-                "edge_pp": 11.3,
-                "volume": 4982,
+                "implied_prob": 0.275,
+                "edge_pp": 10.8,
+                "volume": 5610,
                 "decision": "BET",
                 "model_fair_american": 161,
-                "market_american": 270
+                "market_american": 264
               },
               {
                 "threshold": 2,
@@ -9171,12 +9171,12 @@
                 "model_prob_raw": 0.0736,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26JUL241940HOUCWS-HOUYALVAREZ44-2",
-                "implied_prob": 0.025,
-                "edge_pp": 4.9,
-                "volume": 1577,
+                "implied_prob": 0.03,
+                "edge_pp": 4.4,
+                "volume": 1831,
                 "decision": "PASS",
                 "model_fair_american": 1259,
-                "market_american": 3900
+                "market_american": 3233
               }
             ]
           },
@@ -9600,7 +9600,7 @@
             "score": 84.8,
             "confidence": 85,
             "tier": "A",
-            "reason": "Edge 45.1, trend 0.40, matchup 0.25, form 0.26",
+            "reason": "Edge 45.1, trend 0.40, matchup 0.22, form 0.26",
             "sim_prob_pct": 86.0,
             "calibration_status": "flag",
             "baseline_prob_pct": 67.8,
@@ -9767,7 +9767,7 @@
             "score": 34.72,
             "confidence": 35,
             "tier": "B",
-            "reason": "Edge 7.5, trend 0.35, matchup 0.28, form 0.26",
+            "reason": "Edge 7.5, trend 0.35, matchup 0.25, form 0.26",
             "sim_prob_pct": 35.9,
             "calibration_status": "ok",
             "baseline_prob_pct": 41.6,
@@ -9808,7 +9808,7 @@
               "model_prob_raw": 0.576,
               "shrink_pp": 8.5,
               "edge_pp": -6.4,
-              "volume": 235189
+              "volume": 238808
             },
             "decision": "PASS"
           }
@@ -9820,11 +9820,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.07,
         "park_factor_rhb": 1.05,
-        "wind_mph": 5,
-        "wind_deg": 85,
-        "wind_label": "IN",
-        "hr_lean": "neutral",
-        "summary_chip": "Rate Field \u00b7 5mph IN"
+        "wind_mph": 4,
+        "wind_deg": 133,
+        "wind_label": "CROSS",
+        "hr_lean": "HR boost",
+        "summary_chip": "Rate Field \u00b7 4mph CROSS (HR boost)"
       }
     },
     {
@@ -10206,7 +10206,7 @@
             "score": 80.8,
             "confidence": 81,
             "tier": "A",
-            "reason": "Edge 41.4, trend 0.20, matchup 0.27, form 0.28",
+            "reason": "Edge 41.4, trend 0.20, matchup 0.24, form 0.28",
             "sim_prob_pct": 82.0,
             "calibration_status": "ok",
             "baseline_prob_pct": 69.4,
@@ -10444,7 +10444,7 @@
               "model_prob_raw": 0.528,
               "shrink_pp": 8.5,
               "edge_pp": -4.2,
-              "volume": 24179
+              "volume": 25010
             },
             "decision": "PASS"
           }
@@ -10575,7 +10575,7 @@
                 "ticker": "KXMLBHR-26JUL242010ATHMIN-MINBBUXTON25-1",
                 "implied_prob": 0.255,
                 "edge_pp": 5.7,
-                "volume": 1638,
+                "volume": 2022,
                 "decision": "BET",
                 "model_fair_american": 221,
                 "market_american": 292
@@ -10589,7 +10589,7 @@
                 "ticker": "KXMLBHR-26JUL242010ATHMIN-MINBBUXTON25-2",
                 "implied_prob": 0.025,
                 "edge_pp": 1.7,
-                "volume": 512,
+                "volume": 824,
                 "decision": "PASS",
                 "model_fair_american": 2258,
                 "market_american": 3900
@@ -11077,7 +11077,7 @@
               "model_prob_raw": 0.529,
               "shrink_pp": 8.5,
               "edge_pp": -13.1,
-              "volume": 41527
+              "volume": 43533
             },
             "decision": "PASS"
           }
@@ -11090,7 +11090,7 @@
         "park_factor_lhb": 1.0,
         "park_factor_rhb": 0.98,
         "wind_mph": 10,
-        "wind_deg": 193,
+        "wind_deg": 195,
         "wind_label": "CROSS",
         "hr_lean": "neutral",
         "summary_chip": "Target Field \u00b7 10mph CROSS"
@@ -11208,7 +11208,7 @@
                 "ticker": "KXMLBHR-26JUL242015CINSTL-CINEDELACRUZ44-1",
                 "implied_prob": 0.135,
                 "edge_pp": 14.4,
-                "volume": 800,
+                "volume": 871,
                 "decision": "BET",
                 "model_fair_american": 259,
                 "market_american": 641
@@ -11235,31 +11235,31 @@
             "team": "STL",
             "opponent": "CIN",
             "line": "HR 1+",
-            "score": 25.44,
+            "score": 25.36,
             "confidence": 25,
             "tier": "B",
-            "reason": "HR edge 13.8 | L5 0.20/g | L10 0.30/g | Season 0.22/g | HR% 0.19 | HistHR% 0.13 | OPS 0.871 | SLG 0.519 | ISO 0.228 | PowIdx 0.40 | Surge 0.23 | Matchup 0.72 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.034 | vs Rhett Lowder | ERA 5.75 | WHIP 1.64 | HR/9 1.12 | HR A 9 | Hand R | Platoon - | vsP 0.250/0.500 in 4 PA | Age 24 | Order est. 4 | Lineup pen 1.2 | Rising 0.58 | L5 XBH 0.60/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
+            "reason": "HR edge 13.7 | L5 0.20/g | L10 0.30/g | Season 0.22/g | HR% 0.19 | HistHR% 0.13 | OPS 0.871 | SLG 0.519 | ISO 0.228 | PowIdx 0.40 | Surge 0.23 | Matchup 0.72 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.034 | vs Rhett Lowder | ERA 5.75 | WHIP 1.64 | HR/9 1.12 | HR A 9 | Hand R | Platoon - | vsP 0.000/0.000 in 2 PA | Age 24 | Order est. 4 | Lineup pen 1.2 | Rising 0.58 | L5 XBH 0.60/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
             "sim_prob_pct": 26.6,
             "ladder": {
-              "1": 0.2664,
+              "1": 0.2656,
               "2": 0.0336
             },
             "calibration_status": "ok",
             "baseline_prob_pct": 19.1,
-            "calibration_gap_pp": 7.5,
+            "calibration_gap_pp": 7.4,
             "kalshi_ladder": [
               {
                 "threshold": 1,
                 "line": "1+",
-                "model_prob": 0.2664,
-                "model_prob_raw": 0.2664,
+                "model_prob": 0.2656,
+                "model_prob_raw": 0.2656,
                 "shrink_pp": 0.0,
                 "ticker": null,
                 "implied_prob": null,
                 "edge_pp": null,
                 "volume": 0,
                 "decision": "NO_MARKET",
-                "model_fair_american": 275,
+                "model_fair_american": 277,
                 "market_american": null
               },
               {
@@ -11854,7 +11854,7 @@
               "model_prob_raw": 0.545,
               "shrink_pp": 8.5,
               "edge_pp": -13.5,
-              "volume": 38812
+              "volume": 40779
             },
             "decision": "PASS"
           }
@@ -11867,10 +11867,10 @@
         "park_factor_lhb": 0.93,
         "park_factor_rhb": 0.95,
         "wind_mph": 4,
-        "wind_deg": 195,
-        "wind_label": "CROSS",
-        "hr_lean": "HR suppress",
-        "summary_chip": "Busch Stadium \u00b7 4mph CROSS (HR suppress)"
+        "wind_deg": 219,
+        "wind_label": "OUT",
+        "hr_lean": "neutral",
+        "summary_chip": "Busch Stadium \u00b7 4mph OUT"
       }
     },
     {
@@ -11963,45 +11963,45 @@
             "team": "SF",
             "opponent": "LAA",
             "line": "HR 1+",
-            "score": 24.52,
-            "confidence": 25,
+            "score": 23.88,
+            "confidence": 24,
             "tier": "B",
-            "reason": "HR edge 12.8 | L5 0.00/g | L10 0.10/g | Season 0.20/g | HR% 0.18 | HistHR% 0.20 | OPS 0.780 | SLG 0.468 | ISO 0.226 | PowIdx 0.62 | Surge 0.08 | Matchup 0.82 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.050 | vs Grayson Rodriguez | ERA 8.23 | WHIP 1.77 | HR/9 1.29 | HR A 5 | Hand R | Platoon + | vsP 0.800/1.633 in 6 PA | Age 29 | Order est. 1 | Lineup pen 1.2 | Power due 0.21 | L5 XBH 0.20/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 25.7,
+            "reason": "HR edge 12.0 | L5 0.00/g | L10 0.10/g | Season 0.20/g | HR% 0.18 | HistHR% 0.20 | OPS 0.780 | SLG 0.468 | ISO 0.226 | PowIdx 0.60 | Surge 0.08 | Matchup 0.82 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.050 | vs Grayson Rodriguez | ERA 8.23 | WHIP 1.77 | HR/9 1.29 | HR A 5 | Hand R | Platoon + | vsP 0.500/1.167 in 3 PA | Age 29 | Order est. 1 | Lineup pen 1.2 | Power due 0.21 | L5 XBH 0.20/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 25.1,
             "ladder": {
-              "1": 0.2572,
-              "2": 0.026
+              "1": 0.2508,
+              "2": 0.0236
             },
             "calibration_status": "ok",
             "baseline_prob_pct": 17.2,
-            "calibration_gap_pp": 8.5,
+            "calibration_gap_pp": 7.8,
             "kalshi_ladder": [
               {
                 "threshold": 1,
                 "line": "1+",
-                "model_prob": 0.2572,
-                "model_prob_raw": 0.2572,
+                "model_prob": 0.2508,
+                "model_prob_raw": 0.2508,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26JUL242215LAASF-SFRDEVERS16-1",
                 "implied_prob": 0.185,
-                "edge_pp": 7.2,
-                "volume": 1057,
+                "edge_pp": 6.6,
+                "volume": 1082,
                 "decision": "BET",
-                "model_fair_american": 289,
+                "model_fair_american": 299,
                 "market_american": 441
               },
               {
                 "threshold": 2,
                 "line": "2+",
-                "model_prob": 0.026,
-                "model_prob_raw": 0.026,
+                "model_prob": 0.0236,
+                "model_prob_raw": 0.0236,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26JUL242215LAASF-SFRDEVERS16-2",
                 "implied_prob": 0.02,
-                "edge_pp": 0.6,
+                "edge_pp": 0.4,
                 "volume": 0,
                 "decision": "PASS",
-                "model_fair_american": 3746,
+                "model_fair_american": 4137,
                 "market_american": 4900
               }
             ]
@@ -12389,7 +12389,7 @@
             "score": 85.32,
             "confidence": 85,
             "tier": "A",
-            "reason": "Edge 47.5, trend 0.50, matchup 0.53, form 0.23",
+            "reason": "Edge 47.5, trend 0.50, matchup 0.51, form 0.23",
             "sim_prob_pct": 86.5,
             "calibration_status": "flag",
             "baseline_prob_pct": 64.7,
@@ -12496,7 +12496,7 @@
             "score": 35.92,
             "confidence": 36,
             "tier": "A",
-            "reason": "Edge 8.6, trend 0.30, matchup 0.69, form 0.23",
+            "reason": "Edge 8.6, trend 0.30, matchup 0.68, form 0.23",
             "sim_prob_pct": 37.1,
             "calibration_status": "ok",
             "baseline_prob_pct": 44.9,
@@ -12582,7 +12582,7 @@
               "model_prob_raw": 0.447,
               "shrink_pp": 0.0,
               "edge_pp": -14.8,
-              "volume": 158879
+              "volume": 161608
             },
             "decision": "PASS"
           }
@@ -12595,7 +12595,7 @@
         "park_factor_lhb": 0.8,
         "park_factor_rhb": 0.95,
         "wind_mph": 10,
-        "wind_deg": 295,
+        "wind_deg": 296,
         "wind_label": "OUT",
         "hr_lean": "neutral",
         "summary_chip": "Oracle Park \u00b7 10mph OUT"
@@ -12641,7 +12641,7 @@
           "ticker": "KXMLBHR-26JUL241845AZWSH-WSHCABRAMS5-1",
           "implied_prob": 0.125,
           "edge_pp": 15.1,
-          "volume": 1349,
+          "volume": 1534,
           "decision": "BET",
           "model_fair_american": 262,
           "market_american": 700
@@ -12656,7 +12656,7 @@
             "ticker": "KXMLBHR-26JUL241845AZWSH-WSHCABRAMS5-1",
             "implied_prob": 0.125,
             "edge_pp": 15.1,
-            "volume": 1349,
+            "volume": 1534,
             "decision": "BET",
             "model_fair_american": 262,
             "market_american": 700
@@ -12695,7 +12695,7 @@
           "ticker": "KXMLBHR-26JUL242015CINSTL-CINEDELACRUZ44-1",
           "implied_prob": 0.135,
           "edge_pp": 14.4,
-          "volume": 800,
+          "volume": 871,
           "decision": "BET",
           "model_fair_american": 259,
           "market_american": 641
@@ -12710,7 +12710,7 @@
             "ticker": "KXMLBHR-26JUL242015CINSTL-CINEDELACRUZ44-1",
             "implied_prob": 0.135,
             "edge_pp": 14.4,
-            "volume": 800,
+            "volume": 871,
             "decision": "BET",
             "model_fair_american": 259,
             "market_american": 641
@@ -12749,7 +12749,7 @@
           "ticker": "KXMLBHR-26JUL241910CLETB-TBJCAMINERO13-1",
           "implied_prob": 0.215,
           "edge_pp": 14.1,
-          "volume": 3804,
+          "volume": 3878,
           "decision": "BET",
           "model_fair_american": 181,
           "market_american": 365
@@ -12764,7 +12764,7 @@
             "ticker": "KXMLBHR-26JUL241910CLETB-TBJCAMINERO13-1",
             "implied_prob": 0.215,
             "edge_pp": 14.1,
-            "volume": 3804,
+            "volume": 3878,
             "decision": "BET",
             "model_fair_american": 181,
             "market_american": 365
@@ -12803,7 +12803,7 @@
           "ticker": "KXMLBHR-26JUL241845NYYPHI-PHIKSCHWARBER12-1",
           "implied_prob": 0.265,
           "edge_pp": 13.9,
-          "volume": 11103,
+          "volume": 11431,
           "decision": "BET",
           "model_fair_american": 148,
           "market_american": 277
@@ -12818,7 +12818,7 @@
             "ticker": "KXMLBHR-26JUL241845NYYPHI-PHIKSCHWARBER12-1",
             "implied_prob": 0.265,
             "edge_pp": 13.9,
-            "volume": 11103,
+            "volume": 11431,
             "decision": "BET",
             "model_fair_american": 148,
             "market_american": 277
@@ -12832,7 +12832,7 @@
             "ticker": "KXMLBHR-26JUL241845NYYPHI-PHIKSCHWARBER12-2",
             "implied_prob": 0.035,
             "edge_pp": 3.5,
-            "volume": 396,
+            "volume": 513,
             "decision": "PASS",
             "model_fair_american": 1320,
             "market_american": 2757
@@ -12909,12 +12909,12 @@
           "model_prob_raw": 0.3828,
           "shrink_pp": 0.0,
           "ticker": "KXMLBHR-26JUL241940HOUCWS-HOUYALVAREZ44-1",
-          "implied_prob": 0.27,
-          "edge_pp": 11.3,
-          "volume": 4982,
+          "implied_prob": 0.275,
+          "edge_pp": 10.8,
+          "volume": 5610,
           "decision": "BET",
           "model_fair_american": 161,
-          "market_american": 270
+          "market_american": 264
         },
         "ladder": [
           {
@@ -12924,12 +12924,12 @@
             "model_prob_raw": 0.3828,
             "shrink_pp": 0.0,
             "ticker": "KXMLBHR-26JUL241940HOUCWS-HOUYALVAREZ44-1",
-            "implied_prob": 0.27,
-            "edge_pp": 11.3,
-            "volume": 4982,
+            "implied_prob": 0.275,
+            "edge_pp": 10.8,
+            "volume": 5610,
             "decision": "BET",
             "model_fair_american": 161,
-            "market_american": 270
+            "market_american": 264
           },
           {
             "threshold": 2,
@@ -12938,12 +12938,12 @@
             "model_prob_raw": 0.0736,
             "shrink_pp": 0.0,
             "ticker": "KXMLBHR-26JUL241940HOUCWS-HOUYALVAREZ44-2",
-            "implied_prob": 0.025,
-            "edge_pp": 4.9,
-            "volume": 1577,
+            "implied_prob": 0.03,
+            "edge_pp": 4.4,
+            "volume": 1831,
             "decision": "PASS",
             "model_fair_american": 1259,
-            "market_american": 3900
+            "market_american": 3233
           }
         ],
         "label": "REPORT_ONLY \u2014 no execution venue wired"
@@ -12965,7 +12965,7 @@
           "ticker": "KXMLBHR-26JUL241910LADNYM-LADMBETTS50-1",
           "implied_prob": 0.135,
           "edge_pp": 10.3,
-          "volume": 1610,
+          "volume": 1711,
           "decision": "BET",
           "model_fair_american": 321,
           "market_american": 641
@@ -12980,7 +12980,7 @@
             "ticker": "KXMLBHR-26JUL241910LADNYM-LADMBETTS50-1",
             "implied_prob": 0.135,
             "edge_pp": 10.3,
-            "volume": 1610,
+            "volume": 1711,
             "decision": "BET",
             "model_fair_american": 321,
             "market_american": 641
@@ -13019,7 +13019,7 @@
           "ticker": "KXMLBHR-26JUL241840CHCPIT-CHCPCROWARMSTRONG4-1",
           "implied_prob": 0.165,
           "edge_pp": 9.0,
-          "volume": 3376,
+          "volume": 3387,
           "decision": "BET",
           "model_fair_american": 292,
           "market_american": 506
@@ -13034,7 +13034,7 @@
             "ticker": "KXMLBHR-26JUL241840CHCPIT-CHCPCROWARMSTRONG4-1",
             "implied_prob": 0.165,
             "edge_pp": 9.0,
-            "volume": 3376,
+            "volume": 3387,
             "decision": "BET",
             "model_fair_american": 292,
             "market_american": 506
@@ -13057,60 +13057,6 @@
         "label": "REPORT_ONLY \u2014 no execution venue wired"
       },
       {
-        "player_id": "695578",
-        "player_name": "James Wood",
-        "team": "WSH",
-        "opponent": "AZ",
-        "market": "HR",
-        "game_id": "az-wsh-2026-07-24",
-        "headline_line": "HR 1+",
-        "best": {
-          "threshold": 1,
-          "line": "1+",
-          "model_prob": 0.3132,
-          "model_prob_raw": 0.3132,
-          "shrink_pp": 0.0,
-          "ticker": "KXMLBHR-26JUL241845AZWSH-WSHJWOOD29-1",
-          "implied_prob": 0.225,
-          "edge_pp": 8.8,
-          "volume": 3038,
-          "decision": "BET",
-          "model_fair_american": 219,
-          "market_american": 344
-        },
-        "ladder": [
-          {
-            "threshold": 1,
-            "line": "1+",
-            "model_prob": 0.3132,
-            "model_prob_raw": 0.3132,
-            "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26JUL241845AZWSH-WSHJWOOD29-1",
-            "implied_prob": 0.225,
-            "edge_pp": 8.8,
-            "volume": 3038,
-            "decision": "BET",
-            "model_fair_american": 219,
-            "market_american": 344
-          },
-          {
-            "threshold": 2,
-            "line": "2+",
-            "model_prob": 0.0432,
-            "model_prob_raw": 0.0432,
-            "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26JUL241845AZWSH-WSHJWOOD29-2",
-            "implied_prob": 0.015,
-            "edge_pp": 2.8,
-            "volume": 152,
-            "decision": "PASS",
-            "model_fair_american": 2215,
-            "market_american": 6567
-          }
-        ],
-        "label": "REPORT_ONLY \u2014 no execution venue wired"
-      },
-      {
         "player_id": "665742",
         "player_name": "Juan Soto",
         "team": "NYM",
@@ -13127,7 +13073,7 @@
           "ticker": "KXMLBHR-26JUL241910LADNYM-NYMJSOTO22-1",
           "implied_prob": 0.205,
           "edge_pp": 8.7,
-          "volume": 3318,
+          "volume": 4938,
           "decision": "BET",
           "model_fair_american": 242,
           "market_american": 388
@@ -13142,7 +13088,7 @@
             "ticker": "KXMLBHR-26JUL241910LADNYM-NYMJSOTO22-1",
             "implied_prob": 0.205,
             "edge_pp": 8.7,
-            "volume": 3318,
+            "volume": 4938,
             "decision": "BET",
             "model_fair_american": 242,
             "market_american": 388
@@ -13165,55 +13111,55 @@
         "label": "REPORT_ONLY \u2014 no execution venue wired"
       },
       {
-        "player_id": "646240",
-        "player_name": "Rafael Devers",
-        "team": "SF",
-        "opponent": "LAA",
+        "player_id": "695578",
+        "player_name": "James Wood",
+        "team": "WSH",
+        "opponent": "AZ",
         "market": "HR",
-        "game_id": "laa-sf-2026-07-24",
+        "game_id": "az-wsh-2026-07-24",
         "headline_line": "HR 1+",
         "best": {
           "threshold": 1,
           "line": "1+",
-          "model_prob": 0.2572,
-          "model_prob_raw": 0.2572,
+          "model_prob": 0.3108,
+          "model_prob_raw": 0.3108,
           "shrink_pp": 0.0,
-          "ticker": "KXMLBHR-26JUL242215LAASF-SFRDEVERS16-1",
-          "implied_prob": 0.185,
-          "edge_pp": 7.2,
-          "volume": 1057,
+          "ticker": "KXMLBHR-26JUL241845AZWSH-WSHJWOOD29-1",
+          "implied_prob": 0.225,
+          "edge_pp": 8.6,
+          "volume": 3152,
           "decision": "BET",
-          "model_fair_american": 289,
-          "market_american": 441
+          "model_fair_american": 222,
+          "market_american": 344
         },
         "ladder": [
           {
             "threshold": 1,
             "line": "1+",
-            "model_prob": 0.2572,
-            "model_prob_raw": 0.2572,
+            "model_prob": 0.3108,
+            "model_prob_raw": 0.3108,
             "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26JUL242215LAASF-SFRDEVERS16-1",
-            "implied_prob": 0.185,
-            "edge_pp": 7.2,
-            "volume": 1057,
+            "ticker": "KXMLBHR-26JUL241845AZWSH-WSHJWOOD29-1",
+            "implied_prob": 0.225,
+            "edge_pp": 8.6,
+            "volume": 3152,
             "decision": "BET",
-            "model_fair_american": 289,
-            "market_american": 441
+            "model_fair_american": 222,
+            "market_american": 344
           },
           {
             "threshold": 2,
             "line": "2+",
-            "model_prob": 0.026,
-            "model_prob_raw": 0.026,
+            "model_prob": 0.0424,
+            "model_prob_raw": 0.0424,
             "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26JUL242215LAASF-SFRDEVERS16-2",
-            "implied_prob": 0.02,
-            "edge_pp": 0.6,
-            "volume": 0,
+            "ticker": "KXMLBHR-26JUL241845AZWSH-WSHJWOOD29-2",
+            "implied_prob": 0.015,
+            "edge_pp": 2.7,
+            "volume": 152,
             "decision": "PASS",
-            "model_fair_american": 3746,
-            "market_american": 4900
+            "model_fair_american": 2258,
+            "market_american": 6567
           }
         ],
         "label": "REPORT_ONLY \u2014 no execution venue wired"
@@ -13235,7 +13181,7 @@
           "ticker": "KXMLBHR-26JUL241905ATLBAL-ATLMOLSON28-1",
           "implied_prob": 0.185,
           "edge_pp": 6.6,
-          "volume": 5050,
+          "volume": 5356,
           "decision": "BET",
           "model_fair_american": 299,
           "market_american": 441
@@ -13250,7 +13196,7 @@
             "ticker": "KXMLBHR-26JUL241905ATLBAL-ATLMOLSON28-1",
             "implied_prob": 0.185,
             "edge_pp": 6.6,
-            "volume": 5050,
+            "volume": 5356,
             "decision": "BET",
             "model_fair_american": 299,
             "market_american": 441
@@ -13273,6 +13219,60 @@
         "label": "REPORT_ONLY \u2014 no execution venue wired"
       },
       {
+        "player_id": "646240",
+        "player_name": "Rafael Devers",
+        "team": "SF",
+        "opponent": "LAA",
+        "market": "HR",
+        "game_id": "laa-sf-2026-07-24",
+        "headline_line": "HR 1+",
+        "best": {
+          "threshold": 1,
+          "line": "1+",
+          "model_prob": 0.2508,
+          "model_prob_raw": 0.2508,
+          "shrink_pp": 0.0,
+          "ticker": "KXMLBHR-26JUL242215LAASF-SFRDEVERS16-1",
+          "implied_prob": 0.185,
+          "edge_pp": 6.6,
+          "volume": 1082,
+          "decision": "BET",
+          "model_fair_american": 299,
+          "market_american": 441
+        },
+        "ladder": [
+          {
+            "threshold": 1,
+            "line": "1+",
+            "model_prob": 0.2508,
+            "model_prob_raw": 0.2508,
+            "shrink_pp": 0.0,
+            "ticker": "KXMLBHR-26JUL242215LAASF-SFRDEVERS16-1",
+            "implied_prob": 0.185,
+            "edge_pp": 6.6,
+            "volume": 1082,
+            "decision": "BET",
+            "model_fair_american": 299,
+            "market_american": 441
+          },
+          {
+            "threshold": 2,
+            "line": "2+",
+            "model_prob": 0.0236,
+            "model_prob_raw": 0.0236,
+            "shrink_pp": 0.0,
+            "ticker": "KXMLBHR-26JUL242215LAASF-SFRDEVERS16-2",
+            "implied_prob": 0.02,
+            "edge_pp": 0.4,
+            "volume": 0,
+            "decision": "PASS",
+            "model_fair_american": 4137,
+            "market_american": 4900
+          }
+        ],
+        "label": "REPORT_ONLY \u2014 no execution venue wired"
+      },
+      {
         "player_id": "683002",
         "player_name": "Gunnar Henderson",
         "team": "BAL",
@@ -13289,7 +13289,7 @@
           "ticker": "KXMLBHR-26JUL241905ATLBAL-BALGHENDERSON2-1",
           "implied_prob": 0.175,
           "edge_pp": 6.5,
-          "volume": 1897,
+          "volume": 1980,
           "decision": "BET",
           "model_fair_american": 316,
           "market_american": 471
@@ -13304,7 +13304,7 @@
             "ticker": "KXMLBHR-26JUL241905ATLBAL-BALGHENDERSON2-1",
             "implied_prob": 0.175,
             "edge_pp": 6.5,
-            "volume": 1897,
+            "volume": 1980,
             "decision": "BET",
             "model_fair_american": 316,
             "market_american": 471
@@ -13327,6 +13327,60 @@
         "label": "REPORT_ONLY \u2014 no execution venue wired"
       },
       {
+        "player_id": "547180",
+        "player_name": "Bryce Harper",
+        "team": "PHI",
+        "opponent": "NYY",
+        "market": "HR",
+        "game_id": "nyy-phi-2026-07-24",
+        "headline_line": "HR 1+",
+        "best": {
+          "threshold": 1,
+          "line": "1+",
+          "model_prob": 0.232,
+          "model_prob_raw": 0.232,
+          "shrink_pp": 0.0,
+          "ticker": "KXMLBHR-26JUL241845NYYPHI-PHIBHARPER3-1",
+          "implied_prob": 0.175,
+          "edge_pp": 5.7,
+          "volume": 8730,
+          "decision": "BET",
+          "model_fair_american": 331,
+          "market_american": 471
+        },
+        "ladder": [
+          {
+            "threshold": 1,
+            "line": "1+",
+            "model_prob": 0.232,
+            "model_prob_raw": 0.232,
+            "shrink_pp": 0.0,
+            "ticker": "KXMLBHR-26JUL241845NYYPHI-PHIBHARPER3-1",
+            "implied_prob": 0.175,
+            "edge_pp": 5.7,
+            "volume": 8730,
+            "decision": "BET",
+            "model_fair_american": 331,
+            "market_american": 471
+          },
+          {
+            "threshold": 2,
+            "line": "2+",
+            "model_prob": 0.024,
+            "model_prob_raw": 0.024,
+            "shrink_pp": 0.0,
+            "ticker": "KXMLBHR-26JUL241845NYYPHI-PHIBHARPER3-2",
+            "implied_prob": 0.015,
+            "edge_pp": 0.9,
+            "volume": 93,
+            "decision": "PASS",
+            "model_fair_american": 4067,
+            "market_american": 6567
+          }
+        ],
+        "label": "REPORT_ONLY \u2014 no execution venue wired"
+      },
+      {
         "player_id": "621439",
         "player_name": "Byron Buxton",
         "team": "MIN",
@@ -13343,7 +13397,7 @@
           "ticker": "KXMLBHR-26JUL242010ATHMIN-MINBBUXTON25-1",
           "implied_prob": 0.255,
           "edge_pp": 5.7,
-          "volume": 1638,
+          "volume": 2022,
           "decision": "BET",
           "model_fair_american": 221,
           "market_american": 292
@@ -13358,7 +13412,7 @@
             "ticker": "KXMLBHR-26JUL242010ATHMIN-MINBBUXTON25-1",
             "implied_prob": 0.255,
             "edge_pp": 5.7,
-            "volume": 1638,
+            "volume": 2022,
             "decision": "BET",
             "model_fair_american": 221,
             "market_american": 292
@@ -13372,51 +13426,10 @@
             "ticker": "KXMLBHR-26JUL242010ATHMIN-MINBBUXTON25-2",
             "implied_prob": 0.025,
             "edge_pp": 1.7,
-            "volume": 512,
+            "volume": 824,
             "decision": "PASS",
             "model_fair_american": 2258,
             "market_american": 3900
-          }
-        ],
-        "label": "REPORT_ONLY \u2014 no execution venue wired"
-      },
-      {
-        "player_id": "547180",
-        "player_name": "Bryce Harper",
-        "team": "PHI",
-        "opponent": "NYY",
-        "market": "HR",
-        "game_id": "nyy-phi-2026-07-24",
-        "headline_line": "HR 1+",
-        "best": null,
-        "ladder": [
-          {
-            "threshold": 1,
-            "line": "1+",
-            "model_prob": 0.232,
-            "model_prob_raw": 0.232,
-            "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26JUL241845NYYPHI-PHIBHARPER3-1",
-            "implied_prob": 0.185,
-            "edge_pp": 4.7,
-            "volume": 8730,
-            "decision": "PASS",
-            "model_fair_american": 331,
-            "market_american": 441
-          },
-          {
-            "threshold": 2,
-            "line": "2+",
-            "model_prob": 0.024,
-            "model_prob_raw": 0.024,
-            "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26JUL241845NYYPHI-PHIBHARPER3-2",
-            "implied_prob": 0.015,
-            "edge_pp": 0.9,
-            "volume": 93,
-            "decision": "PASS",
-            "model_fair_american": 4067,
-            "market_american": 6567
           }
         ],
         "label": "REPORT_ONLY \u2014 no execution venue wired"
@@ -13440,7 +13453,7 @@
             "ticker": "KXMLBHR-26JUL241910LADNYM-LADSOHTANI17-1",
             "implied_prob": 0.215,
             "edge_pp": 4.6,
-            "volume": 32316,
+            "volume": 33517,
             "decision": "PASS",
             "model_fair_american": 283,
             "market_american": 365
@@ -13481,7 +13494,7 @@
             "ticker": "KXMLBHR-26JUL241905ATLBAL-BALPALONSO25-1",
             "implied_prob": 0.205,
             "edge_pp": 3.1,
-            "volume": 5704,
+            "volume": 5862,
             "decision": "PASS",
             "model_fair_american": 323,
             "market_american": 388
@@ -13522,7 +13535,7 @@
             "ticker": "KXMLBHR-26JUL241845AZWSH-AZKMARTE4-1",
             "implied_prob": 0.215,
             "edge_pp": 2.1,
-            "volume": 1785,
+            "volume": 1807,
             "decision": "PASS",
             "model_fair_american": 324,
             "market_american": 365
