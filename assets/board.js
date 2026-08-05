@@ -595,6 +595,51 @@
     }[key];
   }
 
+  // Opening Edge — WNBA first-basket model. Data lives in data/opening-edge.js
+  // (hand-authored, outside the snapshot pipeline); the section only renders
+  // when that file is present.
+  function renderOpeningEdge() {
+    const oe = window.OPENING_EDGE;
+    if (!oe) return `<div class="empty-state"><strong>Opening Edge data missing.</strong>Add data/opening-edge.js to enable this section.</div>`;
+    const tone = profile => ({ "Lead Big": "lime", "Lead Guard": "cyan", "Primary": "orange", "Value": "violet" }[profile] || "lime");
+    const initials = name => String(name).split(" ").map(part => part[0]).join("");
+    const picks = oe.picks.map((pick, index) => `
+      <article class="oe-card">
+        <span class="oe-rank">${String(index + 1).padStart(2, "0")}</span>
+        <div class="oe-head">
+          <span class="oe-avatar"><i>${esc(initials(pick.player))}</i><img src="${esc(oe.headshotBase + pick.wnbaId + ".png")}" alt="" loading="lazy" onerror="this.remove()"></span>
+          <div class="oe-who"><h3>${esc(pick.player)}</h3><p>${esc(pick.team)} vs ${esc(pick.opp)} · <span class="oe-profile" data-tone="${tone(pick.profile)}">${esc(pick.profile)}</span></p></div>
+          <span class="oe-score"><strong>${Number(pick.score)}</strong><small>edge</small></span>
+        </div>
+        <div class="oe-metrics">
+          <div><span>First baskets</span><b>${esc(pick.fb)}</b></div>
+          <div><span>Tip</span><b>${Number(pick.tip)}%</b></div>
+          <div><span>1st shot</span><b>${Number(pick.shot)}%</b></div>
+          <div><span>Make idx</span><b>${Number(pick.make)}</b></div>
+          <div><span>Price</span><b>${esc(pick.odds)}</b></div>
+        </div>
+        <p class="oe-script">${esc(pick.script)}</p>
+        <ul class="oe-signals">${pick.signals.map(item => `<li data-sign="plus">${esc(item)}</li>`).join("")}${pick.cautions.map(item => `<li data-sign="minus">${esc(item)}</li>`).join("")}</ul>
+      </article>`).join("");
+    const gameCards = oe.games.map(game => {
+      const awayTip = Math.round((100 - game.homeTip) * 10) / 10;
+      return `<div class="oe-game">
+        <h4>${esc(game.away)} <span>@</span> ${esc(game.home)} <small>${esc(game.time)}</small></h4>
+        <div class="oe-tipbar" role="img" aria-label="Tip control: ${esc(game.away)} ${awayTip} percent, ${esc(game.home)} ${game.homeTip} percent"><i style="width:${awayTip}%"></i><i style="width:${game.homeTip}%"></i></div>
+        <div class="oe-tipnums"><span>${awayTip}%</span><span>${game.homeTip}%</span></div>
+        <strong>${esc(game.edge)}</strong><p>${esc(game.note)}</p>
+      </div>`;
+    }).join("");
+    const weights = oe.weights.map(([weight, label]) => `<div class="oe-weight"><b>${weight}%</b><span>${esc(label)}</span></div>`).join("");
+    return `
+      <div class="section-head"><div><span class="section-kicker">Opening Edge · ${esc(oe.league)} · ${esc(oe.dateLabel)}</span><h2>First-basket board</h2></div><p class="section-note">Tip control, scripted first actions and first-shot ownership · model updated ${esc(oe.updated)}.</p></div>
+      <section class="oe-grid">${picks}</section>
+      <div class="section-head"><div><span class="section-kicker">Possession advantage</span><h2>Tip control by game</h2></div><p class="section-note">Away share left, home share right.</p></div>
+      <section class="oe-games">${gameCards}</section>
+      <div class="section-head"><div><span class="section-kicker">Model weights</span><h2>What the Edge score counts</h2></div><p class="section-note">Ranking aid, not calibrated probability. First-basket markets are high variance — research only.</p></div>
+      <section class="oe-weights">${weights}</section>`;
+  }
+
   function routeInfo() {
     const hash = location.hash.replace(/^#/, "") || "today";
     const [route, argument] = hash.split("/");
@@ -606,6 +651,7 @@
     const links = [
       { route: "today", href: "#today", label: "Today", core: true },
       ...availableSports.map(sport => ({ route: `sport/${sport}`, href: `#sport/${sport}`, label: SPORT_META[sport].label, count: games.filter(game => game.sport === sport).length })),
+      ...(window.OPENING_EDGE ? [{ route: "opening", href: "#opening", label: "Opening Edge", count: window.OPENING_EDGE.picks.length }] : []),
       { route: "games", href: "#games", label: "Games", core: true },
       { route: "card", href: "#card", label: "My Card", count: saved.length, core: true },
       { route: "method", href: "#method", label: "Method" },
@@ -624,13 +670,16 @@
     else if (route.route === "games") app.innerHTML = renderGames();
     else if (route.route === "card") app.innerHTML = renderCard();
     else if (route.route === "method") app.innerHTML = renderMethod();
+    else if (route.route === "opening") app.innerHTML = renderOpeningEdge();
     else app.innerHTML = renderToday();
-    document.title = `The Board · ${route.route === "sport" ? SPORT_META[route.argument]?.label || "Sport" : route.route[0].toUpperCase() + route.route.slice(1)}`;
+    document.title = `The Board · ${route.route === "sport" ? SPORT_META[route.argument]?.label || "Sport" : route.route === "opening" ? "Opening Edge" : route.route[0].toUpperCase() + route.route.slice(1)}`;
     const routeDate = route.route === "sport"
       ? snapshot.sports[route.argument]?.date
       : route.route === "games"
         ? snapshot.sports[gameSport]?.date
-        : latestSlateDate();
+        : route.route === "opening"
+          ? window.OPENING_EDGE?.date
+          : latestSlateDate();
     const freshness = staleInfo(routeDate);
     headerFreshness.textContent = freshness.stale ? `Historical · ${freshness.latest}` : `Current · ${freshness.latest}`;
     headerFreshness.parentElement.classList.toggle("stale", freshness.stale);
