@@ -15,6 +15,10 @@ node --experimental-strip-types scripts/sync-wnba.ts 2026-05-01 2026-08-04
 node --experimental-strip-types --test tests/wnba-model.test.ts
 python scripts/audit_snapshot.py data/wnba-model.json
 
+# 2b. Optional: refresh the triple-double watch (ESPN season averages);
+#     wins ledger lives in data/wins.json (hand-maintained)
+node --experimental-strip-types scripts/sync-td-watch.ts 2026
+
 # 3. Emit the #opening section (re-scores with today's real matchups;
 #    pass the ESPN injury report so lineup context is flagged)
 node --experimental-strip-types scripts/generate-section.ts \

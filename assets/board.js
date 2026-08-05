@@ -631,6 +631,36 @@
       </div>`;
     }).join("");
     const weights = oe.weights.map(([weight, label]) => `<div class="oe-weight"><b>${weight}%</b><span>${esc(label)}</span></div>`).join("");
+    const mapRows = (oe.marketMap || []).map(row => `
+      <div class="oe-map__row">
+        <span class="oe-map__game"><b>${esc(row.game)}</b><small>${esc(row.time)}</small></span>
+        <span><small>Tip control</small><b>${esc(row.tip)}</b></span>
+        <span><small>First score</small><b>${esc(row.firstScore)}</b></span>
+        <span><small>Top pick</small><b>${esc(row.topPick)}</b></span>
+        <span><small>TD watch</small><b>${esc(row.tdWatch)}</b></span>
+      </div>`).join("");
+    const tdCards = (oe.tdWatch || []).map(player => `
+      <article class="oe-td ${player.onSlate ? "is-tonight" : ""}">
+        <div class="oe-td__head">
+          <img src="${esc(player.headshot)}" alt="" loading="lazy" width="42" height="42" onerror="this.remove()">
+          <div><h4>${esc(player.player)}</h4><p>${esc(player.team)}${player.onSlate ? ` · <em>Tonight</em>` : ""}</p></div>
+          ${player.doubleDoubles ? `<span class="oe-td__dd">${player.doubleDoubles} DD</span>` : ""}
+        </div>
+        <div class="oe-td__stats">
+          ${[["PTS", player.ppg, 25], ["REB", player.rpg, 13], ["AST", player.apg, 10]].map(([label, value, max]) => `
+            <div><small>${label}</small><b>${value}</b><span class="oe-td__bar"><i style="width:${Math.min(100, Number(value) / Number(max) * 100)}%"></i></span></div>`).join("")}
+        </div>
+        <p class="oe-td__weak">Needs ${esc(player.weakest)}</p>
+      </article>`).join("");
+    const winCards = (oe.wins || []).map(win => `
+      <div class="oe-win">
+        <div class="oe-win__faces">${win.players.map(player => `<img src="${esc(player.headshot)}" alt="" loading="lazy" width="40" height="40" onerror="this.remove()">`).join("")}</div>
+        <div class="oe-win__body">
+          <div class="oe-win__tags"><label>Win</label><span>${esc(win.type)}</span><span class="oe-win__odds">${esc(win.oddsLabel)}</span></div>
+          <b>${esc(win.title)}</b>
+          <small>$${win.stake.toFixed(2)} → <em>$${win.payout.toFixed(2)}</em></small>
+        </div>
+      </div>`).join("");
     const auditCards = (oe.teamAudit || []).map(team => `
       <div class="oe-audit">
         <h4><span>${esc(team.team)}</span> First scores in ${team.scoredFirst}/${team.games} · tips ${team.tipWins}/${team.games}</h4>
@@ -649,8 +679,14 @@
       <section class="oe-grid">${picks}</section>
       <div class="section-head"><div><span class="section-kicker">Possession advantage</span><h2>Tip control by game</h2></div><p class="section-note">Away share left, home share right.</p></div>
       <section class="oe-games">${gameCards}</section>
+      ${mapRows ? `<div class="section-head"><div><span class="section-kicker">WNBA market map</span><h2>Tonight at a glance</h2></div><p class="section-note">Every model signal per game — tip control, first-score lean, top opening pick and triple-double watch.</p></div>
+      <section class="oe-map">${mapRows}</section>` : ""}
       ${auditCards ? `<div class="section-head"><div><span class="section-kicker">Team audit</span><h2>Who has done what</h2></div><p class="section-note">Whole-game first baskets (FB), team-first baskets, first attempts and makes — player counts reconcile to each team's total.</p></div>
       <section class="oe-audits">${auditCards}</section>` : ""}
+      ${tdCards ? `<div class="section-head"><div><span class="section-kicker">Triple-double watch</span><h2>Stat-sheet stuffers</h2></div><p class="section-note">${esc(oe.tdSource || "Season per-game averages")} · ranked by the weakest of the three categories.</p></div>
+      <section class="oe-tds">${tdCards}</section>` : ""}
+      ${winCards ? `<div class="section-head"><div><span class="section-kicker">The W column</span><h2>Posted W's</h2></div><p class="section-note">${oe.winTotals ? `${esc(oe.winTotals.record)} graded · $${oe.winTotals.staked.toFixed(2)} staked → $${oe.winTotals.returned.toFixed(2)} returned` : "Tracked wins"} · first-basket markets are high variance.</p></div>
+      <section class="oe-wins">${winCards}</section>` : ""}
       <div class="section-head"><div><span class="section-kicker">Model weights</span><h2>What the Edge score counts</h2></div><p class="section-note">Ranking aid, not calibrated probability. First-basket markets are high variance — research only.</p></div>
       <section class="oe-weights">${weights}</section>`;
   }

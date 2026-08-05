@@ -181,6 +181,48 @@ const teamAudit = slate.flatMap(game => [game.away, game.home]).map(team => {
   };
 });
 
+// Optional side inputs: hand-maintained wins ledger and the ESPN-synced
+// triple-double watch (scripts/sync-td-watch.ts).
+const readOptional = async (path: string) => {
+  try { return JSON.parse(await readFile(path, "utf8")); } catch { return null; }
+};
+const winsFile = await readOptional("data/wins.json");
+const tdFile = await readOptional("data/td-watch.json");
+
+const slateAbbrs = new Set(slate.flatMap(game => [game.away.team, game.home.team]));
+const tdWatch = (tdFile?.players ?? []).map((player: any) => ({
+  ...player,
+  team: display(player.team ?? ""),
+  onSlate: slateAbbrs.has(player.team),
+}));
+
+const wins = winsFile?.wins ?? [];
+const winTotals = wins.length ? {
+  record: `${wins.length}-0`,
+  staked: Number(wins.reduce((sum: number, win: any) => sum + win.stake, 0).toFixed(2)),
+  returned: Number(wins.reduce((sum: number, win: any) => sum + win.payout, 0).toFixed(2)),
+} : null;
+
+// Market map: one row per game, every cell sourced from this file's data.
+const marketMap = slate.map(game => {
+  const awayDisp = display(game.away.team);
+  const homeDisp = display(game.home.team);
+  const generated = games.find(item => item.away === awayDisp && item.home === homeDisp)!;
+  // Search the full ranked slate, not just the trimmed board — every game
+  // gets its best candidate even when none cracked the top picks.
+  const best = ranked.find(candidate => candidate.teamId === game.away.teamId || candidate.teamId === game.home.teamId) ?? null;
+  const topPick = best ? { player: best.player, score: best.edgeScore, odds: fairAmerican(best.rates.firstBasket) } : null;
+  const tdNames = tdWatch.filter((player: any) => player.onSlate && (player.team === awayDisp || player.team === homeDisp)).map((player: any) => player.player);
+  return {
+    game: `${awayDisp} @ ${homeDisp}`,
+    time: game.time,
+    tip: `${homeDisp} ${generated.homeTip}%`,
+    firstScore: generated.edge,
+    topPick: topPick ? `${topPick.player} · ${topPick.score} edge · ${topPick.odds}` : "—",
+    tdWatch: tdNames.length ? tdNames.join(", ") : "—",
+  };
+});
+
 const output = {
   league: "WNBA",
   date,
@@ -195,6 +237,11 @@ const output = {
   picks,
   games,
   teamAudit,
+  marketMap,
+  tdWatch,
+  tdSource: tdFile?.source ?? null,
+  wins,
+  winTotals,
 };
 
 const banner = `// Opening Edge — WNBA first-basket model section (#opening).

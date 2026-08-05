@@ -769,5 +769,233 @@ window.OPENING_EDGE = {
       ],
       "more": 1
     }
-  ]
+  ],
+  "marketMap": [
+    {
+      "game": "PHX @ ATL",
+      "time": "7:00 PM ET",
+      "tip": "ATL 58.9%",
+      "firstScore": "Even lean",
+      "topPick": "Rhyne Howard · 37 edge · +500",
+      "tdWatch": "Alyssa Thomas, Jordin Canada"
+    },
+    {
+      "game": "SEA @ NYL",
+      "time": "7:00 PM ET",
+      "tip": "NYL 53.1%",
+      "firstScore": "NYL +4.5pp",
+      "topPick": "Sabrina Ionescu · 39 edge · +725",
+      "tdWatch": "—"
+    },
+    {
+      "game": "DAL @ WAS",
+      "time": "7:30 PM ET",
+      "tip": "WAS 70.4%",
+      "firstScore": "WAS +7.2pp",
+      "topPick": "Shakira Austin · 49 edge · +222",
+      "tdWatch": "Jessica Shepard, Paige Bueckers, Sonia Citron"
+    },
+    {
+      "game": "LA @ CHI",
+      "time": "9:00 PM ET",
+      "tip": "CHI 57.2%",
+      "firstScore": "Even lean",
+      "topPick": "Nneka Ogwumike · 40 edge · +314",
+      "tdWatch": "—"
+    }
+  ],
+  "tdWatch": [
+    {
+      "athleteId": "2529140",
+      "player": "Alyssa Thomas",
+      "team": "PHX",
+      "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/2529140.png",
+      "ppg": 15,
+      "rpg": 7.3,
+      "apg": 8.4,
+      "doubleDoubles": 8,
+      "weakest": "rebounds",
+      "onSlate": true
+    },
+    {
+      "athleteId": "3906949",
+      "player": "Jessica Shepard",
+      "team": "DAL",
+      "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/3906949.png",
+      "ppg": 14.7,
+      "rpg": 11.8,
+      "apg": 5.4,
+      "doubleDoubles": 19,
+      "weakest": "assists",
+      "onSlate": true
+    },
+    {
+      "athleteId": "4433791",
+      "player": "Olivia Miles",
+      "team": "MIN",
+      "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4433791.png",
+      "ppg": 19.7,
+      "rpg": 4.7,
+      "apg": 5.8,
+      "doubleDoubles": 0,
+      "weakest": "rebounds",
+      "onSlate": false
+    },
+    {
+      "athleteId": "4065870",
+      "player": "Jackie Young",
+      "team": "LVA",
+      "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4065870.png",
+      "ppg": 17.8,
+      "rpg": 4.7,
+      "apg": 6.8,
+      "doubleDoubles": 6,
+      "weakest": "rebounds",
+      "onSlate": false
+    },
+    {
+      "athleteId": "4433730",
+      "player": "Paige Bueckers",
+      "team": "DAL",
+      "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4433730.png",
+      "ppg": 20.3,
+      "rpg": 4.2,
+      "apg": 5.9,
+      "doubleDoubles": 0,
+      "weakest": "rebounds",
+      "onSlate": true
+    },
+    {
+      "athleteId": "2987891",
+      "player": "Courtney Williams",
+      "team": "MIN",
+      "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/2987891.png",
+      "ppg": 15.3,
+      "rpg": 5.2,
+      "apg": 4.2,
+      "doubleDoubles": 0,
+      "weakest": "assists",
+      "onSlate": false
+    },
+    {
+      "athleteId": "4433403",
+      "player": "Caitlin Clark",
+      "team": "IND",
+      "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4433403.png",
+      "ppg": 21.5,
+      "rpg": 4,
+      "apg": 8,
+      "doubleDoubles": 7,
+      "weakest": "rebounds",
+      "onSlate": false
+    },
+    {
+      "athleteId": "4433524",
+      "player": "Sonia Citron",
+      "team": "WAS",
+      "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4433524.png",
+      "ppg": 17.3,
+      "rpg": 3.8,
+      "apg": 3.8,
+      "doubleDoubles": 0,
+      "weakest": "rebounds",
+      "onSlate": true
+    },
+    {
+      "athleteId": "3142250",
+      "player": "Jordin Canada",
+      "team": "ATL",
+      "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/3142250.png",
+      "ppg": 11.1,
+      "rpg": 3.7,
+      "apg": 7.7,
+      "doubleDoubles": 6,
+      "weakest": "rebounds",
+      "onSlate": true
+    },
+    {
+      "athleteId": "3904576",
+      "player": "Marina Mabrey",
+      "team": "TOR",
+      "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/3904576.png",
+      "ppg": 20.6,
+      "rpg": 3.6,
+      "apg": 3.8,
+      "doubleDoubles": 0,
+      "weakest": "rebounds",
+      "onSlate": false
+    }
+  ],
+  "tdSource": "ESPN season averages (per game) and double-double counts",
+  "wins": [
+    {
+      "title": "Aliyah Boston",
+      "type": "Straight",
+      "oddsLabel": "+455",
+      "stake": 50,
+      "payout": 277.5,
+      "players": [
+        {
+          "name": "Aliyah Boston",
+          "headshot": "https://cdn.wnba.com/headshots/wnba/latest/1040x760/1641648.png"
+        }
+      ]
+    },
+    {
+      "title": "Jackie Young + Sabrina Ionescu",
+      "type": "2-Leg",
+      "oddsLabel": "72.9x",
+      "stake": 11.81,
+      "payout": 860.66,
+      "players": [
+        {
+          "name": "Jackie Young",
+          "headshot": "https://cdn.wnba.com/headshots/wnba/latest/1040x760/1629498.png"
+        },
+        {
+          "name": "Sabrina Ionescu",
+          "headshot": "https://cdn.wnba.com/headshots/wnba/latest/1040x760/1629477.png"
+        }
+      ]
+    },
+    {
+      "title": "Cecilia Zandalasini",
+      "type": "Straight",
+      "oddsLabel": "+470",
+      "stake": 14,
+      "payout": 82,
+      "players": [
+        {
+          "name": "Cecilia Zandalasini",
+          "headshot": "https://cdn.wnba.com/headshots/wnba/latest/1040x760/1628508.png"
+        }
+      ]
+    },
+    {
+      "title": "Malonga + Austin + Boston",
+      "type": "3-Leg",
+      "oddsLabel": "204.3x",
+      "stake": 6,
+      "payout": 1226.05,
+      "players": [
+        {
+          "name": "Dominique Malonga",
+          "headshot": "https://cdn.wnba.com/headshots/wnba/latest/1040x760/1642798.png"
+        },
+        {
+          "name": "Shakira Austin",
+          "headshot": "https://cdn.wnba.com/headshots/wnba/latest/1040x760/1631022.png"
+        },
+        {
+          "name": "Aliyah Boston",
+          "headshot": "https://cdn.wnba.com/headshots/wnba/latest/1040x760/1641648.png"
+        }
+      ]
+    }
+  ],
+  "winTotals": {
+    "record": "4-0",
+    "staked": 81.81,
+    "returned": 2446.21
+  }
 };
