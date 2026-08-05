@@ -1,10 +1,28 @@
 import type { OpeningSequence, PlayerAggregate, TeamAggregate } from "./types.ts";
 
+// ESPN occasionally carries duplicate athlete records for one player —
+// e.g. Natasha Cloud appears as both 2529137 and 3142010 in 2026 CHI
+// play-by-play. Alias stale ids to the canonical record before
+// aggregating so one player's counts merge into a single row.
+const ATHLETE_ALIASES: Record<string, string> = {
+  "2529137": "3142010", // Natasha Cloud
+};
+
+function aliasEvent<T extends { athleteId?: string } | null | undefined>(event: T): T {
+  if (event?.athleteId && ATHLETE_ALIASES[event.athleteId]) event.athleteId = ATHLETE_ALIASES[event.athleteId];
+  return event;
+}
+
 export function aggregateSequences(sequences: OpeningSequence[]) {
   const players = new Map<string, PlayerAggregate>();
   const teams = new Map<string, TeamAggregate>();
 
   for (const sequence of sequences) {
+    aliasEvent(sequence.firstAttempt);
+    aliasEvent(sequence.firstFieldGoal);
+    aliasEvent(sequence.firstPoints);
+    for (const key of Object.keys(sequence.firstAttemptsByTeam)) aliasEvent(sequence.firstAttemptsByTeam[key]);
+    for (const key of Object.keys(sequence.firstFieldGoalsByTeam)) aliasEvent(sequence.firstFieldGoalsByTeam[key]);
     for (const team of sequence.teams) {
       const current = teams.get(team.id) ?? { teamId: team.id, team: team.abbreviation, games: 0, tipWins: 0, scoredFirstFieldGoal: 0, scoredFirstPoints: 0, convertedFirstAttempt: 0 };
       current.games += 1;

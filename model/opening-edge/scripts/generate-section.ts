@@ -187,13 +187,6 @@ const output = {
   dateLabel: label,
   updated: `synced ${board.start} → ${board.end}`,
   source: "ESPN play-by-play · first field goal market · prices are model-fair lines, no sportsbook feed",
-  disclosures: [
-    "Role/availability, H2H and market components are neutral 0.5 — unverified inputs, per model spec.",
-    injuriesArg
-      ? "Health cross-checked against the ESPN injury report at generation time; starters and minutes are not confirmed."
-      : "Starters, health and minutes are not verified for this slate.",
-    "Model-fair prices are provisional until sportsbook prices are supplied. First-basket markets are high variance.",
-  ],
   headshotBase: "https://a.espncdn.com/i/headshots/wnba/players/full/",
   weights: [
     [30, "Player FB share"], [20, "Team opening profile"], [15, "First-shot involvement"],
