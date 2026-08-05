@@ -153,6 +153,34 @@ const games = slate.map(game => {
   };
 });
 
+// Team audit boards: who has done what on each slate team. Per AGENT.md the
+// listed players' whole-game first baskets must sum to the team's total —
+// the sum is emitted so the page can show the reconciliation.
+const AUDIT_ROWS = 7;
+const teamAudit = slate.flatMap(game => [game.away, game.home]).map(team => {
+  const roster = board.players
+    .filter(player => player.teamId === team.teamId)
+    .filter(player => player.firstFieldGoals + player.firstTeamFieldGoals + player.firstTeamAttempts > 0)
+    .sort((a, b) => b.firstFieldGoals - a.firstFieldGoals || b.firstTeamFieldGoals - a.firstTeamFieldGoals || b.firstTeamAttempts - a.firstTeamAttempts);
+  const fbTotal = roster.reduce((sum, player) => sum + player.firstFieldGoals, 0);
+  return {
+    team: display(team.team),
+    games: team.games,
+    tipWins: team.tipWins,
+    scoredFirst: team.scoredFirstFieldGoal,
+    fbTotal,
+    players: roster.slice(0, AUDIT_ROWS).map(player => ({
+      name: player.player,
+      headshot: `https://a.espncdn.com/i/headshots/wnba/players/full/${player.athleteId}.png`,
+      fb: player.firstFieldGoals,
+      teamFirst: player.firstTeamFieldGoals,
+      attempts: player.firstTeamAttempts,
+      makes: player.firstTeamAttemptMakes,
+    })),
+    more: Math.max(0, roster.length - AUDIT_ROWS),
+  };
+});
+
 const output = {
   league: "WNBA",
   date,
@@ -173,6 +201,7 @@ const output = {
   ],
   picks,
   games,
+  teamAudit,
 };
 
 const banner = `// Opening Edge — WNBA first-basket model section (#opening).

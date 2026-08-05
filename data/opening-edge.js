@@ -250,5 +250,527 @@ window.OPENING_EDGE = {
       "edge": "Even lean",
       "note": "CHI scores first in 53% of games, LA in 55%. CHI missing Sydney Taylor, Azura Stevens, Skylar Diggins, Rickea Jackson."
     }
+  ],
+  "teamAudit": [
+    {
+      "team": "PHX",
+      "games": 31,
+      "tipWins": 13,
+      "scoredFirst": 12,
+      "fbTotal": 12,
+      "players": [
+        {
+          "name": "Alyssa Thomas",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/2529140.png",
+          "fb": 4,
+          "teamFirst": 8,
+          "attempts": 6,
+          "makes": 2
+        },
+        {
+          "name": "DeWanna Bonner",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/869.png",
+          "fb": 4,
+          "teamFirst": 6,
+          "attempts": 5,
+          "makes": 3
+        },
+        {
+          "name": "Kahleah Copper",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/2998938.png",
+          "fb": 2,
+          "teamFirst": 5,
+          "attempts": 7,
+          "makes": 5
+        },
+        {
+          "name": "Natasha Mack",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4068042.png",
+          "fb": 1,
+          "teamFirst": 5,
+          "attempts": 4,
+          "makes": 3
+        },
+        {
+          "name": "Jovana Nogic",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/3906769.png",
+          "fb": 1,
+          "teamFirst": 1,
+          "attempts": 1,
+          "makes": 1
+        },
+        {
+          "name": "Noemie Brochant",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/5345524.png",
+          "fb": 0,
+          "teamFirst": 2,
+          "attempts": 5,
+          "makes": 2
+        },
+        {
+          "name": "Monique Akoa Makani",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/5274110.png",
+          "fb": 0,
+          "teamFirst": 2,
+          "attempts": 1,
+          "makes": 1
+        }
+      ],
+      "more": 2
+    },
+    {
+      "team": "ATL",
+      "games": 30,
+      "tipWins": 18,
+      "scoredFirst": 11,
+      "fbTotal": 11,
+      "players": [
+        {
+          "name": "Rhyne Howard",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4398674.png",
+          "fb": 5,
+          "teamFirst": 8,
+          "attempts": 10,
+          "makes": 5
+        },
+        {
+          "name": "Jordin Canada",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/3142250.png",
+          "fb": 2,
+          "teamFirst": 5,
+          "attempts": 5,
+          "makes": 2
+        },
+        {
+          "name": "Naz Hillmon",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4398915.png",
+          "fb": 2,
+          "teamFirst": 3,
+          "attempts": 5,
+          "makes": 2
+        },
+        {
+          "name": "Angel Reese",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4433402.png",
+          "fb": 1,
+          "teamFirst": 7,
+          "attempts": 4,
+          "makes": 0
+        },
+        {
+          "name": "Allisha Gray",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/3058901.png",
+          "fb": 1,
+          "teamFirst": 5,
+          "attempts": 6,
+          "makes": 0
+        },
+        {
+          "name": "Te-Hina Paopao",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4433431.png",
+          "fb": 0,
+          "teamFirst": 1,
+          "attempts": 0,
+          "makes": 0
+        },
+        {
+          "name": "Sika Kone",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/5017721.png",
+          "fb": 0,
+          "teamFirst": 1,
+          "attempts": 0,
+          "makes": 0
+        }
+      ],
+      "more": 0
+    },
+    {
+      "team": "SEA",
+      "games": 32,
+      "tipWins": 18,
+      "scoredFirst": 17,
+      "fbTotal": 17,
+      "players": [
+        {
+          "name": "Dominique Malonga",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/5220150.png",
+          "fb": 6,
+          "teamFirst": 7,
+          "attempts": 4,
+          "makes": 3
+        },
+        {
+          "name": "Natisha Hiedeman",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/3906753.png",
+          "fb": 3,
+          "teamFirst": 10,
+          "attempts": 6,
+          "makes": 4
+        },
+        {
+          "name": "Flau'jae Johnson",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4698736.png",
+          "fb": 2,
+          "teamFirst": 5,
+          "attempts": 8,
+          "makes": 3
+        },
+        {
+          "name": "Awa Fam",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/5345325.png",
+          "fb": 2,
+          "teamFirst": 2,
+          "attempts": 4,
+          "makes": 2
+        },
+        {
+          "name": "Stefanie Dolson",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/2529183.png",
+          "fb": 2,
+          "teamFirst": 2,
+          "attempts": 3,
+          "makes": 1
+        },
+        {
+          "name": "Jade Melbourne",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/5017726.png",
+          "fb": 1,
+          "teamFirst": 3,
+          "attempts": 5,
+          "makes": 1
+        },
+        {
+          "name": "Jordan Horston",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4432830.png",
+          "fb": 1,
+          "teamFirst": 3,
+          "attempts": 2,
+          "makes": 1
+        }
+      ],
+      "more": 0
+    },
+    {
+      "team": "NYL",
+      "games": 33,
+      "tipWins": 21,
+      "scoredFirst": 19,
+      "fbTotal": 19,
+      "players": [
+        {
+          "name": "Breanna Stewart",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/2998928.png",
+          "fb": 4,
+          "teamFirst": 9,
+          "attempts": 6,
+          "makes": 3
+        },
+        {
+          "name": "Jonquel Jones",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/2999101.png",
+          "fb": 4,
+          "teamFirst": 6,
+          "attempts": 9,
+          "makes": 4
+        },
+        {
+          "name": "Sabrina Ionescu",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4066533.png",
+          "fb": 4,
+          "teamFirst": 6,
+          "attempts": 7,
+          "makes": 5
+        },
+        {
+          "name": "Pauline Astier",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/5345320.png",
+          "fb": 2,
+          "teamFirst": 4,
+          "attempts": 3,
+          "makes": 3
+        },
+        {
+          "name": "Leonie Fiebich",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4683006.png",
+          "fb": 2,
+          "teamFirst": 4,
+          "attempts": 2,
+          "makes": 2
+        },
+        {
+          "name": "Marine Johannes",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4038379.png",
+          "fb": 2,
+          "teamFirst": 3,
+          "attempts": 2,
+          "makes": 2
+        },
+        {
+          "name": "Satou Sabally",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4281929.png",
+          "fb": 1,
+          "teamFirst": 1,
+          "attempts": 2,
+          "makes": 1
+        }
+      ],
+      "more": 2
+    },
+    {
+      "team": "DAL",
+      "games": 31,
+      "tipWins": 9,
+      "scoredFirst": 17,
+      "fbTotal": 17,
+      "players": [
+        {
+          "name": "Paige Bueckers",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4433730.png",
+          "fb": 4,
+          "teamFirst": 7,
+          "attempts": 7,
+          "makes": 3
+        },
+        {
+          "name": "Jessica Shepard",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/3906949.png",
+          "fb": 3,
+          "teamFirst": 7,
+          "attempts": 8,
+          "makes": 3
+        },
+        {
+          "name": "Azzi Fudd",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4433790.png",
+          "fb": 3,
+          "teamFirst": 7,
+          "attempts": 6,
+          "makes": 3
+        },
+        {
+          "name": "Arike Ogunbowale",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/3904577.png",
+          "fb": 2,
+          "teamFirst": 3,
+          "attempts": 4,
+          "makes": 1
+        },
+        {
+          "name": "Awak Kuier",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4790266.png",
+          "fb": 2,
+          "teamFirst": 3,
+          "attempts": 2,
+          "makes": 1
+        },
+        {
+          "name": "Maddy Siegrist",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4399415.png",
+          "fb": 2,
+          "teamFirst": 3,
+          "attempts": 1,
+          "makes": 1
+        },
+        {
+          "name": "Alanna Smith",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/3913881.png",
+          "fb": 1,
+          "teamFirst": 1,
+          "attempts": 3,
+          "makes": 1
+        }
+      ],
+      "more": 0
+    },
+    {
+      "team": "WAS",
+      "games": 29,
+      "tipWins": 20,
+      "scoredFirst": 18,
+      "fbTotal": 18,
+      "players": [
+        {
+          "name": "Shakira Austin",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4398911.png",
+          "fb": 9,
+          "teamFirst": 13,
+          "attempts": 10,
+          "makes": 6
+        },
+        {
+          "name": "Kiki Iriafen",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4898384.png",
+          "fb": 3,
+          "teamFirst": 6,
+          "attempts": 6,
+          "makes": 3
+        },
+        {
+          "name": "Michaela Onyenwere",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4282173.png",
+          "fb": 1,
+          "teamFirst": 2,
+          "attempts": 5,
+          "makes": 1
+        },
+        {
+          "name": "Georgia Amoore",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4704180.png",
+          "fb": 1,
+          "teamFirst": 2,
+          "attempts": 2,
+          "makes": 1
+        },
+        {
+          "name": "Sonia Citron",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4433524.png",
+          "fb": 1,
+          "teamFirst": 2,
+          "attempts": 2,
+          "makes": 1
+        },
+        {
+          "name": "Angela Dugalic",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4433411.png",
+          "fb": 1,
+          "teamFirst": 2,
+          "attempts": 1,
+          "makes": 1
+        },
+        {
+          "name": "Cassandre Prosper",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/5122345.png",
+          "fb": 1,
+          "teamFirst": 1,
+          "attempts": 2,
+          "makes": 1
+        }
+      ],
+      "more": 1
+    },
+    {
+      "team": "LA",
+      "games": 29,
+      "tipWins": 13,
+      "scoredFirst": 16,
+      "fbTotal": 16,
+      "players": [
+        {
+          "name": "Nneka Ogwumike",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/1068.png",
+          "fb": 7,
+          "teamFirst": 8,
+          "attempts": 7,
+          "makes": 5
+        },
+        {
+          "name": "Dearica Hamby",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/2566106.png",
+          "fb": 4,
+          "teamFirst": 6,
+          "attempts": 5,
+          "makes": 4
+        },
+        {
+          "name": "Rae Burrell",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4398764.png",
+          "fb": 3,
+          "teamFirst": 3,
+          "attempts": 4,
+          "makes": 2
+        },
+        {
+          "name": "Erica Wheeler",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/2491214.png",
+          "fb": 1,
+          "teamFirst": 5,
+          "attempts": 5,
+          "makes": 4
+        },
+        {
+          "name": "Kelsey Plum",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/3065570.png",
+          "fb": 1,
+          "teamFirst": 5,
+          "attempts": 3,
+          "makes": 0
+        },
+        {
+          "name": "Ariel Atkins",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/3146151.png",
+          "fb": 0,
+          "teamFirst": 2,
+          "attempts": 5,
+          "makes": 2
+        }
+      ],
+      "more": 0
+    },
+    {
+      "team": "CHI",
+      "games": 30,
+      "tipWins": 18,
+      "scoredFirst": 16,
+      "fbTotal": 16,
+      "players": [
+        {
+          "name": "Kamilla Cardoso",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4433405.png",
+          "fb": 5,
+          "teamFirst": 11,
+          "attempts": 11,
+          "makes": 4
+        },
+        {
+          "name": "Natasha Cloud",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/3142010.png",
+          "fb": 3,
+          "teamFirst": 6,
+          "attempts": 6,
+          "makes": 3
+        },
+        {
+          "name": "Courtney Vandersloot",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/981.png",
+          "fb": 2,
+          "teamFirst": 3,
+          "attempts": 3,
+          "makes": 3
+        },
+        {
+          "name": "Skylar Diggins",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/2491205.png",
+          "fb": 2,
+          "teamFirst": 2,
+          "attempts": 3,
+          "makes": 1
+        },
+        {
+          "name": "Jacy Sheldon",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4432865.png",
+          "fb": 2,
+          "teamFirst": 2,
+          "attempts": 1,
+          "makes": 0
+        },
+        {
+          "name": "Rickea Jackson",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/4433630.png",
+          "fb": 1,
+          "teamFirst": 2,
+          "attempts": 0,
+          "makes": 0
+        },
+        {
+          "name": "Natasha Cloud",
+          "headshot": "https://a.espncdn.com/i/headshots/wnba/players/full/2529137.png",
+          "fb": 1,
+          "teamFirst": 1,
+          "attempts": 1,
+          "makes": 0
+        }
+      ],
+      "more": 2
+    }
   ]
 };

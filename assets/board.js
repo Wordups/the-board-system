@@ -631,12 +631,27 @@
       </div>`;
     }).join("");
     const weights = oe.weights.map(([weight, label]) => `<div class="oe-weight"><b>${weight}%</b><span>${esc(label)}</span></div>`).join("");
+    const auditCards = (oe.teamAudit || []).map(team => `
+      <div class="oe-audit">
+        <h4><span>${esc(team.team)}</span> First scores in ${team.scoredFirst}/${team.games} · tips ${team.tipWins}/${team.games}</h4>
+        <div class="oe-audit__grid">
+          <small>Player</small><small>FB</small><small>Team-1st</small><small>Att</small><small>Make</small>
+          ${team.players.map(player => `
+            <span class="oe-audit__player"><img src="${esc(player.headshot)}" alt="" loading="lazy" width="20" height="20" onerror="this.remove()">${esc(player.name)}</span>
+            <b>${player.fb}</b><b>${player.teamFirst}</b><b>${player.attempts}</b><b>${player.makes}</b>`).join("")}
+        </div>
+        <p class="oe-audit__sum">${team.fbTotal === team.scoredFirst
+          ? `✓ ${team.fbTotal}/${team.scoredFirst} first baskets accounted for`
+          : `⚠ players sum ${team.fbTotal} vs team total ${team.scoredFirst}`}${team.more ? ` · +${team.more} more with entries` : ""}</p>
+      </div>`).join("");
     return `
       <div class="section-head"><div><span class="section-kicker">Opening Edge · ${esc(oe.league)} · ${esc(oe.dateLabel)}</span><h2>First-basket board</h2></div><p class="section-note">Tip control, first-shot ownership and conversion · ${esc(oe.updated)}${oe.source ? ` · ${esc(oe.source)}` : ""}.</p></div>
       ${(oe.disclosures || []).length ? `<div class="stale-banner" style="margin:0 0 14px"><span><strong>Unverified inputs</strong> · ${oe.disclosures.map(esc).join(" · ")}</span></div>` : ""}
       <section class="oe-grid">${picks}</section>
       <div class="section-head"><div><span class="section-kicker">Possession advantage</span><h2>Tip control by game</h2></div><p class="section-note">Away share left, home share right.</p></div>
       <section class="oe-games">${gameCards}</section>
+      ${auditCards ? `<div class="section-head"><div><span class="section-kicker">Team audit</span><h2>Who has done what</h2></div><p class="section-note">Whole-game first baskets (FB), team-first baskets, first attempts and makes — player counts reconcile to each team's total.</p></div>
+      <section class="oe-audits">${auditCards}</section>` : ""}
       <div class="section-head"><div><span class="section-kicker">Model weights</span><h2>What the Edge score counts</h2></div><p class="section-note">Ranking aid, not calibrated probability. First-basket markets are high variance — research only.</p></div>
       <section class="oe-weights">${weights}</section>`;
   }
