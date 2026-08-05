@@ -1,29 +1,34 @@
-# Opening Edge model (WNBA first-basket)
+# Opening Edge Universal — vendored agent (v1.0.1)
 
-Ported from the Codex `opening-edge` project; governed by the
-`opening-edge-universal` skill. Zero-dependency Node (>=22) + Python for audit.
+This is the portable `opening-edge-universal-agent` package, vendored verbatim.
+`AGENT.md` is the canonical instruction set — follow its run order; `CLAUDE.md`
+/ `SYSTEM_PROMPT.md` are platform entrypoints and `agent.json` the manifest.
+Zero-dependency Node (>=22) + Python for the audit.
 
-Pipeline (run from this directory, in order):
+Board integration (the only local addition is `scripts/generate-section.ts`):
 
 ```bash
 # 1. Sync season play-by-play from ESPN (start → day before slate)
 node --experimental-strip-types scripts/sync-wnba.ts 2026-05-01 2026-08-04
 
-# 2. Tests + audit — do not publish from a failed refresh
+# 2. Validate — do not publish rankings from a failed refresh
 node --experimental-strip-types --test tests/wnba-model.test.ts
 python scripts/audit_snapshot.py data/wnba-model.json
 
-# 3. Emit the #opening section data (re-scores with today's real matchups)
+# 3. Emit the #opening section (re-scores with today's real matchups;
+#    pass the ESPN injury report so lineup context is flagged)
 node --experimental-strip-types scripts/generate-section.ts \
   --date 2026-08-05 --label "Wednesday, Aug 5" \
-  --slate "PHX@ATL=7:00 PM ET,SEA@NY=7:00 PM ET,DAL@WSH=7:30 PM ET,LA@CHI=9:00 PM ET"
+  --slate "PHX@ATL=7:00 PM ET,SEA@NY=7:00 PM ET,DAL@WSH=7:30 PM ET,LA@CHI=9:00 PM ET" \
+  --injuries "ATL:Te-Hina Paopao Out;CHI:Sydney Taylor Day-To-Day,Azura Stevens Out,Skylar Diggins Out,Rickea Jackson Out;NY:Satou Sabally Out,Leonie Fiebich Out;SEA:Taina Mair Out"
 ```
 
 Step 3 writes `data/opening-edge.js` at the repo root — the only file the page
-reads. Slate uses ESPN abbreviations (WSH, NY, GS, LV); display abbreviations
-are mapped in the generator.
+reads. Slate/injuries use ESPN abbreviations (WSH, NY, GS, LV); display
+abbreviations are mapped in the generator.
 
-Rules carried over from the skill: preserve denominators (write `5/30`, never
-just `5`), prices are model-fair lines (no sportsbook feed) and the edge score
-is a ranking aid, not calibrated probability. First-basket markets are high
-variance; never automate wager placement.
+Carried over from AGENT.md: preserve denominators (`5/30`, never just `5`);
+unverified components (role/availability, H2H, market) stay at neutral 0.5 and
+are disclosed, never presented as facts; prices are model-fair lines and the
+edge score is a ranking aid, not calibrated probability; first-basket markets
+are high variance; never automate wager placement.

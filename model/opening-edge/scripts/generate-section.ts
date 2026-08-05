@@ -4,10 +4,14 @@
 // Usage (from model/opening-edge/):
 //   node --experimental-strip-types scripts/generate-section.ts \
 //     --date 2026-08-05 --label "Wednesday, Aug 5" \
-//     --slate "PHX@ATL=7:00 PM ET,SEA@NY=7:00 PM ET,DAL@WSH=7:30 PM ET,LA@CHI=9:00 PM ET"
+//     --slate "PHX@ATL=7:00 PM ET,SEA@NY=7:00 PM ET,DAL@WSH=7:30 PM ET,LA@CHI=9:00 PM ET" \
+//     --injuries "NY:Satou Sabally Out,Leonie Fiebich Out;CHI:Skylar Diggins Out"
 //
 // Every number in the output is derived from the snapshot; nothing is
-// hand-tuned. Prices are model-fair lines (no sportsbook feed).
+// hand-tuned. Per AGENT.md, components with no verified input (role/
+// availability, H2H, market) stay at neutral 0.5 and are DISCLOSED as
+// unverified rather than silently treated as facts. Prices are model-fair
+// lines — provisional until market prices are supplied.
 import { readFile, writeFile } from "node:fs/promises";
 import { rankCandidates } from "../lib/wnba/score.ts";
 import type { ModelCandidate, PlayerAggregate, TeamAggregate } from "../lib/wnba/types.ts";
@@ -20,6 +24,7 @@ const arg = (name: string, fallback = "") => {
 const date = arg("date", new Date().toISOString().slice(0, 10));
 const label = arg("label", date);
 const slateArg = arg("slate");
+const injuriesArg = arg("injuries");
 if (!slateArg) throw new Error("--slate is required, e.g. --slate \"DAL@WSH=7:30 PM ET,SEA@NY=7:00 PM ET\"");
 
 // ESPN abbreviation -> display abbreviation used on the board.
@@ -32,6 +37,14 @@ const board = JSON.parse(await readFile("data/wnba-board.json", "utf8")) as {
 };
 const teamByAbbr = new Map(board.teams.map(team => [team.team, team]));
 const teamById = new Map(board.teams.map(team => [team.teamId, team]));
+
+// "NY:Satou Sabally Out,Leonie Fiebich Out;CHI:Skylar Diggins Out" ->
+// Map(espnAbbr -> ["Satou Sabally Out", ...])
+const injuries = new Map<string, string[]>();
+for (const teamEntry of injuriesArg ? injuriesArg.split(";") : []) {
+  const [abbr, list] = teamEntry.split(":");
+  if (abbr && list) injuries.set(abbr.trim(), list.split(",").map(item => item.trim()).filter(Boolean));
+}
 
 interface SlateGame { away: TeamAggregate; home: TeamAggregate; time: string }
 const slate: SlateGame[] = slateArg.split(",").map(entry => {
@@ -90,6 +103,8 @@ const picks = ranked.slice(0, PICK_COUNT).map(candidate => {
     `Team wins ${pct(candidate.rates.teamTipWin, 0)}% of tips`,
   ];
   const cautions: string[] = [];
+  const injuryHit = (injuries.get(team.team) ?? []).find(item => item.toLowerCase().includes(candidate.player.toLowerCase()));
+  if (injuryHit) cautions.push(`Injury report: ${injuryHit}`);
   if (candidate.sample.teamGames < 15) cautions.push(`Small sample: ${candidate.sample.teamGames} games`);
   if (candidate.components.tipMatchup < 0.5) cautions.push(`Tip disadvantage vs ${display(opponent.team)}`);
   if (candidate.rates.firstAttemptMake < 0.5) cautions.push(`Converts ${makePct}% of first attempts`);
@@ -121,13 +136,20 @@ const games = slate.map(game => {
   const awayFirst = rate(game.away.scoredFirstFieldGoal, game.away.games);
   const gapPp = pct(homeFirst - awayFirst);
   const leader = gapPp >= 0 ? display(game.home.team) : display(game.away.team);
+  const lineupNotes = [game.away, game.home]
+    .map(team => {
+      const list = injuries.get(team.team) ?? [];
+      return list.length ? `${display(team.team)} missing ${list.map(item => item.replace(/ (Out|Day-To-Day|DTD)$/i, "")).join(", ")}` : null;
+    })
+    .filter(Boolean);
   return {
     away: display(game.away.team),
     home: display(game.home.team),
     time: game.time,
     homeTip,
     edge: Math.abs(gapPp) < 3 ? "Even lean" : `${leader} +${Math.abs(gapPp)}pp`,
-    note: `${display(game.home.team)} scores first in ${pct(homeFirst, 0)}% of games, ${display(game.away.team)} in ${pct(awayFirst, 0)}%.`,
+    note: `${display(game.home.team)} scores first in ${pct(homeFirst, 0)}% of games, ${display(game.away.team)} in ${pct(awayFirst, 0)}%.`
+      + (lineupNotes.length ? ` ${lineupNotes.join("; ")}.` : ""),
   };
 });
 
@@ -137,6 +159,13 @@ const output = {
   dateLabel: label,
   updated: `synced ${board.start} → ${board.end}`,
   source: "ESPN play-by-play · first field goal market · prices are model-fair lines, no sportsbook feed",
+  disclosures: [
+    "Role/availability, H2H and market components are neutral 0.5 — unverified inputs, per model spec.",
+    injuriesArg
+      ? "Health cross-checked against the ESPN injury report at generation time; starters and minutes are not confirmed."
+      : "Starters, health and minutes are not verified for this slate.",
+    "Model-fair prices are provisional until sportsbook prices are supplied. First-basket markets are high variance.",
+  ],
   headshotBase: "https://a.espncdn.com/i/headshots/wnba/players/full/",
   weights: [
     [30, "Player FB share"], [20, "Team opening profile"], [15, "First-shot involvement"],
@@ -150,7 +179,8 @@ const banner = `// Opening Edge — WNBA first-basket model section (#opening).
 // GENERATED by model/opening-edge/scripts/generate-section.ts from the synced
 // snapshot (${board.generatedAt}); do not hand-edit. Regenerate with a slate:
 //   cd model/opening-edge && node --experimental-strip-types scripts/generate-section.ts \\
-//     --date YYYY-MM-DD --label "Day, Mon D" --slate "AWY@HOM=7:00 PM ET,..."
+//     --date YYYY-MM-DD --label "Day, Mon D" --slate "AWY@HOM=7:00 PM ET,..." \\
+//     [--injuries "NY:Player Out,...;CHI:Player Out,..."]
 `;
 await writeFile("../../data/opening-edge.js", `${banner}window.OPENING_EDGE = ${JSON.stringify(output, null, 2)};\n`, "utf8");
 console.log(`Wrote ${picks.length} picks, ${games.length} games for ${date} to data/opening-edge.js`);

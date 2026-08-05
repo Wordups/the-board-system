@@ -1,0 +1,13 @@
+{
+  "name": "opening-edge-universal-agent",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "sync": "node --experimental-strip-types scripts/sync-wnba.ts",
+    "test": "node --experimental-strip-types --test tests/wnba-model.test.ts"
+  }
+}

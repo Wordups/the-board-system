@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Opening Edge request",
+  "type": "object",
+  "required": [
+    "league",
+    "date",
+    "market"
+  ],
+  "properties": {
+    "league": {
+      "type": "string",
+      "enum": [
+        "WNBA"
+      ]
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "market": {
+      "type": "string",
+      "enum": [
+        "first_field_goal",
+        "first_points",
+        "first_team_basket"
+      ]
+    },
+    "matchups": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "odds": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "output": {
+      "type": "string",
+      "enum": [
+        "report",
+        "discord",
+        "json",
+        "dashboard"
+      ]
+    }
+  }
+}

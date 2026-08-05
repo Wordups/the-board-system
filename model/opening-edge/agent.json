@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "name": "opening-edge-universal",
+  "version": "1.0.0",
+  "description": "Audited opening-sequence and first-score research agent",
+  "canonical_instructions": "AGENT.md",
+  "entrypoints": {
+    "claude": "CLAUDE.md",
+    "generic": "SYSTEM_PROMPT.md",
+    "codex": "AGENT.md"
+  },
+  "implemented_adapters": [
+    "wnba-espn-play-by-play"
+  ],
+  "required_capabilities": [
+    "https_fetch",
+    "filesystem_read",
+    "filesystem_write",
+    "command_execution"
+  ],
+  "commands": {
+    "sync": "node --experimental-strip-types scripts/sync-wnba.ts START END",
+    "audit": "python scripts/audit_snapshot.py data/wnba-model.json",
+    "test": "node --experimental-strip-types --test tests/wnba-model.test.ts"
+  },
+  "market_definitions": [
+    "first_field_goal",
+    "first_points",
+    "first_team_basket"
+  ],
+  "safety": {
+    "places_wagers": false,
+    "requires_current_availability": true,
+    "requires_market_definition": true
+  }
+}

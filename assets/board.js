@@ -633,6 +633,7 @@
     const weights = oe.weights.map(([weight, label]) => `<div class="oe-weight"><b>${weight}%</b><span>${esc(label)}</span></div>`).join("");
     return `
       <div class="section-head"><div><span class="section-kicker">Opening Edge · ${esc(oe.league)} · ${esc(oe.dateLabel)}</span><h2>First-basket board</h2></div><p class="section-note">Tip control, first-shot ownership and conversion · ${esc(oe.updated)}${oe.source ? ` · ${esc(oe.source)}` : ""}.</p></div>
+      ${(oe.disclosures || []).length ? `<div class="stale-banner" style="margin:0 0 14px"><span><strong>Unverified inputs</strong> · ${oe.disclosures.map(esc).join(" · ")}</span></div>` : ""}
       <section class="oe-grid">${picks}</section>
       <div class="section-head"><div><span class="section-kicker">Possession advantage</span><h2>Tip control by game</h2></div><p class="section-note">Away share left, home share right.</p></div>
       <section class="oe-games">${gameCards}</section>
