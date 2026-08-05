@@ -601,13 +601,13 @@
   function renderOpeningEdge() {
     const oe = window.OPENING_EDGE;
     if (!oe) return `<div class="empty-state"><strong>Opening Edge data missing.</strong>Add data/opening-edge.js to enable this section.</div>`;
-    const tone = profile => ({ "Lead Big": "lime", "Lead Guard": "cyan", "Primary": "orange", "Value": "violet" }[profile] || "lime");
+    const tone = profile => ({ "Team lead": "lime", "Lead Big": "lime", "Lead Guard": "cyan", "Secondary": "cyan", "Primary": "orange", "Value": "violet" }[profile] || "lime");
     const initials = name => String(name).split(" ").map(part => part[0]).join("");
     const picks = oe.picks.map((pick, index) => `
       <article class="oe-card">
         <span class="oe-rank">${String(index + 1).padStart(2, "0")}</span>
         <div class="oe-head">
-          <span class="oe-avatar"><i>${esc(initials(pick.player))}</i><img src="${esc(oe.headshotBase + pick.wnbaId + ".png")}" alt="" loading="lazy" onerror="this.remove()"></span>
+          <span class="oe-avatar"><i>${esc(initials(pick.player))}</i><img src="${esc(pick.headshot || oe.headshotBase + pick.wnbaId + ".png")}" alt="" loading="lazy" onerror="this.remove()"></span>
           <div class="oe-who"><h3>${esc(pick.player)}</h3><p>${esc(pick.team)} vs ${esc(pick.opp)} · <span class="oe-profile" data-tone="${tone(pick.profile)}">${esc(pick.profile)}</span></p></div>
           <span class="oe-score"><strong>${Number(pick.score)}</strong><small>edge</small></span>
         </div>
@@ -632,7 +632,7 @@
     }).join("");
     const weights = oe.weights.map(([weight, label]) => `<div class="oe-weight"><b>${weight}%</b><span>${esc(label)}</span></div>`).join("");
     return `
-      <div class="section-head"><div><span class="section-kicker">Opening Edge · ${esc(oe.league)} · ${esc(oe.dateLabel)}</span><h2>First-basket board</h2></div><p class="section-note">Tip control, scripted first actions and first-shot ownership · model updated ${esc(oe.updated)}.</p></div>
+      <div class="section-head"><div><span class="section-kicker">Opening Edge · ${esc(oe.league)} · ${esc(oe.dateLabel)}</span><h2>First-basket board</h2></div><p class="section-note">Tip control, first-shot ownership and conversion · ${esc(oe.updated)}${oe.source ? ` · ${esc(oe.source)}` : ""}.</p></div>
       <section class="oe-grid">${picks}</section>
       <div class="section-head"><div><span class="section-kicker">Possession advantage</span><h2>Tip control by game</h2></div><p class="section-note">Away share left, home share right.</p></div>
       <section class="oe-games">${gameCards}</section>
@@ -659,7 +659,8 @@
     const active = routeInfo();
     const current = active.route === "sport" ? `sport/${active.argument}` : active.route;
     nav.innerHTML = links.map(link => `<a class="nav-link${current === link.route ? " active" : ""}" data-route="${esc(link.route)}" data-core="${link.core ? "true" : "false"}" href="${esc(link.href)}">${esc(link.label)}${link.count !== undefined ? `<span class="nav-count">${link.count}</span>` : ""}</a>`).join("");
-    mobileNav.innerHTML = availableSports.map(sport => `<a href="#sport/${sport}" class="${current === `sport/${sport}` ? "active" : ""}">${esc(SPORT_META[sport].label)}</a>`).join("");
+    mobileNav.innerHTML = availableSports.map(sport => `<a href="#sport/${sport}" class="${current === `sport/${sport}` ? "active" : ""}">${esc(SPORT_META[sport].label)}</a>`).join("")
+      + (window.OPENING_EDGE ? `<a href="#opening" class="${current === "opening" ? "active" : ""}">Opening Edge</a>` : "");
   }
 
   function render() {
