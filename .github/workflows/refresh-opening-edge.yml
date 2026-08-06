@@ -1,0 +1,77 @@
+name: Refresh Opening Edge
+
+on:
+  schedule:
+    # Twice daily, UTC-only cron. Morning run lands after the injury report
+    # settles; afternoon run catches late scratches before the earliest tips.
+    # In winter (EST) these drift an hour earlier ET, which is fine.
+    - cron: "40 14 * * *"  # 10:40 AM EDT
+    - cron: "40 20 * * *"  #  4:40 PM EDT
+  workflow_dispatch:
+
+# GITHUB_TOKEN needs write to commit the refreshed board back to main.
+permissions:
+  contents: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+# Never stack two refreshes; let the running one finish.
+concurrency:
+  group: refresh-opening-edge
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      - name: Setup Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Slate + injuries from ESPN, season re-sync, tests, audit, TD watch,
+      # regenerate data/opening-edge.js. Aborts (leaving the previous board
+      # live) on any validation failure. No games today = clean no-op.
+      - name: Refresh Opening Edge board
+        working-directory: model/opening-edge
+        run: node --experimental-strip-types scripts/refresh-opening-edge.ts
+
+      - name: Stage changes
+        id: stage
+        run: |
+          git config user.name "opening-edge-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/opening-edge.js model/opening-edge/data
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: No-op exit when the board is unchanged
+        if: steps.stage.outputs.changed == 'false'
+        run: echo "NO-CHANGES"
+
+      - name: Commit and push
+        if: steps.stage.outputs.changed == 'true'
+        run: |
+          git commit -m "Refresh Opening Edge board"
+          # Rebase in case the hourly board refresh landed mid-run.
+          git pull --rebase origin main
+          git push origin main
+          echo "LANDED: $(git rev-parse --short HEAD)"
