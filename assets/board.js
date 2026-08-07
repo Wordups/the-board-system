@@ -661,6 +661,26 @@
         </div>
         <p class="oe-td__weak">Needs ${esc(player.weakest)}</p>
       </article>`).join("");
+    const sim = oe.sim;
+    const pctOf = value => `${(value * 100).toFixed(1)}%`;
+    const simCombo = sim?.combo ? `
+      <div class="oe-sim__combo">
+        ${sim.combo.legs.map((leg, index) => `
+          ${index ? `<span class="oe-sim__x" aria-hidden="true">×</span>` : ""}
+          <div class="oe-sim__leg">
+            <img src="${esc(leg.headshot)}" alt="" loading="lazy" width="44" height="44" onerror="this.remove()">
+            <div><b>${esc(leg.player)}</b><small>${esc(leg.team)} · ${esc(leg.game)}</small><em>${leg.count}/${sim.runs} · ${pctOf(leg.p)}</em></div>
+          </div>`).join("")}
+        <div class="oe-sim__payout">
+          <small>Joint hit rate</small><b>${pctOf(sim.combo.p)}</b>
+          <span>${sim.combo.decimal}x · fair ${esc(sim.combo.fair)}</span>
+        </div>
+      </div>` : "";
+    const simTables = (sim?.games || []).map(item => `
+      <div class="oe-sim__game">
+        <h4>${esc(item.game)}</h4>
+        ${item.top.map(row => `<div class="oe-sim__row"><span>${esc(row.player)} <i>${esc(row.team)}</i></span><b>${row.count}/${sim.runs}</b><em>${pctOf(row.p)}</em></div>`).join("")}
+      </div>`).join("");
     const winCards = (oe.wins || []).map(win => `
       <div class="oe-win">
         <div class="oe-win__faces">${win.players.map(player => `<img src="${esc(player.headshot)}" alt="" loading="lazy" width="40" height="40" onerror="this.remove()">`).join("")}</div>
@@ -692,6 +712,8 @@
       <section class="oe-map">${mapRows}</section>` : ""}
       ${auditCards ? `<div class="section-head"><div><span class="section-kicker">Team audit</span><h2>Who has done what</h2></div><p class="section-note">Whole-game first baskets (FB), team-first baskets, first attempts and makes — player counts reconcile to each team's total.</p></div>
       <section class="oe-audits">${auditCards}</section>` : ""}
+      ${simCombo ? `<div class="section-head"><div><span class="section-kicker">Opening simulation · ${sim.runs} runs per game</span><h2>The sim combo</h2></div><p class="section-note">Jump, keep-or-pass, first option and miss branch sampled from season play-by-play (${esc(sim.missBranch)}). Simulated frequency, not calibrated probability — high variance.</p></div>
+      <section class="oe-sim">${simCombo}<div class="oe-sim__games">${simTables}</div></section>` : ""}
       ${tdCards ? `<div class="section-head"><div><span class="section-kicker">Triple-double watch</span><h2>Stat-sheet stuffers</h2></div><p class="section-note">${esc(oe.tdSource || "Season per-game averages")} · ranked by the weakest of the three categories.</p></div>
       <section class="oe-tds">${tdCards}</section>` : ""}
       ${winCards ? `<div class="section-head"><div><span class="section-kicker">The W column</span><h2>Posted W's</h2></div><p class="section-note">${oe.winTotals ? `${esc(oe.winTotals.record)} graded · $${oe.winTotals.staked.toFixed(2)} staked → $${oe.winTotals.returned.toFixed(2)} returned` : "Tracked wins"} · first-basket markets are high variance.</p></div>

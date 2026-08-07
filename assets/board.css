@@ -641,3 +641,29 @@ h1 em { color: var(--muted); font-style: normal; font-weight: 500; }
 .oe-chain__side > span { font-size: 11px; font-weight: 600; min-width: 0; }
 .oe-chain__side small { display: block; color: var(--faint); font-family: var(--mono); font-size: 7.5px; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 2px; }
 @media (max-width: 640px) { .oe-chain__side { grid-template-columns: 30px 1fr; } }
+
+/* Opening simulation section */
+.oe-sim__combo {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 18px;
+  background: linear-gradient(140deg, rgba(201, 255, 61, .07), var(--panel) 55%);
+  border: 1px solid rgba(201, 255, 61, .3); border-left: 3px solid var(--lime);
+  border-radius: 14px; padding: 18px 22px; margin-bottom: 14px;
+}
+.oe-sim__leg { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.oe-sim__leg img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: 50% 12%; background: var(--panel-3); flex: none; }
+.oe-sim__leg b { display: block; font-size: 15px; }
+.oe-sim__leg small { display: block; color: var(--muted); font-size: 10.5px; margin-top: 2px; }
+.oe-sim__leg em { display: block; font-style: normal; color: var(--lime); font-family: var(--mono); font-size: 10.5px; margin-top: 3px; }
+.oe-sim__x { color: var(--faint); font-family: var(--mono); font-size: 18px; }
+.oe-sim__payout { margin-left: auto; text-align: right; }
+.oe-sim__payout small { display: block; color: var(--faint); font-family: var(--mono); font-size: 8.5px; text-transform: uppercase; letter-spacing: 1px; }
+.oe-sim__payout b { display: block; font-size: 24px; color: var(--lime); margin-top: 4px; }
+.oe-sim__payout span { display: block; color: var(--muted); font-family: var(--mono); font-size: 11px; margin-top: 3px; }
+.oe-sim__games { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+.oe-sim__game { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.oe-sim__game h4 { margin: 0 0 10px; font-size: 13px; }
+.oe-sim__row { display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: baseline; padding: 4px 0; font-size: 12px; }
+.oe-sim__row i { font-style: normal; color: var(--faint); font-family: var(--mono); font-size: 9px; }
+.oe-sim__row b { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--muted); }
+.oe-sim__row em { font-style: normal; font-family: var(--mono); font-size: 11px; color: var(--cyan); }
+@media (max-width: 700px) { .oe-sim__payout { margin-left: 0; text-align: left; width: 100%; } }

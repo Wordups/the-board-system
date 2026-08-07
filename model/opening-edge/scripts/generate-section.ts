@@ -322,6 +322,115 @@ const marketMap = slate.map(game => {
   };
 });
 
+// ── Opening-possession simulation ─────────────────────────────────────
+// Monte Carlo of the user's branch logic: jump ball → keep or pass →
+// first option shoots → miss branch (possession stays or flips, sampled
+// from this season's observed rates). Seeded by slate date so the board
+// is reproducible within a day. Not calibrated probability.
+const SIM_RUNS = 1000;
+const mulberry32 = (seed: number) => () => {
+  seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+  let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+};
+const rand = mulberry32([...date].reduce((n, c) => (n * 31 + c.charCodeAt(0)) >>> 0, 7));
+
+// Empirical miss branch from the synced sequences.
+let missBranchSeen = 0, missBranchStay = 0, missBranchOwn = 0;
+for (const sequence of modelFile?.sequences ?? []) {
+  const attempt = sequence.firstAttempt, goal = sequence.firstFieldGoal;
+  if (!attempt || !goal || attempt.made) continue;
+  missBranchSeen += 1;
+  if (goal.teamId === attempt.teamId) {
+    missBranchStay += 1;
+    if (goal.athleteId === attempt.athleteId) missBranchOwn += 1;
+  }
+}
+const pStay = missBranchSeen ? missBranchStay / missBranchSeen : 0.45;
+const pOwn = missBranchStay ? missBranchOwn / missBranchStay : 0.2;
+
+const simPoolOf = (team: TeamAggregate) => board.players.filter(player =>
+  player.teamId === team.teamId && player.firstTeamAttempts > 0 &&
+  onCurrentRoster(player.athleteId, team.team) && !isRuledOut(team.team, player.player));
+
+const simGame = (game: SlateGame) => {
+  const pools = { away: simPoolOf(game.away), home: simPoolOf(game.home) };
+  const teamMake = (pool: PlayerAggregate[]) =>
+    pool.reduce((n, p) => n + p.firstTeamAttemptMakes, 0) / Math.max(1, pool.reduce((n, p) => n + p.firstTeamAttempts, 0));
+  const makes = { away: teamMake(pools.away), home: teamMake(pools.home) };
+  const homeTipRate = rate(game.home.tipWins, game.home.games);
+  const awayTipRate = rate(game.away.tipWins, game.away.games);
+  const pHomeTip = homeTipRate / Math.max(1e-9, homeTipRate + awayTipRate);
+  const draw = (pool: PlayerAggregate[]) => {
+    let r = rand() * pool.reduce((n, p) => n + p.firstTeamAttempts, 0);
+    for (const p of pool) { r -= p.firstTeamAttempts; if (r <= 0) return p; }
+    return pool[pool.length - 1];
+  };
+  const makeProb = (p: PlayerAggregate, fallback: number) =>
+    p.firstTeamAttempts >= 3 ? Math.min(0.8, Math.max(0.25, p.firstTeamAttemptMakes / p.firstTeamAttempts)) : fallback;
+  const counts = new Map<string, { player: PlayerAggregate; side: "away" | "home"; n: number }>();
+  for (let run = 0; run < SIM_RUNS; run += 1) {
+    let side: "away" | "home" = rand() < pHomeTip ? "home" : "away";
+    let shooter: PlayerAggregate | null = null;
+    let keepOwn = false;
+    for (let shot = 0; shot < 12; shot += 1) {
+      if (!shooter || !keepOwn) shooter = draw(pools[side]);
+      if (rand() < makeProb(shooter, makes[side])) {
+        const key = shooter.athleteId;
+        const entry = counts.get(key) ?? { player: shooter, side, n: 0 };
+        entry.n += 1; counts.set(key, entry);
+        break;
+      }
+      if (rand() < pStay) { keepOwn = rand() < pOwn; if (!keepOwn) shooter = null; }
+      else { side = side === "home" ? "away" : "home"; shooter = null; keepOwn = false; }
+    }
+  }
+  return [...counts.values()].sort((a, b) => b.n - a.n);
+};
+
+const simGames = slate.map(game => {
+  const ranked = simGame(game);
+  return {
+    game: `${display(game.away.team)} @ ${display(game.home.team)}`,
+    top: ranked.slice(0, 4).map(entry => ({
+      player: entry.player.player,
+      team: display((entry.side === "home" ? game.home : game.away).team),
+      headshot: `https://a.espncdn.com/i/headshots/wnba/players/full/${entry.player.athleteId}.png`,
+      count: entry.n,
+      p: Number((entry.n / SIM_RUNS).toFixed(3)),
+    })),
+  };
+});
+
+// Best cross-game 2-leg combo: highest joint frequency across two games.
+let simCombo = null;
+const leaders = simGames.filter(item => item.top.length).map(item => ({ game: item.game, leg: item.top[0] }));
+for (let a = 0; a < leaders.length; a += 1) {
+  for (let b = a + 1; b < leaders.length; b += 1) {
+    const joint = leaders[a].leg.p * leaders[b].leg.p;
+    if (!simCombo || joint > simCombo.p) {
+      const decimal = 1 / joint;
+      simCombo = {
+        legs: [
+          { ...leaders[a].leg, game: leaders[a].game },
+          { ...leaders[b].leg, game: leaders[b].game },
+        ],
+        p: Number(joint.toFixed(4)),
+        decimal: Number(decimal.toFixed(1)),
+        fair: fairAmerican(joint),
+      };
+    }
+  }
+}
+
+const sim = {
+  runs: SIM_RUNS,
+  missBranch: `${missBranchStay}/${missBranchSeen} missed first attempts stayed with the shooting team; ${missBranchOwn}/${missBranchStay} finished by the same shooter`,
+  games: simGames,
+  combo: simCombo,
+};
+
 const output = {
   league: "WNBA",
   date,
@@ -337,6 +446,7 @@ const output = {
   games,
   teamAudit,
   marketMap,
+  sim,
   tdWatch,
   tdSource: tdFile?.source ?? null,
   wins,
