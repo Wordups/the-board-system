@@ -76,6 +76,7 @@ const python = spawnSync("python3", ["--version"]).status === 0 ? "python3" : "p
 run("Season sync", node, [strip, "scripts/sync-wnba.ts", `${year}-05-01`, isoYesterdayEt]);
 run("Model tests", node, [strip, "--test", "tests/wnba-model.test.ts"]);
 run("Snapshot audit", python, ["scripts/audit_snapshot.py", "data/wnba-model.json"]);
+run("Roster sync", node, [strip, "scripts/sync-rosters.ts"], { optional: true });
 run("Triple-double watch", node, [strip, "scripts/sync-td-watch.ts", year], { optional: true });
 run("Generate section", node, [
   strip, "scripts/generate-section.ts",

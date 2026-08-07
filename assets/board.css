@@ -629,3 +629,7 @@ h1 em { color: var(--muted); font-style: normal; font-weight: 500; }
 .oe-win__body b { display: block; margin-top: 9px; font-size: 14px; }
 .oe-win__body small { display: block; margin-top: 4px; color: var(--muted); font-family: var(--mono); font-size: 11px; }
 .oe-win__body em { font-style: normal; color: var(--green); font-weight: 700; }
+
+/* Team-audit rows for players no longer on this roster */
+.oe-audit__player.is-departed { opacity: .55; }
+.oe-audit__moved { font-style: normal; font-family: var(--mono); font-size: 8.5px; color: var(--orange); margin-left: 4px; flex: none; }

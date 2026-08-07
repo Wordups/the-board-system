@@ -40,9 +40,14 @@ export function aggregateSequences(sequences: OpeningSequence[]) {
     if (sequence.firstPoints?.athleteId) appearances.add(sequence.firstPoints.athleteId);
 
     for (const athleteId of appearances) {
+      // Resolve the player's team ONLY from an event that is actually theirs.
+      // The old `?? sequence.firstFieldGoal` fallback could key a player who
+      // only scored first points (free throws) to the first-field-goal
+      // scorer's team — potentially the opponent.
       const event = Object.values(sequence.firstAttemptsByTeam).find(item => item?.athleteId === athleteId)
         ?? Object.values(sequence.firstFieldGoalsByTeam).find(item => item?.athleteId === athleteId)
-        ?? sequence.firstFieldGoal;
+        ?? (sequence.firstFieldGoal?.athleteId === athleteId ? sequence.firstFieldGoal : null)
+        ?? (sequence.firstPoints?.athleteId === athleteId ? sequence.firstPoints : null);
       if (!event?.teamId) continue;
       const playerKey = `${event.teamId}:${athleteId}`;
       const current = players.get(playerKey) ?? { athleteId, player: event.athleteName ?? athleteId, teamId: event.teamId, games: 0, firstAttempts: 0, firstAttemptMakes: 0, firstFieldGoals: 0, firstPoints: 0, firstTeamAttempts: 0, firstTeamAttemptMakes: 0, firstTeamFieldGoals: 0, assistedOpeningMakes: 0 };

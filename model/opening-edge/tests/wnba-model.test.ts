@@ -73,3 +73,33 @@ test("keeps the same athlete's records separate after a trade", () => {
   assert.equal(bostonRows.length, 2);
   assert.deepEqual(new Set(bostonRows.map(player => player.teamId)), new Set(["5", "99"]));
 });
+
+test("keys a free-throw-only scorer to their own team, not the first-FG team", () => {
+  const sequence = {
+    gameId: "t1",
+    date: "2026-08-07",
+    teams: [
+      { id: "1", abbreviation: "AAA", displayName: "Team A" },
+      { id: "2", abbreviation: "BBB", displayName: "Team B" },
+    ],
+    tip: { playId: null, winningTeamId: "1", possessionPlayerId: null, possessionPlayerName: null, text: null },
+    // Player 900 (team 2) scores the game's first points at the line;
+    // player 100 (team 1) later makes the first field goal.
+    firstAttempt: { playId: "p2", clock: "9:40", teamId: "1", athleteId: "100", athleteName: "A Scorer", text: "", made: true, pointsAttempted: 2, assistedById: null, assistedByName: null },
+    firstFieldGoal: { playId: "p2", clock: "9:40", teamId: "1", athleteId: "100", athleteName: "A Scorer", text: "", made: true, pointsAttempted: 2, assistedById: null, assistedByName: null },
+    firstPoints: { playId: "p1", clock: "9:50", teamId: "2", athleteId: "900", athleteName: "B FreeThrow", text: "", made: true, pointsAttempted: 1, assistedById: null, assistedByName: null },
+    firstAttemptsByTeam: {
+      "1": { playId: "p2", clock: "9:40", teamId: "1", athleteId: "100", athleteName: "A Scorer", text: "", made: true, pointsAttempted: 2, assistedById: null, assistedByName: null },
+      "2": null,
+    },
+    firstFieldGoalsByTeam: {
+      "1": { playId: "p2", clock: "9:40", teamId: "1", athleteId: "100", athleteName: "A Scorer", text: "", made: true, pointsAttempted: 2, assistedById: null, assistedByName: null },
+      "2": null,
+    },
+    openingPlays: [],
+  };
+  const { players } = aggregateSequences([sequence]);
+  const freeThrowScorer = players.find(player => player.athleteId === "900");
+  assert.ok(freeThrowScorer, "free-throw scorer should be aggregated");
+  assert.equal(freeThrowScorer.teamId, "2", "free-throw-only scorer must be keyed to their own team");
+});

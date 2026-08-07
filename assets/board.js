@@ -667,7 +667,7 @@
         <div class="oe-audit__grid">
           <small>Player</small><small>FB</small><small>Team-1st</small><small>Att</small><small>Make</small>
           ${team.players.map(player => `
-            <span class="oe-audit__player"><img src="${esc(player.headshot)}" alt="" loading="lazy" width="20" height="20" onerror="this.remove()">${esc(player.name)}</span>
+            <span class="oe-audit__player ${player.departed ? "is-departed" : ""}"><img src="${esc(player.headshot)}" alt="" loading="lazy" width="20" height="20" onerror="this.remove()">${esc(player.name)}${player.departed ? `<i class="oe-audit__moved">→ ${esc(player.nowWith)}</i>` : ""}</span>
             <b>${player.fb}</b><b>${player.teamFirst}</b><b>${player.attempts}</b><b>${player.makes}</b>`).join("")}
         </div>
         <p class="oe-audit__sum">${team.fbTotal === team.scoredFirst

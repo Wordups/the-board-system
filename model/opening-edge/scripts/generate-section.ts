@@ -75,9 +75,37 @@ const fairAmerican = (probability: number) => {
   return odds > 0 ? `+${odds}` : String(odds);
 };
 
+// Current-roster validation: a candidate's record team must match their
+// current ESPN roster team, or the pick would present a stale team label
+// (e.g. a player whose opening events predate a trade). Missing rosters.json
+// disables the filter rather than blocking the board.
+const rosterFile = await (async () => {
+  try { return JSON.parse(await readFile("data/rosters.json", "utf8")); } catch { return null; }
+})();
+const currentTeamOf = (athleteId: string): string | null =>
+  rosterFile?.athletes?.[athleteId]?.team ?? null;
+const onCurrentRoster = (athleteId: string, recordTeamAbbr: string) => {
+  const current = currentTeamOf(athleteId);
+  return current === null || current === recordTeamAbbr;
+};
+
 const ranked = rankCandidates(board.players, board.teams, matchups)
   .filter(candidate => slateTeamIds.has(candidate.teamId))
-  .filter(candidate => candidate.sample.firstFieldGoals >= MIN_FIRST_BASKETS);
+  .filter(candidate => candidate.sample.firstFieldGoals >= MIN_FIRST_BASKETS)
+  .filter(candidate => {
+    const keep = onCurrentRoster(candidate.athleteId, teamById.get(candidate.teamId)!.team);
+    if (!keep) console.log(`Excluding ${candidate.player}: record team ${teamById.get(candidate.teamId)!.team}, now on ${currentTeamOf(candidate.athleteId)}`);
+    return keep;
+  })
+  .filter(candidate => {
+    // Players ruled Out never make the pick board; Day-To-Day stays with a
+    // caution chip instead.
+    const entry = (injuries.get(teamById.get(candidate.teamId)!.team) ?? [])
+      .find(item => item.toLowerCase().includes(candidate.player.toLowerCase()));
+    const ruledOut = entry ? /\bout\b/i.test(entry.replace(candidate.player, "")) : false;
+    if (ruledOut) console.log(`Excluding ${candidate.player}: injury report says ${entry}`);
+    return !ruledOut;
+  });
 
 // Data-derived role labels: the top first-basket share on each team is the
 // team lead; high conversion on a modest share reads as a value branch.
@@ -169,14 +197,21 @@ const teamAudit = slate.flatMap(game => [game.away, game.home]).map(team => {
     tipWins: team.tipWins,
     scoredFirst: team.scoredFirstFieldGoal,
     fbTotal,
-    players: roster.slice(0, AUDIT_ROWS).map(player => ({
-      name: player.player,
-      headshot: `https://a.espncdn.com/i/headshots/wnba/players/full/${player.athleteId}.png`,
-      fb: player.firstFieldGoals,
-      teamFirst: player.firstTeamFieldGoals,
-      attempts: player.firstTeamAttempts,
-      makes: player.firstTeamAttemptMakes,
-    })),
+    players: roster.slice(0, AUDIT_ROWS).map(player => {
+      const current = currentTeamOf(player.athleteId);
+      const departed = current !== null && current !== team.team;
+      return {
+        name: player.player,
+        headshot: `https://a.espncdn.com/i/headshots/wnba/players/full/${player.athleteId}.png`,
+        fb: player.firstFieldGoals,
+        teamFirst: player.firstTeamFieldGoals,
+        attempts: player.firstTeamAttempts,
+        makes: player.firstTeamAttemptMakes,
+        // Counts stay (they reconcile to the team total); the tag marks the
+        // player as no longer on this roster.
+        ...(departed ? { departed: true, nowWith: display(current!) } : {}),
+      };
+    }),
     more: Math.max(0, roster.length - AUDIT_ROWS),
   };
 });
