@@ -628,6 +628,15 @@
         <div class="oe-tipbar" role="img" aria-label="Tip control: ${esc(game.away)} ${awayTip} percent, ${esc(game.home)} ${game.homeTip} percent"><i style="width:${awayTip}%"></i><i style="width:${game.homeTip}%"></i></div>
         <div class="oe-tipnums"><span>${awayTip}%</span><span>${game.homeTip}%</span></div>
         <strong>${esc(game.edge)}</strong><p>${esc(game.note)}</p>
+        ${game.chain ? `<div class="oe-chain">
+          ${[[game.away, game.chain.away], [game.home, game.chain.home]].map(([abbr, side]) => `
+          <div class="oe-chain__side">
+            <b>${esc(abbr)}</b>
+            <span><small>Jump</small>${esc(side.jumper)}</span>
+            <span><small>Ball</small>${esc(side.gainer)}</span>
+            <span><small>1st look</small>${esc(side.shooter)}</span>
+          </div>`).join("")}
+        </div>` : ""}
       </div>`;
     }).join("");
     const weights = oe.weights.map(([weight, label]) => `<div class="oe-weight"><b>${weight}%</b><span>${esc(label)}</span></div>`).join("");

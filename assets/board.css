@@ -633,3 +633,11 @@ h1 em { color: var(--muted); font-style: normal; font-weight: 500; }
 /* Team-audit rows for players no longer on this roster */
 .oe-audit__player.is-departed { opacity: .55; }
 .oe-audit__moved { font-style: normal; font-family: var(--mono); font-size: 8.5px; color: var(--orange); margin-left: 4px; flex: none; }
+
+/* Jump -> possession -> first-look chain on matchup cards */
+.oe-chain { margin-top: 14px; border-top: 1px dashed var(--line); padding-top: 12px; display: grid; gap: 8px; }
+.oe-chain__side { display: grid; grid-template-columns: 34px 1fr 1fr 1fr; gap: 8px; align-items: baseline; }
+.oe-chain__side > b { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+.oe-chain__side > span { font-size: 11px; font-weight: 600; min-width: 0; }
+.oe-chain__side small { display: block; color: var(--faint); font-family: var(--mono); font-size: 7.5px; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 2px; }
+@media (max-width: 640px) { .oe-chain__side { grid-template-columns: 30px 1fr; } }

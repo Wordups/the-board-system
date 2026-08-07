@@ -35,6 +35,10 @@ const board = JSON.parse(await readFile("data/wnba-board.json", "utf8")) as {
   generatedAt: string; start: string; end: string;
   teams: TeamAggregate[]; players: PlayerAggregate[];
 };
+
+const readOptional = async (path: string) => {
+  try { return JSON.parse(await readFile(path, "utf8")); } catch { return null; }
+};
 const teamByAbbr = new Map(board.teams.map(team => [team.team, team]));
 const teamById = new Map(board.teams.map(team => [team.teamId, team]));
 
@@ -155,6 +159,65 @@ const picks = ranked.slice(0, PICK_COUNT).map(candidate => {
   };
 });
 
+// Opening chain per team: who takes the jump, who gains possession off won
+// tips, who takes the team's first shot — all season counts with
+// denominators, jumper selection injury-aware (Out players skipped).
+const modelFile = await readOptional("data/wnba-model.json");
+const rosterNameTeam: Record<string, string> = {};
+for (const athlete of Object.values(rosterFile?.athletes ?? {}) as Array<{ name: string; team: string }>) {
+  rosterNameTeam[athlete.name] = athlete.team;
+}
+const injuryEntry = (teamAbbr: string, name: string) =>
+  (injuries.get(teamAbbr) ?? []).find(item => item.toLowerCase().includes(name.toLowerCase()));
+const isRuledOut = (teamAbbr: string, name: string) => {
+  const entry = injuryEntry(teamAbbr, name);
+  return entry ? /\bout\b/i.test(entry.replace(name, "")) : false;
+};
+
+interface ChainSide { jumper: string; gainer: string; shooter: string }
+const chainOf = (team: TeamAggregate): ChainSide => {
+  const jumperCounts = new Map<string, number>();
+  const gainerCounts = new Map<string, number>();
+  let tipsSeen = 0;
+  let tipsWon = 0;
+  for (const sequence of modelFile?.sequences ?? []) {
+    if (!sequence.teams?.some((item: any) => item.id === team.teamId)) continue;
+    const tip = sequence.tip ?? {};
+    const jump = /^\s*(.+?)\s+vs\.\s+(.+?)\s*\(/.exec(tip.text ?? "");
+    if (jump) {
+      tipsSeen += 1;
+      for (const name of [jump[1], jump[2]]) {
+        if (rosterNameTeam[name] === team.team) {
+          jumperCounts.set(name, (jumperCounts.get(name) ?? 0) + 1);
+        }
+      }
+    }
+    if (tip.winningTeamId === team.teamId) {
+      tipsWon += 1;
+      if (tip.possessionPlayerName) gainerCounts.set(tip.possessionPlayerName, (gainerCounts.get(tip.possessionPlayerName) ?? 0) + 1);
+    }
+  }
+  const ranked = [...jumperCounts.entries()].sort((a, b) => b[1] - a[1]);
+  const available = ranked.find(([name]) => !isRuledOut(team.team, name));
+  const usual = ranked[0];
+  let jumper = "—";
+  if (available) {
+    const [name, count] = available;
+    const dtd = injuryEntry(team.team, name) && !isRuledOut(team.team, name) ? " (DTD)" : "";
+    jumper = `${name} ${count}/${tipsSeen}${dtd}`;
+    if (usual && usual[0] !== name) jumper += ` — ${usual[0]} out`;
+  }
+  const gainer = [...gainerCounts.entries()].sort((a, b) => b[1] - a[1])[0];
+  const shooterAgg = board.players
+    .filter(player => player.teamId === team.teamId && !isRuledOut(team.team, player.player))
+    .sort((a, b) => b.firstTeamAttempts - a.firstTeamAttempts)[0];
+  return {
+    jumper,
+    gainer: gainer ? `${gainer[0]} ${gainer[1]}/${tipsWon}` : "—",
+    shooter: shooterAgg ? `${shooterAgg.player} ${shooterAgg.firstTeamAttempts}/${team.games}` : "—",
+  };
+};
+
 const games = slate.map(game => {
   const homeTipRate = rate(game.home.tipWins, game.home.games);
   const awayTipRate = rate(game.away.tipWins, game.away.games);
@@ -178,6 +241,10 @@ const games = slate.map(game => {
     edge: Math.abs(gapPp) < 3 ? "Even lean" : `${leader} +${Math.abs(gapPp)}pp`,
     note: `${display(game.home.team)} scores first in ${pct(homeFirst, 0)}% of games, ${display(game.away.team)} in ${pct(awayFirst, 0)}%.`
       + (lineupNotes.length ? ` ${lineupNotes.join("; ")}.` : ""),
+    chain: {
+      away: chainOf(game.away),
+      home: chainOf(game.home),
+    },
   };
 });
 
@@ -218,9 +285,6 @@ const teamAudit = slate.flatMap(game => [game.away, game.home]).map(team => {
 
 // Optional side inputs: hand-maintained wins ledger and the ESPN-synced
 // triple-double watch (scripts/sync-td-watch.ts).
-const readOptional = async (path: string) => {
-  try { return JSON.parse(await readFile(path, "utf8")); } catch { return null; }
-};
 const winsFile = await readOptional("data/wins.json");
 const tdFile = await readOptional("data/td-watch.json");
 
