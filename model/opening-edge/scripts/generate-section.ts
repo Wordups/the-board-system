@@ -174,12 +174,46 @@ const isRuledOut = (teamAbbr: string, name: string) => {
   return entry ? /\bout\b/i.test(entry.replace(name, "")) : false;
 };
 
+// Handler branch, measured from the season: how often the tip's possession
+// gainer takes the team's first shot themselves (the "keep" branch the
+// 8/7 slate hit three times).
+let gainerShotSeen = 0, gainerShotBy = 0, gainerFgSeen = 0, gainerFgBy = 0;
+for (const sequence of modelFile?.sequences ?? []) {
+  const tip = sequence.tip ?? {};
+  if (!tip.winningTeamId || !tip.possessionPlayerId) continue;
+  const attempt = sequence.firstAttemptsByTeam?.[tip.winningTeamId];
+  if (attempt?.athleteId) {
+    gainerShotSeen += 1;
+    if (attempt.athleteId === tip.possessionPlayerId) gainerShotBy += 1;
+  }
+  if (sequence.firstFieldGoal?.athleteId) {
+    gainerFgSeen += 1;
+    if (sequence.firstFieldGoal.athleteId === tip.possessionPlayerId) gainerFgBy += 1;
+  }
+}
+const pGainerShoots = gainerShotSeen ? gainerShotBy / gainerShotSeen : 0.25;
+
+const topGainerOf = (team: TeamAggregate) => {
+  const counts = new Map<string, { name: string; n: number }>();
+  let tipsWon = 0;
+  for (const sequence of modelFile?.sequences ?? []) {
+    const tip = sequence.tip ?? {};
+    if (tip.winningTeamId !== team.teamId) continue;
+    tipsWon += 1;
+    if (tip.possessionPlayerId) {
+      const entry = counts.get(tip.possessionPlayerId) ?? { name: tip.possessionPlayerName ?? tip.possessionPlayerId, n: 0 };
+      entry.n += 1;
+      counts.set(tip.possessionPlayerId, entry);
+    }
+  }
+  const top = [...counts.entries()].sort((a, b) => b[1].n - a[1].n)[0];
+  return top ? { athleteId: top[0], name: top[1].name, gains: top[1].n, tipsWon } : null;
+};
+
 interface ChainSide { jumper: string; gainer: string; shooter: string }
 const chainOf = (team: TeamAggregate): ChainSide => {
   const jumperCounts = new Map<string, number>();
-  const gainerCounts = new Map<string, number>();
   let tipsSeen = 0;
-  let tipsWon = 0;
   for (const sequence of modelFile?.sequences ?? []) {
     if (!sequence.teams?.some((item: any) => item.id === team.teamId)) continue;
     const tip = sequence.tip ?? {};
@@ -192,10 +226,6 @@ const chainOf = (team: TeamAggregate): ChainSide => {
         }
       }
     }
-    if (tip.winningTeamId === team.teamId) {
-      tipsWon += 1;
-      if (tip.possessionPlayerName) gainerCounts.set(tip.possessionPlayerName, (gainerCounts.get(tip.possessionPlayerName) ?? 0) + 1);
-    }
   }
   const ranked = [...jumperCounts.entries()].sort((a, b) => b[1] - a[1]);
   const available = ranked.find(([name]) => !isRuledOut(team.team, name));
@@ -207,13 +237,18 @@ const chainOf = (team: TeamAggregate): ChainSide => {
     jumper = `${name} ${count}/${tipsSeen}${dtd}`;
     if (usual && usual[0] !== name) jumper += ` — ${usual[0]} out`;
   }
-  const gainer = [...gainerCounts.entries()].sort((a, b) => b[1] - a[1])[0];
+  const top = topGainerOf(team);
+  let gainer = "—";
+  if (top) {
+    const fg = board.players.find(player => player.athleteId === top.athleteId && player.teamId === team.teamId)?.firstFieldGoals ?? 0;
+    gainer = `${top.name} ${top.gains}/${top.tipsWon}${fg ? ` · ${fg} first FGs` : ""}`;
+  }
   const shooterAgg = board.players
     .filter(player => player.teamId === team.teamId && !isRuledOut(team.team, player.player))
     .sort((a, b) => b.firstTeamAttempts - a.firstTeamAttempts)[0];
   return {
     jumper,
-    gainer: gainer ? `${gainer[0]} ${gainer[1]}/${tipsWon}` : "—",
+    gainer,
     shooter: shooterAgg ? `${shooterAgg.player} ${shooterAgg.firstTeamAttempts}/${team.games}` : "—",
   };
 };
@@ -356,6 +391,10 @@ const simPoolOf = (team: TeamAggregate) => board.players.filter(player =>
 
 const simGame = (game: SlateGame) => {
   const pools = { away: simPoolOf(game.away), home: simPoolOf(game.home) };
+  const gainers = {
+    away: (() => { const top = topGainerOf(game.away); return top ? pools.away.find(p => p.athleteId === top.athleteId) ?? null : null; })(),
+    home: (() => { const top = topGainerOf(game.home); return top ? pools.home.find(p => p.athleteId === top.athleteId) ?? null : null; })(),
+  };
   const teamMake = (pool: PlayerAggregate[]) =>
     pool.reduce((n, p) => n + p.firstTeamAttemptMakes, 0) / Math.max(1, pool.reduce((n, p) => n + p.firstTeamAttempts, 0));
   const makes = { away: teamMake(pools.away), home: teamMake(pools.home) };
@@ -375,7 +414,11 @@ const simGame = (game: SlateGame) => {
     let shooter: PlayerAggregate | null = null;
     let keepOwn = false;
     for (let shot = 0; shot < 12; shot += 1) {
-      if (!shooter || !keepOwn) shooter = draw(pools[side]);
+      if (shot === 0 && gainers[side] && rand() < pGainerShoots) {
+        // Handler keep branch: the tip's possession gainer takes the first
+        // shot themselves, at the season-observed rate.
+        shooter = gainers[side];
+      } else if (!shooter || !keepOwn) shooter = draw(pools[side]);
       if (rand() < makeProb(shooter, makes[side])) {
         const key = shooter.athleteId;
         const entry = counts.get(key) ?? { player: shooter, side, n: 0 };
@@ -427,6 +470,7 @@ for (let a = 0; a < leaders.length; a += 1) {
 const sim = {
   runs: SIM_RUNS,
   missBranch: `${missBranchStay}/${missBranchSeen} missed first attempts stayed with the shooting team; ${missBranchOwn}/${missBranchStay} finished by the same shooter`,
+  handlerBranch: `tip gainer takes the first shot in ${gainerShotBy}/${gainerShotSeen} won tips and scores the game's first FG ${gainerFgBy}/${gainerFgSeen}`,
   games: simGames,
   combo: simCombo,
 };

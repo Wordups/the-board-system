@@ -633,7 +633,7 @@
           <div class="oe-chain__side">
             <b>${esc(abbr)}</b>
             <span><small>Jump</small>${esc(side.jumper)}</span>
-            <span><small>Ball</small>${esc(side.gainer)}</span>
+            <span><small>Handler</small>${esc(side.gainer)}</span>
             <span><small>1st look</small>${esc(side.shooter)}</span>
           </div>`).join("")}
         </div>` : ""}
@@ -712,7 +712,7 @@
       <section class="oe-map">${mapRows}</section>` : ""}
       ${auditCards ? `<div class="section-head"><div><span class="section-kicker">Team audit</span><h2>Who has done what</h2></div><p class="section-note">Whole-game first baskets (FB), team-first baskets, first attempts and makes — player counts reconcile to each team's total.</p></div>
       <section class="oe-audits">${auditCards}</section>` : ""}
-      ${simCombo ? `<div class="section-head"><div><span class="section-kicker">Opening simulation · ${sim.runs} runs per game</span><h2>The sim combo</h2></div><p class="section-note">Jump, keep-or-pass, first option and miss branch sampled from season play-by-play (${esc(sim.missBranch)}). Simulated frequency, not calibrated probability — high variance.</p></div>
+      ${simCombo ? `<div class="section-head"><div><span class="section-kicker">Opening simulation · ${sim.runs} runs per game</span><h2>The sim combo</h2></div><p class="section-note">Jump, handler keep, first option and miss branch sampled from season play-by-play (${esc(sim.missBranch)}${sim.handlerBranch ? `; ${esc(sim.handlerBranch)}` : ""}). Simulated frequency, not calibrated probability — high variance.</p></div>
       <section class="oe-sim">${simCombo}<div class="oe-sim__games">${simTables}</div></section>` : ""}
       ${tdCards ? `<div class="section-head"><div><span class="section-kicker">Triple-double watch</span><h2>Stat-sheet stuffers</h2></div><p class="section-note">${esc(oe.tdSource || "Season per-game averages")} · ranked by the weakest of the three categories.</p></div>
       <section class="oe-tds">${tdCards}</section>` : ""}
