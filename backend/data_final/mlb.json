@@ -1,7 +1,7 @@
 {
   "sport": "MLB",
   "date": "2026-08-08",
-  "last_updated": "6:33 AM ET",
+  "last_updated": "7:28 AM ET",
   "calibration": {
     "threshold_pp": 15.0,
     "mode": "off",
@@ -12,6 +12,24 @@
     "title": "HR Core",
     "market": "HR",
     "players": [
+      {
+        "player_id": "656941",
+        "player_name": "Kyle Schwarber",
+        "team": "PHI",
+        "opponent": "TOR",
+        "line": "HR 1+",
+        "score": 44.16,
+        "confidence": 44,
+        "tier": "A",
+        "reason": "HR edge 28.3 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.80 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.263/0.970 in 23 PA | vsP HR 2 | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
+        "sim_prob_pct": 41.7,
+        "hr_result": "pending",
+        "home_runs": 0,
+        "core_bucket": "core",
+        "projected_pa": 4.39,
+        "power_surge": 0.204,
+        "hr_power_index": 0.795
+      },
       {
         "player_id": "808959",
         "player_name": "Munetaka Murakami",
@@ -29,24 +47,6 @@
         "projected_pa": 4.27,
         "power_surge": 0.384,
         "hr_power_index": 0.562
-      },
-      {
-        "player_id": "656941",
-        "player_name": "Kyle Schwarber",
-        "team": "PHI",
-        "opponent": "TOR",
-        "line": "HR 1+",
-        "score": 40.75,
-        "confidence": 41,
-        "tier": "A",
-        "reason": "HR edge 25.4 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.73 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.333/0.833 in 4 PA | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
-        "sim_prob_pct": 38.1,
-        "hr_result": "pending",
-        "home_runs": 0,
-        "core_bucket": "core",
-        "projected_pa": 4.39,
-        "power_surge": 0.204,
-        "hr_power_index": 0.729
       },
       {
         "player_id": "696100",
@@ -218,7 +218,7 @@
         "score": 94.76,
         "confidence": 93,
         "tier": "A",
-        "reason": "Edge 58.0, trend 0.70, matchup 0.21, form 0.17",
+        "reason": "Edge 58.0, trend 0.70, matchup 0.20, form 0.17",
         "sim_prob_pct": 94.2
       },
       {
@@ -314,7 +314,7 @@
         "score": 94.08,
         "confidence": 92,
         "tier": "A",
-        "reason": "Edge 58.0, trend 0.70, matchup 0.29, form 0.22",
+        "reason": "Edge 58.0, trend 0.70, matchup 0.30, form 0.22",
         "sim_prob_pct": 93.5
       },
       {
@@ -334,19 +334,28 @@
   "daily_hr_picks": {
     "title": "HR Pick of the Day",
     "single": {
-      "player_id": "808959",
-      "player_name": "Munetaka Murakami",
-      "team": "CWS",
-      "opponent": "CLE",
+      "player_id": "656941",
+      "player_name": "Kyle Schwarber",
+      "team": "PHI",
+      "opponent": "TOR",
       "line": "HR 1+",
-      "score": 39.04,
+      "score": 40.48,
       "tier": "A",
-      "reason": "HR edge 29.0 | L5 0.60/g | L10 0.40/g | Season 0.31/g | HR% 0.24 | HistHR% 0.23 | OPS 0.900 | SLG 0.531 | ISO 0.295 | PowIdx 0.56 | Surge 0.38 | Matchup 0.24 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.058 | vs Gavin Williams | ERA 3.56 | WHIP 1.04 | HR/9 1.36 | HR A 21 | Hand R | Platoon + | Age 26 | Order est. 5 | Lineup pen 1.2 | Rising 0.47 | L5 XBH 0.60/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
+      "reason": "HR edge 28.3 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.80 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.263/0.970 in 23 PA | vsP HR 2 | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
       "play_of_day": false,
-      "pitcher": "Gavin Williams"
+      "pitcher": "Max Scherzer"
     },
     "two_leg": {
       "legs": [
+        {
+          "player_name": "Kyle Schwarber",
+          "team": "PHI",
+          "opponent": "TOR",
+          "line": "HR 1+",
+          "score": 40.48,
+          "tier": "A",
+          "reason": "HR edge 28.3 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.80 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.263/0.970 in 23 PA | vsP HR 2 | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30"
+        },
         {
           "player_name": "Munetaka Murakami",
           "team": "CWS",
@@ -355,15 +364,6 @@
           "score": 39.04,
           "tier": "A",
           "reason": "HR edge 29.0 | L5 0.60/g | L10 0.40/g | Season 0.31/g | HR% 0.24 | HistHR% 0.23 | OPS 0.900 | SLG 0.531 | ISO 0.295 | PowIdx 0.56 | Surge 0.38 | Matchup 0.24 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.058 | vs Gavin Williams | ERA 3.56 | WHIP 1.04 | HR/9 1.36 | HR A 21 | Hand R | Platoon + | Age 26 | Order est. 5 | Lineup pen 1.2 | Rising 0.47 | L5 XBH 0.60/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30"
-        },
-        {
-          "player_name": "Kyle Schwarber",
-          "team": "PHI",
-          "opponent": "TOR",
-          "line": "HR 1+",
-          "score": 36.88,
-          "tier": "A",
-          "reason": "HR edge 25.4 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.73 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.333/0.833 in 4 PA | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30"
         }
       ],
       "count": 2
@@ -371,6 +371,15 @@
     "three_leg": {
       "legs": [
         {
+          "player_name": "Kyle Schwarber",
+          "team": "PHI",
+          "opponent": "TOR",
+          "line": "HR 1+",
+          "score": 40.48,
+          "tier": "A",
+          "reason": "HR edge 28.3 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.80 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.263/0.970 in 23 PA | vsP HR 2 | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30"
+        },
+        {
           "player_name": "Munetaka Murakami",
           "team": "CWS",
           "opponent": "CLE",
@@ -378,15 +387,6 @@
           "score": 39.04,
           "tier": "A",
           "reason": "HR edge 29.0 | L5 0.60/g | L10 0.40/g | Season 0.31/g | HR% 0.24 | HistHR% 0.23 | OPS 0.900 | SLG 0.531 | ISO 0.295 | PowIdx 0.56 | Surge 0.38 | Matchup 0.24 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.058 | vs Gavin Williams | ERA 3.56 | WHIP 1.04 | HR/9 1.36 | HR A 21 | Hand R | Platoon + | Age 26 | Order est. 5 | Lineup pen 1.2 | Rising 0.47 | L5 XBH 0.60/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30"
-        },
-        {
-          "player_name": "Kyle Schwarber",
-          "team": "PHI",
-          "opponent": "TOR",
-          "line": "HR 1+",
-          "score": 36.88,
-          "tier": "A",
-          "reason": "HR edge 25.4 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.73 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.333/0.833 in 4 PA | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30"
         },
         {
           "player_name": "Hunter Goodman",
@@ -433,6 +433,53 @@
     "home_run": {
       "title": "Home Run Board",
       "top_candidates": [
+        {
+          "player_id": "656941",
+          "player_name": "Kyle Schwarber",
+          "team": "PHI",
+          "opponent": "TOR",
+          "game_id": "tor-phi-2026-08-08",
+          "market": "HR",
+          "line": "HR 1+",
+          "score": 40.48,
+          "base_score": 40.48,
+          "sim_prob_pct": 41.7,
+          "lazy_penalty": 0.0,
+          "confidence": 40,
+          "tier": "A",
+          "reason": "HR edge 28.3 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.80 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.263/0.970 in 23 PA | vsP HR 2 | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
+          "play_of_day": false,
+          "hr_bucket": "core",
+          "pitcher": "Max Scherzer",
+          "whip": 1.63,
+          "hr9": 2.64,
+          "hr_allowed": 9,
+          "vs_pitcher_avg": 0.263,
+          "vs_pitcher_ops": 0.97,
+          "vs_pitcher_hr": 2,
+          "order_estimate": 3,
+          "projected_pa": 4.39,
+          "lineup_confirmed": false,
+          "lineup_uncertainty_penalty": 1.2,
+          "season_hr_probability": 0.243,
+          "l10_hr_probability": 0.252,
+          "l5_hr_probability": 0.308,
+          "historical_hr_probability": 0.264,
+          "season_hr_per_game": 0.297,
+          "l10_hr_per_game": 0.3,
+          "l5_hr_per_game": 0.4,
+          "ops": 0.883,
+          "slg": 0.521,
+          "iso": 0.278,
+          "sample_reliability": 1.0,
+          "age": 33,
+          "historical_power_index": 0.686,
+          "recent_peak_hr_rate": 0.076,
+          "career_hr_rate": 0.063,
+          "appearance_7d": 6,
+          "hits_7d": 0,
+          "evidence": []
+        },
         {
           "player_id": "808959",
           "player_name": "Munetaka Murakami",
@@ -524,53 +571,6 @@
           "recent_peak_hr_rate": 0.062,
           "career_hr_rate": 0.059,
           "appearance_7d": 7,
-          "hits_7d": 0,
-          "evidence": []
-        },
-        {
-          "player_id": "656941",
-          "player_name": "Kyle Schwarber",
-          "team": "PHI",
-          "opponent": "TOR",
-          "game_id": "tor-phi-2026-08-08",
-          "market": "HR",
-          "line": "HR 1+",
-          "score": 36.88,
-          "base_score": 36.88,
-          "sim_prob_pct": 38.1,
-          "lazy_penalty": 0.0,
-          "confidence": 37,
-          "tier": "A",
-          "reason": "HR edge 25.4 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.73 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.333/0.833 in 4 PA | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
-          "play_of_day": false,
-          "hr_bucket": "core",
-          "pitcher": "Max Scherzer",
-          "whip": 1.63,
-          "hr9": 2.64,
-          "hr_allowed": 9,
-          "vs_pitcher_avg": 0.333,
-          "vs_pitcher_ops": 0.833,
-          "vs_pitcher_hr": 0,
-          "order_estimate": 3,
-          "projected_pa": 4.39,
-          "lineup_confirmed": false,
-          "lineup_uncertainty_penalty": 1.2,
-          "season_hr_probability": 0.243,
-          "l10_hr_probability": 0.252,
-          "l5_hr_probability": 0.308,
-          "historical_hr_probability": 0.264,
-          "season_hr_per_game": 0.297,
-          "l10_hr_per_game": 0.3,
-          "l5_hr_per_game": 0.4,
-          "ops": 0.883,
-          "slg": 0.521,
-          "iso": 0.278,
-          "sample_reliability": 1.0,
-          "age": 33,
-          "historical_power_index": 0.686,
-          "recent_peak_hr_rate": 0.076,
-          "career_hr_rate": 0.063,
-          "appearance_7d": 6,
           "hits_7d": 0,
           "evidence": []
         },
@@ -1001,6 +1001,18 @@
       "parlays": {
         "2_leg": [
           {
+            "player_name": "Kyle Schwarber",
+            "team": "PHI",
+            "opponent": "TOR",
+            "line": "HR 1+",
+            "score": 40.48,
+            "tier": "A",
+            "reason": "HR edge 28.3 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.80 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.263/0.970 in 23 PA | vsP HR 2 | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
+            "pitcher": "Max Scherzer",
+            "evidence": [],
+            "hr_bucket": "core"
+          },
+          {
             "player_name": "Munetaka Murakami",
             "team": "CWS",
             "opponent": "CLE",
@@ -1009,24 +1021,24 @@
             "tier": "A",
             "reason": "HR edge 29.0 | L5 0.60/g | L10 0.40/g | Season 0.31/g | HR% 0.24 | HistHR% 0.23 | OPS 0.900 | SLG 0.531 | ISO 0.295 | PowIdx 0.56 | Surge 0.38 | Matchup 0.24 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.058 | vs Gavin Williams | ERA 3.56 | WHIP 1.04 | HR/9 1.36 | HR A 21 | Hand R | Platoon + | Age 26 | Order est. 5 | Lineup pen 1.2 | Rising 0.47 | L5 XBH 0.60/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
             "pitcher": "Gavin Williams",
-            "evidence": [],
-            "hr_bucket": "core"
-          },
-          {
-            "player_name": "Kyle Schwarber",
-            "team": "PHI",
-            "opponent": "TOR",
-            "line": "HR 1+",
-            "score": 36.88,
-            "tier": "A",
-            "reason": "HR edge 25.4 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.73 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.333/0.833 in 4 PA | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
-            "pitcher": "Max Scherzer",
             "evidence": [],
             "hr_bucket": "core"
           }
         ],
         "3_leg": [
           {
+            "player_name": "Kyle Schwarber",
+            "team": "PHI",
+            "opponent": "TOR",
+            "line": "HR 1+",
+            "score": 40.48,
+            "tier": "A",
+            "reason": "HR edge 28.3 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.80 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.263/0.970 in 23 PA | vsP HR 2 | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
+            "pitcher": "Max Scherzer",
+            "evidence": [],
+            "hr_bucket": "core"
+          },
+          {
             "player_name": "Munetaka Murakami",
             "team": "CWS",
             "opponent": "CLE",
@@ -1035,18 +1047,6 @@
             "tier": "A",
             "reason": "HR edge 29.0 | L5 0.60/g | L10 0.40/g | Season 0.31/g | HR% 0.24 | HistHR% 0.23 | OPS 0.900 | SLG 0.531 | ISO 0.295 | PowIdx 0.56 | Surge 0.38 | Matchup 0.24 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.058 | vs Gavin Williams | ERA 3.56 | WHIP 1.04 | HR/9 1.36 | HR A 21 | Hand R | Platoon + | Age 26 | Order est. 5 | Lineup pen 1.2 | Rising 0.47 | L5 XBH 0.60/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
             "pitcher": "Gavin Williams",
-            "evidence": [],
-            "hr_bucket": "core"
-          },
-          {
-            "player_name": "Kyle Schwarber",
-            "team": "PHI",
-            "opponent": "TOR",
-            "line": "HR 1+",
-            "score": 36.88,
-            "tier": "A",
-            "reason": "HR edge 25.4 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.73 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.333/0.833 in 4 PA | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
-            "pitcher": "Max Scherzer",
             "evidence": [],
             "hr_bucket": "core"
           },
@@ -1065,6 +1065,18 @@
         ],
         "4_leg": [
           {
+            "player_name": "Kyle Schwarber",
+            "team": "PHI",
+            "opponent": "TOR",
+            "line": "HR 1+",
+            "score": 40.48,
+            "tier": "A",
+            "reason": "HR edge 28.3 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.80 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.263/0.970 in 23 PA | vsP HR 2 | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
+            "pitcher": "Max Scherzer",
+            "evidence": [],
+            "hr_bucket": "core"
+          },
+          {
             "player_name": "Munetaka Murakami",
             "team": "CWS",
             "opponent": "CLE",
@@ -1073,18 +1085,6 @@
             "tier": "A",
             "reason": "HR edge 29.0 | L5 0.60/g | L10 0.40/g | Season 0.31/g | HR% 0.24 | HistHR% 0.23 | OPS 0.900 | SLG 0.531 | ISO 0.295 | PowIdx 0.56 | Surge 0.38 | Matchup 0.24 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.058 | vs Gavin Williams | ERA 3.56 | WHIP 1.04 | HR/9 1.36 | HR A 21 | Hand R | Platoon + | Age 26 | Order est. 5 | Lineup pen 1.2 | Rising 0.47 | L5 XBH 0.60/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
             "pitcher": "Gavin Williams",
-            "evidence": [],
-            "hr_bucket": "core"
-          },
-          {
-            "player_name": "Kyle Schwarber",
-            "team": "PHI",
-            "opponent": "TOR",
-            "line": "HR 1+",
-            "score": 36.88,
-            "tier": "A",
-            "reason": "HR edge 25.4 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.73 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.333/0.833 in 4 PA | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
-            "pitcher": "Max Scherzer",
             "evidence": [],
             "hr_bucket": "core"
           },
@@ -1107,7 +1107,7 @@
             "line": "HR 1+",
             "score": 29.92,
             "tier": "B",
-            "reason": "HR edge 19.3 | L5 0.00/g | L10 0.20/g | Season 0.28/g | HR% 0.24 | HistHR% 0.24 | OPS 0.899 | SLG 0.553 | ISO 0.284 | PowIdx 0.59 | Surge 0.10 | Matchup 0.22 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.074 | vs Gerrit Cole | ERA 3.42 | WHIP 1.10 | HR/9 1.34 | HR A 11 | Hand R | Platoon + | vsP 0.000/0.067 in 15 PA | Age 32 | Order est. 1 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.53/g | Wts T0.42/M0.28/F0.30",
+            "reason": "HR edge 19.3 | L5 0.00/g | L10 0.20/g | Season 0.28/g | HR% 0.24 | HistHR% 0.24 | OPS 0.899 | SLG 0.553 | ISO 0.284 | PowIdx 0.59 | Surge 0.10 | Matchup 0.22 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.074 | vs Gerrit Cole | ERA 3.42 | WHIP 1.10 | HR/9 1.34 | HR A 11 | Hand R | Platoon + | vsP 0.000/0.087 in 23 PA | Age 32 | Order est. 1 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.53/g | Wts T0.42/M0.28/F0.30",
             "pitcher": "Gerrit Cole",
             "evidence": [],
             "hr_bucket": "core"
@@ -1115,6 +1115,18 @@
         ],
         "6_leg": [
           {
+            "player_name": "Kyle Schwarber",
+            "team": "PHI",
+            "opponent": "TOR",
+            "line": "HR 1+",
+            "score": 40.48,
+            "tier": "A",
+            "reason": "HR edge 28.3 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.80 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.263/0.970 in 23 PA | vsP HR 2 | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
+            "pitcher": "Max Scherzer",
+            "evidence": [],
+            "hr_bucket": "core"
+          },
+          {
             "player_name": "Munetaka Murakami",
             "team": "CWS",
             "opponent": "CLE",
@@ -1123,18 +1135,6 @@
             "tier": "A",
             "reason": "HR edge 29.0 | L5 0.60/g | L10 0.40/g | Season 0.31/g | HR% 0.24 | HistHR% 0.23 | OPS 0.900 | SLG 0.531 | ISO 0.295 | PowIdx 0.56 | Surge 0.38 | Matchup 0.24 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.058 | vs Gavin Williams | ERA 3.56 | WHIP 1.04 | HR/9 1.36 | HR A 21 | Hand R | Platoon + | Age 26 | Order est. 5 | Lineup pen 1.2 | Rising 0.47 | L5 XBH 0.60/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
             "pitcher": "Gavin Williams",
-            "evidence": [],
-            "hr_bucket": "core"
-          },
-          {
-            "player_name": "Kyle Schwarber",
-            "team": "PHI",
-            "opponent": "TOR",
-            "line": "HR 1+",
-            "score": 36.88,
-            "tier": "A",
-            "reason": "HR edge 25.4 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.73 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.333/0.833 in 4 PA | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
-            "pitcher": "Max Scherzer",
             "evidence": [],
             "hr_bucket": "core"
           },
@@ -1157,7 +1157,7 @@
             "line": "HR 1+",
             "score": 29.92,
             "tier": "B",
-            "reason": "HR edge 19.3 | L5 0.00/g | L10 0.20/g | Season 0.28/g | HR% 0.24 | HistHR% 0.24 | OPS 0.899 | SLG 0.553 | ISO 0.284 | PowIdx 0.59 | Surge 0.10 | Matchup 0.22 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.074 | vs Gerrit Cole | ERA 3.42 | WHIP 1.10 | HR/9 1.34 | HR A 11 | Hand R | Platoon + | vsP 0.000/0.067 in 15 PA | Age 32 | Order est. 1 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.53/g | Wts T0.42/M0.28/F0.30",
+            "reason": "HR edge 19.3 | L5 0.00/g | L10 0.20/g | Season 0.28/g | HR% 0.24 | HistHR% 0.24 | OPS 0.899 | SLG 0.553 | ISO 0.284 | PowIdx 0.59 | Surge 0.10 | Matchup 0.22 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.074 | vs Gerrit Cole | ERA 3.42 | WHIP 1.10 | HR/9 1.34 | HR A 11 | Hand R | Platoon + | vsP 0.000/0.087 in 23 PA | Age 32 | Order est. 1 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.53/g | Wts T0.42/M0.28/F0.30",
             "pitcher": "Gerrit Cole",
             "evidence": [],
             "hr_bucket": "core"
@@ -1189,6 +1189,53 @@
         ]
       },
       "core_candidates": [
+        {
+          "player_id": "656941",
+          "player_name": "Kyle Schwarber",
+          "team": "PHI",
+          "opponent": "TOR",
+          "game_id": "tor-phi-2026-08-08",
+          "market": "HR",
+          "line": "HR 1+",
+          "score": 40.48,
+          "base_score": 40.48,
+          "sim_prob_pct": 41.7,
+          "lazy_penalty": 0.0,
+          "confidence": 40,
+          "tier": "A",
+          "reason": "HR edge 28.3 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.80 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.263/0.970 in 23 PA | vsP HR 2 | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
+          "play_of_day": false,
+          "hr_bucket": "core",
+          "pitcher": "Max Scherzer",
+          "whip": 1.63,
+          "hr9": 2.64,
+          "hr_allowed": 9,
+          "vs_pitcher_avg": 0.263,
+          "vs_pitcher_ops": 0.97,
+          "vs_pitcher_hr": 2,
+          "order_estimate": 3,
+          "projected_pa": 4.39,
+          "lineup_confirmed": false,
+          "lineup_uncertainty_penalty": 1.2,
+          "season_hr_probability": 0.243,
+          "l10_hr_probability": 0.252,
+          "l5_hr_probability": 0.308,
+          "historical_hr_probability": 0.264,
+          "season_hr_per_game": 0.297,
+          "l10_hr_per_game": 0.3,
+          "l5_hr_per_game": 0.4,
+          "ops": 0.883,
+          "slg": 0.521,
+          "iso": 0.278,
+          "sample_reliability": 1.0,
+          "age": 33,
+          "historical_power_index": 0.686,
+          "recent_peak_hr_rate": 0.076,
+          "career_hr_rate": 0.063,
+          "appearance_7d": 6,
+          "hits_7d": 0,
+          "evidence": []
+        },
         {
           "player_id": "808959",
           "player_name": "Munetaka Murakami",
@@ -1234,53 +1281,6 @@
           "career_hr_rate": 0.058,
           "appearance_7d": 5,
           "hits_7d": 1,
-          "evidence": []
-        },
-        {
-          "player_id": "656941",
-          "player_name": "Kyle Schwarber",
-          "team": "PHI",
-          "opponent": "TOR",
-          "game_id": "tor-phi-2026-08-08",
-          "market": "HR",
-          "line": "HR 1+",
-          "score": 36.88,
-          "base_score": 36.88,
-          "sim_prob_pct": 38.1,
-          "lazy_penalty": 0.0,
-          "confidence": 37,
-          "tier": "A",
-          "reason": "HR edge 25.4 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.73 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.333/0.833 in 4 PA | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
-          "play_of_day": false,
-          "hr_bucket": "core",
-          "pitcher": "Max Scherzer",
-          "whip": 1.63,
-          "hr9": 2.64,
-          "hr_allowed": 9,
-          "vs_pitcher_avg": 0.333,
-          "vs_pitcher_ops": 0.833,
-          "vs_pitcher_hr": 0,
-          "order_estimate": 3,
-          "projected_pa": 4.39,
-          "lineup_confirmed": false,
-          "lineup_uncertainty_penalty": 1.2,
-          "season_hr_probability": 0.243,
-          "l10_hr_probability": 0.252,
-          "l5_hr_probability": 0.308,
-          "historical_hr_probability": 0.264,
-          "season_hr_per_game": 0.297,
-          "l10_hr_per_game": 0.3,
-          "l5_hr_per_game": 0.4,
-          "ops": 0.883,
-          "slg": 0.521,
-          "iso": 0.278,
-          "sample_reliability": 1.0,
-          "age": 33,
-          "historical_power_index": 0.686,
-          "recent_peak_hr_rate": 0.076,
-          "career_hr_rate": 0.063,
-          "appearance_7d": 6,
-          "hits_7d": 0,
           "evidence": []
         },
         {
@@ -1724,15 +1724,15 @@
           "lazy_penalty": 0.0,
           "confidence": 25,
           "tier": "B",
-          "reason": "HR edge 13.2 | L5 0.60/g | L10 0.40/g | Season 0.16/g | HR% 0.15 | HistHR% 0.15 | OPS 0.720 | SLG 0.400 | ISO 0.191 | PowIdx 0.35 | Surge 0.31 | Matchup 0.41 | ProjPA 4.2 | Sample 1.00 | Peak3Y 0.038 | vs Seth Lugo | ERA 4.41 | WHIP 1.39 | HR/9 1.05 | HR A 15 | Hand R | Platoon + | vsP 0.182/0.432 in 12 PA | Age 31 | Order est. 5 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.36/g | Wts T0.42/M0.28/F0.30",
+          "reason": "HR edge 13.2 | L5 0.60/g | L10 0.40/g | Season 0.16/g | HR% 0.15 | HistHR% 0.15 | OPS 0.720 | SLG 0.400 | ISO 0.191 | PowIdx 0.35 | Surge 0.31 | Matchup 0.41 | ProjPA 4.2 | Sample 1.00 | Peak3Y 0.038 | vs Seth Lugo | ERA 4.41 | WHIP 1.39 | HR/9 1.05 | HR A 15 | Hand R | Platoon + | vsP 0.000/0.000 in 2 PA | Age 31 | Order est. 5 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.36/g | Wts T0.42/M0.28/F0.30",
           "play_of_day": false,
           "hr_bucket": "fringe",
           "pitcher": "Seth Lugo",
           "whip": 1.39,
           "hr9": 1.05,
           "hr_allowed": 15,
-          "vs_pitcher_avg": 0.182,
-          "vs_pitcher_ops": 0.432,
+          "vs_pitcher_avg": 0.0,
+          "vs_pitcher_ops": 0.0,
           "vs_pitcher_hr": 0,
           "order_estimate": 5,
           "projected_pa": 4.25,
@@ -1806,6 +1806,53 @@
         }
       ],
       "hr_of_day": [
+        {
+          "player_id": "656941",
+          "player_name": "Kyle Schwarber",
+          "team": "PHI",
+          "opponent": "TOR",
+          "game_id": "tor-phi-2026-08-08",
+          "market": "HR",
+          "line": "HR 1+",
+          "score": 40.48,
+          "base_score": 40.48,
+          "sim_prob_pct": 41.7,
+          "lazy_penalty": 0.0,
+          "confidence": 40,
+          "tier": "A",
+          "reason": "HR edge 28.3 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.80 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.263/0.970 in 23 PA | vsP HR 2 | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
+          "play_of_day": false,
+          "hr_bucket": "core",
+          "pitcher": "Max Scherzer",
+          "whip": 1.63,
+          "hr9": 2.64,
+          "hr_allowed": 9,
+          "vs_pitcher_avg": 0.263,
+          "vs_pitcher_ops": 0.97,
+          "vs_pitcher_hr": 2,
+          "order_estimate": 3,
+          "projected_pa": 4.39,
+          "lineup_confirmed": false,
+          "lineup_uncertainty_penalty": 1.2,
+          "season_hr_probability": 0.243,
+          "l10_hr_probability": 0.252,
+          "l5_hr_probability": 0.308,
+          "historical_hr_probability": 0.264,
+          "season_hr_per_game": 0.297,
+          "l10_hr_per_game": 0.3,
+          "l5_hr_per_game": 0.4,
+          "ops": 0.883,
+          "slg": 0.521,
+          "iso": 0.278,
+          "sample_reliability": 1.0,
+          "age": 33,
+          "historical_power_index": 0.686,
+          "recent_peak_hr_rate": 0.076,
+          "career_hr_rate": 0.063,
+          "appearance_7d": 6,
+          "hits_7d": 0,
+          "evidence": []
+        },
         {
           "player_id": "808959",
           "player_name": "Munetaka Murakami",
@@ -1899,100 +1946,53 @@
           "appearance_7d": 7,
           "hits_7d": 0,
           "evidence": []
-        },
-        {
-          "player_id": "656941",
-          "player_name": "Kyle Schwarber",
-          "team": "PHI",
-          "opponent": "TOR",
-          "game_id": "tor-phi-2026-08-08",
-          "market": "HR",
-          "line": "HR 1+",
-          "score": 36.88,
-          "base_score": 36.88,
-          "sim_prob_pct": 38.1,
-          "lazy_penalty": 0.0,
-          "confidence": 37,
-          "tier": "A",
-          "reason": "HR edge 25.4 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.73 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.333/0.833 in 4 PA | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
-          "play_of_day": false,
-          "hr_bucket": "core",
-          "pitcher": "Max Scherzer",
-          "whip": 1.63,
-          "hr9": 2.64,
-          "hr_allowed": 9,
-          "vs_pitcher_avg": 0.333,
-          "vs_pitcher_ops": 0.833,
-          "vs_pitcher_hr": 0,
-          "order_estimate": 3,
-          "projected_pa": 4.39,
-          "lineup_confirmed": false,
-          "lineup_uncertainty_penalty": 1.2,
-          "season_hr_probability": 0.243,
-          "l10_hr_probability": 0.252,
-          "l5_hr_probability": 0.308,
-          "historical_hr_probability": 0.264,
-          "season_hr_per_game": 0.297,
-          "l10_hr_per_game": 0.3,
-          "l5_hr_per_game": 0.4,
-          "ops": 0.883,
-          "slg": 0.521,
-          "iso": 0.278,
-          "sample_reliability": 1.0,
-          "age": 33,
-          "historical_power_index": 0.686,
-          "recent_peak_hr_rate": 0.076,
-          "career_hr_rate": 0.063,
-          "appearance_7d": 6,
-          "hits_7d": 0,
-          "evidence": []
         }
       ],
       "play_of_day": {
-        "player_id": "808959",
-        "player_name": "Munetaka Murakami",
-        "team": "CWS",
-        "opponent": "CLE",
-        "game_id": "cle-cws-2026-08-08",
+        "player_id": "656941",
+        "player_name": "Kyle Schwarber",
+        "team": "PHI",
+        "opponent": "TOR",
+        "game_id": "tor-phi-2026-08-08",
         "market": "HR",
         "line": "HR 1+",
-        "score": 39.04,
-        "base_score": 39.04,
-        "sim_prob_pct": 40.2,
+        "score": 40.48,
+        "base_score": 40.48,
+        "sim_prob_pct": 41.7,
         "lazy_penalty": 0.0,
-        "confidence": 39,
+        "confidence": 40,
         "tier": "A",
-        "reason": "HR edge 29.0 | L5 0.60/g | L10 0.40/g | Season 0.31/g | HR% 0.24 | HistHR% 0.23 | OPS 0.900 | SLG 0.531 | ISO 0.295 | PowIdx 0.56 | Surge 0.38 | Matchup 0.24 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.058 | vs Gavin Williams | ERA 3.56 | WHIP 1.04 | HR/9 1.36 | HR A 21 | Hand R | Platoon + | Age 26 | Order est. 5 | Lineup pen 1.2 | Rising 0.47 | L5 XBH 0.60/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
+        "reason": "HR edge 28.3 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.80 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.263/0.970 in 23 PA | vsP HR 2 | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
         "play_of_day": false,
         "hr_bucket": "core",
-        "pitcher": "Gavin Williams",
-        "whip": 1.04,
-        "hr9": 1.36,
-        "hr_allowed": 21,
-        "vs_pitcher_avg": 0.0,
-        "vs_pitcher_ops": 0.0,
-        "vs_pitcher_hr": 0,
-        "order_estimate": 5,
-        "projected_pa": 4.27,
+        "pitcher": "Max Scherzer",
+        "whip": 1.63,
+        "hr9": 2.64,
+        "hr_allowed": 9,
+        "vs_pitcher_avg": 0.263,
+        "vs_pitcher_ops": 0.97,
+        "vs_pitcher_hr": 2,
+        "order_estimate": 3,
+        "projected_pa": 4.39,
         "lineup_confirmed": false,
         "lineup_uncertainty_penalty": 1.2,
-        "season_hr_probability": 0.244,
-        "l10_hr_probability": 0.312,
-        "l5_hr_probability": 0.394,
-        "historical_hr_probability": 0.225,
-        "season_hr_per_game": 0.312,
-        "l10_hr_per_game": 0.4,
-        "l5_hr_per_game": 0.6,
-        "ops": 0.9,
-        "slg": 0.531,
-        "iso": 0.295,
+        "season_hr_probability": 0.243,
+        "l10_hr_probability": 0.252,
+        "l5_hr_probability": 0.308,
+        "historical_hr_probability": 0.264,
+        "season_hr_per_game": 0.297,
+        "l10_hr_per_game": 0.3,
+        "l5_hr_per_game": 0.4,
+        "ops": 0.883,
+        "slg": 0.521,
+        "iso": 0.278,
         "sample_reliability": 1.0,
-        "age": 26,
-        "historical_power_index": 0.475,
-        "recent_peak_hr_rate": 0.058,
-        "career_hr_rate": 0.058,
-        "appearance_7d": 5,
-        "hits_7d": 1,
+        "age": 33,
+        "historical_power_index": 0.686,
+        "recent_peak_hr_rate": 0.076,
+        "career_hr_rate": 0.063,
+        "appearance_7d": 6,
+        "hits_7d": 0,
         "evidence": []
       }
     },
@@ -2068,13 +2068,13 @@
         "sim_prob_pct": 64.6
       },
       {
-        "player_id": "808959",
-        "player_name": "Munetaka Murakami",
-        "team": "CWS",
-        "opponent": "CLE",
+        "player_id": "656941",
+        "player_name": "Kyle Schwarber",
+        "team": "PHI",
+        "opponent": "TOR",
         "market": "HR",
         "line": "HR 1+",
-        "sim_prob_pct": 40.2
+        "sim_prob_pct": 41.7
       },
       {
         "player_id": "696100-hits",
@@ -2147,6 +2147,23 @@
       },
       "2B": {
         "position": "2B",
+        "player_id": "656941",
+        "name": "Kyle Schwarber",
+        "team": "PHI",
+        "opponent": "TOR",
+        "market": "HR",
+        "line": "HR 1+",
+        "prob": 0.417,
+        "edge": 0.0,
+        "american": null,
+        "tier": "A",
+        "score": 40.48,
+        "sim_prob_pct": 41.7,
+        "reasoning": "Solid HR by model score",
+        "is_hr": true
+      },
+      "3B": {
+        "position": "3B",
         "player_id": "808959",
         "name": "Munetaka Murakami",
         "team": "CWS",
@@ -2159,23 +2176,6 @@
         "tier": "A",
         "score": 39.04,
         "sim_prob_pct": 40.2,
-        "reasoning": "Solid HR by model score",
-        "is_hr": true
-      },
-      "3B": {
-        "position": "3B",
-        "player_id": "670541",
-        "name": "Yordan Alvarez",
-        "team": "HOU",
-        "opponent": "SD",
-        "market": "HR",
-        "line": "HR 1+",
-        "prob": 0.384,
-        "edge": 0.0,
-        "american": null,
-        "tier": "A",
-        "score": 37.24,
-        "sim_prob_pct": 38.4,
         "reasoning": "Value HR by simulated probability",
         "is_hr": true
       },
@@ -2313,7 +2313,7 @@
             "score": 29.92,
             "confidence": 30,
             "tier": "B",
-            "reason": "HR edge 19.3 | L5 0.00/g | L10 0.20/g | Season 0.28/g | HR% 0.24 | HistHR% 0.24 | OPS 0.899 | SLG 0.553 | ISO 0.284 | PowIdx 0.59 | Surge 0.10 | Matchup 0.22 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.074 | vs Gerrit Cole | ERA 3.42 | WHIP 1.10 | HR/9 1.34 | HR A 11 | Hand R | Platoon + | vsP 0.000/0.067 in 15 PA | Age 32 | Order est. 1 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.53/g | Wts T0.42/M0.28/F0.30",
+            "reason": "HR edge 19.3 | L5 0.00/g | L10 0.20/g | Season 0.28/g | HR% 0.24 | HistHR% 0.24 | OPS 0.899 | SLG 0.553 | ISO 0.284 | PowIdx 0.59 | Surge 0.10 | Matchup 0.22 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.074 | vs Gerrit Cole | ERA 3.42 | WHIP 1.10 | HR/9 1.34 | HR A 11 | Hand R | Platoon + | vsP 0.000/0.087 in 23 PA | Age 32 | Order est. 1 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.53/g | Wts T0.42/M0.28/F0.30",
             "sim_prob_pct": 31.1,
             "ladder": {
               "1": 0.3112,
@@ -2332,7 +2332,7 @@
                 "ticker": "KXMLBHR-26AUG081505ATLNYY-ATLMOLSON28-1",
                 "implied_prob": 0.215,
                 "edge_pp": 9.6,
-                "volume": 2939,
+                "volume": 3629,
                 "decision": "BET",
                 "model_fair_american": 221,
                 "market_american": 365
@@ -2929,7 +2929,7 @@
               "model_prob_raw": 0.589,
               "shrink_pp": 8.5,
               "edge_pp": 6.9,
-              "volume": 92341
+              "volume": 94929
             },
             "decision": "BET"
           }
@@ -2941,11 +2941,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.18,
         "park_factor_rhb": 1.05,
-        "wind_mph": 3,
-        "wind_deg": 225,
+        "wind_mph": 6,
+        "wind_deg": 217,
         "wind_label": "OUT",
         "hr_lean": "HR boost",
-        "summary_chip": "Yankee Stadium \u00b7 3mph OUT (HR boost)"
+        "summary_chip": "Yankee Stadium \u00b7 6mph OUT (HR boost)"
       }
     },
     {
@@ -3559,7 +3559,7 @@
               "model_prob_raw": 0.594,
               "shrink_pp": 8.5,
               "edge_pp": -20.6,
-              "volume": 184668
+              "volume": 203605
             },
             "decision": "PASS"
           }
@@ -3571,11 +3571,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.95,
         "park_factor_rhb": 1.1,
-        "wind_mph": 4,
-        "wind_deg": 223,
+        "wind_mph": 7,
+        "wind_deg": 236,
         "wind_label": "OUT",
         "hr_lean": "HR boost",
-        "summary_chip": "Fenway Park \u00b7 4mph OUT (HR boost)"
+        "summary_chip": "Fenway Park \u00b7 7mph OUT (HR boost)"
       }
     },
     {
@@ -4290,7 +4290,7 @@
               "model_prob_raw": 0.529,
               "shrink_pp": 8.5,
               "edge_pp": -15.1,
-              "volume": 36549
+              "volume": 37142
             },
             "decision": "PASS"
           }
@@ -4318,10 +4318,10 @@
           "market": "HR",
           "player_name": "Kyle Schwarber",
           "line": "HR 1+",
-          "score": 36.88,
-          "confidence": 37,
+          "score": 40.48,
+          "confidence": 40,
           "tier": "A",
-          "sim_prob_pct": 38.1
+          "sim_prob_pct": 41.7
         },
         {
           "market": "RBI",
@@ -4350,45 +4350,45 @@
             "team": "PHI",
             "opponent": "TOR",
             "line": "HR 1+",
-            "score": 36.88,
-            "confidence": 37,
+            "score": 40.48,
+            "confidence": 40,
             "tier": "A",
-            "reason": "HR edge 25.4 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.73 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.333/0.833 in 4 PA | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 38.1,
+            "reason": "HR edge 28.3 | L5 0.40/g | L10 0.30/g | Season 0.30/g | HR% 0.24 | HistHR% 0.26 | OPS 0.883 | SLG 0.521 | ISO 0.278 | PowIdx 0.80 | Surge 0.20 | Matchup 0.94 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Max Scherzer | ERA 7.92 | WHIP 1.63 | HR/9 2.64 | HR A 9 | Hand R | Platoon + | vsP 0.263/0.970 in 23 PA | vsP HR 2 | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 41.7,
             "ladder": {
-              "1": 0.3808,
-              "2": 0.0644
+              "1": 0.4168,
+              "2": 0.0764
             },
-            "calibration_status": "ok",
+            "calibration_status": "flag",
             "baseline_prob_pct": 24.2,
-            "calibration_gap_pp": 13.9,
+            "calibration_gap_pp": 17.5,
             "kalshi_ladder": [
               {
                 "threshold": 1,
                 "line": "1+",
-                "model_prob": 0.3808,
-                "model_prob_raw": 0.3808,
+                "model_prob": 0.4168,
+                "model_prob_raw": 0.4168,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26AUG081805TORPHI-PHIKSCHWARBER12-1",
                 "implied_prob": 0.275,
-                "edge_pp": 10.6,
-                "volume": 6448,
+                "edge_pp": 14.2,
+                "volume": 6931,
                 "decision": "BET",
-                "model_fair_american": 163,
+                "model_fair_american": 140,
                 "market_american": 264
               },
               {
                 "threshold": 2,
                 "line": "2+",
-                "model_prob": 0.0644,
-                "model_prob_raw": 0.0644,
+                "model_prob": 0.0764,
+                "model_prob_raw": 0.0764,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26AUG081805TORPHI-PHIKSCHWARBER12-2",
                 "implied_prob": 0.035,
-                "edge_pp": 2.9,
+                "edge_pp": 4.1,
                 "volume": 1244,
                 "decision": "PASS",
-                "model_fair_american": 1453,
+                "model_fair_american": 1209,
                 "market_american": 2757
               }
             ]
@@ -4421,7 +4421,7 @@
                 "ticker": "KXMLBHR-26AUG081805TORPHI-PHIBHARPER3-1",
                 "implied_prob": 0.205,
                 "edge_pp": 7.5,
-                "volume": 1074,
+                "volume": 1143,
                 "decision": "BET",
                 "model_fair_american": 258,
                 "market_american": 388
@@ -4808,7 +4808,7 @@
             "score": 45.6,
             "confidence": 46,
             "tier": "A",
-            "reason": "Edge 17.6, trend 0.45, matchup 0.75, form 0.35",
+            "reason": "Edge 17.6, trend 0.45, matchup 0.80, form 0.35",
             "sim_prob_pct": 46.8,
             "calibration_status": "ok",
             "baseline_prob_pct": 42.5,
@@ -4969,7 +4969,7 @@
               "model_prob_raw": 0.566,
               "shrink_pp": 8.5,
               "edge_pp": -11.4,
-              "volume": 15585
+              "volume": 16074
             },
             "decision": "PASS"
           }
@@ -4982,7 +4982,7 @@
         "park_factor_lhb": 1.1,
         "park_factor_rhb": 1.1,
         "wind_mph": 4,
-        "wind_deg": 227,
+        "wind_deg": 238,
         "wind_label": "OUT",
         "hr_lean": "HR boost",
         "summary_chip": "Citizens Bank Park \u00b7 4mph OUT (HR boost)"
@@ -5648,7 +5648,7 @@
               "model_prob_raw": 0.52,
               "shrink_pp": 8.5,
               "edge_pp": -13.0,
-              "volume": 16176
+              "volume": 16687
             },
             "decision": "PASS"
           }
@@ -5660,11 +5660,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.85,
         "park_factor_rhb": 0.9,
-        "wind_mph": 3,
-        "wind_deg": 42,
-        "wind_label": "CROSS",
+        "wind_mph": 4,
+        "wind_deg": 158,
+        "wind_label": "IN",
         "hr_lean": "HR suppress",
-        "summary_chip": "PNC Park \u00b7 3mph CROSS (HR suppress)"
+        "summary_chip": "PNC Park \u00b7 4mph IN (HR suppress)"
       }
     },
     {
@@ -5730,7 +5730,7 @@
                 "ticker": "KXMLBHR-26AUG081845CINWSH-WSHCABRAMS5-1",
                 "implied_prob": 0.185,
                 "edge_pp": 13.1,
-                "volume": 36,
+                "volume": 101,
                 "decision": "BET",
                 "model_fair_american": 216,
                 "market_american": 441
@@ -6402,7 +6402,7 @@
             "score": 29.08,
             "confidence": 29,
             "tier": "B",
-            "reason": "Edge 2.2, trend 0.35, matchup 0.24, form 0.15",
+            "reason": "Edge 2.2, trend 0.35, matchup 0.22, form 0.15",
             "sim_prob_pct": 30.3,
             "calibration_status": "ok",
             "baseline_prob_pct": 28.9,
@@ -6428,7 +6428,7 @@
               "model_prob_raw": 0.527,
               "shrink_pp": 8.5,
               "edge_pp": 1.7,
-              "volume": 6217
+              "volume": 6363
             },
             "decision": "PASS"
           }
@@ -6441,7 +6441,7 @@
         "park_factor_lhb": 1.0,
         "park_factor_rhb": 0.99,
         "wind_mph": 4,
-        "wind_deg": 194,
+        "wind_deg": 195,
         "wind_label": "OUT",
         "hr_lean": "HR boost",
         "summary_chip": "Nationals Park \u00b7 4mph OUT (HR boost)"
@@ -6456,10 +6456,10 @@
           "market": "HR",
           "player_name": "Pete Crow-Armstrong",
           "line": "HR 1+",
-          "score": 27.52,
-          "confidence": 28,
+          "score": 26.76,
+          "confidence": 27,
           "tier": "B",
-          "sim_prob_pct": 28.7
+          "sim_prob_pct": 28.0
         },
         {
           "market": "RBI",
@@ -6488,32 +6488,32 @@
             "team": "CHC",
             "opponent": "KC",
             "line": "HR 1+",
-            "score": 27.52,
-            "confidence": 28,
+            "score": 26.76,
+            "confidence": 27,
             "tier": "B",
-            "reason": "HR edge 15.2 | L5 0.00/g | L10 0.00/g | Season 0.22/g | HR% 0.19 | HistHR% 0.17 | OPS 0.937 | SLG 0.549 | ISO 0.260 | PowIdx 0.54 | Surge 0.18 | Matchup 0.41 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.047 | vs Seth Lugo | ERA 4.41 | WHIP 1.39 | HR/9 1.05 | HR A 15 | Hand R | Platoon + | vsP 0.500/2.000 in 2 PA | Age 24 | Order est. 3 | Lineup pen 1.2 | Power due 0.50 | Rising 0.53 | Season XBH 0.47/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 28.7,
+            "reason": "HR edge 14.4 | L5 0.00/g | L10 0.00/g | Season 0.22/g | HR% 0.19 | HistHR% 0.17 | OPS 0.937 | SLG 0.549 | ISO 0.260 | PowIdx 0.52 | Surge 0.18 | Matchup 0.41 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.047 | vs Seth Lugo | ERA 4.41 | WHIP 1.39 | HR/9 1.05 | HR A 15 | Hand R | Platoon + | vsP 0.200/0.800 in 5 PA | Age 24 | Order est. 3 | Lineup pen 1.2 | Power due 0.50 | Rising 0.53 | Season XBH 0.47/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 28.0,
             "ladder": {
-              "1": 0.2872,
+              "1": 0.2796,
               "2": 0.0332
             },
             "calibration_status": "ok",
             "baseline_prob_pct": 18.7,
-            "calibration_gap_pp": 10.0,
+            "calibration_gap_pp": 9.3,
             "kalshi_ladder": [
               {
                 "threshold": 1,
                 "line": "1+",
-                "model_prob": 0.2872,
-                "model_prob_raw": 0.2872,
+                "model_prob": 0.2796,
+                "model_prob_raw": 0.2796,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26AUG081910CHCKC-CHCPCROWARMSTRONG4-1",
-                "implied_prob": 0.175,
-                "edge_pp": 11.2,
-                "volume": 1918,
+                "implied_prob": 0.185,
+                "edge_pp": 9.5,
+                "volume": 2270,
                 "decision": "BET",
-                "model_fair_american": 248,
-                "market_american": 471
+                "model_fair_american": 258,
+                "market_american": 441
               },
               {
                 "threshold": 2,
@@ -6522,12 +6522,12 @@
                 "model_prob_raw": 0.0332,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26AUG081910CHCKC-CHCPCROWARMSTRONG4-2",
-                "implied_prob": 0.02,
-                "edge_pp": 1.3,
+                "implied_prob": 0.025,
+                "edge_pp": 0.8,
                 "volume": 0,
                 "decision": "PASS",
                 "model_fair_american": 2912,
-                "market_american": 4900
+                "market_american": 3900
               }
             ]
           },
@@ -6540,7 +6540,7 @@
             "score": 24.64,
             "confidence": 25,
             "tier": "B",
-            "reason": "HR edge 13.2 | L5 0.60/g | L10 0.40/g | Season 0.16/g | HR% 0.15 | HistHR% 0.15 | OPS 0.720 | SLG 0.400 | ISO 0.191 | PowIdx 0.35 | Surge 0.31 | Matchup 0.41 | ProjPA 4.2 | Sample 1.00 | Peak3Y 0.038 | vs Seth Lugo | ERA 4.41 | WHIP 1.39 | HR/9 1.05 | HR A 15 | Hand R | Platoon + | vsP 0.182/0.432 in 12 PA | Age 31 | Order est. 5 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.36/g | Wts T0.42/M0.28/F0.30",
+            "reason": "HR edge 13.2 | L5 0.60/g | L10 0.40/g | Season 0.16/g | HR% 0.15 | HistHR% 0.15 | OPS 0.720 | SLG 0.400 | ISO 0.191 | PowIdx 0.35 | Surge 0.31 | Matchup 0.41 | ProjPA 4.2 | Sample 1.00 | Peak3Y 0.038 | vs Seth Lugo | ERA 4.41 | WHIP 1.39 | HR/9 1.05 | HR A 15 | Hand R | Platoon + | vsP 0.000/0.000 in 2 PA | Age 31 | Order est. 5 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.36/g | Wts T0.42/M0.28/F0.30",
             "sim_prob_pct": 25.8,
             "ladder": {
               "1": 0.2584,
@@ -6794,7 +6794,7 @@
             "score": 92.04,
             "confidence": 92,
             "tier": "A",
-            "reason": "Edge 58.0, trend 0.50, matchup 0.21, form 0.29",
+            "reason": "Edge 58.0, trend 0.50, matchup 0.22, form 0.29",
             "sim_prob_pct": 93.2,
             "calibration_status": "flag",
             "baseline_prob_pct": 73.1,
@@ -6809,7 +6809,7 @@
             "score": 91.12,
             "confidence": 91,
             "tier": "A",
-            "reason": "Edge 54.8, trend 0.50, matchup 0.38, form 0.40",
+            "reason": "Edge 54.8, trend 0.50, matchup 0.36, form 0.40",
             "sim_prob_pct": 92.3,
             "calibration_status": "flag",
             "baseline_prob_pct": 69.6,
@@ -6839,7 +6839,7 @@
             "score": 89.32,
             "confidence": 89,
             "tier": "A",
-            "reason": "Edge 51.7, trend 0.40, matchup 0.29, form 0.15",
+            "reason": "Edge 51.7, trend 0.40, matchup 0.28, form 0.15",
             "sim_prob_pct": 90.5,
             "calibration_status": "flag",
             "baseline_prob_pct": 70.5,
@@ -7021,7 +7021,7 @@
             "score": 34.84,
             "confidence": 35,
             "tier": "B",
-            "reason": "Edge 8.0, trend 0.25, matchup 0.47, form 0.43",
+            "reason": "Edge 8.0, trend 0.25, matchup 0.46, form 0.43",
             "sim_prob_pct": 36.0,
             "calibration_status": "ok",
             "baseline_prob_pct": 48.0,
@@ -7051,7 +7051,7 @@
             "score": 32.08,
             "confidence": 32,
             "tier": "B",
-            "reason": "Edge 5.8, trend 0.25, matchup 0.23, form 0.29",
+            "reason": "Edge 5.8, trend 0.25, matchup 0.24, form 0.29",
             "sim_prob_pct": 33.3,
             "calibration_status": "ok",
             "baseline_prob_pct": 46.0,
@@ -7066,7 +7066,7 @@
             "score": 30.44,
             "confidence": 30,
             "tier": "B",
-            "reason": "Edge 6.4, trend 0.30, matchup 0.34, form 0.13",
+            "reason": "Edge 6.4, trend 0.30, matchup 0.33, form 0.13",
             "sim_prob_pct": 31.6,
             "calibration_status": "ok",
             "baseline_prob_pct": 39.6,
@@ -7107,7 +7107,7 @@
               "model_prob_raw": 0.576,
               "shrink_pp": 8.5,
               "edge_pp": -12.4,
-              "volume": 23736
+              "volume": 25147
             },
             "decision": "PASS"
           }
@@ -7120,7 +7120,7 @@
         "park_factor_lhb": 0.86,
         "park_factor_rhb": 0.88,
         "wind_mph": 4,
-        "wind_deg": 186,
+        "wind_deg": 193,
         "wind_label": "OUT",
         "hr_lean": "neutral",
         "summary_chip": "Kauffman Stadium \u00b7 4mph OUT"
@@ -7737,7 +7737,7 @@
               "model_prob_raw": 0.663,
               "shrink_pp": 21.6,
               "edge_pp": -13.8,
-              "volume": 21765
+              "volume": 23460
             },
             "decision": "PASS"
           }
@@ -7819,7 +7819,7 @@
                 "ticker": "KXMLBHR-26AUG081915HOUSD-HOUYALVAREZ44-1",
                 "implied_prob": 0.235,
                 "edge_pp": 14.9,
-                "volume": 2119,
+                "volume": 2139,
                 "decision": "BET",
                 "model_fair_american": 160,
                 "market_american": 326
@@ -8005,7 +8005,7 @@
             "score": 92.96,
             "confidence": 93,
             "tier": "A",
-            "reason": "Edge 58.0, trend 0.70, matchup 0.21, form 0.17",
+            "reason": "Edge 58.0, trend 0.70, matchup 0.20, form 0.17",
             "sim_prob_pct": 94.2,
             "calibration_status": "flag",
             "baseline_prob_pct": 32.0,
@@ -8140,7 +8140,7 @@
             "score": 82.16,
             "confidence": 82,
             "tier": "A",
-            "reason": "Edge 40.4, trend 0.40, matchup 0.24, form 0.14",
+            "reason": "Edge 40.4, trend 0.40, matchup 0.21, form 0.14",
             "sim_prob_pct": 83.4,
             "calibration_status": "flag",
             "baseline_prob_pct": 64.4,
@@ -8187,7 +8187,7 @@
             "score": 49.36,
             "confidence": 49,
             "tier": "A",
-            "reason": "Edge 20.2, trend 0.70, matchup 0.24, form 0.15",
+            "reason": "Edge 20.2, trend 0.70, matchup 0.23, form 0.15",
             "sim_prob_pct": 50.6,
             "calibration_status": "ok",
             "baseline_prob_pct": 43.8,
@@ -8318,7 +8318,7 @@
               "model_prob_raw": 0.55,
               "shrink_pp": 8.5,
               "edge_pp": -7.0,
-              "volume": 9137
+              "volume": 9183
             },
             "decision": "PASS"
           }
@@ -8330,11 +8330,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.9,
         "park_factor_rhb": 0.92,
-        "wind_mph": 2,
-        "wind_deg": 72,
+        "wind_mph": 3,
+        "wind_deg": 63,
         "wind_label": "IN",
         "hr_lean": "HR suppress",
-        "summary_chip": "Petco Park \u00b7 2mph IN (HR suppress)"
+        "summary_chip": "Petco Park \u00b7 3mph IN (HR suppress)"
       }
     },
     {
@@ -8620,7 +8620,7 @@
             "score": 92.28,
             "confidence": 92,
             "tier": "A",
-            "reason": "Edge 58.0, trend 0.70, matchup 0.29, form 0.22",
+            "reason": "Edge 58.0, trend 0.70, matchup 0.30, form 0.22",
             "sim_prob_pct": 93.5,
             "calibration_status": "flag",
             "baseline_prob_pct": 22.2,
@@ -8802,7 +8802,7 @@
             "score": 37.32,
             "confidence": 37,
             "tier": "A",
-            "reason": "Edge 10.7, trend 0.50, matchup 0.34, form 0.20",
+            "reason": "Edge 10.7, trend 0.50, matchup 0.35, form 0.20",
             "sim_prob_pct": 38.5,
             "calibration_status": "ok",
             "baseline_prob_pct": 34.4,
@@ -8933,7 +8933,7 @@
               "model_prob_raw": 0.477,
               "shrink_pp": 0.0,
               "edge_pp": -2.8,
-              "volume": 18508
+              "volume": 19016
             },
             "decision": "PASS"
           }
@@ -8946,7 +8946,7 @@
         "park_factor_lhb": 0.8,
         "park_factor_rhb": 0.95,
         "wind_mph": 7,
-        "wind_deg": 255,
+        "wind_deg": 256,
         "wind_label": "OUT",
         "hr_lean": "neutral",
         "summary_chip": "Oracle Park \u00b7 7mph OUT"
@@ -9612,7 +9612,7 @@
               "model_prob_raw": 0.533,
               "shrink_pp": 8.5,
               "edge_pp": -14.7,
-              "volume": 18112
+              "volume": 18654
             },
             "decision": "PASS"
           }
@@ -9624,11 +9624,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.93,
         "park_factor_rhb": 0.95,
-        "wind_mph": 1,
-        "wind_deg": 59,
-        "wind_label": "IN",
+        "wind_mph": 2,
+        "wind_deg": 139,
+        "wind_label": "CROSS",
         "hr_lean": "HR suppress",
-        "summary_chip": "Busch Stadium \u00b7 1mph IN (HR suppress)"
+        "summary_chip": "Busch Stadium \u00b7 2mph CROSS (HR suppress)"
       }
     },
     {
@@ -9712,55 +9712,6 @@
                 "decision": "NO_MARKET",
                 "model_fair_american": 4067,
                 "market_american": null
-              }
-            ]
-          },
-          {
-            "player_id": "624413",
-            "player_name": "Pete Alonso",
-            "team": "BAL",
-            "opponent": "TEX",
-            "line": "HR 1+",
-            "score": 22.92,
-            "confidence": 23,
-            "tier": "B",
-            "reason": "HR edge 13.4 | L5 0.20/g | L10 0.10/g | Season 0.20/g | HR% 0.18 | HistHR% 0.24 | OPS 0.795 | SLG 0.454 | ISO 0.207 | PowIdx 0.43 | Surge 0.11 | Matchup 0.27 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.069 | vs Jacob deGrom | ERA 3.96 | WHIP 1.14 | HR/9 1.27 | HR A 16 | Hand R | Platoon - | vsP 0.500/1.650 in 5 PA | vsP HR 1 | Age 31 | Order est. 2 | Lineup pen 1.2 | Power due 0.31 | L5 XBH 0.20/g | Season XBH 0.38/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 24.1,
-            "ladder": {
-              "1": 0.2412,
-              "2": 0.0236
-            },
-            "calibration_status": "ok",
-            "baseline_prob_pct": 17.1,
-            "calibration_gap_pp": 7.0,
-            "kalshi_ladder": [
-              {
-                "threshold": 1,
-                "line": "1+",
-                "model_prob": 0.2412,
-                "model_prob_raw": 0.2412,
-                "shrink_pp": 0.0,
-                "ticker": "KXMLBHR-26AUG081915BALTEX-BALPALONSO25-1",
-                "implied_prob": 0.175,
-                "edge_pp": 6.6,
-                "volume": 14,
-                "decision": "BET",
-                "model_fair_american": 315,
-                "market_american": 471
-              },
-              {
-                "threshold": 2,
-                "line": "2+",
-                "model_prob": 0.0236,
-                "model_prob_raw": 0.0236,
-                "shrink_pp": 0.0,
-                "ticker": "KXMLBHR-26AUG081915BALTEX-BALPALONSO25-2",
-                "implied_prob": 0.02,
-                "edge_pp": 0.4,
-                "volume": 0,
-                "decision": "PASS",
-                "model_fair_american": 4137,
-                "market_american": 4900
               }
             ]
           },
@@ -10109,7 +10060,7 @@
             "score": 87.68,
             "confidence": 88,
             "tier": "A",
-            "reason": "Edge 51.5, trend 0.60, matchup 0.26, form 0.25",
+            "reason": "Edge 51.5, trend 0.60, matchup 0.23, form 0.25",
             "sim_prob_pct": 88.9,
             "calibration_status": "flag",
             "baseline_prob_pct": 64.9,
@@ -10306,7 +10257,7 @@
             "score": 37.64,
             "confidence": 38,
             "tier": "A",
-            "reason": "Edge 10.6, trend 0.45, matchup 0.31, form 0.25",
+            "reason": "Edge 10.6, trend 0.45, matchup 0.28, form 0.25",
             "sim_prob_pct": 38.8,
             "calibration_status": "ok",
             "baseline_prob_pct": 41.4,
@@ -10392,7 +10343,7 @@
               "model_prob_raw": 0.528,
               "shrink_pp": 8.5,
               "edge_pp": -13.2,
-              "volume": 19318
+              "volume": 20022
             },
             "decision": "PASS"
           }
@@ -10545,6 +10496,55 @@
             ]
           },
           {
+            "player_id": "678246",
+            "player_name": "Miguel Vargas",
+            "team": "CWS",
+            "opponent": "CLE",
+            "line": "HR 1+",
+            "score": 26.08,
+            "confidence": 26,
+            "tier": "B",
+            "reason": "HR edge 14.0 | L5 0.20/g | L10 0.10/g | Season 0.21/g | HR% 0.19 | HistHR% 0.12 | OPS 0.809 | SLG 0.468 | ISO 0.234 | PowIdx 0.44 | Surge 0.17 | Matchup 0.24 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.028 | vs Gavin Williams | ERA 3.56 | WHIP 1.04 | HR/9 1.36 | HR A 21 | Hand R | Platoon - | vsP 0.500/1.420 in 11 PA | vsP HR 1 | Age 26 | Order est. 1 | Lineup pen 1.2 | Rising 0.47 | L5 XBH 0.40/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 27.3,
+            "ladder": {
+              "1": 0.2728,
+              "2": 0.034
+            },
+            "calibration_status": "ok",
+            "baseline_prob_pct": 17.9,
+            "calibration_gap_pp": 9.4,
+            "kalshi_ladder": [
+              {
+                "threshold": 1,
+                "line": "1+",
+                "model_prob": 0.2728,
+                "model_prob_raw": 0.2728,
+                "shrink_pp": 0.0,
+                "ticker": null,
+                "implied_prob": null,
+                "edge_pp": null,
+                "volume": 0,
+                "decision": "NO_MARKET",
+                "model_fair_american": 267,
+                "market_american": null
+              },
+              {
+                "threshold": 2,
+                "line": "2+",
+                "model_prob": 0.034,
+                "model_prob_raw": 0.034,
+                "shrink_pp": 0.0,
+                "ticker": null,
+                "implied_prob": null,
+                "edge_pp": null,
+                "volume": 0,
+                "decision": "NO_MARKET",
+                "model_fair_american": 2841,
+                "market_american": null
+              }
+            ]
+          },
+          {
             "player_id": "800050",
             "player_name": "Chase DeLauter",
             "team": "CLE",
@@ -10589,55 +10589,6 @@
                 "volume": 0,
                 "decision": "NO_MARKET",
                 "model_fair_american": 2807,
-                "market_american": null
-              }
-            ]
-          },
-          {
-            "player_id": "678246",
-            "player_name": "Miguel Vargas",
-            "team": "CWS",
-            "opponent": "CLE",
-            "line": "HR 1+",
-            "score": 22.56,
-            "confidence": 23,
-            "tier": "B",
-            "reason": "HR edge 10.9 | L5 0.20/g | L10 0.10/g | Season 0.21/g | HR% 0.19 | HistHR% 0.12 | OPS 0.809 | SLG 0.468 | ISO 0.234 | PowIdx 0.37 | Surge 0.17 | Matchup 0.24 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.028 | vs Gavin Williams | ERA 3.56 | WHIP 1.04 | HR/9 1.36 | HR A 21 | Hand R | Platoon - | vsP 0.333/0.733 in 5 PA | Age 26 | Order est. 1 | Lineup pen 1.2 | Rising 0.47 | L5 XBH 0.40/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 23.8,
-            "ladder": {
-              "1": 0.2376,
-              "2": 0.0256
-            },
-            "calibration_status": "ok",
-            "baseline_prob_pct": 17.9,
-            "calibration_gap_pp": 5.9,
-            "kalshi_ladder": [
-              {
-                "threshold": 1,
-                "line": "1+",
-                "model_prob": 0.2376,
-                "model_prob_raw": 0.2376,
-                "shrink_pp": 0.0,
-                "ticker": null,
-                "implied_prob": null,
-                "edge_pp": null,
-                "volume": 0,
-                "decision": "NO_MARKET",
-                "model_fair_american": 321,
-                "market_american": null
-              },
-              {
-                "threshold": 2,
-                "line": "2+",
-                "model_prob": 0.0256,
-                "model_prob_raw": 0.0256,
-                "shrink_pp": 0.0,
-                "ticker": null,
-                "implied_prob": null,
-                "edge_pp": null,
-                "volume": 0,
-                "decision": "NO_MARKET",
-                "model_fair_american": 3806,
                 "market_american": null
               }
             ]
@@ -10870,7 +10821,7 @@
             "score": 85.16,
             "confidence": 85,
             "tier": "A",
-            "reason": "Edge 45.1, trend 0.50, matchup 0.22, form 0.26",
+            "reason": "Edge 45.1, trend 0.50, matchup 0.29, form 0.26",
             "sim_prob_pct": 86.4,
             "calibration_status": "flag",
             "baseline_prob_pct": 66.7,
@@ -10992,7 +10943,7 @@
             "score": 42.32,
             "confidence": 42,
             "tier": "A",
-            "reason": "Edge 14.5, trend 0.45, matchup 0.28, form 0.26",
+            "reason": "Edge 14.5, trend 0.45, matchup 0.34, form 0.26",
             "sim_prob_pct": 43.5,
             "calibration_status": "ok",
             "baseline_prob_pct": 45.3,
@@ -11123,7 +11074,7 @@
               "model_prob_raw": 0.557,
               "shrink_pp": 8.5,
               "edge_pp": 1.7,
-              "volume": 18799
+              "volume": 19136
             },
             "decision": "PASS"
           }
@@ -11205,7 +11156,7 @@
                 "ticker": "KXMLBHR-26AUG082010LADAZ-LADSOHTANI17-1",
                 "implied_prob": 0.235,
                 "edge_pp": 8.1,
-                "volume": 449,
+                "volume": 851,
                 "decision": "BET",
                 "model_fair_american": 216,
                 "market_american": 326
@@ -11219,7 +11170,7 @@
                 "ticker": "KXMLBHR-26AUG082010LADAZ-LADSOHTANI17-2",
                 "implied_prob": 0.025,
                 "edge_pp": 2.0,
-                "volume": 34,
+                "volume": 275,
                 "decision": "PASS",
                 "model_fair_american": 2112,
                 "market_american": 3900
@@ -11756,7 +11707,7 @@
               "model_prob_raw": 0.568,
               "shrink_pp": 8.5,
               "edge_pp": -14.2,
-              "volume": 133970
+              "volume": 137354
             },
             "decision": "PASS"
           }
@@ -11838,7 +11789,7 @@
                 "ticker": "KXMLBHR-26AUG082150TBSEA-TBJCAMINERO13-1",
                 "implied_prob": 0.185,
                 "edge_pp": 15.0,
-                "volume": 620,
+                "volume": 670,
                 "decision": "BET",
                 "model_fair_american": 198,
                 "market_american": 441
@@ -12143,7 +12094,7 @@
             "score": 92.0,
             "confidence": 92,
             "tier": "A",
-            "reason": "Edge 58.0, trend 0.60, matchup 0.25, form 0.18",
+            "reason": "Edge 58.0, trend 0.60, matchup 0.28, form 0.18",
             "sim_prob_pct": 93.2,
             "calibration_status": "flag",
             "baseline_prob_pct": 73.0,
@@ -12385,7 +12336,7 @@
             "score": 36.12,
             "confidence": 36,
             "tier": "A",
-            "reason": "Edge 8.8, trend 0.35, matchup 0.28, form 0.16",
+            "reason": "Edge 8.8, trend 0.35, matchup 0.31, form 0.16",
             "sim_prob_pct": 37.3,
             "calibration_status": "ok",
             "baseline_prob_pct": 40.7,
@@ -12441,7 +12392,7 @@
               "model_prob_raw": 0.584,
               "shrink_pp": 8.5,
               "edge_pp": 1.4,
-              "volume": 62059
+              "volume": 62876
             },
             "decision": "PASS"
           }
@@ -12486,7 +12437,7 @@
         "decision": "BET",
         "model_fair_american": -102,
         "market_american": 130,
-        "volume": 92341,
+        "volume": 94929,
         "label": "REPORT_ONLY \u2014 no execution venue wired"
       }
     ]
@@ -12519,7 +12470,7 @@
           "ticker": "KXMLBHR-26AUG082150TBSEA-TBJCAMINERO13-1",
           "implied_prob": 0.185,
           "edge_pp": 15.0,
-          "volume": 620,
+          "volume": 670,
           "decision": "BET",
           "model_fair_american": 198,
           "market_american": 441
@@ -12534,7 +12485,7 @@
             "ticker": "KXMLBHR-26AUG082150TBSEA-TBJCAMINERO13-1",
             "implied_prob": 0.185,
             "edge_pp": 15.0,
-            "volume": 620,
+            "volume": 670,
             "decision": "BET",
             "model_fair_american": 198,
             "market_american": 441
@@ -12573,7 +12524,7 @@
           "ticker": "KXMLBHR-26AUG081915HOUSD-HOUYALVAREZ44-1",
           "implied_prob": 0.235,
           "edge_pp": 14.9,
-          "volume": 2119,
+          "volume": 2139,
           "decision": "BET",
           "model_fair_american": 160,
           "market_american": 326
@@ -12588,7 +12539,7 @@
             "ticker": "KXMLBHR-26AUG081915HOUSD-HOUYALVAREZ44-1",
             "implied_prob": 0.235,
             "edge_pp": 14.9,
-            "volume": 2119,
+            "volume": 2139,
             "decision": "BET",
             "model_fair_american": 160,
             "market_american": 326
@@ -12611,6 +12562,60 @@
         "label": "REPORT_ONLY \u2014 no execution venue wired"
       },
       {
+        "player_id": "656941",
+        "player_name": "Kyle Schwarber",
+        "team": "PHI",
+        "opponent": "TOR",
+        "market": "HR",
+        "game_id": "tor-phi-2026-08-08",
+        "headline_line": "HR 1+",
+        "best": {
+          "threshold": 1,
+          "line": "1+",
+          "model_prob": 0.4168,
+          "model_prob_raw": 0.4168,
+          "shrink_pp": 0.0,
+          "ticker": "KXMLBHR-26AUG081805TORPHI-PHIKSCHWARBER12-1",
+          "implied_prob": 0.275,
+          "edge_pp": 14.2,
+          "volume": 6931,
+          "decision": "BET",
+          "model_fair_american": 140,
+          "market_american": 264
+        },
+        "ladder": [
+          {
+            "threshold": 1,
+            "line": "1+",
+            "model_prob": 0.4168,
+            "model_prob_raw": 0.4168,
+            "shrink_pp": 0.0,
+            "ticker": "KXMLBHR-26AUG081805TORPHI-PHIKSCHWARBER12-1",
+            "implied_prob": 0.275,
+            "edge_pp": 14.2,
+            "volume": 6931,
+            "decision": "BET",
+            "model_fair_american": 140,
+            "market_american": 264
+          },
+          {
+            "threshold": 2,
+            "line": "2+",
+            "model_prob": 0.0764,
+            "model_prob_raw": 0.0764,
+            "shrink_pp": 0.0,
+            "ticker": "KXMLBHR-26AUG081805TORPHI-PHIKSCHWARBER12-2",
+            "implied_prob": 0.035,
+            "edge_pp": 4.1,
+            "volume": 1244,
+            "decision": "PASS",
+            "model_fair_american": 1209,
+            "market_american": 2757
+          }
+        ],
+        "label": "REPORT_ONLY \u2014 no execution venue wired"
+      },
+      {
         "player_id": "682928",
         "player_name": "CJ Abrams",
         "team": "WSH",
@@ -12627,7 +12632,7 @@
           "ticker": "KXMLBHR-26AUG081845CINWSH-WSHCABRAMS5-1",
           "implied_prob": 0.185,
           "edge_pp": 13.1,
-          "volume": 36,
+          "volume": 101,
           "decision": "BET",
           "model_fair_american": 216,
           "market_american": 441
@@ -12642,7 +12647,7 @@
             "ticker": "KXMLBHR-26AUG081845CINWSH-WSHCABRAMS5-1",
             "implied_prob": 0.185,
             "edge_pp": 13.1,
-            "volume": 36,
+            "volume": 101,
             "decision": "BET",
             "model_fair_american": 216,
             "market_american": 441
@@ -12719,114 +12724,6 @@
         "label": "REPORT_ONLY \u2014 no execution venue wired"
       },
       {
-        "player_id": "691718",
-        "player_name": "Pete Crow-Armstrong",
-        "team": "CHC",
-        "opponent": "KC",
-        "market": "HR",
-        "game_id": "chc-kc-2026-08-08",
-        "headline_line": "HR 1+",
-        "best": {
-          "threshold": 1,
-          "line": "1+",
-          "model_prob": 0.2872,
-          "model_prob_raw": 0.2872,
-          "shrink_pp": 0.0,
-          "ticker": "KXMLBHR-26AUG081910CHCKC-CHCPCROWARMSTRONG4-1",
-          "implied_prob": 0.175,
-          "edge_pp": 11.2,
-          "volume": 1918,
-          "decision": "BET",
-          "model_fair_american": 248,
-          "market_american": 471
-        },
-        "ladder": [
-          {
-            "threshold": 1,
-            "line": "1+",
-            "model_prob": 0.2872,
-            "model_prob_raw": 0.2872,
-            "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26AUG081910CHCKC-CHCPCROWARMSTRONG4-1",
-            "implied_prob": 0.175,
-            "edge_pp": 11.2,
-            "volume": 1918,
-            "decision": "BET",
-            "model_fair_american": 248,
-            "market_american": 471
-          },
-          {
-            "threshold": 2,
-            "line": "2+",
-            "model_prob": 0.0332,
-            "model_prob_raw": 0.0332,
-            "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26AUG081910CHCKC-CHCPCROWARMSTRONG4-2",
-            "implied_prob": 0.02,
-            "edge_pp": 1.3,
-            "volume": 0,
-            "decision": "PASS",
-            "model_fair_american": 2912,
-            "market_american": 4900
-          }
-        ],
-        "label": "REPORT_ONLY \u2014 no execution venue wired"
-      },
-      {
-        "player_id": "656941",
-        "player_name": "Kyle Schwarber",
-        "team": "PHI",
-        "opponent": "TOR",
-        "market": "HR",
-        "game_id": "tor-phi-2026-08-08",
-        "headline_line": "HR 1+",
-        "best": {
-          "threshold": 1,
-          "line": "1+",
-          "model_prob": 0.3808,
-          "model_prob_raw": 0.3808,
-          "shrink_pp": 0.0,
-          "ticker": "KXMLBHR-26AUG081805TORPHI-PHIKSCHWARBER12-1",
-          "implied_prob": 0.275,
-          "edge_pp": 10.6,
-          "volume": 6448,
-          "decision": "BET",
-          "model_fair_american": 163,
-          "market_american": 264
-        },
-        "ladder": [
-          {
-            "threshold": 1,
-            "line": "1+",
-            "model_prob": 0.3808,
-            "model_prob_raw": 0.3808,
-            "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26AUG081805TORPHI-PHIKSCHWARBER12-1",
-            "implied_prob": 0.275,
-            "edge_pp": 10.6,
-            "volume": 6448,
-            "decision": "BET",
-            "model_fair_american": 163,
-            "market_american": 264
-          },
-          {
-            "threshold": 2,
-            "line": "2+",
-            "model_prob": 0.0644,
-            "model_prob_raw": 0.0644,
-            "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26AUG081805TORPHI-PHIKSCHWARBER12-2",
-            "implied_prob": 0.035,
-            "edge_pp": 2.9,
-            "volume": 1244,
-            "decision": "PASS",
-            "model_fair_american": 1453,
-            "market_american": 2757
-          }
-        ],
-        "label": "REPORT_ONLY \u2014 no execution venue wired"
-      },
-      {
         "player_id": "545361",
         "player_name": "Mike Trout",
         "team": "LAA",
@@ -12897,7 +12794,7 @@
           "ticker": "KXMLBHR-26AUG081505ATLNYY-ATLMOLSON28-1",
           "implied_prob": 0.215,
           "edge_pp": 9.6,
-          "volume": 2939,
+          "volume": 3629,
           "decision": "BET",
           "model_fair_american": 221,
           "market_american": 365
@@ -12912,7 +12809,7 @@
             "ticker": "KXMLBHR-26AUG081505ATLNYY-ATLMOLSON28-1",
             "implied_prob": 0.215,
             "edge_pp": 9.6,
-            "volume": 2939,
+            "volume": 3629,
             "decision": "BET",
             "model_fair_american": 221,
             "market_american": 365
@@ -12929,6 +12826,60 @@
             "volume": 220,
             "decision": "PASS",
             "model_fair_american": 1933,
+            "market_american": 3900
+          }
+        ],
+        "label": "REPORT_ONLY \u2014 no execution venue wired"
+      },
+      {
+        "player_id": "691718",
+        "player_name": "Pete Crow-Armstrong",
+        "team": "CHC",
+        "opponent": "KC",
+        "market": "HR",
+        "game_id": "chc-kc-2026-08-08",
+        "headline_line": "HR 1+",
+        "best": {
+          "threshold": 1,
+          "line": "1+",
+          "model_prob": 0.2796,
+          "model_prob_raw": 0.2796,
+          "shrink_pp": 0.0,
+          "ticker": "KXMLBHR-26AUG081910CHCKC-CHCPCROWARMSTRONG4-1",
+          "implied_prob": 0.185,
+          "edge_pp": 9.5,
+          "volume": 2270,
+          "decision": "BET",
+          "model_fair_american": 258,
+          "market_american": 441
+        },
+        "ladder": [
+          {
+            "threshold": 1,
+            "line": "1+",
+            "model_prob": 0.2796,
+            "model_prob_raw": 0.2796,
+            "shrink_pp": 0.0,
+            "ticker": "KXMLBHR-26AUG081910CHCKC-CHCPCROWARMSTRONG4-1",
+            "implied_prob": 0.185,
+            "edge_pp": 9.5,
+            "volume": 2270,
+            "decision": "BET",
+            "model_fair_american": 258,
+            "market_american": 441
+          },
+          {
+            "threshold": 2,
+            "line": "2+",
+            "model_prob": 0.0332,
+            "model_prob_raw": 0.0332,
+            "shrink_pp": 0.0,
+            "ticker": "KXMLBHR-26AUG081910CHCKC-CHCPCROWARMSTRONG4-2",
+            "implied_prob": 0.025,
+            "edge_pp": 0.8,
+            "volume": 0,
+            "decision": "PASS",
+            "model_fair_american": 2912,
             "market_american": 3900
           }
         ],
@@ -13059,7 +13010,7 @@
           "ticker": "KXMLBHR-26AUG082010LADAZ-LADSOHTANI17-1",
           "implied_prob": 0.235,
           "edge_pp": 8.1,
-          "volume": 449,
+          "volume": 851,
           "decision": "BET",
           "model_fair_american": 216,
           "market_american": 326
@@ -13074,7 +13025,7 @@
             "ticker": "KXMLBHR-26AUG082010LADAZ-LADSOHTANI17-1",
             "implied_prob": 0.235,
             "edge_pp": 8.1,
-            "volume": 449,
+            "volume": 851,
             "decision": "BET",
             "model_fair_american": 216,
             "market_american": 326
@@ -13088,7 +13039,7 @@
             "ticker": "KXMLBHR-26AUG082010LADAZ-LADSOHTANI17-2",
             "implied_prob": 0.025,
             "edge_pp": 2.0,
-            "volume": 34,
+            "volume": 275,
             "decision": "PASS",
             "model_fair_american": 2112,
             "market_american": 3900
@@ -13113,7 +13064,7 @@
           "ticker": "KXMLBHR-26AUG081805TORPHI-PHIBHARPER3-1",
           "implied_prob": 0.205,
           "edge_pp": 7.5,
-          "volume": 1074,
+          "volume": 1143,
           "decision": "BET",
           "model_fair_american": 258,
           "market_american": 388
@@ -13128,7 +13079,7 @@
             "ticker": "KXMLBHR-26AUG081805TORPHI-PHIBHARPER3-1",
             "implied_prob": 0.205,
             "edge_pp": 7.5,
-            "volume": 1074,
+            "volume": 1143,
             "decision": "BET",
             "model_fair_american": 258,
             "market_american": 388
@@ -13146,60 +13097,6 @@
             "decision": "PASS",
             "model_fair_american": 2588,
             "market_american": 3900
-          }
-        ],
-        "label": "REPORT_ONLY \u2014 no execution venue wired"
-      },
-      {
-        "player_id": "624413",
-        "player_name": "Pete Alonso",
-        "team": "BAL",
-        "opponent": "TEX",
-        "market": "HR",
-        "game_id": "bal-tex-2026-08-08",
-        "headline_line": "HR 1+",
-        "best": {
-          "threshold": 1,
-          "line": "1+",
-          "model_prob": 0.2412,
-          "model_prob_raw": 0.2412,
-          "shrink_pp": 0.0,
-          "ticker": "KXMLBHR-26AUG081915BALTEX-BALPALONSO25-1",
-          "implied_prob": 0.175,
-          "edge_pp": 6.6,
-          "volume": 14,
-          "decision": "BET",
-          "model_fair_american": 315,
-          "market_american": 471
-        },
-        "ladder": [
-          {
-            "threshold": 1,
-            "line": "1+",
-            "model_prob": 0.2412,
-            "model_prob_raw": 0.2412,
-            "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26AUG081915BALTEX-BALPALONSO25-1",
-            "implied_prob": 0.175,
-            "edge_pp": 6.6,
-            "volume": 14,
-            "decision": "BET",
-            "model_fair_american": 315,
-            "market_american": 471
-          },
-          {
-            "threshold": 2,
-            "line": "2+",
-            "model_prob": 0.0236,
-            "model_prob_raw": 0.0236,
-            "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26AUG081915BALTEX-BALPALONSO25-2",
-            "implied_prob": 0.02,
-            "edge_pp": 0.4,
-            "volume": 0,
-            "decision": "PASS",
-            "model_fair_american": 4137,
-            "market_american": 4900
           }
         ],
         "label": "REPORT_ONLY \u2014 no execution venue wired"
