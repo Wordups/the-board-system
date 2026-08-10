@@ -667,3 +667,6 @@ h1 em { color: var(--muted); font-style: normal; font-weight: 500; }
 .oe-sim__row b { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--muted); }
 .oe-sim__row em { font-style: normal; font-family: var(--mono); font-size: 11px; color: var(--cyan); }
 @media (max-width: 700px) { .oe-sim__payout { margin-left: 0; text-align: left; width: 100%; } }
+
+/* Low-read game red flag */
+.oe-game__flag { margin: 10px 0 0; padding: 8px 10px; border: 1px solid rgba(255, 107, 107, .35); border-radius: 8px; background: rgba(255, 107, 107, .07); color: #ff9d9d; font-size: 11px; }

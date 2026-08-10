@@ -70,6 +70,15 @@ const opponentOf = (candidate: ModelCandidate) => teamById.get(matchups[candidat
 
 const MIN_FIRST_BASKETS = 2;
 const PICK_COUNT = 8;
+
+// Low-read red flag: a team that rarely scores first makes its whole game's
+// opening volatile — flag the game and caution picks on BOTH sides.
+// Data-driven (currently catches MIN at 11/33).
+const lowReadTeams = new Map(
+  board.teams
+    .filter(team => team.games >= 10 && team.scoredFirstFieldGoal / team.games < 0.4)
+    .map(team => [team.teamId, team]),
+);
 const rate = (n: number, d: number) => (d ? n / d : 0);
 const pct = (value: number, digits = 1) => Number((value * 100).toFixed(digits));
 
@@ -135,6 +144,8 @@ const picks = ranked.slice(0, PICK_COUNT).map(candidate => {
     `Team wins ${pct(candidate.rates.teamTipWin, 0)}% of tips`,
   ];
   const cautions: string[] = [];
+  const lowRead = lowReadTeams.get(candidate.teamId) ?? lowReadTeams.get(opponent.teamId);
+  if (lowRead) cautions.push(`Red flag: ${display(lowRead.team)} game — ${display(lowRead.team)} scores first in only ${lowRead.scoredFirstFieldGoal}/${lowRead.games}, volatile opening`);
   const injuryHit = (injuries.get(team.team) ?? []).find(item => item.toLowerCase().includes(candidate.player.toLowerCase()));
   if (injuryHit) cautions.push(`Injury report: ${injuryHit}`);
   if (candidate.sample.teamGames < 15) cautions.push(`Small sample: ${candidate.sample.teamGames} games`);
@@ -280,6 +291,10 @@ const games = slate.map(game => {
       away: chainOf(game.away),
       home: chainOf(game.home),
     },
+    ...((() => {
+      const lowRead = lowReadTeams.get(game.away.teamId) ?? lowReadTeams.get(game.home.teamId);
+      return lowRead ? { flag: `${display(lowRead.team)} scores first in only ${lowRead.scoredFirstFieldGoal}/${lowRead.games} games — thin read, both sides` } : {};
+    })()),
   };
 });
 
