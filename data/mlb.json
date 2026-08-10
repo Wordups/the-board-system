@@ -1,7 +1,7 @@
 {
   "sport": "MLB",
   "date": "2026-08-10",
-  "last_updated": "11:28 AM ET",
+  "last_updated": "12:00 PM ET",
   "calibration": {
     "threshold_pp": 15.0,
     "mode": "off",
@@ -163,6 +163,24 @@
         "hr_power_index": 0.355
       },
       {
+        "player_id": "669394",
+        "player_name": "Jake Burger",
+        "team": "TEX",
+        "opponent": "LAA",
+        "line": "HR 1+",
+        "score": 26.6,
+        "confidence": 27,
+        "tier": "B",
+        "reason": "HR edge 16.3 | L5 0.40/g | L10 0.20/g | Season 0.17/g | HR% 0.17 | HistHR% 0.22 | OPS 0.716 | SLG 0.417 | ISO 0.179 | PowIdx 0.47 | Surge 0.33 | Matchup 0.24 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.073 | vs Reid Detmers | ERA 4.12 | WHIP 1.10 | HR/9 1.19 | HR A 17 | Hand L | Platoon + | vsP 0.286/1.089 in 8 PA | vsP HR 1 | Age 30 | Order est. 2 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.32/g | Wts T0.42/M0.28/F0.30",
+        "sim_prob_pct": 29.2,
+        "hr_result": "pending",
+        "home_runs": 0,
+        "core_bucket": "strong",
+        "projected_pa": 4.36,
+        "power_surge": 0.328,
+        "hr_power_index": 0.472
+      },
+      {
         "player_id": "641343",
         "player_name": "Jake Bauers",
         "team": "MIL",
@@ -179,24 +197,6 @@
         "projected_pa": 4.3,
         "power_surge": 0.258,
         "hr_power_index": 0.417
-      },
-      {
-        "player_id": "660271",
-        "player_name": "Shohei Ohtani",
-        "team": "LAD",
-        "opponent": "KC",
-        "line": "HR 1+",
-        "score": 25.19,
-        "confidence": 25,
-        "tier": "B",
-        "reason": "HR edge 16.4 | L5 0.00/g | L10 0.30/g | Season 0.23/g | HR% 0.20 | HistHR% 0.27 | OPS 0.937 | SLG 0.542 | ISO 0.250 | PowIdx 0.52 | Surge 0.04 | Matchup 0.32 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.075 | vs Noah Cameron | ERA 4.37 | WHIP 1.29 | HR/9 1.02 | HR A 14 | Hand L | Platoon - | vsP 1.000/4.500 in 3 PA | vsP HR 1 | Age 31 | Order est. 2 | Lineup pen 1.2 | Power due 0.21 | Season XBH 0.45/g | Wts T0.42/M0.28/F0.30",
-        "sim_prob_pct": 27.7,
-        "hr_result": "pending",
-        "home_runs": 0,
-        "core_bucket": "strong",
-        "projected_pa": 4.44,
-        "power_surge": 0.038,
-        "hr_power_index": 0.517
       }
     ]
   },
@@ -242,7 +242,7 @@
         "score": 94.56,
         "confidence": 93,
         "tier": "A",
-        "reason": "Edge 58.0, trend 0.60, matchup 0.24, form 0.21",
+        "reason": "Edge 58.0, trend 0.60, matchup 0.28, form 0.21",
         "sim_prob_pct": 94.0
       },
       {
@@ -278,7 +278,7 @@
         "score": 94.28,
         "confidence": 92,
         "tier": "A",
-        "reason": "Edge 58.0, trend 0.80, matchup 0.28, form 0.29",
+        "reason": "Edge 58.0, trend 0.80, matchup 0.30, form 0.29",
         "sim_prob_pct": 93.7
       },
       {
@@ -302,7 +302,7 @@
         "score": 94.24,
         "confidence": 92,
         "tier": "A",
-        "reason": "Edge 58.0, trend 0.90, matchup 0.27, form 0.17",
+        "reason": "Edge 58.0, trend 0.90, matchup 0.31, form 0.17",
         "sim_prob_pct": 93.6
       },
       {
@@ -763,6 +763,53 @@
           "evidence": []
         },
         {
+          "player_id": "669394",
+          "player_name": "Jake Burger",
+          "team": "TEX",
+          "opponent": "LAA",
+          "game_id": "tex-laa-2026-08-10",
+          "market": "HR",
+          "line": "HR 1+",
+          "score": 28.0,
+          "base_score": 28.0,
+          "sim_prob_pct": 29.2,
+          "lazy_penalty": 0.0,
+          "confidence": 28,
+          "tier": "B",
+          "reason": "HR edge 16.3 | L5 0.40/g | L10 0.20/g | Season 0.17/g | HR% 0.17 | HistHR% 0.22 | OPS 0.716 | SLG 0.417 | ISO 0.179 | PowIdx 0.47 | Surge 0.33 | Matchup 0.24 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.073 | vs Reid Detmers | ERA 4.12 | WHIP 1.10 | HR/9 1.19 | HR A 17 | Hand L | Platoon + | vsP 0.286/1.089 in 8 PA | vsP HR 1 | Age 30 | Order est. 2 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.32/g | Wts T0.42/M0.28/F0.30",
+          "play_of_day": false,
+          "hr_bucket": "strong",
+          "pitcher": "Reid Detmers",
+          "whip": 1.1,
+          "hr9": 1.19,
+          "hr_allowed": 17,
+          "vs_pitcher_avg": 0.286,
+          "vs_pitcher_ops": 1.089,
+          "vs_pitcher_hr": 1,
+          "order_estimate": 2,
+          "projected_pa": 4.36,
+          "lineup_confirmed": false,
+          "lineup_uncertainty_penalty": 1.2,
+          "season_hr_probability": 0.165,
+          "l10_hr_probability": 0.179,
+          "l5_hr_probability": 0.274,
+          "historical_hr_probability": 0.222,
+          "season_hr_per_game": 0.168,
+          "l10_hr_per_game": 0.2,
+          "l5_hr_per_game": 0.4,
+          "ops": 0.716,
+          "slg": 0.417,
+          "iso": 0.179,
+          "sample_reliability": 1.0,
+          "age": 30,
+          "historical_power_index": 0.455,
+          "recent_peak_hr_rate": 0.073,
+          "career_hr_rate": 0.048,
+          "appearance_7d": 0,
+          "hits_7d": 0,
+          "evidence": []
+        },
+        {
           "player_id": "641343",
           "player_name": "Jake Bauers",
           "team": "MIL",
@@ -947,53 +994,6 @@
           "recent_peak_hr_rate": 0.046,
           "career_hr_rate": 0.038,
           "appearance_7d": 1,
-          "hits_7d": 0,
-          "evidence": []
-        },
-        {
-          "player_id": "545361",
-          "player_name": "Mike Trout",
-          "team": "LAA",
-          "opponent": "TEX",
-          "game_id": "tex-laa-2026-08-10",
-          "market": "HR",
-          "line": "HR 1+",
-          "score": 25.68,
-          "base_score": 25.68,
-          "sim_prob_pct": 26.9,
-          "lazy_penalty": 0.0,
-          "confidence": 26,
-          "tier": "B",
-          "reason": "HR edge 16.2 | L5 0.40/g | L10 0.20/g | Season 0.19/g | HR% 0.17 | HistHR% 0.24 | OPS 0.820 | SLG 0.440 | ISO 0.205 | PowIdx 0.49 | Surge 0.29 | Matchup 0.35 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.071 | vs MacKenzie Gore | ERA 4.55 | WHIP 1.24 | HR/9 1.12 | HR A 16 | Hand L | Platoon + | vsP 0.000/0.000 in 2 PA | Age 34 | Order est. 2 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.35/g | Wts T0.42/M0.28/F0.30",
-          "play_of_day": false,
-          "hr_bucket": "strong",
-          "pitcher": "MacKenzie Gore",
-          "whip": 1.24,
-          "hr9": 1.12,
-          "hr_allowed": 16,
-          "vs_pitcher_avg": 0.0,
-          "vs_pitcher_ops": 0.0,
-          "vs_pitcher_hr": 0,
-          "order_estimate": 2,
-          "projected_pa": 4.44,
-          "lineup_confirmed": false,
-          "lineup_uncertainty_penalty": 1.2,
-          "season_hr_probability": 0.17,
-          "l10_hr_probability": 0.176,
-          "l5_hr_probability": 0.273,
-          "historical_hr_probability": 0.239,
-          "season_hr_per_game": 0.192,
-          "l10_hr_per_game": 0.2,
-          "l5_hr_per_game": 0.4,
-          "ops": 0.82,
-          "slg": 0.44,
-          "iso": 0.205,
-          "sample_reliability": 1.0,
-          "age": 34,
-          "historical_power_index": 0.547,
-          "recent_peak_hr_rate": 0.071,
-          "career_hr_rate": 0.055,
-          "appearance_7d": 0,
           "hits_7d": 0,
           "evidence": []
         }
@@ -2501,7 +2501,7 @@
             "score": 91.44,
             "confidence": 91,
             "tier": "A",
-            "reason": "Edge 57.3, trend 0.60, matchup 0.20, form 0.17",
+            "reason": "Edge 57.3, trend 0.60, matchup 0.24, form 0.17",
             "sim_prob_pct": 92.6,
             "calibration_status": "flag",
             "baseline_prob_pct": 70.4,
@@ -2576,7 +2576,7 @@
             "score": 78.32,
             "confidence": 78,
             "tier": "A",
-            "reason": "Edge 38.2, trend 0.20, matchup 0.50, form 0.39",
+            "reason": "Edge 38.2, trend 0.20, matchup 0.48, form 0.39",
             "sim_prob_pct": 79.5,
             "calibration_status": "flag",
             "baseline_prob_pct": 60.3,
@@ -2606,7 +2606,7 @@
             "score": 76.2,
             "confidence": 76,
             "tier": "A",
-            "reason": "Edge 34.9, trend 0.40, matchup 0.19, form 0.17",
+            "reason": "Edge 34.9, trend 0.40, matchup 0.26, form 0.17",
             "sim_prob_pct": 77.4,
             "calibration_status": "flag",
             "baseline_prob_pct": 59.1,
@@ -2683,7 +2683,7 @@
             "score": 39.12,
             "confidence": 39,
             "tier": "A",
-            "reason": "Edge 11.2, trend 0.55, matchup 0.22, form 0.15",
+            "reason": "Edge 11.2, trend 0.55, matchup 0.29, form 0.15",
             "sim_prob_pct": 40.3,
             "calibration_status": "ok",
             "baseline_prob_pct": 35.3,
@@ -2713,7 +2713,7 @@
             "score": 34.28,
             "confidence": 34,
             "tier": "B",
-            "reason": "Edge 7.7, trend 0.10, matchup 0.66, form 0.42",
+            "reason": "Edge 7.7, trend 0.10, matchup 0.63, form 0.42",
             "sim_prob_pct": 35.5,
             "calibration_status": "ok",
             "baseline_prob_pct": 36.3,
@@ -2743,7 +2743,7 @@
             "score": 30.28,
             "confidence": 30,
             "tier": "B",
-            "reason": "Edge 3.5, trend 0.30, matchup 0.21, form 0.15",
+            "reason": "Edge 3.5, trend 0.30, matchup 0.25, form 0.15",
             "sim_prob_pct": 31.5,
             "calibration_status": "ok",
             "baseline_prob_pct": 38.5,
@@ -2784,7 +2784,7 @@
               "model_prob_raw": 0.531,
               "shrink_pp": 8.5,
               "edge_pp": -14.9,
-              "volume": 258926
+              "volume": 270619
             },
             "decision": "PASS"
           }
@@ -2866,7 +2866,7 @@
                 "ticker": "KXMLBHR-26AUG101915NYMATL-ATLMOLSON28-1",
                 "implied_prob": 0.205,
                 "edge_pp": 10.8,
-                "volume": 4339,
+                "volume": 4726,
                 "decision": "BET",
                 "model_fair_american": 219,
                 "market_american": 388
@@ -3199,7 +3199,7 @@
             "score": 92.76,
             "confidence": 93,
             "tier": "A",
-            "reason": "Edge 58.0, trend 0.60, matchup 0.24, form 0.21",
+            "reason": "Edge 58.0, trend 0.60, matchup 0.28, form 0.21",
             "sim_prob_pct": 94.0,
             "calibration_status": "flag",
             "baseline_prob_pct": 72.4,
@@ -3396,7 +3396,7 @@
             "score": 42.04,
             "confidence": 42,
             "tier": "A",
-            "reason": "Edge 15.5, trend 0.45, matchup 0.28, form 0.20",
+            "reason": "Edge 15.5, trend 0.45, matchup 0.32, form 0.20",
             "sim_prob_pct": 43.2,
             "calibration_status": "ok",
             "baseline_prob_pct": 44.2,
@@ -3512,7 +3512,7 @@
               "model_prob_raw": 0.644,
               "shrink_pp": 21.6,
               "edge_pp": -14.7,
-              "volume": 112556
+              "volume": 123014
             },
             "decision": "PASS"
           }
@@ -3525,7 +3525,7 @@
         "park_factor_lhb": 0.97,
         "park_factor_rhb": 1.02,
         "wind_mph": 2,
-        "wind_deg": 238,
+        "wind_deg": 259,
         "wind_label": "OUT",
         "hr_lean": "HR boost",
         "summary_chip": "Truist Park \u00b7 2mph OUT (HR boost)"
@@ -3624,7 +3624,7 @@
             "score": 22.6,
             "confidence": 23,
             "tier": "B",
-            "reason": "HR edge 13.0 | L5 0.20/g | L10 0.10/g | Season 0.21/g | HR% 0.19 | HistHR% 0.24 | OPS 0.818 | SLG 0.472 | ISO 0.220 | PowIdx 0.51 | Surge 0.11 | Matchup 0.83 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.069 | vs Dean Kremer | ERA 5.93 | WHIP 1.32 | HR/9 2.63 | HR A 12 | Hand R | Platoon - | vsP 0.000/0.000 in 2 PA | Age 31 | Order est. 2 | Lineup pen 1.2 | Power due 0.36 | L5 XBH 0.20/g | Season XBH 0.40/g | Wts T0.42/M0.28/F0.30",
+            "reason": "HR edge 13.0 | L5 0.20/g | L10 0.10/g | Season 0.21/g | HR% 0.19 | HistHR% 0.24 | OPS 0.818 | SLG 0.472 | ISO 0.220 | PowIdx 0.51 | Surge 0.11 | Matchup 0.83 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.069 | vs Dean Kremer | ERA 5.93 | WHIP 1.32 | HR/9 2.63 | HR A 12 | Hand R | Platoon - | vsP 0.000/0.200 in 5 PA | Age 31 | Order est. 2 | Lineup pen 1.2 | Power due 0.36 | L5 XBH 0.20/g | Season XBH 0.40/g | Wts T0.42/M0.28/F0.30",
             "sim_prob_pct": 23.8,
             "ladder": {
               "1": 0.238,
@@ -3643,7 +3643,7 @@
                 "ticker": "KXMLBHR-26AUG101940BALMIN-BALPALONSO25-1",
                 "implied_prob": 0.195,
                 "edge_pp": 4.3,
-                "volume": 9649,
+                "volume": 10722,
                 "decision": "PASS",
                 "model_fair_american": 320,
                 "market_american": 413
@@ -3692,7 +3692,7 @@
                 "ticker": "KXMLBHR-26AUG101940BALMIN-BALGHENDERSON2-1",
                 "implied_prob": 0.165,
                 "edge_pp": 6.9,
-                "volume": 1245,
+                "volume": 1356,
                 "decision": "BET",
                 "model_fair_american": 327,
                 "market_american": 506
@@ -3706,7 +3706,7 @@
                 "ticker": "KXMLBHR-26AUG101940BALMIN-BALGHENDERSON2-2",
                 "implied_prob": 0.015,
                 "edge_pp": 1.1,
-                "volume": 806,
+                "volume": 933,
                 "decision": "PASS",
                 "model_fair_american": 3688,
                 "market_american": 6567
@@ -4186,12 +4186,12 @@
             "sim_prob_pct": 52.7,
             "kalshi": {
               "ticker": "KXMLBGAME-26AUG101940BALMIN-MIN",
-              "implied_prob": 0.485,
+              "implied_prob": 0.475,
               "model_prob": 0.442,
               "model_prob_raw": 0.527,
               "shrink_pp": 8.5,
-              "edge_pp": -4.3,
-              "volume": 26269
+              "edge_pp": -3.3,
+              "volume": 28611
             },
             "decision": "PASS"
           }
@@ -4204,10 +4204,10 @@
         "park_factor_lhb": 1.0,
         "park_factor_rhb": 0.98,
         "wind_mph": 5,
-        "wind_deg": 37,
-        "wind_label": "IN",
-        "hr_lean": "HR suppress",
-        "summary_chip": "Target Field \u00b7 5mph IN (HR suppress)"
+        "wind_deg": 11,
+        "wind_label": "CROSS",
+        "hr_lean": "neutral",
+        "summary_chip": "Target Field \u00b7 5mph CROSS"
       }
     },
     {
@@ -4273,7 +4273,7 @@
                 "ticker": "KXMLBHR-26AUG101945PHISTL-PHIKSCHWARBER12-1",
                 "implied_prob": 0.245,
                 "edge_pp": 13.7,
-                "volume": 24127,
+                "volume": 24574,
                 "decision": "BET",
                 "model_fair_american": 162,
                 "market_american": 308
@@ -4287,7 +4287,7 @@
                 "ticker": "KXMLBHR-26AUG101945PHISTL-PHIKSCHWARBER12-2",
                 "implied_prob": 0.025,
                 "edge_pp": 3.9,
-                "volume": 517,
+                "volume": 1517,
                 "decision": "PASS",
                 "model_fair_american": 1453,
                 "market_american": 3900
@@ -4371,7 +4371,7 @@
                 "ticker": "KXMLBHR-26AUG101945PHISTL-PHIBHARPER3-1",
                 "implied_prob": 0.145,
                 "edge_pp": 9.4,
-                "volume": 13028,
+                "volume": 13321,
                 "decision": "BET",
                 "model_fair_american": 318,
                 "market_american": 590
@@ -4870,7 +4870,7 @@
               "model_prob_raw": 0.533,
               "shrink_pp": 8.5,
               "edge_pp": -3.7,
-              "volume": 130368
+              "volume": 132539
             },
             "decision": "PASS"
           }
@@ -4882,11 +4882,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.93,
         "park_factor_rhb": 0.95,
-        "wind_mph": 7,
-        "wind_deg": 243,
+        "wind_mph": 9,
+        "wind_deg": 260,
         "wind_label": "OUT",
         "hr_lean": "neutral",
-        "summary_chip": "Busch Stadium \u00b7 7mph OUT"
+        "summary_chip": "Busch Stadium \u00b7 9mph OUT"
       }
     },
     {
@@ -4896,12 +4896,12 @@
       "top_signals": [
         {
           "market": "HR",
-          "player_name": "Zach Neto",
+          "player_name": "Jake Burger",
           "line": "HR 1+",
-          "score": 26.16,
-          "confidence": 26,
+          "score": 28.0,
+          "confidence": 28,
           "tier": "B",
-          "sim_prob_pct": 27.4
+          "sim_prob_pct": 29.2
         },
         {
           "market": "RBI",
@@ -4924,6 +4924,55 @@
       ],
       "markets": {
         "HR": [
+          {
+            "player_id": "669394",
+            "player_name": "Jake Burger",
+            "team": "TEX",
+            "opponent": "LAA",
+            "line": "HR 1+",
+            "score": 28.0,
+            "confidence": 28,
+            "tier": "B",
+            "reason": "HR edge 16.3 | L5 0.40/g | L10 0.20/g | Season 0.17/g | HR% 0.17 | HistHR% 0.22 | OPS 0.716 | SLG 0.417 | ISO 0.179 | PowIdx 0.47 | Surge 0.33 | Matchup 0.24 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.073 | vs Reid Detmers | ERA 4.12 | WHIP 1.10 | HR/9 1.19 | HR A 17 | Hand L | Platoon + | vsP 0.286/1.089 in 8 PA | vsP HR 1 | Age 30 | Order est. 2 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.32/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 29.2,
+            "ladder": {
+              "1": 0.292,
+              "2": 0.0388
+            },
+            "calibration_status": "ok",
+            "baseline_prob_pct": 15.8,
+            "calibration_gap_pp": 13.4,
+            "kalshi_ladder": [
+              {
+                "threshold": 1,
+                "line": "1+",
+                "model_prob": 0.292,
+                "model_prob_raw": 0.292,
+                "shrink_pp": 0.0,
+                "ticker": null,
+                "implied_prob": null,
+                "edge_pp": null,
+                "volume": 0,
+                "decision": "NO_MARKET",
+                "model_fair_american": 242,
+                "market_american": null
+              },
+              {
+                "threshold": 2,
+                "line": "2+",
+                "model_prob": 0.0388,
+                "model_prob_raw": 0.0388,
+                "shrink_pp": 0.0,
+                "ticker": null,
+                "implied_prob": null,
+                "edge_pp": null,
+                "volume": 0,
+                "decision": "NO_MARKET",
+                "model_fair_american": 2477,
+                "market_american": null
+              }
+            ]
+          },
           {
             "player_id": "687263",
             "player_name": "Zach Neto",
@@ -5001,7 +5050,7 @@
                 "ticker": "KXMLBHR-26AUG102138TEXLAA-LAAMTROUT27-1",
                 "implied_prob": 0.165,
                 "edge_pp": 10.4,
-                "volume": 1500,
+                "volume": 4117,
                 "decision": "BET",
                 "model_fair_american": 272,
                 "market_american": 506
@@ -5019,55 +5068,6 @@
                 "decision": "PASS",
                 "model_fair_american": 3147,
                 "market_american": 6567
-              }
-            ]
-          },
-          {
-            "player_id": "669394",
-            "player_name": "Jake Burger",
-            "team": "TEX",
-            "opponent": "LAA",
-            "line": "HR 1+",
-            "score": 25.32,
-            "confidence": 25,
-            "tier": "B",
-            "reason": "HR edge 14.1 | L5 0.40/g | L10 0.20/g | Season 0.17/g | HR% 0.17 | HistHR% 0.22 | OPS 0.716 | SLG 0.417 | ISO 0.179 | PowIdx 0.42 | Surge 0.33 | Matchup 0.24 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.073 | vs Reid Detmers | ERA 4.12 | WHIP 1.10 | HR/9 1.19 | HR A 17 | Hand L | Platoon + | vsP 0.000/0.333 in 3 PA | Age 30 | Order est. 2 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.32/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 26.5,
-            "ladder": {
-              "1": 0.2652,
-              "2": 0.0316
-            },
-            "calibration_status": "ok",
-            "baseline_prob_pct": 15.8,
-            "calibration_gap_pp": 10.7,
-            "kalshi_ladder": [
-              {
-                "threshold": 1,
-                "line": "1+",
-                "model_prob": 0.2652,
-                "model_prob_raw": 0.2652,
-                "shrink_pp": 0.0,
-                "ticker": null,
-                "implied_prob": null,
-                "edge_pp": null,
-                "volume": 0,
-                "decision": "NO_MARKET",
-                "model_fair_american": 277,
-                "market_american": null
-              },
-              {
-                "threshold": 2,
-                "line": "2+",
-                "model_prob": 0.0316,
-                "model_prob_raw": 0.0316,
-                "shrink_pp": 0.0,
-                "ticker": null,
-                "implied_prob": null,
-                "edge_pp": null,
-                "volume": 0,
-                "decision": "NO_MARKET",
-                "model_fair_american": 3065,
-                "market_american": null
               }
             ]
           }
@@ -5239,7 +5239,7 @@
             "score": 92.44,
             "confidence": 92,
             "tier": "A",
-            "reason": "Edge 58.0, trend 0.90, matchup 0.27, form 0.17",
+            "reason": "Edge 58.0, trend 0.90, matchup 0.31, form 0.17",
             "sim_prob_pct": 93.6,
             "calibration_status": "flag",
             "baseline_prob_pct": 29.5,
@@ -5391,7 +5391,7 @@
             "score": 53.24,
             "confidence": 53,
             "tier": "A",
-            "reason": "Edge 25.2, trend 0.80, matchup 0.33, form 0.16",
+            "reason": "Edge 25.2, trend 0.80, matchup 0.37, form 0.16",
             "sim_prob_pct": 54.4,
             "calibration_status": "ok",
             "baseline_prob_pct": 43.1,
@@ -5496,7 +5496,7 @@
             "score": 33.8,
             "confidence": 34,
             "tier": "B",
-            "reason": "Edge 5.2, trend 0.35, matchup 0.34, form 0.24",
+            "reason": "Edge 5.2, trend 0.35, matchup 0.35, form 0.24",
             "sim_prob_pct": 35.0,
             "calibration_status": "ok",
             "baseline_prob_pct": 34.3,
@@ -5552,7 +5552,7 @@
               "model_prob_raw": 0.479,
               "shrink_pp": 0.0,
               "edge_pp": -3.6,
-              "volume": 45037
+              "volume": 46589
             },
             "decision": "PASS"
           }
@@ -5564,11 +5564,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.0,
         "park_factor_rhb": 1.02,
-        "wind_mph": 2,
-        "wind_deg": 202,
+        "wind_mph": 5,
+        "wind_deg": 205,
         "wind_label": "OUT",
         "hr_lean": "HR boost",
-        "summary_chip": "Angel Stadium \u00b7 2mph OUT (HR boost)"
+        "summary_chip": "Angel Stadium \u00b7 5mph OUT (HR boost)"
       }
     },
     {
@@ -5977,7 +5977,7 @@
             "score": 89.24,
             "confidence": 89,
             "tier": "A",
-            "reason": "Edge 52.0, trend 0.70, matchup 0.19, form 0.12",
+            "reason": "Edge 52.0, trend 0.70, matchup 0.20, form 0.12",
             "sim_prob_pct": 90.4,
             "calibration_status": "flag",
             "baseline_prob_pct": 22.9,
@@ -6185,7 +6185,7 @@
               "model_prob_raw": 0.562,
               "shrink_pp": 8.5,
               "edge_pp": -17.8,
-              "volume": 46168
+              "volume": 47946
             },
             "decision": "PASS"
           }
@@ -6267,7 +6267,7 @@
                 "ticker": "KXMLBHR-26AUG102140TBATH-TBJCAMINERO13-1",
                 "implied_prob": 0.275,
                 "edge_pp": 8.0,
-                "volume": 8078,
+                "volume": 12009,
                 "decision": "BET",
                 "model_fair_american": 182,
                 "market_american": 264
@@ -6281,7 +6281,7 @@
                 "ticker": "KXMLBHR-26AUG102140TBATH-TBJCAMINERO13-2",
                 "implied_prob": 0.04,
                 "edge_pp": 2.6,
-                "volume": 1750,
+                "volume": 1999,
                 "decision": "PASS",
                 "model_fair_american": 1424,
                 "market_american": 2400
@@ -6870,7 +6870,7 @@
               "model_prob_raw": 0.592,
               "shrink_pp": 8.5,
               "edge_pp": -8.8,
-              "volume": 89231
+              "volume": 91371
             },
             "decision": "PASS"
           }
@@ -6882,11 +6882,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.1,
         "park_factor_rhb": 1.05,
-        "wind_mph": 6,
-        "wind_deg": 224,
+        "wind_mph": 4,
+        "wind_deg": 215,
         "wind_label": "OUT",
         "hr_lean": "HR boost",
-        "summary_chip": "Sutter Health Park \u00b7 6mph OUT (HR boost)"
+        "summary_chip": "Sutter Health Park \u00b7 4mph OUT (HR boost)"
       }
     },
     {
@@ -7138,7 +7138,7 @@
             "score": 92.48,
             "confidence": 92,
             "tier": "A",
-            "reason": "Edge 58.0, trend 0.80, matchup 0.28, form 0.29",
+            "reason": "Edge 58.0, trend 0.80, matchup 0.30, form 0.29",
             "sim_prob_pct": 93.7,
             "calibration_status": "flag",
             "baseline_prob_pct": 29.8,
@@ -7305,7 +7305,7 @@
             "score": 49.24,
             "confidence": 49,
             "tier": "A",
-            "reason": "Edge 20.7, trend 0.60, matchup 0.33, form 0.29",
+            "reason": "Edge 20.7, trend 0.60, matchup 0.34, form 0.29",
             "sim_prob_pct": 50.4,
             "calibration_status": "ok",
             "baseline_prob_pct": 46.1,
@@ -7451,7 +7451,7 @@
               "model_prob_raw": 0.616,
               "shrink_pp": 21.6,
               "edge_pp": -12.5,
-              "volume": 132621
+              "volume": 140061
             },
             "decision": "PASS"
           }
@@ -7463,11 +7463,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.9,
         "park_factor_rhb": 0.92,
-        "wind_mph": 3,
-        "wind_deg": 222,
+        "wind_mph": 5,
+        "wind_deg": 212,
         "wind_label": "OUT",
         "hr_lean": "neutral",
-        "summary_chip": "Petco Park \u00b7 3mph OUT"
+        "summary_chip": "Petco Park \u00b7 5mph OUT"
       }
     },
     {
@@ -7533,7 +7533,7 @@
                 "ticker": "KXMLBHR-26AUG102145HOUSF-HOUYALVAREZ44-1",
                 "implied_prob": 0.225,
                 "edge_pp": 14.2,
-                "volume": 4388,
+                "volume": 4412,
                 "decision": "BET",
                 "model_fair_american": 173,
                 "market_american": 344
@@ -7582,7 +7582,7 @@
                 "ticker": "KXMLBHR-26AUG102145HOUSF-SFRDEVERS16-1",
                 "implied_prob": 0.165,
                 "edge_pp": 8.7,
-                "volume": 582,
+                "volume": 640,
                 "decision": "BET",
                 "model_fair_american": 296,
                 "market_american": 506
@@ -7873,7 +7873,7 @@
             "score": 84.76,
             "confidence": 85,
             "tier": "A",
-            "reason": "Edge 45.1, trend 0.60, matchup 0.21, form 0.15",
+            "reason": "Edge 45.1, trend 0.60, matchup 0.25, form 0.15",
             "sim_prob_pct": 86.0,
             "calibration_status": "flag",
             "baseline_prob_pct": 60.4,
@@ -7995,7 +7995,7 @@
             "score": 36.88,
             "confidence": 37,
             "tier": "A",
-            "reason": "Edge 10.4, trend 0.50, matchup 0.26, form 0.13",
+            "reason": "Edge 10.4, trend 0.50, matchup 0.29, form 0.13",
             "sim_prob_pct": 38.1,
             "calibration_status": "ok",
             "baseline_prob_pct": 39.3,
@@ -8076,12 +8076,12 @@
             "sim_prob_pct": 47.3,
             "kalshi": {
               "ticker": "KXMLBGAME-26AUG102145HOUSF-HOU",
-              "implied_prob": 0.59,
+              "implied_prob": 0.595,
               "model_prob": 0.473,
               "model_prob_raw": 0.473,
               "shrink_pp": 0.0,
-              "edge_pp": -11.7,
-              "volume": 14089
+              "edge_pp": -12.2,
+              "volume": 14979
             },
             "decision": "PASS"
           }
@@ -8093,11 +8093,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.8,
         "park_factor_rhb": 0.95,
-        "wind_mph": 9,
-        "wind_deg": 261,
+        "wind_mph": 11,
+        "wind_deg": 245,
         "wind_label": "OUT",
         "hr_lean": "neutral",
-        "summary_chip": "Oracle Park \u00b7 9mph OUT"
+        "summary_chip": "Oracle Park \u00b7 11mph OUT"
       }
     },
     {
@@ -8163,7 +8163,7 @@
                 "ticker": "KXMLBHR-26AUG102210KCLAD-LADSOHTANI17-1",
                 "implied_prob": 0.265,
                 "edge_pp": 1.2,
-                "volume": 6608,
+                "volume": 6840,
                 "decision": "PASS",
                 "model_fair_american": 261,
                 "market_american": 277
@@ -8278,6 +8278,55 @@
                 "volume": 0,
                 "decision": "NO_MARKET",
                 "model_fair_american": 3105,
+                "market_american": null
+              }
+            ]
+          },
+          {
+            "player_id": "521692",
+            "player_name": "Salvador Perez",
+            "team": "KC",
+            "opponent": "LAD",
+            "line": "HR 1+",
+            "score": 23.28,
+            "confidence": 23,
+            "tier": "B",
+            "reason": "HR edge 13.0 | L5 0.20/g | L10 0.20/g | Season 0.14/g | HR% 0.14 | HistHR% 0.18 | OPS 0.635 | SLG 0.373 | ISO 0.157 | PowIdx 0.45 | Surge 0.14 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.046 | vs Tarik Skubal | ERA 2.81 | WHIP 0.92 | HR/9 0.96 | HR A 11 | Hand L | Platoon + | vsP 0.286/0.929 in 42 PA | vsP HR 4 | Age 36 | Order est. 1 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.31/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 24.5,
+            "ladder": {
+              "1": 0.2448,
+              "2": 0.026
+            },
+            "calibration_status": "ok",
+            "baseline_prob_pct": 13.2,
+            "calibration_gap_pp": 11.3,
+            "kalshi_ladder": [
+              {
+                "threshold": 1,
+                "line": "1+",
+                "model_prob": 0.2448,
+                "model_prob_raw": 0.2448,
+                "shrink_pp": 0.0,
+                "ticker": null,
+                "implied_prob": null,
+                "edge_pp": null,
+                "volume": 0,
+                "decision": "NO_MARKET",
+                "model_fair_american": 308,
+                "market_american": null
+              },
+              {
+                "threshold": 2,
+                "line": "2+",
+                "model_prob": 0.026,
+                "model_prob_raw": 0.026,
+                "shrink_pp": 0.0,
+                "ticker": null,
+                "implied_prob": null,
+                "edge_pp": null,
+                "volume": 0,
+                "decision": "NO_MARKET",
+                "model_fair_american": 3746,
                 "market_american": null
               }
             ]
@@ -8582,7 +8631,7 @@
             "score": 77.64,
             "confidence": 78,
             "tier": "A",
-            "reason": "Edge 36.1, trend 0.40, matchup 0.27, form 0.13",
+            "reason": "Edge 36.1, trend 0.40, matchup 0.32, form 0.13",
             "sim_prob_pct": 78.8,
             "calibration_status": "flag",
             "baseline_prob_pct": 59.7,
@@ -8659,7 +8708,7 @@
             "score": 36.92,
             "confidence": 37,
             "tier": "A",
-            "reason": "Edge 9.4, trend 0.40, matchup 0.32, form 0.11",
+            "reason": "Edge 9.4, trend 0.40, matchup 0.37, form 0.11",
             "sim_prob_pct": 38.1,
             "calibration_status": "ok",
             "baseline_prob_pct": 34.7,
@@ -8760,7 +8809,7 @@
               "model_prob_raw": 0.618,
               "shrink_pp": 21.6,
               "edge_pp": -31.3,
-              "volume": 122559
+              "volume": 125109
             },
             "decision": "PASS"
           }
@@ -8773,7 +8822,7 @@
         "park_factor_lhb": 1.02,
         "park_factor_rhb": 1.02,
         "wind_mph": 2,
-        "wind_deg": 174,
+        "wind_deg": 221,
         "wind_label": "OUT",
         "hr_lean": "HR boost",
         "summary_chip": "Dodger Stadium \u00b7 2mph OUT (HR boost)"
@@ -8819,7 +8868,7 @@
           "ticker": "KXMLBHR-26AUG102145HOUSF-HOUYALVAREZ44-1",
           "implied_prob": 0.225,
           "edge_pp": 14.2,
-          "volume": 4388,
+          "volume": 4412,
           "decision": "BET",
           "model_fair_american": 173,
           "market_american": 344
@@ -8834,7 +8883,7 @@
             "ticker": "KXMLBHR-26AUG102145HOUSF-HOUYALVAREZ44-1",
             "implied_prob": 0.225,
             "edge_pp": 14.2,
-            "volume": 4388,
+            "volume": 4412,
             "decision": "BET",
             "model_fair_american": 173,
             "market_american": 344
@@ -8873,7 +8922,7 @@
           "ticker": "KXMLBHR-26AUG101945PHISTL-PHIKSCHWARBER12-1",
           "implied_prob": 0.245,
           "edge_pp": 13.7,
-          "volume": 24127,
+          "volume": 24574,
           "decision": "BET",
           "model_fair_american": 162,
           "market_american": 308
@@ -8888,7 +8937,7 @@
             "ticker": "KXMLBHR-26AUG101945PHISTL-PHIKSCHWARBER12-1",
             "implied_prob": 0.245,
             "edge_pp": 13.7,
-            "volume": 24127,
+            "volume": 24574,
             "decision": "BET",
             "model_fair_american": 162,
             "market_american": 308
@@ -8902,7 +8951,7 @@
             "ticker": "KXMLBHR-26AUG101945PHISTL-PHIKSCHWARBER12-2",
             "implied_prob": 0.025,
             "edge_pp": 3.9,
-            "volume": 517,
+            "volume": 1517,
             "decision": "PASS",
             "model_fair_american": 1453,
             "market_american": 3900
@@ -8927,7 +8976,7 @@
           "ticker": "KXMLBHR-26AUG101915NYMATL-ATLMOLSON28-1",
           "implied_prob": 0.205,
           "edge_pp": 10.8,
-          "volume": 4339,
+          "volume": 4726,
           "decision": "BET",
           "model_fair_american": 219,
           "market_american": 388
@@ -8942,7 +8991,7 @@
             "ticker": "KXMLBHR-26AUG101915NYMATL-ATLMOLSON28-1",
             "implied_prob": 0.205,
             "edge_pp": 10.8,
-            "volume": 4339,
+            "volume": 4726,
             "decision": "BET",
             "model_fair_american": 219,
             "market_american": 388
@@ -8981,7 +9030,7 @@
           "ticker": "KXMLBHR-26AUG102138TEXLAA-LAAMTROUT27-1",
           "implied_prob": 0.165,
           "edge_pp": 10.4,
-          "volume": 1500,
+          "volume": 4117,
           "decision": "BET",
           "model_fair_american": 272,
           "market_american": 506
@@ -8996,7 +9045,7 @@
             "ticker": "KXMLBHR-26AUG102138TEXLAA-LAAMTROUT27-1",
             "implied_prob": 0.165,
             "edge_pp": 10.4,
-            "volume": 1500,
+            "volume": 4117,
             "decision": "BET",
             "model_fair_american": 272,
             "market_american": 506
@@ -9035,7 +9084,7 @@
           "ticker": "KXMLBHR-26AUG101945PHISTL-PHIBHARPER3-1",
           "implied_prob": 0.145,
           "edge_pp": 9.4,
-          "volume": 13028,
+          "volume": 13321,
           "decision": "BET",
           "model_fair_american": 318,
           "market_american": 590
@@ -9050,7 +9099,7 @@
             "ticker": "KXMLBHR-26AUG101945PHISTL-PHIBHARPER3-1",
             "implied_prob": 0.145,
             "edge_pp": 9.4,
-            "volume": 13028,
+            "volume": 13321,
             "decision": "BET",
             "model_fair_american": 318,
             "market_american": 590
@@ -9089,7 +9138,7 @@
           "ticker": "KXMLBHR-26AUG102145HOUSF-SFRDEVERS16-1",
           "implied_prob": 0.165,
           "edge_pp": 8.7,
-          "volume": 582,
+          "volume": 640,
           "decision": "BET",
           "model_fair_american": 296,
           "market_american": 506
@@ -9104,7 +9153,7 @@
             "ticker": "KXMLBHR-26AUG102145HOUSF-SFRDEVERS16-1",
             "implied_prob": 0.165,
             "edge_pp": 8.7,
-            "volume": 582,
+            "volume": 640,
             "decision": "BET",
             "model_fair_american": 296,
             "market_american": 506
@@ -9143,7 +9192,7 @@
           "ticker": "KXMLBHR-26AUG102140TBATH-TBJCAMINERO13-1",
           "implied_prob": 0.275,
           "edge_pp": 8.0,
-          "volume": 8078,
+          "volume": 12009,
           "decision": "BET",
           "model_fair_american": 182,
           "market_american": 264
@@ -9158,7 +9207,7 @@
             "ticker": "KXMLBHR-26AUG102140TBATH-TBJCAMINERO13-1",
             "implied_prob": 0.275,
             "edge_pp": 8.0,
-            "volume": 8078,
+            "volume": 12009,
             "decision": "BET",
             "model_fair_american": 182,
             "market_american": 264
@@ -9172,7 +9221,7 @@
             "ticker": "KXMLBHR-26AUG102140TBATH-TBJCAMINERO13-2",
             "implied_prob": 0.04,
             "edge_pp": 2.6,
-            "volume": 1750,
+            "volume": 1999,
             "decision": "PASS",
             "model_fair_american": 1424,
             "market_american": 2400
@@ -9197,7 +9246,7 @@
           "ticker": "KXMLBHR-26AUG101940BALMIN-BALGHENDERSON2-1",
           "implied_prob": 0.165,
           "edge_pp": 6.9,
-          "volume": 1245,
+          "volume": 1356,
           "decision": "BET",
           "model_fair_american": 327,
           "market_american": 506
@@ -9212,7 +9261,7 @@
             "ticker": "KXMLBHR-26AUG101940BALMIN-BALGHENDERSON2-1",
             "implied_prob": 0.165,
             "edge_pp": 6.9,
-            "volume": 1245,
+            "volume": 1356,
             "decision": "BET",
             "model_fair_american": 327,
             "market_american": 506
@@ -9226,7 +9275,7 @@
             "ticker": "KXMLBHR-26AUG101940BALMIN-BALGHENDERSON2-2",
             "implied_prob": 0.015,
             "edge_pp": 1.1,
-            "volume": 806,
+            "volume": 933,
             "decision": "PASS",
             "model_fair_american": 3688,
             "market_american": 6567
@@ -9253,7 +9302,7 @@
             "ticker": "KXMLBHR-26AUG101940BALMIN-BALPALONSO25-1",
             "implied_prob": 0.195,
             "edge_pp": 4.3,
-            "volume": 9649,
+            "volume": 10722,
             "decision": "PASS",
             "model_fair_american": 320,
             "market_american": 413
@@ -9294,7 +9343,7 @@
             "ticker": "KXMLBHR-26AUG102210KCLAD-LADSOHTANI17-1",
             "implied_prob": 0.265,
             "edge_pp": 1.2,
-            "volume": 6608,
+            "volume": 6840,
             "decision": "PASS",
             "model_fair_american": 261,
             "market_american": 277
