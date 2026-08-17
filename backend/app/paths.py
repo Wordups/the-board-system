@@ -13,6 +13,10 @@ class AppPaths:
     data_raw: Path
     data_processed: Path
     data_final: Path
+    # Tracked reference data that isn't collected from an API — currently the
+    # NFL contracts table. data_raw/ is gitignored, so anything CI must see on
+    # a fresh clone lives here instead.
+    data_static: Path
     frontend_data: Path
     pages_data: Path
 
@@ -28,6 +32,7 @@ def build_paths(project_root: Path) -> AppPaths:
         data_raw=backend_root / "data_raw",
         data_processed=backend_root / "data_processed",
         data_final=backend_root / "data_final",
+        data_static=backend_root / "data_static",
         frontend_data=frontend_root / "data",
         pages_data=project_root / "data",
     )

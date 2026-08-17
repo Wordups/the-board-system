@@ -7,6 +7,7 @@ from app.builders.kalshi_edge import enrich_board_with_kalshi, enrich_board_with
 from app.builders.mlb_board_builder import build_mlb_board
 from app.builders.mlb_environment import enrich_board_with_environment
 from app.builders.nba_board_builder import build_nba_board
+from app.builders.nfl_board_builder import build_nfl_board
 from app.builders.soccer_board_builder import build_soccer_board
 from app.builders.tennis_board_builder import build_tennis_board
 from app.builders.wnba_board_builder import build_wnba_board
@@ -74,6 +75,24 @@ def run_nba_pipeline(project_root: Path) -> dict:
     # Additive + report-only; degrades to available: False off-season.
     enrich_board_with_ladder(board, paths=paths)
     export_board_to_site(board=board, sport_key="nba", paths=paths)
+    return board
+
+
+def run_nfl_pipeline(project_root: Path) -> dict:
+    config = build_config(project_root)
+    paths = build_paths(project_root)
+    board = build_nfl_board(config=config, paths=paths)
+    # Football is weekly: between Monday night and Thursday there is a real
+    # window where the next slate hasn't posted lines yet and a fresh build can
+    # come back empty. Same protection the World Cup board needed.
+    board = _keep_last_good_if_empty(board, sport_key="nfl", paths=paths)
+    validate_board_payload(board)
+    # The model quotes a full ladder per NFL prop (alternate yardage rungs,
+    # 2+ TD), so the Kalshi join is wired here for symmetry with the other
+    # sports. It is a deliberate no-op today: PROP_SERIES carries no NFL
+    # entry, so nothing is stamped until real NFL prop series are mapped.
+    enrich_board_with_ladder(board, paths=paths)
+    export_board_to_site(board=board, sport_key="nfl", paths=paths)
     return board
 
 

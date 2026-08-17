@@ -37,10 +37,25 @@ NBA_STATES: tuple[str, ...] = (
 )
 NBA_BASE_PROBS = np.array([0.55, 0.12, 0.12, 0.10, 0.08, 0.03])
 
+# Football's dominant state axis is game script, not minutes. A team that falls
+# behind throws more and runs less; a team protecting a lead does the opposite.
+# That asymmetry is why one shared "volume" table can't serve both sides of the
+# ball here — see NFL_PASS_* / NFL_RUSH_* in outcome_models.
+NFL_STATES: tuple[str, ...] = (
+    "normal",         # 0  game inside one score late
+    "pass_script",    # 1  trailing / shootout — dropbacks up, carries down
+    "run_script",     # 2  leading — carries up, dropbacks down
+    "blowout",        # 3  starters pulled, snaps evaporate
+    "weather",        # 4  wind / rain — passing suppressed, rushing leans up
+    "early_exit",     # 5  injury or benching mid-game
+)
+NFL_BASE_PROBS = np.array([0.52, 0.16, 0.16, 0.07, 0.05, 0.04])
+
 _SPORT_STATES: dict[str, tuple[tuple[str, ...], np.ndarray]] = {
     "MLB": (MLB_STATES, MLB_BASE_PROBS),
     "NBA": (NBA_STATES, NBA_BASE_PROBS),
     "WNBA": (NBA_STATES, NBA_BASE_PROBS),  # basketball — same state structure as NBA
+    "NFL": (NFL_STATES, NFL_BASE_PROBS),
 }
 
 
@@ -55,6 +70,8 @@ def state_probs(sport: str, context: dict | None = None) -> np.ndarray | None:
         probs = _condition_mlb(probs, ctx)
     elif sport in ("NBA", "WNBA"):
         probs = _condition_nba(probs, ctx)
+    elif sport == "NFL":
+        probs = _condition_nfl(probs, ctx)
     total = probs.sum()
     return probs / total if total > 0 else entry[1]
 
@@ -77,6 +94,42 @@ def _condition_nba(probs: np.ndarray, ctx: dict) -> np.ndarray:
         probs[2] *= 2.0
     if ctx.get("back_to_back"):
         probs[4] *= 2.0  # rest more likely on a back-to-back
+    return probs
+
+
+def _condition_nfl(probs: np.ndarray, ctx: dict) -> np.ndarray:
+    """Reweight football states from the spread, the total, and the venue.
+
+    ``spread`` here is signed from the *player's own team's* perspective:
+    negative means their team is favored. A favored team plays from ahead and
+    runs; an underdog plays from behind and throws. Both effects are the same
+    mechanism read from opposite sides, so one signed number drives both.
+    """
+    spread = ctx.get("spread")
+    if spread is not None:
+        spread = float(spread)
+        if spread >= 3.0:      # underdog
+            probs[1] *= 1.0 + min((spread - 2.0) / 8.0, 1.2)
+            probs[2] *= max(0.35, 1.0 - (spread - 2.0) / 14.0)
+        elif spread <= -3.0:   # favorite
+            probs[2] *= 1.0 + min((abs(spread) - 2.0) / 8.0, 1.2)
+            probs[1] *= max(0.35, 1.0 - (abs(spread) - 2.0) / 14.0)
+        if abs(spread) > 10.0:
+            probs[3] *= 2.4
+        elif abs(spread) > 6.5:
+            probs[3] *= 1.6
+
+    total = ctx.get("over_under")
+    if total is not None:
+        total = float(total)
+        if total >= 48.0:
+            probs[1] *= 1.25   # shootout totals mean more dropbacks for both sides
+        elif total <= 40.0:
+            probs[2] *= 1.25
+
+    if ctx.get("indoor"):
+        probs[4] *= 0.05       # a dome effectively removes the weather state
+
     return probs
 
 

@@ -47,6 +47,14 @@ LADDER_RUNGS: dict[str, tuple[int, ...]] = {
     "AST": (2, 3, 4, 5, 6, 7, 8),
     "REB": (2, 4, 6, 8, 10, 12),
     "HR": (1, 2),
+    # Football rungs follow the alternate-line conventions books quote: passing
+    # yards in 25-yard steps, rushing/receiving yards in the 40-100 band, and
+    # anytime/2+ touchdowns.
+    "PASS_YDS": (200, 225, 250, 275, 300),
+    "RUSH_YDS": (40, 50, 60, 75, 100),
+    "REC_YDS": (40, 50, 60, 75, 100),
+    "REC": (3, 4, 5, 6, 7, 8),
+    "TD": (1, 2),
 }
 
 # Per-market game-level std dev of the underlying stat, as (base, slope) on the
@@ -56,6 +64,12 @@ LADDER_SIGMA: dict[str, tuple[float, float]] = {
     "PTS": (2.0, 0.20),
     "AST": (1.0, 0.20),
     "REB": (1.2, 0.20),
+    # Football week-to-week variance is far wider than basketball's: a 70-yard
+    # receiver routinely posts 20 or 130. The intercepts reflect that.
+    "PASS_YDS": (30.0, 0.14),
+    "RUSH_YDS": (14.0, 0.28),
+    "REC_YDS": (14.0, 0.32),
+    "REC": (1.1, 0.30),
 }
 
 # Per-state multipliers, indexed to MLB_STATES / NBA_STATES order.
@@ -73,6 +87,28 @@ MLB_PITCHER_RATE = np.array([1.00, 0.92, 1.10, 0.98, 0.95, 1.00])
 # NBA / WNBA player (basketball — same states for both leagues).
 NBA_VOL = np.array([1.00, 0.82, 1.05, 0.80, 0.72, 1.12])
 NBA_RATE = np.array([1.00, 1.05, 1.00, 0.95, 1.00, 1.00])
+
+# NFL, indexed to NFL_STATES: normal, pass_script, run_script, blowout,
+# weather, early_exit. Passing and rushing move in opposite directions under
+# game script, which is the whole point of splitting the tables: the same
+# blowout that kills a quarterback's attempts hands carries to a backup.
+NFL_PASS_VOL = np.array([1.00, 1.24, 0.78, 0.72, 0.80, 0.45])
+NFL_PASS_RATE = np.array([1.00, 0.95, 1.04, 0.90, 0.86, 1.00])
+NFL_RUSH_VOL = np.array([1.00, 0.74, 1.26, 0.80, 1.14, 0.45])
+NFL_RUSH_RATE = np.array([1.00, 0.96, 1.05, 0.92, 0.98, 1.00])
+# Anytime touchdowns draw on both phases; the blend keeps a receiving back and
+# a goal-line runner on one table without pretending either script is neutral.
+NFL_TD_VOL = (NFL_PASS_VOL + NFL_RUSH_VOL) / 2.0
+NFL_TD_RATE = (NFL_PASS_RATE + NFL_RUSH_RATE) / 2.0
+
+# Which state tables each football market reads.
+NFL_MARKET_TABLES: dict[str, tuple[np.ndarray, np.ndarray]] = {
+    "PASS_YDS": (NFL_PASS_VOL, NFL_PASS_RATE),
+    "REC_YDS": (NFL_PASS_VOL, NFL_PASS_RATE),
+    "REC": (NFL_PASS_VOL, NFL_PASS_RATE),
+    "RUSH_YDS": (NFL_RUSH_VOL, NFL_RUSH_RATE),
+    "TD": (NFL_TD_VOL, NFL_TD_RATE),
+}
 
 
 def get_field(candidate, key, default=None):
@@ -100,11 +136,20 @@ def _stat_value(candidate, default: float = 0.5) -> float:
     return default if value is None else float(value)
 
 
-def _basketball_clear_prob(candidate) -> float:
-    """Recency blend of empirical hit rates — the NBA/WNBA clear probability."""
+def _hit_rate_blend(candidate) -> float:
+    """Recency blend of a candidate's empirical hit rates against its line.
+
+    Shared by every sport whose collector exposes hit rates rather than counts
+    (NBA / WNBA / NFL).
+    """
     l10 = float(get_field(candidate, "l10_hit_rate", 0.0) or 0.0)
     l5 = float(get_field(candidate, "l5_hit_rate", 0.0) or 0.0)
     return 0.5 * l10 + 0.5 * l5
+
+
+def _basketball_clear_prob(candidate) -> float:
+    """Recency blend of empirical hit rates — the NBA/WNBA clear probability."""
+    return _hit_rate_blend(candidate)
 
 
 def _sample_prob(rng: np.random.Generator, mean: float, n: int, rel_std: float) -> np.ndarray:
@@ -123,6 +168,9 @@ def _context(candidate) -> dict:
         "spread": pick("spread"),
         "back_to_back": pick("back_to_back"),
         "pitch_count_risk": pick("pitch_count_risk"),
+        # Football game-script conditioning.
+        "over_under": pick("over_under"),
+        "indoor": pick("indoor"),
     }
 
 
@@ -187,6 +235,27 @@ def _basketball_ml(candidate, sport, rng, n, rel_std) -> float:
     return float(np.mean(rng.random(n) < p))
 
 
+def _football_tables(candidate) -> tuple[np.ndarray, np.ndarray]:
+    market = str(get_field(candidate, "market", ""))
+    return NFL_MARKET_TABLES.get(market, (NFL_TD_VOL, NFL_TD_RATE))
+
+
+def _football_clear(candidate, sport, rng, n, rel_std) -> float:
+    # NFL prop: clear probability from the empirical hit rates against the
+    # quoted line, then mixed through the game-script states.
+    vol_table, rate_table = _football_tables(candidate)
+    return _bernoulli_clear(
+        candidate, sport, rng, n, rel_std, _hit_rate_blend(candidate), vol_table, rate_table
+    )
+
+
+def _football_ml(candidate, sport, rng, n, rel_std) -> float:
+    # Team outcome — no game-script mixture, noise only (same treatment the
+    # other sports' moneylines get).
+    p = _sample_prob(rng, _hit_rate_blend(candidate) or 0.5, n, rel_std)
+    return float(np.mean(rng.random(n) < p))
+
+
 def _generic_model(candidate, sport, rng, n, rel_std) -> float:
     # Unmodeled sport/market: noise-only Bernoulli on the point estimate.
     p = _sample_prob(rng, _stat_value(candidate), n, rel_std)
@@ -194,6 +263,9 @@ def _generic_model(candidate, sport, rng, n, rel_std) -> float:
 
 
 _BASKETBALL_PROP_MODELS = {market: _basketball_clear for market in ("PTS", "AST", "REB", "3PM")}
+_FOOTBALL_PROP_MODELS = {
+    market: _football_clear for market in ("PASS_YDS", "RUSH_YDS", "REC_YDS", "REC", "TD")
+}
 
 _REGISTRY = {
     ("MLB", "HR"): _mlb_hr,
@@ -206,6 +278,8 @@ _REGISTRY = {
     **{("WNBA", market): model for market, model in _BASKETBALL_PROP_MODELS.items()},
     ("NBA", "ML"): _basketball_ml,
     ("WNBA", "ML"): _basketball_ml,
+    **{("NFL", market): model for market, model in _FOOTBALL_PROP_MODELS.items()},
+    ("NFL", "ML"): _football_ml,
 }
 
 
@@ -326,11 +400,85 @@ def _basketball_ladder(candidate, sport, rng, n, rel_std) -> dict[int, float] | 
     return ladder
 
 
+def _football_yardage_ladder(candidate, sport, rng, n, rel_std) -> dict[int, float] | None:
+    """Survival probabilities across a football market's alternate lines.
+
+    Mechanically identical to ``_basketball_ladder`` — same latent-normal shift
+    anchored at the headline line, same nested resolution against one set of
+    uniforms so the ladder is monotone — but reading the game-script tables and
+    football's much wider per-game sigma.
+    """
+    market = str(get_field(candidate, "market", ""))
+    headline = _parse_threshold(get_field(candidate, "line", ""), 0)
+    if headline <= 0 or market not in LADDER_SIGMA:
+        return None
+
+    vol_table, rate_table = _football_tables(candidate)
+    # Same rng call order as _bernoulli_clear so the headline rung reproduces
+    # sim_prob exactly under an identically-seeded generator.
+    p = _sample_prob(rng, _hit_rate_blend(candidate), n, rel_std)
+    idx = sample_state_indices(rng, n, sport, _context(candidate))
+    p_eff = np.clip(p * vol_table[idx] * rate_table[idx], _EPS, 1.0 - _EPS)
+    u = rng.random(n)
+
+    base, slope = LADDER_SIGMA[market]
+    sigma = base + slope * headline
+    z = _norm_ppf(p_eff)
+
+    ladder: dict[int, float] = {}
+    for t in _ladder_thresholds(market, headline):
+        p_t = p_eff if t == headline else _norm_cdf(z + (headline - t) / sigma)
+        ladder[t] = float(np.mean(u < p_t))
+    return ladder
+
+
+def _poisson_tail(lam: np.ndarray, threshold: int) -> np.ndarray:
+    """P(X >= threshold) for X ~ Poisson(lam), for the small rungs TD quotes."""
+    if threshold <= 0:
+        return np.ones_like(lam)
+    term = np.exp(-lam)          # P(X = 0)
+    cumulative = term.copy()     # P(X <= 0)
+    for k in range(1, threshold):
+        term = term * lam / k
+        cumulative = cumulative + term
+    return np.clip(1.0 - cumulative, 0.0, 1.0)
+
+
+def _football_td_ladder(candidate, sport, rng, n, rel_std) -> dict[int, float] | None:
+    """1+ / 2+ touchdown ladder.
+
+    Touchdowns are counts, not a continuous total, so the latent-normal trick
+    used for yardage is the wrong shape here. Instead back the per-game
+    touchdown rate out of the simulated 1+ probability (lambda = -ln(1 - p))
+    and read the higher rungs off that Poisson — the same "recover the count
+    process from the headline probability" move the MLB home-run ladder makes.
+    """
+    headline = _parse_threshold(get_field(candidate, "line", ""), 1)
+    vol_table, rate_table = _football_tables(candidate)
+
+    p = _sample_prob(rng, _hit_rate_blend(candidate), n, rel_std)
+    idx = sample_state_indices(rng, n, sport, _context(candidate))
+    p_eff = np.clip(p * vol_table[idx] * rate_table[idx], _EPS, 1.0 - _EPS)
+    u = rng.random(n)
+
+    lam = -np.log(1.0 - p_eff)
+    ladder: dict[int, float] = {}
+    for t in _ladder_thresholds("TD", max(headline, 1)):
+        # The 1+ rung IS p_eff by construction (lambda was derived from it);
+        # computing it through the Poisson tail would only add float drift.
+        p_t = p_eff if t <= 1 else _poisson_tail(lam, t)
+        ladder[t] = float(np.mean(u < p_t))
+    return ladder
+
+
 _LADDER_REGISTRY = {
     ("MLB", "HR"): _mlb_hr_ladder,
     **{(sport, market): _basketball_ladder
        for sport in ("NBA", "WNBA")
        for market in ("PTS", "AST", "REB")},
+    **{("NFL", market): _football_yardage_ladder
+       for market in ("PASS_YDS", "RUSH_YDS", "REC_YDS", "REC")},
+    ("NFL", "TD"): _football_td_ladder,
 }
 
 

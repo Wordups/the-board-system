@@ -37,8 +37,24 @@ def desired_line_floor(sport: str, market: str) -> float:
         "wnba": {"PTS": 12, "AST": 4, "REB": 5, "3PM": 2},
         "soccer": {"GS": 1},
         "tennis": {"ML": 0, "Sets": 2, "O/U": 20.5},
+        "nfl": {"PASS_YDS": 200, "RUSH_YDS": 40, "REC_YDS": 40, "REC": 3, "TD": 1},
     }
     return floors.get(sport, {}).get(market, 0.0)
+
+
+def line_bonus_weight(sport: str, market: str) -> float:
+    """Points of quality score per unit of line above the floor.
+
+    Every other sport quotes lines in single digits, so a flat 0.6 works. NFL
+    yardage lines are two and three digits: at 0.6 a 275-yard passing line
+    would score +45 on line length alone and drown out tier, form, and market.
+    The weights below put an NFL yardage line's contribution in the same range
+    as everyone else's.
+    """
+    weights = {
+        "nfl": {"PASS_YDS": 0.03, "RUSH_YDS": 0.08, "REC_YDS": 0.08, "REC": 0.6, "TD": 0.6},
+    }
+    return weights.get(sport, {}).get(market, 0.6)
 
 
 def prop_quality_score(row: dict, sport: str) -> float:
@@ -51,11 +67,13 @@ def prop_quality_score(row: dict, sport: str) -> float:
         "wnba": {"PTS": 2, "AST": 3, "REB": 2.5, "3PM": 1},
         "soccer": {"GS": 3, "AST": 2, "OU": 0, "ML": 0},
         "tennis": {"ML": 3, "Sets": 2, "O/U": 0.5},
+        "nfl": {"TD": 3, "REC_YDS": 2.5, "RUSH_YDS": 2.5, "REC": 2, "PASS_YDS": 1.5},
     }
     market_bonus = market_bonus_map.get(sport, {}).get(market, 0.0)
     floor = desired_line_floor(sport, market)
     line_value = line_floor_value(str(row.get("line", "")))
-    line_bonus = (line_value - floor) * 0.6 if line_value >= floor else -10 - (floor - line_value) * 3
+    weight = line_bonus_weight(sport, market)
+    line_bonus = (line_value - floor) * weight if line_value >= floor else -10 - (floor - line_value) * 3
     reason = str(row.get("reason", ""))
     form_bonus = 0.0
     if "L5 80" in reason or "L5 90" in reason or "L5 100" in reason:
@@ -199,6 +217,26 @@ def derive_sport_picks(sport: str, data: dict) -> dict | None:
             return None
         straight = select_daily_rows(pool, "wnba", 1, same_game_max=1, same_team_max=1)
         parlay_pool = select_daily_rows(pool, "wnba", 8, same_game_max=2, same_team_max=1)
+        return {
+            "straight": straight[0] if straight else None,
+            "twoLeg": parlay_pool[:2],
+            "threeLeg": parlay_pool[:3],
+        }
+
+    if sport == "nfl":
+        # Football is a weekly slate, so the pool is every section board rather
+        # than a single headline market.
+        sections = data.get("section_boards", {})
+        pool = [
+            clone_row(row, row.get("market", market))
+            for market in ("TD", "REC_YDS", "RUSH_YDS", "PASS_YDS", "REC")
+            for row in sections.get(market, {}).get("players", [])
+        ]
+        pool = [row for row in pool if _is_a_tier(row)]
+        if not pool:
+            return None
+        straight = select_daily_rows(pool, "nfl", 1, same_game_max=1, same_team_max=1)
+        parlay_pool = select_daily_rows(pool, "nfl", 8, same_game_max=2, same_team_max=1)
         return {
             "straight": straight[0] if straight else None,
             "twoLeg": parlay_pool[:2],

@@ -7,7 +7,14 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from app.main import run_mlb_pipeline, run_nba_pipeline, run_soccer_pipeline, run_tennis_pipeline, run_wnba_pipeline
+from app.main import (
+    run_mlb_pipeline,
+    run_nba_pipeline,
+    run_nfl_pipeline,
+    run_soccer_pipeline,
+    run_tennis_pipeline,
+    run_wnba_pipeline,
+)
 from app.outputs.picks_snapshot import write_picks_snapshot
 from app.paths import build_paths
 
@@ -18,6 +25,7 @@ from app.paths import build_paths
 PIPELINES = (
     ("mlb", run_mlb_pipeline),
     ("nba", run_nba_pipeline),
+    ("nfl", run_nfl_pipeline),
     ("wnba", run_wnba_pipeline),
     ("soccer", run_soccer_pipeline),
     ("tennis", run_tennis_pipeline),

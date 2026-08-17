@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "source": "REPLACE ME — e.g. 'Spotrac export 2026-08-14' or 'OverTheCap veteran contracts'",
+    "as_of": "2026-08",
+    "unit": "USD",
+    "notes": "Copy this file to nfl_contracts.json (here, or in backend/data_raw/ for a private override) and fill in real rows. Generate it from a CSV with: python backend/scripts/import_nfl_contracts.py contracts.csv"
+  },
+  "players": [
+    {
+      "player_name": "Example Quarterback",
+      "team": "KC",
+      "position": "QB",
+      "apy": 45000000,
+      "total_value": 450000000,
+      "guaranteed": 141481905,
+      "years": 10,
+      "signed": 2020,
+      "estimated": false
+    },
+    {
+      "player_name": "Example Receiver",
+      "team": "CIN",
+      "position": "WR",
+      "apy": "40.25M",
+      "years": 4,
+      "signed": 2025,
+      "estimated": false
+    },
+    {
+      "player_name": "Example Rookie Back",
+      "team": "DET",
+      "position": "RB",
+      "apy": 4500000,
+      "years": 4,
+      "signed": 2023,
+      "estimated": false
+    }
+  ]
+}
