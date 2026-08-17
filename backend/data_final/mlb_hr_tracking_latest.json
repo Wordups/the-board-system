@@ -1,44 +1,52 @@
 {
   "sport": "MLB",
   "date": "2026-08-17",
-  "generated_at": "2026-08-17 10:27 AM ET",
-  "board_last_updated": "10:27 AM ET",
+  "generated_at": "2026-08-17 10:50 AM ET",
+  "board_last_updated": "10:50 AM ET",
   "tracking_version": 1,
   "summary": {
     "pinned_board_title": "HR Core",
     "tracked_candidate_count": 12,
-    "core_candidate_count": 4,
+    "core_candidate_count": 5,
     "fringe_candidate_count": 1
   },
   "daily_picks": {
     "single": {
-      "player_name": "Kyle Schwarber",
-      "team": "PHI",
-      "opponent": "MIA",
+      "player_name": "Joshua B\u00e1ez",
+      "team": "STL",
+      "opponent": "CIN",
       "line": "HR 1+",
-      "score": 37.24,
+      "score": 42.04,
       "tier": "A"
     },
     "two_leg": [
+      {
+        "player_name": "Joshua B\u00e1ez",
+        "team": "STL",
+        "opponent": "CIN",
+        "line": "HR 1+",
+        "score": 42.04,
+        "tier": "A"
+      },
       {
         "player_name": "Kyle Schwarber",
         "team": "PHI",
         "opponent": "MIA",
         "line": "HR 1+",
         "score": 37.24,
-        "tier": "A"
-      },
-      {
-        "player_name": "Munetaka Murakami",
-        "team": "CWS",
-        "opponent": "CHC",
-        "line": "HR 1+",
-        "score": 36.88,
         "tier": "A"
       }
     ],
     "three_leg": [
       {
+        "player_name": "Joshua B\u00e1ez",
+        "team": "STL",
+        "opponent": "CIN",
+        "line": "HR 1+",
+        "score": 42.04,
+        "tier": "A"
+      },
+      {
         "player_name": "Kyle Schwarber",
         "team": "PHI",
         "opponent": "MIA",
@@ -53,18 +61,67 @@
         "line": "HR 1+",
         "score": 36.88,
         "tier": "A"
-      },
-      {
-        "player_name": "Shohei Ohtani",
-        "team": "LAD",
-        "opponent": "COL",
-        "line": "HR 1+",
-        "score": 31.8,
-        "tier": "B"
       }
     ]
   },
   "tracked_candidates": [
+    {
+      "player_id": "695491",
+      "player_name": "Joshua B\u00e1ez",
+      "team": "STL",
+      "opponent": "CIN",
+      "game_id": "stl-cin-2026-08-17",
+      "market": "HR",
+      "line": "HR 1+",
+      "score": 42.04,
+      "base_score": 42.04,
+      "confidence": 42,
+      "tier": "A",
+      "reason": "HR edge 31.4 | L5 1.50/g | L10 1.50/g | Season 1.50/g | HR% 0.24 | HistHR% 0.20 | OPS 1.666 | SLG 1.333 | ISO 1.000 | PowIdx 0.65 | Surge 0.59 | Matchup 0.45 | ProjPA 4.6 | Sample 0.25 | Peak3Y 0.046 | vs Kent Emanuel | Hand L | Platoon + | Age 23 | Order est. 1 | Lineup confirmed | Rising 0.80 | L5 XBH 1.50/g | Season XBH 1.50/g | Wts T0.42/M0.28/F0.30",
+      "research_rank": 1,
+      "pinned_rank": 3,
+      "core_fringe_tag": "core",
+      "board_tags": {
+        "play_of_day": false,
+        "daily_straight": true,
+        "daily_two_leg": true,
+        "daily_three_leg": true,
+        "pinned_board": true
+      },
+      "result": {
+        "status": "pending",
+        "home_runs": 0
+      },
+      "features": {
+        "pitcher_name": "Kent Emanuel",
+        "pitcher_whip": 0.0,
+        "pitcher_hr9": 0.0,
+        "pitcher_hr_allowed": 0.0,
+        "vs_pitcher_avg": 0.0,
+        "vs_pitcher_ops": 0.0,
+        "vs_pitcher_hr": 0.0,
+        "order_estimate": 1,
+        "projected_pa": 4.59,
+        "lineup_confirmed": true,
+        "lineup_uncertainty_penalty": 0.0,
+        "season_hr_probability": 0.245,
+        "l10_hr_probability": 0.484,
+        "l5_hr_probability": 0.591,
+        "historical_hr_probability": 0.196,
+        "season_hr_per_game": 1.5,
+        "l10_hr_per_game": 1.5,
+        "l5_hr_per_game": 1.5,
+        "ops": 1.666,
+        "slg": 1.333,
+        "iso": 1.0,
+        "sample_reliability": 0.25,
+        "age": 23.0,
+        "historical_power_index": 0.311,
+        "recent_peak_hr_rate": 0.046,
+        "career_hr_rate": 0.046
+      },
+      "evidence": []
+    },
     {
       "player_id": "656941",
       "player_name": "Kyle Schwarber",
@@ -77,13 +134,13 @@
       "base_score": 37.24,
       "confidence": 37,
       "tier": "A",
-      "reason": "HR edge 25.6 | L5 0.40/g | L10 0.30/g | Season 0.31/g | HR% 0.25 | HistHR% 0.26 | OPS 0.905 | SLG 0.537 | ISO 0.290 | PowIdx 0.64 | Surge 0.19 | Matchup 0.44 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Janson Junk | ERA 4.41 | WHIP 1.32 | HR/9 1.23 | HR A 12 | Hand R | Platoon + | vsP 0.000/0.000 in 2 PA | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.45/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 1,
+      "reason": "HR edge 25.6 | L5 0.40/g | L10 0.30/g | Season 0.31/g | HR% 0.25 | HistHR% 0.26 | OPS 0.905 | SLG 0.537 | ISO 0.290 | PowIdx 0.64 | Surge 0.19 | Matchup 0.44 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.076 | vs Janson Junk | ERA 4.41 | WHIP 1.32 | HR/9 1.23 | HR A 12 | Hand R | Platoon + | vsP 0.000/0.000 in 5 PA | Age 33 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.45/g | Wts T0.42/M0.28/F0.30",
+      "research_rank": 2,
       "pinned_rank": 1,
       "core_fringe_tag": "core",
       "board_tags": {
         "play_of_day": false,
-        "daily_straight": true,
+        "daily_straight": false,
         "daily_two_leg": true,
         "daily_three_leg": true,
         "pinned_board": true
@@ -135,13 +192,13 @@
       "confidence": 37,
       "tier": "A",
       "reason": "HR edge 27.0 | L5 0.60/g | L10 0.40/g | Season 0.32/g | HR% 0.25 | HistHR% 0.23 | OPS 0.911 | SLG 0.543 | ISO 0.308 | PowIdx 0.53 | Surge 0.38 | Matchup 0.42 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.060 | vs Shota Imanaga | ERA 3.74 | WHIP 1.10 | HR/9 1.83 | HR A 28 | Hand L | Platoon - | Age 26 | Order est. 5 | Lineup pen 1.2 | Rising 0.49 | L5 XBH 0.60/g | Season XBH 0.47/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 2,
+      "research_rank": 3,
       "pinned_rank": 2,
       "core_fringe_tag": "core",
       "board_tags": {
         "play_of_day": false,
         "daily_straight": false,
-        "daily_two_leg": true,
+        "daily_two_leg": false,
         "daily_three_leg": true,
         "pinned_board": true
       },
@@ -192,7 +249,7 @@
       "confidence": 35,
       "tier": "B",
       "reason": "HR edge 24.4 | L5 0.20/g | L10 0.10/g | Season 0.31/g | HR% 0.26 | HistHR% 0.22 | OPS 0.861 | SLG 0.541 | ISO 0.290 | PowIdx 0.60 | Surge 0.22 | Matchup 0.37 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.058 | vs Blake Snell | ERA 5.00 | WHIP 1.33 | Hand L | Platoon + | vsP 0.000/0.000 in 3 PA | Age 26 | Order est. 2 | Lineup pen 1.2 | Power due 0.36 | Rising 0.49 | L5 XBH 0.40/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 3,
+      "research_rank": 4,
       "pinned_rank": null,
       "core_fringe_tag": "strong",
       "board_tags": {
@@ -249,7 +306,7 @@
       "confidence": 34,
       "tier": "B",
       "reason": "HR edge 22.7 | L5 0.40/g | L10 0.20/g | Season 0.25/g | HR% 0.20 | HistHR% 0.18 | OPS 0.939 | SLG 0.565 | ISO 0.304 | PowIdx 0.53 | Surge 0.37 | Matchup 0.33 | ProjPA 4.0 | Sample 1.00 | Peak3Y 0.049 | vs Framber Valdez | ERA 4.26 | WHIP 1.39 | HR/9 0.88 | HR A 13 | Hand L | Platoon + | Age 22 | Order est. 8 | Lineup pen 1.6 | Rising 0.70 | L5 XBH 0.40/g | Season XBH 0.48/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 4,
+      "research_rank": 5,
       "pinned_rank": null,
       "core_fringe_tag": "strong",
       "board_tags": {
@@ -290,63 +347,6 @@
         "historical_power_index": 0.235,
         "recent_peak_hr_rate": 0.049,
         "career_hr_rate": 0.049
-      },
-      "evidence": []
-    },
-    {
-      "player_id": "660271",
-      "player_name": "Shohei Ohtani",
-      "team": "LAD",
-      "opponent": "COL",
-      "game_id": "lad-col-2026-08-17",
-      "market": "HR",
-      "line": "HR 1+",
-      "score": 31.8,
-      "base_score": 31.8,
-      "confidence": 32,
-      "tier": "B",
-      "reason": "HR edge 21.5 | L5 0.00/g | L10 0.30/g | Season 0.23/g | HR% 0.20 | HistHR% 0.27 | OPS 0.928 | SLG 0.540 | ISO 0.251 | PowIdx 0.71 | Surge 0.04 | Matchup 0.59 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.075 | vs Tomoyuki Sugano | ERA 4.43 | WHIP 1.25 | HR/9 1.90 | HR A 24 | Hand R | Platoon + | vsP 0.625/2.500 in 8 PA | vsP HR 3 | Age 31 | Order est. 2 | Lineup pen 1.2 | Power due 0.21 | Season XBH 0.45/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 5,
-      "pinned_rank": 3,
-      "core_fringe_tag": "core",
-      "board_tags": {
-        "play_of_day": false,
-        "daily_straight": false,
-        "daily_two_leg": false,
-        "daily_three_leg": true,
-        "pinned_board": true
-      },
-      "result": {
-        "status": "pending",
-        "home_runs": 0
-      },
-      "features": {
-        "pitcher_name": "Tomoyuki Sugano",
-        "pitcher_whip": 1.25,
-        "pitcher_hr9": 1.9,
-        "pitcher_hr_allowed": 24.0,
-        "vs_pitcher_avg": 0.625,
-        "vs_pitcher_ops": 2.5,
-        "vs_pitcher_hr": 3.0,
-        "order_estimate": 2,
-        "projected_pa": 4.44,
-        "lineup_confirmed": false,
-        "lineup_uncertainty_penalty": 1.2,
-        "season_hr_probability": 0.199,
-        "l10_hr_probability": 0.23,
-        "l5_hr_probability": 0.074,
-        "historical_hr_probability": 0.273,
-        "season_hr_per_game": 0.227,
-        "l10_hr_per_game": 0.3,
-        "l5_hr_per_game": 0.0,
-        "ops": 0.928,
-        "slg": 0.54,
-        "iso": 0.251,
-        "sample_reliability": 1.0,
-        "age": 31.0,
-        "historical_power_index": 0.739,
-        "recent_peak_hr_rate": 0.075,
-        "career_hr_rate": 0.062
       },
       "evidence": []
     },
@@ -522,6 +522,63 @@
       "evidence": []
     },
     {
+      "player_id": "660271",
+      "player_name": "Shohei Ohtani",
+      "team": "LAD",
+      "opponent": "COL",
+      "game_id": "lad-col-2026-08-17",
+      "market": "HR",
+      "line": "HR 1+",
+      "score": 29.92,
+      "base_score": 29.92,
+      "confidence": 30,
+      "tier": "B",
+      "reason": "HR edge 19.5 | L5 0.00/g | L10 0.30/g | Season 0.23/g | HR% 0.20 | HistHR% 0.27 | OPS 0.928 | SLG 0.540 | ISO 0.251 | PowIdx 0.66 | Surge 0.04 | Matchup 0.59 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.075 | vs Tomoyuki Sugano | ERA 4.43 | WHIP 1.25 | HR/9 1.90 | HR A 24 | Hand R | Platoon + | vsP 1.000/5.000 in 2 PA | vsP HR 2 | Age 31 | Order est. 2 | Lineup pen 1.2 | Power due 0.21 | Season XBH 0.45/g | Wts T0.42/M0.28/F0.30",
+      "research_rank": 9,
+      "pinned_rank": null,
+      "core_fringe_tag": "core",
+      "board_tags": {
+        "play_of_day": false,
+        "daily_straight": false,
+        "daily_two_leg": false,
+        "daily_three_leg": false,
+        "pinned_board": false
+      },
+      "result": {
+        "status": "pending",
+        "home_runs": 0
+      },
+      "features": {
+        "pitcher_name": "Tomoyuki Sugano",
+        "pitcher_whip": 1.25,
+        "pitcher_hr9": 1.9,
+        "pitcher_hr_allowed": 24.0,
+        "vs_pitcher_avg": 1.0,
+        "vs_pitcher_ops": 5.0,
+        "vs_pitcher_hr": 2.0,
+        "order_estimate": 2,
+        "projected_pa": 4.44,
+        "lineup_confirmed": false,
+        "lineup_uncertainty_penalty": 1.2,
+        "season_hr_probability": 0.199,
+        "l10_hr_probability": 0.23,
+        "l5_hr_probability": 0.074,
+        "historical_hr_probability": 0.273,
+        "season_hr_per_game": 0.227,
+        "l10_hr_per_game": 0.3,
+        "l5_hr_per_game": 0.0,
+        "ops": 0.928,
+        "slg": 0.54,
+        "iso": 0.251,
+        "sample_reliability": 1.0,
+        "age": 31.0,
+        "historical_power_index": 0.739,
+        "recent_peak_hr_rate": 0.075,
+        "career_hr_rate": 0.062
+      },
+      "evidence": []
+    },
+    {
       "player_id": "701398",
       "player_name": "Sal Stewart",
       "team": "CIN",
@@ -534,7 +591,7 @@
       "confidence": 29,
       "tier": "B",
       "reason": "HR edge 18.5 | L5 0.40/g | L10 0.20/g | Season 0.21/g | HR% 0.19 | HistHR% 0.20 | OPS 0.809 | SLG 0.474 | ISO 0.215 | PowIdx 0.48 | Surge 0.49 | Matchup 0.36 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.048 | vs Quinn Mathews | ERA 3.60 | WHIP 1.80 | Hand L | Platoon + | Age 22 | Order est. 2 | Lineup confirmed | Rising 0.46 | L5 XBH 1.00/g | Season XBH 0.40/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 9,
+      "research_rank": 10,
       "pinned_rank": null,
       "core_fringe_tag": "strong",
       "board_tags": {
@@ -575,63 +632,6 @@
         "historical_power_index": 0.325,
         "recent_peak_hr_rate": 0.048,
         "career_hr_rate": 0.048
-      },
-      "evidence": []
-    },
-    {
-      "player_id": "624413",
-      "player_name": "Pete Alonso",
-      "team": "BAL",
-      "opponent": "TB",
-      "game_id": "bal-tb-2026-08-17",
-      "market": "HR",
-      "line": "HR 1+",
-      "score": 28.96,
-      "base_score": 28.96,
-      "confidence": 29,
-      "tier": "B",
-      "reason": "HR edge 19.3 | L5 0.20/g | L10 0.10/g | Season 0.22/g | HR% 0.19 | HistHR% 0.24 | OPS 0.851 | SLG 0.490 | ISO 0.224 | PowIdx 0.56 | Surge 0.11 | Matchup 0.18 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.069 | vs Shane McClanahan | ERA 3.09 | WHIP 1.12 | HR/9 0.64 | HR A 7 | Hand L | Platoon + | vsP 0.375/1.250 in 8 PA | vsP HR 1 | Age 31 | Order est. 2 | Lineup pen 1.2 | Power due 0.39 | L5 XBH 0.20/g | Season XBH 0.40/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 10,
-      "pinned_rank": null,
-      "core_fringe_tag": "strong",
-      "board_tags": {
-        "play_of_day": false,
-        "daily_straight": false,
-        "daily_two_leg": false,
-        "daily_three_leg": false,
-        "pinned_board": false
-      },
-      "result": {
-        "status": "pending",
-        "home_runs": 0
-      },
-      "features": {
-        "pitcher_name": "Shane McClanahan",
-        "pitcher_whip": 1.12,
-        "pitcher_hr9": 0.64,
-        "pitcher_hr_allowed": 7.0,
-        "vs_pitcher_avg": 0.375,
-        "vs_pitcher_ops": 1.25,
-        "vs_pitcher_hr": 1.0,
-        "order_estimate": 2,
-        "projected_pa": 4.43,
-        "lineup_confirmed": false,
-        "lineup_uncertainty_penalty": 1.2,
-        "season_hr_probability": 0.194,
-        "l10_hr_probability": 0.134,
-        "l5_hr_probability": 0.194,
-        "historical_hr_probability": 0.242,
-        "season_hr_per_game": 0.218,
-        "l10_hr_per_game": 0.1,
-        "l5_hr_per_game": 0.2,
-        "ops": 0.851,
-        "slg": 0.49,
-        "iso": 0.224,
-        "sample_reliability": 1.0,
-        "age": 31.0,
-        "historical_power_index": 0.566,
-        "recent_peak_hr_rate": 0.069,
-        "career_hr_rate": 0.059
       },
       "evidence": []
     },
