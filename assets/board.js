@@ -280,21 +280,25 @@
     return { label: "Pass", tone: "neutral" };
   }
 
-  function diversifiedTop(source, count = 5, maxPerSport = 2) {
+  function diversifiedTop(source, count = 5, maxPerSport = 2, maxPerMarket = Infinity) {
     const verdictPriority = { Qualified: 4, Watch: 3, "Model only": 2, Pass: 1 };
     const sorted = [...source]
       .filter(row => row.verdict.label !== "Price conflict")
       .sort((a, b) => (verdictPriority[b.verdict.label] || 0) - (verdictPriority[a.verdict.label] || 0) || b.geometry - a.geometry || b.score - a.score);
     const result = [];
     const sportCounts = new Map();
+    const marketCounts = new Map();
     const players = new Set();
     for (const row of sorted) {
       if ((sportCounts.get(row.sport) || 0) >= maxPerSport) continue;
+      const marketKey = `${row.sport}:${row.market}`;
+      if ((marketCounts.get(marketKey) || 0) >= maxPerMarket) continue;
       const identity = `${row.sport}:${row.playerId || row.playerName}:${row.market}`;
       if (players.has(identity)) continue;
       result.push(row);
       players.add(identity);
       sportCounts.set(row.sport, (sportCounts.get(row.sport) || 0) + 1);
+      marketCounts.set(marketKey, (marketCounts.get(marketKey) || 0) + 1);
       if (result.length >= count) break;
     }
     return result;
@@ -354,9 +358,32 @@
     </div>`;
   }
 
+  function todayET() {
+    return new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" }).format(new Date());
+  }
+
   function latestSlateDate() {
-    const dates = Object.values(snapshot?.sports || {}).map(board => board?.date).filter(Boolean).sort();
-    return dates[dates.length - 1] || null;
+    // Pick whichever sport's date is closest to the real calendar date, not
+    // the max or the most common date across sports. A weekly sport (NFL)
+    // legitimately carries a future game-day date; a sport whose collector
+    // has been failing (e.g. blocked upstream) can carry a stale past date
+    // shared by several sports at once. Either can outvote or outrank the
+    // sport that's actually current today - proximity to "now" is the only
+    // criterion that survives both failure modes.
+    const dates = Object.values(snapshot?.sports || {}).map(board => board?.date).filter(Boolean);
+    if (!dates.length) return null;
+    const today = todayET();
+    const todayMs = new Date(`${today}T00:00:00Z`).getTime();
+    let best = dates[0];
+    let bestDelta = Infinity;
+    for (const date of dates) {
+      const delta = Math.abs(new Date(`${date}T00:00:00Z`).getTime() - todayMs);
+      if (delta < bestDelta) {
+        best = date;
+        bestDelta = delta;
+      }
+    }
+    return best;
   }
 
   function staleInfo(date = latestSlateDate()) {
@@ -522,9 +549,15 @@
 
   function renderToday() {
     const date = latestSlateDate();
-    const activeRows = rows.filter(row => row.date === date);
-    const activeGames = games.filter(game => game.date === date);
-    const top = diversifiedTop(activeRows, 10, Infinity);
+    // Each sport's rows already belong to that sport's own current slate
+    // (flattenSnapshot stamps row.date from that sport's own board.date) -
+    // don't re-filter against one shared cross-sport date. A weekly sport
+    // (NFL) legitimately has a different "current" date than a daily sport
+    // (MLB) at the same moment; both are still today's real slate for their
+    // sport and both belong on Today.
+    const activeRows = rows;
+    const activeGames = games;
+    const top = diversifiedTop(activeRows, 10, Infinity, 2);
     const next = [...activeRows]
       .filter(row => !top.some(item => item.id === row.id))
       .sort((a, b) => b.geometry - a.geometry || b.score - a.score)
