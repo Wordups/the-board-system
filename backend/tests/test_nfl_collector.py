@@ -143,6 +143,43 @@ def test_build_team_player_candidates_produces_expected_markets_for_a_bellcow_rb
         assert row["team"] == "SEA"
         assert row["opponent"] == "NE"
 
+    # Multi-TD ladder: a real bellcow's rate should clear at least a 2+ TD
+    # rung, not just the anytime (1+) floor.
+    td_rows = [row for row in candidates if row["market"] == "TD"]
+    assert any(row["line"] == "Anytime TD" for row in td_rows)
+    assert any(row["line"] == "2+ TD" for row in td_rows)
+    lines = [row["line"] for row in td_rows]
+    thresholds = [1 if line == "Anytime TD" else int(line.split("+")[0]) for line in lines]
+    assert thresholds == sorted(thresholds)
+    scores = [row["score"] for row in td_rows]
+    assert scores == sorted(scores, reverse=True)
+
+
+def test_build_team_player_candidates_td_ladder_rung_one_unchanged_by_laddering():
+    # Rung 1's probability/gate must be byte-identical to the pre-ladder
+    # behavior -- laddering is purely additive on top of it.
+    roster = [{"id": "1", "displayName": "Modest Back", "position": "RB", "injury_status": "ACTIVE"}]
+    player_stats = {
+        "1": {
+            "gamesPlayed": 17.0,
+            "rushingTouchdowns": 3.0,
+            "receivingTouchdowns": 0.0,
+            "rushingYardsPerGame": 40.0,
+            "rushingYards": 680.0,
+            "receivingYardsPerGame": 5.0,
+            "receivingYards": 85.0,
+            "receptions": 10.0,
+        }
+    }
+    candidates = nfl_collector.build_team_player_candidates(
+        game_id="401", team_abbr="SEA", opponent_abbr="NE", roster=roster, player_stats=player_stats,
+        opponent_allowed={"rush_yds": 110.0, "pass_yds": 220.0},
+        league_baseline={"rush_yds": 110.0, "pass_yds": 220.0},
+    )
+    td_rows = [row for row in candidates if row["market"] == "TD"]
+    assert len(td_rows) == 1
+    assert td_rows[0]["line"] == "Anytime TD"
+
 
 def test_build_team_player_candidates_skips_players_below_minimum_games():
     roster = [{"id": "2", "displayName": "Rookie", "position": "WR", "injury_status": "ACTIVE"}]

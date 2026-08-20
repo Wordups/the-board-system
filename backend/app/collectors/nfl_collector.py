@@ -50,6 +50,12 @@ PASS_TD_MIN_RUNG_PROBABILITY = 0.05
 # probability worth surfacing.
 INTERCEPTIONS_MAX_RUNG = 2
 INTERCEPTIONS_MIN_RUNG_PROBABILITY = 0.05
+# Anytime-TD ladder: same pattern again, for a multi-score game (2+ TD) as
+# its own distinct play from the anytime (1+) floor. Rung 1 keeps its
+# original 0.12 gate untouched; TD_MIN_RUNG_PROBABILITY only governs whether
+# rung 2+ is worth surfacing.
+TD_MAX_RUNG = 3
+TD_MIN_RUNG_PROBABILITY = 0.05
 # Games of 2025 schedule sampled per team for the recency-weighted power
 # rating and the boxscore-derived defense-allowed signal. Capped well below
 # the full 17-game season to keep the boxscore fetch volume (one request per
@@ -984,14 +990,23 @@ def build_team_player_candidates(
         )
         td_probability = nfl_model.poisson_at_least(td_lambda, 1)
         if td_probability >= 0.12:
-            candidates.append(
-                make_candidate(
-                    **common,
-                    market="TD",
-                    line="Anytime TD",
-                    probability=td_probability,
-                    reason=f"TD λ {td_lambda:.2f} | Rush match {rush_matchup:.2f}x | Rec match {rec_matchup:.2f}x | {sample_note}",
-                )
+            # Ladder multi-TD rungs (2+, 3+) above the anytime floor, same
+            # monotonic-P(k+) pattern as PassTD/INT — a bellcow's multi-score
+            # game is a real, distinct play from "did he score at all," not
+            # just a rounding choice. Rung 1 keeps its exact original gate
+            # (>= 0.12) and value unchanged, so this is purely additive.
+            for td_line in range(1, TD_MAX_RUNG + 1):
+                rung_probability = td_probability if td_line == 1 else nfl_model.poisson_at_least(td_lambda, td_line)
+                if td_line > 1 and rung_probability < TD_MIN_RUNG_PROBABILITY:
+                    break
+                candidates.append(
+                    make_candidate(
+                        **common,
+                        market="TD",
+                        line="Anytime TD" if td_line == 1 else f"{td_line}+ TD",
+                        probability=rung_probability,
+                        reason=f"TD λ {td_lambda:.2f} | Rush match {rush_matchup:.2f}x | Rec match {rec_matchup:.2f}x | {sample_note}",
+                    )
             )
 
         if position != "QB":
