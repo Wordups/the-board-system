@@ -95,7 +95,7 @@ def fetch_soccer_events(slate_date) -> list[dict[str, Any]]:
     seen_ids = set()
     date_token = slate_date.strftime("%Y%m%d")
     for league in SOCCER_LEAGUES:
-        url = f"https://site.api.espn.com/apis/site/v2/sports/soccer/{league['slug']}/scoreboard"
+        url = f"https://site.web.api.espn.com/apis/site/v2/sports/soccer/{league['slug']}/scoreboard"
         try:
             payload = espn_get_json(url, {"dates": date_token})
         except requests.RequestException:
@@ -129,7 +129,7 @@ def fetch_target_soccer_events(start_date) -> tuple[Any, list[dict[str, Any]]]:
 def fetch_team_rosters(team_keys: set[tuple[str, str]]) -> dict[tuple[str, str], list[dict[str, Any]]]:
     def load(item: tuple[str, str]) -> tuple[tuple[str, str], list[dict[str, Any]]]:
         league_slug, team_id = item
-        url = f"https://site.api.espn.com/apis/site/v2/sports/soccer/{league_slug}/teams/{team_id}/roster"
+        url = f"https://site.web.api.espn.com/apis/site/v2/sports/soccer/{league_slug}/teams/{team_id}/roster"
         payload = espn_get_json(url)
         return item, payload.get("athletes", [])
 
@@ -211,7 +211,7 @@ def aggregate_overview_stats(payload: dict[str, Any]) -> dict[str, float] | None
 def fetch_team_recent_form(team_keys: set[tuple[str, str]]) -> dict[tuple[str, str], dict[str, float]]:
     def load(item: tuple[str, str]) -> tuple[tuple[str, str], dict[str, float]]:
         league_slug, team_id = item
-        url = f"https://site.api.espn.com/apis/site/v2/sports/soccer/{league_slug}/teams/{team_id}/schedule"
+        url = f"https://site.web.api.espn.com/apis/site/v2/sports/soccer/{league_slug}/teams/{team_id}/schedule"
         payload = espn_get_json(url)
         recent = []
         for event in payload.get("events", []):

@@ -15,7 +15,7 @@ from typing import Any
 
 from backtest.netcache import cached_fetch
 
-ESPN_SUMMARY = "https://site.api.espn.com/apis/site/v2/sports/basketball/{league}/summary?event={event}"
+ESPN_SUMMARY = "https://site.web.api.espn.com/apis/site/v2/sports/basketball/{league}/summary?event={event}"
 LEAGUE_PATH = {"wnba": "wnba", "nba": "nba"}
 
 LABEL_FOR_MARKET = {"PTS": "PTS", "REB": "REB", "AST": "AST", "3PM": "3PT"}

@@ -23,11 +23,11 @@ from app.scoring.value import (
 from app.utils.dates import now_et, today_et
 
 
-ESPN_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard"
-ESPN_TEAM_ROSTER_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/{team_id}/roster"
-ESPN_TEAM_STATS_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/{team_id}/statistics"
-ESPN_TEAM_SCHEDULE_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/{team_id}/schedule"
-ESPN_SUMMARY_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary"
+ESPN_SCOREBOARD_URL = "https://site.web.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard"
+ESPN_TEAM_ROSTER_URL = "https://site.web.api.espn.com/apis/site/v2/sports/basketball/nba/teams/{team_id}/roster"
+ESPN_TEAM_STATS_URL = "https://site.web.api.espn.com/apis/site/v2/sports/basketball/nba/teams/{team_id}/statistics"
+ESPN_TEAM_SCHEDULE_URL = "https://site.web.api.espn.com/apis/site/v2/sports/basketball/nba/teams/{team_id}/schedule"
+ESPN_SUMMARY_URL = "https://site.web.api.espn.com/apis/site/v2/sports/basketball/nba/summary"
 ESPN_ATHLETE_GAMELOG_URL = "https://site.web.api.espn.com/apis/common/v3/sports/basketball/nba/athletes/{athlete_id}/gamelog"
 HTTP_TIMEOUT = 30
 MAX_WORKERS = 6

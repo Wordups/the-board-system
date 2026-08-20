@@ -43,7 +43,7 @@ def fetch_tennis_tournaments(slate_date) -> list[dict[str, Any]]:
     date_token = slate_date.strftime("%Y%m%d")
     tournaments = []
     for tour in TENNIS_TOURS:
-        url = f"https://site.api.espn.com/apis/site/v2/sports/tennis/{tour['slug']}/scoreboard"
+        url = f"https://site.web.api.espn.com/apis/site/v2/sports/tennis/{tour['slug']}/scoreboard"
         payload = espn_get_json(url, {"dates": date_token})
         for event in payload.get("events", []):
             tournaments.append({**event, "tour": tour["label"], "tour_slug": tour["slug"]})

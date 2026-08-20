@@ -112,26 +112,23 @@ PASS_YDS_MIN_STD = 45.0
 COMPLETIONS_STD_RATIO = 0.22
 COMPLETIONS_MIN_STD = 3.0
 
-ESPN_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
-ESPN_TEAM_ROSTER_URL = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/{team_id}/roster"
-ESPN_TEAM_SCHEDULE_URL = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/{team_id}/schedule"
-ESPN_SUMMARY_URL = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary"
+ESPN_SCOREBOARD_URL = "https://site.web.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
+ESPN_TEAM_ROSTER_URL = "https://site.web.api.espn.com/apis/site/v2/sports/football/nfl/teams/{team_id}/roster"
+ESPN_TEAM_SCHEDULE_URL = "https://site.web.api.espn.com/apis/site/v2/sports/football/nfl/teams/{team_id}/schedule"
+ESPN_SUMMARY_URL = "https://site.web.api.espn.com/apis/site/v2/sports/football/nfl/summary"
 # Core API: per-athlete season statistics, cleanly flattened with real
 # per-game averages and a `gamesPlayed` count — unlike the site/v2 roster
 # endpoint (no inline `statistics` block for NFL athletes) or the athlete
 # `overview` endpoint (career/postseason splits, no per-game averages).
 CORE_ATHLETE_STATS_URL = "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/{season}/types/2/athletes/{athlete_id}/statistics"
 # Per-athlete game-by-game log (rushing/receiving/fumbles lines, one row per
-# 2025 game) -- a different host (site.web.api.espn.com) than every other
-# URL in this module (site.api.espn.com / sports.core.api.espn.com). Same
-# host family soccer_collector.py's ATHLETE_OVERVIEW_URL already uses for a
-# different sport/purpose. Live-verified 2026-08-19 against real 2025 RB ids
-# (Saquon Barkley, Christian McCaffrey, Bijan Robinson all returned 200 with
-# real per-game rushing/receiving stat lines under
-# seasonTypes[].categories[].events[]) from this same sandbox, at a time when
-# site.api.espn.com (the host the rest of this collector depends on) was
-# returning 403 for every request -- confirming this is genuinely a
-# different, independently-reachable host, not a retest of the same block.
+# 2025 game). site.api.espn.com returned 403 for every request from this
+# sandbox (IP-level block, confirmed 2026-08-19 against real 2025 RB ids --
+# Saquon Barkley, Christian McCaffrey, Bijan Robinson all 403'd there).
+# site.web.api.espn.com mirrors the same /apis/site/v2/... and
+# /apis/common/v3/... paths with identical response shapes and is NOT
+# blocked (confirmed 2026-08-20) -- every URL constant in this module now
+# points at that host instead.
 ATHLETE_GAMELOG_URL = "https://site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes/{athlete_id}/gamelog"
 
 
@@ -807,11 +804,11 @@ def parse_receiving_lines(summary: dict[str, Any] | None) -> list[dict[str, Any]
     """Per-athlete receiving stat lines from `boxscore.players[]` in an ESPN
     summary response -- one row per pass-catcher per team, for one game.
 
-    VERIFICATION NOTE: this sandbox could not reach site.api.espn.com at all
-    (403 on every request, standard UA and a browser UA alike -- looks like
-    an IP-level block on this environment, not a UA check) to confirm the
-    live shape of this field. This parses ESPN's widely-documented public
-    boxscore shape (`statistics[].labels[]` header names next to
+    VERIFICATION NOTE: site.api.espn.com 403s on every request from this
+    sandbox (IP-level block); ESPN_SUMMARY_URL now points at
+    site.web.api.espn.com instead, which is reachable and mirrors the same
+    shape. This parses ESPN's widely-documented public boxscore shape
+    (`statistics[].labels[]` header names next to
     `statistics[].athletes[].stats[]` value arrays, matched by label text
     rather than a hardcoded index) defensively: any missing/unexpected
     structure returns None immediately rather than a guessed partial parse,

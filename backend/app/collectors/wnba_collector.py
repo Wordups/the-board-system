@@ -34,10 +34,10 @@ from app.collectors.nba_collector import (
 )
 
 
-ESPN_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/scoreboard"
-ESPN_TEAM_ROSTER_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/{team_id}/roster"
-ESPN_TEAM_SCHEDULE_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/{team_id}/schedule"
-ESPN_SUMMARY_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/summary"
+ESPN_SCOREBOARD_URL = "https://site.web.api.espn.com/apis/site/v2/sports/basketball/wnba/scoreboard"
+ESPN_TEAM_ROSTER_URL = "https://site.web.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/{team_id}/roster"
+ESPN_TEAM_SCHEDULE_URL = "https://site.web.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/{team_id}/schedule"
+ESPN_SUMMARY_URL = "https://site.web.api.espn.com/apis/site/v2/sports/basketball/wnba/summary"
 WNBA_STATS_URL = "https://stats.wnba.com/stats/leaguedashplayerstats"
 WNBA_MARKETS = ["PTS", "REB", "AST", "3PM", "ML"]
 
