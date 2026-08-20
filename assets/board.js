@@ -29,7 +29,7 @@
   const toast = document.getElementById("toast");
 
   const filters = {};
-  const limits = {};
+  const pages = {};
   let snapshot = null;
   let rows = [];
   let rowMap = new Map();
@@ -121,11 +121,28 @@
     return (less + equal * 0.5) / clean.length;
   }
 
+  // A sport whose own board date is this stale isn't a temporary refresh
+  // hiccup (that's what the 1-day staleInfo() banner covers on a sport's
+  // own page) -- it's off-season, e.g. NBA sitting on its last Finals-week
+  // board through the summer. Excluded here, at the single point every
+  // sport's rows/games are built, so it drops out of nav, Today, and every
+  // cross-sport surface at once instead of needing a per-view special case.
+  // Future dates (a weekly sport's next real slate, days or weeks out) are
+  // never off-season.
+  const OFFSEASON_STALE_DAYS = 14;
+
+  function isBoardOffSeason(date) {
+    if (!date) return true;
+    const days = Math.floor((new Date() - new Date(`${date}T12:00:00`)) / 86400000);
+    return days > OFFSEASON_STALE_DAYS;
+  }
+
   function flattenSnapshot(data) {
     const output = [];
     const eventOutput = [];
     Object.entries(data.sports || {}).forEach(([sport, board]) => {
       if (!board || !Array.isArray(board.games)) return;
+      if (isBoardOffSeason(board.date)) return;
       board.games.forEach(game => {
         const event = {
           sport,
@@ -564,6 +581,22 @@
     return `${diamondSection}${perTeamSection}`;
   }
 
+  // These three same-game correlation sections are built from one starting
+  // QB/RB per team league-wide (32 teams), so unbounded they run 32-60
+  // floor+ceiling cards deep before the ranked table even starts — a wall
+  // of scrolling, not a "best of" surface. Cap each to its strongest cards
+  // by floor joint probability (the "how often does this actually land"
+  // read) and say how many are hidden rather than truncating silently.
+  const STACK_SECTION_LIMIT = 8;
+
+  function topByFloorProb(list) {
+    return [...list].sort((a, b) => (b.floor?.joint_prob_pct ?? 0) - (a.floor?.joint_prob_pct ?? 0)).slice(0, STACK_SECTION_LIMIT);
+  }
+
+  function stackSectionNote(total, copy) {
+    return total > STACK_SECTION_LIMIT ? `${copy} Showing the ${STACK_SECTION_LIMIT} strongest floor combos of ${total} starters league-wide.` : copy;
+  }
+
   function renderNflSameGamePairs() {
     const pairs = snapshot?.sports?.nfl?.same_game_pairs;
     if (!pairs || !pairs.length) return "";
@@ -577,22 +610,28 @@
         <div class="oe-sim__payout"><small>${esc(label)}</small><b>${pctOf(rung.joint_prob_pct)}</b><span>Simulated joint probability</span></div>
       </div>`;
     };
-    const cards = pairs.map(pair => `${comboCard(pair, "floor", "Floor combo")}${comboCard(pair, "ceiling", "Ceiling combo")}`).join("");
-    return `<div class="section-head"><div><span class="section-kicker">Same-game correlation</span><h2>QB + Receiver TD Combos</h2></div><p class="section-note">Compound-Poisson simulated joint probability that the QB clears this Pass TD rung and his top pass-catcher also clears this receiving-TD line, same game — not naive independence multiplication.</p></div>${cards}`;
+    const shown = topByFloorProb(pairs);
+    const cards = shown.map(pair => `${comboCard(pair, "floor", "Floor combo")}${comboCard(pair, "ceiling", "Ceiling combo")}`).join("");
+    const note = stackSectionNote(pairs.length, "Compound-Poisson simulated joint probability that the QB clears this Pass TD rung and his top pass-catcher also clears this receiving-TD line, same game — not naive independence multiplication.");
+    return `<div class="section-head"><div><span class="section-kicker">Same-game correlation</span><h2>QB + Receiver TD Combos</h2></div><p class="section-note">${note}</p></div>${cards}`;
   }
 
   function renderNflQbStacks() {
     const stacks = snapshot?.sports?.nfl?.qb_stacks;
     if (!stacks || !stacks.length) return "";
-    const cards = stacks.map(stack => `${qbStackComboCard(stack, "floor", "Floor stack")}${qbStackComboCard(stack, "ceiling", "Ceiling stack")}`).join("");
-    return `<div class="section-head"><div><span class="section-kicker">Same-game correlation</span><h2>QB Stat Stack</h2></div><p class="section-note">Gaussian-copula simulated joint probability that one QB clears his Pass Yards, Completions and Pass TD lines together, same game — these three markets share a common volume/success driver, so a naive independent stack understates how often they land together.</p></div>${cards}`;
+    const shown = topByFloorProb(stacks);
+    const cards = shown.map(stack => `${qbStackComboCard(stack, "floor", "Floor stack")}${qbStackComboCard(stack, "ceiling", "Ceiling stack")}`).join("");
+    const note = stackSectionNote(stacks.length, "Gaussian-copula simulated joint probability that one QB clears his Pass Yards, Completions and Pass TD lines together, same game — these three markets share a common volume/success driver, so a naive independent stack understates how often they land together.");
+    return `<div class="section-head"><div><span class="section-kicker">Same-game correlation</span><h2>QB Stat Stack</h2></div><p class="section-note">${note}</p></div>${cards}`;
   }
 
   function renderNflRbStacks() {
     const stacks = snapshot?.sports?.nfl?.rb_stacks;
     if (!stacks || !stacks.length) return "";
-    const cards = stacks.map(stack => `${rbStackComboCard(stack, "floor", "Floor stack")}${rbStackComboCard(stack, "ceiling", "Ceiling stack")}`).join("");
-    return `<div class="section-head"><div><span class="section-kicker">Same-game correlation</span><h2>RB Usage Stack</h2></div><p class="section-note">Gaussian-copula simulated joint probability that one running back clears his Rush Yards, Receiving Yards and Anytime TD lines together, same game — usage (touches) drives all three, so a naive independent stack understates how often a big workload shows up across the run game, the pass game, and the scoreboard together.</p></div>${cards}`;
+    const shown = topByFloorProb(stacks);
+    const cards = shown.map(stack => `${rbStackComboCard(stack, "floor", "Floor stack")}${rbStackComboCard(stack, "ceiling", "Ceiling stack")}`).join("");
+    const note = stackSectionNote(stacks.length, "Gaussian-copula simulated joint probability that one running back clears his Rush Yards, Receiving Yards and Anytime TD lines together, same game — usage (touches) drives all three, so a naive independent stack understates how often a big workload shows up across the run game, the pass game, and the scoreboard together.");
+    return `<div class="section-head"><div><span class="section-kicker">Same-game correlation</span><h2>RB Usage Stack</h2></div><p class="section-note">${note}</p></div>${cards}`;
   }
 
   function renderNflRbTrendWatch() {
@@ -616,12 +655,12 @@
     return `${bestSection}${trendingSection}`;
   }
 
-  function listMarkup(source, limit = 20) {
+  function listMarkup(source, limit = 20, startRank = 0) {
     if (!source.length) return `<div class="empty-state"><strong>No signals survived these filters.</strong>Relax one filter or switch markets.</div>`;
     return `<div class="signal-list">
       <div class="list-head"><span>Selection</span><span>Market / line</span><span>Model</span><span>Sim</span><span>Vector</span><span>Verdict</span></div>
       ${source.slice(0, limit).map((row, index) => `<div class="signal-row" data-selection-id="${esc(row.id)}" tabindex="0" role="button" aria-label="Open ${esc(row.playerName)} ${esc(row.line)} analysis">
-        <div class="row-person"><span class="row-rank">${String(index + 1).padStart(2, "0")}</span><div><strong>${esc(row.playerName)}</strong><span>${esc(row.team)} vs ${esc(row.opponent)} · ${esc(row.time)}</span></div></div>
+        <div class="row-person"><span class="row-rank">${String(startRank + index + 1).padStart(2, "0")}</span><div><strong>${esc(row.playerName)}</strong><span>${esc(row.team)} vs ${esc(row.opponent)} · ${esc(row.time)}</span></div></div>
         <div class="row-market"><span class="market-token">${esc(row.market)}</span><strong>${esc(row.line)}</strong></div>
         <span class="row-number">${row.score.toFixed(1)}</span>
         <span class="row-number ${row.priceEdge !== null && row.priceEdge < 0 ? "warn" : ""}">${esc(probabilityText(row))}</span>
@@ -629,6 +668,26 @@
         <span class="status-token ${esc(row.verdict.tone)}">${esc(row.verdict.label)}</span>${flagChip(row)}
       </div>`).join("")}
     </div>`;
+  }
+
+  // Real pagination for the filter board -- a fixed 10 rows per page with
+  // Prev/Next, not the old "Show 25 more" button that just kept growing the
+  // same list forever. Page state is per-sport (`pages`) so switching sports
+  // or tabs doesn't lose your place; a filter change resets it back to 1
+  // (see the input/change listeners below) since a stale page number can
+  // otherwise land past the end of a newly-narrowed result set.
+  function paginatedListMarkup(sport, source, pageSize = 10) {
+    if (!source.length) return `<div class="empty-state"><strong>No signals survived these filters.</strong>Relax one filter or switch markets.</div>`;
+    const totalPages = Math.max(1, Math.ceil(source.length / pageSize));
+    const page = Math.min(Math.max(1, pages[sport] || 1), totalPages);
+    pages[sport] = page;
+    const start = (page - 1) * pageSize;
+    return `${listMarkup(source.slice(start, start + pageSize), pageSize, start)}
+      <div class="pagination">
+        <button class="page-nav" type="button" data-action="page-prev" data-sport="${esc(sport)}"${page <= 1 ? " disabled" : ""}>&larr; Prev</button>
+        <span class="page-status">Page ${page} of ${totalPages} &middot; ${source.length} signal${source.length === 1 ? "" : "s"}</span>
+        <button class="page-nav" type="button" data-action="page-next" data-sport="${esc(sport)}"${page >= totalPages ? " disabled" : ""}>Next &rarr;</button>
+      </div>`;
   }
 
   function gamesRail(activeGames) {
@@ -721,16 +780,16 @@
     const markets = [...new Set(source.map(row => row.market))].sort();
     const sportGames = games.filter(game => game.sport === sport);
     const top = sport === "soccer" ? probabilityLeaders(current, 3) : diversifiedTop(current, 3, 3);
-    const limit = limits[sport] || 25;
     const latest = snapshot.sports[sport]?.date || staleInfo().latest;
+    // Layout: best signal first, then the filter board (paginated table),
+    // then NFL's same-game correlation sections (TD scorer combos, QB
+    // stacks, RB stacks/trend watch) below it -- deep-dive material for
+    // once you've already scanned the top picks, not a wall to scroll
+    // through to reach them.
     return `${pageHead(`${meta.label} signal field`, meta.label, "market map.", "", latest)}
       ${freshnessBanner(latest)}
       ${gamesRail(sportGames)}
       ${sport === "mlb" ? renderMlbHrSpotlight() : ""}
-      ${sport === "nfl" ? renderNflSameGamePairs() : ""}
-      ${sport === "nfl" ? renderNflQbStacks() : ""}
-      ${sport === "nfl" ? renderNflRbStacks() : ""}
-      ${sport === "nfl" ? renderNflRbTrendWatch() : ""}
       <div class="section-head"><div><span class="section-kicker">Current profile</span><h2>${sport === "soccer" ? "Highest modeled probabilities" : "Best balanced signals"}</h2></div><p class="section-note">${sport === "soccer" ? "One leader per market; use the probability sort below for the full board." : "These cards exclude hard price and projection conflicts."}</p></div>
       <section class="lead-grid">${top.map(signalCard).join("")}</section>
       <div class="toolbar" aria-label="Board filters">
@@ -739,8 +798,11 @@
         <label class="field"><select data-filter="tier" data-sport="${esc(sport)}"><option value="">All tiers</option>${["A","B","C"].map(tier => `<option value="${tier}"${filter.tier === tier ? " selected" : ""}>Tier ${tier}</option>`).join("")}</select></label>
         <label class="field"><select data-filter="sort" data-sport="${esc(sport)}"><option value="geometry"${filter.sort === "geometry" ? " selected" : ""}>Vector score</option><option value="model"${filter.sort === "model" ? " selected" : ""}>Raw model</option><option value="probability"${filter.sort === "probability" ? " selected" : ""}>Sim probability</option><option value="time"${filter.sort === "time" ? " selected" : ""}>Game time</option></select></label>
       </div>
-      ${listMarkup(current, limit)}
-      ${current.length > limit ? `<button class="show-more" data-action="more" data-sport="${esc(sport)}">Show 25 more · ${current.length - limit} remain</button>` : ""}`;
+      ${paginatedListMarkup(sport, current, 10)}
+      ${sport === "nfl" ? renderNflSameGamePairs() : ""}
+      ${sport === "nfl" ? renderNflQbStacks() : ""}
+      ${sport === "nfl" ? renderNflRbStacks() : ""}
+      ${sport === "nfl" ? renderNflRbTrendWatch() : ""}`;
   }
 
   function renderMissingSport(sport) {
@@ -1232,8 +1294,11 @@
     if (gameChip) { openGameDrawer(gameChip.dataset.gameId); return; }
     const action = event.target.closest("[data-action]");
     if (!action) return;
-    if (action.dataset.action === "more") {
-      limits[action.dataset.sport] = (limits[action.dataset.sport] || 25) + 25;
+    if (action.dataset.action === "page-prev") {
+      pages[action.dataset.sport] = Math.max(1, (pages[action.dataset.sport] || 1) - 1);
+      render();
+    } else if (action.dataset.action === "page-next") {
+      pages[action.dataset.sport] = (pages[action.dataset.sport] || 1) + 1;
       render();
     } else if (action.dataset.action === "toggle-save") toggleSave(action.dataset.id);
     else if (action.dataset.action === "remove") { toggleSave(action.dataset.id); render(); }
@@ -1251,6 +1316,7 @@
     const control = event.target.closest("[data-filter]");
     if (!control || !control.dataset.sport || control.dataset.filter !== "search") return;
     sportFilters(control.dataset.sport)[control.dataset.filter] = control.value;
+    pages[control.dataset.sport] = 1;
     clearTimeout(searchTimer);
     const sport = control.dataset.sport;
     searchTimer = setTimeout(() => {
@@ -1269,6 +1335,7 @@
     if (control.dataset.filter === "game-sport") { gameSport = control.value; render(); return; }
     if (control.dataset.sport) {
       sportFilters(control.dataset.sport)[control.dataset.filter] = control.value;
+      pages[control.dataset.sport] = 1;
       render();
     }
   });

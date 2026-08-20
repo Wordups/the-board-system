@@ -411,6 +411,11 @@ h1 em { color: var(--muted); font-style: normal; font-weight: 500; }
 .mini-orbit::after { content: ""; width: 20px; height: 20px; border-radius: 50%; background: var(--panel); }
 .show-more { width: 100%; min-height: 48px; border: 0; border-top: 1px solid var(--line); background: transparent; color: var(--muted); font: 500 10px var(--mono); cursor: pointer; }
 .show-more:hover { color: var(--lime); background: rgba(47,158,87,.03); }
+.pagination { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 4px 0; border-top: 1px solid var(--line); margin-top: 4px; }
+.page-nav { min-height: 40px; padding: 0 16px; border: 1px solid var(--line); background: var(--panel); color: var(--text); font: 500 10px var(--mono); cursor: pointer; }
+.page-nav:hover:not(:disabled) { color: var(--lime); border-color: var(--lime); }
+.page-nav:disabled { color: var(--muted); opacity: .4; cursor: default; }
+.page-status { color: var(--muted); font: 500 10px var(--mono); text-align: center; }
 .empty-state { padding: 52px 24px; text-align: center; color: var(--muted); }
 .empty-state strong { display: block; margin-bottom: 8px; color: var(--text); }
 
