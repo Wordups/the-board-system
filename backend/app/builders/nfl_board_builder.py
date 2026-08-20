@@ -4,6 +4,7 @@ from collections import defaultdict
 
 from app.builders.universal_game_builder import empty_markets_for
 from app.collectors.nfl_collector import NFL_MARKETS, collect_nfl_raw_data
+from app.sim.nfl_same_game import build_same_game_pairs_for_game
 from app.utils.dates import timestamp_et
 
 
@@ -52,6 +53,7 @@ def build_nfl_board(*, config, paths) -> dict:
     raw_payload = collect_nfl_raw_data(paths.data_raw)
     games_output = []
     pinned_candidates = []
+    same_game_pairs = []
 
     for raw_game in raw_payload["games"]:
         ranked = sorted(raw_game["candidates"], key=lambda row: (row["score"], row["confidence"]), reverse=True)
@@ -59,10 +61,11 @@ def build_nfl_board(*, config, paths) -> dict:
         for candidate in ranked:
             market_bucket[candidate["market"]].append(to_board_row(candidate))
 
+        matchup = f'{raw_game["away_team"]} @ {raw_game["home_team"]}'
         games_output.append(
             {
                 "game_id": raw_game["game_id"],
-                "matchup": f'{raw_game["away_team"]} @ {raw_game["home_team"]}',
+                "matchup": matchup,
                 "time": raw_game["time"],
                 "top_signals": build_nfl_top_signals(ranked, config.top_signals_per_game),
                 "markets": {
@@ -72,6 +75,21 @@ def build_nfl_board(*, config, paths) -> dict:
             }
         )
         pinned_candidates.extend(candidate for candidate in ranked if candidate["market"] == "TD")
+        # Same-game QB PassTD-ladder <-> pass-catcher correlation sim
+        # (compound Poisson + multinomial attribution — see nfl_same_game.py
+        # for why this isn't a drive-level simulator). Additive and
+        # display-only: uses raw_game["candidates"] (pre market-bucketing,
+        # still tagged with position/games_played/rec_td_per_game/
+        # pass_td_lambda from the collector) and degrades to [] per team
+        # when no qualifying QB ladder or attributable pass-catcher exists,
+        # rather than raising.
+        same_game_pairs.extend(
+            build_same_game_pairs_for_game(
+                game_id=raw_game["game_id"],
+                matchup=matchup,
+                candidates=raw_game["candidates"],
+            )
+        )
 
     week = raw_payload.get("week")
     season = raw_payload.get("season")
@@ -95,6 +113,9 @@ def build_nfl_board(*, config, paths) -> dict:
             "players": [to_board_row(candidate) for candidate in sorted(pinned_candidates, key=lambda row: (row["score"], row["confidence"]), reverse=True)[:10]],
         },
         "games": games_output,
+        # Extra field the generic board pipeline/schema ignores (same
+        # pattern as data.diamond for MLB) — see nfl_same_game.py.
+        "same_game_pairs": same_game_pairs,
     }
 
 

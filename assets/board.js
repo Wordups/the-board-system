@@ -511,6 +511,24 @@
     return `${diamondSection}${perTeamSection}`;
   }
 
+  function renderNflSameGamePairs() {
+    const pairs = snapshot?.sports?.nfl?.same_game_pairs;
+    if (!pairs || !pairs.length) return "";
+    const pctOf = value => `${Number(value ?? 0).toFixed(1)}%`;
+    const comboCard = (pair, tier, label) => {
+      const rung = pair[tier];
+      if (!rung) return "";
+      return `<div class="oe-sim__combo">
+        <div class="oe-sim__leg"><div><b>${esc(pair.qb.player_name)}</b><small>${esc(pair.matchup)}</small><em>${esc(rung.qb_line)}</em></div></div>
+        <span class="oe-sim__x" aria-hidden="true">&times;</span>
+        <div class="oe-sim__leg"><div><b>${esc(pair.receiver.player_name)}</b><small>Same-game receiver</small><em>${esc(rung.receiver_line)}</em></div></div>
+        <div class="oe-sim__payout"><small>${esc(label)}</small><b>${pctOf(rung.joint_prob_pct)}</b><span>Simulated joint probability</span></div>
+      </div>`;
+    };
+    const cards = pairs.map(pair => `${comboCard(pair, "floor", "Floor combo")}${comboCard(pair, "ceiling", "Ceiling combo")}`).join("");
+    return `<div class="section-head"><div><span class="section-kicker">Same-game correlation</span><h2>QB + Receiver TD Combos</h2></div><p class="section-note">Compound-Poisson simulated joint probability that the QB clears this Pass TD rung and his top pass-catcher also clears this receiving-TD line, same game — not naive independence multiplication.</p></div>${cards}`;
+  }
+
   function listMarkup(source, limit = 20) {
     if (!source.length) return `<div class="empty-state"><strong>No signals survived these filters.</strong>Relax one filter or switch markets.</div>`;
     return `<div class="signal-list">
@@ -622,6 +640,7 @@
       ${freshnessBanner(latest)}
       ${gamesRail(sportGames)}
       ${sport === "mlb" ? renderMlbHrSpotlight() : ""}
+      ${sport === "nfl" ? renderNflSameGamePairs() : ""}
       <div class="section-head"><div><span class="section-kicker">Current profile</span><h2>${sport === "soccer" ? "Highest modeled probabilities" : "Best balanced signals"}</h2></div><p class="section-note">${sport === "soccer" ? "One leader per market; use the probability sort below for the full board." : "These cards exclude hard price and projection conflicts."}</p></div>
       <section class="lead-grid">${top.map(signalCard).join("")}</section>
       <div class="toolbar" aria-label="Board filters">

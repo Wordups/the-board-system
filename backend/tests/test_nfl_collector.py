@@ -12,6 +12,8 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT / "backend"))
 
+import pytest
+
 from app.collectors import nfl_collector
 from app.scoring.tiers import NFL_TIER_CUTOFFS, assign_nfl_tier
 
@@ -184,6 +186,64 @@ def test_build_team_player_candidates_produces_pass_td_for_starting_qb():
     assert "PassTD" in markets
     assert "REC" not in markets
     assert "RecYds" not in markets
+
+
+def test_build_team_player_candidates_tags_rows_for_same_game_sim():
+    # The same-game correlation sim (app/sim/nfl_same_game.py) reads these
+    # extra fields straight off the raw candidate rows -- position for
+    # pass-catcher identification, and the exact already-computed
+    # pass_td_lambda for the QB rather than re-deriving it.
+    roster = [
+        {"id": "3", "displayName": "Starting QB", "position": "QB", "injury_status": "ACTIVE"},
+        {"id": "4", "displayName": "Bellcow Back", "position": "RB", "injury_status": "ACTIVE"},
+    ]
+    player_stats = {
+        "3": {
+            "gamesPlayed": 17.0,
+            "passingTouchdowns": 28.0,
+            "rushingTouchdowns": 2.0,
+            "receivingTouchdowns": 0.0,
+            "rushingYardsPerGame": 12.0,
+            "rushingYards": 204.0,
+            "receivingYards": 0.0,
+            "receptions": 0.0,
+        },
+        "4": {
+            "gamesPlayed": 17.0,
+            "rushingTouchdowns": 12.0,
+            "receivingTouchdowns": 2.0,
+            "passingTouchdowns": 0.0,
+            "rushingYardsPerGame": 85.0,
+            "rushingYards": 1445.0,
+            "receivingYardsPerGame": 20.0,
+            "receivingYards": 340.0,
+            "receptions": 34.0,
+        },
+    }
+    candidates = nfl_collector.build_team_player_candidates(
+        game_id="401",
+        team_abbr="SEA",
+        opponent_abbr="NE",
+        roster=roster,
+        player_stats=player_stats,
+        opponent_allowed={"rush_yds": 110.0, "pass_yds": 260.0},
+        league_baseline={"rush_yds": 110.0, "pass_yds": 220.0},
+    )
+    qb_rows = [row for row in candidates if row["player_id"] == "3"]
+    rb_rows = [row for row in candidates if row["player_id"] == "4"]
+    assert qb_rows and rb_rows
+
+    for row in qb_rows:
+        assert row["position"] == "QB"
+        assert row["games_played"] == 17.0
+        if row["market"] == "PassTD":
+            assert row["pass_td_lambda"] > 0.0
+
+    for row in rb_rows:
+        assert row["position"] == "RB"
+        assert row["games_played"] == 17.0
+        assert row["rec_td_per_game"] == pytest.approx(2.0 / 17.0)
+        assert "pass_td_lambda" not in row
 
 
 # ---------- build_moneyline_candidate ----------------------------------------

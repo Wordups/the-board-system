@@ -26,6 +26,23 @@ def test_nfl_pipeline_writes_json_outputs():
     assert (PROJECT_ROOT / "frontend" / "data" / "nfl.json").exists()
     assert (PROJECT_ROOT / "data" / "nfl.json").exists()
 
+    # Same-game QB<->receiver correlation sim: extra field the generic board
+    # schema/pipeline ignores (same pattern as `diamond` for MLB). Must
+    # always be present and list-shaped -- honestly empty ([]) when ESPN is
+    # unreachable in this sandbox rather than absent or fabricated.
+    assert "same_game_pairs" in board
+    assert isinstance(board["same_game_pairs"], list)
+    for pair in board["same_game_pairs"]:
+        assert set(pair.keys()) == {"game_id", "matchup", "qb", "receiver", "floor", "ceiling"}
+        assert set(pair["qb"].keys()) == {"player_name", "player_id"}
+        assert set(pair["receiver"].keys()) == {"player_name", "player_id"}
+        for tier in ("floor", "ceiling"):
+            rung = pair[tier]
+            assert set(rung.keys()) == {"qb_line", "receiver_line", "joint_prob_pct"}
+            assert rung["qb_line"].endswith("+ Pass TD")
+            assert rung["receiver_line"].endswith("+ Rec TD")
+            assert 0.0 < rung["joint_prob_pct"] <= 100.0
+
     if board["games"]:
         game = board["games"][0]
         assert set(game["markets"].keys()) == {"TD", "RecYds", "RushYds", "REC", "PassTD", "ML"}

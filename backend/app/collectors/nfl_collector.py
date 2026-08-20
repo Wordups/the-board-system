@@ -414,6 +414,15 @@ def build_team_player_candidates(
         rec_yds_pg = stats.get("receivingYardsPerGame", stats.get("receivingYards", 0.0) / games_played)
         rec_pg = stats.get("receptions", 0.0) / games_played
 
+        # Index into `candidates` before this athlete's rows are appended, so
+        # every row this athlete produces below can be tagged afterward with
+        # the raw fields the same-game correlation sim (nfl_same_game.py)
+        # needs — position for pass-catcher identification, plus the exact
+        # already-computed pass_td_lambda / raw rec_td rate, rather than the
+        # sim re-deriving them from score strings. Extra keys that
+        # to_board_row()'s allow-list and the frontend pipeline both ignore.
+        athlete_candidate_start = len(candidates)
+
         common = {
             "player_id": athlete["id"],
             "player_name": athlete["displayName"],
@@ -517,6 +526,13 @@ def build_team_player_candidates(
                             reason=f"Pass TD λ {pass_td_lambda:.2f} | Rec match {pass_matchup:.2f}x | {sample_note}",
                         )
                     )
+
+        for tagged in candidates[athlete_candidate_start:]:
+            tagged["position"] = position
+            tagged["games_played"] = games_played
+            tagged["rec_td_per_game"] = rec_td_pg
+            if position == "QB":
+                tagged["pass_td_lambda"] = pass_td_lambda
 
     return candidates
 
