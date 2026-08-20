@@ -804,3 +804,163 @@ def nfl_model_matchup_ratio_for_test(allowed_value: float, league_avg_allowed: f
     from app.models import nfl_model
 
     return nfl_model.matchup_ratio(allowed_value, league_avg_allowed)
+
+
+# ---------- RB trend watch (parse_rb_gamelog / build_rb_trend_watch) --------
+
+def _gamelog_fixture(weekly_rush_rec: list[tuple[int, float, float]]) -> dict:
+    """Synthetic ESPN gamelog payload shaped like the real
+    site.web.api.espn.com response verified live during development:
+    top-level `names` positionally matches each event's `stats` array, real
+    per-game metadata (week) lives in the separate top-level `events` dict
+    keyed by eventId, and `seasonTypes` holds a Postseason entry ahead of the
+    Regular Season entry (real ESPN order for a team that made the
+    playoffs) -- parse_rb_gamelog must select Regular Season specifically,
+    not just take the first seasonTypes entry."""
+    names = [
+        "rushingAttempts", "rushingYards", "yardsPerRushAttempt", "rushingTouchdowns", "longRushing",
+        "receptions", "receivingTargets", "receivingYards", "yardsPerReception", "receivingTouchdowns",
+        "longReception", "fumbles", "fumblesLost", "fumblesForced", "kicksBlocked",
+    ]
+    events = {}
+    reg_events = []
+    for week, rush_yds, rec_yds in weekly_rush_rec:
+        event_id = f"e{week}"
+        events[event_id] = {"id": event_id, "week": week}
+        stats = ["15", str(rush_yds), "4.0", "0", "20", "3", "4", str(rec_yds), "6.0", "0", "10", "0", "0", "-", "-"]
+        reg_events.append({"eventId": event_id, "stats": stats})
+    return {
+        "names": names,
+        "events": events,
+        "seasonTypes": [
+            {
+                "displayName": "2025 Postseason",
+                "categories": [{"events": [{"eventId": "ep1", "stats": ["1"] * 15}]}],
+            },
+            {
+                "displayName": "2025 Regular Season",
+                "categories": [{"events": reg_events}],
+            },
+        ],
+    }
+
+
+def test_parse_rb_gamelog_sorts_chronologically_and_sums_total_yards():
+    payload = _gamelog_fixture([(3, 50.0, 10.0), (1, 80.0, 20.0), (2, 60.0, 5.0)])
+    games = nfl_collector.parse_rb_gamelog(payload)
+    assert [g["week"] for g in games] == [1, 2, 3]
+    assert games[0] == {"week": 1, "rush_yds": 80.0, "rec_yds": 20.0, "total_yds": 100.0}
+
+
+def test_parse_rb_gamelog_ignores_postseason_entry():
+    payload = _gamelog_fixture([(1, 80.0, 20.0)])
+    games = nfl_collector.parse_rb_gamelog(payload)
+    # Postseason fixture event (eventId "ep1") must not leak into the result.
+    assert all(g["week"] != 1 or g["total_yds"] == 100.0 for g in games)
+    assert len(games) == 1
+
+
+def test_parse_rb_gamelog_returns_none_when_no_regular_season_entry():
+    payload = {"names": ["rushingYards", "receivingYards"], "events": {}, "seasonTypes": []}
+    assert nfl_collector.parse_rb_gamelog(payload) is None
+
+
+def test_parse_rb_gamelog_returns_none_when_stat_names_missing():
+    payload = {"names": ["fumbles"], "events": {}, "seasonTypes": [{"displayName": "2025 Regular Season", "categories": [{"events": []}]}]}
+    assert nfl_collector.parse_rb_gamelog(payload) is None
+
+
+def test_fetch_rb_gamelogs_filters_to_rb_position_and_degrades_per_player(monkeypatch):
+    rosters = {
+        "SEA": [
+            {"id": "10", "displayName": "Star RB", "position": "RB", "injury_status": "ACTIVE"},
+            {"id": "11", "displayName": "Some WR", "position": "WR", "injury_status": "ACTIVE"},
+        ],
+        "NE": [
+            {"id": "20", "displayName": "Broken RB", "position": "RB", "injury_status": "ACTIVE"},
+        ],
+    }
+    import requests
+
+    fixture = _gamelog_fixture([(week, 60.0 + week, 10.0) for week in range(1, 9)])
+
+    def fake_get(url, params=None):
+        assert "gamelog" in url
+        if "10" in url.split("/"):
+            return fixture
+        raise requests.RequestException("boom")
+
+    monkeypatch.setattr(nfl_collector, "espn_get_json", fake_get)
+    result = nfl_collector.fetch_rb_gamelogs(rosters, season=2025)
+    assert set(result.keys()) == {"10"}
+    assert result["10"]["team"] == "SEA"
+    assert len(result["10"]["games"]) == 8
+
+
+def test_build_rb_trend_watch_best_stretch_finds_max_rolling_window():
+    rosters = {"SEA": [{"id": "10", "displayName": "Star RB", "position": "RB", "injury_status": "ACTIVE"}]}
+    # Weeks 1-8: a flat ~50/gm baseline except a hot 5-game window (weeks 3-7)
+    # averaging much higher -- the max rolling-5 window should land there.
+    weekly = [(1, 40.0, 10.0), (2, 45.0, 10.0), (3, 90.0, 20.0), (4, 100.0, 15.0), (5, 110.0, 10.0),
+              (6, 95.0, 20.0), (7, 105.0, 15.0), (8, 40.0, 10.0)]
+    gamelogs = {"10": {"team": "SEA", "games": nfl_collector.parse_rb_gamelog(_gamelog_fixture(weekly))}}
+    trend = nfl_collector.build_rb_trend_watch(gamelogs, rosters)
+    assert trend["window"] == 5
+    assert len(trend["best_stretch"]) == 1
+    row = trend["best_stretch"][0]
+    assert row["player_name"] == "Star RB"
+    assert row["team"] == "SEA"
+    assert row["best_stretch_weeks"] == "Wk 3-7"
+    # (90+20)+(100+15)+(110+10)+(95+20)+(105+15) = 580 total / 5 games
+    assert row["best_stretch_avg_yds"] == 116.0
+
+
+def test_build_rb_trend_watch_trending_up_compares_final_window_to_season():
+    rosters = {"SEA": [{"id": "10", "displayName": "Finisher RB", "position": "RB", "injury_status": "ACTIVE"}]}
+    # Cold start, hot finish: final 5 games clearly outperform the season avg.
+    weekly = [(1, 20.0, 0.0), (2, 20.0, 0.0), (3, 20.0, 0.0),
+              (4, 100.0, 20.0), (5, 100.0, 20.0), (6, 100.0, 20.0), (7, 100.0, 20.0), (8, 100.0, 20.0)]
+    gamelogs = {"10": {"team": "SEA", "games": nfl_collector.parse_rb_gamelog(_gamelog_fixture(weekly))}}
+    trend = nfl_collector.build_rb_trend_watch(gamelogs, rosters)
+    assert len(trend["trending_up"]) == 1
+    row = trend["trending_up"][0]
+    assert row["recent_weeks"] == "Wk 4-8"
+    assert row["recent_avg_total_yds"] == 120.0
+    assert row["trend_pct"] > 0
+
+
+def test_build_rb_trend_watch_excludes_backs_below_minimum_games():
+    rosters = {"SEA": [{"id": "10", "displayName": "Small Sample RB", "position": "RB", "injury_status": "ACTIVE"}]}
+    weekly = [(1, 100.0, 20.0), (2, 100.0, 20.0), (3, 100.0, 20.0), (4, 100.0, 20.0), (5, 100.0, 20.0)]
+    gamelogs = {"10": {"team": "SEA", "games": nfl_collector.parse_rb_gamelog(_gamelog_fixture(weekly))}}
+    trend = nfl_collector.build_rb_trend_watch(gamelogs, rosters)
+    assert trend["best_stretch"] == []
+    assert trend["trending_up"] == []
+
+
+def test_build_rb_trend_watch_excludes_backs_trending_down():
+    rosters = {"SEA": [{"id": "10", "displayName": "Fading RB", "position": "RB", "injury_status": "ACTIVE"}]}
+    weekly = [(1, 100.0, 20.0), (2, 100.0, 20.0), (3, 100.0, 20.0),
+              (4, 20.0, 0.0), (5, 20.0, 0.0), (6, 20.0, 0.0), (7, 20.0, 0.0), (8, 20.0, 0.0)]
+    gamelogs = {"10": {"team": "SEA", "games": nfl_collector.parse_rb_gamelog(_gamelog_fixture(weekly))}}
+    trend = nfl_collector.build_rb_trend_watch(gamelogs, rosters)
+    assert trend["trending_up"] == []
+    # Best stretch still populates (it doesn't require a positive trend).
+    assert len(trend["best_stretch"]) == 1
+
+
+def test_build_rb_trend_watch_ranks_and_caps_at_top_n():
+    rosters = {"SEA": [
+        {"id": str(i), "displayName": f"RB {i}", "position": "RB", "injury_status": "ACTIVE"} for i in range(12)
+    ]}
+    gamelogs = {}
+    for i in range(12):
+        base = 50.0 + i * 5.0  # each RB slightly better than the last
+        weekly = [(week, base, 10.0) for week in range(1, 9)]
+        gamelogs[str(i)] = {"team": "SEA", "games": nfl_collector.parse_rb_gamelog(_gamelog_fixture(weekly))}
+    trend = nfl_collector.build_rb_trend_watch(gamelogs, rosters)
+    assert len(trend["best_stretch"]) == nfl_collector.RB_TREND_TOP_N
+    # Highest base (RB 11) should rank first.
+    assert trend["best_stretch"][0]["player_name"] == "RB 11"
+    scores = [row["best_stretch_avg_yds"] for row in trend["best_stretch"]]
+    assert scores == sorted(scores, reverse=True)

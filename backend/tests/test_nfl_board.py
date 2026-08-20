@@ -60,6 +60,28 @@ def test_nfl_pipeline_writes_json_outputs():
             assert rung["pass_td_line"].endswith("+ Pass TD")
             assert 0.0 < rung["joint_prob_pct"] <= 100.0
 
+    # RB trend watch: two informational RB signals derived from 2025
+    # game-by-game gamelogs (site.web.api.espn.com) -- a third extra field,
+    # same always-present, honestly-empty-when-ESPN-unreachable convention
+    # as same_game_pairs/qb_stacks above. See app/collectors/nfl_collector.py
+    # build_rb_trend_watch.
+    assert "rb_trend_watch" in board
+    trend = board["rb_trend_watch"]
+    assert set(trend.keys()) == {"window", "best_stretch", "trending_up"}
+    assert isinstance(trend["best_stretch"], list)
+    assert isinstance(trend["trending_up"], list)
+    for row in trend["best_stretch"]:
+        assert set(row.keys()) == {
+            "player_id", "player_name", "team", "games_sampled",
+            "best_stretch_total_yds", "best_stretch_avg_yds", "best_stretch_weeks", "season_avg_total_yds",
+        }
+    for row in trend["trending_up"]:
+        assert set(row.keys()) == {
+            "player_id", "player_name", "team", "games_sampled",
+            "season_avg_total_yds", "recent_avg_total_yds", "trend_pct", "recent_weeks",
+        }
+        assert row["trend_pct"] > 0
+
     if board["games"]:
         game = board["games"][0]
         # Superset, not equality: which markets actually populate for a given
