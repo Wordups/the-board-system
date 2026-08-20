@@ -529,6 +529,26 @@
     return `<div class="section-head"><div><span class="section-kicker">Same-game correlation</span><h2>QB + Receiver TD Combos</h2></div><p class="section-note">Compound-Poisson simulated joint probability that the QB clears this Pass TD rung and his top pass-catcher also clears this receiving-TD line, same game — not naive independence multiplication.</p></div>${cards}`;
   }
 
+  function renderNflQbStacks() {
+    const stacks = snapshot?.sports?.nfl?.qb_stacks;
+    if (!stacks || !stacks.length) return "";
+    const pctOf = value => `${Number(value ?? 0).toFixed(1)}%`;
+    const stackCard = (stack, tier, label) => {
+      const rung = stack[tier];
+      if (!rung) return "";
+      return `<div class="oe-sim__combo">
+        <div class="oe-sim__leg"><div><b>${esc(stack.qb.player_name)}</b><small>${esc(stack.matchup)}</small><em>${esc(rung.pass_yds_line)}</em></div></div>
+        <span class="oe-sim__x" aria-hidden="true">&times;</span>
+        <div class="oe-sim__leg"><div><b>${esc(stack.qb.player_name)}</b><small>Same game</small><em>${esc(rung.completions_line)}</em></div></div>
+        <span class="oe-sim__x" aria-hidden="true">&times;</span>
+        <div class="oe-sim__leg"><div><b>${esc(stack.qb.player_name)}</b><small>Same game</small><em>${esc(rung.pass_td_line)}</em></div></div>
+        <div class="oe-sim__payout"><small>${esc(label)}</small><b>${pctOf(rung.joint_prob_pct)}</b><span>Simulated joint probability</span></div>
+      </div>`;
+    };
+    const cards = stacks.map(stack => `${stackCard(stack, "floor", "Floor stack")}${stackCard(stack, "ceiling", "Ceiling stack")}`).join("");
+    return `<div class="section-head"><div><span class="section-kicker">Same-game correlation</span><h2>QB Stat Stack</h2></div><p class="section-note">Gaussian-copula simulated joint probability that one QB clears his Pass Yards, Completions and Pass TD lines together, same game — these three markets share a common volume/success driver, so a naive independent stack understates how often they land together.</p></div>${cards}`;
+  }
+
   function listMarkup(source, limit = 20) {
     if (!source.length) return `<div class="empty-state"><strong>No signals survived these filters.</strong>Relax one filter or switch markets.</div>`;
     return `<div class="signal-list">
@@ -641,6 +661,7 @@
       ${gamesRail(sportGames)}
       ${sport === "mlb" ? renderMlbHrSpotlight() : ""}
       ${sport === "nfl" ? renderNflSameGamePairs() : ""}
+      ${sport === "nfl" ? renderNflQbStacks() : ""}
       <div class="section-head"><div><span class="section-kicker">Current profile</span><h2>${sport === "soccer" ? "Highest modeled probabilities" : "Best balanced signals"}</h2></div><p class="section-note">${sport === "soccer" ? "One leader per market; use the probability sort below for the full board." : "These cards exclude hard price and projection conflicts."}</p></div>
       <section class="lead-grid">${top.map(signalCard).join("")}</section>
       <div class="toolbar" aria-label="Board filters">

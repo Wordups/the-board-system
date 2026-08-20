@@ -51,6 +51,17 @@ INTERCEPTIONS_MIN_RUNG_PROBABILITY = 0.05
 # unique game, shared across two teams) bounded for a 32-team slate.
 RECENT_GAMES_SAMPLE = 5
 
+# normal_at_least std overrides for the two QB Normal-modeled markets, named
+# here (rather than left as inline literals at their call sites below) so
+# app.sim.nfl_qb_stack can import the exact values it needs to recompute each
+# market's std when it re-simulates the correlated joint distribution — a
+# single source of truth instead of a second hand-copied constant that could
+# silently drift from what actually scores these markets on the board.
+PASS_YDS_STD_RATIO = 0.33
+PASS_YDS_MIN_STD = 45.0
+COMPLETIONS_STD_RATIO = 0.22
+COMPLETIONS_MIN_STD = 3.0
+
 ESPN_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
 ESPN_TEAM_ROSTER_URL = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/{team_id}/roster"
 ESPN_TEAM_SCHEDULE_URL = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/{team_id}/schedule"
@@ -548,7 +559,9 @@ def build_team_player_candidates(
             )
             if pass_yds_mean >= 100.0:
                 pass_yds_line = nfl_model.yardage_line(pass_yds_mean, round_to=5)
-                pass_yds_probability = nfl_model.normal_at_least(pass_yds_mean, pass_yds_line, std_ratio=0.33, min_std=45.0)
+                pass_yds_probability = nfl_model.normal_at_least(
+                    pass_yds_mean, pass_yds_line, std_ratio=PASS_YDS_STD_RATIO, min_std=PASS_YDS_MIN_STD
+                )
                 candidates.append(
                     make_candidate(
                         **common,
@@ -569,7 +582,7 @@ def build_team_player_candidates(
             if completions_mean >= 10.0:
                 completions_line = nfl_model.yardage_line(completions_mean, round_to=1, share=0.85, minimum=5)
                 completions_probability = nfl_model.normal_at_least(
-                    completions_mean, completions_line, std_ratio=0.22, min_std=3.0
+                    completions_mean, completions_line, std_ratio=COMPLETIONS_STD_RATIO, min_std=COMPLETIONS_MIN_STD
                 )
                 candidates.append(
                     make_candidate(
@@ -611,6 +624,17 @@ def build_team_player_candidates(
             tagged["rec_td_per_game"] = rec_td_pg
             if position == "QB":
                 tagged["pass_td_lambda"] = pass_td_lambda
+                # Raw means (not the posted "beatable" line) for the QB stat-
+                # stack correlation sim (app.sim.nfl_qb_stack) — it needs the
+                # same mean this candidate's own market probability was
+                # scored from so its re-simulated marginal matches exactly,
+                # not a recomputation from scratch. Tagged unconditionally
+                # (even on non-PassYds/Completions rows, e.g. this QB's TD or
+                # RushYds candidates) same as pass_td_lambda already is above;
+                # the stack sim only reads these off the PassYds/Completions
+                # rows specifically, see extract_qb_stat_stack.
+                tagged["pass_yds_mean"] = pass_yds_mean
+                tagged["completions_mean"] = completions_mean
 
     return candidates
 

@@ -93,6 +93,15 @@ def run_nfl_pipeline(project_root: Path) -> dict:
     paths = build_paths(project_root)
     board = build_nfl_board(config=config, paths=paths)
     board = _keep_last_good_if_empty(board, sport_key="nfl", paths=paths)
+    # The last-good fallback above can substitute a board dict that was
+    # written to disk before an additive sim field (same_game_pairs,
+    # qb_stacks) existed — backfill it honestly empty rather than leaving it
+    # silently absent, so downstream consumers (frontend renderers, this
+    # board's own schema expectations) can always rely on the key being
+    # present, matching this repo's "always present, empty rather than
+    # fabricated" convention for additive fields.
+    board.setdefault("same_game_pairs", [])
+    board.setdefault("qb_stacks", [])
     validate_board_payload(board)
     export_board_to_site(board=board, sport_key="nfl", paths=paths)
     return board

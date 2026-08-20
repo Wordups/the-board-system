@@ -43,6 +43,23 @@ def test_nfl_pipeline_writes_json_outputs():
             assert rung["receiver_line"].endswith("+ Rec TD")
             assert 0.0 < rung["joint_prob_pct"] <= 100.0
 
+    # Same-PLAYER QB stat-stack correlation sim: a second, structurally
+    # different extra field (own card shape, not a variant of
+    # same_game_pairs above) -- see app/sim/nfl_qb_stack.py. Same
+    # always-present, honestly-empty-when-ESPN-unreachable convention.
+    assert "qb_stacks" in board
+    assert isinstance(board["qb_stacks"], list)
+    for stack in board["qb_stacks"]:
+        assert set(stack.keys()) == {"game_id", "matchup", "qb", "floor", "ceiling"}
+        assert set(stack["qb"].keys()) == {"player_name", "player_id"}
+        for tier in ("floor", "ceiling"):
+            rung = stack[tier]
+            assert set(rung.keys()) == {"pass_yds_line", "completions_line", "pass_td_line", "joint_prob_pct"}
+            assert rung["pass_yds_line"].endswith("+ Pass Yds")
+            assert rung["completions_line"].endswith("+ Completions")
+            assert rung["pass_td_line"].endswith("+ Pass TD")
+            assert 0.0 < rung["joint_prob_pct"] <= 100.0
+
     if board["games"]:
         game = board["games"][0]
         # Superset, not equality: which markets actually populate for a given

@@ -293,12 +293,20 @@ def test_build_team_player_candidates_tags_rows_for_same_game_sim():
         assert row["games_played"] == 17.0
         if row["market"] == "PassTD":
             assert row["pass_td_lambda"] > 0.0
+        # pass_yds_mean/completions_mean are tagged onto every QB row (not
+        # just PassYds/Completions rows) same unconditional-tag convention
+        # as pass_td_lambda -- the QB stat-stack sim (app/sim/nfl_qb_stack.py)
+        # reads these off the specific PassYds/Completions market rows.
+        assert row["pass_yds_mean"] > 0.0
+        assert row["completions_mean"] > 0.0
 
     for row in rb_rows:
         assert row["position"] == "RB"
         assert row["games_played"] == 17.0
         assert row["rec_td_per_game"] == pytest.approx(2.0 / 17.0)
         assert "pass_td_lambda" not in row
+        assert "pass_yds_mean" not in row
+        assert "completions_mean" not in row
 
 
 # ---------- build_moneyline_candidate ----------------------------------------
