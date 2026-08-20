@@ -7,6 +7,7 @@ from app.builders.kalshi_edge import enrich_board_with_kalshi, enrich_board_with
 from app.builders.mlb_board_builder import build_mlb_board
 from app.builders.mlb_environment import enrich_board_with_environment
 from app.builders.nba_board_builder import build_nba_board
+from app.builders.nfl_board_builder import build_nfl_board
 from app.builders.soccer_board_builder import build_soccer_board
 from app.builders.tennis_board_builder import build_tennis_board
 from app.builders.wnba_board_builder import build_wnba_board
@@ -84,6 +85,16 @@ def run_soccer_pipeline(project_root: Path) -> dict:
     board = _keep_last_good_if_empty(board, sport_key="soccer", paths=paths)
     validate_board_payload(board)
     export_board_to_site(board=board, sport_key="soccer", paths=paths)
+    return board
+
+
+def run_nfl_pipeline(project_root: Path) -> dict:
+    config = build_config(project_root)
+    paths = build_paths(project_root)
+    board = build_nfl_board(config=config, paths=paths)
+    board = _keep_last_good_if_empty(board, sport_key="nfl", paths=paths)
+    validate_board_payload(board)
+    export_board_to_site(board=board, sport_key="nfl", paths=paths)
     return board
 
 
