@@ -1088,3 +1088,125 @@ def test_build_rb_trend_watch_ranks_and_caps_at_top_n():
     assert trend["best_stretch"][0]["player_name"] == "RB 11"
     scores = [row["best_stretch_avg_yds"] for row in trend["best_stretch"]]
     assert scores == sorted(scores, reverse=True)
+
+
+# ---------- QB game history (parse_qb_gamelog / fetch_qb_gamelogs) ----------
+
+def _qb_gamelog_fixture(weekly: list[tuple[int, str, str, float, float, float, float, float]]) -> dict:
+    """Synthetic ESPN gamelog payload shaped like the real
+    site.web.api.espn.com QB response verified live 2026-08-19 against a
+    real QB (Lamar Jackson, athlete id 3916387, 2025 season): the real
+    `names[]` array returned was exactly ["completions", "passingAttempts",
+    "passingYards", "completionPct", "yardsPerPassAttempt",
+    "passingTouchdowns", "interceptions", "longPassing", "sacks",
+    "QBRating", "adjQBR", "rushingAttempts", "rushingYards",
+    "yardsPerRushAttempt", "rushingTouchdowns", "longRushing"] -- a
+    completely different stat set/order than the RB gamelog fixture above,
+    which is exactly why parse_qb_gamelog needs its own parser rather than
+    reusing parse_rb_gamelog. weekly rows are
+    (week, opponent_abbr, result, completions, pass_yds, pass_td, int, rush_yds)."""
+    names = [
+        "completions", "passingAttempts", "passingYards", "completionPct", "yardsPerPassAttempt",
+        "passingTouchdowns", "interceptions", "longPassing", "sacks", "QBRating", "adjQBR",
+        "rushingAttempts", "rushingYards", "yardsPerRushAttempt", "rushingTouchdowns", "longRushing",
+    ]
+    events = {}
+    reg_events = []
+    for week, opponent, result, completions, pass_yds, pass_td, interceptions, rush_yds in weekly:
+        event_id = f"e{week}"
+        events[event_id] = {
+            "id": event_id,
+            "week": week,
+            "opponent": {"abbreviation": opponent},
+            "gameResult": result,
+        }
+        stats = [
+            str(completions), "25", str(pass_yds), "61.1", "8.4", str(pass_td), str(interceptions),
+            "64", "3", "100.0", "50.0", "9", str(rush_yds), "2.3", "0", "12",
+        ]
+        reg_events.append({"eventId": event_id, "stats": stats})
+    return {
+        "names": names,
+        "events": events,
+        "seasonTypes": [
+            {
+                "displayName": "2025 Postseason",
+                "categories": [{"events": [{"eventId": "ep1", "stats": ["1"] * 16}]}],
+            },
+            {
+                "displayName": "2025 Regular Season",
+                "categories": [{"events": reg_events}],
+            },
+        ],
+    }
+
+
+def test_parse_qb_gamelog_sorts_chronologically_and_reads_real_field_names():
+    payload = _qb_gamelog_fixture([
+        (3, "CIN", "L", 20, 180.0, 1.0, 1.0, 15.0),
+        (1, "BUF", "L", 14, 209.0, 2.0, 0.0, 70.0),
+        (2, "CLE", "W", 19, 225.0, 4.0, 0.0, 13.0),
+    ])
+    games = nfl_collector.parse_qb_gamelog(payload)
+    assert [g["week"] for g in games] == [1, 2, 3]
+    assert games[0] == {
+        "week": 1,
+        "opponent": "BUF",
+        "result": "L",
+        "completions": 14.0,
+        "pass_yds": 209.0,
+        "pass_td": 2.0,
+        "interceptions": 0.0,
+        "rush_yds": 70.0,
+    }
+
+
+def test_parse_qb_gamelog_ignores_postseason_entry():
+    payload = _qb_gamelog_fixture([(1, "BUF", "L", 14, 209.0, 2.0, 0.0, 70.0)])
+    games = nfl_collector.parse_qb_gamelog(payload)
+    assert len(games) == 1
+    assert games[0]["opponent"] == "BUF"
+
+
+def test_parse_qb_gamelog_returns_none_when_no_regular_season_entry():
+    payload = {"names": ["passingYards"], "events": {}, "seasonTypes": []}
+    assert nfl_collector.parse_qb_gamelog(payload) is None
+
+
+def test_parse_qb_gamelog_returns_none_when_stat_names_missing():
+    payload = {
+        "names": ["fumbles"],
+        "events": {},
+        "seasonTypes": [{"displayName": "2025 Regular Season", "categories": [{"events": []}]}],
+    }
+    assert nfl_collector.parse_qb_gamelog(payload) is None
+
+
+def test_fetch_qb_gamelogs_filters_to_qb_position_and_degrades_per_player(monkeypatch):
+    rosters = {
+        "BAL": [
+            {"id": "3916387", "displayName": "Star QB", "position": "QB", "injury_status": "ACTIVE"},
+            {"id": "11", "displayName": "Some WR", "position": "WR", "injury_status": "ACTIVE"},
+        ],
+        "NE": [
+            {"id": "20", "displayName": "Broken QB", "position": "QB", "injury_status": "ACTIVE"},
+        ],
+    }
+    import requests
+
+    fixture = _qb_gamelog_fixture([
+        (week, "PIT", "W", 20, 220.0 + week, 2.0, 0.0, 10.0) for week in range(1, 9)
+    ])
+
+    def fake_get(url, params=None):
+        assert "gamelog" in url
+        if "3916387" in url.split("/"):
+            return fixture
+        raise requests.RequestException("boom")
+
+    monkeypatch.setattr(nfl_collector, "espn_get_json", fake_get)
+    result = nfl_collector.fetch_qb_gamelogs(rosters, season=2025)
+    assert set(result.keys()) == {"3916387"}
+    assert result["3916387"]["team"] == "BAL"
+    assert len(result["3916387"]["games"]) == 8
+    assert result["3916387"]["games"][0]["opponent"] == "PIT"

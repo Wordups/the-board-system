@@ -442,6 +442,39 @@
     return `${points >= 0 ? "+" : ""}${points.toFixed(1)}pp value`;
   }
 
+  const pctOf = value => `${Number(value ?? 0).toFixed(1)}%`;
+
+  // Shared floor/ceiling combo-card builders for the NFL QB Stat Stack / RB
+  // Usage Stack cards (.oe-sim__combo family) -- used both by the
+  // section-level renderNflQbStacks/renderNflRbStacks below and by the NFL
+  // drawer (nflDrawerContent) so a player's own stack renders identically
+  // whether reached from the section list or from clicking into his card.
+  function qbStackComboCard(stack, tier, label) {
+    const rung = stack[tier];
+    if (!rung) return "";
+    return `<div class="oe-sim__combo">
+      <div class="oe-sim__leg"><div><b>${esc(stack.qb.player_name)}</b><small>${esc(stack.matchup)}</small><em>${esc(rung.pass_yds_line)}</em></div></div>
+      <span class="oe-sim__x" aria-hidden="true">&times;</span>
+      <div class="oe-sim__leg"><div><b>${esc(stack.qb.player_name)}</b><small>Same game</small><em>${esc(rung.completions_line)}</em></div></div>
+      <span class="oe-sim__x" aria-hidden="true">&times;</span>
+      <div class="oe-sim__leg"><div><b>${esc(stack.qb.player_name)}</b><small>Same game</small><em>${esc(rung.pass_td_line)}</em></div></div>
+      <div class="oe-sim__payout"><small>${esc(label)}</small><b>${pctOf(rung.joint_prob_pct)}</b><span>Simulated joint probability</span></div>
+    </div>`;
+  }
+
+  function rbStackComboCard(stack, tier, label) {
+    const rung = stack[tier];
+    if (!rung) return "";
+    return `<div class="oe-sim__combo">
+      <div class="oe-sim__leg"><div><b>${esc(stack.rb.player_name)}</b><small>${esc(stack.matchup)}</small><em>${esc(rung.rush_yds_line)}</em></div></div>
+      <span class="oe-sim__x" aria-hidden="true">&times;</span>
+      <div class="oe-sim__leg"><div><b>${esc(stack.rb.player_name)}</b><small>Same game</small><em>${esc(rung.rec_yds_line)}</em></div></div>
+      <span class="oe-sim__x" aria-hidden="true">&times;</span>
+      <div class="oe-sim__leg"><div><b>${esc(stack.rb.player_name)}</b><small>Same game</small><em>${esc(rung.td_line)}</em></div></div>
+      <div class="oe-sim__payout"><small>${esc(label)}</small><b>${pctOf(rung.joint_prob_pct)}</b><span>Simulated joint probability</span></div>
+    </div>`;
+  }
+
   function flagChip(row) {
     return row.flags.length ? `<span class="flag-chip" title="${esc(row.flags.join(" · "))}" aria-label="${esc(row.flags.length)} caution flag${row.flags.length === 1 ? "" : "s"}">⚑</span>` : "";
   }
@@ -534,7 +567,6 @@
   function renderNflSameGamePairs() {
     const pairs = snapshot?.sports?.nfl?.same_game_pairs;
     if (!pairs || !pairs.length) return "";
-    const pctOf = value => `${Number(value ?? 0).toFixed(1)}%`;
     const comboCard = (pair, tier, label) => {
       const rung = pair[tier];
       if (!rung) return "";
@@ -552,40 +584,14 @@
   function renderNflQbStacks() {
     const stacks = snapshot?.sports?.nfl?.qb_stacks;
     if (!stacks || !stacks.length) return "";
-    const pctOf = value => `${Number(value ?? 0).toFixed(1)}%`;
-    const stackCard = (stack, tier, label) => {
-      const rung = stack[tier];
-      if (!rung) return "";
-      return `<div class="oe-sim__combo">
-        <div class="oe-sim__leg"><div><b>${esc(stack.qb.player_name)}</b><small>${esc(stack.matchup)}</small><em>${esc(rung.pass_yds_line)}</em></div></div>
-        <span class="oe-sim__x" aria-hidden="true">&times;</span>
-        <div class="oe-sim__leg"><div><b>${esc(stack.qb.player_name)}</b><small>Same game</small><em>${esc(rung.completions_line)}</em></div></div>
-        <span class="oe-sim__x" aria-hidden="true">&times;</span>
-        <div class="oe-sim__leg"><div><b>${esc(stack.qb.player_name)}</b><small>Same game</small><em>${esc(rung.pass_td_line)}</em></div></div>
-        <div class="oe-sim__payout"><small>${esc(label)}</small><b>${pctOf(rung.joint_prob_pct)}</b><span>Simulated joint probability</span></div>
-      </div>`;
-    };
-    const cards = stacks.map(stack => `${stackCard(stack, "floor", "Floor stack")}${stackCard(stack, "ceiling", "Ceiling stack")}`).join("");
+    const cards = stacks.map(stack => `${qbStackComboCard(stack, "floor", "Floor stack")}${qbStackComboCard(stack, "ceiling", "Ceiling stack")}`).join("");
     return `<div class="section-head"><div><span class="section-kicker">Same-game correlation</span><h2>QB Stat Stack</h2></div><p class="section-note">Gaussian-copula simulated joint probability that one QB clears his Pass Yards, Completions and Pass TD lines together, same game — these three markets share a common volume/success driver, so a naive independent stack understates how often they land together.</p></div>${cards}`;
   }
 
   function renderNflRbStacks() {
     const stacks = snapshot?.sports?.nfl?.rb_stacks;
     if (!stacks || !stacks.length) return "";
-    const pctOf = value => `${Number(value ?? 0).toFixed(1)}%`;
-    const stackCard = (stack, tier, label) => {
-      const rung = stack[tier];
-      if (!rung) return "";
-      return `<div class="oe-sim__combo">
-        <div class="oe-sim__leg"><div><b>${esc(stack.rb.player_name)}</b><small>${esc(stack.matchup)}</small><em>${esc(rung.rush_yds_line)}</em></div></div>
-        <span class="oe-sim__x" aria-hidden="true">&times;</span>
-        <div class="oe-sim__leg"><div><b>${esc(stack.rb.player_name)}</b><small>Same game</small><em>${esc(rung.rec_yds_line)}</em></div></div>
-        <span class="oe-sim__x" aria-hidden="true">&times;</span>
-        <div class="oe-sim__leg"><div><b>${esc(stack.rb.player_name)}</b><small>Same game</small><em>${esc(rung.td_line)}</em></div></div>
-        <div class="oe-sim__payout"><small>${esc(label)}</small><b>${pctOf(rung.joint_prob_pct)}</b><span>Simulated joint probability</span></div>
-      </div>`;
-    };
-    const cards = stacks.map(stack => `${stackCard(stack, "floor", "Floor stack")}${stackCard(stack, "ceiling", "Ceiling stack")}`).join("");
+    const cards = stacks.map(stack => `${rbStackComboCard(stack, "floor", "Floor stack")}${rbStackComboCard(stack, "ceiling", "Ceiling stack")}`).join("");
     return `<div class="section-head"><div><span class="section-kicker">Same-game correlation</span><h2>RB Usage Stack</h2></div><p class="section-note">Gaussian-copula simulated joint probability that one running back clears his Rush Yards, Receiving Yards and Anytime TD lines together, same game — usage (touches) drives all three, so a naive independent stack understates how often a big workload shows up across the run game, the pass game, and the scoreboard together.</p></div>${cards}`;
   }
 
@@ -998,6 +1004,15 @@
     const row = rowMap.get(id);
     if (!row) return;
     const isSaved = saved.includes(id);
+    const hero = `<div class="drawer-hero"><div><span class="sport-token" data-sport="${esc(row.sport)}">${esc(row.sportLabel)} · ${esc(row.market)}</span><h2>${esc(row.playerName)}</h2><div class="signal-meta">${esc(row.team)} vs ${esc(row.opponent)} · ${esc(row.time)}</div><div class="drawer-line">${esc(row.line)} · ${esc(priceText(row))}</div></div>${playerAvatar(row, true)}</div>`;
+    const saveButton = `<button class="drawer-action${isSaved ? " saved" : ""}" data-action="toggle-save" data-id="${esc(id)}">${isSaved ? "Remove from My Card" : "Add to My Card"}</button>`;
+    drawerContent.innerHTML = row.sport === "nfl"
+      ? `${hero}${nflDrawerBody(row)}${saveButton}`
+      : `${hero}${genericDrawerBody(row)}${saveButton}`;
+    showDrawer();
+  }
+
+  function genericDrawerBody(row) {
     const factorCards = [
       ["Raw model", row.score.toFixed(1), `Tier ${row.tier}`],
       ["Sim probability", probabilityText(row), row.probability === null ? "Not exported" : "market-relative"],
@@ -1006,12 +1021,122 @@
       ["Projection", row.evidence.projection === null ? "—" : row.evidence.projection.toFixed(1), row.projectionDelta === null ? "not structured" : `${row.projectionDelta >= 0 ? "+" : ""}${row.projectionDelta.toFixed(1)} vs line`],
       ["Coverage", `${Math.round(row.coverage * 100)}%`, `${DIMENSIONS.filter(d => row.vector[d.key] !== null).length}/5 axes`],
     ];
-    drawerContent.innerHTML = `<div class="drawer-hero"><div><span class="sport-token" data-sport="${esc(row.sport)}">${esc(row.sportLabel)} · ${esc(row.market)}</span><h2>${esc(row.playerName)}</h2><div class="signal-meta">${esc(row.team)} vs ${esc(row.opponent)} · ${esc(row.time)}</div><div class="drawer-line">${esc(row.line)} · ${esc(priceText(row))}</div></div>${playerAvatar(row, true)}</div>
-      <section class="drawer-section"><h3>Signal field</h3><div class="factor-grid">${factorCards.map(([label, value, note]) => `<div class="factor-card"><span>${esc(label)}</span><strong>${esc(value)}</strong><small>${esc(note)}</small></div>`).join("")}</div>${row.flags.length ? `<div class="stale-banner" style="margin:12px 0 0"><span><strong>Conflict check</strong> · ${esc(row.flags.join(" · "))}</span></div>` : ""}</section>
+    return `<section class="drawer-section"><h3>Signal field</h3><div class="factor-grid">${factorCards.map(([label, value, note]) => `<div class="factor-card"><span>${esc(label)}</span><strong>${esc(value)}</strong><small>${esc(note)}</small></div>`).join("")}</div>${row.flags.length ? `<div class="stale-banner" style="margin:12px 0 0"><span><strong>Conflict check</strong> · ${esc(row.flags.join(" · "))}</span></div>` : ""}</section>
       <section class="drawer-section"><h3>Evidence surfaced</h3><div class="factor-grid">${evidenceCards(row).join("") || `<div class="factor-card"><span>Structured evidence</span><strong>Limited</strong><small>Exporter should emit factor fields directly.</small></div>`}</div></section>
-      <section class="drawer-section"><h3>Full model note</h3><details class="reason-box"><summary>Open original scorer output</summary>${esc(row.reason)}</details></section>
-      <button class="drawer-action${isSaved ? " saved" : ""}" data-action="toggle-save" data-id="${esc(id)}">${isSaved ? "Remove from My Card" : "Add to My Card"}</button>`;
-    showDrawer();
+      <section class="drawer-section"><h3>Full model note</h3><details class="reason-box"><summary>Open original scorer output</summary>${esc(row.reason)}</details></section>`;
+  }
+
+  // NFL-only drawer body -- replaces the generic Signal Field panel (which
+  // is largely abstract/vector jargon and, for NFL specifically, mostly
+  // dashes: "Projection" reads MLB-only reason text, "Coverage" is an
+  // axis-count meaningless outside the geometry scoring, and neither tells
+  // a real story about the player). Built from three things a generic row
+  // can't see on its own: (1) every one of THIS player's other NFL market
+  // rows, already loaded client-side in `rows` -- no extra request; (2) the
+  // raw projection means/lambdas the collector tags onto every row for this
+  // player (see to_board_row's allow-list) merged across those rows; (3)
+  // his QB Stat Stack / RB Usage Stack floor+ceiling combo and his 2025
+  // game-by-game history, both shipped in the same snapshot under
+  // snapshot.sports.nfl.
+  function nflDrawerBody(row) {
+    const playerRows = rows.filter(item => item.sport === "nfl" && row.playerId && item.playerId === row.playerId);
+    const pool = playerRows.length ? playerRows : [row];
+
+    // Projection means/lambdas are tagged identically onto every one of a
+    // player's rows by the collector (see nfl_collector.py's tagging loop),
+    // so merging across the pool is just defensive -- any single row would
+    // normally already carry the full set.
+    const raw = {};
+    pool.forEach(item => {
+      Object.entries(item.raw || {}).forEach(([key, value]) => {
+        if (raw[key] === undefined && value !== null && value !== undefined) raw[key] = value;
+      });
+    });
+    const position = raw.position || inferNflPosition(pool);
+
+    const projectionCards = nflProjectionCards(position, raw, pool);
+    const projectionSection = `<section class="drawer-section"><h3>Projected performance</h3><p class="section-note" style="margin:-6px 0 12px;max-width:none;text-align:left">Built from his 2025 per-game rates, adjusted for this matchup -- not the abstract signal geometry, the actual projected stat line.</p><div class="factor-grid">${projectionCards.length ? projectionCards.map(([label, value, note]) => `<div class="factor-card"><span>${esc(label)}</span><strong>${esc(value)}</strong><small>${esc(note)}</small></div>`).join("") : `<div class="factor-card"><span>Projection</span><strong>—</strong><small>Below the collector's minimum-sample floor</small></div>`}</div></section>`;
+
+    const stack = position === "QB"
+      ? (snapshot?.sports?.nfl?.qb_stacks || []).find(item => String(item.qb.player_id) === String(row.playerId))
+      : position === "RB"
+        ? (snapshot?.sports?.nfl?.rb_stacks || []).find(item => String(item.rb.player_id) === String(row.playerId))
+        : null;
+    const stackCombo = stack
+      ? (position === "QB" ? `${qbStackComboCard(stack, "floor", "Floor stack")}${qbStackComboCard(stack, "ceiling", "Ceiling stack")}` : `${rbStackComboCard(stack, "floor", "Floor stack")}${rbStackComboCard(stack, "ceiling", "Ceiling stack")}`)
+      : "";
+    const stackSection = stack
+      ? `<section class="drawer-section"><h3>${position === "QB" ? "QB stat stack" : "RB usage stack"}</h3><p class="section-note" style="margin:-6px 0 12px;max-width:none;text-align:left">Simulated joint probability his ${position === "QB" ? "Pass Yards, Completions and Pass TD" : "Rush Yards, Rec Yards and Anytime TD"} lines all land together, same game.</p>${stackCombo}</section>`
+      : "";
+
+    const historySection = nflGameHistorySection(row.playerId);
+
+    const spreadRows = [...pool].sort((a, b) => b.score - a.score).map(item => `<div class="oe-sim__row"><span>${esc(item.market)} <i>${esc(item.line)}</i></span><b>${item.score.toFixed(1)}</b><em>${esc(probabilityText(item))}</em></div>`).join("");
+    const spreadSection = pool.length ? `<section class="drawer-section"><h3>Full market spread</h3><p class="section-note" style="margin:-6px 0 12px;max-width:none;text-align:left">Every market built for ${esc(row.playerName)} this week.</p><div class="oe-sim__game"><h4>${esc(row.team)} vs ${esc(row.opponent)} · ${esc(row.time)}</h4>${spreadRows}</div></section>` : "";
+
+    return `${projectionSection}${stackSection}${historySection}${spreadSection}
+      <section class="drawer-section"><h3>Full model note</h3><details class="reason-box"><summary>Open original scorer output</summary>${esc(row.reason)}</details></section>`;
+  }
+
+  function inferNflPosition(pool) {
+    const markets = new Set(pool.map(item => item.market));
+    if (markets.has("PassYds") || markets.has("Completions") || markets.has("PassTD") || markets.has("INT")) return "QB";
+    if (markets.has("RushYds")) return "RB";
+    return "WR";
+  }
+
+  function nflProjectionCards(position, raw, pool) {
+    const cards = [];
+    const num = value => typeof value === "number" && Number.isFinite(value);
+    if (position === "QB") {
+      if (num(raw.pass_yds_mean)) cards.push(["Pass Yards", raw.pass_yds_mean.toFixed(0), "projected"]);
+      if (num(raw.completions_mean)) cards.push(["Completions", raw.completions_mean.toFixed(1), "projected"]);
+      if (num(raw.pass_td_lambda)) cards.push(["Pass TDs", raw.pass_td_lambda.toFixed(1), "expected"]);
+      if (num(raw.int_lambda)) cards.push(["Interceptions", raw.int_lambda.toFixed(1), "expected"]);
+      if (num(raw.rush_yds_mean) && raw.rush_yds_mean >= 5) cards.push(["Rush Yards", raw.rush_yds_mean.toFixed(0), "projected"]);
+    } else if (position === "RB") {
+      if (num(raw.rush_yds_mean)) cards.push(["Rush Yards", raw.rush_yds_mean.toFixed(0), "projected"]);
+      if (num(raw.rec_yds_mean)) cards.push(["Rec Yards", raw.rec_yds_mean.toFixed(0), "projected"]);
+      if (num(raw.td_lambda)) cards.push(["Touchdowns", raw.td_lambda.toFixed(1), "expected"]);
+    } else {
+      // WR/TE aren't tagged with an explicit mean the way QB/RB are -- fall
+      // back to the same "Proj X.X" reason-text parse the generic drawer
+      // already relies on (parseEvidence), read off this player's own
+      // RecYds/RushYds rows specifically rather than the clicked row alone.
+      const recYds = pool.find(item => item.market === "RecYds");
+      const rushYds = pool.find(item => item.market === "RushYds");
+      if (recYds?.evidence?.projection !== null && recYds?.evidence?.projection !== undefined) cards.push(["Rec Yards", recYds.evidence.projection.toFixed(0), "projected"]);
+      if (rushYds?.evidence?.projection !== null && rushYds?.evidence?.projection !== undefined) cards.push(["Rush Yards", rushYds.evidence.projection.toFixed(0), "projected"]);
+      if (num(raw.td_lambda)) cards.push(["Touchdowns", raw.td_lambda.toFixed(1), "expected"]);
+    }
+    return cards;
+  }
+
+  function nflGameHistorySection(playerId) {
+    const entry = snapshot?.sports?.nfl?.player_gamelogs?.[playerId];
+    const games = entry?.games;
+    if (!games || !games.length) return "";
+    const recent = [...games].slice(-6).reverse();
+    const cards = recent.map(game => {
+      if (entry.position === "QB") {
+        const resultPrefix = game.result ? `${game.result} ` : "";
+        return compactCard({
+          label: `Wk ${game.week}`,
+          name: `${resultPrefix}vs ${game.opponent || "—"}`,
+          meta: `${Math.round(game.completions)} comp · ${Math.round(game.pass_td)} pass TD · ${Math.round(game.interceptions)} INT`,
+          line: `${Math.round(game.pass_yds)} Pass Yds`,
+          tier: null, score: game.pass_yds, rowId: null,
+        });
+      }
+      return compactCard({
+        label: `Wk ${game.week}`,
+        name: `${Math.round(game.rush_yds)} rush + ${Math.round(game.rec_yds)} rec`,
+        meta: "2025 season",
+        line: `${Math.round(game.total_yds)} total yds`,
+        tier: null, score: game.total_yds, rowId: null,
+      });
+    }).join("");
+    return `<section class="drawer-section"><h3>2025 game history</h3><p class="section-note" style="margin:-6px 0 12px;max-width:none;text-align:left">Most recent games first.</p><div class="core-grid">${cards}</div></section>`;
   }
 
   function showDrawer() {
