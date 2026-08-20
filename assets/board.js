@@ -269,7 +269,20 @@
     });
   }
 
+  // A model-fair-only pick (no real book price to prove a real mispricing)
+  // that's still a heavy favorite isn't a "top play" — it's just describing
+  // an outcome almost any competent player clears (a 90%+ starting QB
+  // throwing 1+ TD, a contact hitter getting 1+ Hit). High probability with
+  // no edge to back it is chalk, not a signal worth ranking above a genuine
+  // find. Doesn't apply when there's a real market price (row.priceIsModel
+  // false) — there, a heavy favorite priced even shorter by the model is a
+  // real edge, not chalk.
+  const CHALK_PROBABILITY_THRESHOLD = 0.70;
+
   function verdictFor(row) {
+    if (row.priceIsModel && row.probability !== null && row.probability >= CHALK_PROBABILITY_THRESHOLD) {
+      return { label: "Chalk", tone: "neutral" };
+    }
     if (row.priceEdge !== null && row.priceEdge < -.025) return { label: "Price conflict", tone: "negative" };
     // Projection-below-line is a soft, non-blocking note (see row.flags), not a
     // hard verdict — it still penalizes the vector but no longer hides the pick.
@@ -283,7 +296,7 @@
   function diversifiedTop(source, count = 5, maxPerSport = 2, maxPerMarket = Infinity) {
     const verdictPriority = { Qualified: 4, Watch: 3, "Model only": 2, Pass: 1 };
     const sorted = [...source]
-      .filter(row => row.verdict.label !== "Price conflict")
+      .filter(row => row.verdict.label !== "Price conflict" && row.verdict.label !== "Chalk")
       .sort((a, b) => (verdictPriority[b.verdict.label] || 0) - (verdictPriority[a.verdict.label] || 0) || b.geometry - a.geometry || b.score - a.score);
     const result = [];
     const sportCounts = new Map();
