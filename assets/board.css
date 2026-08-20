@@ -301,6 +301,27 @@ h1 em { color: var(--muted); font-style: normal; font-weight: 500; }
 .radar-score strong { font: 500 23px var(--mono); line-height: 1; }
 .radar-score span { margin-top: 3px; color: var(--faint); font: 500 7px var(--mono); letter-spacing: .08em; }
 
+.core-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin-bottom: 8px; }
+.core-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 13px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  transition: transform .15s ease, border-color .15s ease, background .15s ease;
+}
+.core-card[data-selection-id] { cursor: pointer; }
+.core-card[data-selection-id]:hover, .core-card[data-selection-id]:focus-visible { transform: translateY(-2px); border-color: rgba(201,255,61,.35); background-color: var(--panel-2); outline: none; }
+.core-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.core-label { color: var(--lime); font: 500 9px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.core-name { margin: 0; overflow: hidden; font-size: 15px; letter-spacing: -.02em; line-height: 1.15; text-overflow: ellipsis; white-space: nowrap; }
+.core-meta { color: var(--muted); font: 400 10px var(--mono); }
+.core-line-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: auto; padding-top: 8px; border-top: 1px solid var(--line); }
+.core-line { color: var(--text); font: 500 13px var(--mono); letter-spacing: -.02em; }
+.core-score { color: var(--faint); font: 400 9px var(--mono); }
+
 .toolbar {
   position: sticky;
   z-index: 20;
