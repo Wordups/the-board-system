@@ -402,6 +402,62 @@
     </article>`;
   }
 
+  function compactCard({ label, name, meta, line, tier, score, rowId }) {
+    const clickable = rowId && rowMap.has(rowId);
+    const attrs = clickable ? ` data-selection-id="${esc(rowId)}" tabindex="0" role="button" aria-label="Open ${esc(name)} ${esc(line)} analysis"` : "";
+    return `<article class="core-card"${attrs}>
+      <div class="core-card-top"><span class="core-label">${esc(label)}</span>${tierToken(tier)}</div>
+      <h3 class="core-name">${esc(name)}</h3>
+      <div class="core-meta">${esc(meta)}</div>
+      <div class="core-line-row"><span class="core-line">${esc(line)}</span><span class="core-score">${Number(score || 0).toFixed(1)}</span></div>
+    </article>`;
+  }
+
+  function bestHrPerTeam() {
+    const bestByTeam = new Map();
+    rows.forEach(row => {
+      if (row.sport !== "mlb" || row.market !== "HR") return;
+      const current = bestByTeam.get(row.team);
+      if (!current || row.score > current.score) bestByTeam.set(row.team, row);
+    });
+    return [...bestByTeam.values()].sort((a, b) => b.score - a.score);
+  }
+
+  function diamondPicks() {
+    const picks = snapshot?.sports?.mlb?.diamond?.picks;
+    if (!picks) return [];
+    return ["1B", "2B", "3B", "HOME", "MOUND"]
+      .filter(position => picks[position])
+      .map(position => {
+        const pick = picks[position];
+        const match = rows.find(row => row.sport === "mlb"
+          && row.playerName === pick.name
+          && row.team === pick.team
+          && row.market === pick.market
+          && row.line === pick.line);
+        return { position, pick, rowId: match ? match.id : null };
+      });
+  }
+
+  function renderMlbHrSpotlight() {
+    const diamond = diamondPicks();
+    const perTeam = bestHrPerTeam();
+    if (!diamond.length && !perTeam.length) return "";
+    const diamondSection = diamond.length ? `
+      <div class="section-head"><div><span class="section-kicker">Today's slate</span><h2>Diamond of the Day</h2></div><p class="section-note">One hand-picked play per position — table-setter, HR core, HR value, HR/TB swing, best K arm.</p></div>
+      <div class="core-grid">${diamond.map(({ position, pick, rowId }) => compactCard({
+        label: position, name: pick.name, meta: `${pick.team} vs ${pick.opponent}`,
+        line: pick.line, tier: pick.tier, score: pick.score, rowId,
+      })).join("")}</div>` : "";
+    const perTeamSection = perTeam.length ? `
+      <div class="section-head"><div><span class="section-kicker">League-wide</span><h2>Best HR Per Team</h2></div><p class="section-note">Each team's single highest-scored HR candidate today, ranked.</p></div>
+      <div class="core-grid">${perTeam.map(row => compactCard({
+        label: row.team, name: row.playerName, meta: `vs ${row.opponent}`,
+        line: row.line, tier: row.tier, score: row.score, rowId: row.id,
+      })).join("")}</div>` : "";
+    return `${diamondSection}${perTeamSection}`;
+  }
+
   function listMarkup(source, limit = 20) {
     if (!source.length) return `<div class="empty-state"><strong>No signals survived these filters.</strong>Relax one filter or switch markets.</div>`;
     return `<div class="signal-list">
@@ -506,6 +562,7 @@
     return `${pageHead(`${meta.label} signal field`, meta.label, "market map.", "", latest)}
       ${freshnessBanner(latest)}
       ${gamesRail(sportGames)}
+      ${sport === "mlb" ? renderMlbHrSpotlight() : ""}
       <div class="section-head"><div><span class="section-kicker">Current profile</span><h2>${sport === "soccer" ? "Highest modeled probabilities" : "Best balanced signals"}</h2></div><p class="section-note">${sport === "soccer" ? "One leader per market; use the probability sort below for the full board." : "These cards exclude hard price and projection conflicts."}</p></div>
       <section class="lead-grid">${top.map(signalCard).join("")}</section>
       <div class="toolbar" aria-label="Board filters">
