@@ -40,8 +40,19 @@ SHRINK_PP_BY_DECILE: dict[int, float] = {
     9: 42.4,
 }
 
-# Sports whose sims replayed calibrated-or-under: pass through untouched.
-NO_SHRINK_SPORTS = frozenset({"WNBA"})
+# Sports exempt from shrinkage. Two different reasons live in this one set:
+# - WNBA: backtest-proven trustworthy (replayed slightly under, see above) -
+#   shrinking it would make it WORSE, not better.
+# - NFL: the opposite justification. This table is a pooled correction for
+#   MLB/NBA/soccer/tennis's specific overconfidence patterns from the
+#   2026-07-18 backtest (523+ picks each) - NFL was not part of that
+#   backtest and has zero real-game grades of its own yet (collector shipped
+#   2026-08-19, first real slate is Week 1 2026-09-09). Applying an
+#   unrelated sport's inflation correction to an unvalidated NFL model isn't
+#   a calibration fix, it's importing someone else's bias. Exempt until a
+#   real NFL-specific backtest exists to replace this entry with actual
+#   evidence (see harness.py once Week 1+ results are gradeable).
+NO_SHRINK_SPORTS = frozenset({"WNBA", "NFL"})
 
 # (sport, market) buckets too broken to trade at any edge. Stamping surfaces
 # must emit QUARANTINE_DECISION for these instead of BET/PASS/CHECK.
