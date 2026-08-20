@@ -224,6 +224,7 @@ def test_build_team_player_candidates_produces_pass_td_for_starting_qb():
         player_stats=player_stats,
         opponent_allowed={"rush_yds": 110.0, "pass_yds": 260.0},  # soft pass defense
         league_baseline={"rush_yds": 110.0, "pass_yds": 220.0},
+        starting_qb_id="3",
     )
     markets = {row["market"] for row in candidates}
     assert "PassTD" in markets
@@ -280,6 +281,67 @@ def test_build_team_player_candidates_no_pass_yds_for_non_qb():
     assert "INT" not in markets
 
 
+# ---------- starting QB gating (regression: only one QB's markets built) -----
+
+def _qb_competition_roster_fixture():
+    # A real recurring shape: a genuine QB competition where multiple young
+    # arms each started several 2025 games. Rattler/Shough/Wilson (all
+    # New Orleans, 2025) is the real case this was caught against.
+    roster = [
+        {"id": "qb1", "displayName": "Arm One", "position": "QB", "injury_status": "ACTIVE"},
+        {"id": "qb2", "displayName": "Arm Two", "position": "QB", "injury_status": "ACTIVE"},
+        {"id": "qb3", "displayName": "Arm Three", "position": "QB", "injury_status": "ACTIVE"},
+    ]
+    player_stats = {
+        "qb1": {"gamesPlayed": 10.0, "passingTouchdowns": 14.0, "passingYardsPerGame": 220.0, "completions": 210.0, "passingAttempts": 320.0},
+        "qb2": {"gamesPlayed": 6.0, "passingTouchdowns": 8.0, "passingYardsPerGame": 200.0, "completions": 120.0, "passingAttempts": 190.0},
+        "qb3": {"gamesPlayed": 4.0, "passingTouchdowns": 5.0, "passingYardsPerGame": 180.0, "completions": 75.0, "passingAttempts": 120.0},
+    }
+    return roster, player_stats
+
+
+def test_find_starting_qb_id_picks_most_games_played():
+    roster, player_stats = _qb_competition_roster_fixture()
+    assert nfl_collector.find_starting_qb_id(roster, player_stats) == "qb1"
+
+
+def test_find_starting_qb_id_none_when_no_qualifying_qb():
+    roster = [{"id": "qb1", "displayName": "Deep Third", "position": "QB", "injury_status": "ACTIVE"}]
+    player_stats = {"qb1": {"gamesPlayed": 1.0, "passingTouchdowns": 0.0}}
+    assert nfl_collector.find_starting_qb_id(roster, player_stats) is None
+
+
+def test_build_team_player_candidates_only_starting_qb_gets_markets():
+    # The actual bug: without starting_qb_id, all three qualifying QBs
+    # produced full PassTD/PassYds/Completions/INT lines for the same team
+    # in the same game, as if a team could have three simultaneous starters.
+    roster, player_stats = _qb_competition_roster_fixture()
+    candidates = nfl_collector.build_team_player_candidates(
+        game_id="401", team_abbr="NO", opponent_abbr="DET", roster=roster, player_stats=player_stats,
+        opponent_allowed={"rush_yds": 110.0, "pass_yds": 220.0},
+        league_baseline={"rush_yds": 110.0, "pass_yds": 220.0},
+        starting_qb_id=nfl_collector.find_starting_qb_id(roster, player_stats),
+    )
+    qb_ids_with_markets = {row["player_id"] for row in candidates if row["market"] in ("PassTD", "PassYds", "Completions", "INT")}
+    assert qb_ids_with_markets == {"qb1"}
+    # The backups shouldn't be on the board at all for this game, not even
+    # in a lesser role (see find_starting_qb_id's docstring).
+    assert not any(row["player_id"] in ("qb2", "qb3") for row in candidates)
+
+
+def test_build_team_player_candidates_no_starting_qb_id_excludes_all_qbs():
+    # starting_qb_id defaults to None (e.g. a team with zero qualifying QBs
+    # this call didn't compute one for) - must exclude every QB, not
+    # silently let one through.
+    roster, player_stats = _qb_competition_roster_fixture()
+    candidates = nfl_collector.build_team_player_candidates(
+        game_id="401", team_abbr="NO", opponent_abbr="DET", roster=roster, player_stats=player_stats,
+        opponent_allowed={"rush_yds": 110.0, "pass_yds": 220.0},
+        league_baseline={"rush_yds": 110.0, "pass_yds": 220.0},
+    )
+    assert candidates == []
+
+
 def test_build_team_player_candidates_tags_rows_for_same_game_sim():
     # The same-game correlation sim (app/sim/nfl_same_game.py) reads these
     # extra fields straight off the raw candidate rows -- position for
@@ -320,6 +382,7 @@ def test_build_team_player_candidates_tags_rows_for_same_game_sim():
         player_stats=player_stats,
         opponent_allowed={"rush_yds": 110.0, "pass_yds": 260.0},
         league_baseline={"rush_yds": 110.0, "pass_yds": 220.0},
+        starting_qb_id="3",
     )
     qb_rows = [row for row in candidates if row["player_id"] == "3"]
     rb_rows = [row for row in candidates if row["player_id"] == "4"]

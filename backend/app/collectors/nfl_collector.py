@@ -814,6 +814,49 @@ def build_athlete_position_map(rosters: dict[str, list[dict[str, Any]]]) -> dict
     return mapping
 
 
+def find_starting_qb_id(roster: list[dict[str, Any]], player_stats: dict[str, dict[str, float]]) -> str | None:
+    """The one QB on this roster whose passing markets (PassTD/PassYds/
+    Completions/INT) should actually be built. This collector's roster fetch
+    has no depth-chart/starter signal at all (ESPN's site/v2 roster endpoint
+    doesn't expose one) - without this, every roster QB who clears
+    MINIMUM_GAMES_PLAYED (a real, recurring shape: a team with a genuine
+    QB competition, e.g. two-plus young arms who each started several 2025
+    games) gets full starter treatment, producing multiple "1+ Pass TD"
+    lines for the same team/game as if they're independent live markets,
+    which cannot be real - a team has exactly one starting QB in a given
+    game. Picks the QB with the most 2025 games played as the best
+    available proxy for "the current starter" (ties broken by pass
+    completions, then attempts) - imperfect for a genuine in-progress
+    QB change, but far more honest than treating every roster arm as live.
+    Every other roster QB is excluded from QB-specific markets entirely
+    (not merely down-weighted) - a backup who isn't playing doesn't belong
+    on the board at all, same as this pipeline already excludes zero-
+    sample rookies.
+    """
+    candidates = []
+    for athlete in roster:
+        if athlete["position"] != "QB":
+            continue
+        stats = player_stats.get(athlete["id"])
+        if not stats:
+            continue
+        games_played = stats.get("gamesPlayed", 0.0)
+        if games_played < MINIMUM_GAMES_PLAYED:
+            continue
+        candidates.append(
+            (
+                games_played,
+                stats.get("completions", 0.0),
+                stats.get("passingAttempts", stats.get("attempts", 0.0)),
+                athlete["id"],
+            )
+        )
+    if not candidates:
+        return None
+    candidates.sort(reverse=True)
+    return candidates[0][3]
+
+
 # ---------------------------------------------------------------------------
 # Game / candidate assembly
 # ---------------------------------------------------------------------------
@@ -849,6 +892,7 @@ def build_game_payload(
             league_baseline=league_baseline,
             league_baseline_by_position=league_baseline_by_position,
             target_share_by_position=target_shares.get(away_abbr),
+            starting_qb_id=find_starting_qb_id(rosters.get(away_abbr, []), player_stats),
         )
     )
     candidates.extend(
@@ -862,6 +906,7 @@ def build_game_payload(
             league_baseline=league_baseline,
             league_baseline_by_position=league_baseline_by_position,
             target_share_by_position=target_shares.get(home_abbr),
+            starting_qb_id=find_starting_qb_id(rosters.get(home_abbr, []), player_stats),
         )
     )
     candidates.append(
@@ -923,6 +968,7 @@ def build_team_player_candidates(
     league_baseline: dict[str, float],
     league_baseline_by_position: dict[str, dict[str, float]] | None = None,
     target_share_by_position: dict[str, float] | None = None,
+    starting_qb_id: str | None = None,
 ) -> list[dict[str, Any]]:
     rush_matchup = nfl_model.matchup_ratio(opponent_allowed.get("rush_yds", 0.0), league_baseline["rush_yds"])
     pass_matchup = nfl_model.matchup_ratio(opponent_allowed.get("pass_yds", 0.0), league_baseline["pass_yds"])
@@ -943,6 +989,13 @@ def build_team_player_candidates(
 
     candidates: list[dict[str, Any]] = []
     for athlete in roster:
+        # A team has exactly one starting QB in a given game — a backup who
+        # cleared MINIMUM_GAMES_PLAYED (a real shape: a genuine QB
+        # competition where two-plus arms each started several 2025 games)
+        # doesn't belong on the board at all, not even a lesser role. See
+        # find_starting_qb_id's docstring for the full reasoning.
+        if athlete["position"] == "QB" and athlete["id"] != starting_qb_id:
+            continue
         stats = player_stats.get(athlete["id"])
         if not stats:
             continue
