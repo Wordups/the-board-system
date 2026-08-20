@@ -50,7 +50,7 @@ def test_nfl_pipeline_writes_json_outputs():
         # appear), and a stale last-good fallback (this test's own network
         # outage path, see above) can legitimately predate a newly added
         # market like PassYds.
-        assert set(game["markets"].keys()) <= {"TD", "RecYds", "RushYds", "REC", "PassTD", "PassYds", "ML"}
+        assert set(game["markets"].keys()) <= {"TD", "RecYds", "RushYds", "REC", "PassTD", "PassYds", "Completions", "INT", "ML"}
         for market_rows in game["markets"].values():
             for row in market_rows:
                 assert row["lineup_confirmed"] is False

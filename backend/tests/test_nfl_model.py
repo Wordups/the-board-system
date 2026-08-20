@@ -177,6 +177,35 @@ def test_project_pass_yds_mean_applies_matchup_multiplier():
     assert softer_matchup > baseline
 
 
+def test_project_completions_mean_uses_qb_prior_with_no_sample():
+    mean = nfl_model.project_completions_mean(completions_per_game=0.0, sample_games=0.0, pass_matchup=1.0)
+    assert mean == pytest.approx(nfl_model.POSITION_PRIORS["QB"]["completions"], abs=1e-6)
+
+
+def test_project_completions_mean_applies_matchup_multiplier():
+    baseline = nfl_model.project_completions_mean(completions_per_game=24.0, sample_games=17.0, pass_matchup=1.0)
+    softer_matchup = nfl_model.project_completions_mean(completions_per_game=24.0, sample_games=17.0, pass_matchup=1.15)
+    assert softer_matchup > baseline
+
+
+def test_project_interceptions_lambda_uses_qb_prior_with_no_sample():
+    lam = nfl_model.project_interceptions_lambda(interceptions_per_game=0.0, sample_games=0.0)
+    assert lam == pytest.approx(nfl_model.POSITION_PRIORS["QB"]["interceptions"], abs=1e-6)
+
+
+def test_project_interceptions_lambda_full_season_dominates_prior():
+    lam = nfl_model.project_interceptions_lambda(interceptions_per_game=1.8, sample_games=17.0)
+    assert lam > 1.4
+
+
+def test_project_interceptions_lambda_has_no_matchup_parameter():
+    # Deliberate: no takeaway-rate data is collected, so this must not
+    # silently accept/ignore a matchup kwarg that would imply it does.
+    import inspect
+    params = inspect.signature(nfl_model.project_interceptions_lambda).parameters
+    assert "pass_matchup" not in params and "matchup" not in params
+
+
 def test_clamp_probability_bounds():
     assert nfl_model.clamp_probability(5.0) == 0.99
     assert nfl_model.clamp_probability(-5.0) == 0.01

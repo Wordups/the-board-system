@@ -167,6 +167,10 @@ def test_build_team_player_candidates_produces_pass_td_for_starting_qb():
             "passingTouchdowns": 28.0,
             "passingYardsPerGame": 260.0,
             "passingYards": 4420.0,
+            "completionsPerGame": 24.0,
+            "completions": 408.0,
+            "interceptionsPerGame": 1.1,
+            "interceptions": 18.7,
             "rushingTouchdowns": 2.0,
             "receivingTouchdowns": 0.0,
             "rushingYardsPerGame": 12.0,
@@ -187,12 +191,28 @@ def test_build_team_player_candidates_produces_pass_td_for_starting_qb():
     markets = {row["market"] for row in candidates}
     assert "PassTD" in markets
     assert "PassYds" in markets
+    assert "Completions" in markets
+    assert "INT" in markets
     assert "REC" not in markets
     assert "RecYds" not in markets
 
     pass_yds_row = next(row for row in candidates if row["market"] == "PassYds")
     assert pass_yds_row["line"].endswith("+ Pass Yds")
     assert 0.0 < pass_yds_row["score"] < 100.0
+
+    completions_row = next(row for row in candidates if row["market"] == "Completions")
+    assert completions_row["line"].endswith("+ Completions")
+    assert 0.0 < completions_row["score"] < 100.0
+
+    int_rows = [row for row in candidates if row["market"] == "INT"]
+    assert int_rows
+    assert all(row["line"].endswith("+ INT") for row in int_rows)
+    # Ladder: rungs strictly increase and probability strictly decreases,
+    # same monotonic shape as the PassTD ladder.
+    lines = [int(row["line"].split("+")[0]) for row in int_rows]
+    assert lines == sorted(lines) == list(range(1, len(int_rows) + 1))
+    scores = [row["score"] for row in int_rows]
+    assert scores == sorted(scores, reverse=True)
 
 
 def test_build_team_player_candidates_no_pass_yds_for_non_qb():
@@ -218,6 +238,9 @@ def test_build_team_player_candidates_no_pass_yds_for_non_qb():
         league_baseline={"rush_yds": 110.0, "pass_yds": 220.0},
     )
     assert "PassYds" not in {row["market"] for row in candidates}
+    markets = {row["market"] for row in candidates}
+    assert "Completions" not in markets
+    assert "INT" not in markets
 
 
 def test_build_team_player_candidates_tags_rows_for_same_game_sim():
@@ -361,7 +384,7 @@ def test_fetch_team_rosters_filters_to_playable_skill_positions(monkeypatch):
 # ---------- NFL tier cutoffs --------------------------------------------------
 
 def test_nfl_tier_cutoffs_cover_every_market():
-    assert set(NFL_TIER_CUTOFFS) == {"TD", "REC", "RushYds", "RecYds", "PassTD", "PassYds", "ML"}
+    assert set(NFL_TIER_CUTOFFS) == {"TD", "REC", "RushYds", "RecYds", "PassTD", "PassYds", "Completions", "INT", "ML"}
 
 
 def test_assign_nfl_tier_uses_market_specific_scale():

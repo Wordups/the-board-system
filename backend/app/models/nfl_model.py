@@ -32,11 +32,11 @@ from typing import Any
 # ~4 catches, a TE1 ~30 yds/g, a starting QB ~1.3 pass TD/g).
 # ---------------------------------------------------------------------------
 POSITION_PRIORS: dict[str, dict[str, float]] = {
-    "QB": {"rush_td": 0.12, "rec_td": 0.0, "pass_td": 1.30, "rush_yds": 9.0, "rec_yds": 0.0, "rec": 0.0, "pass_yds": 235.0},
-    "RB": {"rush_td": 0.34, "rec_td": 0.08, "pass_td": 0.0, "rush_yds": 42.0, "rec_yds": 14.0, "rec": 2.1, "pass_yds": 0.0},
-    "WR": {"rush_td": 0.02, "rec_td": 0.34, "pass_td": 0.0, "rush_yds": 2.0, "rec_yds": 46.0, "rec": 3.9, "pass_yds": 0.0},
-    "TE": {"rush_td": 0.0, "rec_td": 0.24, "pass_td": 0.0, "rush_yds": 0.0, "rec_yds": 30.0, "rec": 3.1, "pass_yds": 0.0},
-    "FB": {"rush_td": 0.10, "rec_td": 0.05, "pass_td": 0.0, "rush_yds": 10.0, "rec_yds": 6.0, "rec": 0.9, "pass_yds": 0.0},
+    "QB": {"rush_td": 0.12, "rec_td": 0.0, "pass_td": 1.30, "rush_yds": 9.0, "rec_yds": 0.0, "rec": 0.0, "pass_yds": 235.0, "completions": 23.0, "interceptions": 0.85},
+    "RB": {"rush_td": 0.34, "rec_td": 0.08, "pass_td": 0.0, "rush_yds": 42.0, "rec_yds": 14.0, "rec": 2.1, "pass_yds": 0.0, "completions": 0.0, "interceptions": 0.0},
+    "WR": {"rush_td": 0.02, "rec_td": 0.34, "pass_td": 0.0, "rush_yds": 2.0, "rec_yds": 46.0, "rec": 3.9, "pass_yds": 0.0, "completions": 0.0, "interceptions": 0.0},
+    "TE": {"rush_td": 0.0, "rec_td": 0.24, "pass_td": 0.0, "rush_yds": 0.0, "rec_yds": 30.0, "rec": 3.1, "pass_yds": 0.0, "completions": 0.0, "interceptions": 0.0},
+    "FB": {"rush_td": 0.10, "rec_td": 0.05, "pass_td": 0.0, "rush_yds": 10.0, "rec_yds": 6.0, "rec": 0.9, "pass_yds": 0.0, "completions": 0.0, "interceptions": 0.0},
 }
 
 # How many "games" of weight the position prior carries in the shrink blend.
@@ -138,6 +138,25 @@ def project_pass_td_lambda(*, pass_td_per_game: float, sample_games: float, pass
 def project_pass_yds_mean(*, pass_yds_per_game: float, sample_games: float, pass_matchup: float) -> float:
     prior = POSITION_PRIORS["QB"]["pass_yds"]
     return shrunk_rate(pass_yds_per_game, prior, sample_games) * pass_matchup
+
+
+def project_completions_mean(*, completions_per_game: float, sample_games: float, pass_matchup: float) -> float:
+    """A defense that allows more passing yards typically also plays softer
+    coverage that's easier to complete against, so pass_matchup is a
+    reasonable (if imperfect) proxy here too — same signal RushYds/RecYds
+    already reuse for their own matchup adjustment."""
+    prior = POSITION_PRIORS["QB"]["completions"]
+    return shrunk_rate(completions_per_game, prior, sample_games) * pass_matchup
+
+
+def project_interceptions_lambda(*, interceptions_per_game: float, sample_games: float) -> float:
+    """No matchup multiplier: this collector doesn't fetch a defense's
+    takeaway/INT-forcing rate (only yards allowed), and passing-yards-allowed
+    isn't a meaningful proxy for a defense's ball-hawking tendency the way it
+    is for completion ease or yardage - applying it here would be a wrong-
+    direction guess dressed up as a matchup edge. Shrunk rate only, honestly."""
+    prior = POSITION_PRIORS["QB"]["interceptions"]
+    return shrunk_rate(interceptions_per_game, prior, sample_games)
 
 
 def project_rush_yds_mean(*, rush_yds_per_game: float, sample_games: float, position: str, rush_matchup: float) -> float:

@@ -25,7 +25,7 @@ MAX_WORKERS = 8
 # hammering ESPN any harder per-request than the other collectors do.
 PLAYER_STATS_WORKERS = 12
 
-NFL_MARKETS = ["TD", "RecYds", "RushYds", "REC", "PassTD", "PassYds", "ML"]
+NFL_MARKETS = ["TD", "RecYds", "RushYds", "REC", "PassTD", "PassYds", "Completions", "INT", "ML"]
 SKILL_POSITIONS = {"QB", "RB", "WR", "TE"}
 # A player needs at least this many 2025 games played to be featured at all —
 # mirrors soccer's minimum_appearances gate. Below this, the shrink formula
@@ -40,6 +40,11 @@ MINIMUM_GAMES_PLAYED = 4
 # rung must clear to be worth showing (below this it's noise, not a longshot).
 PASS_TD_MAX_RUNG = 4
 PASS_TD_MIN_RUNG_PROBABILITY = 0.05
+# Interception ladder: same monotonic-P(k+) ladder logic as PassTD, capped
+# lower since even a turnover-prone starter rarely clears 2+ picks at a
+# probability worth surfacing.
+INTERCEPTIONS_MAX_RUNG = 2
+INTERCEPTIONS_MIN_RUNG_PROBABILITY = 0.05
 # Games of 2025 schedule sampled per team for the recency-weighted power
 # rating and the boxscore-derived defense-allowed signal. Capped well below
 # the full 17-game season to keep the boxscore fetch volume (one request per
@@ -411,6 +416,8 @@ def build_team_player_candidates(
         rec_td_pg = stats.get("receivingTouchdowns", 0.0) / games_played
         pass_td_pg = stats.get("passingTouchdowns", 0.0) / games_played
         pass_yds_pg = stats.get("passingYardsPerGame", stats.get("passingYards", 0.0) / games_played)
+        completions_pg = stats.get("completionsPerGame", stats.get("completions", 0.0) / games_played)
+        interceptions_pg = stats.get("interceptionsPerGame", stats.get("interceptions", 0.0) / games_played)
         rush_yds_pg = stats.get("rushingYardsPerGame", stats.get("rushingYards", 0.0) / games_played)
         rec_yds_pg = stats.get("receivingYardsPerGame", stats.get("receivingYards", 0.0) / games_played)
         rec_pg = stats.get("receptions", 0.0) / games_played
@@ -551,6 +558,52 @@ def build_team_player_candidates(
                         reason=f"Proj {pass_yds_mean:.1f} pass yds/g | Rec match {pass_matchup:.2f}x | {sample_note}",
                     )
                 )
+
+            # Completions — the fourth standard QB prop (yards/TD/INT/
+            # completions is the full set every real sportsbook posts).
+            # Normal approx like PassYds; matchup reuses the same pass_matchup
+            # proxy (softer pass defense -> easier completions too).
+            completions_mean = nfl_model.project_completions_mean(
+                completions_per_game=completions_pg, sample_games=games_played, pass_matchup=pass_matchup
+            )
+            if completions_mean >= 10.0:
+                completions_line = nfl_model.yardage_line(completions_mean, round_to=1, share=0.85, minimum=5)
+                completions_probability = nfl_model.normal_at_least(
+                    completions_mean, completions_line, std_ratio=0.22, min_std=3.0
+                )
+                candidates.append(
+                    make_candidate(
+                        **common,
+                        market="Completions",
+                        line=f"{completions_line}+ Completions",
+                        probability=completions_probability,
+                        reason=f"Proj {completions_mean:.1f} completions/g | Rec match {pass_matchup:.2f}x | {sample_note}",
+                    )
+                )
+
+            # Interceptions — ladder like PassTD (1+, 2+): a genuinely
+            # Poisson-shaped rare-count event, not a yardage stat. No
+            # matchup multiplier (see project_interceptions_lambda) - a
+            # turnover-prone QB grades high here on his own tendency alone,
+            # which is the real, intentional framing (this market isn't
+            # "good QB play", it's "will he throw one").
+            int_lambda = nfl_model.project_interceptions_lambda(
+                interceptions_per_game=interceptions_pg, sample_games=games_played
+            )
+            if int_lambda >= 0.3:
+                for int_line in range(1, INTERCEPTIONS_MAX_RUNG + 1):
+                    int_probability = nfl_model.poisson_at_least(int_lambda, int_line)
+                    if int_probability < INTERCEPTIONS_MIN_RUNG_PROBABILITY:
+                        break
+                    candidates.append(
+                        make_candidate(
+                            **common,
+                            market="INT",
+                            line=f"{int_line}+ INT",
+                            probability=int_probability,
+                            reason=f"INT λ {int_lambda:.2f} (no matchup adj - takeaway rate not collected) | {sample_note}",
+                        )
+                    )
 
         for tagged in candidates[athlete_candidate_start:]:
             tagged["position"] = position
