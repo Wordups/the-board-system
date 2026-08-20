@@ -35,6 +35,11 @@ SKILL_POSITIONS = {"QB", "RB", "WR", "TE"}
 # there is no current-season data yet either (see design doc's Week 1
 # uncertainty framing).
 MINIMUM_GAMES_PLAYED = 4
+
+# Pass-TD ladder: highest rung ever attempted, and the probability floor a
+# rung must clear to be worth showing (below this it's noise, not a longshot).
+PASS_TD_MAX_RUNG = 4
+PASS_TD_MIN_RUNG_PROBABILITY = 0.05
 # Games of 2025 schedule sampled per team for the recency-weighted power
 # rating and the boxscore-derived defense-allowed signal. Capped well below
 # the full 17-game season to keep the boxscore fetch volume (one request per
@@ -493,17 +498,25 @@ def build_team_player_candidates(
                 pass_td_per_game=pass_td_pg, sample_games=games_played, pass_matchup=pass_matchup
             )
             if pass_td_lambda >= 0.4:
-                pass_td_line = 2 if pass_td_lambda >= 1.55 else 1
-                pass_td_probability = nfl_model.poisson_at_least(pass_td_lambda, pass_td_line)
-                candidates.append(
-                    make_candidate(
-                        **common,
-                        market="PassTD",
-                        line=f"{pass_td_line}+ Pass TD",
-                        probability=pass_td_probability,
-                        reason=f"Pass TD λ {pass_td_lambda:.2f} | Rec match {pass_matchup:.2f}x | {sample_note}",
+                # Ladder every rung (1+, 2+, 3+, ...) instead of picking one
+                # line off the lambda — a high-volume passer's 3+ TD ceiling
+                # is a real, distinct play from his 1+ TD floor, not just a
+                # rounding choice between them. P(k+) is monotonically
+                # decreasing in k, so stop once a rung drops below a floor
+                # that's still a legible longshot rather than noise.
+                for pass_td_line in range(1, PASS_TD_MAX_RUNG + 1):
+                    pass_td_probability = nfl_model.poisson_at_least(pass_td_lambda, pass_td_line)
+                    if pass_td_probability < PASS_TD_MIN_RUNG_PROBABILITY:
+                        break
+                    candidates.append(
+                        make_candidate(
+                            **common,
+                            market="PassTD",
+                            line=f"{pass_td_line}+ Pass TD",
+                            probability=pass_td_probability,
+                            reason=f"Pass TD λ {pass_td_lambda:.2f} | Rec match {pass_matchup:.2f}x | {sample_note}",
+                        )
                     )
-                )
 
     return candidates
 
