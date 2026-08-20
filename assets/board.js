@@ -277,7 +277,14 @@
   // find. Doesn't apply when there's a real market price (row.priceIsModel
   // false) — there, a heavy favorite priced even shorter by the model is a
   // real edge, not chalk.
-  const CHALK_PROBABILITY_THRESHOLD = 0.70;
+  // Calibrated against real book prices, not guessed: Drake Maye/Sam
+  // Darnold (normal, legitimate starters) price at -400/-440 (~80-81.5%
+  // implied) for 1+ Pass TD in real sportsbooks — that's just accurate
+  // market reality for a starting QB, not chalk. The actual complaint was
+  // about genuinely extreme cases (a -900/~90% line) providing zero real
+  // signal. 86% (~-614 fair) sits with clear margin above the Maye/Darnold
+  // "fine" anchor and clear margin below the "-900 is a waste of time" one.
+  const CHALK_PROBABILITY_THRESHOLD = 0.86;
 
   function verdictFor(row) {
     if (row.priceIsModel && row.probability !== null && row.probability >= CHALK_PROBABILITY_THRESHOLD) {
