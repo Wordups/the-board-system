@@ -159,6 +159,24 @@ def test_project_pass_td_lambda_uses_qb_prior_with_no_sample():
     assert lam == pytest.approx(nfl_model.POSITION_PRIORS["QB"]["pass_td"], abs=1e-6)
 
 
+def test_project_pass_yds_mean_uses_qb_prior_with_no_sample():
+    mean = nfl_model.project_pass_yds_mean(pass_yds_per_game=0.0, sample_games=0.0, pass_matchup=1.0)
+    assert mean == pytest.approx(nfl_model.POSITION_PRIORS["QB"]["pass_yds"], abs=1e-6)
+
+
+def test_project_pass_yds_mean_full_season_dominates_prior():
+    # A real 17-game 2025 sample should pull the mean toward the observed
+    # rate, not stay anchored near the position prior.
+    mean = nfl_model.project_pass_yds_mean(pass_yds_per_game=310.0, sample_games=17.0, pass_matchup=1.0)
+    assert mean > 280.0
+
+
+def test_project_pass_yds_mean_applies_matchup_multiplier():
+    baseline = nfl_model.project_pass_yds_mean(pass_yds_per_game=250.0, sample_games=17.0, pass_matchup=1.0)
+    softer_matchup = nfl_model.project_pass_yds_mean(pass_yds_per_game=250.0, sample_games=17.0, pass_matchup=1.2)
+    assert softer_matchup > baseline
+
+
 def test_clamp_probability_bounds():
     assert nfl_model.clamp_probability(5.0) == 0.99
     assert nfl_model.clamp_probability(-5.0) == 0.01
