@@ -280,21 +280,25 @@
     return { label: "Pass", tone: "neutral" };
   }
 
-  function diversifiedTop(source, count = 5, maxPerSport = 2) {
+  function diversifiedTop(source, count = 5, maxPerSport = 2, maxPerMarket = Infinity) {
     const verdictPriority = { Qualified: 4, Watch: 3, "Model only": 2, Pass: 1 };
     const sorted = [...source]
       .filter(row => row.verdict.label !== "Price conflict")
       .sort((a, b) => (verdictPriority[b.verdict.label] || 0) - (verdictPriority[a.verdict.label] || 0) || b.geometry - a.geometry || b.score - a.score);
     const result = [];
     const sportCounts = new Map();
+    const marketCounts = new Map();
     const players = new Set();
     for (const row of sorted) {
       if ((sportCounts.get(row.sport) || 0) >= maxPerSport) continue;
+      const marketKey = `${row.sport}:${row.market}`;
+      if ((marketCounts.get(marketKey) || 0) >= maxPerMarket) continue;
       const identity = `${row.sport}:${row.playerId || row.playerName}:${row.market}`;
       if (players.has(identity)) continue;
       result.push(row);
       players.add(identity);
       sportCounts.set(row.sport, (sportCounts.get(row.sport) || 0) + 1);
+      marketCounts.set(marketKey, (marketCounts.get(marketKey) || 0) + 1);
       if (result.length >= count) break;
     }
     return result;
@@ -328,9 +332,58 @@
     </div>`;
   }
 
+  function headshotUrl(sport, playerId) {
+    if (!playerId) return null;
+    const id = encodeURIComponent(playerId);
+    switch (sport) {
+      case "mlb": return `https://img.mlbstatic.com/mlb-photos/image/upload/w_180,q_auto:best/v1/people/${id}/headshot/67/current`;
+      case "wnba": return `https://cdn.wnba.com/headshots/wnba/latest/1040x760/${id}.png`;
+      case "nba": return `https://cdn.nba.com/headshots/nba/latest/1040x760/${id}.png`;
+      case "soccer": return `https://a.espncdn.com/i/headshots/soccer/players/full/${id}.png`;
+      case "nfl": return `https://a.espncdn.com/i/headshots/nfl/players/full/${id}.png`;
+      default: return null;
+    }
+  }
+
+  function playerAvatar(row, large = false) {
+    const url = headshotUrl(row.sport, row.playerId);
+    const initials = (row.playerName || "")
+      .split(/\s+/).filter(Boolean).map(part => part[0]).slice(0, 2).join("").toUpperCase();
+    return `<div class="player-avatar${large ? " player-avatar-large" : ""}" aria-label="Signal geometry ${row.geometry} out of 100">
+      <div class="player-avatar-face">
+        <i>${esc(initials)}</i>
+        ${url ? `<img src="${esc(url)}" alt="" loading="lazy" onerror="this.remove()">` : ""}
+      </div>
+      <span class="player-avatar-badge">${row.geometry}</span>
+    </div>`;
+  }
+
+  function todayET() {
+    return new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" }).format(new Date());
+  }
+
   function latestSlateDate() {
-    const dates = Object.values(snapshot?.sports || {}).map(board => board?.date).filter(Boolean).sort();
-    return dates[dates.length - 1] || null;
+    // Pick whichever sport's date is closest to the real calendar date, not
+    // the max or the most common date across sports. A weekly sport (NFL)
+    // legitimately carries a future game-day date; a sport whose collector
+    // has been failing (e.g. blocked upstream) can carry a stale past date
+    // shared by several sports at once. Either can outvote or outrank the
+    // sport that's actually current today - proximity to "now" is the only
+    // criterion that survives both failure modes.
+    const dates = Object.values(snapshot?.sports || {}).map(board => board?.date).filter(Boolean);
+    if (!dates.length) return null;
+    const today = todayET();
+    const todayMs = new Date(`${today}T00:00:00Z`).getTime();
+    let best = dates[0];
+    let bestDelta = Infinity;
+    for (const date of dates) {
+      const delta = Math.abs(new Date(`${date}T00:00:00Z`).getTime() - todayMs);
+      if (delta < bestDelta) {
+        best = date;
+        bestDelta = delta;
+      }
+    }
+    return best;
   }
 
   function staleInfo(date = latestSlateDate()) {
@@ -393,7 +446,7 @@
           <div class="signal-meta">${esc(row.team)} vs ${esc(row.opponent)} · ${esc(row.time)}</div>
           <div class="signal-line">${esc(row.line)} <small>${esc(priceText(row))}</small></div>
         </div>
-        ${radar(row)}
+        ${playerAvatar(row)}
       </div>
       <div class="signal-footer">
         <span class="factor-summary">${esc(factorSummary(row))}</span>
@@ -480,8 +533,8 @@
       ${ordered.map(game => {
         const best = [...game.rows].sort((a, b) => b.geometry - a.geometry)[0];
         return `<button class="game-chip" type="button" data-game-id="${esc(game.gameId)}" aria-label="Open recommendations for ${esc(game.matchup)}">
-          <span class="game-chip-top"><span class="game-chip-matchup">${esc(game.matchup)}</span><b>${game.rows.length}</b></span>
-          <span class="game-chip-meta">${esc(game.time)}${best ? ` · top ${best.geometry}` : ""}</span>
+          <span class="game-chip-top"><span class="game-chip-matchup">${esc(game.matchup)}</span>${best ? `<b>${best.geometry}</b>` : ""}</span>
+          <span class="game-chip-meta">${esc(game.time)} · ${game.rows.length} signal${game.rows.length === 1 ? "" : "s"}</span>
         </button>`;
       }).join("")}
     </section>`;
@@ -496,9 +549,15 @@
 
   function renderToday() {
     const date = latestSlateDate();
-    const activeRows = rows.filter(row => row.date === date);
-    const activeGames = games.filter(game => game.date === date);
-    const top = diversifiedTop(activeRows, 5);
+    // Each sport's rows already belong to that sport's own current slate
+    // (flattenSnapshot stamps row.date from that sport's own board.date) -
+    // don't re-filter against one shared cross-sport date. A weekly sport
+    // (NFL) legitimately has a different "current" date than a daily sport
+    // (MLB) at the same moment; both are still today's real slate for their
+    // sport and both belong on Today.
+    const activeRows = rows;
+    const activeGames = games;
+    const top = diversifiedTop(activeRows, 10, Infinity, 2);
     const next = [...activeRows]
       .filter(row => !top.some(item => item.id === row.id))
       .sort((a, b) => b.geometry - a.geometry || b.score - a.score)
@@ -506,7 +565,7 @@
     return `${pageHead("Decision surface", "Read the field.", "Ignore the noise.", "The Board now promotes balanced signals—not the loudest raw score. Price conflicts, missing inputs, and projection gaps remain visible instead of being averaged away.", date)}
       ${freshnessBanner(date)}
       ${gamesRail(activeGames)}
-      <div class="section-head"><div><span class="section-kicker">Diversified top field</span><h2>Five signals worth opening</h2></div><p class="section-note">Maximum two per sport. Duplicate player-market combinations are removed before ranking.</p></div>
+      <div class="section-head"><div><span class="section-kicker">Top ranked</span><h2>Plays of the Day</h2></div><p class="section-note">Today's highest-scored plays across every active sport, ranked — no per-sport cap.</p></div>
       <section class="lead-grid">${top.map(signalCard).join("")}</section>
       <div class="section-head"><div><span class="section-kicker">Next tier</span><h2>The edge queue</h2></div><p class="section-note">A single ranked surface replaces overlapping “top,” “safe,” “sim,” and research boards.</p></div>
       ${listMarkup(next, 10)}`;
@@ -844,7 +903,7 @@
       ["Projection", row.evidence.projection === null ? "—" : row.evidence.projection.toFixed(1), row.projectionDelta === null ? "not structured" : `${row.projectionDelta >= 0 ? "+" : ""}${row.projectionDelta.toFixed(1)} vs line`],
       ["Coverage", `${Math.round(row.coverage * 100)}%`, `${DIMENSIONS.filter(d => row.vector[d.key] !== null).length}/5 axes`],
     ];
-    drawerContent.innerHTML = `<div class="drawer-hero"><div><span class="sport-token" data-sport="${esc(row.sport)}">${esc(row.sportLabel)} · ${esc(row.market)}</span><h2>${esc(row.playerName)}</h2><div class="signal-meta">${esc(row.team)} vs ${esc(row.opponent)} · ${esc(row.time)}</div><div class="drawer-line">${esc(row.line)} · ${esc(priceText(row))}</div></div>${radar(row, true)}</div>
+    drawerContent.innerHTML = `<div class="drawer-hero"><div><span class="sport-token" data-sport="${esc(row.sport)}">${esc(row.sportLabel)} · ${esc(row.market)}</span><h2>${esc(row.playerName)}</h2><div class="signal-meta">${esc(row.team)} vs ${esc(row.opponent)} · ${esc(row.time)}</div><div class="drawer-line">${esc(row.line)} · ${esc(priceText(row))}</div></div>${playerAvatar(row, true)}</div>
       <section class="drawer-section"><h3>Signal field</h3><div class="factor-grid">${factorCards.map(([label, value, note]) => `<div class="factor-card"><span>${esc(label)}</span><strong>${esc(value)}</strong><small>${esc(note)}</small></div>`).join("")}</div>${row.flags.length ? `<div class="stale-banner" style="margin:12px 0 0"><span><strong>Conflict check</strong> · ${esc(row.flags.join(" · "))}</span></div>` : ""}</section>
       <section class="drawer-section"><h3>Evidence surfaced</h3><div class="factor-grid">${evidenceCards(row).join("") || `<div class="factor-card"><span>Structured evidence</span><strong>Limited</strong><small>Exporter should emit factor fields directly.</small></div>`}</div></section>
       <section class="drawer-section"><h3>Full model note</h3><details class="reason-box"><summary>Open original scorer output</summary>${esc(row.reason)}</details></section>
