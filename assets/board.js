@@ -131,7 +131,17 @@
   // never off-season.
   const OFFSEASON_STALE_DAYS = 14;
 
-  function isBoardOffSeason(date) {
+  // Explicit per-sport resume date, where known -- takes priority over the
+  // generic staleness check. NBA preseason games start showing up in ESPN's
+  // schedule well before the real season does; without this override the
+  // staleness check alone would un-hide the tab the moment preseason data
+  // appears, days/weeks before there's a real slate worth showing. 2026-10-15
+  // is the real 2026-27 NBA regular-season opener.
+  const SEASON_RESUME_DATE = { nba: "2026-10-15" };
+
+  function isBoardOffSeason(sport, date) {
+    const resumeDate = SEASON_RESUME_DATE[sport];
+    if (resumeDate && todayET() < resumeDate) return true;
     if (!date) return true;
     const days = Math.floor((new Date() - new Date(`${date}T12:00:00`)) / 86400000);
     return days > OFFSEASON_STALE_DAYS;
@@ -142,7 +152,7 @@
     const eventOutput = [];
     Object.entries(data.sports || {}).forEach(([sport, board]) => {
       if (!board || !Array.isArray(board.games)) return;
-      if (isBoardOffSeason(board.date)) return;
+      if (isBoardOffSeason(sport, board.date)) return;
       board.games.forEach(game => {
         const event = {
           sport,
