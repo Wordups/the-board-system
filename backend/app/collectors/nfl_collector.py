@@ -92,6 +92,15 @@ RB_TREND_MIN_GAMES = 8
 RB_TREND_MIN_USAGE_YDS = 25.0
 RB_TREND_TOP_N = 8
 
+# QB game-by-game history: same ATHLETE_GAMELOG_URL host/endpoint as the RB
+# trend-watch fetch above, just a QB-specific stat parser (parse_qb_gamelog)
+# since a QB's gamelog `names[]` header is a completely different stat set
+# (passing) than an RB's (rushing/receiving). Feeds the per-player
+# game-history section the NFL drawer shows on the frontend (see
+# player_gamelogs in collect_nfl_raw_data) -- additive/display-only, does not
+# feed any market score.
+QB_GAMELOG_WORKERS = 12  # one request per QB -- same bulk-fetch profile as RB_TREND_WORKERS
+
 # normal_at_least std overrides for the two QB Normal-modeled markets, named
 # here (rather than left as inline literals at their call sites below) so
 # app.sim.nfl_qb_stack can import the exact values it needs to recompute each
@@ -139,6 +148,7 @@ def collect_nfl_raw_data(data_raw_dir: Path) -> dict[str, Any]:
                 "week": None,
                 "games": [],
                 "rb_trend_watch": {"window": RB_TREND_WINDOW, "best_stretch": [], "trending_up": []},
+                "player_gamelogs": {},
             }
             write_json(raw_path, payload)
             return payload
@@ -153,6 +163,22 @@ def collect_nfl_raw_data(data_raw_dir: Path) -> dict[str, Any]:
         # display-only signal, does not feed player_stats or any market score.
         rb_gamelogs = fetch_rb_gamelogs(rosters, season=prior_season)
         rb_trend_watch = build_rb_trend_watch(rb_gamelogs, rosters)
+        # QB game-by-game history, same host/fetch pattern as rb_gamelogs
+        # just above, with its own stat parser. Merged with the already-
+        # fetched rb_gamelogs (no duplicate RB fetch) into one player_id ->
+        # {team, position, games} lookup the board builder passes straight
+        # through to the frontend for the drawer's game-history section.
+        qb_gamelogs = fetch_qb_gamelogs(rosters, season=prior_season)
+        player_gamelogs: dict[str, Any] = {
+            athlete_id: {"team": entry["team"], "position": "QB", "games": entry["games"]}
+            for athlete_id, entry in qb_gamelogs.items()
+        }
+        player_gamelogs.update(
+            {
+                athlete_id: {"team": entry["team"], "position": "RB", "games": entry["games"]}
+                for athlete_id, entry in rb_gamelogs.items()
+            }
+        )
         team_schedules = fetch_team_schedules(team_map, season=prior_season)  # abbr -> list of completed game rows
         team_power = build_team_power_profiles(team_schedules)  # abbr -> power profile
         athlete_positions = build_athlete_position_map(rosters)  # athlete_id -> position, league-wide
@@ -192,6 +218,7 @@ def collect_nfl_raw_data(data_raw_dir: Path) -> dict[str, Any]:
                 for event in events
             ],
             "rb_trend_watch": rb_trend_watch,
+            "player_gamelogs": player_gamelogs,
         }
         write_json(raw_path, payload)
         return payload
@@ -474,6 +501,116 @@ def build_rb_trend_watch(
         "best_stretch": best_stretch_rows[:RB_TREND_TOP_N],
         "trending_up": trending_rows[:RB_TREND_TOP_N],
     }
+
+
+# ---------------------------------------------------------------------------
+# QB game-by-game history (2025 gamelogs -> per-player game log for the
+# frontend drawer)
+# ---------------------------------------------------------------------------
+
+def fetch_qb_gamelogs(rosters: dict[str, list[dict[str, Any]]], *, season: int) -> dict[str, dict[str, Any]]:
+    """2025 game-by-game passing (+ rushing) lines for every QB in the
+    roster pool (rosters already skill-position-filtered and OUT/DOUBTFUL-
+    dropped by fetch_team_rosters). Same ATHLETE_GAMELOG_URL host/endpoint
+    fetch_rb_gamelogs already uses -- just a QB-specific stat parser
+    (parse_qb_gamelog) since a QB's gamelog `names[]` header is a completely
+    different stat set (passing) than an RB's (rushing/receiving). Returns
+    athlete_id -> {"team": abbr, "games": [chronological per-game dicts]}.
+    Fetched for every roster QB (not just the eventual starting QB -- that's
+    only resolved later, per-game, by find_starting_qb_id), same as
+    fetch_rb_gamelogs fetches every roster RB rather than pre-filtering to
+    a "starter." A QB whose gamelog fetch fails or who has no parseable
+    regular-season games is simply absent, same degrade-quietly convention
+    fetch_rb_gamelogs already uses."""
+    qb_team_by_id: dict[str, str] = {
+        athlete["id"]: abbr
+        for abbr, roster in rosters.items()
+        for athlete in roster
+        if athlete["position"] == "QB"
+    }
+
+    def load(athlete_id: str) -> tuple[str, list[dict[str, Any]] | None]:
+        try:
+            payload = espn_get_json(ATHLETE_GAMELOG_URL.format(athlete_id=athlete_id), {"season": season})
+        except requests.RequestException:
+            return athlete_id, None
+        return athlete_id, parse_qb_gamelog(payload)
+
+    with ThreadPoolExecutor(max_workers=QB_GAMELOG_WORKERS) as pool:
+        results = pool.map(load, sorted(qb_team_by_id))
+
+    return {
+        athlete_id: {"team": qb_team_by_id[athlete_id], "games": games}
+        for athlete_id, games in results
+        if games
+    }
+
+
+def parse_qb_gamelog(payload: dict[str, Any]) -> list[dict[str, Any]] | None:
+    """Regular-season per-game passing (+ rushing) lines, sorted
+    chronologically (earliest week first). Same response shape
+    parse_rb_gamelog documents (`names[]` positionally matches each event's
+    `stats[]`; real per-game week number, opponent, and result live in the
+    separate top-level `events` dict keyed by eventId) -- just a different
+    stat subset. Live-verified 2026-08-19 against a real QB (Lamar Jackson,
+    athlete id 3916387, 2025 season, this same sandbox): the real `names[]`
+    array returned was exactly ["completions", "passingAttempts",
+    "passingYards", "completionPct", "yardsPerPassAttempt",
+    "passingTouchdowns", "interceptions", "longPassing", "sacks",
+    "QBRating", "adjQBR", "rushingAttempts", "rushingYards",
+    "yardsPerRushAttempt", "rushingTouchdowns", "longRushing"], confirmed
+    against all 13 of his real 2025 regular-season game rows (e.g. Week 1 at
+    BUF: 14 completions, 209 pass yds, 2 pass TD, 0 INT, 70 rush yds -- a
+    real result the collector had never had access to before this parser).
+    Postseason is a separate seasonTypes entry and deliberately excluded
+    here, same as parse_rb_gamelog. Returns None if there's no usable
+    regular-season entry."""
+    names = payload.get("names") or []
+    events_by_id = payload.get("events") or {}
+    season_types = payload.get("seasonTypes") or []
+
+    regular = next(
+        (season_type for season_type in season_types if "Regular Season" in (season_type.get("displayName") or "")),
+        None,
+    )
+    if not regular or not regular.get("categories"):
+        return None
+
+    try:
+        completions_idx = names.index("completions")
+        pass_yds_idx = names.index("passingYards")
+        pass_td_idx = names.index("passingTouchdowns")
+        int_idx = names.index("interceptions")
+        rush_yds_idx = names.index("rushingYards")
+    except ValueError:
+        return None
+    max_idx = max(completions_idx, pass_yds_idx, pass_td_idx, int_idx, rush_yds_idx)
+
+    games: list[dict[str, Any]] = []
+    for event_row in regular["categories"][0].get("events", []):
+        stats = event_row.get("stats") or []
+        if len(stats) <= max_idx:
+            continue
+        event_meta = events_by_id.get(event_row.get("eventId"), {})
+        week = event_meta.get("week")
+        if week is None:
+            continue
+        opponent = (event_meta.get("opponent") or {}).get("abbreviation", "")
+        games.append(
+            {
+                "week": int(week),
+                "opponent": opponent,
+                "result": event_meta.get("gameResult", ""),
+                "completions": parse_number(stats[completions_idx]),
+                "pass_yds": parse_number(stats[pass_yds_idx]),
+                "pass_td": parse_number(stats[pass_td_idx]),
+                "interceptions": parse_number(stats[int_idx]),
+                "rush_yds": parse_number(stats[rush_yds_idx]),
+            }
+        )
+
+    games.sort(key=lambda row: row["week"])
+    return games or None
 
 
 # ---------------------------------------------------------------------------
@@ -1213,6 +1350,11 @@ def build_team_player_candidates(
             tagged["position"] = position
             tagged["games_played"] = games_played
             tagged["rec_td_per_game"] = rec_td_pg
+            # Raw TD lambda for every position (not just RB below) -- cheap
+            # since it's already computed unconditionally above for the TD
+            # ladder gate; a plain-language TD projection for a WR/TE's
+            # drawer needs this same number, not just the RB stat stack.
+            tagged["td_lambda"] = td_lambda
             if position == "QB":
                 tagged["pass_td_lambda"] = pass_td_lambda
                 # Raw means (not the posted "beatable" line) for the QB stat-
@@ -1226,6 +1368,11 @@ def build_team_player_candidates(
                 # rows specifically, see extract_qb_stat_stack.
                 tagged["pass_yds_mean"] = pass_yds_mean
                 tagged["completions_mean"] = completions_mean
+                # Raw interception lambda -- same "plain projection" purpose
+                # as pass_yds_mean/completions_mean above, not read by any
+                # sim (the QB stat stack doesn't model INT).
+                tagged["int_lambda"] = int_lambda
+                tagged["rush_yds_mean"] = rush_yds_mean
             if position == "RB":
                 # Raw means/lambda for the RB stat-stack correlation sim
                 # (app.sim.nfl_rb_stack) -- same convention as the QB tags

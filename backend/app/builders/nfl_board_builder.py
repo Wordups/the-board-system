@@ -161,6 +161,13 @@ def build_nfl_board(*, config, paths) -> dict:
         "rb_trend_watch": raw_payload.get(
             "rb_trend_watch", {"window": 5, "best_stretch": [], "trending_up": []}
         ),
+        # Per-player 2025 game-by-game history (QB passing lines, RB
+        # rushing+receiving lines), keyed by player_id -- see
+        # nfl_collector.collect_nfl_raw_data's player_gamelogs. Same
+        # pass-through, extra-field-the-generic-schema-ignores convention as
+        # rb_trend_watch above, joinable client-side to a board row's
+        # player_id without a new network request per drawer open.
+        "player_gamelogs": raw_payload.get("player_gamelogs", {}),
     }
 
 
@@ -176,7 +183,17 @@ def to_board_row(candidate: dict) -> dict:
         "tier": candidate["tier"],
         "reason": candidate["reason"],
     }
-    for key in ("sim_prob_pct", "model_hit_rate_raw", "implied_odds", "lineup_confirmed"):
+    for key in (
+        "sim_prob_pct", "model_hit_rate_raw", "implied_odds", "lineup_confirmed",
+        # Position + raw projection means/lambdas tagged by the collector
+        # (see build_team_player_candidates) -- exported so the frontend
+        # drawer can show a real plain-language projection ("233 pass yards,
+        # 22 completions, 1.9 pass TDs") instead of reverse-engineering it
+        # out of the `reason` text string. Previously computed but never
+        # exported past this allow-list.
+        "position", "pass_yds_mean", "completions_mean", "pass_td_lambda", "int_lambda",
+        "rush_yds_mean", "rec_yds_mean", "td_lambda",
+    ):
         if key in candidate:
             row[key] = candidate[key]
     return row

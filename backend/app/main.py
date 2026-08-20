@@ -102,7 +102,9 @@ def run_nfl_pipeline(project_root: Path) -> dict:
     # fabricated" convention for additive fields.
     board.setdefault("same_game_pairs", [])
     board.setdefault("qb_stacks", [])
+    board.setdefault("rb_stacks", [])
     board.setdefault("rb_trend_watch", {"window": 5, "best_stretch": [], "trending_up": []})
+    board.setdefault("player_gamelogs", {})
     validate_board_payload(board)
     export_board_to_site(board=board, sport_key="nfl", paths=paths)
     return board
