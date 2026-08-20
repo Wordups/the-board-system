@@ -5,6 +5,7 @@ from collections import defaultdict
 from app.builders.universal_game_builder import empty_markets_for
 from app.collectors.nfl_collector import NFL_MARKETS, collect_nfl_raw_data
 from app.sim.nfl_qb_stack import build_qb_stacks_for_game
+from app.sim.nfl_rb_stack import build_rb_stacks_for_game
 from app.sim.nfl_same_game import build_same_game_pairs_for_game
 from app.utils.dates import timestamp_et
 
@@ -56,6 +57,7 @@ def build_nfl_board(*, config, paths) -> dict:
     pinned_candidates = []
     same_game_pairs = []
     qb_stacks = []
+    rb_stacks = []
 
     for raw_game in raw_payload["games"]:
         ranked = sorted(raw_game["candidates"], key=lambda row: (row["score"], row["confidence"]), reverse=True)
@@ -104,6 +106,17 @@ def build_nfl_board(*, config, paths) -> dict:
                 candidates=raw_game["candidates"],
             )
         )
+        # Same-PLAYER RB stat-stack correlation sim (Gaussian-copula blend
+        # of RushYds/RecYds/TD's own draws — same mechanism as qb_stacks
+        # above, different position/markets/RHO — see nfl_rb_stack.py). Same
+        # additive, display-only, degrades-to-[] convention.
+        rb_stacks.extend(
+            build_rb_stacks_for_game(
+                game_id=raw_game["game_id"],
+                matchup=matchup,
+                candidates=raw_game["candidates"],
+            )
+        )
 
     week = raw_payload.get("week")
     season = raw_payload.get("season")
@@ -129,11 +142,13 @@ def build_nfl_board(*, config, paths) -> dict:
         "games": games_output,
         # Extra fields the generic board pipeline/schema ignores (same
         # pattern as data.diamond for MLB) — see nfl_same_game.py /
-        # nfl_qb_stack.py. Two separate fields because they're two
-        # structurally different card kinds (QB<->receiver pair vs one QB's
-        # own three-market stack), not one field overloaded with two shapes.
+        # nfl_qb_stack.py / nfl_rb_stack.py. Three separate fields because
+        # they're three structurally different card kinds (QB<->receiver
+        # pair, one QB's own three-market stack, one RB's own three-market
+        # stack), not one field overloaded with multiple shapes.
         "same_game_pairs": same_game_pairs,
         "qb_stacks": qb_stacks,
+        "rb_stacks": rb_stacks,
     }
 
 

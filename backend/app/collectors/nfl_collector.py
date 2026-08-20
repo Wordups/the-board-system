@@ -923,6 +923,18 @@ def build_team_player_candidates(
                 # rows specifically, see extract_qb_stat_stack.
                 tagged["pass_yds_mean"] = pass_yds_mean
                 tagged["completions_mean"] = completions_mean
+            if position == "RB":
+                # Raw means/lambda for the RB stat-stack correlation sim
+                # (app.sim.nfl_rb_stack) -- same convention as the QB tags
+                # just above: the exact mean/lambda this candidate's own
+                # market probability was scored from, not a recomputation.
+                # Tagged unconditionally across all of this RB's rows (TD,
+                # RushYds, REC, ...), same as pass_td_lambda is above; the
+                # stack sim only reads these off the RushYds/RecYds/TD rows
+                # specifically, see extract_rb_stat_stack.
+                tagged["rush_yds_mean"] = rush_yds_mean
+                tagged["rec_yds_mean"] = rec_yds_mean
+                tagged["td_lambda"] = td_lambda
             # Raw signal only -- see fetch_target_shares. Not wired into any
             # scoring/probability math; a future consumer (e.g. the same-game
             # sim's receiver-attribution weighting) can read it off the row.
