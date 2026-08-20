@@ -27,6 +27,11 @@ PLAYER_STATS_WORKERS = 12
 
 NFL_MARKETS = ["TD", "RecYds", "RushYds", "REC", "PassTD", "PassYds", "Completions", "INT", "ML"]
 SKILL_POSITIONS = {"QB", "RB", "WR", "TE"}
+# Pass-catcher position groups the boxscore-players position split and
+# target-share signal are computed for. QB excluded (not a pass-catcher);
+# FB/other excluded (too rare in the per-player receiving category to be a
+# meaningful group average, and not worth a fourth bucket).
+RECEIVING_POSITION_GROUPS = ("WR", "TE", "RB")
 # A player needs at least this many 2025 games played to be featured at all —
 # mirrors soccer's minimum_appearances gate. Below this, the shrink formula
 # would be reporting almost pure position-prior with no real evidence behind
@@ -90,8 +95,19 @@ def collect_nfl_raw_data(data_raw_dir: Path) -> dict[str, Any]:
         player_stats = fetch_player_stats(athlete_ids, season=prior_season)  # athlete_id -> flattened stat dict
         team_schedules = fetch_team_schedules(team_map, season=prior_season)  # abbr -> list of completed game rows
         team_power = build_team_power_profiles(team_schedules)  # abbr -> power profile
-        defense_allowed = fetch_defense_allowed(team_map, team_schedules)  # abbr -> {rush_yds, pass_yds} allowed/g
+        athlete_positions = build_athlete_position_map(rosters)  # athlete_id -> position, league-wide
+        # One shared summary fetch, reused for both the defense-allowed signal
+        # and the target-share signal below -- no duplicate network calls for
+        # the same game_id.
+        game_summaries = fetch_recent_game_summaries(team_map, team_schedules)
+        defense_allowed = fetch_defense_allowed(
+            team_map, team_schedules, game_summaries, athlete_positions
+        )  # abbr -> {rush_yds, pass_yds, rec_allowed_by_position} allowed/g
+        target_shares = fetch_target_shares(
+            team_map, team_schedules, game_summaries, athlete_positions
+        )  # abbr -> {WR/TE/RB: share of this team's own targets}
         league_baseline = build_league_baseline(defense_allowed)
+        league_baseline_by_position = build_league_baseline_by_position(defense_allowed)
 
         slate_date = min(
             (parse_event_datetime(event["date"]) for event in events), default=now_et()
@@ -110,6 +126,8 @@ def collect_nfl_raw_data(data_raw_dir: Path) -> dict[str, Any]:
                     team_power=team_power,
                     defense_allowed=defense_allowed,
                     league_baseline=league_baseline,
+                    league_baseline_by_position=league_baseline_by_position,
+                    target_shares=target_shares,
                 )
                 for event in events
             ],
@@ -276,26 +294,48 @@ def build_team_power_profiles(team_schedules: dict[str, list[dict[str, Any]]]) -
     return profiles
 
 
-def fetch_defense_allowed(team_map: dict[str, str], team_schedules: dict[str, list[dict[str, Any]]]) -> dict[str, dict[str, float]]:
-    """Boxscore-sampled defense-allowed signal: for each team's most recent
-    games, the OPPONENT's own rushing/passing yards in that game are what
-    this team's defense allowed. Team-level (run game vs pass game), not
-    split further by RB/WR/TE — ESPN's public site API doesn't expose a
-    clean per-position 'allowed' stat, so this is the honest resolution
-    available without scraping every player's boxscore line individually.
-    """
+def fetch_recent_game_summaries(
+    team_map: dict[str, str], team_schedules: dict[str, list[dict[str, Any]]]
+) -> dict[str, dict[str, Any]]:
+    """The set of ESPN game summaries needed to sample every team's
+    RECENT_GAMES_SAMPLE most recent games -- shared by fetch_defense_allowed
+    and fetch_target_shares so the same game_id is never fetched twice."""
     game_ids_needed: set[str] = set()
     for games in team_schedules.values():
         for row in games[:RECENT_GAMES_SAMPLE]:
             game_ids_needed.add(row["game_id"])
+    return fetch_summaries(game_ids_needed)
 
-    summaries = fetch_summaries(game_ids_needed)
 
-    allowed: dict[str, dict[str, float]] = {}
+def fetch_defense_allowed(
+    team_map: dict[str, str],
+    team_schedules: dict[str, list[dict[str, Any]]],
+    summaries: dict[str, dict[str, Any]] | None = None,
+    athlete_positions: dict[str, str] | None = None,
+) -> dict[str, dict[str, Any]]:
+    """Boxscore-sampled defense-allowed signal: for each team's most recent
+    games, the OPPONENT's own rushing/passing yards in that game are what
+    this team's defense allowed. Team-level (run game vs pass game) exactly
+    as before, PLUS (new) a position-split breakdown of the same signal:
+    how many receiving yards/receptions/TDs the opponent's WRs, TEs, and RBs
+    specifically put up against this defense, from the individual boxscore
+    lines in `boxscore.players[]` of the same summary responses -- see
+    parse_receiving_lines for the honest caveat on how that field was
+    verified (or wasn't). Falls back to an empty (sample=0) position split
+    per game that lacks a players breakdown, so a defense's rush_yds/pass_yds
+    are completely unaffected by whether the deeper per-player data is
+    available.
+    """
+    if summaries is None:
+        summaries = fetch_recent_game_summaries(team_map, team_schedules)
+    athlete_positions = athlete_positions or {}
+
+    allowed: dict[str, dict[str, Any]] = {}
     for abbr, team_id in team_map.items():
         games = team_schedules.get(abbr, [])[:RECENT_GAMES_SAMPLE]
         rush_allowed = []
         pass_allowed = []
+        position_samples: dict[str, list[dict[str, float]]] = {pos: [] for pos in RECEIVING_POSITION_GROUPS}
         for row in games:
             summary = summaries.get(row["game_id"])
             if not summary:
@@ -309,12 +349,174 @@ def fetch_defense_allowed(team_map: dict[str, str], team_schedules: dict[str, li
                 rush_allowed.append(stat_map["rushingYards"])
             if "netPassingYards" in stat_map:
                 pass_allowed.append(stat_map["netPassingYards"])
+
+            lines = parse_receiving_lines(summary)
+            if lines is not None:
+                by_position = summarize_receiving_by_position(
+                    lines, team_id_filter=team_id, include_own_team=False, athlete_positions=athlete_positions
+                )
+                empty_bucket = {"rec": 0.0, "rec_yds": 0.0, "rec_td": 0.0, "targets": 0.0}
+                for position in RECEIVING_POSITION_GROUPS:
+                    position_samples[position].append(by_position.get(position, empty_bucket))
+
+        rec_allowed_by_position: dict[str, dict[str, float]] = {}
+        for position in RECEIVING_POSITION_GROUPS:
+            samples = position_samples[position]
+            rec_allowed_by_position[position] = {
+                "rec_yds": average(item["rec_yds"] for item in samples) if samples else 0.0,
+                "rec": average(item["rec"] for item in samples) if samples else 0.0,
+                "rec_td": average(item["rec_td"] for item in samples) if samples else 0.0,
+                "sample": len(samples),
+            }
+
         allowed[abbr] = {
             "rush_yds": average(rush_allowed) if rush_allowed else 0.0,
             "pass_yds": average(pass_allowed) if pass_allowed else 0.0,
             "sample": len(rush_allowed),
+            "rec_allowed_by_position": rec_allowed_by_position,
         }
     return allowed
+
+
+def fetch_target_shares(
+    team_map: dict[str, str],
+    team_schedules: dict[str, list[dict[str, Any]]],
+    summaries: dict[str, dict[str, Any]] | None = None,
+    athlete_positions: dict[str, str] | None = None,
+) -> dict[str, dict[str, float]]:
+    """How a team's own offense has distributed its targets across
+    WR/TE/RB over its own sampled recent games -- e.g. "62% of this team's
+    targets go to WRs, 24% to TEs, 14% to RBs". Falls back to receptions
+    (see parse_receiving_lines) when a clean target count isn't exposed.
+    A raw signal only: exposed on REC/RecYds candidate rows as
+    `target_share_pg` by build_team_player_candidates, not wired into any
+    probability math here or by this function.
+    """
+    if summaries is None:
+        summaries = fetch_recent_game_summaries(team_map, team_schedules)
+    athlete_positions = athlete_positions or {}
+
+    shares: dict[str, dict[str, float]] = {}
+    for abbr, team_id in team_map.items():
+        games = team_schedules.get(abbr, [])[:RECENT_GAMES_SAMPLE]
+        totals = {position: 0.0 for position in RECEIVING_POSITION_GROUPS}
+        games_with_data = 0
+        for row in games:
+            summary = summaries.get(row["game_id"])
+            lines = parse_receiving_lines(summary) if summary else None
+            if lines is None:
+                continue
+            games_with_data += 1
+            by_position = summarize_receiving_by_position(
+                lines, team_id_filter=team_id, include_own_team=True, athlete_positions=athlete_positions
+            )
+            for position in RECEIVING_POSITION_GROUPS:
+                bucket = by_position.get(position)
+                if bucket:
+                    totals[position] += bucket["targets"]
+
+        grand_total = sum(totals.values())
+        if grand_total <= 0:
+            shares[abbr] = {"sample": games_with_data}
+            continue
+        result = {position: round(totals[position] / grand_total, 4) for position in RECEIVING_POSITION_GROUPS}
+        result["sample"] = games_with_data
+        shares[abbr] = result
+    return shares
+
+
+def parse_receiving_lines(summary: dict[str, Any] | None) -> list[dict[str, Any]] | None:
+    """Per-athlete receiving stat lines from `boxscore.players[]` in an ESPN
+    summary response -- one row per pass-catcher per team, for one game.
+
+    VERIFICATION NOTE: this sandbox could not reach site.api.espn.com at all
+    (403 on every request, standard UA and a browser UA alike -- looks like
+    an IP-level block on this environment, not a UA check) to confirm the
+    live shape of this field. This parses ESPN's widely-documented public
+    boxscore shape (`statistics[].labels[]` header names next to
+    `statistics[].athletes[].stats[]` value arrays, matched by label text
+    rather than a hardcoded index) defensively: any missing/unexpected
+    structure returns None immediately rather than a guessed partial parse,
+    and every caller in this module treats None as "no per-player data for
+    this game" and falls back to the pre-existing team-level-only behavior
+    for it.
+    """
+    if not summary:
+        return None
+    players_blocks = summary.get("boxscore", {}).get("players")
+    if not isinstance(players_blocks, list) or not players_blocks:
+        return None
+
+    lines: list[dict[str, Any]] = []
+    try:
+        for team_block in players_blocks:
+            team_id = str((team_block.get("team") or {}).get("id", ""))
+            for category in team_block.get("statistics", []):
+                if category.get("name") != "receiving":
+                    continue
+                headers = category.get("labels") or category.get("names") or category.get("keys") or []
+                header_index = {str(header).strip().upper(): idx for idx, header in enumerate(headers)}
+                rec_idx = header_index.get("REC")
+                yds_idx = header_index.get("YDS")
+                td_idx = header_index.get("TD")
+                tgt_idx = header_index.get("TGTS", header_index.get("TARGETS"))
+                for entry in category.get("athletes", []):
+                    athlete = entry.get("athlete") or {}
+                    stats = entry.get("stats") or []
+                    position_field = athlete.get("position")
+                    position = position_field.get("abbreviation") if isinstance(position_field, dict) else position_field
+                    lines.append(
+                        {
+                            "team_id": team_id,
+                            "athlete_id": str(athlete.get("id", "")),
+                            "position": position,
+                            "rec": stat_value(stats, rec_idx) or 0.0,
+                            "rec_yds": stat_value(stats, yds_idx) or 0.0,
+                            "rec_td": stat_value(stats, td_idx) or 0.0,
+                            "targets": stat_value(stats, tgt_idx),
+                        }
+                    )
+    except (AttributeError, TypeError, KeyError, IndexError):
+        return None
+    return lines
+
+
+def stat_value(stats: list[Any], idx: int | None) -> float | None:
+    if idx is None or idx >= len(stats):
+        return None
+    return parse_number(stats[idx])
+
+
+def summarize_receiving_by_position(
+    lines: list[dict[str, Any]],
+    *,
+    team_id_filter: str,
+    include_own_team: bool,
+    athlete_positions: dict[str, str],
+) -> dict[str, dict[str, float]]:
+    """Sum one game's already-parsed receiving lines (see
+    parse_receiving_lines) into per-position (WR/TE/RB) totals -- either
+    this team's OWN pass-catchers (include_own_team=True, for target share)
+    or the OPPOSING team's (include_own_team=False, for defense-allowed).
+    Position is resolved from the league-wide roster map first (reliable,
+    matches SKILL_POSITIONS) and only falls back to whatever the boxscore
+    line itself reports; a line that resolves to neither WR, TE, nor RB is
+    dropped rather than guessed into a bucket.
+    """
+    totals: dict[str, dict[str, float]] = {}
+    for line in lines:
+        is_own_team = line["team_id"] == team_id_filter
+        if is_own_team != include_own_team:
+            continue
+        position = athlete_positions.get(line["athlete_id"]) or line.get("position")
+        if position not in RECEIVING_POSITION_GROUPS:
+            continue
+        bucket = totals.setdefault(position, {"rec": 0.0, "rec_yds": 0.0, "rec_td": 0.0, "targets": 0.0})
+        bucket["rec"] += line["rec"]
+        bucket["rec_yds"] += line["rec_yds"]
+        bucket["rec_td"] += line["rec_td"]
+        bucket["targets"] += line["targets"] if line["targets"] is not None else line["rec"]
+    return totals
 
 
 def fetch_summaries(game_ids: set[str]) -> dict[str, dict[str, Any]]:
@@ -337,6 +539,40 @@ def build_league_baseline(defense_allowed: dict[str, dict[str, float]]) -> dict[
     }
 
 
+def build_league_baseline_by_position(defense_allowed: dict[str, dict[str, Any]]) -> dict[str, dict[str, float]]:
+    """League-average receiving-yards-allowed rate per position (WR/TE/RB),
+    averaged only over teams with a non-empty boxscore-derived sample for
+    that position -- mirrors build_league_baseline's exclusion of
+    zero-sample teams, just one level deeper (per position instead of
+    team-total)."""
+    baseline: dict[str, dict[str, float]] = {}
+    for position in RECEIVING_POSITION_GROUPS:
+        samples = [
+            profile["rec_allowed_by_position"][position]
+            for profile in defense_allowed.values()
+            if profile.get("rec_allowed_by_position", {}).get(position, {}).get("sample", 0) > 0
+        ]
+        baseline[position] = {
+            "rec_yds": average(item["rec_yds"] for item in samples) if samples else 0.0,
+            "rec": average(item["rec"] for item in samples) if samples else 0.0,
+            "rec_td": average(item["rec_td"] for item in samples) if samples else 0.0,
+        }
+    return baseline
+
+
+def build_athlete_position_map(rosters: dict[str, list[dict[str, Any]]]) -> dict[str, str]:
+    """athlete_id -> position across every team's roster, league-wide -- the
+    preferred position source for boxscore-players parsing (see
+    summarize_receiving_by_position) since it's already filtered/verified by
+    fetch_team_rosters rather than trusting whatever shape the boxscore's own
+    nested athlete.position field happens to be in."""
+    mapping: dict[str, str] = {}
+    for roster in rosters.values():
+        for athlete in roster:
+            mapping[str(athlete["id"])] = athlete["position"]
+    return mapping
+
+
 # ---------------------------------------------------------------------------
 # Game / candidate assembly
 # ---------------------------------------------------------------------------
@@ -349,7 +585,10 @@ def build_game_payload(
     team_power: dict[str, dict[str, float]],
     defense_allowed: dict[str, dict[str, float]],
     league_baseline: dict[str, float],
+    league_baseline_by_position: dict[str, dict[str, float]] | None = None,
+    target_shares: dict[str, dict[str, float]] | None = None,
 ) -> dict[str, Any]:
+    target_shares = target_shares or {}
     competition = event["competitions"][0]
     competitors = competition["competitors"]
     away = next(row for row in competitors if row["homeAway"] == "away")
@@ -367,6 +606,8 @@ def build_game_payload(
             player_stats=player_stats,
             opponent_allowed=defense_allowed.get(home_abbr, {}),
             league_baseline=league_baseline,
+            league_baseline_by_position=league_baseline_by_position,
+            target_share_by_position=target_shares.get(away_abbr),
         )
     )
     candidates.extend(
@@ -378,6 +619,8 @@ def build_game_payload(
             player_stats=player_stats,
             opponent_allowed=defense_allowed.get(away_abbr, {}),
             league_baseline=league_baseline,
+            league_baseline_by_position=league_baseline_by_position,
+            target_share_by_position=target_shares.get(home_abbr),
         )
     )
     candidates.append(
@@ -400,6 +643,34 @@ def build_game_payload(
     }
 
 
+def compute_position_matchups(
+    *,
+    opponent_allowed: dict[str, Any],
+    league_baseline_by_position: dict[str, dict[str, float]],
+    fallback: float,
+) -> dict[str, float]:
+    """Position-specific receiving matchup ratios (WR/TE/RB), each computed
+    the same way team-level pass_matchup already is (see
+    nfl_model.matchup_ratio) -- this opponent's allowed receiving-yards rate
+    TO THAT POSITION vs the league-average rate allowed to that position.
+    Falls back to `fallback` (the caller's team-level pass_matchup, i.e. the
+    pre-existing behavior) per position whenever that position's
+    boxscore-derived sample is empty -- e.g. no per-player breakdown was
+    parseable for any of this opponent's sampled games -- so a parsing gap
+    degrades to the old signal rather than fabricating a new one from zeros.
+    """
+    opponent_by_position = opponent_allowed.get("rec_allowed_by_position") or {}
+    matchups: dict[str, float] = {}
+    for position in RECEIVING_POSITION_GROUPS:
+        opponent_stats = opponent_by_position.get(position, {})
+        baseline_stats = league_baseline_by_position.get(position, {})
+        if opponent_stats.get("sample", 0) <= 0 or baseline_stats.get("rec_yds", 0.0) <= 0:
+            matchups[position] = fallback
+        else:
+            matchups[position] = nfl_model.matchup_ratio(opponent_stats["rec_yds"], baseline_stats["rec_yds"])
+    return matchups
+
+
 def build_team_player_candidates(
     *,
     game_id: str,
@@ -407,11 +678,27 @@ def build_team_player_candidates(
     opponent_abbr: str,
     roster: list[dict[str, Any]],
     player_stats: dict[str, dict[str, float]],
-    opponent_allowed: dict[str, float],
+    opponent_allowed: dict[str, Any],
     league_baseline: dict[str, float],
+    league_baseline_by_position: dict[str, dict[str, float]] | None = None,
+    target_share_by_position: dict[str, float] | None = None,
 ) -> list[dict[str, Any]]:
     rush_matchup = nfl_model.matchup_ratio(opponent_allowed.get("rush_yds", 0.0), league_baseline["rush_yds"])
     pass_matchup = nfl_model.matchup_ratio(opponent_allowed.get("pass_yds", 0.0), league_baseline["pass_yds"])
+    # Position-aware receiving matchups (WR/TE/RB), each opponent's allowed
+    # rec-yards rate TO THAT POSITION vs the league-average rate allowed to
+    # that position -- replaces the blanket pass_matchup (opponent's overall
+    # passing yards allowed) for REC/RecYds/the receiving side of TD below,
+    # so a defense that's stout against WRs but soft against TEs produces two
+    # different numbers instead of one. Falls back to pass_matchup per
+    # position whenever that position's boxscore-derived sample is empty
+    # (see compute_position_matchups) -- the pre-existing behavior, unchanged.
+    position_matchups = compute_position_matchups(
+        opponent_allowed=opponent_allowed,
+        league_baseline_by_position=league_baseline_by_position or {},
+        fallback=pass_matchup,
+    )
+    target_share_by_position = target_share_by_position or {}
 
     candidates: list[dict[str, Any]] = []
     for athlete in roster:
@@ -423,6 +710,7 @@ def build_team_player_candidates(
             continue
 
         position = athlete["position"]
+        rec_matchup = position_matchups.get(position, pass_matchup)
         rush_td_pg = stats.get("rushingTouchdowns", 0.0) / games_played
         rec_td_pg = stats.get("receivingTouchdowns", 0.0) / games_played
         pass_td_pg = stats.get("passingTouchdowns", 0.0) / games_played
@@ -457,7 +745,7 @@ def build_team_player_candidates(
             sample_games=games_played,
             position=position,
             rush_matchup=rush_matchup,
-            rec_matchup=pass_matchup,
+            rec_matchup=rec_matchup,
         )
         td_probability = nfl_model.poisson_at_least(td_lambda, 1)
         if td_probability >= 0.12:
@@ -467,13 +755,13 @@ def build_team_player_candidates(
                     market="TD",
                     line="Anytime TD",
                     probability=td_probability,
-                    reason=f"TD λ {td_lambda:.2f} | Rush match {rush_matchup:.2f}x | Rec match {pass_matchup:.2f}x | {sample_note}",
+                    reason=f"TD λ {td_lambda:.2f} | Rush match {rush_matchup:.2f}x | Rec match {rec_matchup:.2f}x | {sample_note}",
                 )
             )
 
         if position != "QB":
             rec_rate = nfl_model.project_rec_rate(
-                rec_per_game=rec_pg, sample_games=games_played, position=position, rec_matchup=pass_matchup
+                rec_per_game=rec_pg, sample_games=games_played, position=position, rec_matchup=rec_matchup
             )
             if rec_rate >= 1.2:
                 rec_line = 2 if rec_rate < 3.2 else (4 if rec_rate < 5.5 else 6)
@@ -485,12 +773,12 @@ def build_team_player_candidates(
                             market="REC",
                             line=f"{rec_line}+ Receptions",
                             probability=rec_probability,
-                            reason=f"REC/g {rec_rate:.2f} | Rec match {pass_matchup:.2f}x | {sample_note}",
+                            reason=f"REC/g {rec_rate:.2f} | Rec match {rec_matchup:.2f}x | {sample_note}",
                         )
                     )
 
             rec_yds_mean = nfl_model.project_rec_yds_mean(
-                rec_yds_per_game=rec_yds_pg, sample_games=games_played, position=position, rec_matchup=pass_matchup
+                rec_yds_per_game=rec_yds_pg, sample_games=games_played, position=position, rec_matchup=rec_matchup
             )
             if rec_yds_mean >= 8.0:
                 rec_yds_line = nfl_model.yardage_line(rec_yds_mean)
@@ -501,7 +789,7 @@ def build_team_player_candidates(
                         market="RecYds",
                         line=f"{rec_yds_line}+ Rec Yds",
                         probability=rec_yds_probability,
-                        reason=f"Proj {rec_yds_mean:.1f} rec yds/g | Rec match {pass_matchup:.2f}x | {sample_note}",
+                        reason=f"Proj {rec_yds_mean:.1f} rec yds/g | Rec match {rec_matchup:.2f}x | {sample_note}",
                     )
                 )
 
@@ -635,6 +923,11 @@ def build_team_player_candidates(
                 # rows specifically, see extract_qb_stat_stack.
                 tagged["pass_yds_mean"] = pass_yds_mean
                 tagged["completions_mean"] = completions_mean
+            # Raw signal only -- see fetch_target_shares. Not wired into any
+            # scoring/probability math; a future consumer (e.g. the same-game
+            # sim's receiver-attribution weighting) can read it off the row.
+            if tagged["market"] in ("REC", "RecYds") and position in target_share_by_position:
+                tagged["target_share_pg"] = target_share_by_position[position]
 
     return candidates
 
