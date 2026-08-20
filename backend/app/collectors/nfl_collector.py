@@ -73,6 +73,17 @@ RB_TREND_WINDOW = 5
 # more than just that same window -- below this the "recent" and "season"
 # numbers are mostly restating each other.
 RB_TREND_MIN_GAMES = 8
+# A back needs at least this many total yards/game in his recent window to be
+# eligible for the "trending up" ranking. Without this, a rarely-used back
+# going from 4 yds/g to 10 yds/g posts a huge trend_pct (+150%) that's really
+# just small-sample noise around a role that doesn't matter — this floor
+# requires the recent form to represent a real workload before the pure
+# percentage-change ranking even applies. Verified against live 2025 gamelog
+# data during development: without this gate the top of the list was
+# dominated by backup/inactive-tier backs; 25 yds/g is roughly "has a real
+# rotational role," well below a starter's ~80-100+ but well above token
+# garbage-time touches.
+RB_TREND_MIN_USAGE_YDS = 25.0
 RB_TREND_TOP_N = 8
 
 # normal_at_least std overrides for the two QB Normal-modeled markets, named
@@ -433,7 +444,7 @@ def build_rb_trend_watch(
 
         recent_games = games[-RB_TREND_WINDOW:]
         recent_avg = sum(game["total_yds"] for game in recent_games) / RB_TREND_WINDOW
-        if season_avg > 0:
+        if season_avg > 0 and recent_avg >= RB_TREND_MIN_USAGE_YDS:
             trend_pct = (recent_avg - season_avg) / season_avg
             if trend_pct > 0:
                 trending_rows.append(

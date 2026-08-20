@@ -938,6 +938,30 @@ def test_build_rb_trend_watch_excludes_backs_below_minimum_games():
     assert trend["trending_up"] == []
 
 
+def test_build_rb_trend_watch_excludes_low_usage_trend_noise():
+    # A rarely-used back going from 4 to 10 yds/g is a +150% trend_pct on
+    # pure noise, not a real signal — must not appear regardless of how
+    # large the percentage swing is.
+    rosters = {"SEA": [{"id": "10", "displayName": "Deep Bench RB", "position": "RB", "injury_status": "ACTIVE"}]}
+    weekly = [(1, 2.0, 0.0), (2, 3.0, 0.0), (3, 2.0, 0.0),
+              (4, 6.0, 2.0), (5, 5.0, 3.0), (6, 6.0, 2.0), (7, 5.0, 3.0), (8, 6.0, 2.0)]
+    gamelogs = {"10": {"team": "SEA", "games": nfl_collector.parse_rb_gamelog(_gamelog_fixture(weekly))}}
+    trend = nfl_collector.build_rb_trend_watch(gamelogs, rosters)
+    assert trend["trending_up"] == []
+
+
+def test_build_rb_trend_watch_includes_real_role_growth_above_usage_floor():
+    # A genuine complementary-back breakout (season ~22 yds/g -> recent
+    # ~45 yds/g) must still appear — the floor targets noise, not real signal.
+    rosters = {"SEA": [{"id": "10", "displayName": "Emerging RB", "position": "RB", "injury_status": "ACTIVE"}]}
+    weekly = [(1, 18.0, 4.0), (2, 20.0, 3.0), (3, 22.0, 5.0),
+              (4, 40.0, 5.0), (5, 42.0, 6.0), (6, 38.0, 7.0), (7, 44.0, 6.0), (8, 40.0, 6.0)]
+    gamelogs = {"10": {"team": "SEA", "games": nfl_collector.parse_rb_gamelog(_gamelog_fixture(weekly))}}
+    trend = nfl_collector.build_rb_trend_watch(gamelogs, rosters)
+    assert len(trend["trending_up"]) == 1
+    assert trend["trending_up"][0]["recent_avg_total_yds"] >= nfl_collector.RB_TREND_MIN_USAGE_YDS
+
+
 def test_build_rb_trend_watch_excludes_backs_trending_down():
     rosters = {"SEA": [{"id": "10", "displayName": "Fading RB", "position": "RB", "injury_status": "ACTIVE"}]}
     weekly = [(1, 100.0, 20.0), (2, 100.0, 20.0), (3, 100.0, 20.0),
