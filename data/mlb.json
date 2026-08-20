@@ -1,7 +1,7 @@
 {
   "sport": "MLB",
   "date": "2026-08-20",
-  "last_updated": "9:23 AM ET",
+  "last_updated": "9:46 AM ET",
   "calibration": {
     "threshold_pp": 15.0,
     "mode": "off",
@@ -54,7 +54,7 @@
         "team": "TB",
         "opponent": "TOR",
         "line": "HR 1+",
-        "score": 35.5,
+        "score": 35.61,
         "confidence": 36,
         "tier": "A",
         "reason": "HR edge 19.3 | L5 0.00/g | L10 0.20/g | Season 0.28/g | HR% 0.24 | HistHR% 0.24 | OPS 0.899 | SLG 0.536 | ISO 0.262 | PowIdx 0.61 | Surge 0.13 | Matchup 0.88 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.068 | vs Shane Bieber | ERA 4.99 | WHIP 1.56 | HR/9 1.85 | HR A 10 | Hand R | Platoon - | vsP 0.500/2.667 in 3 PA | vsP HR 1 | Age 22 | Order est. 1 | Lineup pen 1.8 | Power due 0.20 | Rising 0.56 | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
@@ -143,36 +143,30 @@
         "projected_pa": 4.29,
         "power_surge": 0.315,
         "hr_power_index": 0.404
-      },
-      {
-        "player_id": "682829",
-        "player_name": "Elly De La Cruz",
-        "team": "CIN",
-        "opponent": "STL",
-        "line": "HR 1+",
-        "score": 25.72,
-        "confidence": 26,
-        "tier": "B",
-        "reason": "HR edge 15.4 | L5 0.40/g | L10 0.30/g | Season 0.18/g | HR% 0.16 | HistHR% 0.14 | OPS 0.808 | SLG 0.468 | ISO 0.209 | PowIdx 0.40 | Surge 0.32 | Matchup 0.25 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.036 | vs Michael McGreevy | ERA 3.48 | WHIP 1.22 | HR/9 1.23 | HR A 18 | Hand R | Platoon + | vsP 0.400/0.900 in 6 PA | Age 24 | Order est. 2 | Lineup pen 1.8 | Rising 0.42 | L5 XBH 0.40/g | Season XBH 0.41/g | Wts T0.42/M0.28/F0.30",
-        "sim_prob_pct": 27.5,
-        "hr_result": "pending",
-        "home_runs": 0,
-        "core_bucket": "strong",
-        "projected_pa": 4.4,
-        "power_surge": 0.323,
-        "hr_power_index": 0.401
       }
     ]
   },
   "hr_board_meta": {
     "core_count": 3,
-    "watch_count": 5,
+    "watch_count": 4,
     "full_count": 10
   },
   "consistency_board": {
     "title": "Consistency Top 10",
     "market": "MIX",
     "players": [
+      {
+        "player_id": "802139-hits",
+        "player_name": "JJ Wetherholt",
+        "team": "STL",
+        "opponent": "CIN",
+        "line": "1+ Hit",
+        "score": 94.88,
+        "confidence": 93,
+        "tier": "A",
+        "reason": "Edge 58.0, trend 0.60, matchup 0.47, form 0.18",
+        "sim_prob_pct": 93.1
+      },
       {
         "player_id": "514888-hits",
         "player_name": "Jose Altuve",
@@ -222,6 +216,18 @@
         "sim_prob_pct": 93.7
       },
       {
+        "player_id": "691023-hits",
+        "player_name": "Jordan Walker",
+        "team": "STL",
+        "opponent": "CIN",
+        "line": "1+ Hit",
+        "score": 94.24,
+        "confidence": 92,
+        "tier": "A",
+        "reason": "Edge 58.0, trend 0.50, matchup 0.43, form 0.32",
+        "sim_prob_pct": 92.4
+      },
+      {
         "player_id": "669394-hits",
         "player_name": "Jake Burger",
         "team": "TEX",
@@ -246,6 +252,18 @@
         "sim_prob_pct": 93.4
       },
       {
+        "player_id": "676475-hits",
+        "player_name": "Alec Burleson",
+        "team": "STL",
+        "opponent": "CIN",
+        "line": "1+ Hit",
+        "score": 94.0,
+        "confidence": 92,
+        "tier": "A",
+        "reason": "Edge 58.0, trend 0.60, matchup 0.55, form 0.32",
+        "sim_prob_pct": 92.2
+      },
+      {
         "player_id": "682928-hits",
         "player_name": "CJ Abrams",
         "team": "WSH",
@@ -256,42 +274,6 @@
         "tier": "A",
         "reason": "Edge 58.0, trend 0.50, matchup 0.31, form 0.35",
         "sim_prob_pct": 93.3
-      },
-      {
-        "player_id": "607043-hits",
-        "player_name": "Brandon Nimmo",
-        "team": "TEX",
-        "opponent": "WSH",
-        "line": "2+ Hits",
-        "score": 93.88,
-        "confidence": 92,
-        "tier": "A",
-        "reason": "Edge 58.0, trend 0.90, matchup 0.24, form 0.24",
-        "sim_prob_pct": 93.3
-      },
-      {
-        "player_id": "677951-hits",
-        "player_name": "Bobby Witt Jr.",
-        "team": "KC",
-        "opponent": "ATH",
-        "line": "1+ Hit",
-        "score": 93.84,
-        "confidence": 92,
-        "tier": "A",
-        "reason": "Edge 58.0, trend 0.50, matchup 0.36, form 0.29",
-        "sim_prob_pct": 93.2
-      },
-      {
-        "player_id": "621493-hits",
-        "player_name": "Taylor Ward",
-        "team": "SEA",
-        "opponent": "MIL",
-        "line": "1+ Hit",
-        "score": 93.8,
-        "confidence": 92,
-        "tier": "A",
-        "reason": "Edge 58.0, trend 0.60, matchup 0.39, form 0.17",
-        "sim_prob_pct": 93.2
       }
     ]
   },
@@ -680,6 +662,53 @@
           "evidence": []
         },
         {
+          "player_id": "695491",
+          "player_name": "Joshua B\u00e1ez",
+          "team": "STL",
+          "opponent": "CIN",
+          "game_id": "stl-cin-2026-08-20",
+          "market": "HR",
+          "line": "HR 1+",
+          "score": 28.64,
+          "base_score": 28.64,
+          "sim_prob_pct": 28.6,
+          "lazy_penalty": 0.0,
+          "confidence": 29,
+          "tier": "B",
+          "reason": "HR edge 18.6 | L5 0.60/g | L10 0.50/g | Season 0.50/g | HR% 0.20 | HistHR% 0.17 | OPS 0.831 | SLG 0.591 | ISO 0.409 | PowIdx 0.56 | Surge 0.41 | Matchup 0.76 | ProjPA 4.3 | Sample 0.25 | Peak3Y 0.043 | vs Brady Singer | ERA 4.66 | WHIP 1.44 | HR/9 1.72 | HR A 24 | Hand R | Platoon - | Age 23 | Order est. 5 | Lineup confirmed | Rising 0.67 | L5 XBH 0.60/g | Season XBH 0.50/g | Wts T0.42/M0.28/F0.30",
+          "play_of_day": false,
+          "hr_bucket": "core",
+          "pitcher": "Brady Singer",
+          "whip": 1.44,
+          "hr9": 1.72,
+          "hr_allowed": 24,
+          "vs_pitcher_avg": 0.0,
+          "vs_pitcher_ops": 0.0,
+          "vs_pitcher_hr": 0,
+          "order_estimate": 5,
+          "projected_pa": 4.32,
+          "lineup_confirmed": true,
+          "lineup_uncertainty_penalty": 0.0,
+          "season_hr_probability": 0.203,
+          "l10_hr_probability": 0.323,
+          "l5_hr_probability": 0.376,
+          "historical_hr_probability": 0.172,
+          "season_hr_per_game": 0.5,
+          "l10_hr_per_game": 0.5,
+          "l5_hr_per_game": 0.6,
+          "ops": 0.831,
+          "slg": 0.591,
+          "iso": 0.409,
+          "sample_reliability": 0.25,
+          "age": 23,
+          "historical_power_index": 0.178,
+          "recent_peak_hr_rate": 0.043,
+          "career_hr_rate": 0.043,
+          "appearance_7d": 0,
+          "hits_7d": 0,
+          "evidence": []
+        },
+        {
           "player_id": "621566",
           "player_name": "Matt Olson",
           "team": "ATL",
@@ -913,53 +942,6 @@
           "appearance_7d": 0,
           "hits_7d": 0,
           "evidence": []
-        },
-        {
-          "player_id": "682829",
-          "player_name": "Elly De La Cruz",
-          "team": "CIN",
-          "opponent": "STL",
-          "game_id": "stl-cin-2026-08-20",
-          "market": "HR",
-          "line": "HR 1+",
-          "score": 25.72,
-          "base_score": 25.72,
-          "sim_prob_pct": 27.5,
-          "lazy_penalty": 0.0,
-          "confidence": 26,
-          "tier": "B",
-          "reason": "HR edge 15.4 | L5 0.40/g | L10 0.30/g | Season 0.18/g | HR% 0.16 | HistHR% 0.14 | OPS 0.808 | SLG 0.468 | ISO 0.209 | PowIdx 0.40 | Surge 0.32 | Matchup 0.25 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.036 | vs Michael McGreevy | ERA 3.48 | WHIP 1.22 | HR/9 1.23 | HR A 18 | Hand R | Platoon + | vsP 0.400/0.900 in 6 PA | Age 24 | Order est. 2 | Lineup pen 1.8 | Rising 0.42 | L5 XBH 0.40/g | Season XBH 0.41/g | Wts T0.42/M0.28/F0.30",
-          "play_of_day": false,
-          "hr_bucket": "strong",
-          "pitcher": "Michael McGreevy",
-          "whip": 1.22,
-          "hr9": 1.23,
-          "hr_allowed": 18,
-          "vs_pitcher_avg": 0.4,
-          "vs_pitcher_ops": 0.9,
-          "vs_pitcher_hr": 0,
-          "order_estimate": 2,
-          "projected_pa": 4.4,
-          "lineup_confirmed": false,
-          "lineup_uncertainty_penalty": 1.8,
-          "season_hr_probability": 0.164,
-          "l10_hr_probability": 0.232,
-          "l5_hr_probability": 0.276,
-          "historical_hr_probability": 0.142,
-          "season_hr_per_game": 0.185,
-          "l10_hr_per_game": 0.3,
-          "l5_hr_per_game": 0.4,
-          "ops": 0.808,
-          "slg": 0.468,
-          "iso": 0.209,
-          "sample_reliability": 1.0,
-          "age": 24,
-          "historical_power_index": 0.012,
-          "recent_peak_hr_rate": 0.036,
-          "career_hr_rate": 0.035,
-          "appearance_7d": 1,
-          "hits_7d": 0,
-          "evidence": []
         }
       ],
       "parlays": {
@@ -1127,28 +1109,28 @@
             "hr_bucket": "core"
           },
           {
-            "player_name": "Ben Rice",
-            "team": "NYY",
-            "opponent": "BAL",
+            "player_name": "Joshua B\u00e1ez",
+            "team": "STL",
+            "opponent": "CIN",
             "line": "HR 1+",
-            "score": 36.96,
-            "tier": "A",
-            "reason": "HR edge 26.7 | L5 0.20/g | L10 0.30/g | Season 0.28/g | HR% 0.24 | HistHR% 0.20 | OPS 0.878 | SLG 0.534 | ISO 0.283 | PowIdx 0.65 | Surge 0.25 | Matchup 0.23 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.049 | vs Kyle Bradish | ERA 3.65 | WHIP 1.36 | HR/9 0.88 | HR A 13 | Hand R | Platoon + | vsP 0.400/1.155 in 11 PA | vsP HR 1 | Age 27 | Order est. 1 | Lineup pen 1.2 | Rising 0.45 | L5 XBH 0.80/g | Season XBH 0.47/g | Wts T0.42/M0.28/F0.30",
-            "pitcher": "Kyle Bradish",
+            "score": 28.64,
+            "tier": "B",
+            "reason": "HR edge 18.6 | L5 0.60/g | L10 0.50/g | Season 0.50/g | HR% 0.20 | HistHR% 0.17 | OPS 0.831 | SLG 0.591 | ISO 0.409 | PowIdx 0.56 | Surge 0.41 | Matchup 0.76 | ProjPA 4.3 | Sample 0.25 | Peak3Y 0.043 | vs Brady Singer | ERA 4.66 | WHIP 1.44 | HR/9 1.72 | HR A 24 | Hand R | Platoon - | Age 23 | Order est. 5 | Lineup confirmed | Rising 0.67 | L5 XBH 0.60/g | Season XBH 0.50/g | Wts T0.42/M0.28/F0.30",
+            "pitcher": "Brady Singer",
             "evidence": [],
-            "hr_bucket": "strong"
+            "hr_bucket": "core"
           },
           {
-            "player_name": "CJ Abrams",
-            "team": "WSH",
-            "opponent": "TEX",
+            "player_name": "Alec Burleson",
+            "team": "STL",
+            "opponent": "CIN",
             "line": "HR 1+",
-            "score": 29.24,
+            "score": 22.96,
             "tier": "B",
-            "reason": "HR edge 19.0 | L5 0.20/g | L10 0.40/g | Season 0.23/g | HR% 0.21 | HistHR% 0.14 | OPS 0.884 | SLG 0.530 | ISO 0.251 | PowIdx 0.47 | Surge 0.13 | Matchup 0.29 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.033 | vs Jacob deGrom | ERA 3.95 | WHIP 1.17 | HR/9 1.27 | HR A 17 | Hand R | Platoon + | vsP 0.000/0.000 in 3 PA | Age 25 | Order est. 1 | Lineup pen 1.2 | Rising 0.57 | L5 XBH 0.20/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
-            "pitcher": "Jacob deGrom",
+            "reason": "HR edge 11.9 | L5 0.20/g | L10 0.10/g | Season 0.17/g | HR% 0.16 | HistHR% 0.14 | OPS 0.845 | SLG 0.491 | ISO 0.202 | PowIdx 0.54 | Surge 0.16 | Matchup 0.76 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.035 | vs Brady Singer | ERA 4.66 | WHIP 1.44 | HR/9 1.72 | HR A 24 | Hand R | Platoon + | vsP 0.429/1.518 in 8 PA | vsP HR 1 | Age 27 | Order est. 3 | Lineup confirmed | Rising 0.26 | L5 XBH 0.40/g | Season XBH 0.43/g | Wts T0.42/M0.28/F0.30",
+            "pitcher": "Brady Singer",
             "evidence": [],
-            "hr_bucket": "strong"
+            "hr_bucket": "core"
           }
         ]
       },
@@ -1487,6 +1469,53 @@
           "evidence": []
         },
         {
+          "player_id": "691023",
+          "player_name": "Jordan Walker",
+          "team": "STL",
+          "opponent": "CIN",
+          "game_id": "stl-cin-2026-08-20",
+          "market": "HR",
+          "line": "HR 1+",
+          "score": 25.56,
+          "base_score": 25.56,
+          "sim_prob_pct": 25.6,
+          "lazy_penalty": 0.0,
+          "confidence": 26,
+          "tier": "B",
+          "reason": "HR edge 12.5 | L5 0.20/g | L10 0.30/g | Season 0.20/g | HR% 0.18 | HistHR% 0.13 | OPS 0.849 | SLG 0.502 | ISO 0.214 | PowIdx 0.39 | Surge 0.23 | Matchup 0.76 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.034 | vs Brady Singer | ERA 4.66 | WHIP 1.44 | HR/9 1.72 | HR A 24 | Hand R | Platoon - | vsP 0.000/0.000 in 7 PA | Age 24 | Order est. 4 | Lineup confirmed | Rising 0.51 | L5 XBH 0.60/g | Season XBH 0.43/g | Wts T0.42/M0.28/F0.30",
+          "play_of_day": false,
+          "hr_bucket": "fringe",
+          "pitcher": "Brady Singer",
+          "whip": 1.44,
+          "hr9": 1.72,
+          "hr_allowed": 24,
+          "vs_pitcher_avg": 0.0,
+          "vs_pitcher_ops": 0.0,
+          "vs_pitcher_hr": 0,
+          "order_estimate": 4,
+          "projected_pa": 4.4,
+          "lineup_confirmed": true,
+          "lineup_uncertainty_penalty": 0.0,
+          "season_hr_probability": 0.183,
+          "l10_hr_probability": 0.255,
+          "l5_hr_probability": 0.195,
+          "historical_hr_probability": 0.129,
+          "season_hr_per_game": 0.202,
+          "l10_hr_per_game": 0.3,
+          "l5_hr_per_game": 0.2,
+          "ops": 0.849,
+          "slg": 0.502,
+          "iso": 0.214,
+          "sample_reliability": 1.0,
+          "age": 24,
+          "historical_power_index": 0.0,
+          "recent_peak_hr_rate": 0.034,
+          "career_hr_rate": 0.033,
+          "appearance_7d": 1,
+          "hits_7d": 0,
+          "evidence": []
+        },
+        {
           "player_id": "701398",
           "player_name": "Sal Stewart",
           "team": "CIN",
@@ -1670,53 +1699,6 @@
           "historical_power_index": 0.161,
           "recent_peak_hr_rate": 0.046,
           "career_hr_rate": 0.038,
-          "appearance_7d": 1,
-          "hits_7d": 0,
-          "evidence": []
-        },
-        {
-          "player_id": "691023",
-          "player_name": "Jordan Walker",
-          "team": "STL",
-          "opponent": "CIN",
-          "game_id": "stl-cin-2026-08-20",
-          "market": "HR",
-          "line": "HR 1+",
-          "score": 23.16,
-          "base_score": 23.16,
-          "sim_prob_pct": 25.0,
-          "lazy_penalty": 0.0,
-          "confidence": 23,
-          "tier": "B",
-          "reason": "HR edge 12.0 | L5 0.20/g | L10 0.30/g | Season 0.20/g | HR% 0.18 | HistHR% 0.12 | OPS 0.849 | SLG 0.502 | ISO 0.214 | PowIdx 0.39 | Surge 0.23 | Matchup 0.76 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.034 | vs Brady Singer | ERA 4.66 | WHIP 1.44 | HR/9 1.72 | HR A 24 | Hand R | Platoon - | vsP 0.111/0.222 in 9 PA | Age 24 | Order est. 4 | Lineup pen 1.8 | Rising 0.50 | L5 XBH 0.60/g | Season XBH 0.43/g | Wts T0.42/M0.28/F0.30",
-          "play_of_day": false,
-          "hr_bucket": "fringe",
-          "pitcher": "Brady Singer",
-          "whip": 1.44,
-          "hr9": 1.72,
-          "hr_allowed": 24,
-          "vs_pitcher_avg": 0.111,
-          "vs_pitcher_ops": 0.222,
-          "vs_pitcher_hr": 0,
-          "order_estimate": 4,
-          "projected_pa": 4.26,
-          "lineup_confirmed": false,
-          "lineup_uncertainty_penalty": 1.8,
-          "season_hr_probability": 0.178,
-          "l10_hr_probability": 0.248,
-          "l5_hr_probability": 0.189,
-          "historical_hr_probability": 0.125,
-          "season_hr_per_game": 0.202,
-          "l10_hr_per_game": 0.3,
-          "l5_hr_per_game": 0.2,
-          "ops": 0.849,
-          "slg": 0.502,
-          "iso": 0.214,
-          "sample_reliability": 1.0,
-          "age": 24,
-          "historical_power_index": 0.0,
-          "recent_peak_hr_rate": 0.034,
-          "career_hr_rate": 0.033,
           "appearance_7d": 1,
           "hits_7d": 0,
           "evidence": []
@@ -2191,21 +2173,21 @@
       "top_signals": [
         {
           "market": "HR",
-          "player_name": "JJ Bleday",
+          "player_name": "Joshua B\u00e1ez",
           "line": "HR 1+",
-          "score": 26.8,
-          "confidence": 27,
+          "score": 28.64,
+          "confidence": 29,
           "tier": "B",
           "sim_prob_pct": 28.6
         },
         {
           "market": "RBI",
-          "player_name": "Alec Burleson",
-          "line": "1+ RBI",
-          "score": 45.44,
-          "confidence": 45,
+          "player_name": "Joshua B\u00e1ez",
+          "line": "2+ RBI",
+          "score": 61.68,
+          "confidence": 62,
           "tier": "A",
-          "sim_prob_pct": 47.2
+          "sim_prob_pct": 61.7
         },
         {
           "market": "TB",
@@ -2219,6 +2201,55 @@
       ],
       "markets": {
         "HR": [
+          {
+            "player_id": "695491",
+            "player_name": "Joshua B\u00e1ez",
+            "team": "STL",
+            "opponent": "CIN",
+            "line": "HR 1+",
+            "score": 28.64,
+            "confidence": 29,
+            "tier": "B",
+            "reason": "HR edge 18.6 | L5 0.60/g | L10 0.50/g | Season 0.50/g | HR% 0.20 | HistHR% 0.17 | OPS 0.831 | SLG 0.591 | ISO 0.409 | PowIdx 0.56 | Surge 0.41 | Matchup 0.76 | ProjPA 4.3 | Sample 0.25 | Peak3Y 0.043 | vs Brady Singer | ERA 4.66 | WHIP 1.44 | HR/9 1.72 | HR A 24 | Hand R | Platoon - | Age 23 | Order est. 5 | Lineup confirmed | Rising 0.67 | L5 XBH 0.60/g | Season XBH 0.50/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 28.6,
+            "ladder": {
+              "1": 0.2864,
+              "2": 0.0388
+            },
+            "calibration_status": "ok",
+            "baseline_prob_pct": 40.0,
+            "calibration_gap_pp": -11.4,
+            "kalshi_ladder": [
+              {
+                "threshold": 1,
+                "line": "1+",
+                "model_prob": 0.2864,
+                "model_prob_raw": 0.2864,
+                "shrink_pp": 0.0,
+                "ticker": null,
+                "implied_prob": null,
+                "edge_pp": null,
+                "volume": 0,
+                "decision": "NO_MARKET",
+                "model_fair_american": 249,
+                "market_american": null
+              },
+              {
+                "threshold": 2,
+                "line": "2+",
+                "model_prob": 0.0388,
+                "model_prob_raw": 0.0388,
+                "shrink_pp": 0.0,
+                "ticker": null,
+                "implied_prob": null,
+                "edge_pp": null,
+                "volume": 0,
+                "decision": "NO_MARKET",
+                "model_fair_american": 2477,
+                "market_american": null
+              }
+            ]
+          },
           {
             "player_id": "668709",
             "player_name": "JJ Bleday",
@@ -2318,6 +2349,55 @@
             ]
           },
           {
+            "player_id": "691023",
+            "player_name": "Jordan Walker",
+            "team": "STL",
+            "opponent": "CIN",
+            "line": "HR 1+",
+            "score": 25.56,
+            "confidence": 26,
+            "tier": "B",
+            "reason": "HR edge 12.5 | L5 0.20/g | L10 0.30/g | Season 0.20/g | HR% 0.18 | HistHR% 0.13 | OPS 0.849 | SLG 0.502 | ISO 0.214 | PowIdx 0.39 | Surge 0.23 | Matchup 0.76 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.034 | vs Brady Singer | ERA 4.66 | WHIP 1.44 | HR/9 1.72 | HR A 24 | Hand R | Platoon - | vsP 0.000/0.000 in 7 PA | Age 24 | Order est. 4 | Lineup confirmed | Rising 0.51 | L5 XBH 0.60/g | Season XBH 0.43/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 25.6,
+            "ladder": {
+              "1": 0.2556,
+              "2": 0.0284
+            },
+            "calibration_status": "ok",
+            "baseline_prob_pct": 17.6,
+            "calibration_gap_pp": 8.0,
+            "kalshi_ladder": [
+              {
+                "threshold": 1,
+                "line": "1+",
+                "model_prob": 0.2556,
+                "model_prob_raw": 0.2556,
+                "shrink_pp": 0.0,
+                "ticker": null,
+                "implied_prob": null,
+                "edge_pp": null,
+                "volume": 0,
+                "decision": "NO_MARKET",
+                "model_fair_american": 291,
+                "market_american": null
+              },
+              {
+                "threshold": 2,
+                "line": "2+",
+                "model_prob": 0.0284,
+                "model_prob_raw": 0.0284,
+                "shrink_pp": 0.0,
+                "ticker": null,
+                "implied_prob": null,
+                "edge_pp": null,
+                "volume": 0,
+                "decision": "NO_MARKET",
+                "model_fair_american": 3421,
+                "market_american": null
+              }
+            ]
+          },
+          {
             "player_id": "701398",
             "player_name": "Sal Stewart",
             "team": "CIN",
@@ -2367,50 +2447,50 @@
             ]
           },
           {
-            "player_id": "691023",
-            "player_name": "Jordan Walker",
+            "player_id": "676475",
+            "player_name": "Alec Burleson",
             "team": "STL",
             "opponent": "CIN",
             "line": "HR 1+",
-            "score": 23.16,
+            "score": 22.96,
             "confidence": 23,
             "tier": "B",
-            "reason": "HR edge 12.0 | L5 0.20/g | L10 0.30/g | Season 0.20/g | HR% 0.18 | HistHR% 0.12 | OPS 0.849 | SLG 0.502 | ISO 0.214 | PowIdx 0.39 | Surge 0.23 | Matchup 0.76 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.034 | vs Brady Singer | ERA 4.66 | WHIP 1.44 | HR/9 1.72 | HR A 24 | Hand R | Platoon - | vsP 0.111/0.222 in 9 PA | Age 24 | Order est. 4 | Lineup pen 1.8 | Rising 0.50 | L5 XBH 0.60/g | Season XBH 0.43/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 25.0,
+            "reason": "HR edge 11.9 | L5 0.20/g | L10 0.10/g | Season 0.17/g | HR% 0.16 | HistHR% 0.14 | OPS 0.845 | SLG 0.491 | ISO 0.202 | PowIdx 0.54 | Surge 0.16 | Matchup 0.76 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.035 | vs Brady Singer | ERA 4.66 | WHIP 1.44 | HR/9 1.72 | HR A 24 | Hand R | Platoon + | vsP 0.429/1.518 in 8 PA | vsP HR 1 | Age 27 | Order est. 3 | Lineup confirmed | Rising 0.26 | L5 XBH 0.40/g | Season XBH 0.43/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 23.0,
             "ladder": {
-              "1": 0.2496,
-              "2": 0.0268
+              "1": 0.2296,
+              "2": 0.0232
             },
             "calibration_status": "ok",
-            "baseline_prob_pct": 17.6,
-            "calibration_gap_pp": 7.4,
+            "baseline_prob_pct": 14.7,
+            "calibration_gap_pp": 8.3,
             "kalshi_ladder": [
               {
                 "threshold": 1,
                 "line": "1+",
-                "model_prob": 0.2496,
-                "model_prob_raw": 0.2496,
+                "model_prob": 0.2296,
+                "model_prob_raw": 0.2296,
                 "shrink_pp": 0.0,
                 "ticker": null,
                 "implied_prob": null,
                 "edge_pp": null,
                 "volume": 0,
                 "decision": "NO_MARKET",
-                "model_fair_american": 301,
+                "model_fair_american": 336,
                 "market_american": null
               },
               {
                 "threshold": 2,
                 "line": "2+",
-                "model_prob": 0.0268,
-                "model_prob_raw": 0.0268,
+                "model_prob": 0.0232,
+                "model_prob_raw": 0.0232,
                 "shrink_pp": 0.0,
                 "ticker": null,
                 "implied_prob": null,
                 "edge_pp": null,
                 "volume": 0,
                 "decision": "NO_MARKET",
-                "model_fair_american": 3631,
+                "model_fair_american": 4210,
                 "market_american": null
               }
             ]
@@ -2467,15 +2547,30 @@
         ],
         "RBI": [
           {
+            "player_id": "695491-rbi",
+            "player_name": "Joshua B\u00e1ez",
+            "team": "STL",
+            "opponent": "CIN",
+            "line": "2+ RBI",
+            "score": 61.68,
+            "confidence": 62,
+            "tier": "A",
+            "reason": "RBI edge 49.3 | L5 1.20/g | L10 1.00/g | Season 1.00/g | Order est. 5 | Team R/G 4.39 | Team OBP 0.317 | WHIP 1.44 | Platoon 0.25 | RISP 0.00 | Lineup pen 0.0 | Wts T0.34/M0.33/F0.33",
+            "sim_prob_pct": 61.7,
+            "calibration_status": "warn",
+            "baseline_prob_pct": 26.4,
+            "calibration_gap_pp": 35.3
+          },
+          {
             "player_id": "676475-rbi",
             "player_name": "Alec Burleson",
             "team": "STL",
             "opponent": "CIN",
             "line": "1+ RBI",
-            "score": 45.44,
-            "confidence": 45,
+            "score": 47.24,
+            "confidence": 47,
             "tier": "A",
-            "reason": "RBI edge 21.7 | L5 1.00/g | L10 0.70/g | Season 0.72/g | Order est. 3 | Team R/G 4.39 | Team OBP 0.317 | WHIP 1.44 | Platoon 1.00 | RISP 0.35 | Lineup pen 1.8 | Wts T0.34/M0.33/F0.33",
+            "reason": "RBI edge 21.7 | L5 1.00/g | L10 0.70/g | Season 0.72/g | Order est. 3 | Team R/G 4.39 | Team OBP 0.317 | WHIP 1.44 | Platoon 1.00 | RISP 0.35 | Lineup pen 0.0 | Wts T0.34/M0.33/F0.33",
             "sim_prob_pct": 47.2
           },
           {
@@ -2484,10 +2579,10 @@
             "team": "STL",
             "opponent": "CIN",
             "line": "1+ RBI",
-            "score": 42.32,
-            "confidence": 42,
+            "score": 44.12,
+            "confidence": 44,
             "tier": "A",
-            "reason": "RBI edge 20.0 | L5 0.60/g | L10 0.90/g | Season 0.73/g | Order est. 4 | Team R/G 4.39 | Team OBP 0.317 | WHIP 1.44 | Platoon 0.25 | RISP 0.34 | Lineup pen 1.8 | Wts T0.34/M0.33/F0.33",
+            "reason": "RBI edge 20.0 | L5 0.60/g | L10 0.90/g | Season 0.73/g | Order est. 4 | Team R/G 4.39 | Team OBP 0.317 | WHIP 1.44 | Platoon 0.25 | RISP 0.34 | Lineup pen 0.0 | Wts T0.34/M0.33/F0.33",
             "sim_prob_pct": 44.1
           },
           {
@@ -2496,10 +2591,10 @@
             "team": "STL",
             "opponent": "CIN",
             "line": "1+ RBI",
-            "score": 40.54,
-            "confidence": 41,
+            "score": 42.88,
+            "confidence": 43,
             "tier": "A",
-            "reason": "RBI edge 17.0 | L5 1.00/g | L10 0.80/g | Season 0.49/g | Order est. 9 | Team R/G 4.39 | Team OBP 0.317 | WHIP 1.44 | Platoon 0.25 | RISP 0.11 | Lineup pen 2.3 | Wts T0.34/M0.33/F0.33",
+            "reason": "RBI edge 17.0 | L5 1.00/g | L10 0.80/g | Season 0.49/g | Order est. 8 | Team R/G 4.39 | Team OBP 0.317 | WHIP 1.44 | Platoon 0.25 | RISP 0.11 | Lineup pen 0.0 | Wts T0.34/M0.33/F0.33",
             "sim_prob_pct": 42.9
           },
           {
@@ -2527,6 +2622,18 @@
             "sim_prob_pct": 38.0
           },
           {
+            "player_id": "671056-rbi",
+            "player_name": "Iv\u00e1n Herrera",
+            "team": "STL",
+            "opponent": "CIN",
+            "line": "1+ RBI",
+            "score": 32.68,
+            "confidence": 33,
+            "tier": "B",
+            "reason": "RBI edge 8.8 | L5 0.80/g | L10 0.60/g | Season 0.42/g | Order est. 2 | Team R/G 4.39 | Team OBP 0.317 | WHIP 1.44 | Platoon 0.25 | RISP 0.08 | Lineup pen 0.0 | Wts T0.34/M0.33/F0.33",
+            "sim_prob_pct": 32.7
+          },
+          {
             "player_id": "668709-rbi",
             "player_name": "JJ Bleday",
             "team": "CIN",
@@ -2539,27 +2646,15 @@
             "sim_prob_pct": 34.2
           },
           {
-            "player_id": "671056-rbi",
-            "player_name": "Iv\u00e1n Herrera",
-            "team": "STL",
-            "opponent": "CIN",
-            "line": "1+ RBI",
-            "score": 30.88,
-            "confidence": 31,
-            "tier": "B",
-            "reason": "RBI edge 8.8 | L5 0.80/g | L10 0.60/g | Season 0.42/g | Order est. 1 | Team R/G 4.39 | Team OBP 0.317 | WHIP 1.44 | Platoon 0.25 | RISP 0.08 | Lineup pen 1.8 | Wts T0.34/M0.33/F0.33",
-            "sim_prob_pct": 32.7
-          },
-          {
             "player_id": "802139-rbi",
             "player_name": "JJ Wetherholt",
             "team": "STL",
             "opponent": "CIN",
             "line": "1+ RBI",
-            "score": 27.56,
-            "confidence": 28,
+            "score": 29.36,
+            "confidence": 29,
             "tier": "B",
-            "reason": "RBI edge 4.1 | L5 0.80/g | L10 0.40/g | Season 0.38/g | Order est. 2 | Team R/G 4.39 | Team OBP 0.317 | WHIP 1.44 | Platoon 1.00 | RISP 0.08 | Lineup pen 1.8 | Wts T0.34/M0.33/F0.33",
+            "reason": "RBI edge 4.1 | L5 0.80/g | L10 0.40/g | Season 0.38/g | Order est. 1 | Team R/G 4.39 | Team OBP 0.317 | WHIP 1.44 | Platoon 1.00 | RISP 0.08 | Lineup pen 0.0 | Wts T0.34/M0.33/F0.33",
             "sim_prob_pct": 29.4
           },
           {
@@ -2573,18 +2668,6 @@
             "tier": "B",
             "reason": "RBI edge 4.7 | L5 0.40/g | L10 0.50/g | Season 0.53/g | Order est. 2 | Team R/G 4.05 | Team OBP 0.305 | WHIP 1.22 | Platoon 0.75 | RISP 0.17 | Lineup pen 1.8 | Wts T0.34/M0.33/F0.33",
             "sim_prob_pct": 27.8
-          },
-          {
-            "player_id": "701675-rbi",
-            "player_name": "Nathan Church",
-            "team": "STL",
-            "opponent": "CIN",
-            "line": "1+ RBI",
-            "score": 19.2,
-            "confidence": 19,
-            "tier": "C",
-            "reason": "RBI edge 0.0 | L5 0.40/g | L10 0.40/g | Season 0.38/g | Order est. 6 | Team R/G 4.39 | Team OBP 0.317 | WHIP 1.44 | Platoon 1.00 | RISP 0.03 | Lineup pen 1.8 | Wts T0.34/M0.33/F0.33",
-            "sim_prob_pct": 21.0
           }
         ],
         "K": [
@@ -2626,8 +2709,8 @@
             "team": "STL",
             "opponent": "CIN",
             "line": "1+ Hit",
-            "score": 91.28,
-            "confidence": 91,
+            "score": 93.08,
+            "confidence": 93,
             "tier": "A",
             "reason": "Edge 58.0, trend 0.60, matchup 0.47, form 0.18",
             "sim_prob_pct": 93.1,
@@ -2641,14 +2724,44 @@
             "team": "STL",
             "opponent": "CIN",
             "line": "1+ Hit",
-            "score": 90.64,
-            "confidence": 91,
+            "score": 92.44,
+            "confidence": 92,
             "tier": "A",
             "reason": "Edge 58.0, trend 0.50, matchup 0.43, form 0.32",
             "sim_prob_pct": 92.4,
             "calibration_status": "flag",
             "baseline_prob_pct": 75.8,
             "calibration_gap_pp": 16.7
+          },
+          {
+            "player_id": "676475-hits",
+            "player_name": "Alec Burleson",
+            "team": "STL",
+            "opponent": "CIN",
+            "line": "1+ Hit",
+            "score": 92.2,
+            "confidence": 92,
+            "tier": "A",
+            "reason": "Edge 58.0, trend 0.60, matchup 0.55, form 0.32",
+            "sim_prob_pct": 92.2,
+            "calibration_status": "flag",
+            "baseline_prob_pct": 70.0,
+            "calibration_gap_pp": 22.2
+          },
+          {
+            "player_id": "691458-hits",
+            "player_name": "Blaze Jordan",
+            "team": "STL",
+            "opponent": "CIN",
+            "line": "1+ Hit",
+            "score": 92.04,
+            "confidence": 92,
+            "tier": "A",
+            "reason": "Edge 53.2, trend 0.60, matchup 0.41, form 0.15",
+            "sim_prob_pct": 92.0,
+            "calibration_status": "flag",
+            "baseline_prob_pct": 59.0,
+            "calibration_gap_pp": 33.1
           },
           {
             "player_id": "682829-hits",
@@ -2666,21 +2779,6 @@
             "calibration_gap_pp": 21.8
           },
           {
-            "player_id": "676475-hits",
-            "player_name": "Alec Burleson",
-            "team": "STL",
-            "opponent": "CIN",
-            "line": "1+ Hit",
-            "score": 90.4,
-            "confidence": 90,
-            "tier": "A",
-            "reason": "Edge 58.0, trend 0.60, matchup 0.55, form 0.32",
-            "sim_prob_pct": 92.2,
-            "calibration_status": "flag",
-            "baseline_prob_pct": 70.0,
-            "calibration_gap_pp": 22.2
-          },
-          {
             "player_id": "701398-hits",
             "player_name": "Sal Stewart",
             "team": "CIN",
@@ -2694,21 +2792,6 @@
             "calibration_status": "flag",
             "baseline_prob_pct": 34.2,
             "calibration_gap_pp": 57.6
-          },
-          {
-            "player_id": "691458-hits",
-            "player_name": "Blaze Jordan",
-            "team": "STL",
-            "opponent": "CIN",
-            "line": "1+ Hit",
-            "score": 89.7,
-            "confidence": 90,
-            "tier": "A",
-            "reason": "Edge 53.2, trend 0.60, matchup 0.41, form 0.15",
-            "sim_prob_pct": 92.0,
-            "calibration_status": "flag",
-            "baseline_prob_pct": 59.0,
-            "calibration_gap_pp": 33.1
           },
           {
             "player_id": "668709-hits",
@@ -2731,14 +2814,29 @@
             "team": "STL",
             "opponent": "CIN",
             "line": "1+ Hit",
-            "score": 76.48,
-            "confidence": 76,
+            "score": 78.28,
+            "confidence": 78,
             "tier": "A",
             "reason": "Edge 35.6, trend 0.30, matchup 0.42, form 0.20",
             "sim_prob_pct": 78.3,
             "calibration_status": "ok",
             "baseline_prob_pct": 64.2,
             "calibration_gap_pp": 14.1
+          },
+          {
+            "player_id": "663494-hits",
+            "player_name": "Bryan Torres",
+            "team": "STL",
+            "opponent": "CIN",
+            "line": "1+ Hit",
+            "score": 78.2,
+            "confidence": 78,
+            "tier": "A",
+            "reason": "Edge 35.6, trend 0.60, matchup 0.47, form 0.14",
+            "sim_prob_pct": 78.2,
+            "calibration_status": "flag",
+            "baseline_prob_pct": 56.7,
+            "calibration_gap_pp": 21.5
           },
           {
             "player_id": "553993-hits",
@@ -2754,21 +2852,6 @@
             "calibration_status": "flag",
             "baseline_prob_pct": 60.6,
             "calibration_gap_pp": 16.6
-          },
-          {
-            "player_id": "691026-hits",
-            "player_name": "Masyn Winn",
-            "team": "STL",
-            "opponent": "CIN",
-            "line": "1+ Hit",
-            "score": 70.56,
-            "confidence": 71,
-            "tier": "A",
-            "reason": "Edge 29.6, trend 0.30, matchup 0.45, form 0.14",
-            "sim_prob_pct": 72.4,
-            "calibration_status": "ok",
-            "baseline_prob_pct": 60.0,
-            "calibration_gap_pp": 12.3
           }
         ],
         "TB": [
@@ -2788,13 +2871,28 @@
             "calibration_gap_pp": 8.0
           },
           {
+            "player_id": "695491-tb",
+            "player_name": "Joshua B\u00e1ez",
+            "team": "STL",
+            "opponent": "CIN",
+            "line": "2+ TB",
+            "score": 54.68,
+            "confidence": 55,
+            "tier": "A",
+            "reason": "Edge 27.3, trend 0.60, matchup 0.58, form 0.26",
+            "sim_prob_pct": 54.7,
+            "calibration_status": "ok",
+            "baseline_prob_pct": 45.2,
+            "calibration_gap_pp": 9.4
+          },
+          {
             "player_id": "691023-tb",
             "player_name": "Jordan Walker",
             "team": "STL",
             "opponent": "CIN",
             "line": "2+ TB",
-            "score": 49.76,
-            "confidence": 50,
+            "score": 51.56,
+            "confidence": 52,
             "tier": "A",
             "reason": "Edge 23.2, trend 0.50, matchup 0.56, form 0.33",
             "sim_prob_pct": 51.6,
@@ -2838,8 +2936,8 @@
             "team": "STL",
             "opponent": "CIN",
             "line": "2+ TB",
-            "score": 40.48,
-            "confidence": 40,
+            "score": 42.28,
+            "confidence": 42,
             "tier": "A",
             "reason": "Edge 14.5, trend 0.50, matchup 0.68, form 0.33",
             "sim_prob_pct": 42.3,
@@ -2853,8 +2951,8 @@
             "team": "STL",
             "opponent": "CIN",
             "line": "2+ TB",
-            "score": 38.74,
-            "confidence": 39,
+            "score": 41.08,
+            "confidence": 41,
             "tier": "A",
             "reason": "Edge 12.6, trend 0.60, matchup 0.53, form 0.12",
             "sim_prob_pct": 41.1,
@@ -2868,14 +2966,29 @@
             "team": "STL",
             "opponent": "CIN",
             "line": "2+ TB",
-            "score": 35.16,
-            "confidence": 35,
+            "score": 36.96,
+            "confidence": 37,
             "tier": "A",
             "reason": "Edge 8.7, trend 0.45, matchup 0.60, form 0.17",
             "sim_prob_pct": 37.0,
             "calibration_status": "ok",
             "baseline_prob_pct": 37.8,
             "calibration_gap_pp": -0.8
+          },
+          {
+            "player_id": "663494-tb",
+            "player_name": "Bryan Torres",
+            "team": "STL",
+            "opponent": "CIN",
+            "line": "2+ TB",
+            "score": 34.28,
+            "confidence": 34,
+            "tier": "B",
+            "reason": "Edge 4.4, trend 0.55, matchup 0.61, form 0.12",
+            "sim_prob_pct": 34.3,
+            "calibration_status": "ok",
+            "baseline_prob_pct": 25.7,
+            "calibration_gap_pp": 8.6
           },
           {
             "player_id": "553993-tb",
@@ -2891,36 +3004,6 @@
             "calibration_status": "ok",
             "baseline_prob_pct": 39.2,
             "calibration_gap_pp": -3.4
-          },
-          {
-            "player_id": "671056-tb",
-            "player_name": "Iv\u00e1n Herrera",
-            "team": "STL",
-            "opponent": "CIN",
-            "line": "2+ TB",
-            "score": 28.8,
-            "confidence": 29,
-            "tier": "B",
-            "reason": "Edge 2.0, trend 0.25, matchup 0.53, form 0.19",
-            "sim_prob_pct": 30.6,
-            "calibration_status": "ok",
-            "baseline_prob_pct": 37.0,
-            "calibration_gap_pp": -6.4
-          },
-          {
-            "player_id": "680574-tb",
-            "player_name": "Matt McLain",
-            "team": "CIN",
-            "opponent": "STL",
-            "line": "2+ TB",
-            "score": 24.48,
-            "confidence": 24,
-            "tier": "B",
-            "reason": "Edge 0.0, trend 0.25, matchup 0.24, form 0.10",
-            "sim_prob_pct": 26.3,
-            "calibration_status": "ok",
-            "baseline_prob_pct": 27.0,
-            "calibration_gap_pp": -0.7
           }
         ],
         "ML": [
@@ -2942,7 +3025,7 @@
               "model_prob_raw": 0.499,
               "shrink_pp": 0.0,
               "edge_pp": 1.4,
-              "volume": 45657
+              "volume": 49742
             },
             "decision": "PASS"
           }
@@ -2954,11 +3037,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.18,
         "park_factor_rhb": 1.16,
-        "wind_mph": 6,
-        "wind_deg": 279,
+        "wind_mph": 8,
+        "wind_deg": 302,
         "wind_label": "CROSS",
         "hr_lean": "HR boost",
-        "summary_chip": "Great American Ball Park \u00b7 6mph CROSS (HR boost)"
+        "summary_chip": "Great American Ball Park \u00b7 8mph CROSS (HR boost)"
       }
     },
     {
@@ -3071,12 +3154,12 @@
                 "model_prob_raw": 0.2416,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26AUG201310SFCLE-SFRDEVERS16-1",
-                "implied_prob": 0.18,
-                "edge_pp": 6.2,
+                "implied_prob": 0.175,
+                "edge_pp": 6.7,
                 "volume": 2826,
                 "decision": "BET",
                 "model_fair_american": 314,
-                "market_american": 456
+                "market_american": 471
               },
               {
                 "threshold": 2,
@@ -3570,12 +3653,12 @@
             "sim_prob_pct": 50.5,
             "kalshi": {
               "ticker": "KXMLBGAME-26AUG201310SFCLE-CLE",
-              "implied_prob": 0.645,
+              "implied_prob": 0.655,
               "model_prob": 0.42,
               "model_prob_raw": 0.505,
               "shrink_pp": 8.5,
-              "edge_pp": -22.5,
-              "volume": 94259
+              "edge_pp": -23.5,
+              "volume": 98086
             },
             "decision": "PASS"
           }
@@ -3587,11 +3670,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.92,
         "park_factor_rhb": 0.93,
-        "wind_mph": 4,
-        "wind_deg": 43,
-        "wind_label": "IN",
+        "wind_mph": 6,
+        "wind_deg": 88,
+        "wind_label": "CROSS",
         "hr_lean": "HR suppress",
-        "summary_chip": "Progressive Field \u00b7 4mph IN (HR suppress)"
+        "summary_chip": "Progressive Field \u00b7 6mph CROSS (HR suppress)"
       }
     },
     {
@@ -3657,7 +3740,7 @@
                 "ticker": "KXMLBHR-26AUG201310TORTB-TBJCAMINERO13-1",
                 "implied_prob": 0.24,
                 "edge_pp": 8.4,
-                "volume": 7411,
+                "volume": 7824,
                 "decision": "BET",
                 "model_fair_american": 208,
                 "market_american": 317
@@ -4022,7 +4105,7 @@
             "score": 90.76,
             "confidence": 91,
             "tier": "A",
-            "reason": "Edge 58.0, trend 0.70, matchup 0.55, form 0.27",
+            "reason": "Edge 58.0, trend 0.70, matchup 0.56, form 0.27",
             "sim_prob_pct": 92.6,
             "calibration_status": "flag",
             "baseline_prob_pct": 27.5,
@@ -4099,7 +4182,7 @@
             "score": 55.92,
             "confidence": 56,
             "tier": "A",
-            "reason": "Edge 30.8, trend 0.75, matchup 0.62, form 0.34",
+            "reason": "Edge 30.8, trend 0.75, matchup 0.61, form 0.34",
             "sim_prob_pct": 57.7,
             "calibration_status": "ok",
             "baseline_prob_pct": 53.1,
@@ -4129,7 +4212,7 @@
             "score": 48.32,
             "confidence": 48,
             "tier": "A",
-            "reason": "Edge 21.5, trend 0.70, matchup 0.69, form 0.26",
+            "reason": "Edge 21.5, trend 0.70, matchup 0.70, form 0.26",
             "sim_prob_pct": 50.1,
             "calibration_status": "ok",
             "baseline_prob_pct": 39.7,
@@ -4255,12 +4338,12 @@
             "sim_prob_pct": 63.8,
             "kalshi": {
               "ticker": "KXMLBGAME-26AUG201310TORTB-TB",
-              "implied_prob": 0.615,
+              "implied_prob": 0.605,
               "model_prob": 0.422,
               "model_prob_raw": 0.638,
               "shrink_pp": 21.6,
-              "edge_pp": -19.3,
-              "volume": 104857
+              "edge_pp": -18.3,
+              "volume": 106946
             },
             "decision": "PASS"
           }
@@ -4791,7 +4874,7 @@
               "model_prob_raw": 0.452,
               "shrink_pp": 0.0,
               "edge_pp": -11.3,
-              "volume": 28676
+              "volume": 35518
             },
             "decision": "PASS"
           }
@@ -4803,11 +4886,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.86,
         "park_factor_rhb": 0.88,
-        "wind_mph": 2,
-        "wind_deg": 37,
+        "wind_mph": 3,
+        "wind_deg": 45,
         "wind_label": "IN",
         "hr_lean": "HR suppress",
-        "summary_chip": "Kauffman Stadium \u00b7 2mph IN (HR suppress)"
+        "summary_chip": "Kauffman Stadium \u00b7 3mph IN (HR suppress)"
       }
     },
     {
@@ -4971,7 +5054,7 @@
                 "ticker": "KXMLBHR-26AUG201410ATLCWS-ATLMOLSON28-1",
                 "implied_prob": 0.185,
                 "edge_pp": 10.1,
-                "volume": 8621,
+                "volume": 8703,
                 "decision": "BET",
                 "model_fair_american": 250,
                 "market_american": 441
@@ -5571,7 +5654,7 @@
               "model_prob_raw": 0.575,
               "shrink_pp": 8.5,
               "edge_pp": -1.5,
-              "volume": 77073
+              "volume": 82840
             },
             "decision": "PASS"
           }
@@ -5583,11 +5666,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.07,
         "park_factor_rhb": 1.05,
-        "wind_mph": 9,
-        "wind_deg": 22,
+        "wind_mph": 10,
+        "wind_deg": 17,
         "wind_label": "IN",
         "hr_lean": "neutral",
-        "summary_chip": "Rate Field \u00b7 9mph IN"
+        "summary_chip": "Rate Field \u00b7 10mph IN"
       }
     },
     {
@@ -6152,7 +6235,7 @@
               "model_prob_raw": 0.654,
               "shrink_pp": 21.6,
               "edge_pp": -11.7,
-              "volume": 118161
+              "volume": 128730
             },
             "decision": "PASS"
           }
@@ -6256,6 +6339,55 @@
             ]
           },
           {
+            "player_id": "683002",
+            "player_name": "Gunnar Henderson",
+            "team": "BAL",
+            "opponent": "NYY",
+            "line": "HR 1+",
+            "score": 24.96,
+            "confidence": 25,
+            "tier": "B",
+            "reason": "HR edge 13.8 | L5 0.20/g | L10 0.30/g | Season 0.16/g | HR% 0.15 | HistHR% 0.17 | OPS 0.703 | SLG 0.400 | ISO 0.180 | PowIdx 0.43 | Surge 0.16 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.050 | vs Gerrit Cole | ERA 3.22 | WHIP 1.08 | HR/9 1.14 | HR A 11 | Hand R | Platoon + | vsP 0.250/0.891 in 13 PA | vsP HR 1 | Age 25 | Order est. 1 | Lineup pen 1.2 | Rising 0.25 | L5 XBH 0.40/g | Season XBH 0.37/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 26.2,
+            "ladder": {
+              "1": 0.2616,
+              "2": 0.0344
+            },
+            "calibration_status": "ok",
+            "baseline_prob_pct": 16.3,
+            "calibration_gap_pp": 9.8,
+            "kalshi_ladder": [
+              {
+                "threshold": 1,
+                "line": "1+",
+                "model_prob": 0.2616,
+                "model_prob_raw": 0.2616,
+                "shrink_pp": 0.0,
+                "ticker": "KXMLBHR-26AUG201835NYYBAL-BALGHENDERSON2-1",
+                "implied_prob": 0.14,
+                "edge_pp": 12.2,
+                "volume": 1754,
+                "decision": "BET",
+                "model_fair_american": 282,
+                "market_american": 614
+              },
+              {
+                "threshold": 2,
+                "line": "2+",
+                "model_prob": 0.0344,
+                "model_prob_raw": 0.0344,
+                "shrink_pp": 0.0,
+                "ticker": "KXMLBHR-26AUG201835NYYBAL-BALGHENDERSON2-2",
+                "implied_prob": 0.01,
+                "edge_pp": 2.4,
+                "volume": 344,
+                "decision": "PASS",
+                "model_fair_american": 2807,
+                "market_american": 9900
+              }
+            ]
+          },
+          {
             "player_id": "671277",
             "player_name": "Luis Garc\u00eda Jr.",
             "team": "NYY",
@@ -6264,7 +6396,7 @@
             "score": 23.88,
             "confidence": 24,
             "tier": "B",
-            "reason": "HR edge 12.9 | L5 0.00/g | L10 0.10/g | Season 0.20/g | HR% 0.20 | HistHR% 0.12 | OPS 0.837 | SLG 0.532 | ISO 0.257 | PowIdx 0.45 | Surge 0.12 | Matchup 0.23 | ProjPA 4.2 | Sample 1.00 | Peak3Y 0.034 | vs Kyle Bradish | ERA 3.65 | WHIP 1.36 | HR/9 0.88 | HR A 13 | Hand R | Platoon + | vsP 0.200/0.573 in 11 PA | Age 26 | Order est. 3 | Lineup pen 1.2 | Rising 0.54 | L5 XBH 0.20/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
+            "reason": "HR edge 12.9 | L5 0.00/g | L10 0.10/g | Season 0.20/g | HR% 0.20 | HistHR% 0.12 | OPS 0.837 | SLG 0.532 | ISO 0.257 | PowIdx 0.45 | Surge 0.12 | Matchup 0.23 | ProjPA 4.2 | Sample 1.00 | Peak3Y 0.034 | vs Kyle Bradish | ERA 3.65 | WHIP 1.36 | HR/9 0.88 | HR A 13 | Hand R | Platoon + | vsP 0.200/0.533 in 6 PA | Age 26 | Order est. 3 | Lineup pen 1.2 | Rising 0.54 | L5 XBH 0.20/g | Season XBH 0.44/g | Wts T0.42/M0.28/F0.30",
             "sim_prob_pct": 25.1,
             "ladder": {
               "1": 0.2508,
@@ -6305,55 +6437,6 @@
             ]
           },
           {
-            "player_id": "683002",
-            "player_name": "Gunnar Henderson",
-            "team": "BAL",
-            "opponent": "NYY",
-            "line": "HR 1+",
-            "score": 23.8,
-            "confidence": 24,
-            "tier": "B",
-            "reason": "HR edge 12.5 | L5 0.20/g | L10 0.30/g | Season 0.16/g | HR% 0.15 | HistHR% 0.17 | OPS 0.703 | SLG 0.400 | ISO 0.180 | PowIdx 0.41 | Surge 0.16 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.050 | vs Gerrit Cole | ERA 3.22 | WHIP 1.08 | HR/9 1.14 | HR A 11 | Hand R | Platoon + | vsP 0.200/1.000 in 5 PA | vsP HR 1 | Age 25 | Order est. 1 | Lineup pen 1.2 | Rising 0.25 | L5 XBH 0.40/g | Season XBH 0.37/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 25.0,
-            "ladder": {
-              "1": 0.25,
-              "2": 0.0316
-            },
-            "calibration_status": "ok",
-            "baseline_prob_pct": 16.3,
-            "calibration_gap_pp": 8.7,
-            "kalshi_ladder": [
-              {
-                "threshold": 1,
-                "line": "1+",
-                "model_prob": 0.25,
-                "model_prob_raw": 0.25,
-                "shrink_pp": 0.0,
-                "ticker": "KXMLBHR-26AUG201835NYYBAL-BALGHENDERSON2-1",
-                "implied_prob": 0.14,
-                "edge_pp": 11.0,
-                "volume": 1754,
-                "decision": "BET",
-                "model_fair_american": 300,
-                "market_american": 614
-              },
-              {
-                "threshold": 2,
-                "line": "2+",
-                "model_prob": 0.0316,
-                "model_prob_raw": 0.0316,
-                "shrink_pp": 0.0,
-                "ticker": "KXMLBHR-26AUG201835NYYBAL-BALGHENDERSON2-2",
-                "implied_prob": 0.01,
-                "edge_pp": 2.2,
-                "volume": 344,
-                "decision": "PASS",
-                "model_fair_american": 3065,
-                "market_american": 9900
-              }
-            ]
-          },
-          {
             "player_id": "624413",
             "player_name": "Pete Alonso",
             "team": "BAL",
@@ -6379,12 +6462,12 @@
                 "model_prob_raw": 0.2484,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26AUG201835NYYBAL-BALPALONSO25-1",
-                "implied_prob": 0.2,
-                "edge_pp": 4.8,
-                "volume": 5944,
-                "decision": "PASS",
+                "implied_prob": 0.195,
+                "edge_pp": 5.3,
+                "volume": 6006,
+                "decision": "BET",
                 "model_fair_american": 303,
-                "market_american": 400
+                "market_american": 413
               },
               {
                 "threshold": 2,
@@ -6661,7 +6744,7 @@
             "score": 86.24,
             "confidence": 86,
             "tier": "A",
-            "reason": "Edge 45.5, trend 0.40, matchup 0.26, form 0.15",
+            "reason": "Edge 45.5, trend 0.40, matchup 0.28, form 0.15",
             "sim_prob_pct": 87.4,
             "calibration_status": "flag",
             "baseline_prob_pct": 62.9,
@@ -6721,7 +6804,7 @@
             "score": 69.6,
             "confidence": 70,
             "tier": "A",
-            "reason": "Edge 26.7, trend 0.40, matchup 0.26, form 0.19",
+            "reason": "Edge 26.7, trend 0.40, matchup 0.31, form 0.19",
             "sim_prob_pct": 70.8,
             "calibration_status": "flag",
             "baseline_prob_pct": 47.5,
@@ -6783,7 +6866,7 @@
             "score": 42.56,
             "confidence": 43,
             "tier": "A",
-            "reason": "Edge 15.6, trend 0.40, matchup 0.31, form 0.14",
+            "reason": "Edge 15.6, trend 0.40, matchup 0.34, form 0.14",
             "sim_prob_pct": 43.8,
             "calibration_status": "ok",
             "baseline_prob_pct": 38.8,
@@ -6843,7 +6926,7 @@
             "score": 30.2,
             "confidence": 30,
             "tier": "B",
-            "reason": "Edge 2.7, trend 0.35, matchup 0.33, form 0.18",
+            "reason": "Edge 2.7, trend 0.35, matchup 0.37, form 0.18",
             "sim_prob_pct": 31.4,
             "calibration_status": "ok",
             "baseline_prob_pct": 29.8,
@@ -6929,7 +7012,7 @@
               "model_prob_raw": 0.543,
               "shrink_pp": 8.5,
               "edge_pp": -7.7,
-              "volume": 39870
+              "volume": 41352
             },
             "decision": "PASS"
           }
@@ -6941,11 +7024,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.05,
         "park_factor_rhb": 1.02,
-        "wind_mph": 5,
-        "wind_deg": 75,
+        "wind_mph": 4,
+        "wind_deg": 51,
         "wind_label": "IN",
         "hr_lean": "HR suppress",
-        "summary_chip": "Camden Yards \u00b7 5mph IN (HR suppress)"
+        "summary_chip": "Camden Yards \u00b7 4mph IN (HR suppress)"
       }
     },
     {
@@ -7011,7 +7094,7 @@
                 "ticker": "KXMLBHR-26AUG202005WSHTEX-WSHCABRAMS5-1",
                 "implied_prob": 0.175,
                 "edge_pp": 12.9,
-                "volume": 272,
+                "volume": 326,
                 "decision": "BET",
                 "model_fair_american": 229,
                 "market_american": 471
@@ -7372,7 +7455,7 @@
             "score": 75.88,
             "confidence": 76,
             "tier": "A",
-            "reason": "Edge 35.6, trend 0.40, matchup 0.29, form 0.23",
+            "reason": "Edge 35.6, trend 0.40, matchup 0.31, form 0.23",
             "sim_prob_pct": 77.1,
             "calibration_status": "flag",
             "baseline_prob_pct": 56.9,
@@ -7539,7 +7622,7 @@
             "score": 32.36,
             "confidence": 32,
             "tier": "B",
-            "reason": "Edge 5.5, trend 0.40, matchup 0.34, form 0.22",
+            "reason": "Edge 5.5, trend 0.40, matchup 0.35, form 0.22",
             "sim_prob_pct": 33.6,
             "calibration_status": "ok",
             "baseline_prob_pct": 33.1,
@@ -7565,7 +7648,7 @@
               "model_prob_raw": 0.516,
               "shrink_pp": 8.5,
               "edge_pp": -17.4,
-              "volume": 11494
+              "volume": 12018
             },
             "decision": "PASS"
           }
@@ -7647,7 +7730,7 @@
                 "ticker": "KXMLBHR-26AUG202010LAAHOU-HOUYALVAREZ44-1",
                 "implied_prob": 0.27,
                 "edge_pp": 8.8,
-                "volume": 2738,
+                "volume": 2808,
                 "decision": "BET",
                 "model_fair_american": 179,
                 "market_american": 270
@@ -7665,55 +7748,6 @@
                 "decision": "PASS",
                 "model_fair_american": 1443,
                 "market_american": 2757
-              }
-            ]
-          },
-          {
-            "player_id": "545361",
-            "player_name": "Mike Trout",
-            "team": "LAA",
-            "opponent": "HOU",
-            "line": "HR 1+",
-            "score": 23.6,
-            "confidence": 24,
-            "tier": "B",
-            "reason": "HR edge 14.3 | L5 0.40/g | L10 0.20/g | Season 0.18/g | HR% 0.17 | HistHR% 0.24 | OPS 0.819 | SLG 0.437 | ISO 0.197 | PowIdx 0.40 | Surge 0.29 | Matchup 0.18 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.071 | vs Peter Lambert | ERA 3.11 | WHIP 1.15 | HR/9 0.91 | HR A 12 | Hand R | Platoon - | vsP 0.286/1.000 in 7 PA | vsP HR 1 | Age 34 | Order est. 2 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.34/g | Wts T0.42/M0.28/F0.30",
-            "sim_prob_pct": 24.8,
-            "ladder": {
-              "1": 0.248,
-              "2": 0.0268
-            },
-            "calibration_status": "ok",
-            "baseline_prob_pct": 15.6,
-            "calibration_gap_pp": 9.2,
-            "kalshi_ladder": [
-              {
-                "threshold": 1,
-                "line": "1+",
-                "model_prob": 0.248,
-                "model_prob_raw": 0.248,
-                "shrink_pp": 0.0,
-                "ticker": "KXMLBHR-26AUG202010LAAHOU-LAAMTROUT27-1",
-                "implied_prob": 0.18,
-                "edge_pp": 6.8,
-                "volume": 243,
-                "decision": "BET",
-                "model_fair_american": 303,
-                "market_american": 456
-              },
-              {
-                "threshold": 2,
-                "line": "2+",
-                "model_prob": 0.0268,
-                "model_prob_raw": 0.0268,
-                "shrink_pp": 0.0,
-                "ticker": "KXMLBHR-26AUG202010LAAHOU-LAAMTROUT27-2",
-                "implied_prob": 0.02,
-                "edge_pp": 0.7,
-                "volume": 0,
-                "decision": "PASS",
-                "model_fair_american": 3631,
-                "market_american": 4900
               }
             ]
           },
@@ -7763,6 +7797,55 @@
                 "decision": "NO_MARKET",
                 "model_fair_american": 3806,
                 "market_american": null
+              }
+            ]
+          },
+          {
+            "player_id": "545361",
+            "player_name": "Mike Trout",
+            "team": "LAA",
+            "opponent": "HOU",
+            "line": "HR 1+",
+            "score": 22.12,
+            "confidence": 22,
+            "tier": "B",
+            "reason": "HR edge 12.7 | L5 0.40/g | L10 0.20/g | Season 0.18/g | HR% 0.17 | HistHR% 0.24 | OPS 0.819 | SLG 0.437 | ISO 0.197 | PowIdx 0.36 | Surge 0.29 | Matchup 0.18 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.071 | vs Peter Lambert | ERA 3.11 | WHIP 1.15 | HR/9 0.91 | HR A 12 | Hand R | Platoon - | vsP 0.000/0.000 in 1 PA | Age 34 | Order est. 2 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.34/g | Wts T0.42/M0.28/F0.30",
+            "sim_prob_pct": 23.3,
+            "ladder": {
+              "1": 0.2332,
+              "2": 0.0248
+            },
+            "calibration_status": "ok",
+            "baseline_prob_pct": 15.6,
+            "calibration_gap_pp": 7.7,
+            "kalshi_ladder": [
+              {
+                "threshold": 1,
+                "line": "1+",
+                "model_prob": 0.2332,
+                "model_prob_raw": 0.2332,
+                "shrink_pp": 0.0,
+                "ticker": "KXMLBHR-26AUG202010LAAHOU-LAAMTROUT27-1",
+                "implied_prob": 0.185,
+                "edge_pp": 4.8,
+                "volume": 294,
+                "decision": "PASS",
+                "model_fair_american": 329,
+                "market_american": 441
+              },
+              {
+                "threshold": 2,
+                "line": "2+",
+                "model_prob": 0.0248,
+                "model_prob_raw": 0.0248,
+                "shrink_pp": 0.0,
+                "ticker": "KXMLBHR-26AUG202010LAAHOU-LAAMTROUT27-2",
+                "implied_prob": 0.02,
+                "edge_pp": 0.5,
+                "volume": 0,
+                "decision": "PASS",
+                "model_fair_american": 3932,
+                "market_american": 4900
               }
             ]
           }
@@ -8066,7 +8149,7 @@
             "score": 85.48,
             "confidence": 85,
             "tier": "A",
-            "reason": "Edge 45.7, trend 0.60, matchup 0.22, form 0.27",
+            "reason": "Edge 45.7, trend 0.60, matchup 0.19, form 0.27",
             "sim_prob_pct": 86.7,
             "calibration_status": "flag",
             "baseline_prob_pct": 54.1,
@@ -8158,7 +8241,7 @@
             "score": 41.48,
             "confidence": 41,
             "tier": "A",
-            "reason": "Edge 14.1, trend 0.60, matchup 0.26, form 0.27",
+            "reason": "Edge 14.1, trend 0.60, matchup 0.23, form 0.27",
             "sim_prob_pct": 42.7,
             "calibration_status": "ok",
             "baseline_prob_pct": 30.2,
@@ -8203,7 +8286,7 @@
             "score": 33.8,
             "confidence": 34,
             "tier": "B",
-            "reason": "Edge 6.8, trend 0.35, matchup 0.62, form 0.24",
+            "reason": "Edge 6.8, trend 0.35, matchup 0.64, form 0.24",
             "sim_prob_pct": 35.0,
             "calibration_status": "ok",
             "baseline_prob_pct": 40.2,
@@ -8244,7 +8327,7 @@
               "model_prob_raw": 0.522,
               "shrink_pp": 8.5,
               "edge_pp": -19.3,
-              "volume": 184459
+              "volume": 194047
             },
             "decision": "PASS"
           }
@@ -8303,7 +8386,7 @@
           "ticker": "KXMLBHR-26AUG202005WSHTEX-WSHCABRAMS5-1",
           "implied_prob": 0.175,
           "edge_pp": 12.9,
-          "volume": 272,
+          "volume": 326,
           "decision": "BET",
           "model_fair_american": 229,
           "market_american": 471
@@ -8318,7 +8401,7 @@
             "ticker": "KXMLBHR-26AUG202005WSHTEX-WSHCABRAMS5-1",
             "implied_prob": 0.175,
             "edge_pp": 12.9,
-            "volume": 272,
+            "volume": 326,
             "decision": "BET",
             "model_fair_american": 229,
             "market_american": 471
@@ -8351,44 +8434,44 @@
         "best": {
           "threshold": 1,
           "line": "1+",
-          "model_prob": 0.25,
-          "model_prob_raw": 0.25,
+          "model_prob": 0.2616,
+          "model_prob_raw": 0.2616,
           "shrink_pp": 0.0,
           "ticker": "KXMLBHR-26AUG201835NYYBAL-BALGHENDERSON2-1",
           "implied_prob": 0.14,
-          "edge_pp": 11.0,
+          "edge_pp": 12.2,
           "volume": 1754,
           "decision": "BET",
-          "model_fair_american": 300,
+          "model_fair_american": 282,
           "market_american": 614
         },
         "ladder": [
           {
             "threshold": 1,
             "line": "1+",
-            "model_prob": 0.25,
-            "model_prob_raw": 0.25,
+            "model_prob": 0.2616,
+            "model_prob_raw": 0.2616,
             "shrink_pp": 0.0,
             "ticker": "KXMLBHR-26AUG201835NYYBAL-BALGHENDERSON2-1",
             "implied_prob": 0.14,
-            "edge_pp": 11.0,
+            "edge_pp": 12.2,
             "volume": 1754,
             "decision": "BET",
-            "model_fair_american": 300,
+            "model_fair_american": 282,
             "market_american": 614
           },
           {
             "threshold": 2,
             "line": "2+",
-            "model_prob": 0.0316,
-            "model_prob_raw": 0.0316,
+            "model_prob": 0.0344,
+            "model_prob_raw": 0.0344,
             "shrink_pp": 0.0,
             "ticker": "KXMLBHR-26AUG201835NYYBAL-BALGHENDERSON2-2",
             "implied_prob": 0.01,
-            "edge_pp": 2.2,
+            "edge_pp": 2.4,
             "volume": 344,
             "decision": "PASS",
-            "model_fair_american": 3065,
+            "model_fair_american": 2807,
             "market_american": 9900
           }
         ],
@@ -8411,7 +8494,7 @@
           "ticker": "KXMLBHR-26AUG201410ATLCWS-ATLMOLSON28-1",
           "implied_prob": 0.185,
           "edge_pp": 10.1,
-          "volume": 8621,
+          "volume": 8703,
           "decision": "BET",
           "model_fair_american": 250,
           "market_american": 441
@@ -8426,7 +8509,7 @@
             "ticker": "KXMLBHR-26AUG201410ATLCWS-ATLMOLSON28-1",
             "implied_prob": 0.185,
             "edge_pp": 10.1,
-            "volume": 8621,
+            "volume": 8703,
             "decision": "BET",
             "model_fair_american": 250,
             "market_american": 441
@@ -8519,7 +8602,7 @@
           "ticker": "KXMLBHR-26AUG202010LAAHOU-HOUYALVAREZ44-1",
           "implied_prob": 0.27,
           "edge_pp": 8.8,
-          "volume": 2738,
+          "volume": 2808,
           "decision": "BET",
           "model_fair_american": 179,
           "market_american": 270
@@ -8534,7 +8617,7 @@
             "ticker": "KXMLBHR-26AUG202010LAAHOU-HOUYALVAREZ44-1",
             "implied_prob": 0.27,
             "edge_pp": 8.8,
-            "volume": 2738,
+            "volume": 2808,
             "decision": "BET",
             "model_fair_american": 179,
             "market_american": 270
@@ -8573,7 +8656,7 @@
           "ticker": "KXMLBHR-26AUG201310TORTB-TBJCAMINERO13-1",
           "implied_prob": 0.24,
           "edge_pp": 8.4,
-          "volume": 7411,
+          "volume": 7824,
           "decision": "BET",
           "model_fair_american": 208,
           "market_american": 317
@@ -8588,7 +8671,7 @@
             "ticker": "KXMLBHR-26AUG201310TORTB-TBJCAMINERO13-1",
             "implied_prob": 0.24,
             "edge_pp": 8.4,
-            "volume": 7411,
+            "volume": 7824,
             "decision": "BET",
             "model_fair_american": 208,
             "market_american": 317
@@ -8611,60 +8694,6 @@
         "label": "REPORT_ONLY \u2014 no execution venue wired"
       },
       {
-        "player_id": "545361",
-        "player_name": "Mike Trout",
-        "team": "LAA",
-        "opponent": "HOU",
-        "market": "HR",
-        "game_id": "laa-hou-2026-08-20",
-        "headline_line": "HR 1+",
-        "best": {
-          "threshold": 1,
-          "line": "1+",
-          "model_prob": 0.248,
-          "model_prob_raw": 0.248,
-          "shrink_pp": 0.0,
-          "ticker": "KXMLBHR-26AUG202010LAAHOU-LAAMTROUT27-1",
-          "implied_prob": 0.18,
-          "edge_pp": 6.8,
-          "volume": 243,
-          "decision": "BET",
-          "model_fair_american": 303,
-          "market_american": 456
-        },
-        "ladder": [
-          {
-            "threshold": 1,
-            "line": "1+",
-            "model_prob": 0.248,
-            "model_prob_raw": 0.248,
-            "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26AUG202010LAAHOU-LAAMTROUT27-1",
-            "implied_prob": 0.18,
-            "edge_pp": 6.8,
-            "volume": 243,
-            "decision": "BET",
-            "model_fair_american": 303,
-            "market_american": 456
-          },
-          {
-            "threshold": 2,
-            "line": "2+",
-            "model_prob": 0.0268,
-            "model_prob_raw": 0.0268,
-            "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26AUG202010LAAHOU-LAAMTROUT27-2",
-            "implied_prob": 0.02,
-            "edge_pp": 0.7,
-            "volume": 0,
-            "decision": "PASS",
-            "model_fair_american": 3631,
-            "market_american": 4900
-          }
-        ],
-        "label": "REPORT_ONLY \u2014 no execution venue wired"
-      },
-      {
         "player_id": "646240",
         "player_name": "Rafael Devers",
         "team": "SF",
@@ -8679,12 +8708,12 @@
           "model_prob_raw": 0.2416,
           "shrink_pp": 0.0,
           "ticker": "KXMLBHR-26AUG201310SFCLE-SFRDEVERS16-1",
-          "implied_prob": 0.18,
-          "edge_pp": 6.2,
+          "implied_prob": 0.175,
+          "edge_pp": 6.7,
           "volume": 2826,
           "decision": "BET",
           "model_fair_american": 314,
-          "market_american": 456
+          "market_american": 471
         },
         "ladder": [
           {
@@ -8694,12 +8723,12 @@
             "model_prob_raw": 0.2416,
             "shrink_pp": 0.0,
             "ticker": "KXMLBHR-26AUG201310SFCLE-SFRDEVERS16-1",
-            "implied_prob": 0.18,
-            "edge_pp": 6.2,
+            "implied_prob": 0.175,
+            "edge_pp": 6.7,
             "volume": 2826,
             "decision": "BET",
             "model_fair_american": 314,
-            "market_american": 456
+            "market_american": 471
           },
           {
             "threshold": 2,
@@ -8726,7 +8755,20 @@
         "market": "HR",
         "game_id": "nyy-bal-2026-08-20",
         "headline_line": "HR 1+",
-        "best": null,
+        "best": {
+          "threshold": 1,
+          "line": "1+",
+          "model_prob": 0.2484,
+          "model_prob_raw": 0.2484,
+          "shrink_pp": 0.0,
+          "ticker": "KXMLBHR-26AUG201835NYYBAL-BALPALONSO25-1",
+          "implied_prob": 0.195,
+          "edge_pp": 5.3,
+          "volume": 6006,
+          "decision": "BET",
+          "model_fair_american": 303,
+          "market_american": 413
+        },
         "ladder": [
           {
             "threshold": 1,
@@ -8735,12 +8777,12 @@
             "model_prob_raw": 0.2484,
             "shrink_pp": 0.0,
             "ticker": "KXMLBHR-26AUG201835NYYBAL-BALPALONSO25-1",
-            "implied_prob": 0.2,
-            "edge_pp": 4.8,
-            "volume": 5944,
-            "decision": "PASS",
+            "implied_prob": 0.195,
+            "edge_pp": 5.3,
+            "volume": 6006,
+            "decision": "BET",
             "model_fair_american": 303,
-            "market_american": 400
+            "market_american": 413
           },
           {
             "threshold": 2,
@@ -8754,6 +8796,47 @@
             "volume": 1368,
             "decision": "PASS",
             "model_fair_american": 3806,
+            "market_american": 4900
+          }
+        ],
+        "label": "REPORT_ONLY \u2014 no execution venue wired"
+      },
+      {
+        "player_id": "545361",
+        "player_name": "Mike Trout",
+        "team": "LAA",
+        "opponent": "HOU",
+        "market": "HR",
+        "game_id": "laa-hou-2026-08-20",
+        "headline_line": "HR 1+",
+        "best": null,
+        "ladder": [
+          {
+            "threshold": 1,
+            "line": "1+",
+            "model_prob": 0.2332,
+            "model_prob_raw": 0.2332,
+            "shrink_pp": 0.0,
+            "ticker": "KXMLBHR-26AUG202010LAAHOU-LAAMTROUT27-1",
+            "implied_prob": 0.185,
+            "edge_pp": 4.8,
+            "volume": 294,
+            "decision": "PASS",
+            "model_fair_american": 329,
+            "market_american": 441
+          },
+          {
+            "threshold": 2,
+            "line": "2+",
+            "model_prob": 0.0248,
+            "model_prob_raw": 0.0248,
+            "shrink_pp": 0.0,
+            "ticker": "KXMLBHR-26AUG202010LAAHOU-LAAMTROUT27-2",
+            "implied_prob": 0.02,
+            "edge_pp": 0.5,
+            "volume": 0,
+            "decision": "PASS",
+            "model_fair_american": 3932,
             "market_american": 4900
           }
         ],
