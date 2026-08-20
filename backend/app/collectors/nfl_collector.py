@@ -25,7 +25,7 @@ MAX_WORKERS = 8
 # hammering ESPN any harder per-request than the other collectors do.
 PLAYER_STATS_WORKERS = 12
 
-NFL_MARKETS = ["TD", "RecYds", "RushYds", "REC", "PassTD", "ML"]
+NFL_MARKETS = ["TD", "RecYds", "RushYds", "REC", "PassTD", "PassYds", "ML"]
 SKILL_POSITIONS = {"QB", "RB", "WR", "TE"}
 # A player needs at least this many 2025 games played to be featured at all —
 # mirrors soccer's minimum_appearances gate. Below this, the shrink formula
@@ -410,6 +410,7 @@ def build_team_player_candidates(
         rush_td_pg = stats.get("rushingTouchdowns", 0.0) / games_played
         rec_td_pg = stats.get("receivingTouchdowns", 0.0) / games_played
         pass_td_pg = stats.get("passingTouchdowns", 0.0) / games_played
+        pass_yds_pg = stats.get("passingYardsPerGame", stats.get("passingYards", 0.0) / games_played)
         rush_yds_pg = stats.get("rushingYardsPerGame", stats.get("rushingYards", 0.0) / games_played)
         rec_yds_pg = stats.get("receivingYardsPerGame", stats.get("receivingYards", 0.0) / games_played)
         rec_pg = stats.get("receptions", 0.0) / games_played
@@ -517,6 +518,30 @@ def build_team_player_candidates(
                             reason=f"Pass TD λ {pass_td_lambda:.2f} | Rec match {pass_matchup:.2f}x | {sample_note}",
                         )
                     )
+
+            # Passing yards — the single most-bet NFL QB prop in practice
+            # (TeamRankings/every real sportsbook QB prop board leads with
+            # this), and was missing entirely before now. Normal approx like
+            # RushYds/RecYds, but with a tighter std_ratio: a starter's pass
+            # volume is far more consistent week to week than a runner's or
+            # receiver's usage (which swings more with game script), so the
+            # generic yardage std_ratio (tuned for rush/rec) would overstate
+            # game-to-game passing-yardage variance.
+            pass_yds_mean = nfl_model.project_pass_yds_mean(
+                pass_yds_per_game=pass_yds_pg, sample_games=games_played, pass_matchup=pass_matchup
+            )
+            if pass_yds_mean >= 100.0:
+                pass_yds_line = nfl_model.yardage_line(pass_yds_mean, round_to=5)
+                pass_yds_probability = nfl_model.normal_at_least(pass_yds_mean, pass_yds_line, std_ratio=0.33, min_std=45.0)
+                candidates.append(
+                    make_candidate(
+                        **common,
+                        market="PassYds",
+                        line=f"{pass_yds_line}+ Pass Yds",
+                        probability=pass_yds_probability,
+                        reason=f"Proj {pass_yds_mean:.1f} pass yds/g | Rec match {pass_matchup:.2f}x | {sample_note}",
+                    )
+                )
 
     return candidates
 

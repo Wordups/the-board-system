@@ -46,6 +46,9 @@ NFL_TIER_CUTOFFS: dict[str, dict[str, float]] = {
     "RushYds": {"A": 62.0, "B": 50.0, "C": 38.0},
     "RecYds": {"A": 62.0, "B": 50.0, "C": 38.0},
     "PassTD": {"A": 55.0, "B": 42.0, "C": 30.0},
+    # Same Normal-approximation shape as RushYds/RecYds (line set at a fixed
+    # share of the mean), so the same cutoffs apply.
+    "PassYds": {"A": 62.0, "B": 50.0, "C": 38.0},
     "ML": {"A": 68.0, "B": 56.0, "C": 45.0},
 }
 

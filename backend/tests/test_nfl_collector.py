@@ -163,6 +163,8 @@ def test_build_team_player_candidates_produces_pass_td_for_starting_qb():
         "3": {
             "gamesPlayed": 17.0,
             "passingTouchdowns": 28.0,
+            "passingYardsPerGame": 260.0,
+            "passingYards": 4420.0,
             "rushingTouchdowns": 2.0,
             "receivingTouchdowns": 0.0,
             "rushingYardsPerGame": 12.0,
@@ -182,8 +184,38 @@ def test_build_team_player_candidates_produces_pass_td_for_starting_qb():
     )
     markets = {row["market"] for row in candidates}
     assert "PassTD" in markets
+    assert "PassYds" in markets
     assert "REC" not in markets
     assert "RecYds" not in markets
+
+    pass_yds_row = next(row for row in candidates if row["market"] == "PassYds")
+    assert pass_yds_row["line"].endswith("+ Pass Yds")
+    assert 0.0 < pass_yds_row["score"] < 100.0
+
+
+def test_build_team_player_candidates_no_pass_yds_for_non_qb():
+    roster = [{"id": "9", "displayName": "Some WR", "position": "WR", "injury_status": "ACTIVE"}]
+    player_stats = {
+        "9": {
+            "gamesPlayed": 17.0,
+            "receivingTouchdowns": 6.0,
+            "receivingYardsPerGame": 70.0,
+            "receivingYards": 1190.0,
+            "receptions": 85.0,
+            "rushingYardsPerGame": 0.0,
+            "rushingYards": 0.0,
+        }
+    }
+    candidates = nfl_collector.build_team_player_candidates(
+        game_id="401",
+        team_abbr="SEA",
+        opponent_abbr="NE",
+        roster=roster,
+        player_stats=player_stats,
+        opponent_allowed={"rush_yds": 110.0, "pass_yds": 260.0},
+        league_baseline={"rush_yds": 110.0, "pass_yds": 220.0},
+    )
+    assert "PassYds" not in {row["market"] for row in candidates}
 
 
 # ---------- build_moneyline_candidate ----------------------------------------
@@ -269,7 +301,7 @@ def test_fetch_team_rosters_filters_to_playable_skill_positions(monkeypatch):
 # ---------- NFL tier cutoffs --------------------------------------------------
 
 def test_nfl_tier_cutoffs_cover_every_market():
-    assert set(NFL_TIER_CUTOFFS) == {"TD", "REC", "RushYds", "RecYds", "PassTD", "ML"}
+    assert set(NFL_TIER_CUTOFFS) == {"TD", "REC", "RushYds", "RecYds", "PassTD", "PassYds", "ML"}
 
 
 def test_assign_nfl_tier_uses_market_specific_scale():
