@@ -149,6 +149,18 @@ def build_nfl_board(*, config, paths) -> dict:
         "same_game_pairs": same_game_pairs,
         "qb_stacks": qb_stacks,
         "rb_stacks": rb_stacks,
+        # RB trend watch: two informational, display-only RB signals derived
+        # from 2025 game-by-game gamelogs (best sustained stretch of the
+        # season, and how a back finished vs. his own season average) -- see
+        # nfl_collector.build_rb_trend_watch. Passed through as-collected,
+        # same "extra field the generic schema ignores" pattern as
+        # same_game_pairs/qb_stacks above, just computed in the collector
+        # (it needs its own network fetch) rather than here in the builder.
+        # The .get() fallback only matters for a stale cached raw_nfl.json
+        # written before this field existed.
+        "rb_trend_watch": raw_payload.get(
+            "rb_trend_watch", {"window": 5, "best_stretch": [], "trending_up": []}
+        ),
     }
 
 

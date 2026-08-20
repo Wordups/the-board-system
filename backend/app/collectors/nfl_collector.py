@@ -56,6 +56,25 @@ INTERCEPTIONS_MIN_RUNG_PROBABILITY = 0.05
 # unique game, shared across two teams) bounded for a 32-team slate.
 RECENT_GAMES_SAMPLE = 5
 
+# RB trend-watch: two informational, display-only signals derived from 2025
+# game-by-game RB history (see ATHLETE_GAMELOG_URL) that the season-aggregate
+# stats above can't surface -- a standout mid-season stretch, and how a back
+# finished the season relative to his own full-season rate. Neither feeds
+# RushYds/REC/TD scoring; see build_rb_trend_watch.
+RB_TREND_WORKERS = 12  # one request per RB -- same bulk-fetch profile as PLAYER_STATS_WORKERS
+# Recent-form window size. 5 games mirrors MLB's L5 convention (see
+# mlb_collector.py's recent_5 usage) as the nearest precedent in this repo
+# for a "recent form vs season baseline" split, even though the mechanics
+# differ (NFL's 2025 season is complete history -- this is a fixed look at
+# the final 5 games of the season, not a live rolling window).
+RB_TREND_WINDOW = 5
+# A back needs at least 2x the window logged so "final 5 games" is a real
+# subset being compared against a season baseline built from meaningfully
+# more than just that same window -- below this the "recent" and "season"
+# numbers are mostly restating each other.
+RB_TREND_MIN_GAMES = 8
+RB_TREND_TOP_N = 8
+
 # normal_at_least std overrides for the two QB Normal-modeled markets, named
 # here (rather than left as inline literals at their call sites below) so
 # app.sim.nfl_qb_stack can import the exact values it needs to recompute each
@@ -76,6 +95,18 @@ ESPN_SUMMARY_URL = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/s
 # endpoint (no inline `statistics` block for NFL athletes) or the athlete
 # `overview` endpoint (career/postseason splits, no per-game averages).
 CORE_ATHLETE_STATS_URL = "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/{season}/types/2/athletes/{athlete_id}/statistics"
+# Per-athlete game-by-game log (rushing/receiving/fumbles lines, one row per
+# 2025 game) -- a different host (site.web.api.espn.com) than every other
+# URL in this module (site.api.espn.com / sports.core.api.espn.com). Same
+# host family soccer_collector.py's ATHLETE_OVERVIEW_URL already uses for a
+# different sport/purpose. Live-verified 2026-08-19 against real 2025 RB ids
+# (Saquon Barkley, Christian McCaffrey, Bijan Robinson all returned 200 with
+# real per-game rushing/receiving stat lines under
+# seasonTypes[].categories[].events[]) from this same sandbox, at a time when
+# site.api.espn.com (the host the rest of this collector depends on) was
+# returning 403 for every request -- confirming this is genuinely a
+# different, independently-reachable host, not a retest of the same block.
+ATHLETE_GAMELOG_URL = "https://site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes/{athlete_id}/gamelog"
 
 
 def collect_nfl_raw_data(data_raw_dir: Path) -> dict[str, Any]:
@@ -84,7 +115,14 @@ def collect_nfl_raw_data(data_raw_dir: Path) -> dict[str, Any]:
     try:
         season_year, week_number, events = fetch_target_week()
         if not events:
-            payload = {"sport": "NFL", "date": today_et().isoformat(), "season": None, "week": None, "games": []}
+            payload = {
+                "sport": "NFL",
+                "date": today_et().isoformat(),
+                "season": None,
+                "week": None,
+                "games": [],
+                "rb_trend_watch": {"window": RB_TREND_WINDOW, "best_stretch": [], "trending_up": []},
+            }
             write_json(raw_path, payload)
             return payload
 
@@ -93,6 +131,11 @@ def collect_nfl_raw_data(data_raw_dir: Path) -> dict[str, Any]:
         rosters = fetch_team_rosters(team_map)  # abbr -> list[athlete dict], skill positions, OUT dropped
         athlete_ids = {str(athlete["id"]) for roster in rosters.values() for athlete in roster}
         player_stats = fetch_player_stats(athlete_ids, season=prior_season)  # athlete_id -> flattened stat dict
+        # RB trend watch: separate game-by-game fetch (site.web.api.espn.com,
+        # not the season-aggregate CORE_ATHLETE_STATS_URL above) -- additive,
+        # display-only signal, does not feed player_stats or any market score.
+        rb_gamelogs = fetch_rb_gamelogs(rosters, season=prior_season)
+        rb_trend_watch = build_rb_trend_watch(rb_gamelogs, rosters)
         team_schedules = fetch_team_schedules(team_map, season=prior_season)  # abbr -> list of completed game rows
         team_power = build_team_power_profiles(team_schedules)  # abbr -> power profile
         athlete_positions = build_athlete_position_map(rosters)  # athlete_id -> position, league-wide
@@ -131,6 +174,7 @@ def collect_nfl_raw_data(data_raw_dir: Path) -> dict[str, Any]:
                 )
                 for event in events
             ],
+            "rb_trend_watch": rb_trend_watch,
         }
         write_json(raw_path, payload)
         return payload
@@ -233,6 +277,186 @@ def flatten_core_stats(payload: dict[str, Any]) -> dict[str, float]:
         for stat in category.get("stats", []):
             flat[stat["name"]] = parse_number(stat.get("value"))
     return flat
+
+
+# ---------------------------------------------------------------------------
+# RB trend watch (2025 game-by-game gamelogs -> best-stretch / trending-up)
+# ---------------------------------------------------------------------------
+
+def fetch_rb_gamelogs(rosters: dict[str, list[dict[str, Any]]], *, season: int) -> dict[str, dict[str, Any]]:
+    """2025 game-by-game rushing+receiving lines for every RB in the roster
+    pool (rosters already skill-position-filtered and OUT/DOUBTFUL-dropped
+    by fetch_team_rosters -- same eligible pool the RushYds/REC markets draw
+    from). Returns athlete_id -> {"team": abbr, "games": [chronological
+    per-game dicts]}. RBs whose gamelog fetch fails or who have no parseable
+    regular-season games are simply absent, same degrade-quietly convention
+    fetch_player_stats already uses for the season-stats endpoint."""
+    rb_team_by_id: dict[str, str] = {
+        athlete["id"]: abbr
+        for abbr, roster in rosters.items()
+        for athlete in roster
+        if athlete["position"] == "RB"
+    }
+
+    def load(athlete_id: str) -> tuple[str, list[dict[str, float]] | None]:
+        try:
+            payload = espn_get_json(ATHLETE_GAMELOG_URL.format(athlete_id=athlete_id), {"season": season})
+        except requests.RequestException:
+            return athlete_id, None
+        return athlete_id, parse_rb_gamelog(payload)
+
+    with ThreadPoolExecutor(max_workers=RB_TREND_WORKERS) as pool:
+        results = pool.map(load, sorted(rb_team_by_id))
+
+    return {
+        athlete_id: {"team": rb_team_by_id[athlete_id], "games": games}
+        for athlete_id, games in results
+        if games
+    }
+
+
+def parse_rb_gamelog(payload: dict[str, Any]) -> list[dict[str, float]] | None:
+    """Regular-season per-game rushing+receiving lines, sorted chronologically
+    (earliest week first). ESPN's gamelog response groups games under
+    `seasonTypes[].categories[].events[]`, with each event's stat values as a
+    flat string array positionally matched to the top-level `names` list
+    (e.g. names[1] == "rushingYards" -> stats[1] is that game's rushing
+    yards); real per-game week numbers and IDs live in the separate
+    top-level `events` dict, keyed by eventId. Postseason is a separate
+    seasonTypes entry and deliberately excluded here -- a much smaller,
+    non-representative sample that not every RB even has. Returns None if
+    there's no usable regular-season entry (e.g. a practice-squad RB with
+    zero 2025 snaps)."""
+    names = payload.get("names") or []
+    events_by_id = payload.get("events") or {}
+    season_types = payload.get("seasonTypes") or []
+
+    regular = next(
+        (season_type for season_type in season_types if "Regular Season" in (season_type.get("displayName") or "")),
+        None,
+    )
+    if not regular or not regular.get("categories"):
+        return None
+
+    try:
+        rush_idx = names.index("rushingYards")
+        rec_idx = names.index("receivingYards")
+    except ValueError:
+        return None
+
+    games: list[dict[str, float]] = []
+    for event_row in regular["categories"][0].get("events", []):
+        stats = event_row.get("stats") or []
+        if len(stats) <= max(rush_idx, rec_idx):
+            continue
+        event_meta = events_by_id.get(event_row.get("eventId"), {})
+        week = event_meta.get("week")
+        if week is None:
+            continue
+        rush_yds = parse_number(stats[rush_idx])
+        rec_yds = parse_number(stats[rec_idx])
+        games.append(
+            {
+                "week": int(week),
+                "rush_yds": rush_yds,
+                "rec_yds": rec_yds,
+                "total_yds": rush_yds + rec_yds,
+            }
+        )
+
+    games.sort(key=lambda row: row["week"])
+    return games or None
+
+
+def build_rb_trend_watch(
+    gamelogs: dict[str, dict[str, Any]], rosters: dict[str, list[dict[str, Any]]]
+) -> dict[str, Any]:
+    """Two RB signals derived from 2025 game-by-game history that the
+    season-aggregate stats used everywhere else in this collector can't
+    surface. Both are additive/display-only -- neither reads from nor writes
+    to RushYds/REC/TD scoring above.
+
+    - best_stretch ("who's done amazing"): the single highest rolling
+      RB_TREND_WINDOW-game window of total yards from scrimmage anywhere in
+      the season. A bellcow's season total already surfaces via the existing
+      RushYds/TD markets sorted by score; this instead captures the shape of
+      the season -- a standout sustained stretch a flatter high-average back
+      might not have.
+    - trending_up ("trending up"): the final RB_TREND_WINDOW games of the
+      season (how a back finished) vs. his own full-season average -- a
+      momentum/breakout read for entering 2026, distinct from a simple
+      season-long rate. Only backs who are actually trending up (positive
+      trend_pct) are included.
+    """
+    name_by_id: dict[str, str] = {
+        athlete["id"]: athlete["displayName"]
+        for roster in rosters.values()
+        for athlete in roster
+        if athlete["position"] == "RB"
+    }
+
+    best_stretch_rows: list[dict[str, Any]] = []
+    trending_rows: list[dict[str, Any]] = []
+
+    for athlete_id, entry in gamelogs.items():
+        games = entry["games"]
+        games_sampled = len(games)
+        if games_sampled < RB_TREND_MIN_GAMES:
+            continue
+        team = entry["team"]
+        name = name_by_id.get(athlete_id, "Unknown")
+        season_avg = sum(game["total_yds"] for game in games) / games_sampled
+
+        best_sum: float | None = None
+        best_start_week: int | None = None
+        best_end_week: int | None = None
+        for i in range(0, games_sampled - RB_TREND_WINDOW + 1):
+            window = games[i : i + RB_TREND_WINDOW]
+            window_sum = sum(game["total_yds"] for game in window)
+            if best_sum is None or window_sum > best_sum:
+                best_sum = window_sum
+                best_start_week = window[0]["week"]
+                best_end_week = window[-1]["week"]
+        if best_sum is not None:
+            best_stretch_rows.append(
+                {
+                    "player_id": athlete_id,
+                    "player_name": name,
+                    "team": team,
+                    "games_sampled": games_sampled,
+                    "best_stretch_total_yds": round(best_sum, 1),
+                    "best_stretch_avg_yds": round(best_sum / RB_TREND_WINDOW, 1),
+                    "best_stretch_weeks": f"Wk {best_start_week}-{best_end_week}",
+                    "season_avg_total_yds": round(season_avg, 1),
+                }
+            )
+
+        recent_games = games[-RB_TREND_WINDOW:]
+        recent_avg = sum(game["total_yds"] for game in recent_games) / RB_TREND_WINDOW
+        if season_avg > 0:
+            trend_pct = (recent_avg - season_avg) / season_avg
+            if trend_pct > 0:
+                trending_rows.append(
+                    {
+                        "player_id": athlete_id,
+                        "player_name": name,
+                        "team": team,
+                        "games_sampled": games_sampled,
+                        "season_avg_total_yds": round(season_avg, 1),
+                        "recent_avg_total_yds": round(recent_avg, 1),
+                        "trend_pct": round(trend_pct, 3),
+                        "recent_weeks": f"Wk {recent_games[0]['week']}-{recent_games[-1]['week']}",
+                    }
+                )
+
+    best_stretch_rows.sort(key=lambda row: row["best_stretch_avg_yds"], reverse=True)
+    trending_rows.sort(key=lambda row: row["trend_pct"], reverse=True)
+
+    return {
+        "window": RB_TREND_WINDOW,
+        "best_stretch": best_stretch_rows[:RB_TREND_TOP_N],
+        "trending_up": trending_rows[:RB_TREND_TOP_N],
+    }
 
 
 # ---------------------------------------------------------------------------

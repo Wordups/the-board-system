@@ -459,7 +459,7 @@
     const clickable = rowId && rowMap.has(rowId);
     const attrs = clickable ? ` data-selection-id="${esc(rowId)}" tabindex="0" role="button" aria-label="Open ${esc(name)} ${esc(line)} analysis"` : "";
     return `<article class="core-card"${attrs}>
-      <div class="core-card-top"><span class="core-label">${esc(label)}</span>${tierToken(tier)}</div>
+      <div class="core-card-top"><span class="core-label">${esc(label)}</span>${tier ? tierToken(tier) : ""}</div>
       <h3 class="core-name">${esc(name)}</h3>
       <div class="core-meta">${esc(meta)}</div>
       <div class="core-line-row"><span class="core-line">${esc(line)}</span><span class="core-score">${Number(score || 0).toFixed(1)}</span></div>
@@ -567,6 +567,27 @@
     };
     const cards = stacks.map(stack => `${stackCard(stack, "floor", "Floor stack")}${stackCard(stack, "ceiling", "Ceiling stack")}`).join("");
     return `<div class="section-head"><div><span class="section-kicker">Same-game correlation</span><h2>RB Usage Stack</h2></div><p class="section-note">Gaussian-copula simulated joint probability that one running back clears his Rush Yards, Receiving Yards and Anytime TD lines together, same game — usage (touches) drives all three, so a naive independent stack understates how often a big workload shows up across the run game, the pass game, and the scoreboard together.</p></div>${cards}`;
+  }
+
+  function renderNflRbTrendWatch() {
+    const trend = snapshot?.sports?.nfl?.rb_trend_watch;
+    const bestStretch = trend?.best_stretch || [];
+    const trendingUp = trend?.trending_up || [];
+    if (!bestStretch.length && !trendingUp.length) return "";
+    const bestSection = bestStretch.length ? `
+      <div class="section-head"><div><span class="section-kicker">2025 season shape</span><h2>RB Best Stretch</h2></div><p class="section-note">Each back's best 5-game run of total yards from scrimmage anywhere in 2025 — a standout stretch a season-long average can hide.</p></div>
+      <div class="core-grid">${bestStretch.map((row, index) => compactCard({
+        label: `#${index + 1}`, name: row.player_name, meta: `${row.team} · ${row.best_stretch_weeks}`,
+        line: `${row.best_stretch_avg_yds} yds/gm`, tier: null, score: row.best_stretch_avg_yds, rowId: null,
+      })).join("")}</div>` : "";
+    const trendingSection = trendingUp.length ? `
+      <div class="section-head"><div><span class="section-kicker">How they finished</span><h2>RB Trending Up</h2></div><p class="section-note">Final 5 games of 2025 vs. full-season average — a momentum read heading into 2026, not just a season-long rate.</p></div>
+      <div class="core-grid">${trendingUp.map((row, index) => compactCard({
+        label: `#${index + 1}`, name: row.player_name, meta: `${row.team} · ${row.recent_weeks}`,
+        line: `${row.recent_avg_total_yds} vs ${row.season_avg_total_yds} yds/gm`, tier: null,
+        score: row.trend_pct * 100, rowId: null,
+      })).join("")}</div>` : "";
+    return `${bestSection}${trendingSection}`;
   }
 
   function listMarkup(source, limit = 20) {
@@ -683,6 +704,7 @@
       ${sport === "nfl" ? renderNflSameGamePairs() : ""}
       ${sport === "nfl" ? renderNflQbStacks() : ""}
       ${sport === "nfl" ? renderNflRbStacks() : ""}
+      ${sport === "nfl" ? renderNflRbTrendWatch() : ""}
       <div class="section-head"><div><span class="section-kicker">Current profile</span><h2>${sport === "soccer" ? "Highest modeled probabilities" : "Best balanced signals"}</h2></div><p class="section-note">${sport === "soccer" ? "One leader per market; use the probability sort below for the full board." : "These cards exclude hard price and projection conflicts."}</p></div>
       <section class="lead-grid">${top.map(signalCard).join("")}</section>
       <div class="toolbar" aria-label="Board filters">
