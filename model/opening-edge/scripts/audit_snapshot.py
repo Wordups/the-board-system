@@ -7,7 +7,7 @@ from pathlib import Path
 
 def main() -> int:
     if len(sys.argv) != 2:
-        print("usage: audit_snapshot.py PATH_TO_WNBA_MODEL_JSON", file=sys.stderr)
+        print("usage: audit_snapshot.py PATH_TO_MODEL_JSON  (e.g. data/wnba-model.json, data/nba-model.json)", file=sys.stderr)
         return 2
     path = Path(sys.argv[1])
     model = json.loads(path.read_text(encoding="utf-8"))

@@ -100,6 +100,17 @@ def run_nfl_pipeline(project_root: Path) -> dict:
     # board's own schema expectations) can always rely on the key being
     # present, matching this repo's "always present, empty rather than
     # fabricated" convention for additive fields.
+    board.setdefault(
+        "first_td_board",
+        {
+            "title": "First TD Scorer",
+            "market": "FirstTD",
+            "top_board": [],
+            "team_board": [],
+            "games": [],
+            "parlays": {},
+        },
+    )
     board.setdefault("same_game_pairs", [])
     board.setdefault("qb_stacks", [])
     board.setdefault("rb_stacks", [])

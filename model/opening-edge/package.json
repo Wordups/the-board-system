@@ -8,6 +8,10 @@
   },
   "scripts": {
     "sync": "node --experimental-strip-types scripts/sync-wnba.ts",
-    "test": "node --experimental-strip-types --test tests/wnba-model.test.ts"
+    "sync:nba": "node --experimental-strip-types scripts/sync-nba.ts",
+    "test": "node --experimental-strip-types --test tests/wnba-model.test.ts tests/nba-model.test.ts",
+    "test:wnba": "node --experimental-strip-types --test tests/wnba-model.test.ts",
+    "test:nba": "node --experimental-strip-types --test tests/nba-model.test.ts",
+    "refresh": "node --experimental-strip-types scripts/refresh-opening-edge.ts"
   }
 }

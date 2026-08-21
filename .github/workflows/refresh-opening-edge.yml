@@ -44,10 +44,13 @@ jobs:
         with:
           python-version: "3.12"
 
-      # Slate + injuries from ESPN, season re-sync, tests, audit, TD watch,
-      # regenerate data/opening-edge.js. Aborts (leaving the previous board
-      # live) on any validation failure. No games today = clean no-op.
-      - name: Refresh Opening Edge board
+      # Every configured league (WNBA, NBA): slate + injuries from ESPN,
+      # season re-sync, tests, audit, TD watch, regenerate that league's
+      # section. A league with no games today is a clean no-op that leaves
+      # its board alone, and a league that fails validation leaves its own
+      # previous board live without stopping the other league. The step only
+      # fails when every attempted league failed.
+      - name: Refresh Opening Edge boards
         working-directory: model/opening-edge
         run: node --experimental-strip-types scripts/refresh-opening-edge.ts
 
@@ -56,7 +59,7 @@ jobs:
         run: |
           git config user.name "opening-edge-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/opening-edge.js model/opening-edge/data
+          git add data/opening-edge.js data/opening-edge-nba.js model/opening-edge/data
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
@@ -70,7 +73,7 @@ jobs:
       - name: Commit and push
         if: steps.stage.outputs.changed == 'true'
         run: |
-          git commit -m "Refresh Opening Edge board"
+          git commit -m "Refresh Opening Edge boards"
           # Rebase in case the hourly board refresh landed mid-run.
           git pull --rebase origin main
           git push origin main

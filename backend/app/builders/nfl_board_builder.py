@@ -4,6 +4,7 @@ from collections import defaultdict
 
 from app.builders.universal_game_builder import empty_markets_for
 from app.collectors.nfl_collector import NFL_MARKETS, collect_nfl_raw_data
+from app.sim.nfl_first_td import build_first_td_board, build_first_td_for_game
 from app.sim.nfl_qb_stack import build_qb_stacks_for_game
 from app.sim.nfl_rb_stack import build_rb_stacks_for_game
 from app.sim.nfl_same_game import build_same_game_pairs_for_game
@@ -58,6 +59,7 @@ def build_nfl_board(*, config, paths) -> dict:
     same_game_pairs = []
     qb_stacks = []
     rb_stacks = []
+    first_td_games = []
 
     for raw_game in raw_payload["games"]:
         ranked = sorted(raw_game["candidates"], key=lambda row: (row["score"], row["confidence"]), reverse=True)
@@ -117,6 +119,20 @@ def build_nfl_board(*, config, paths) -> dict:
                 candidates=raw_game["candidates"],
             )
         )
+        # First-TD race (app.sim.nfl_first_td): who scores the game's first
+        # touchdown, and who scores his own team's first. Reads the same
+        # collector-tagged td_lambda the Anytime TD ladder was scored from,
+        # so the two markets can never disagree about a player's TD rate.
+        # Additive, report-only, and returns None (skipped) for a game with
+        # no modelable scorer rather than raising.
+        first_td_game = build_first_td_for_game(
+            game_id=raw_game["game_id"],
+            matchup=matchup,
+            time=raw_game["time"],
+            candidates=raw_game["candidates"],
+        )
+        if first_td_game:
+            first_td_games.append(first_td_game)
 
     week = raw_payload.get("week")
     season = raw_payload.get("season")
@@ -146,6 +162,11 @@ def build_nfl_board(*, config, paths) -> dict:
         # they're three structurally different card kinds (QB<->receiver
         # pair, one QB's own three-market stack, one RB's own three-market
         # stack), not one field overloaded with multiple shapes.
+        # First-TD scorer board: the slate's Poisson race, its team-level
+        # "who opens the scoring" rows, and the cross-game first-TD ladder.
+        # Same extra-field-the-generic-schema-ignores convention as the
+        # stack fields below it.
+        "first_td_board": build_first_td_board(first_td_games),
         "same_game_pairs": same_game_pairs,
         "qb_stacks": qb_stacks,
         "rb_stacks": rb_stacks,

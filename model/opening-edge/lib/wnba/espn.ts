@@ -1,18 +1,22 @@
+import { LEAGUES, type LeagueConfig } from "../leagues.ts";
 import type { Athlete, EspnPlay, GameSummary, Team } from "./types.ts";
 
-const BASE = "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba";
-const WNBA_TEAMS = new Set(["ATL", "CHI", "CON", "DAL", "GS", "IND", "LA", "LV", "MIN", "NY", "PHX", "POR", "SEA", "TOR", "WSH"]);
+// The basketball opening model reads the same ESPN play-by-play shape for
+// every league; only the endpoint and the set of real league teams differ.
+// Both are supplied by lib/leagues.ts, defaulting to WNBA so every call
+// site that predates multi-league support behaves exactly as before.
+const DEFAULT_LEAGUE = LEAGUES.wnba;
 
-export async function fetchScoreboard(date: string): Promise<Array<{ id: string; name: string; date: string }>> {
+export async function fetchScoreboard(date: string, league: LeagueConfig = DEFAULT_LEAGUE): Promise<Array<{ id: string; name: string; date: string }>> {
   const compact = date.replaceAll("-", "");
-  const response = await fetch(`${BASE}/scoreboard?dates=${compact}`, { next: { revalidate: 300 } });
+  const response = await fetch(`${league.espnBase}/scoreboard?dates=${compact}`, { next: { revalidate: 300 } });
   if (!response.ok) throw new Error(`ESPN scoreboard ${response.status}`);
   const json = await response.json() as { events?: Array<{ id: string; name: string; date: string }> };
   return json.events ?? [];
 }
 
-export async function fetchGameSummary(gameId: string): Promise<GameSummary> {
-  const response = await fetch(`${BASE}/summary?event=${gameId}`, { next: { revalidate: 86400 } });
+export async function fetchGameSummary(gameId: string, league: LeagueConfig = DEFAULT_LEAGUE): Promise<GameSummary> {
+  const response = await fetch(`${league.espnBase}/summary?event=${gameId}`, { next: { revalidate: 86400 } });
   if (!response.ok) throw new Error(`ESPN summary ${gameId}: ${response.status}`);
   const json = await response.json() as Record<string, unknown>;
   return normalizeSummary(gameId, json);
@@ -50,15 +54,15 @@ export function normalizeSummary(gameId: string, json: Record<string, unknown>):
   };
 }
 
-export async function fetchDateRange(start: string, end: string): Promise<GameSummary[]> {
+export async function fetchDateRange(start: string, end: string, league: LeagueConfig = DEFAULT_LEAGUE): Promise<GameSummary[]> {
   const dates = enumerateDates(start, end);
-  const events = (await Promise.all(dates.map(fetchScoreboard))).flat();
+  const events = (await Promise.all(dates.map(date => fetchScoreboard(date, league)))).flat();
   const unique = [...new Map(events.map(event => [event.id, event])).values()];
   const summaries: GameSummary[] = [];
   for (let index = 0; index < unique.length; index += 6) {
     const batch = unique.slice(index, index + 6);
-    const fetched = await Promise.all(batch.map(event => fetchGameSummary(event.id)));
-    summaries.push(...fetched.filter(game => game.teams.length === 2 && game.teams.every(team => WNBA_TEAMS.has(team.abbreviation))));
+    const fetched = await Promise.all(batch.map(event => fetchGameSummary(event.id, league)));
+    summaries.push(...fetched.filter(game => game.teams.length === 2 && game.teams.every(team => league.teams.has(team.abbreviation))));
   }
   return summaries;
 }

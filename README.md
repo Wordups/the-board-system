@@ -59,6 +59,34 @@ sit on top of the core model, not replace it:
 Use `backend/data_raw/mlb_research_notes.example.json` as the template for manual
 source notes (X, TeamRankings, beat writers, lineup notes, weather).
 
+### First-basket layer (Opening Edge, WNBA + NBA)
+
+`model/opening-edge` fits the opening sequence itself — jump ball, first
+attempt, miss branch, first made field goal — from season play-by-play, and
+publishes two separate markets per league:
+
+- `first_field_goal` — the game's first made field goal, either team
+- `first_team_basket` — one named team's first made field goal, always
+  strictly likelier than the game-wide version and never shown as an
+  alternative to it
+
+Both leagues run through the same validated basketball adapter (`lib/leagues.ts`
+holds the endpoint, team set, display abbreviations and season window; the NBA
+season window reaches back across New Year). Each publishes its own generated
+section — `data/opening-edge.js` and `data/opening-edge-nba.js` — and the board
+shows a league switcher only when more than one is live, so an off-season league
+simply isn't there.
+
+### First TD scorer (NFL)
+
+`nfl.json` carries a `first_td_board`: a Poisson race over every modeled
+player's matchup-adjusted anytime-TD lambda, giving both the game-wide first
+touchdown and each player's own team's first. A tenth of the race is held back
+for scorers the pipeline doesn't model (defensive and special-teams returns,
+players with no prior-season sample) rather than charging the modeled players
+for the whole market, and the cross-game ladder never pairs two legs from one
+game — inside a game they're mutually exclusive.
+
 ### NBA research / stack layer
 
 The NBA export includes a `research_board` section inside `nba.json`, organized for:

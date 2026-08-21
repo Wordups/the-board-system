@@ -27,3 +27,16 @@ WNBA mapping:
 - attempt: `shootingPlay=true`
 - made field goal: `shootingPlay=true`, `scoringPlay=true`, `scoreValue>=2`
 - first points: first `scoringPlay=true`, `scoreValue>0`
+
+NBA mapping:
+
+- Identical to the WNBA mapping above — the NBA rides the same ESPN
+  basketball play-by-play feed, so the adapter is the league config in
+  `lib/leagues.ts` (endpoint, team set, display abbreviations, headshot
+  base, season window) rather than a second parser.
+- Validated by `tests/nba-model.test.ts` against a known-game fixture
+  covering the jump ball, the first attempt, the miss branch, a free throw
+  that scores the first POINTS without being the first FIELD GOAL, and each
+  team's own first basket.
+- Season window crosses New Year: `defaultSeasonStart` resolves a January
+  slate back to the previous October.

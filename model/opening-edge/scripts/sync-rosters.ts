@@ -1,17 +1,20 @@
-// Sync current WNBA rosters from ESPN so the board never presents a stale
-// team label as current (AGENT.md: flag trades and stale team labels).
-// Writes data/rosters.json mapping athleteId -> current team abbreviation.
+// Sync current rosters from ESPN so the board never presents a stale team
+// label as current (AGENT.md: flag trades and stale team labels).
+// Writes data/<league>-rosters.json mapping athleteId -> current team.
 //
-// Usage (from model/opening-edge/): node --experimental-strip-types scripts/sync-rosters.ts
+// Usage (from model/opening-edge/):
+//   node --experimental-strip-types scripts/sync-rosters.ts [LEAGUE]
 import { readFile, writeFile } from "node:fs/promises";
+import { resolveLeague } from "../lib/leagues.ts";
 
-const board = JSON.parse(await readFile("data/wnba-board.json", "utf8")) as {
+const league = resolveLeague(process.argv[2]);
+const board = JSON.parse(await readFile(league.boardFile, "utf8")) as {
   teams: Array<{ teamId: string; team: string }>;
 };
 
 const athletes: Record<string, { team: string; name: string }> = {};
 for (const team of board.teams) {
-  const response = await fetch(`https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/teams/${team.teamId}/roster`);
+  const response = await fetch(`${league.espnBase}/teams/${team.teamId}/roster`);
   if (!response.ok) throw new Error(`Roster ${team.team} (${team.teamId}): ${response.status}`);
   const json = await response.json() as { athletes?: Array<{ id: string; displayName?: string }> };
   for (const athlete of json.athletes ?? []) {
@@ -19,9 +22,10 @@ for (const team of board.teams) {
   }
 }
 
-await writeFile("data/rosters.json", JSON.stringify({
+await writeFile(league.rosterFile, JSON.stringify({
   generatedAt: new Date().toISOString(),
+  league: league.key,
   source: "ESPN team rosters",
   athletes,
 }, null, 2), "utf8");
-console.log(`Wrote ${Object.keys(athletes).length} rostered athletes across ${board.teams.length} teams to data/rosters.json`);
+console.log(`${league.label}: wrote ${Object.keys(athletes).length} rostered athletes across ${board.teams.length} teams to ${league.rosterFile}`);

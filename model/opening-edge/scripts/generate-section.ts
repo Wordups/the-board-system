@@ -1,11 +1,17 @@
-// Generate data/opening-edge.js (the #opening section of the board) from the
-// synced model snapshot, re-scored against today's actual matchups.
+// Generate the #opening section of the board from the synced model
+// snapshot, re-scored against today's actual matchups.
 //
 // Usage (from model/opening-edge/):
 //   node --experimental-strip-types scripts/generate-section.ts \
+//     [--league wnba|nba] \
 //     --date 2026-08-05 --label "Wednesday, Aug 5" \
 //     --slate "PHX@ATL=7:00 PM ET,SEA@NY=7:00 PM ET,DAL@WSH=7:30 PM ET,LA@CHI=9:00 PM ET" \
 //     --injuries "NY:Satou Sabally Out,Leonie Fiebich Out;CHI:Skylar Diggins Out"
+//
+// --league selects which synced snapshot to read and which file to write
+// (lib/leagues.ts); it defaults to wnba, so the original invocation is
+// unchanged. Slate and injury abbreviations are always ESPN's, whichever
+// league is being generated.
 //
 // Every number in the output is derived from the snapshot; nothing is
 // hand-tuned. Per AGENT.md, components with no verified input (role/
@@ -13,6 +19,7 @@
 // unverified rather than silently treated as facts. Prices are model-fair
 // lines — provisional until market prices are supplied.
 import { readFile, writeFile } from "node:fs/promises";
+import { resolveLeague } from "../lib/leagues.ts";
 import { rankCandidates } from "../lib/wnba/score.ts";
 import type { ModelCandidate, PlayerAggregate, TeamAggregate } from "../lib/wnba/types.ts";
 
@@ -21,6 +28,7 @@ const arg = (name: string, fallback = "") => {
   return index > -1 ? process.argv[index + 1] : fallback;
 };
 
+const league = resolveLeague(arg("league", "wnba"));
 const date = arg("date", new Date().toISOString().slice(0, 10));
 const label = arg("label", date);
 const slateArg = arg("slate");
@@ -28,10 +36,9 @@ const injuriesArg = arg("injuries");
 if (!slateArg) throw new Error("--slate is required, e.g. --slate \"DAL@WSH=7:30 PM ET,SEA@NY=7:00 PM ET\"");
 
 // ESPN abbreviation -> display abbreviation used on the board.
-const DISPLAY: Record<string, string> = { WSH: "WAS", NY: "NYL", GS: "GSV", LV: "LVA" };
-const display = (abbr: string) => DISPLAY[abbr] ?? abbr;
+const display = (abbr: string) => league.display[abbr] ?? abbr;
 
-const board = JSON.parse(await readFile("data/wnba-board.json", "utf8")) as {
+const board = JSON.parse(await readFile(league.boardFile, "utf8")) as {
   generatedAt: string; start: string; end: string;
   teams: TeamAggregate[]; players: PlayerAggregate[];
 };
@@ -68,7 +75,9 @@ for (const game of slate) {
 const slateTeamIds = new Set(Object.keys(matchups));
 const opponentOf = (candidate: ModelCandidate) => teamById.get(matchups[candidate.teamId])!;
 
-const MIN_FIRST_BASKETS = 2;
+// Per-league evidence bar: the NBA plays roughly 2.4x the WNBA's games, so
+// the same standard of proof is a higher raw count there (lib/leagues.ts).
+const MIN_FIRST_BASKETS = league.minFirstBaskets;
 const PICK_COUNT = 8;
 
 // Low-read red flag: a team that rarely scores first makes its whole game's
@@ -93,7 +102,7 @@ const fairAmerican = (probability: number) => {
 // (e.g. a player whose opening events predate a trade). Missing rosters.json
 // disables the filter rather than blocking the board.
 const rosterFile = await (async () => {
-  try { return JSON.parse(await readFile("data/rosters.json", "utf8")); } catch { return null; }
+  try { return JSON.parse(await readFile(league.rosterFile, "utf8")); } catch { return null; }
 })();
 const currentTeamOf = (athleteId: string): string | null =>
   rosterFile?.athletes?.[athleteId]?.team ?? null;
@@ -120,6 +129,21 @@ const ranked = rankCandidates(board.players, board.teams, matchups)
     return !ruledOut;
   });
 
+// First TEAM basket is its own market (AGENT.md: `first_team_basket` --
+// one named team's first made field goal), and it is a different question
+// from the whole-game first basket the edge score ranks on: a player on a
+// team that rarely wins the opening exchange can still own his own side's
+// opening look. rankCandidates() doesn't carry that count, so join back to
+// the raw aggregate the sync wrote.
+const aggregateOf = (athleteId: string, teamId: string) =>
+  board.players.find(player => player.athleteId === athleteId && player.teamId === teamId) ?? null;
+
+const teamFirstOf = (athleteId: string, team: TeamAggregate) => {
+  const aggregate = aggregateOf(athleteId, team.teamId);
+  const made = aggregate?.firstTeamFieldGoals ?? 0;
+  return { made, games: team.games, rate: rate(made, team.games) };
+};
+
 // Data-derived role labels: the top first-basket share on each team is the
 // team lead; high conversion on a modest share reads as a value branch.
 const leadByTeam = new Map<string, string>();
@@ -138,8 +162,13 @@ const picks = ranked.slice(0, PICK_COUNT).map(candidate => {
   const tipPct = pct(candidate.components.tipMatchup);
   const shotPct = pct(candidate.rates.firstAttempt, 0);
   const makePct = pct(candidate.rates.firstAttemptMake, 0);
+  const teamFirst = teamFirstOf(candidate.athleteId, team);
   const signals = [
-    `${candidate.sample.firstFieldGoals}/${candidate.sample.teamGames} team-first baskets`,
+    // sample.firstFieldGoals is the WHOLE-GAME first basket count; the
+    // team's own first basket is the separate count below it. AGENT.md
+    // requires the two never be presented as the same number.
+    `${candidate.sample.firstFieldGoals}/${candidate.sample.teamGames} game-first baskets`,
+    `${teamFirst.made}/${teamFirst.games} ${display(team.team)}-first baskets`,
     `First shot in ${shotPct}% of games`,
     `Team wins ${pct(candidate.rates.teamTipWin, 0)}% of tips`,
   ];
@@ -154,13 +183,20 @@ const picks = ranked.slice(0, PICK_COUNT).map(candidate => {
   if (candidate.sample.firstAttempts < 5) cautions.push(`Only ${candidate.sample.firstAttempts} tracked first attempts`);
   return {
     player: candidate.player,
-    headshot: `https://a.espncdn.com/i/headshots/wnba/players/full/${candidate.athleteId}.png`,
+    headshot: `${league.headshotBase}${candidate.athleteId}.png`,
     team: display(team.team),
     opp: display(opponent.team),
     profile: profileOf(candidate),
     score: candidate.edgeScore,
     odds: fairAmerican(candidate.rates.firstBasket),
     fb: `${candidate.sample.firstFieldGoals} / ${candidate.sample.teamGames}`,
+    // Second market on the same card: this player scores his own team's
+    // first basket. Strictly likelier than the game-wide version -- only
+    // one of the two teams opens the scoring -- so the two prices must
+    // never be read as alternatives to each other.
+    teamFirst: `${teamFirst.made} / ${teamFirst.games}`,
+    teamFirstOdds: fairAmerican(teamFirst.rate),
+    teamFirstPct: pct(teamFirst.rate, 0),
     tip: tipPct,
     shot: shotPct,
     make: makePct,
@@ -173,7 +209,7 @@ const picks = ranked.slice(0, PICK_COUNT).map(candidate => {
 // Opening chain per team: who takes the jump, who gains possession off won
 // tips, who takes the team's first shot — all season counts with
 // denominators, jumper selection injury-aware (Out players skipped).
-const modelFile = await readOptional("data/wnba-model.json");
+const modelFile = await readOptional(league.modelFile);
 const rosterNameTeam: Record<string, string> = {};
 for (const athlete of Object.values(rosterFile?.athletes ?? {}) as Array<{ name: string; team: string }>) {
   rosterNameTeam[athlete.name] = athlete.team;
@@ -319,7 +355,7 @@ const teamAudit = slate.flatMap(game => [game.away, game.home]).map(team => {
       const departed = current !== null && current !== team.team;
       return {
         name: player.player,
-        headshot: `https://a.espncdn.com/i/headshots/wnba/players/full/${player.athleteId}.png`,
+        headshot: `${league.headshotBase}${player.athleteId}.png`,
         fb: player.firstFieldGoals,
         teamFirst: player.firstTeamFieldGoals,
         attempts: player.firstTeamAttempts,
@@ -336,7 +372,7 @@ const teamAudit = slate.flatMap(game => [game.away, game.home]).map(team => {
 // Optional side inputs: hand-maintained wins ledger and the ESPN-synced
 // triple-double watch (scripts/sync-td-watch.ts).
 const winsFile = await readOptional("data/wins.json");
-const tdFile = await readOptional("data/td-watch.json");
+const tdFile = await readOptional(league.watchFile);
 
 const slateAbbrs = new Set(slate.flatMap(game => [game.away.team, game.home.team]));
 const tdWatch = (tdFile?.players ?? []).map((player: any) => ({
@@ -454,7 +490,7 @@ const simGames = slate.map(game => {
     top: ranked.slice(0, 4).map(entry => ({
       player: entry.player.player,
       team: display((entry.side === "home" ? game.home : game.away).team),
-      headshot: `https://a.espncdn.com/i/headshots/wnba/players/full/${entry.player.athleteId}.png`,
+      headshot: `${league.headshotBase}${entry.player.athleteId}.png`,
       count: entry.n,
       p: Number((entry.n / SIM_RUNS).toFixed(3)),
     })),
@@ -490,18 +526,73 @@ const sim = {
   combo: simCombo,
 };
 
+// ── First team basket board ───────────────────────────────────────────
+// The `first_team_basket` market from AGENT.md, one block per slate team:
+// who opens THIS team's scoring, ranked by observed rate with denominators
+// intact. Deliberately separate from the picks board above -- the picks
+// board ranks the game-wide market, and mixing the two into one list would
+// present two different questions as one ranking.
+const TEAM_FIRST_ROWS = 5;
+const teamFirstBoard = slate.flatMap(game => [
+  { team: game.away, opponent: game.home, time: game.time },
+  { team: game.home, opponent: game.away, time: game.time },
+]).map(({ team, opponent, time }) => {
+  const roster = board.players
+    .filter(player => player.teamId === team.teamId)
+    .filter(player => player.firstTeamFieldGoals > 0)
+    .sort((a, b) => b.firstTeamFieldGoals - a.firstTeamFieldGoals || b.firstTeamAttempts - a.firstTeamAttempts);
+  // Reconciliation is computed over the WHOLE roster, before availability
+  // filtering: every game produces exactly one team-first basket, so these
+  // counts must sum to the team's games played. Dropping a traded or
+  // ruled-out player from the sum first would quietly break that identity
+  // and make a complete board look incomplete.
+  const accountedFor = roster.reduce((sum, player) => sum + player.firstTeamFieldGoals, 0);
+  const contenders = roster
+    .filter(player => onCurrentRoster(player.athleteId, team.team))
+    .filter(player => !isRuledOut(team.team, player.player));
+  const unavailable = roster.length - contenders.length;
+  return {
+    team: display(team.team),
+    opp: display(opponent.team),
+    time,
+    games: team.games,
+    scoredFirst: team.scoredFirstFieldGoal,
+    // How often this team wins the game-wide opening at all -- the ceiling
+    // any of its players' game-first prices sit under.
+    opensRate: pct(rate(team.scoredFirstFieldGoal, team.games), 0),
+    accountedFor,
+    unavailable,
+    players: contenders.slice(0, TEAM_FIRST_ROWS).map(player => ({
+      player: player.player,
+      headshot: `${league.headshotBase}${player.athleteId}.png`,
+      teamFirst: `${player.firstTeamFieldGoals} / ${team.games}`,
+      pct: pct(rate(player.firstTeamFieldGoals, team.games), 0),
+      odds: fairAmerican(rate(player.firstTeamFieldGoals, team.games)),
+      attempts: `${player.firstTeamAttempts} / ${team.games}`,
+      makes: player.firstTeamAttemptMakes,
+      // The game-wide market for the same player, shown alongside so the
+      // two prices are compared rather than confused.
+      gameFirstOdds: fairAmerican(rate(player.firstFieldGoals, team.games)),
+      dtd: Boolean(injuryEntry(team.team, player.player)),
+    })),
+    more: Math.max(0, contenders.length - TEAM_FIRST_ROWS),
+  };
+}).filter(entry => entry.players.length);
+
 const output = {
-  league: "WNBA",
+  league: league.label,
+  leagueKey: league.key,
   date,
   dateLabel: label,
   updated: `synced ${board.start} → ${board.end}`,
-  source: "ESPN play-by-play · first field goal market · prices are model-fair lines, no sportsbook feed",
-  headshotBase: "https://a.espncdn.com/i/headshots/wnba/players/full/",
+  source: `ESPN ${league.label} play-by-play · first field goal and first team basket markets · prices are model-fair lines, no sportsbook feed`,
+  headshotBase: league.headshotBase,
   weights: [
     [30, "Player FB share"], [20, "Team opening profile"], [15, "First-shot involvement"],
     [15, "Tip matchup"], [10, "Role / availability"], [5, "H2H"], [5, "Price"],
   ],
   picks,
+  teamFirstBoard,
   games,
   teamAudit,
   marketMap,
@@ -512,12 +603,12 @@ const output = {
   winTotals,
 };
 
-const banner = `// Opening Edge — WNBA first-basket model section (#opening).
+const banner = `// Opening Edge — ${league.label} first-basket model section (#opening).
 // GENERATED by model/opening-edge/scripts/generate-section.ts from the synced
 // snapshot (${board.generatedAt}); do not hand-edit. Regenerate with a slate:
 //   cd model/opening-edge && node --experimental-strip-types scripts/generate-section.ts \\
-//     --date YYYY-MM-DD --label "Day, Mon D" --slate "AWY@HOM=7:00 PM ET,..." \\
+//     --league ${league.key} --date YYYY-MM-DD --label "Day, Mon D" --slate "AWY@HOM=7:00 PM ET,..." \\
 //     [--injuries "NY:Player Out,...;CHI:Player Out,..."]
 `;
-await writeFile("../../data/opening-edge.js", `${banner}window.OPENING_EDGE = ${JSON.stringify(output, null, 2)};\n`, "utf8");
-console.log(`Wrote ${picks.length} picks, ${games.length} games for ${date} to data/opening-edge.js`);
+await writeFile(league.sectionFile, `${banner}window.${league.sectionGlobal} = ${JSON.stringify(output, null, 2)};\n`, "utf8");
+console.log(`${league.label}: wrote ${picks.length} picks, ${teamFirstBoard.length} team-first blocks, ${games.length} games for ${date} to ${league.sectionFile}`);

@@ -10,7 +10,8 @@
     "codex": "AGENT.md"
   },
   "implemented_adapters": [
-    "wnba-espn-play-by-play"
+    "wnba-espn-play-by-play",
+    "nba-espn-play-by-play"
   ],
   "required_capabilities": [
     "https_fetch",
@@ -21,7 +22,9 @@
   "commands": {
     "sync": "node --experimental-strip-types scripts/sync-wnba.ts START END",
     "audit": "python scripts/audit_snapshot.py data/wnba-model.json",
-    "test": "node --experimental-strip-types --test tests/wnba-model.test.ts"
+    "test": "node --experimental-strip-types --test tests/wnba-model.test.ts tests/nba-model.test.ts",
+    "sync_nba": "node --experimental-strip-types scripts/sync-nba.ts START END",
+    "audit_nba": "python scripts/audit_snapshot.py data/nba-model.json"
   },
   "market_definitions": [
     "first_field_goal",

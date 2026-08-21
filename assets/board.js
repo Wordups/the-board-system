@@ -607,6 +607,86 @@
     return total > STACK_SECTION_LIMIT ? `${copy} Showing the ${STACK_SECTION_LIMIT} strongest floor combos of ${total} starters league-wide.` : copy;
   }
 
+  // First-TD scorer board (backend/app/sim/nfl_first_td.py): the Poisson
+  // race for who opens the scoring. Two markets per player -- the game's
+  // first touchdown and his own team's first -- plus the team-level "who
+  // opens" split and the cross-game ladder. Renders nothing when the board
+  // is absent or empty (off-season, or a pre-first_td_board cached export).
+  function renderNflFirstTd() {
+    const board = snapshot?.sports?.nfl?.first_td_board;
+    if (!board || !(board.top_board || []).length) return "";
+    const faceOf = row => {
+      const url = headshotUrl("nfl", row.player_id);
+      const initials = String(row.player_name || "").split(/\s+/).filter(Boolean)
+        .map(part => part[0]).slice(0, 2).join("").toUpperCase();
+      return `<span class="ftd-face"><i>${esc(initials)}</i>${url ? `<img src="${esc(url)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</span>`;
+    };
+    const cards = (board.top_board || []).map((row, index) => `
+      <article class="ftd-card">
+        <span class="ftd-rank">${String(index + 1).padStart(2, "0")}</span>
+        <div class="ftd-head">
+          ${faceOf(row)}
+          <div class="ftd-who"><h3>${esc(row.player_name)}</h3><p>${esc(row.team)} vs ${esc(row.opponent)}${row.position ? ` · ${esc(row.position)}` : ""}</p></div>
+        </div>
+        <div class="ftd-markets">
+          <div class="ftd-market is-lead">
+            <small>First TD</small>
+            <b>${pctOf(row.first_td_prob_pct)}</b>
+            <span>${esc(row.first_td_fair_odds)}</span>
+          </div>
+          <div class="ftd-market">
+            <small>Team first TD</small>
+            <b>${pctOf(row.team_first_td_prob_pct)}</b>
+            <span>${esc(row.team_first_td_fair_odds)}</span>
+          </div>
+        </div>
+        <p class="ftd-reason">${esc(row.reason)}</p>
+      </article>`).join("");
+
+    const teamRows = (board.team_board || []).map(row => `
+      <div class="ftd-team">
+        <span class="ftd-team__abbr">${esc(row.team)}</span>
+        <span class="ftd-team__game">${esc(row.matchup)}</span>
+        <span><small>Opens the scoring</small><b>${pctOf(row.opens_scoring_prob_pct)}</b></span>
+        <span><small>Fair</small><b>${esc(row.opens_scoring_fair_odds)}</b></span>
+        <span><small>Team lead</small><b>${esc(row.top_scorer || "—")}</b></span>
+      </div>`).join("");
+
+    const ladder = [2, 3].flatMap(legCount => {
+      const tickets = board.parlays?.[`${legCount}_leg`] || [];
+      return tickets.slice(0, 2).map(ticket => `
+        <div class="oe-sim__combo">
+          ${ticket.legs.map((leg, index) => `
+            ${index ? `<span class="oe-sim__x" aria-hidden="true">&times;</span>` : ""}
+            <div class="oe-sim__leg"><div><b>${esc(leg.player_name)}</b><small>${esc(leg.team)} · ${esc(leg.matchup)}</small><em>${pctOf(leg.prob_pct)} · ${esc(leg.fair_odds)}</em></div></div>`).join("")}
+          <div class="oe-sim__payout">
+            <small>${legCount}-leg joint</small><b>${Number(ticket.joint_prob_pct).toFixed(2)}%</b>
+            <span>${ticket.decimal}x · fair ${esc(ticket.fair_odds)}</span>
+          </div>
+        </div>`);
+    }).join("");
+
+    const games = (board.games || []).map(game => `
+      <div class="ftd-game">
+        <h4>${esc(game.matchup)} <small>${esc(game.time)}</small></h4>
+        <p>Race λ ${game.total_lambda} · no touchdown ${pctOf(game.no_td_prob_pct)} · ${game.unmodeled_share_pct}% held for unmodeled scorers</p>
+        <div class="ftd-game__teams">${(game.teams || []).map(team => `<span><b>${esc(team.team)}</b> ${pctOf(team.opens_scoring_prob_pct)} <i>${esc(team.opens_scoring_fair_odds)}</i></span>`).join("")}</div>
+      </div>`).join("");
+
+    const assumptions = (board.assumptions || []).map(item => `<li>${esc(item)}</li>`).join("");
+
+    return `
+      <div class="section-head"><div><span class="section-kicker">First off the board</span><h2>${esc(board.title || "First TD Scorer")}</h2></div><p class="section-note">${esc(board.method || "")}</p></div>
+      <section class="ftd-grid">${cards}</section>
+      ${teamRows ? `<div class="section-head"><div><span class="section-kicker">Who opens the scoring</span><h2>First TD by team</h2></div><p class="section-note">Each side's share of its game's first-touchdown race, unmodeled scorers included.</p></div>
+      <section class="ftd-teams">${teamRows}</section>` : ""}
+      ${ladder ? `<div class="section-head"><div><span class="section-kicker">Cross-game ladder</span><h2>First-TD combos</h2></div><p class="section-note">One leg per game — two first-TD legs inside the same game are mutually exclusive, so they are never paired here. Report only.</p></div>
+      <section class="ftd-ladder">${ladder}</section>` : ""}
+      ${games ? `<div class="section-head"><div><span class="section-kicker">Race detail</span><h2>Every game's opening</h2></div><p class="section-note">The total scoring intensity each game's board was priced from.</p></div>
+      <section class="ftd-games">${games}</section>` : ""}
+      ${assumptions ? `<ul class="ftd-notes">${assumptions}</ul>` : ""}`;
+  }
+
   function renderNflSameGamePairs() {
     const pairs = snapshot?.sports?.nfl?.same_game_pairs;
     if (!pairs || !pairs.length) return "";
@@ -791,15 +871,17 @@
     const sportGames = games.filter(game => game.sport === sport);
     const top = sport === "soccer" ? probabilityLeaders(current, 3) : diversifiedTop(current, 3, 3);
     const latest = snapshot.sports[sport]?.date || staleInfo().latest;
-    // Layout: best signal first, then the filter board (paginated table),
-    // then NFL's same-game correlation sections (TD scorer combos, QB
-    // stacks, RB stacks/trend watch) below it -- deep-dive material for
-    // once you've already scanned the top picks, not a wall to scroll
-    // through to reach them.
+    // Layout: NFL leads with the first-TD board (its own market, answered
+    // before the anytime-TD board rather than buried under it), then best
+    // signal, then the filter board (paginated table), then NFL's same-game
+    // correlation sections (TD scorer combos, QB stacks, RB stacks/trend
+    // watch) below it -- deep-dive material for once you've already scanned
+    // the top picks, not a wall to scroll through to reach them.
     return `${pageHead(`${meta.label} signal field`, meta.label, "market map.", "", latest)}
       ${freshnessBanner(latest)}
       ${gamesRail(sportGames)}
       ${sport === "mlb" ? renderMlbHrSpotlight() : ""}
+      ${sport === "nfl" ? renderNflFirstTd() : ""}
       <div class="section-head"><div><span class="section-kicker">Current profile</span><h2>${sport === "soccer" ? "Highest modeled probabilities" : "Best balanced signals"}</h2></div><p class="section-note">${sport === "soccer" ? "One leader per market; use the probability sort below for the full board." : "These cards exclude hard price and projection conflicts."}</p></div>
       <section class="lead-grid">${top.map(signalCard).join("")}</section>
       <div class="toolbar" aria-label="Board filters">
@@ -892,12 +974,36 @@
     }[key];
   }
 
-  // Opening Edge — WNBA first-basket model. Data lives in data/opening-edge.js
-  // (hand-authored, outside the snapshot pipeline); the section only renders
-  // when that file is present.
-  function renderOpeningEdge() {
-    const oe = window.OPENING_EDGE;
-    if (!oe) return `<div class="empty-state"><strong>Opening Edge data missing.</strong>Add data/opening-edge.js to enable this section.</div>`;
+  // Opening Edge — first-basket model, one generated section per league
+  // (data/opening-edge.js for the WNBA, data/opening-edge-nba.js for the
+  // NBA). Each file assigns its own global; a league whose season hasn't
+  // opened simply isn't there, so the switcher shows only what exists and
+  // disappears entirely when there is one league. Both come from
+  // model/opening-edge, outside the snapshot pipeline.
+  const OPENING_LEAGUES = [
+    { key: "wnba", global: "OPENING_EDGE" },
+    { key: "nba", global: "OPENING_EDGE_NBA" },
+  ];
+
+  function openingBoards() {
+    return OPENING_LEAGUES
+      .map(entry => ({ ...entry, board: window[entry.global] }))
+      .filter(entry => entry.board && Array.isArray(entry.board.picks));
+  }
+
+  function openingBoardFor(leagueKey) {
+    const boards = openingBoards();
+    return boards.find(entry => entry.key === leagueKey) || boards[0] || null;
+  }
+
+  function renderOpeningEdge(leagueKey) {
+    const boards = openingBoards();
+    const active = openingBoardFor(leagueKey);
+    if (!active) return `<div class="empty-state"><strong>Opening Edge data missing.</strong>Add data/opening-edge.js to enable this section.</div>`;
+    const oe = active.board;
+    const leagueSwitch = boards.length > 1 ? `<div class="oe-leagues" role="tablist" aria-label="Opening Edge league">
+      ${boards.map(entry => `<a href="#opening/${esc(entry.key)}" role="tab" aria-selected="${entry.key === active.key}" class="${entry.key === active.key ? "active" : ""}">${esc(entry.board.league || entry.key.toUpperCase())}<small>${entry.board.picks.length}</small></a>`).join("")}
+    </div>` : "";
     const tone = profile => ({ "Team lead": "lime", "Lead Big": "lime", "Lead Guard": "cyan", "Secondary": "cyan", "Primary": "orange", "Value": "violet" }[profile] || "lime");
     const initials = name => String(name).split(" ").map(part => part[0]).join("");
     const picks = oe.picks.map((pick, index) => `
@@ -910,6 +1016,7 @@
         </div>
         <div class="oe-metrics">
           <div><span>First baskets</span><b>${esc(pick.fb)}</b></div>
+          ${pick.teamFirst ? `<div><span>Team 1st</span><b>${esc(pick.teamFirst)}</b></div><div><span>Team price</span><b>${esc(pick.teamFirstOdds)}</b></div>` : ""}
           <div><span>Tip</span><b>${Number(pick.tip)}%</b></div>
           <div><span>1st shot</span><b>${Number(pick.shot)}%</b></div>
           <div><span>Make idx</span><b>${Number(pick.make)}</b></div>
@@ -988,6 +1095,24 @@
           <small>$${win.stake.toFixed(2)} → <em>$${win.payout.toFixed(2)}</em></small>
         </div>
       </div>`).join("");
+    // First TEAM basket (`first_team_basket`): who opens each side's own
+    // scoring. A separate question from the picks board above, which ranks
+    // the game-wide market — so it gets its own block per team rather than
+    // being merged into one ranking.
+    const teamFirstCards = (oe.teamFirstBoard || []).map(block => `
+      <div class="oe-tfb">
+        <h4><span>${esc(block.team)}</span> vs ${esc(block.opp)} · opens the game's scoring in ${block.scoredFirst}/${block.games} (${block.opensRate}%)</h4>
+        <div class="oe-tfb__grid">
+          <small>Player</small><small>Team-1st</small><small>Rate</small><small>Fair</small><small>Game-1st</small>
+          ${block.players.map(player => `
+            <span class="oe-tfb__player"><img src="${esc(player.headshot)}" alt="" loading="lazy" width="20" height="20" onerror="this.remove()">${esc(player.player)}${player.dtd ? `<i class="oe-tfb__dtd">DTD</i>` : ""}</span>
+            <b>${esc(player.teamFirst)}</b><b>${player.pct}%</b><b>${esc(player.odds)}</b><b class="is-muted">${esc(player.gameFirstOdds)}</b>`).join("")}
+        </div>
+        <p class="oe-tfb__sum">${block.accountedFor === block.games
+          ? `✓ ${block.accountedFor}/${block.games} team-first baskets accounted for`
+          : `⚠ listed players sum ${block.accountedFor} vs ${block.games} games`}${block.more ? ` · +${block.more} more with entries` : ""}${block.unavailable ? ` · ${block.unavailable} not available tonight` : ""}</p>
+      </div>`).join("");
+
     const auditCards = (oe.teamAudit || []).map(team => `
       <div class="oe-audit">
         <h4><span>${esc(team.team)}</span> First scores in ${team.scoredFirst}/${team.games} · tips ${team.tipWins}/${team.games}</h4>
@@ -1002,8 +1127,11 @@
           : `⚠ players sum ${team.fbTotal} vs team total ${team.scoredFirst}`}${team.more ? ` · +${team.more} more with entries` : ""}</p>
       </div>`).join("");
     return `
+      ${leagueSwitch}
       <div class="section-head"><div><span class="section-kicker">Opening Edge · ${esc(oe.league)} · ${esc(oe.dateLabel)}</span><h2>First-basket board</h2></div><p class="section-note">Tip control, first-shot ownership and conversion · ${esc(oe.updated)}${oe.source ? ` · ${esc(oe.source)}` : ""}.</p></div>
       <section class="oe-grid">${picks}</section>
+      ${teamFirstCards ? `<div class="section-head"><div><span class="section-kicker">First team basket</span><h2>Who opens their own side</h2></div><p class="section-note">A different market from the board above: one named team's first made field goal. Strictly likelier than the game-wide version — only one of the two teams opens the scoring — so the two prices are shown together, never as alternatives.</p></div>
+      <section class="oe-tfbs">${teamFirstCards}</section>` : ""}
       <div class="section-head"><div><span class="section-kicker">Possession advantage</span><h2>Tip control by game</h2></div><p class="section-note">Away share left, home share right.</p></div>
       <section class="oe-games">${gameCards}</section>
       ${mapRows ? `<div class="section-head"><div><span class="section-kicker">WNBA market map</span><h2>Tonight at a glance</h2></div><p class="section-note">Every model signal per game — tip control, first-score lean, top opening pick and triple-double watch.</p></div>
@@ -1031,7 +1159,7 @@
     const links = [
       { route: "today", href: "#today", label: "Today", core: true },
       ...availableSports.map(sport => ({ route: `sport/${sport}`, href: `#sport/${sport}`, label: SPORT_META[sport].label, count: games.filter(game => game.sport === sport).length })),
-      ...(window.OPENING_EDGE ? [{ route: "opening", href: "#opening", label: "Opening Edge", count: window.OPENING_EDGE.picks.length }] : []),
+      ...(openingBoards().length ? [{ route: "opening", href: "#opening", label: "Opening Edge", count: openingBoards().reduce((total, entry) => total + entry.board.picks.length, 0) }] : []),
       { route: "games", href: "#games", label: "Games", core: true },
       { route: "card", href: "#card", label: "My Card", count: saved.length, core: true },
       { route: "method", href: "#method", label: "Method" },
@@ -1040,7 +1168,7 @@
     const current = active.route === "sport" ? `sport/${active.argument}` : active.route;
     nav.innerHTML = links.map(link => `<a class="nav-link${current === link.route ? " active" : ""}" data-route="${esc(link.route)}" data-core="${link.core ? "true" : "false"}" href="${esc(link.href)}">${esc(link.label)}${link.count !== undefined ? `<span class="nav-count">${link.count}</span>` : ""}</a>`).join("");
     mobileNav.innerHTML = availableSports.map(sport => `<a href="#sport/${sport}" class="${current === `sport/${sport}` ? "active" : ""}">${esc(SPORT_META[sport].label)}</a>`).join("")
-      + (window.OPENING_EDGE ? `<a href="#opening" class="${current === "opening" ? "active" : ""}">Opening Edge</a>` : "");
+      + (openingBoards().length ? `<a href="#opening" class="${current === "opening" ? "active" : ""}">Opening Edge</a>` : "");
   }
 
   function render() {
@@ -1051,7 +1179,7 @@
     else if (route.route === "games") app.innerHTML = renderGames();
     else if (route.route === "card") app.innerHTML = renderCard();
     else if (route.route === "method") app.innerHTML = renderMethod();
-    else if (route.route === "opening") app.innerHTML = renderOpeningEdge();
+    else if (route.route === "opening") app.innerHTML = renderOpeningEdge(route.argument);
     else app.innerHTML = renderToday();
     document.title = `The Board · ${route.route === "sport" ? SPORT_META[route.argument]?.label || "Sport" : route.route === "opening" ? "Opening Edge" : route.route[0].toUpperCase() + route.route.slice(1)}`;
     const routeDate = route.route === "sport"
@@ -1059,7 +1187,7 @@
       : route.route === "games"
         ? snapshot.sports[gameSport]?.date
         : route.route === "opening"
-          ? window.OPENING_EDGE?.date
+          ? openingBoardFor(route.argument)?.board?.date
           : latestSlateDate();
     const freshness = staleInfo(routeDate);
     headerFreshness.textContent = freshness.stale ? `Historical · ${freshness.latest}` : `Current · ${freshness.latest}`;

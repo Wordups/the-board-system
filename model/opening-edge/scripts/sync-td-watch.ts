@@ -1,16 +1,18 @@
-// Sync the WNBA triple-double watch list from ESPN season statistics.
+// Sync a league's triple-double watch list from ESPN season statistics.
 // Pulls PPG/RPG/APG leaders plus the double-double count, unions the athletes,
 // fetches each one's season averages, and ranks by triple-double proximity
 // (the weakest of the three categories, then the sum). Every number is an
 // ESPN season figure — nothing is projected or hand-tuned.
 //
 // Usage (from model/opening-edge/):
-//   node --experimental-strip-types scripts/sync-td-watch.ts [SEASON]
-// Writes data/td-watch.json.
+//   node --experimental-strip-types scripts/sync-td-watch.ts [SEASON] [LEAGUE]
+// Writes the league's watch file (data/td-watch.json for the WNBA).
 import { writeFile } from "node:fs/promises";
+import { resolveLeague } from "../lib/leagues.ts";
 
 const season = process.argv[2] ?? String(new Date().getUTCFullYear());
-const BASE = `https://sports.core.api.espn.com/v2/sports/basketball/leagues/wnba/seasons/${season}/types/2`;
+const league = resolveLeague(process.argv[3]);
+const BASE = `https://sports.core.api.espn.com/v2/sports/basketball/leagues/${league.key}/seasons/${season}/types/2`;
 const TOP_PER_CATEGORY = 20;
 const WATCH_SIZE = 10;
 
@@ -67,7 +69,7 @@ for (const id of athleteIds) {
       athleteId: id,
       player: athlete.displayName,
       team: await teamAbbr(athlete.team?.$ref),
-      headshot: athlete.headshot?.href ?? `https://a.espncdn.com/i/headshots/wnba/players/full/${id}.png`,
+      headshot: athlete.headshot?.href ?? `${league.headshotBase}${id}.png`,
       ppg: Number(ppg.toFixed(1)),
       rpg: Number(rpg.toFixed(1)),
       apg: Number(apg.toFixed(1)),
@@ -85,10 +87,11 @@ const watch = players.slice(0, WATCH_SIZE).map(player => {
   return { ...player, weakest };
 });
 
-await writeFile("data/td-watch.json", JSON.stringify({
+await writeFile(league.watchFile, JSON.stringify({
   generatedAt: new Date().toISOString(),
+  league: league.key,
   season,
-  source: "ESPN season averages (per game) and double-double counts",
+  source: `ESPN ${league.label} season averages (per game) and double-double counts`,
   players: watch,
 }, null, 2), "utf8");
-console.log(`Wrote ${watch.length} triple-double watch players (from ${players.length} leaders) to data/td-watch.json`);
+console.log(`${league.label}: wrote ${watch.length} triple-double watch players (from ${players.length} leaders) to ${league.watchFile}`);

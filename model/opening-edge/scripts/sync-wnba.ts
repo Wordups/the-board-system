@@ -1,20 +1,11 @@
-import { mkdir, writeFile } from "node:fs/promises";
-import { buildModel } from "../lib/wnba/model.ts";
+// Sync the WNBA season snapshot from ESPN play-by-play.
+//
+//   node --experimental-strip-types scripts/sync-wnba.ts [START] [END]
+//
+// Writes data/wnba-model.json (full snapshot with sequences) and
+// data/wnba-board.json (the compact board the generator reads). The body
+// lives in lib/sync.ts, shared with scripts/sync-nba.ts.
+import { LEAGUES } from "../lib/leagues.ts";
+import { syncLeague } from "../lib/sync.ts";
 
-const end = process.argv[3] ?? new Date().toISOString().slice(0, 10);
-const start = process.argv[2] ?? `${new Date().getUTCFullYear()}-05-01`;
-const model = await buildModel(start, end);
-await mkdir("data", { recursive: true });
-await writeFile("data/wnba-model.json", JSON.stringify(model, null, 2), "utf8");
-await writeFile("data/wnba-board.json", JSON.stringify({
-  generatedAt: model.generatedAt,
-  start: model.start,
-  end: model.end,
-  games: model.games,
-  source: model.source,
-  marketDefinitions: model.marketDefinitions,
-  teams: model.teams,
-  players: model.players,
-  candidates: model.candidates,
-}, null, 2), "utf8");
-console.log(`Wrote ${model.games} games, ${model.players.length} players, ${model.candidates.length} candidates to data/wnba-model.json`);
+await syncLeague(LEAGUES.wnba, process.argv[2], process.argv[3]);
