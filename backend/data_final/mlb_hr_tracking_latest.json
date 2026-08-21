@@ -1,13 +1,13 @@
 {
   "sport": "MLB",
   "date": "2026-08-21",
-  "generated_at": "2026-08-21 8:46 AM ET",
-  "board_last_updated": "8:46 AM ET",
+  "generated_at": "2026-08-21 9:45 AM ET",
+  "board_last_updated": "9:45 AM ET",
   "tracking_version": 1,
   "summary": {
     "pinned_board_title": "HR Core",
     "tracked_candidate_count": 12,
-    "core_candidate_count": 1,
+    "core_candidate_count": 2,
     "fringe_candidate_count": 1
   },
   "daily_picks": {
@@ -29,11 +29,11 @@
         "tier": "A"
       },
       {
-        "player_name": "Pete Alonso",
-        "team": "BAL",
-        "opponent": "TB",
+        "player_name": "CJ Abrams",
+        "team": "WSH",
+        "opponent": "MIA",
         "line": "HR 1+",
-        "score": 25.12,
+        "score": 29.76,
         "tier": "B"
       }
     ],
@@ -47,19 +47,19 @@
         "tier": "A"
       },
       {
+        "player_name": "CJ Abrams",
+        "team": "WSH",
+        "opponent": "MIA",
+        "line": "HR 1+",
+        "score": 29.76,
+        "tier": "B"
+      },
+      {
         "player_name": "Pete Alonso",
         "team": "BAL",
         "opponent": "TB",
         "line": "HR 1+",
         "score": 25.12,
-        "tier": "B"
-      },
-      {
-        "player_name": "Yordan Alvarez",
-        "team": "HOU",
-        "opponent": "ATH",
-        "line": "HR 1+",
-        "score": 34.56,
         "tier": "B"
       }
     ]
@@ -136,13 +136,13 @@
       "tier": "B",
       "reason": "HR edge 24.9 | L5 0.40/g | L10 0.40/g | Season 0.29/g | HR% 0.24 | HistHR% 0.23 | OPS 1.045 | SLG 0.613 | ISO 0.294 | PowIdx 0.59 | Surge 0.22 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.062 | vs J.T. Ginn | ERA 3.53 | WHIP 1.22 | HR/9 0.99 | HR A 14 | Hand R | Platoon + | vsP 0.000/0.000 in 1 PA | Age 29 | Order est. 1 | Lineup pen 1.2 | L5 XBH 0.60/g | Season XBH 0.49/g | Wts T0.42/M0.28/F0.30",
       "research_rank": 2,
-      "pinned_rank": 2,
+      "pinned_rank": 3,
       "core_fringe_tag": "strong",
       "board_tags": {
         "play_of_day": false,
         "daily_straight": false,
         "daily_two_leg": false,
-        "daily_three_leg": true,
+        "daily_three_leg": false,
         "pinned_board": true
       },
       "result": {
@@ -465,6 +465,63 @@
       "evidence": []
     },
     {
+      "player_id": "700250",
+      "player_name": "Ben Rice",
+      "team": "NYY",
+      "opponent": "TOR",
+      "game_id": "tor-nyy-2026-08-21",
+      "market": "HR",
+      "line": "HR 1+",
+      "score": 30.32,
+      "base_score": 30.32,
+      "confidence": 30,
+      "tier": "B",
+      "reason": "HR edge 19.8 | L5 0.20/g | L10 0.30/g | Season 0.28/g | HR% 0.24 | HistHR% 0.20 | OPS 0.876 | SLG 0.532 | ISO 0.281 | PowIdx 0.46 | Surge 0.25 | Matchup 0.22 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.049 | vs Mason Fluharty | ERA 3.71 | WHIP 1.24 | HR/9 1.06 | HR A 6 | Hand L | Platoon - | vsP 0.000/0.000 in 6 PA | Age 27 | Order est. 1 | Lineup pen 1.2 | Rising 0.44 | L5 XBH 0.80/g | Season XBH 0.47/g | Wts T0.42/M0.28/F0.30",
+      "research_rank": 8,
+      "pinned_rank": null,
+      "core_fringe_tag": "strong",
+      "board_tags": {
+        "play_of_day": false,
+        "daily_straight": false,
+        "daily_two_leg": false,
+        "daily_three_leg": false,
+        "pinned_board": false
+      },
+      "result": {
+        "status": "pending",
+        "home_runs": 0
+      },
+      "features": {
+        "pitcher_name": "Mason Fluharty",
+        "pitcher_whip": 1.24,
+        "pitcher_hr9": 1.06,
+        "pitcher_hr_allowed": 6.0,
+        "vs_pitcher_avg": 0.0,
+        "vs_pitcher_ops": 0.0,
+        "vs_pitcher_hr": 0.0,
+        "order_estimate": 1,
+        "projected_pa": 4.47,
+        "lineup_confirmed": false,
+        "lineup_uncertainty_penalty": 1.2,
+        "season_hr_probability": 0.242,
+        "l10_hr_probability": 0.261,
+        "l5_hr_probability": 0.213,
+        "historical_hr_probability": 0.202,
+        "season_hr_per_game": 0.279,
+        "l10_hr_per_game": 0.3,
+        "l5_hr_per_game": 0.2,
+        "ops": 0.876,
+        "slg": 0.532,
+        "iso": 0.281,
+        "sample_reliability": 1.0,
+        "age": 27.0,
+        "historical_power_index": 0.343,
+        "recent_peak_hr_rate": 0.049,
+        "career_hr_rate": 0.052
+      },
+      "evidence": []
+    },
+    {
       "player_id": "621566",
       "player_name": "Matt Olson",
       "team": "ATL",
@@ -477,7 +534,7 @@
       "confidence": 30,
       "tier": "B",
       "reason": "HR edge 19.2 | L5 0.00/g | L10 0.20/g | Season 0.28/g | HR% 0.24 | HistHR% 0.24 | OPS 0.879 | SLG 0.541 | ISO 0.280 | PowIdx 0.57 | Surge 0.10 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.074 | vs Jacob Misiorowski | ERA 1.75 | WHIP 0.75 | HR/9 0.84 | HR A 13 | Hand R | Platoon + | vsP 0.000/0.333 in 3 PA | Age 32 | Order est. 1 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.52/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 8,
+      "research_rank": 9,
       "pinned_rank": null,
       "core_fringe_tag": "strong",
       "board_tags": {
@@ -529,19 +586,19 @@
       "game_id": "wsh-mia-2026-08-21",
       "market": "HR",
       "line": "HR 1+",
-      "score": 29.24,
-      "base_score": 29.24,
-      "confidence": 29,
+      "score": 29.76,
+      "base_score": 29.76,
+      "confidence": 30,
       "tier": "B",
-      "reason": "HR edge 19.0 | L5 0.20/g | L10 0.40/g | Season 0.23/g | HR% 0.21 | HistHR% 0.14 | OPS 0.884 | SLG 0.530 | ISO 0.251 | PowIdx 0.52 | Surge 0.13 | Matchup 0.52 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.033 | vs Ryan Gusto | ERA 4.70 | WHIP 1.32 | HR/9 1.34 | HR A 8 | Hand R | Platoon + | vsP 0.000/0.333 in 3 PA | Age 25 | Order est. 1 | Lineup pen 1.2 | Rising 0.57 | L5 XBH 0.20/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 9,
-      "pinned_rank": 3,
-      "core_fringe_tag": "strong",
+      "reason": "HR edge 19.7 | L5 0.20/g | L10 0.40/g | Season 0.23/g | HR% 0.21 | HistHR% 0.14 | OPS 0.884 | SLG 0.530 | ISO 0.251 | PowIdx 0.53 | Surge 0.13 | Matchup 0.52 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.033 | vs Ryan Gusto | ERA 4.70 | WHIP 1.32 | HR/9 1.34 | HR A 8 | Hand R | Platoon + | vsP 0.333/0.833 in 4 PA | Age 25 | Order est. 1 | Lineup pen 1.2 | Rising 0.57 | L5 XBH 0.20/g | Season XBH 0.46/g | Wts T0.42/M0.28/F0.30",
+      "research_rank": 10,
+      "pinned_rank": 2,
+      "core_fringe_tag": "core",
       "board_tags": {
         "play_of_day": false,
         "daily_straight": false,
-        "daily_two_leg": false,
-        "daily_three_leg": false,
+        "daily_two_leg": true,
+        "daily_three_leg": true,
         "pinned_board": true
       },
       "result": {
@@ -553,8 +610,8 @@
         "pitcher_whip": 1.32,
         "pitcher_hr9": 1.34,
         "pitcher_hr_allowed": 8.0,
-        "vs_pitcher_avg": 0.0,
-        "vs_pitcher_ops": 0.333,
+        "vs_pitcher_avg": 0.333,
+        "vs_pitcher_ops": 0.833,
         "vs_pitcher_hr": 0.0,
         "order_estimate": 1,
         "projected_pa": 4.48,
@@ -575,63 +632,6 @@
         "historical_power_index": 0.0,
         "recent_peak_hr_rate": 0.033,
         "career_hr_rate": 0.033
-      },
-      "evidence": []
-    },
-    {
-      "player_id": "700250",
-      "player_name": "Ben Rice",
-      "team": "NYY",
-      "opponent": "TOR",
-      "game_id": "tor-nyy-2026-08-21",
-      "market": "HR",
-      "line": "HR 1+",
-      "score": 29.2,
-      "base_score": 29.2,
-      "confidence": 29,
-      "tier": "B",
-      "reason": "HR edge 18.8 | L5 0.20/g | L10 0.30/g | Season 0.28/g | HR% 0.24 | HistHR% 0.20 | OPS 0.876 | SLG 0.532 | ISO 0.281 | PowIdx 0.47 | Surge 0.25 | Matchup 0.45 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.049 | Age 27 | Order est. 1 | Lineup pen 1.2 | Rising 0.44 | L5 XBH 0.80/g | Season XBH 0.47/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 10,
-      "pinned_rank": null,
-      "core_fringe_tag": "strong",
-      "board_tags": {
-        "play_of_day": false,
-        "daily_straight": false,
-        "daily_two_leg": false,
-        "daily_three_leg": false,
-        "pinned_board": false
-      },
-      "result": {
-        "status": "pending",
-        "home_runs": 0
-      },
-      "features": {
-        "pitcher_name": "",
-        "pitcher_whip": 0.0,
-        "pitcher_hr9": 0.0,
-        "pitcher_hr_allowed": 0.0,
-        "vs_pitcher_avg": 0.0,
-        "vs_pitcher_ops": 0.0,
-        "vs_pitcher_hr": 0.0,
-        "order_estimate": 1,
-        "projected_pa": 4.47,
-        "lineup_confirmed": false,
-        "lineup_uncertainty_penalty": 1.2,
-        "season_hr_probability": 0.242,
-        "l10_hr_probability": 0.261,
-        "l5_hr_probability": 0.213,
-        "historical_hr_probability": 0.202,
-        "season_hr_per_game": 0.279,
-        "l10_hr_per_game": 0.3,
-        "l5_hr_per_game": 0.2,
-        "ops": 0.876,
-        "slg": 0.532,
-        "iso": 0.281,
-        "sample_reliability": 1.0,
-        "age": 27.0,
-        "historical_power_index": 0.343,
-        "recent_peak_hr_rate": 0.049,
-        "career_hr_rate": 0.052
       },
       "evidence": []
     },
