@@ -1,7 +1,7 @@
 {
   "sport": "SOCCER",
   "date": "2026-08-22",
-  "last_updated": "5:26 PM ET",
+  "last_updated": "6:26 PM ET",
   "pinned_board": {
     "title": "Anytime Goalscorer Top 10",
     "market": "GS",
@@ -28,7 +28,7 @@
         "score": 62.96,
         "confidence": 63,
         "tier": "B",
-        "reason": "Goal \u03bb 0.99 | Raw G/m 0.76 | Team xG 2.37 | Sample 17 | MLS | Shrunk to F prior",
+        "reason": "Goal \u03bb 0.99 | Raw G/m 0.76 | Team xG 2.36 | Sample 17 | MLS | Shrunk to F prior",
         "sim_prob_pct": 62.96,
         "model_hit_rate": 0.6296
       },
@@ -80,7 +80,7 @@
         "score": 55.9,
         "confidence": 56,
         "tier": "C",
-        "reason": "Goal \u03bb 0.82 | Raw G/m 0.62 | Team xG 2.37 | Sample 16 | MLS | Shrunk to F prior",
+        "reason": "Goal \u03bb 0.82 | Raw G/m 0.62 | Team xG 2.36 | Sample 16 | MLS | Shrunk to F prior",
         "sim_prob_pct": 55.9,
         "model_hit_rate": 0.559
       },
@@ -148,8 +148,8 @@
           "market": "BTTS",
           "player_name": "Both Teams to Score",
           "line": "BTTS No",
-          "score": 59.52,
-          "confidence": 60,
+          "score": 58.83,
+          "confidence": 59,
           "tier": "B",
           "player_id": "401879322-btts"
         },
@@ -157,8 +157,8 @@
           "market": "1H",
           "player_name": "First Half Goal",
           "line": "1H Over 0.5 Goals",
-          "score": 67.19,
-          "confidence": 67,
+          "score": 67.55,
+          "confidence": 68,
           "tier": "B",
           "player_id": "401879322-1h"
         },
@@ -166,7 +166,7 @@
           "market": "ML",
           "player_name": "MAN",
           "line": "Moneyline",
-          "score": 65.97,
+          "score": 65.87,
           "confidence": 66,
           "tier": "B",
           "player_id": "401879322-ml"
@@ -184,12 +184,12 @@
             "team": "HUL",
             "opponent": "MAN",
             "line": "BTTS No",
-            "score": 59.52,
-            "confidence": 60,
+            "score": 58.83,
+            "confidence": 59,
             "tier": "B",
-            "reason": "Home score 49.0% | Away score 82.6% | xG 0.67-1.75",
-            "sim_prob_pct": 59.52,
-            "model_hit_rate": 0.5952
+            "reason": "Home score 49.7% | Away score 82.8% | xG 0.69-1.76",
+            "sim_prob_pct": 58.83,
+            "model_hit_rate": 0.5883
           }
         ],
         "1H": [
@@ -199,12 +199,12 @@
             "team": "HUL",
             "opponent": "MAN",
             "line": "1H Over 0.5 Goals",
-            "score": 67.19,
-            "confidence": 67,
+            "score": 67.55,
+            "confidence": 68,
             "tier": "B",
-            "reason": "First-half \u03bb 1.11 | 46% goal-time share | Full-match xG 2.42",
-            "sim_prob_pct": 67.19,
-            "model_hit_rate": 0.6719
+            "reason": "First-half \u03bb 1.13 | 46% goal-time share | Full-match xG 2.45",
+            "sim_prob_pct": 67.55,
+            "model_hit_rate": 0.6755
           }
         ],
         "1HML": [
@@ -214,12 +214,12 @@
             "team": "MAN",
             "opponent": "HUL",
             "line": "1H Moneyline",
-            "score": 45.11,
+            "score": 45.09,
             "confidence": 45,
             "tier": "C",
-            "reason": "1H Poisson 45.1% | 1H xG 0.31-0.80",
-            "sim_prob_pct": 45.11,
-            "model_hit_rate": 0.4511
+            "reason": "1H Poisson 45.1% | 1H xG 0.32-0.81",
+            "sim_prob_pct": 45.09,
+            "model_hit_rate": 0.4509
           }
         ],
         "OU": [
@@ -229,13 +229,13 @@
             "team": "HUL",
             "opponent": "MAN",
             "line": "Under 2.5 Goals",
-            "score": 51.29,
+            "score": 50.58,
             "confidence": 51,
             "tier": "C",
-            "reason": "Total \u03bb 2.42 | Model over 43.6% | Calibrated under 51.3%",
-            "sim_prob_pct": 51.29,
-            "model_hit_rate": 0.5129,
-            "implied_odds": "+125"
+            "reason": "Total \u03bb 2.45 | Model over 44.3% | Calibrated under 50.6%",
+            "sim_prob_pct": 50.58,
+            "model_hit_rate": 0.5058,
+            "implied_odds": "+130"
           }
         ],
         "ML": [
@@ -245,12 +245,12 @@
             "team": "MAN",
             "opponent": "HUL",
             "line": "Moneyline",
-            "score": 65.97,
+            "score": 65.87,
             "confidence": 66,
             "tier": "B",
-            "reason": "Calibrated 66.0% | Poisson 63.3% | Market 69.7%",
-            "sim_prob_pct": 65.97,
-            "model_hit_rate": 0.6597,
+            "reason": "Calibrated 65.9% | Poisson 63.1% | Market 69.7%",
+            "sim_prob_pct": 65.87,
+            "model_hit_rate": 0.6587,
             "implied_odds": "-270"
           }
         ]
@@ -1084,8 +1084,8 @@
           "market": "BTTS",
           "player_name": "Both Teams to Score",
           "line": "BTTS No",
-          "score": 64.36,
-          "confidence": 64,
+          "score": 64.73,
+          "confidence": 65,
           "tier": "B",
           "player_id": "401874931-btts"
         },
@@ -1102,8 +1102,8 @@
           "market": "ML",
           "player_name": "INT",
           "line": "Moneyline",
-          "score": 74.3,
-          "confidence": 74,
+          "score": 74.56,
+          "confidence": 75,
           "tier": "A",
           "player_id": "401874931-ml"
         }
@@ -1120,12 +1120,12 @@
             "team": "INT",
             "opponent": "MON",
             "line": "BTTS No",
-            "score": 64.36,
-            "confidence": 64,
+            "score": 64.73,
+            "confidence": 65,
             "tier": "B",
-            "reason": "Home score 86.0% | Away score 41.4% | xG 1.97-0.54",
-            "sim_prob_pct": 64.36,
-            "model_hit_rate": 0.6436
+            "reason": "Home score 86.1% | Away score 41.0% | xG 1.97-0.53",
+            "sim_prob_pct": 64.73,
+            "model_hit_rate": 0.6473
           }
         ],
         "1H": [
@@ -1150,12 +1150,12 @@
             "team": "INT",
             "opponent": "MON",
             "line": "1H Moneyline",
-            "score": 51.1,
+            "score": 51.37,
             "confidence": 51,
             "tier": "C",
-            "reason": "1H Poisson 51.1% | 1H xG 0.90-0.25",
-            "sim_prob_pct": 51.1,
-            "model_hit_rate": 0.511
+            "reason": "1H Poisson 51.4% | 1H xG 0.91-0.24",
+            "sim_prob_pct": 51.37,
+            "model_hit_rate": 0.5137
           }
         ],
         "OU": [
@@ -1181,13 +1181,13 @@
             "team": "INT",
             "opponent": "MON",
             "line": "Moneyline",
-            "score": 74.3,
-            "confidence": 74,
+            "score": 74.56,
+            "confidence": 75,
             "tier": "A",
-            "reason": "Calibrated 74.3% | Poisson 71.5% | Market 78.1%",
-            "sim_prob_pct": 74.3,
-            "model_hit_rate": 0.743,
-            "implied_odds": "-550"
+            "reason": "Calibrated 74.6% | Poisson 71.9% | Market 78.2%",
+            "sim_prob_pct": 74.56,
+            "model_hit_rate": 0.7456,
+            "implied_odds": "-575"
           }
         ]
       }
@@ -4052,8 +4052,8 @@
           "market": "BTTS",
           "player_name": "Both Teams to Score",
           "line": "BTTS Yes",
-          "score": 62.72,
-          "confidence": 63,
+          "score": 62.47,
+          "confidence": 62,
           "tier": "B",
           "player_id": "761742-btts"
         }
@@ -4069,7 +4069,7 @@
             "score": 62.96,
             "confidence": 63,
             "tier": "B",
-            "reason": "Goal \u03bb 0.99 | Raw G/m 0.76 | Team xG 2.37 | Sample 17 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.99 | Raw G/m 0.76 | Team xG 2.36 | Sample 17 | MLS | Shrunk to F prior",
             "sim_prob_pct": 62.96,
             "model_hit_rate": 0.6296
           },
@@ -4082,7 +4082,7 @@
             "score": 55.9,
             "confidence": 56,
             "tier": "C",
-            "reason": "Goal \u03bb 0.82 | Raw G/m 0.62 | Team xG 2.37 | Sample 16 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.82 | Raw G/m 0.62 | Team xG 2.36 | Sample 16 | MLS | Shrunk to F prior",
             "sim_prob_pct": 55.9,
             "model_hit_rate": 0.559
           },
@@ -4095,7 +4095,7 @@
             "score": 43.03,
             "confidence": 43,
             "tier": "C",
-            "reason": "Goal \u03bb 0.56 | Raw G/m 0.41 | Team xG 2.37 | Sample 17 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.56 | Raw G/m 0.41 | Team xG 2.36 | Sample 17 | MLS | Shrunk to F prior",
             "sim_prob_pct": 43.03,
             "model_hit_rate": 0.4303
           },
@@ -4108,7 +4108,7 @@
             "score": 40.45,
             "confidence": 40,
             "tier": "C",
-            "reason": "Goal \u03bb 0.52 | Raw G/m 0.67 | Team xG 1.18 | Sample 3 | MLS | Shrunk to M prior",
+            "reason": "Goal \u03bb 0.52 | Raw G/m 0.67 | Team xG 1.17 | Sample 3 | MLS | Shrunk to M prior",
             "sim_prob_pct": 40.45,
             "model_hit_rate": 0.4045
           },
@@ -4121,7 +4121,7 @@
             "score": 29.14,
             "confidence": 29,
             "tier": "C",
-            "reason": "Goal \u03bb 0.34 | Raw G/m 0.23 | Team xG 2.37 | Sample 13 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.34 | Raw G/m 0.23 | Team xG 2.36 | Sample 13 | MLS | Shrunk to F prior",
             "sim_prob_pct": 29.14,
             "model_hit_rate": 0.2914
           },
@@ -4134,7 +4134,7 @@
             "score": 29.06,
             "confidence": 29,
             "tier": "C",
-            "reason": "Goal \u03bb 0.34 | Raw G/m 0.25 | Team xG 1.18 | Sample 20 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.34 | Raw G/m 0.25 | Team xG 1.17 | Sample 20 | MLS | Shrunk to F prior",
             "sim_prob_pct": 29.06,
             "model_hit_rate": 0.2906
           },
@@ -4147,7 +4147,7 @@
             "score": 29.03,
             "confidence": 29,
             "tier": "C",
-            "reason": "Goal \u03bb 0.34 | Raw G/m 0.27 | Team xG 2.37 | Sample 15 | MLS | Shrunk to M prior",
+            "reason": "Goal \u03bb 0.34 | Raw G/m 0.27 | Team xG 2.36 | Sample 15 | MLS | Shrunk to M prior",
             "sim_prob_pct": 29.03,
             "model_hit_rate": 0.2903
           },
@@ -4160,7 +4160,7 @@
             "score": 27.72,
             "confidence": 28,
             "tier": "C",
-            "reason": "Goal \u03bb 0.32 | Raw G/m 0.23 | Team xG 1.18 | Sample 13 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.32 | Raw G/m 0.23 | Team xG 1.17 | Sample 13 | MLS | Shrunk to F prior",
             "sim_prob_pct": 27.72,
             "model_hit_rate": 0.2772
           },
@@ -4173,7 +4173,7 @@
             "score": 23.92,
             "confidence": 24,
             "tier": "C",
-            "reason": "Goal \u03bb 0.27 | Raw G/m 0.19 | Team xG 1.18 | Sample 16 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.27 | Raw G/m 0.19 | Team xG 1.17 | Sample 16 | MLS | Shrunk to F prior",
             "sim_prob_pct": 23.92,
             "model_hit_rate": 0.2392
           },
@@ -4186,7 +4186,7 @@
             "score": 22.83,
             "confidence": 23,
             "tier": "C",
-            "reason": "Goal \u03bb 0.26 | Raw G/m 0.22 | Team xG 1.18 | Sample 9 | MLS | Shrunk to M prior",
+            "reason": "Goal \u03bb 0.26 | Raw G/m 0.22 | Team xG 1.17 | Sample 9 | MLS | Shrunk to M prior",
             "sim_prob_pct": 22.83,
             "model_hit_rate": 0.2283
           }
@@ -4201,7 +4201,7 @@
             "score": 52.66,
             "confidence": 53,
             "tier": "C",
-            "reason": "Assist \u03bb 0.75 | Raw A/m 0.59 | Team xG 2.37 | Sample 17 | MLS | Shrunk to F prior",
+            "reason": "Assist \u03bb 0.75 | Raw A/m 0.59 | Team xG 2.36 | Sample 17 | MLS | Shrunk to F prior",
             "sim_prob_pct": 52.66,
             "model_hit_rate": 0.5266
           },
@@ -4214,7 +4214,7 @@
             "score": 49.14,
             "confidence": 49,
             "tier": "C",
-            "reason": "Assist \u03bb 0.68 | Raw A/m 0.53 | Team xG 2.37 | Sample 15 | MLS | Shrunk to M prior",
+            "reason": "Assist \u03bb 0.68 | Raw A/m 0.53 | Team xG 2.36 | Sample 15 | MLS | Shrunk to M prior",
             "sim_prob_pct": 49.14,
             "model_hit_rate": 0.4914
           },
@@ -4227,7 +4227,7 @@
             "score": 40.02,
             "confidence": 40,
             "tier": "C",
-            "reason": "Assist \u03bb 0.51 | Raw A/m 0.39 | Team xG 2.37 | Sample 18 | MLS | Shrunk to M prior",
+            "reason": "Assist \u03bb 0.51 | Raw A/m 0.39 | Team xG 2.36 | Sample 18 | MLS | Shrunk to M prior",
             "sim_prob_pct": 40.02,
             "model_hit_rate": 0.4002
           },
@@ -4240,7 +4240,7 @@
             "score": 38.43,
             "confidence": 38,
             "tier": "C",
-            "reason": "Assist \u03bb 0.48 | Raw A/m 0.38 | Team xG 2.37 | Sample 16 | MLS | Shrunk to F prior",
+            "reason": "Assist \u03bb 0.48 | Raw A/m 0.38 | Team xG 2.36 | Sample 16 | MLS | Shrunk to F prior",
             "sim_prob_pct": 38.43,
             "model_hit_rate": 0.3843
           },
@@ -4253,7 +4253,7 @@
             "score": 32.73,
             "confidence": 33,
             "tier": "C",
-            "reason": "Assist \u03bb 0.40 | Raw A/m 0.31 | Team xG 2.37 | Sample 13 | MLS | Shrunk to F prior",
+            "reason": "Assist \u03bb 0.40 | Raw A/m 0.31 | Team xG 2.36 | Sample 13 | MLS | Shrunk to F prior",
             "sim_prob_pct": 32.73,
             "model_hit_rate": 0.3273
           },
@@ -4266,7 +4266,7 @@
             "score": 32.44,
             "confidence": 32,
             "tier": "C",
-            "reason": "Assist \u03bb 0.39 | Raw A/m 0.33 | Team xG 1.18 | Sample 9 | MLS | Shrunk to M prior",
+            "reason": "Assist \u03bb 0.39 | Raw A/m 0.33 | Team xG 1.17 | Sample 9 | MLS | Shrunk to M prior",
             "sim_prob_pct": 32.44,
             "model_hit_rate": 0.3244
           },
@@ -4279,7 +4279,7 @@
             "score": 32.22,
             "confidence": 32,
             "tier": "C",
-            "reason": "Assist \u03bb 0.39 | Raw A/m 0.29 | Team xG 2.37 | Sample 17 | MLS | Shrunk to F prior",
+            "reason": "Assist \u03bb 0.39 | Raw A/m 0.29 | Team xG 2.36 | Sample 17 | MLS | Shrunk to F prior",
             "sim_prob_pct": 32.22,
             "model_hit_rate": 0.3222
           },
@@ -4292,7 +4292,7 @@
             "score": 24.87,
             "confidence": 25,
             "tier": "C",
-            "reason": "Assist \u03bb 0.29 | Raw A/m 0.25 | Team xG 1.18 | Sample 4 | MLS | Shrunk to M prior",
+            "reason": "Assist \u03bb 0.29 | Raw A/m 0.25 | Team xG 1.17 | Sample 4 | MLS | Shrunk to M prior",
             "sim_prob_pct": 24.87,
             "model_hit_rate": 0.2487
           },
@@ -4305,7 +4305,7 @@
             "score": 20.97,
             "confidence": 21,
             "tier": "C",
-            "reason": "Assist \u03bb 0.24 | Raw A/m 0.18 | Team xG 1.18 | Sample 17 | MLS | Shrunk to M prior",
+            "reason": "Assist \u03bb 0.24 | Raw A/m 0.18 | Team xG 1.17 | Sample 17 | MLS | Shrunk to M prior",
             "sim_prob_pct": 20.97,
             "model_hit_rate": 0.2097
           },
@@ -4318,7 +4318,7 @@
             "score": 18.5,
             "confidence": 18,
             "tier": "C",
-            "reason": "Assist \u03bb 0.20 | Raw A/m 0.15 | Team xG 1.18 | Sample 20 | MLS | Shrunk to M prior",
+            "reason": "Assist \u03bb 0.20 | Raw A/m 0.15 | Team xG 1.17 | Sample 20 | MLS | Shrunk to M prior",
             "sim_prob_pct": 18.5,
             "model_hit_rate": 0.185
           }
@@ -4594,12 +4594,12 @@
             "team": "MIA",
             "opponent": "TOR",
             "line": "BTTS Yes",
-            "score": 62.72,
-            "confidence": 63,
+            "score": 62.47,
+            "confidence": 62,
             "tier": "B",
-            "reason": "Home score 90.6% | Away score 69.2% | xG 2.37-1.18",
-            "sim_prob_pct": 62.72,
-            "model_hit_rate": 0.6272
+            "reason": "Home score 90.5% | Away score 69.0% | xG 2.36-1.17",
+            "sim_prob_pct": 62.47,
+            "model_hit_rate": 0.6247
           }
         ],
         "1H": [
@@ -4609,12 +4609,12 @@
             "team": "MIA",
             "opponent": "TOR",
             "line": "1H Over 0.5 Goals",
-            "score": 80.42,
+            "score": 80.26,
             "confidence": 80,
             "tier": "A",
-            "reason": "First-half \u03bb 1.63 | 46% goal-time share | Full-match xG 3.55",
-            "sim_prob_pct": 80.42,
-            "model_hit_rate": 0.8042
+            "reason": "First-half \u03bb 1.62 | 46% goal-time share | Full-match xG 3.53",
+            "sim_prob_pct": 80.26,
+            "model_hit_rate": 0.8026
           }
         ],
         "1HML": [
@@ -4624,12 +4624,12 @@
             "team": "MIA",
             "opponent": "TOR",
             "line": "1H Moneyline",
-            "score": 48.83,
+            "score": 48.72,
             "confidence": 49,
             "tier": "C",
-            "reason": "1H Poisson 48.8% | 1H xG 1.09-0.54",
-            "sim_prob_pct": 48.83,
-            "model_hit_rate": 0.4883
+            "reason": "1H Poisson 48.7% | 1H xG 1.08-0.54",
+            "sim_prob_pct": 48.72,
+            "model_hit_rate": 0.4872
           }
         ],
         "OU": [
@@ -4639,12 +4639,12 @@
             "team": "MIA",
             "opponent": "TOR",
             "line": "Over 3.5 Goals",
-            "score": 51.07,
+            "score": 50.62,
             "confidence": 51,
             "tier": "C",
-            "reason": "Total \u03bb 3.55 | Model over 47.3% | Calibrated over 51.1%",
-            "sim_prob_pct": 51.07,
-            "model_hit_rate": 0.5107,
+            "reason": "Total \u03bb 3.53 | Model over 46.9% | Calibrated over 50.6%",
+            "sim_prob_pct": 50.62,
+            "model_hit_rate": 0.5062,
             "implied_odds": "-155"
           }
         ],
@@ -4655,12 +4655,12 @@
             "team": "MIA",
             "opponent": "TOR",
             "line": "Moneyline",
-            "score": 65.94,
+            "score": 65.88,
             "confidence": 66,
             "tier": "B",
-            "reason": "Calibrated 65.9% | Poisson 63.8% | Market 68.9%",
-            "sim_prob_pct": 65.94,
-            "model_hit_rate": 0.6594,
+            "reason": "Calibrated 65.9% | Poisson 63.7% | Market 68.9%",
+            "sim_prob_pct": 65.88,
+            "model_hit_rate": 0.6588,
             "implied_odds": "-290"
           }
         ]
@@ -5975,8 +5975,8 @@
           "market": "BTTS",
           "player_name": "Both Teams to Score",
           "line": "BTTS Yes",
-          "score": 57.48,
-          "confidence": 57,
+          "score": 57.63,
+          "confidence": 58,
           "tier": "B",
           "player_id": "761748-btts"
         }
@@ -5992,7 +5992,7 @@
             "score": 47.13,
             "confidence": 47,
             "tier": "C",
-            "reason": "Goal \u03bb 0.64 | Raw G/m 0.50 | Team xG 1.61 | Sample 20 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.64 | Raw G/m 0.50 | Team xG 1.62 | Sample 20 | MLS | Shrunk to F prior",
             "sim_prob_pct": 47.13,
             "model_hit_rate": 0.4713
           },
@@ -6005,7 +6005,7 @@
             "score": 38.79,
             "confidence": 39,
             "tier": "C",
-            "reason": "Goal \u03bb 0.49 | Raw G/m 0.35 | Team xG 1.26 | Sample 17 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.49 | Raw G/m 0.35 | Team xG 1.27 | Sample 17 | MLS | Shrunk to F prior",
             "sim_prob_pct": 38.79,
             "model_hit_rate": 0.3879
           },
@@ -6018,7 +6018,7 @@
             "score": 34.23,
             "confidence": 34,
             "tier": "C",
-            "reason": "Goal \u03bb 0.42 | Raw G/m 0.29 | Team xG 1.26 | Sample 17 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.42 | Raw G/m 0.29 | Team xG 1.27 | Sample 17 | MLS | Shrunk to F prior",
             "sim_prob_pct": 34.23,
             "model_hit_rate": 0.3423
           },
@@ -6031,7 +6031,7 @@
             "score": 21.32,
             "confidence": 21,
             "tier": "C",
-            "reason": "Goal \u03bb 0.24 | Raw G/m 0.14 | Team xG 1.26 | Sample 14 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.24 | Raw G/m 0.14 | Team xG 1.27 | Sample 14 | MLS | Shrunk to F prior",
             "sim_prob_pct": 21.32,
             "model_hit_rate": 0.2132
           },
@@ -6044,7 +6044,7 @@
             "score": 20.21,
             "confidence": 20,
             "tier": "C",
-            "reason": "Goal \u03bb 0.23 | Raw G/m 0.15 | Team xG 1.61 | Sample 20 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.23 | Raw G/m 0.15 | Team xG 1.62 | Sample 20 | MLS | Shrunk to F prior",
             "sim_prob_pct": 20.21,
             "model_hit_rate": 0.2021
           },
@@ -6057,7 +6057,7 @@
             "score": 18.36,
             "confidence": 18,
             "tier": "C",
-            "reason": "Goal \u03bb 0.20 | Raw G/m 0.16 | Team xG 1.61 | Sample 19 | MLS | Shrunk to M prior",
+            "reason": "Goal \u03bb 0.20 | Raw G/m 0.16 | Team xG 1.62 | Sample 19 | MLS | Shrunk to M prior",
             "sim_prob_pct": 18.36,
             "model_hit_rate": 0.1836
           },
@@ -6070,7 +6070,7 @@
             "score": 18.36,
             "confidence": 18,
             "tier": "C",
-            "reason": "Goal \u03bb 0.20 | Raw G/m 0.16 | Team xG 1.61 | Sample 19 | MLS | Shrunk to M prior",
+            "reason": "Goal \u03bb 0.20 | Raw G/m 0.16 | Team xG 1.62 | Sample 19 | MLS | Shrunk to M prior",
             "sim_prob_pct": 18.36,
             "model_hit_rate": 0.1836
           },
@@ -6083,7 +6083,7 @@
             "score": 17.02,
             "confidence": 17,
             "tier": "C",
-            "reason": "Goal \u03bb 0.19 | Raw G/m 0.14 | Team xG 1.26 | Sample 7 | MLS | Shrunk to M prior",
+            "reason": "Goal \u03bb 0.19 | Raw G/m 0.14 | Team xG 1.27 | Sample 7 | MLS | Shrunk to M prior",
             "sim_prob_pct": 17.02,
             "model_hit_rate": 0.1702
           },
@@ -6096,7 +6096,7 @@
             "score": 16.28,
             "confidence": 16,
             "tier": "C",
-            "reason": "Goal \u03bb 0.18 | Raw G/m 0.09 | Team xG 1.61 | Sample 11 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.18 | Raw G/m 0.09 | Team xG 1.62 | Sample 11 | MLS | Shrunk to F prior",
             "sim_prob_pct": 16.28,
             "model_hit_rate": 0.1628
           },
@@ -6109,7 +6109,7 @@
             "score": 16.24,
             "confidence": 16,
             "tier": "C",
-            "reason": "Goal \u03bb 0.18 | Raw G/m 0.10 | Team xG 1.26 | Sample 20 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.18 | Raw G/m 0.10 | Team xG 1.27 | Sample 20 | MLS | Shrunk to F prior",
             "sim_prob_pct": 16.24,
             "model_hit_rate": 0.1624
           }
@@ -6124,7 +6124,7 @@
             "score": 50.92,
             "confidence": 51,
             "tier": "C",
-            "reason": "Assist \u03bb 0.71 | Raw A/m 0.80 | Team xG 1.61 | Sample 5 | MLS | Shrunk to D prior",
+            "reason": "Assist \u03bb 0.71 | Raw A/m 0.80 | Team xG 1.62 | Sample 5 | MLS | Shrunk to D prior",
             "sim_prob_pct": 50.92,
             "model_hit_rate": 0.5092
           },
@@ -6137,7 +6137,7 @@
             "score": 34.29,
             "confidence": 34,
             "tier": "C",
-            "reason": "Assist \u03bb 0.42 | Raw A/m 0.35 | Team xG 1.61 | Sample 17 | MLS | Shrunk to D prior",
+            "reason": "Assist \u03bb 0.42 | Raw A/m 0.35 | Team xG 1.62 | Sample 17 | MLS | Shrunk to D prior",
             "sim_prob_pct": 34.29,
             "model_hit_rate": 0.3429
           },
@@ -6150,7 +6150,7 @@
             "score": 29.95,
             "confidence": 30,
             "tier": "C",
-            "reason": "Assist \u03bb 0.36 | Raw A/m 0.29 | Team xG 1.26 | Sample 7 | MLS | Shrunk to M prior",
+            "reason": "Assist \u03bb 0.36 | Raw A/m 0.29 | Team xG 1.27 | Sample 7 | MLS | Shrunk to M prior",
             "sim_prob_pct": 29.95,
             "model_hit_rate": 0.2995
           },
@@ -6163,7 +6163,7 @@
             "score": 29.74,
             "confidence": 30,
             "tier": "C",
-            "reason": "Assist \u03bb 0.35 | Raw A/m 0.28 | Team xG 1.61 | Sample 18 | MLS | Shrunk to M prior",
+            "reason": "Assist \u03bb 0.35 | Raw A/m 0.28 | Team xG 1.62 | Sample 18 | MLS | Shrunk to M prior",
             "sim_prob_pct": 29.74,
             "model_hit_rate": 0.2974
           },
@@ -6176,7 +6176,7 @@
             "score": 28.7,
             "confidence": 29,
             "tier": "C",
-            "reason": "Assist \u03bb 0.34 | Raw A/m 0.25 | Team xG 1.26 | Sample 20 | MLS | Shrunk to F prior",
+            "reason": "Assist \u03bb 0.34 | Raw A/m 0.25 | Team xG 1.27 | Sample 20 | MLS | Shrunk to F prior",
             "sim_prob_pct": 28.7,
             "model_hit_rate": 0.287
           },
@@ -6189,7 +6189,7 @@
             "score": 26.93,
             "confidence": 27,
             "tier": "C",
-            "reason": "Assist \u03bb 0.31 | Raw A/m 0.25 | Team xG 1.61 | Sample 12 | MLS | Shrunk to M prior",
+            "reason": "Assist \u03bb 0.31 | Raw A/m 0.25 | Team xG 1.62 | Sample 12 | MLS | Shrunk to M prior",
             "sim_prob_pct": 26.93,
             "model_hit_rate": 0.2693
           },
@@ -6202,7 +6202,7 @@
             "score": 26.28,
             "confidence": 26,
             "tier": "C",
-            "reason": "Assist \u03bb 0.30 | Raw A/m 0.25 | Team xG 1.61 | Sample 8 | MLS | Shrunk to M prior",
+            "reason": "Assist \u03bb 0.30 | Raw A/m 0.25 | Team xG 1.62 | Sample 8 | MLS | Shrunk to M prior",
             "sim_prob_pct": 26.28,
             "model_hit_rate": 0.2628
           },
@@ -6215,7 +6215,7 @@
             "score": 22.89,
             "confidence": 23,
             "tier": "C",
-            "reason": "Assist \u03bb 0.26 | Raw A/m 0.20 | Team xG 1.61 | Sample 20 | MLS | Shrunk to F prior",
+            "reason": "Assist \u03bb 0.26 | Raw A/m 0.20 | Team xG 1.62 | Sample 20 | MLS | Shrunk to F prior",
             "sim_prob_pct": 22.89,
             "model_hit_rate": 0.2289
           },
@@ -6228,7 +6228,7 @@
             "score": 22.14,
             "confidence": 22,
             "tier": "C",
-            "reason": "Assist \u03bb 0.25 | Raw A/m 0.20 | Team xG 1.61 | Sample 5 | MLS | Shrunk to M prior",
+            "reason": "Assist \u03bb 0.25 | Raw A/m 0.20 | Team xG 1.62 | Sample 5 | MLS | Shrunk to M prior",
             "sim_prob_pct": 22.14,
             "model_hit_rate": 0.2214
           },
@@ -6241,7 +6241,7 @@
             "score": 21.76,
             "confidence": 22,
             "tier": "C",
-            "reason": "Assist \u03bb 0.25 | Raw A/m 0.18 | Team xG 1.26 | Sample 17 | MLS | Shrunk to F prior",
+            "reason": "Assist \u03bb 0.25 | Raw A/m 0.18 | Team xG 1.27 | Sample 17 | MLS | Shrunk to F prior",
             "sim_prob_pct": 21.76,
             "model_hit_rate": 0.2176
           }
@@ -6517,12 +6517,12 @@
             "team": "ATX",
             "opponent": "PHI",
             "line": "BTTS Yes",
-            "score": 57.48,
-            "confidence": 57,
+            "score": 57.63,
+            "confidence": 58,
             "tier": "B",
-            "reason": "Home score 71.7% | Away score 80.1% | xG 1.26-1.61",
-            "sim_prob_pct": 57.48,
-            "model_hit_rate": 0.5748
+            "reason": "Home score 71.9% | Away score 80.2% | xG 1.27-1.62",
+            "sim_prob_pct": 57.63,
+            "model_hit_rate": 0.5763
           }
         ],
         "1H": [
@@ -6532,12 +6532,12 @@
             "team": "ATX",
             "opponent": "PHI",
             "line": "1H Over 0.5 Goals",
-            "score": 73.4,
-            "confidence": 73,
+            "score": 73.5,
+            "confidence": 74,
             "tier": "A",
-            "reason": "First-half \u03bb 1.32 | 46% goal-time share | Full-match xG 2.88",
-            "sim_prob_pct": 73.4,
-            "model_hit_rate": 0.734
+            "reason": "First-half \u03bb 1.33 | 46% goal-time share | Full-match xG 2.89",
+            "sim_prob_pct": 73.5,
+            "model_hit_rate": 0.735
           }
         ],
         "1HML": [
@@ -6547,12 +6547,12 @@
             "team": "Draw",
             "opponent": "ATX",
             "line": "1H Draw",
-            "score": 39.39,
+            "score": 39.32,
             "confidence": 39,
             "tier": "C",
-            "reason": "1H Poisson 39.4% | 1H xG 0.58-0.74",
-            "sim_prob_pct": 39.39,
-            "model_hit_rate": 0.3939
+            "reason": "1H Poisson 39.3% | 1H xG 0.58-0.75",
+            "sim_prob_pct": 39.32,
+            "model_hit_rate": 0.3932
           }
         ],
         "OU": [
@@ -6562,13 +6562,13 @@
             "team": "ATX",
             "opponent": "PHI",
             "line": "Over 2.5 Goals",
-            "score": 56.24,
+            "score": 56.47,
             "confidence": 56,
             "tier": "B",
-            "reason": "Total \u03bb 2.88 | Model over 54.9% | Calibrated over 56.2%",
-            "sim_prob_pct": 56.24,
-            "model_hit_rate": 0.5624,
-            "implied_odds": "-160"
+            "reason": "Total \u03bb 2.89 | Model over 55.1% | Calibrated over 56.5%",
+            "sim_prob_pct": 56.47,
+            "model_hit_rate": 0.5647,
+            "implied_odds": "-165"
           }
         ],
         "ML": [
@@ -6578,12 +6578,12 @@
             "team": "PHI",
             "opponent": "ATX",
             "line": "Moneyline",
-            "score": 45.34,
+            "score": 45.36,
             "confidence": 45,
             "tier": "C",
-            "reason": "Calibrated 45.3% | Poisson 45.6% | Market 45.0%",
-            "sim_prob_pct": 45.34,
-            "model_hit_rate": 0.4534,
+            "reason": "Calibrated 45.4% | Poisson 45.6% | Market 45.0%",
+            "sim_prob_pct": 45.36,
+            "model_hit_rate": 0.4536,
             "implied_odds": "+105"
           }
         ]
@@ -9821,7 +9821,7 @@
           "market": "BTTS",
           "player_name": "Both Teams to Score",
           "line": "BTTS Yes",
-          "score": 59.34,
+          "score": 59.17,
           "confidence": 59,
           "tier": "B",
           "player_id": "761752-btts"
@@ -9838,7 +9838,7 @@
             "score": 52.23,
             "confidence": 52,
             "tier": "C",
-            "reason": "Goal \u03bb 0.74 | Raw G/m 0.55 | Team xG 1.54 | Sample 20 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.74 | Raw G/m 0.55 | Team xG 1.53 | Sample 20 | MLS | Shrunk to F prior",
             "sim_prob_pct": 52.23,
             "model_hit_rate": 0.5223
           },
@@ -9851,7 +9851,7 @@
             "score": 42.81,
             "confidence": 43,
             "tier": "C",
-            "reason": "Goal \u03bb 0.56 | Raw G/m 0.42 | Team xG 1.54 | Sample 12 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.56 | Raw G/m 0.42 | Team xG 1.53 | Sample 12 | MLS | Shrunk to F prior",
             "sim_prob_pct": 42.81,
             "model_hit_rate": 0.4281
           },
@@ -9864,7 +9864,7 @@
             "score": 41.92,
             "confidence": 42,
             "tier": "C",
-            "reason": "Goal \u03bb 0.54 | Raw G/m 0.42 | Team xG 1.41 | Sample 19 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.54 | Raw G/m 0.42 | Team xG 1.40 | Sample 19 | MLS | Shrunk to F prior",
             "sim_prob_pct": 41.92,
             "model_hit_rate": 0.4192
           },
@@ -9877,7 +9877,7 @@
             "score": 30.54,
             "confidence": 31,
             "tier": "C",
-            "reason": "Goal \u03bb 0.36 | Raw G/m 0.25 | Team xG 1.54 | Sample 20 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.36 | Raw G/m 0.25 | Team xG 1.53 | Sample 20 | MLS | Shrunk to F prior",
             "sim_prob_pct": 30.54,
             "model_hit_rate": 0.3054
           },
@@ -9890,7 +9890,7 @@
             "score": 19.37,
             "confidence": 19,
             "tier": "C",
-            "reason": "Goal \u03bb 0.22 | Raw G/m 0.16 | Team xG 1.54 | Sample 19 | MLS | Shrunk to M prior",
+            "reason": "Goal \u03bb 0.22 | Raw G/m 0.16 | Team xG 1.53 | Sample 19 | MLS | Shrunk to M prior",
             "sim_prob_pct": 19.37,
             "model_hit_rate": 0.1937
           },
@@ -9903,7 +9903,7 @@
             "score": 18.64,
             "confidence": 19,
             "tier": "C",
-            "reason": "Goal \u03bb 0.21 | Raw G/m 0.15 | Team xG 1.54 | Sample 13 | MLS | Shrunk to M prior",
+            "reason": "Goal \u03bb 0.21 | Raw G/m 0.15 | Team xG 1.53 | Sample 13 | MLS | Shrunk to M prior",
             "sim_prob_pct": 18.64,
             "model_hit_rate": 0.1864
           },
@@ -9916,7 +9916,7 @@
             "score": 18.2,
             "confidence": 18,
             "tier": "C",
-            "reason": "Goal \u03bb 0.20 | Raw G/m 0.00 | Team xG 1.54 | Sample 3 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.20 | Raw G/m 0.00 | Team xG 1.53 | Sample 3 | MLS | Shrunk to F prior",
             "sim_prob_pct": 18.2,
             "model_hit_rate": 0.182
           },
@@ -9929,7 +9929,7 @@
             "score": 17.42,
             "confidence": 17,
             "tier": "C",
-            "reason": "Goal \u03bb 0.19 | Raw G/m 0.10 | Team xG 1.41 | Sample 10 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.19 | Raw G/m 0.10 | Team xG 1.40 | Sample 10 | MLS | Shrunk to F prior",
             "sim_prob_pct": 17.42,
             "model_hit_rate": 0.1742
           },
@@ -9942,7 +9942,7 @@
             "score": 17.25,
             "confidence": 17,
             "tier": "C",
-            "reason": "Goal \u03bb 0.19 | Raw G/m 0.00 | Team xG 1.41 | Sample 3 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.19 | Raw G/m 0.00 | Team xG 1.40 | Sample 3 | MLS | Shrunk to F prior",
             "sim_prob_pct": 17.25,
             "model_hit_rate": 0.1725
           },
@@ -9955,7 +9955,7 @@
             "score": 15.38,
             "confidence": 15,
             "tier": "C",
-            "reason": "Goal \u03bb 0.17 | Raw G/m 0.10 | Team xG 1.41 | Sample 20 | MLS | Shrunk to F prior",
+            "reason": "Goal \u03bb 0.17 | Raw G/m 0.10 | Team xG 1.40 | Sample 20 | MLS | Shrunk to F prior",
             "sim_prob_pct": 15.38,
             "model_hit_rate": 0.1538
           }
@@ -9970,7 +9970,7 @@
             "score": 48.88,
             "confidence": 49,
             "tier": "C",
-            "reason": "Assist \u03bb 0.67 | Raw A/m 0.54 | Team xG 1.54 | Sample 13 | MLS | Shrunk to M prior",
+            "reason": "Assist \u03bb 0.67 | Raw A/m 0.54 | Team xG 1.53 | Sample 13 | MLS | Shrunk to M prior",
             "sim_prob_pct": 48.88,
             "model_hit_rate": 0.4888
           },
@@ -9983,7 +9983,7 @@
             "score": 45.9,
             "confidence": 46,
             "tier": "C",
-            "reason": "Assist \u03bb 0.61 | Raw A/m 0.50 | Team xG 1.54 | Sample 12 | MLS | Shrunk to F prior",
+            "reason": "Assist \u03bb 0.61 | Raw A/m 0.50 | Team xG 1.53 | Sample 12 | MLS | Shrunk to F prior",
             "sim_prob_pct": 45.9,
             "model_hit_rate": 0.459
           },
@@ -9996,7 +9996,7 @@
             "score": 38.29,
             "confidence": 38,
             "tier": "C",
-            "reason": "Assist \u03bb 0.48 | Raw A/m 0.40 | Team xG 1.41 | Sample 20 | MLS | Shrunk to D prior",
+            "reason": "Assist \u03bb 0.48 | Raw A/m 0.40 | Team xG 1.40 | Sample 20 | MLS | Shrunk to D prior",
             "sim_prob_pct": 38.29,
             "model_hit_rate": 0.3829
           },
@@ -10009,7 +10009,7 @@
             "score": 29.91,
             "confidence": 30,
             "tier": "C",
-            "reason": "Assist \u03bb 0.36 | Raw A/m 0.29 | Team xG 1.54 | Sample 14 | MLS | Shrunk to D prior",
+            "reason": "Assist \u03bb 0.36 | Raw A/m 0.29 | Team xG 1.53 | Sample 14 | MLS | Shrunk to D prior",
             "sim_prob_pct": 29.91,
             "model_hit_rate": 0.2991
           },
@@ -10022,7 +10022,7 @@
             "score": 27.39,
             "confidence": 27,
             "tier": "C",
-            "reason": "Assist \u03bb 0.32 | Raw A/m 0.33 | Team xG 1.41 | Sample 3 | MLS | Shrunk to F prior",
+            "reason": "Assist \u03bb 0.32 | Raw A/m 0.33 | Team xG 1.40 | Sample 3 | MLS | Shrunk to F prior",
             "sim_prob_pct": 27.39,
             "model_hit_rate": 0.2739
           },
@@ -10035,7 +10035,7 @@
             "score": 25.34,
             "confidence": 25,
             "tier": "C",
-            "reason": "Assist \u03bb 0.29 | Raw A/m 0.21 | Team xG 1.54 | Sample 19 | MLS | Shrunk to M prior",
+            "reason": "Assist \u03bb 0.29 | Raw A/m 0.21 | Team xG 1.53 | Sample 19 | MLS | Shrunk to M prior",
             "sim_prob_pct": 25.34,
             "model_hit_rate": 0.2534
           },
@@ -10048,7 +10048,7 @@
             "score": 24.23,
             "confidence": 24,
             "tier": "C",
-            "reason": "Assist \u03bb 0.28 | Raw A/m 0.20 | Team xG 1.54 | Sample 15 | MLS | Shrunk to M prior",
+            "reason": "Assist \u03bb 0.28 | Raw A/m 0.20 | Team xG 1.53 | Sample 15 | MLS | Shrunk to M prior",
             "sim_prob_pct": 24.23,
             "model_hit_rate": 0.2423
           },
@@ -10061,7 +10061,7 @@
             "score": 21.17,
             "confidence": 21,
             "tier": "C",
-            "reason": "Assist \u03bb 0.24 | Raw A/m 0.17 | Team xG 1.54 | Sample 18 | MLS | Shrunk to M prior",
+            "reason": "Assist \u03bb 0.24 | Raw A/m 0.17 | Team xG 1.53 | Sample 18 | MLS | Shrunk to M prior",
             "sim_prob_pct": 21.17,
             "model_hit_rate": 0.2117
           },
@@ -10074,7 +10074,7 @@
             "score": 19.22,
             "confidence": 19,
             "tier": "C",
-            "reason": "Assist \u03bb 0.21 | Raw A/m 0.15 | Team xG 1.54 | Sample 20 | MLS | Shrunk to F prior",
+            "reason": "Assist \u03bb 0.21 | Raw A/m 0.15 | Team xG 1.53 | Sample 20 | MLS | Shrunk to F prior",
             "sim_prob_pct": 19.22,
             "model_hit_rate": 0.1922
           },
@@ -10087,7 +10087,7 @@
             "score": 19.22,
             "confidence": 19,
             "tier": "C",
-            "reason": "Assist \u03bb 0.21 | Raw A/m 0.15 | Team xG 1.54 | Sample 20 | MLS | Shrunk to F prior",
+            "reason": "Assist \u03bb 0.21 | Raw A/m 0.15 | Team xG 1.53 | Sample 20 | MLS | Shrunk to F prior",
             "sim_prob_pct": 19.22,
             "model_hit_rate": 0.1922
           }
@@ -10363,12 +10363,12 @@
             "team": "SJ",
             "opponent": "MIN",
             "line": "BTTS Yes",
-            "score": 59.34,
+            "score": 59.17,
             "confidence": 59,
             "tier": "B",
-            "reason": "Home score 78.5% | Away score 75.5% | xG 1.54-1.41",
-            "sim_prob_pct": 59.34,
-            "model_hit_rate": 0.5934
+            "reason": "Home score 78.4% | Away score 75.4% | xG 1.53-1.40",
+            "sim_prob_pct": 59.17,
+            "model_hit_rate": 0.5917
           }
         ],
         "1H": [
@@ -10378,12 +10378,12 @@
             "team": "SJ",
             "opponent": "MIN",
             "line": "1H Over 0.5 Goals",
-            "score": 74.23,
+            "score": 74.11,
             "confidence": 74,
             "tier": "A",
-            "reason": "First-half \u03bb 1.36 | 46% goal-time share | Full-match xG 2.95",
-            "sim_prob_pct": 74.23,
-            "model_hit_rate": 0.7423
+            "reason": "First-half \u03bb 1.35 | 46% goal-time share | Full-match xG 2.94",
+            "sim_prob_pct": 74.11,
+            "model_hit_rate": 0.7411
           }
         ],
         "1HML": [
@@ -10393,12 +10393,12 @@
             "team": "Draw",
             "opponent": "MIN",
             "line": "1H Draw",
-            "score": 39.02,
+            "score": 39.1,
             "confidence": 39,
             "tier": "C",
-            "reason": "1H Poisson 39.0% | 1H xG 0.71-0.65",
-            "sim_prob_pct": 39.02,
-            "model_hit_rate": 0.3902
+            "reason": "1H Poisson 39.1% | 1H xG 0.71-0.65",
+            "sim_prob_pct": 39.1,
+            "model_hit_rate": 0.391
           }
         ],
         "OU": [
@@ -10408,13 +10408,13 @@
             "team": "SJ",
             "opponent": "MIN",
             "line": "Under 3.5 Goals",
-            "score": 62.66,
+            "score": 62.91,
             "confidence": 63,
             "tier": "B",
-            "reason": "Total \u03bb 2.95 | Model over 34.1% | Calibrated under 62.7%",
-            "sim_prob_pct": 62.66,
-            "model_hit_rate": 0.6266,
-            "implied_odds": "-150"
+            "reason": "Total \u03bb 2.94 | Model over 33.9% | Calibrated under 62.9%",
+            "sim_prob_pct": 62.91,
+            "model_hit_rate": 0.6291,
+            "implied_odds": "-155"
           }
         ],
         "ML": [
@@ -10424,12 +10424,12 @@
             "team": "SJ",
             "opponent": "MIN",
             "line": "Moneyline",
-            "score": 41.72,
+            "score": 41.7,
             "confidence": 42,
             "tier": "C",
             "reason": "Calibrated 41.7% | Poisson 40.6% | Market 43.2%",
-            "sim_prob_pct": 41.72,
-            "model_hit_rate": 0.4172,
+            "sim_prob_pct": 41.7,
+            "model_hit_rate": 0.417,
             "implied_odds": "+115"
           }
         ]
