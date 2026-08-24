@@ -1,7 +1,7 @@
 {
   "sport": "NFL",
   "date": "2026-09-09",
-  "last_updated": "2:40 PM ET",
+  "last_updated": "3:30 PM ET",
   "week": 1,
   "season": 2026,
   "uncertainty_note": "Week 1 \u00b7 2026 \u2014 built entirely from 2025 prior-season stats; no current-season sample yet, and rosters/depth charts are not yet final.",
@@ -324,22 +324,6 @@
             "td_lambda": 0.35258974643135776
           },
           {
-            "player_id": "4429022",
-            "player_name": "Kayshon Boutte",
-            "team": "NE",
-            "opponent": "SEA",
-            "line": "Anytime TD",
-            "score": 27.97,
-            "confidence": 28,
-            "tier": "C",
-            "reason": "TD \u03bb 0.33 | Rush match 0.82x | Rec match 0.79x | 2025 GP 14 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 27.97,
-            "model_hit_rate_raw": 0.2797,
-            "lineup_confirmed": false,
-            "position": "WR",
-            "td_lambda": 0.3280973093814672
-          },
-          {
             "player_id": "4576297",
             "player_name": "AJ Barner",
             "team": "SEA",
@@ -388,25 +372,27 @@
             "rush_yds_mean": 35.42589128286343,
             "rec_yds_mean": 5.840307946808033,
             "td_lambda": 0.24467320701316314
+          },
+          {
+            "player_id": "4429835",
+            "player_name": "George Holani",
+            "team": "SEA",
+            "opponent": "NE",
+            "line": "Anytime TD",
+            "score": 17.56,
+            "confidence": 18,
+            "tier": "PASS",
+            "reason": "TD \u03bb 0.19 | Rush match 1.12x | Rec match 0.79x | 2025 GP 11 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 17.56,
+            "model_hit_rate_raw": 0.1756,
+            "lineup_confirmed": false,
+            "position": "RB",
+            "rush_yds_mean": 18.00104802444283,
+            "rec_yds_mean": 3.7453330425994116,
+            "td_lambda": 0.19315619827243474
           }
         ],
         "RecYds": [
-          {
-            "player_id": "4429022",
-            "player_name": "Kayshon Boutte",
-            "team": "NE",
-            "opponent": "SEA",
-            "line": "25+ Rec Yds",
-            "score": 66.1,
-            "confidence": 66,
-            "tier": "A",
-            "reason": "Proj 32.4 rec yds/g | Rec match 0.79x | 2025 GP 14 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 66.1,
-            "model_hit_rate_raw": 0.661,
-            "lineup_confirmed": false,
-            "position": "WR",
-            "td_lambda": 0.3280973093814672
-          },
           {
             "player_id": "4047646",
             "player_name": "A.J. Brown",
@@ -554,6 +540,22 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.11861962613307257
+          },
+          {
+            "player_id": "4678006",
+            "player_name": "Elijah Arroyo",
+            "team": "SEA",
+            "opponent": "NE",
+            "line": "10+ Rec Yds",
+            "score": 61.24,
+            "confidence": 61,
+            "tier": "B",
+            "reason": "Proj 14.3 rec yds/g | Rec match 0.81x | 2025 GP 13 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 61.24,
+            "model_hit_rate_raw": 0.6124,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.09364223408793375
           }
         ],
         "RushYds": [
@@ -803,22 +805,6 @@
             "td_lambda": 0.47783130742944335
           },
           {
-            "player_id": "4429022",
-            "player_name": "Kayshon Boutte",
-            "team": "NE",
-            "opponent": "SEA",
-            "line": "2+ Receptions",
-            "score": 63.11,
-            "confidence": 63,
-            "tier": "A",
-            "reason": "REC/g 2.14 | Rec match 0.79x | 2025 GP 14 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 63.11,
-            "model_hit_rate_raw": 0.6311,
-            "lineup_confirmed": false,
-            "position": "WR",
-            "td_lambda": 0.3280973093814672
-          },
-          {
             "player_id": "4047646",
             "player_name": "A.J. Brown",
             "team": "NE",
@@ -833,6 +819,22 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.35258974643135776
+          },
+          {
+            "player_id": "4597703",
+            "player_name": "Tory Horton",
+            "team": "SEA",
+            "opponent": "NE",
+            "line": "2+ Receptions",
+            "score": 53.34,
+            "confidence": 53,
+            "tier": "B",
+            "reason": "REC/g 1.79 | Rec match 0.75x | 2025 GP 8 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 53.34,
+            "model_hit_rate_raw": 0.5334,
+            "lineup_confirmed": false,
+            "position": "WR",
+            "td_lambda": 0.4049693145772997
           }
         ],
         "PassTD": [
@@ -8868,6 +8870,22 @@
             "td_lambda": 0.33303478986421364
           },
           {
+            "player_id": "4429022",
+            "player_name": "Kayshon Boutte",
+            "team": "HOU",
+            "opponent": "BUF",
+            "line": "Anytime TD",
+            "score": 26.74,
+            "confidence": 27,
+            "tier": "C",
+            "reason": "TD \u03bb 0.31 | Rush match 1.02x | Rec match 0.75x | 2025 GP 14 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 26.74,
+            "model_hit_rate_raw": 0.2674,
+            "lineup_confirmed": false,
+            "position": "WR",
+            "td_lambda": 0.31121960189399167
+          },
+          {
             "player_id": "3915411",
             "player_name": "Ty Johnson",
             "team": "BUF",
@@ -8900,22 +8918,6 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.2679367615082226
-          },
-          {
-            "player_id": "3930086",
-            "player_name": "Dawson Knox",
-            "team": "BUF",
-            "opponent": "HOU",
-            "line": "Anytime TD",
-            "score": 23.47,
-            "confidence": 23,
-            "tier": "C",
-            "reason": "TD \u03bb 0.27 | Rush match 0.82x | Rec match 1.13x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 23.47,
-            "model_hit_rate_raw": 0.2347,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.2674344776670359
           }
         ],
         "RecYds": [
@@ -8982,6 +8984,22 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.07527730777151932
+          },
+          {
+            "player_id": "4429022",
+            "player_name": "Kayshon Boutte",
+            "team": "HOU",
+            "opponent": "BUF",
+            "line": "25+ Rec Yds",
+            "score": 63.08,
+            "confidence": 63,
+            "tier": "A",
+            "reason": "Proj 30.6 rec yds/g | Rec match 0.75x | 2025 GP 14 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 63.08,
+            "model_hit_rate_raw": 0.6308,
+            "lineup_confirmed": false,
+            "position": "WR",
+            "td_lambda": 0.31121960189399167
           },
           {
             "player_id": "4385690",
@@ -9064,22 +9082,6 @@
             "lineup_confirmed": false,
             "position": "TE",
             "td_lambda": 0.048
-          },
-          {
-            "player_id": "4635008",
-            "player_name": "Keon Coleman",
-            "team": "BUF",
-            "opponent": "HOU",
-            "line": "25+ Rec Yds",
-            "score": 59.84,
-            "confidence": 60,
-            "tier": "B",
-            "reason": "Proj 29.0 rec yds/g | Rec match 0.84x | 2025 GP 13 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 59.84,
-            "model_hit_rate_raw": 0.5984,
-            "lineup_confirmed": false,
-            "position": "WR",
-            "td_lambda": 0.2679367615082226
           }
         ],
         "RushYds": [
@@ -9352,6 +9354,22 @@
             "td_lambda": 0.12077686088188715
           },
           {
+            "player_id": "4429022",
+            "player_name": "Kayshon Boutte",
+            "team": "HOU",
+            "opponent": "BUF",
+            "line": "2+ Receptions",
+            "score": 60.07,
+            "confidence": 60,
+            "tier": "B",
+            "reason": "REC/g 2.03 | Rec match 0.75x | 2025 GP 14 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 60.07,
+            "model_hit_rate_raw": 0.6007,
+            "lineup_confirmed": false,
+            "position": "WR",
+            "td_lambda": 0.31121960189399167
+          },
+          {
             "player_id": "4242433",
             "player_name": "Joshua Palmer",
             "team": "BUF",
@@ -9402,22 +9420,6 @@
             "rush_yds_mean": 14.297456360254092,
             "rec_yds_mean": 17.975453654195377,
             "td_lambda": 0.30012434710196256
-          },
-          {
-            "player_id": "4686422",
-            "player_name": "Xavier Hutchinson",
-            "team": "HOU",
-            "opponent": "BUF",
-            "line": "2+ Receptions",
-            "score": 53.93,
-            "confidence": 54,
-            "tier": "B",
-            "reason": "REC/g 1.81 | Rec match 0.75x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 53.93,
-            "model_hit_rate_raw": 0.5393,
-            "lineup_confirmed": false,
-            "position": "WR",
-            "td_lambda": 0.15961680162342143
           }
         ],
         "PassTD": [
@@ -15441,12 +15443,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 22.7
+        "joint_prob_pct": 27.0
       },
       "ceiling": {
         "qb_line": "4+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 3.6
+        "joint_prob_pct": 4.1
       }
     },
     {
@@ -15853,18 +15855,18 @@
         "player_id": "4432577"
       },
       "receiver": {
-        "player_name": "Nico Collins",
-        "player_id": "4258173"
+        "player_name": "Kayshon Boutte",
+        "player_id": "4429022"
       },
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 21.8
+        "joint_prob_pct": 18.7
       },
       "ceiling": {
         "qb_line": "3+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 4.7
+        "joint_prob_pct": 4.2
       }
     },
     {
