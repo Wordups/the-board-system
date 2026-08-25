@@ -1,7 +1,7 @@
 {
   "sport": "NFL",
   "date": "2026-09-09",
-  "last_updated": "2:40 PM ET",
+  "last_updated": "3:32 PM ET",
   "week": 1,
   "season": 2026,
   "uncertainty_note": "Week 1 \u00b7 2026 \u2014 built entirely from 2025 prior-season stats; no current-season sample yet, and rosters/depth charts are not yet final.",
@@ -141,15 +141,15 @@
         "team": "PHI",
         "opponent": "WSH",
         "line": "Anytime TD",
-        "score": 52.12,
+        "score": 51.53,
         "confidence": 52,
         "tier": "A",
-        "reason": "TD \u03bb 0.74 | Rush match 1.30x | Rec match 1.17x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-        "sim_prob_pct": 52.12,
-        "model_hit_rate_raw": 0.5212,
+        "reason": "TD \u03bb 0.72 | Rush match 1.30x | Rec match 1.15x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+        "sim_prob_pct": 51.53,
+        "model_hit_rate_raw": 0.5153,
         "lineup_confirmed": false,
         "position": "TE",
-        "td_lambda": 0.7364441166610796
+        "td_lambda": 0.7241746606275179
       },
       {
         "player_id": "16800",
@@ -292,6 +292,22 @@
             "td_lambda": 0.4049693145772997
           },
           {
+            "player_id": "3046439",
+            "player_name": "Hunter Henry",
+            "team": "NE",
+            "opponent": "SEA",
+            "line": "Anytime TD",
+            "score": 30.24,
+            "confidence": 30,
+            "tier": "B",
+            "reason": "TD \u03bb 0.36 | Rush match 0.82x | Rec match 0.95x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 30.24,
+            "model_hit_rate_raw": 0.3024,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.36010236037293536
+          },
+          {
             "player_id": "4047646",
             "player_name": "A.J. Brown",
             "team": "NE",
@@ -308,36 +324,20 @@
             "td_lambda": 0.3544757570025665
           },
           {
-            "player_id": "3046439",
-            "player_name": "Hunter Henry",
-            "team": "NE",
-            "opponent": "SEA",
-            "line": "Anytime TD",
-            "score": 28.6,
-            "confidence": 29,
-            "tier": "C",
-            "reason": "TD \u03bb 0.34 | Rush match 0.82x | Rec match 0.89x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 28.6,
-            "model_hit_rate_raw": 0.286,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.33684537458295416
-          },
-          {
             "player_id": "4576297",
             "player_name": "AJ Barner",
             "team": "SEA",
             "opponent": "NE",
             "line": "Anytime TD",
-            "score": 27.94,
+            "score": 27.61,
             "confidence": 28,
             "tier": "C",
-            "reason": "TD \u03bb 0.33 | Rush match 1.12x | Rec match 0.83x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 27.94,
-            "model_hit_rate_raw": 0.2794,
+            "reason": "TD \u03bb 0.32 | Rush match 1.12x | Rec match 0.81x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 27.61,
+            "model_hit_rate_raw": 0.2761,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.3276146673628776
+            "td_lambda": 0.3230453448136069
           },
           {
             "player_id": "4361432",
@@ -394,22 +394,6 @@
         ],
         "RecYds": [
           {
-            "player_id": "3046439",
-            "player_name": "Hunter Henry",
-            "team": "NE",
-            "opponent": "SEA",
-            "line": "30+ Rec Yds",
-            "score": 64.31,
-            "confidence": 64,
-            "tier": "A",
-            "reason": "Proj 37.6 rec yds/g | Rec match 0.89x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 64.31,
-            "model_hit_rate_raw": 0.6431,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.33684537458295416
-          },
-          {
             "player_id": "4047646",
             "player_name": "A.J. Brown",
             "team": "NE",
@@ -442,22 +426,6 @@
             "rush_yds_mean": 35.3016146185184,
             "rec_yds_mean": 25.250463617009988,
             "td_lambda": 0.5288650210067737
-          },
-          {
-            "player_id": "4576297",
-            "player_name": "AJ Barner",
-            "team": "SEA",
-            "opponent": "NE",
-            "line": "20+ Rec Yds",
-            "score": 63.51,
-            "confidence": 64,
-            "tier": "A",
-            "reason": "Proj 25.2 rec yds/g | Rec match 0.83x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 63.51,
-            "model_hit_rate_raw": 0.6351,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.3276146673628776
           },
           {
             "player_id": "2991662",
@@ -510,6 +478,22 @@
             "td_lambda": 0.1687656847182788
           },
           {
+            "player_id": "4576297",
+            "player_name": "AJ Barner",
+            "team": "SEA",
+            "opponent": "NE",
+            "line": "20+ Rec Yds",
+            "score": 62.45,
+            "confidence": 62,
+            "tier": "A",
+            "reason": "Proj 24.8 rec yds/g | Rec match 0.81x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 62.45,
+            "model_hit_rate_raw": 0.6245,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.3230453448136069
+          },
+          {
             "player_id": "4361432",
             "player_name": "Romeo Doubs",
             "team": "NE",
@@ -547,15 +531,31 @@
             "team": "SEA",
             "opponent": "NE",
             "line": "10+ Rec Yds",
-            "score": 61.93,
-            "confidence": 62,
+            "score": 61.31,
+            "confidence": 61,
             "tier": "B",
-            "reason": "Proj 14.6 rec yds/g | Rec match 0.83x | 2025 GP 13 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 61.93,
-            "model_hit_rate_raw": 0.6193,
+            "reason": "Proj 14.3 rec yds/g | Rec match 0.81x | 2025 GP 13 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 61.31,
+            "model_hit_rate_raw": 0.6131,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.09540771824653428
+            "td_lambda": 0.09381818717716324
+          },
+          {
+            "player_id": "4032473",
+            "player_name": "Rashid Shaheed",
+            "team": "SEA",
+            "opponent": "NE",
+            "line": "25+ Rec Yds",
+            "score": 61.31,
+            "confidence": 61,
+            "tier": "B",
+            "reason": "Proj 29.7 rec yds/g | Rec match 0.75x | 2025 GP 18 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 61.31,
+            "model_hit_rate_raw": 0.6131,
+            "lineup_confirmed": false,
+            "position": "WR",
+            "td_lambda": 0.11861962613307257
           }
         ],
         "RushYds": [
@@ -673,22 +673,6 @@
         ],
         "REC": [
           {
-            "player_id": "3046439",
-            "player_name": "Hunter Henry",
-            "team": "NE",
-            "opponent": "SEA",
-            "line": "2+ Receptions",
-            "score": 81.02,
-            "confidence": 81,
-            "tier": "A",
-            "reason": "REC/g 3.06 | Rec match 0.89x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 81.02,
-            "model_hit_rate_raw": 0.8102,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.33684537458295416
-          },
-          {
             "player_id": "4361432",
             "player_name": "Romeo Doubs",
             "team": "NE",
@@ -760,15 +744,15 @@
             "team": "SEA",
             "opponent": "NE",
             "line": "2+ Receptions",
-            "score": 72.04,
-            "confidence": 72,
+            "score": 71.18,
+            "confidence": 71,
             "tier": "A",
-            "reason": "REC/g 2.54 | Rec match 0.83x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 72.04,
-            "model_hit_rate_raw": 0.7204,
+            "reason": "REC/g 2.50 | Rec match 0.81x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 71.18,
+            "model_hit_rate_raw": 0.7118,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.3276146673628776
+            "td_lambda": 0.3230453448136069
           },
           {
             "player_id": "4430878",
@@ -835,6 +819,22 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.3544757570025665
+          },
+          {
+            "player_id": "4597703",
+            "player_name": "Tory Horton",
+            "team": "SEA",
+            "opponent": "NE",
+            "line": "2+ Receptions",
+            "score": 53.34,
+            "confidence": 53,
+            "tier": "B",
+            "reason": "REC/g 1.79 | Rec match 0.75x | 2025 GP 8 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 53.34,
+            "model_hit_rate_raw": 0.5334,
+            "lineup_confirmed": false,
+            "position": "WR",
+            "td_lambda": 0.4049693145772997
           }
         ],
         "PassTD": [
@@ -1186,15 +1186,15 @@
             "team": "LAR",
             "opponent": "SF",
             "line": "Anytime TD",
-            "score": 43.93,
-            "confidence": 44,
-            "tier": "B",
-            "reason": "TD \u03bb 0.58 | Rush match 1.03x | Rec match 1.23x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 43.93,
-            "model_hit_rate_raw": 0.4393,
+            "score": 45.83,
+            "confidence": 46,
+            "tier": "A",
+            "reason": "TD \u03bb 0.61 | Rush match 1.03x | Rec match 1.30x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 45.83,
+            "model_hit_rate_raw": 0.4583,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.5786303721086156
+            "td_lambda": 0.6130526315789474
           },
           {
             "player_id": "4426515",
@@ -1234,15 +1234,15 @@
             "team": "SF",
             "opponent": "LAR",
             "line": "Anytime TD",
-            "score": 37.33,
+            "score": 36.84,
             "confidence": 37,
             "tier": "B",
-            "reason": "TD \u03bb 0.47 | Rush match 0.98x | Rec match 0.88x | 2025 GP 11 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 37.33,
-            "model_hit_rate_raw": 0.3733,
+            "reason": "TD \u03bb 0.46 | Rush match 0.98x | Rec match 0.87x | 2025 GP 11 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 36.84,
+            "model_hit_rate_raw": 0.3684,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.46725707006369427
+            "td_lambda": 0.45947237880496056
           },
           {
             "player_id": "3126486",
@@ -1284,15 +1284,15 @@
             "team": "LAR",
             "opponent": "SF",
             "line": "Anytime TD",
-            "score": 29.32,
-            "confidence": 29,
-            "tier": "C",
-            "reason": "TD \u03bb 0.35 | Rush match 1.03x | Rec match 1.23x | 2025 GP 10 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 29.32,
-            "model_hit_rate_raw": 0.2932,
+            "score": 30.77,
+            "confidence": 31,
+            "tier": "B",
+            "reason": "TD \u03bb 0.37 | Rush match 1.03x | Rec match 1.30x | 2025 GP 10 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 30.77,
+            "model_hit_rate_raw": 0.3077,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.3470675159235669
+            "td_lambda": 0.3677142857142857
           }
         ],
         "RecYds": [
@@ -1361,22 +1361,6 @@
             "td_lambda": 0.18117056211017737
           },
           {
-            "player_id": "3040151",
-            "player_name": "George Kittle",
-            "team": "SF",
-            "opponent": "LAR",
-            "line": "35+ Rec Yds",
-            "score": 64.39,
-            "confidence": 64,
-            "tier": "A",
-            "reason": "Proj 43.9 rec yds/g | Rec match 0.88x | 2025 GP 11 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 64.39,
-            "model_hit_rate_raw": 0.6439,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.46725707006369427
-          },
-          {
             "player_id": "4386544",
             "player_name": "Xavier Smith",
             "team": "LAR",
@@ -1393,6 +1377,70 @@
             "td_lambda": 0.06138349697030679
           },
           {
+            "player_id": "4570037",
+            "player_name": "Terrance Ferguson",
+            "team": "LAR",
+            "opponent": "SF",
+            "line": "20+ Rec Yds",
+            "score": 63.93,
+            "confidence": 64,
+            "tier": "A",
+            "reason": "Proj 25.4 rec yds/g | Rec match 1.30x | 2025 GP 14 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 63.93,
+            "model_hit_rate_raw": 0.6393,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.28600000000000003
+          },
+          {
+            "player_id": "4426553",
+            "player_name": "Davis Allen",
+            "team": "LAR",
+            "opponent": "SF",
+            "line": "15+ Rec Yds",
+            "score": 63.82,
+            "confidence": 64,
+            "tier": "A",
+            "reason": "Proj 20.3 rec yds/g | Rec match 1.30x | 2025 GP 17 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 63.82,
+            "model_hit_rate_raw": 0.6382,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.24514285714285713
+          },
+          {
+            "player_id": "2573401",
+            "player_name": "Tyler Higbee",
+            "team": "LAR",
+            "opponent": "SF",
+            "line": "30+ Rec Yds",
+            "score": 63.81,
+            "confidence": 64,
+            "tier": "A",
+            "reason": "Proj 37.2 rec yds/g | Rec match 1.30x | 2025 GP 10 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 63.81,
+            "model_hit_rate_raw": 0.6381,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.3677142857142857
+          },
+          {
+            "player_id": "3040151",
+            "player_name": "George Kittle",
+            "team": "SF",
+            "opponent": "LAR",
+            "line": "35+ Rec Yds",
+            "score": 63.47,
+            "confidence": 63,
+            "tier": "A",
+            "reason": "Proj 43.2 rec yds/g | Rec match 0.87x | 2025 GP 11 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 63.47,
+            "model_hit_rate_raw": 0.6347,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.45947237880496056
+          },
+          {
             "player_id": "4426515",
             "player_name": "Puka Nacua",
             "team": "LAR",
@@ -1407,56 +1455,6 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.5339257594287248
-          },
-          {
-            "player_id": "3117251",
-            "player_name": "Christian McCaffrey",
-            "team": "SF",
-            "opponent": "LAR",
-            "line": "50+ Rec Yds",
-            "score": 62.54,
-            "confidence": 63,
-            "tier": "A",
-            "reason": "Proj 60.7 rec yds/g | Rec match 1.30x | 2025 GP 17 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 62.54,
-            "model_hit_rate_raw": 0.6254,
-            "lineup_confirmed": false,
-            "position": "RB",
-            "rush_yds_mean": 63.699585750978244,
-            "rec_yds_mean": 60.66666501363119,
-            "td_lambda": 0.981337982938314
-          },
-          {
-            "player_id": "4569382",
-            "player_name": "Jordan Whittington",
-            "team": "LAR",
-            "opponent": "SF",
-            "line": "10+ Rec Yds",
-            "score": 61.12,
-            "confidence": 61,
-            "tier": "B",
-            "reason": "Proj 14.2 rec yds/g | Rec match 0.84x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 61.12,
-            "model_hit_rate_raw": 0.6112,
-            "lineup_confirmed": false,
-            "position": "WR",
-            "td_lambda": 0.05846047330505409
-          },
-          {
-            "player_id": "4426553",
-            "player_name": "Davis Allen",
-            "team": "LAR",
-            "opponent": "SF",
-            "line": "15+ Rec Yds",
-            "score": 60.94,
-            "confidence": 61,
-            "tier": "B",
-            "reason": "Proj 19.2 rec yds/g | Rec match 1.23x | 2025 GP 17 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 60.94,
-            "model_hit_rate_raw": 0.6094,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.23137834394904458
           }
         ],
         "RushYds": [
@@ -1642,15 +1640,15 @@
             "team": "LAR",
             "opponent": "SF",
             "line": "2+ Receptions",
-            "score": 62.72,
-            "confidence": 63,
+            "score": 65.82,
+            "confidence": 66,
             "tier": "A",
-            "reason": "REC/g 2.13 | Rec match 1.23x | 2025 GP 17 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 62.72,
-            "model_hit_rate_raw": 0.6272,
+            "reason": "REC/g 2.25 | Rec match 1.30x | 2025 GP 17 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 65.82,
+            "model_hit_rate_raw": 0.6582,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.23137834394904458
+            "td_lambda": 0.24514285714285713
           },
           {
             "player_id": "4430737",
@@ -1671,36 +1669,20 @@
             "td_lambda": 0.7089863315252478
           },
           {
-            "player_id": "3040151",
-            "player_name": "George Kittle",
-            "team": "SF",
-            "opponent": "LAR",
-            "line": "4+ Receptions",
-            "score": 58.08,
-            "confidence": 58,
-            "tier": "B",
-            "reason": "REC/g 4.07 | Rec match 0.88x | 2025 GP 11 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 58.08,
-            "model_hit_rate_raw": 0.5808,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.46725707006369427
-          },
-          {
             "player_id": "4259147",
             "player_name": "Jake Tonges",
             "team": "SF",
             "opponent": "LAR",
             "line": "2+ Receptions",
-            "score": 57.9,
-            "confidence": 58,
+            "score": 57.0,
+            "confidence": 57,
             "tier": "B",
-            "reason": "REC/g 1.95 | Rec match 0.88x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 57.9,
-            "model_hit_rate_raw": 0.579,
+            "reason": "REC/g 1.91 | Rec match 0.87x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 57.0,
+            "model_hit_rate_raw": 0.57,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.24989699727024567
+            "td_lambda": 0.2457336124979868
           },
           {
             "player_id": "4426515",
@@ -1719,20 +1701,36 @@
             "td_lambda": 0.5339257594287248
           },
           {
-            "player_id": "3126486",
-            "player_name": "Deebo Samuel Sr.",
+            "player_id": "3040151",
+            "player_name": "George Kittle",
             "team": "SF",
             "opponent": "LAR",
-            "line": "6+ Receptions",
-            "score": 48.32,
-            "confidence": 48,
-            "tier": "C",
-            "reason": "REC/g 5.57 | Rec match 1.27x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 48.32,
-            "model_hit_rate_raw": 0.4832,
+            "line": "4+ Receptions",
+            "score": 56.77,
+            "confidence": 57,
+            "tier": "B",
+            "reason": "REC/g 4.01 | Rec match 0.87x | 2025 GP 11 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 56.77,
+            "model_hit_rate_raw": 0.5677,
             "lineup_confirmed": false,
-            "position": "WR",
-            "td_lambda": 0.45720449044573647
+            "position": "TE",
+            "td_lambda": 0.45947237880496056
+          },
+          {
+            "player_id": "4242557",
+            "player_name": "Colby Parkinson",
+            "team": "LAR",
+            "opponent": "SF",
+            "line": "4+ Receptions",
+            "score": 52.46,
+            "confidence": 52,
+            "tier": "B",
+            "reason": "REC/g 3.79 | Rec match 1.30x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 52.46,
+            "model_hit_rate_raw": 0.5246,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.6130526315789474
           }
         ],
         "PassTD": [
@@ -2144,7 +2142,7 @@
             "score": 35.11,
             "confidence": 35,
             "tier": "B",
-            "reason": "TD \u03bb 0.43 | Rush match 0.85x | Rec match 0.92x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "reason": "TD \u03bb 0.43 | Rush match 0.85x | Rec match 0.92x | 2025 GP 16 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
             "sim_prob_pct": 35.11,
             "model_hit_rate_raw": 0.3511,
             "lineup_confirmed": false,
@@ -2275,15 +2273,15 @@
             "team": "TB",
             "opponent": "CIN",
             "line": "35+ Rec Yds",
-            "score": 65.35,
-            "confidence": 65,
+            "score": 64.46,
+            "confidence": 64,
             "tier": "A",
-            "reason": "Proj 44.7 rec yds/g | Rec match 1.29x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 65.35,
-            "model_hit_rate_raw": 0.6535,
+            "reason": "Proj 44.0 rec yds/g | Rec match 1.27x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 64.46,
+            "model_hit_rate_raw": 0.6446,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.12663847133757963
+            "td_lambda": 0.12452862332456471
           },
           {
             "player_id": "3116165",
@@ -2326,7 +2324,7 @@
             "score": 62.81,
             "confidence": 63,
             "tier": "A",
-            "reason": "Proj 73.2 rec yds/g | Rec match 0.92x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "reason": "Proj 73.2 rec yds/g | Rec match 0.92x | 2025 GP 16 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
             "sim_prob_pct": 62.81,
             "model_hit_rate_raw": 0.6281,
             "lineup_confirmed": false,
@@ -2622,15 +2620,15 @@
             "team": "TB",
             "opponent": "CIN",
             "line": "4+ Receptions",
-            "score": 67.65,
-            "confidence": 68,
+            "score": 66.38,
+            "confidence": 66,
             "tier": "A",
-            "reason": "REC/g 4.61 | Rec match 1.29x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 67.65,
-            "model_hit_rate_raw": 0.6765,
+            "reason": "REC/g 4.54 | Rec match 1.27x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 66.38,
+            "model_hit_rate_raw": 0.6638,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.12663847133757963
+            "td_lambda": 0.12452862332456471
           },
           {
             "player_id": "4371733",
@@ -3185,6 +3183,22 @@
             "td_lambda": 0.239630433263877
           },
           {
+            "player_id": "4430027",
+            "player_name": "Sam LaPorta",
+            "team": "DET",
+            "opponent": "NO",
+            "line": "30+ Rec Yds",
+            "score": 66.34,
+            "confidence": 66,
+            "tier": "A",
+            "reason": "Proj 39.1 rec yds/g | Rec match 0.83x | 2025 GP 9 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 66.34,
+            "model_hit_rate_raw": 0.6634,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.2539797068771139
+          },
+          {
             "player_id": "4372758",
             "player_name": "Kevin Austin Jr.",
             "team": "NO",
@@ -3315,22 +3329,6 @@
             "rush_yds_mean": 49.56193480527807,
             "rec_yds_mean": 14.835909417573687,
             "td_lambda": 0.20266338111036775
-          },
-          {
-            "player_id": "3126997",
-            "player_name": "Tom Kennedy",
-            "team": "DET",
-            "opponent": "NO",
-            "line": "15+ Rec Yds",
-            "score": 62.42,
-            "confidence": 62,
-            "tier": "A",
-            "reason": "Proj 19.7 rec yds/g | Rec match 0.90x | 2025 GP 6 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 62.42,
-            "model_hit_rate_raw": 0.6242,
-            "lineup_confirmed": false,
-            "position": "WR",
-            "td_lambda": 0.12905842606133897
           }
         ],
         "RushYds": [
@@ -5016,15 +5014,15 @@
             "team": "BAL",
             "opponent": "IND",
             "line": "Anytime TD",
-            "score": 33.8,
+            "score": 33.55,
             "confidence": 34,
             "tier": "B",
-            "reason": "TD \u03bb 0.41 | Rush match 0.92x | Rec match 1.30x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 33.8,
-            "model_hit_rate_raw": 0.338,
+            "reason": "TD \u03bb 0.41 | Rush match 0.92x | Rec match 1.29x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 33.55,
+            "model_hit_rate_raw": 0.3355,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.41253257678743815
+            "td_lambda": 0.4087676477417876
           },
           {
             "player_id": "4696882",
@@ -5150,6 +5148,22 @@
             "td_lambda": 0.835047619047619
           },
           {
+            "player_id": "3116365",
+            "player_name": "Mark Andrews",
+            "team": "BAL",
+            "opponent": "IND",
+            "line": "25+ Rec Yds",
+            "score": 67.35,
+            "confidence": 67,
+            "tier": "A",
+            "reason": "Proj 33.2 rec yds/g | Rec match 1.29x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 67.35,
+            "model_hit_rate_raw": 0.6735,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.4087676477417876
+          },
+          {
             "player_id": "4696882",
             "player_name": "Devontez Walker",
             "team": "BAL",
@@ -5235,15 +5249,15 @@
             "team": "BAL",
             "opponent": "IND",
             "line": "5+ Rec Yds",
-            "score": 60.45,
+            "score": 60.22,
             "confidence": 60,
             "tier": "B",
-            "reason": "Proj 9.0 rec yds/g | Rec match 1.30x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 60.45,
-            "model_hit_rate_raw": 0.6045,
+            "reason": "Proj 8.9 rec yds/g | Rec match 1.29x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 60.22,
+            "model_hit_rate_raw": 0.6022,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.05942857142857143
+            "td_lambda": 0.058822139904439796
           },
           {
             "player_id": "3929785",
@@ -5260,22 +5274,6 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.0962105263157895
-          },
-          {
-            "player_id": "2998565",
-            "player_name": "Mo Alie-Cox",
-            "team": "IND",
-            "opponent": "BAL",
-            "line": "5+ Rec Yds",
-            "score": 59.61,
-            "confidence": 60,
-            "tier": "B",
-            "reason": "Proj 8.6 rec yds/g | Rec match 0.77x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 59.61,
-            "model_hit_rate_raw": 0.5961,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.07152781316348196
           },
           {
             "player_id": "4061956",
@@ -5430,6 +5428,22 @@
         ],
         "REC": [
           {
+            "player_id": "4431459",
+            "player_name": "Tyler Warren",
+            "team": "IND",
+            "opponent": "BAL",
+            "line": "2+ Receptions",
+            "score": 82.52,
+            "confidence": 83,
+            "tier": "A",
+            "reason": "REC/g 3.17 | Rec match 0.75x | 2025 GP 17 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 82.52,
+            "model_hit_rate_raw": 0.8252,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.21370775994225827
+          },
+          {
             "player_id": "4360939",
             "player_name": "Rashod Bateman",
             "team": "BAL",
@@ -5547,15 +5561,15 @@
             "team": "BAL",
             "opponent": "IND",
             "line": "4+ Receptions",
-            "score": 51.4,
+            "score": 50.6,
             "confidence": 51,
             "tier": "B",
-            "reason": "REC/g 3.74 | Rec match 1.30x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 51.4,
-            "model_hit_rate_raw": 0.514,
+            "reason": "REC/g 3.70 | Rec match 1.29x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 50.6,
+            "model_hit_rate_raw": 0.506,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.41253257678743815
+            "td_lambda": 0.4087676477417876
           },
           {
             "player_id": "4061956",
@@ -5572,24 +5586,6 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.11425000000000002
-          },
-          {
-            "player_id": "4038441",
-            "player_name": "Justice Hill",
-            "team": "BAL",
-            "opponent": "IND",
-            "line": "2+ Receptions",
-            "score": 46.7,
-            "confidence": 47,
-            "tier": "C",
-            "reason": "REC/g 1.58 | Rec match 0.75x | 2025 GP 10 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 46.7,
-            "model_hit_rate_raw": 0.467,
-            "lineup_confirmed": false,
-            "position": "RB",
-            "rush_yds_mean": 17.061646794108846,
-            "rec_yds_mean": 12.053571224212646,
-            "td_lambda": 0.2903584727229742
           }
         ],
         "PassTD": [
@@ -6012,15 +6008,15 @@
             "team": "PIT",
             "opponent": "ATL",
             "line": "Anytime TD",
-            "score": 26.44,
+            "score": 26.07,
             "confidence": 26,
             "tier": "C",
-            "reason": "TD \u03bb 0.31 | Rush match 0.95x | Rec match 1.30x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 26.44,
-            "model_hit_rate_raw": 0.2644,
+            "reason": "TD \u03bb 0.30 | Rush match 0.95x | Rec match 1.28x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 26.07,
+            "model_hit_rate_raw": 0.2607,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.30704761904761907
+            "td_lambda": 0.30202084190810236
           },
           {
             "player_id": "4360248",
@@ -6028,15 +6024,15 @@
             "team": "ATL",
             "opponent": "PIT",
             "line": "Anytime TD",
-            "score": 26.06,
+            "score": 25.69,
             "confidence": 26,
             "tier": "C",
-            "reason": "TD \u03bb 0.30 | Rush match 0.84x | Rec match 1.06x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 26.06,
-            "model_hit_rate_raw": 0.2606,
+            "reason": "TD \u03bb 0.30 | Rush match 0.84x | Rec match 1.05x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 25.69,
+            "model_hit_rate_raw": 0.2569,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.3019588717015469
+            "td_lambda": 0.29692811510173406
           },
           {
             "player_id": "4431492",
@@ -6091,22 +6087,6 @@
             "td_lambda": 0.5867624897742763
           },
           {
-            "player_id": "4430802",
-            "player_name": "Darnell Washington",
-            "team": "PIT",
-            "opponent": "ATL",
-            "line": "25+ Rec Yds",
-            "score": 64.56,
-            "confidence": 65,
-            "tier": "A",
-            "reason": "Proj 31.5 rec yds/g | Rec match 1.30x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 64.56,
-            "model_hit_rate_raw": 0.6456,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.1274
-          },
-          {
             "player_id": "4035687",
             "player_name": "Michael Pittman Jr.",
             "team": "PIT",
@@ -6123,36 +6103,20 @@
             "td_lambda": 0.48975709998723593
           },
           {
-            "player_id": "4361411",
-            "player_name": "Pat Freiermuth",
+            "player_id": "4430802",
+            "player_name": "Darnell Washington",
             "team": "PIT",
             "opponent": "ATL",
-            "line": "30+ Rec Yds",
-            "score": 64.21,
+            "line": "25+ Rec Yds",
+            "score": 63.66,
             "confidence": 64,
             "tier": "A",
-            "reason": "Proj 37.5 rec yds/g | Rec match 1.30x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 64.21,
-            "model_hit_rate_raw": 0.6421,
+            "reason": "Proj 30.9 rec yds/g | Rec match 1.28x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 63.66,
+            "model_hit_rate_raw": 0.6366,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.30704761904761907
-          },
-          {
-            "player_id": "3043275",
-            "player_name": "Austin Hooper",
-            "team": "ATL",
-            "opponent": "PIT",
-            "line": "15+ Rec Yds",
-            "score": 63.99,
-            "confidence": 64,
-            "tier": "A",
-            "reason": "Proj 20.4 rec yds/g | Rec match 1.06x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 63.99,
-            "model_hit_rate_raw": 0.6399,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.15746445859872613
+            "td_lambda": 0.12531429287235377
           },
           {
             "player_id": "4431492",
@@ -6169,6 +6133,38 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.2458198156179333
+          },
+          {
+            "player_id": "4361411",
+            "player_name": "Pat Freiermuth",
+            "team": "PIT",
+            "opponent": "ATL",
+            "line": "30+ Rec Yds",
+            "score": 63.31,
+            "confidence": 63,
+            "tier": "A",
+            "reason": "Proj 36.9 rec yds/g | Rec match 1.28x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 63.31,
+            "model_hit_rate_raw": 0.6331,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.30202084190810236
+          },
+          {
+            "player_id": "3043275",
+            "player_name": "Austin Hooper",
+            "team": "ATL",
+            "opponent": "PIT",
+            "line": "15+ Rec Yds",
+            "score": 63.14,
+            "confidence": 63,
+            "tier": "A",
+            "reason": "Proj 20.0 rec yds/g | Rec match 1.05x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 63.14,
+            "model_hit_rate_raw": 0.6314,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.15484103720405862
           },
           {
             "player_id": "4363551",
@@ -6404,31 +6400,15 @@
             "team": "PIT",
             "opponent": "ATL",
             "line": "2+ Receptions",
-            "score": 77.25,
-            "confidence": 77,
+            "score": 76.46,
+            "confidence": 76,
             "tier": "A",
-            "reason": "REC/g 2.82 | Rec match 1.30x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 77.25,
-            "model_hit_rate_raw": 0.7725,
+            "reason": "REC/g 2.77 | Rec match 1.28x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 76.46,
+            "model_hit_rate_raw": 0.7646,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.1274
-          },
-          {
-            "player_id": "4360248",
-            "player_name": "Kyle Pitts Sr.",
-            "team": "ATL",
-            "opponent": "PIT",
-            "line": "4+ Receptions",
-            "score": 74.69,
-            "confidence": 75,
-            "tier": "A",
-            "reason": "REC/g 5.09 | Rec match 1.06x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 74.69,
-            "model_hit_rate_raw": 0.7469,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.3019588717015469
+            "td_lambda": 0.12531429287235377
           },
           {
             "player_id": "4430807",
@@ -6447,6 +6427,22 @@
             "rush_yds_mean": 66.15521073207498,
             "rec_yds_mean": 50.8488688845116,
             "td_lambda": 0.5867624897742763
+          },
+          {
+            "player_id": "4360248",
+            "player_name": "Kyle Pitts Sr.",
+            "team": "ATL",
+            "opponent": "PIT",
+            "line": "4+ Receptions",
+            "score": 73.52,
+            "confidence": 74,
+            "tier": "A",
+            "reason": "REC/g 5.00 | Rec match 1.05x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 73.52,
+            "model_hit_rate_raw": 0.7352,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.29692811510173406
           },
           {
             "player_id": "4047650",
@@ -6981,15 +6977,15 @@
             "team": "CHI",
             "opponent": "CAR",
             "line": "Anytime TD",
-            "score": 26.08,
+            "score": 25.71,
             "confidence": 26,
             "tier": "C",
-            "reason": "TD \u03bb 0.30 | Rush match 1.17x | Rec match 0.87x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 26.08,
-            "model_hit_rate_raw": 0.2608,
+            "reason": "TD \u03bb 0.30 | Rush match 1.17x | Rec match 0.85x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 25.71,
+            "model_hit_rate_raw": 0.2571,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.30216152866242035
+            "td_lambda": 0.2971273957158963
           },
           {
             "player_id": "4241416",
@@ -7124,22 +7120,6 @@
             "td_lambda": 0.30306112405548424
           },
           {
-            "player_id": "4258595",
-            "player_name": "Cole Kmet",
-            "team": "CHI",
-            "opponent": "CAR",
-            "line": "15+ Rec Yds",
-            "score": 63.74,
-            "confidence": 64,
-            "tier": "A",
-            "reason": "Proj 20.3 rec yds/g | Rec match 0.87x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 63.74,
-            "model_hit_rate_raw": 0.6374,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.12850547770700635
-          },
-          {
             "player_id": "4685472",
             "player_name": "Tetairoa McMillan",
             "team": "CAR",
@@ -7172,20 +7152,36 @@
             "td_lambda": 0.23227016963177496
           },
           {
-            "player_id": "4723086",
-            "player_name": "Colston Loveland",
+            "player_id": "4258595",
+            "player_name": "Cole Kmet",
             "team": "CHI",
             "opponent": "CAR",
-            "line": "30+ Rec Yds",
-            "score": 62.17,
-            "confidence": 62,
+            "line": "15+ Rec Yds",
+            "score": 62.9,
+            "confidence": 63,
             "tier": "A",
-            "reason": "Proj 36.2 rec yds/g | Rec match 0.87x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 62.17,
-            "model_hit_rate_raw": 0.6217,
+            "reason": "Proj 19.9 rec yds/g | Rec match 0.85x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 62.9,
+            "model_hit_rate_raw": 0.629,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.30216152866242035
+            "td_lambda": 0.12636452461480646
+          },
+          {
+            "player_id": "4567096",
+            "player_name": "John Metchie III",
+            "team": "CAR",
+            "opponent": "CHI",
+            "line": "25+ Rec Yds",
+            "score": 61.46,
+            "confidence": 61,
+            "tier": "B",
+            "reason": "Proj 29.8 rec yds/g | Rec match 1.30x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 61.46,
+            "model_hit_rate_raw": 0.6146,
+            "lineup_confirmed": false,
+            "position": "WR",
+            "td_lambda": 0.22290806785270997
           }
         ],
         "RushYds": [
@@ -7363,15 +7359,15 @@
             "team": "CHI",
             "opponent": "CAR",
             "line": "2+ Receptions",
-            "score": 80.91,
-            "confidence": 81,
+            "score": 80.17,
+            "confidence": 80,
             "tier": "A",
-            "reason": "REC/g 3.06 | Rec match 0.87x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 80.91,
-            "model_hit_rate_raw": 0.8091,
+            "reason": "REC/g 3.01 | Rec match 0.85x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 80.17,
+            "model_hit_rate_raw": 0.8017,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.30216152866242035
+            "td_lambda": 0.2971273957158963
           },
           {
             "player_id": "4685472",
@@ -7911,15 +7907,15 @@
             "team": "JAX",
             "opponent": "CLE",
             "line": "Anytime TD",
-            "score": 24.15,
+            "score": 23.8,
             "confidence": 24,
             "tier": "C",
-            "reason": "TD \u03bb 0.28 | Rush match 1.26x | Rec match 1.12x | 2025 GP 12 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 24.15,
-            "model_hit_rate_raw": 0.2415,
+            "reason": "TD \u03bb 0.27 | Rush match 1.26x | Rec match 1.10x | 2025 GP 12 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 23.8,
+            "model_hit_rate_raw": 0.238,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.2764433121019108
+            "td_lambda": 0.271837655016911
           },
           {
             "player_id": "4601080",
@@ -7945,15 +7941,15 @@
             "team": "JAX",
             "opponent": "CLE",
             "line": "Anytime TD",
-            "score": 22.46,
+            "score": 22.13,
             "confidence": 22,
             "tier": "C",
-            "reason": "TD \u03bb 0.25 | Rush match 1.26x | Rec match 1.12x | 2025 GP 9 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 22.46,
-            "model_hit_rate_raw": 0.2246,
+            "reason": "TD \u03bb 0.25 | Rush match 1.26x | Rec match 1.10x | 2025 GP 9 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 22.13,
+            "model_hit_rate_raw": 0.2213,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.2543192552670259
+            "td_lambda": 0.25008219389279146
           },
           {
             "player_id": "4432620",
@@ -8004,6 +8000,22 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.1700925264226878
+          },
+          {
+            "player_id": "4430539",
+            "player_name": "Brenton Strange",
+            "team": "JAX",
+            "opponent": "CLE",
+            "line": "35+ Rec Yds",
+            "score": 66.04,
+            "confidence": 66,
+            "tier": "A",
+            "reason": "Proj 45.3 rec yds/g | Rec match 1.10x | 2025 GP 12 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 66.04,
+            "model_hit_rate_raw": 0.6604,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.271837655016911
           },
           {
             "player_id": "4432620",
@@ -8132,22 +8144,6 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.07937484615047168
-          },
-          {
-            "player_id": "4241463",
-            "player_name": "Jerry Jeudy",
-            "team": "CLE",
-            "opponent": "JAX",
-            "line": "30+ Rec Yds",
-            "score": 60.99,
-            "confidence": 61,
-            "tier": "B",
-            "reason": "Proj 35.4 rec yds/g | Rec match 0.95x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 60.99,
-            "model_hit_rate_raw": 0.6099,
-            "lineup_confirmed": false,
-            "position": "WR",
-            "td_lambda": 0.1544292218703218
           }
         ],
         "RushYds": [
@@ -8422,15 +8418,15 @@
             "team": "JAX",
             "opponent": "CLE",
             "line": "2+ Receptions",
-            "score": 61.95,
-            "confidence": 62,
+            "score": 61.04,
+            "confidence": 61,
             "tier": "B",
-            "reason": "REC/g 2.10 | Rec match 1.12x | 2025 GP 9 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 61.95,
-            "model_hit_rate_raw": 0.6195,
+            "reason": "REC/g 2.06 | Rec match 1.10x | 2025 GP 9 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 61.04,
+            "model_hit_rate_raw": 0.6104,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.2543192552670259
+            "td_lambda": 0.25008219389279146
           },
           {
             "player_id": "4369863",
@@ -8449,22 +8445,6 @@
             "td_lambda": 0.19076550936922107
           },
           {
-            "player_id": "4430539",
-            "player_name": "Brenton Strange",
-            "team": "JAX",
-            "opponent": "CLE",
-            "line": "4+ Receptions",
-            "score": 58.14,
-            "confidence": 58,
-            "tier": "B",
-            "reason": "REC/g 4.08 | Rec match 1.12x | 2025 GP 12 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 58.14,
-            "model_hit_rate_raw": 0.5814,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.2764433121019108
-          },
-          {
             "player_id": "4685702",
             "player_name": "Quinshon Judkins",
             "team": "CLE",
@@ -8481,6 +8461,22 @@
             "rush_yds_mean": 42.63044275878211,
             "rec_yds_mean": 12.855523486151673,
             "td_lambda": 0.3763037239714887
+          },
+          {
+            "player_id": "4430539",
+            "player_name": "Brenton Strange",
+            "team": "JAX",
+            "opponent": "CLE",
+            "line": "4+ Receptions",
+            "score": 56.83,
+            "confidence": 57,
+            "tier": "B",
+            "reason": "REC/g 4.01 | Rec match 1.10x | 2025 GP 12 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 56.83,
+            "model_hit_rate_raw": 0.5683,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.271837655016911
           }
         ],
         "PassTD": [
@@ -8795,15 +8791,15 @@
             "team": "BUF",
             "opponent": "HOU",
             "line": "Anytime TD",
-            "score": 32.31,
-            "confidence": 32,
+            "score": 34.46,
+            "confidence": 34,
             "tier": "B",
-            "reason": "TD \u03bb 0.39 | Rush match 0.82x | Rec match 1.05x | 2025 GP 12 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 32.31,
-            "model_hit_rate_raw": 0.3231,
+            "reason": "TD \u03bb 0.42 | Rush match 0.82x | Rec match 1.13x | 2025 GP 12 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 34.46,
+            "model_hit_rate_raw": 0.3446,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.3902471337579618
+            "td_lambda": 0.4225679569084304
           },
           {
             "player_id": "4258173",
@@ -8908,38 +8904,6 @@
         ],
         "RecYds": [
           {
-            "player_id": "3930086",
-            "player_name": "Dawson Knox",
-            "team": "BUF",
-            "opponent": "HOU",
-            "line": "20+ Rec Yds",
-            "score": 67.46,
-            "confidence": 67,
-            "tier": "A",
-            "reason": "Proj 26.8 rec yds/g | Rec match 1.05x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 67.46,
-            "model_hit_rate_raw": 0.6746,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.247443372763118
-          },
-          {
-            "player_id": "4385690",
-            "player_name": "Dalton Kincaid",
-            "team": "BUF",
-            "opponent": "HOU",
-            "line": "35+ Rec Yds",
-            "score": 65.97,
-            "confidence": 66,
-            "tier": "A",
-            "reason": "Proj 45.2 rec yds/g | Rec match 1.05x | 2025 GP 12 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 65.97,
-            "model_hit_rate_raw": 0.6597,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.3902471337579618
-          },
-          {
             "player_id": "4258173",
             "player_name": "Nico Collins",
             "team": "HOU",
@@ -9020,20 +8984,20 @@
             "td_lambda": 0.31121960189399167
           },
           {
-            "player_id": "4608362",
-            "player_name": "Shane Zylstra",
+            "player_id": "4385690",
+            "player_name": "Dalton Kincaid",
             "team": "BUF",
             "opponent": "HOU",
-            "line": "10+ Rec Yds",
-            "score": 62.22,
-            "confidence": 62,
+            "line": "40+ Rec Yds",
+            "score": 63.07,
+            "confidence": 63,
             "tier": "A",
-            "reason": "Proj 14.7 rec yds/g | Rec match 1.05x | 2025 GP 6 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 62.22,
-            "model_hit_rate_raw": 0.6222,
+            "reason": "Proj 49.0 rec yds/g | Rec match 1.13x | 2025 GP 12 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 63.07,
+            "model_hit_rate_raw": 0.6307,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.10057375796178344
+            "td_lambda": 0.4225679569084304
           },
           {
             "player_id": "4379399",
@@ -9054,6 +9018,22 @@
             "td_lambda": 0.6497904030154326
           },
           {
+            "player_id": "4688552",
+            "player_name": "Keleki Latu",
+            "team": "BUF",
+            "opponent": "HOU",
+            "line": "15+ Rec Yds",
+            "score": 61.89,
+            "confidence": 62,
+            "tier": "B",
+            "reason": "Proj 19.5 rec yds/g | Rec match 1.13x | 2025 GP 5 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 61.89,
+            "model_hit_rate_raw": 0.6189,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.12100379974111652
+          },
+          {
             "player_id": "2976592",
             "player_name": "Sterling Shepard",
             "team": "HOU",
@@ -9068,6 +9048,22 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.10893840200540293
+          },
+          {
+            "player_id": "3843945",
+            "player_name": "Foster Moreau",
+            "team": "HOU",
+            "opponent": "BUF",
+            "line": "5+ Rec Yds",
+            "score": 60.39,
+            "confidence": 60,
+            "tier": "B",
+            "reason": "Proj 9.0 rec yds/g | Rec match 0.75x | 2025 GP 11 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 60.39,
+            "model_hit_rate_raw": 0.6039,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.048
           }
         ],
         "RushYds": [
@@ -9279,15 +9275,15 @@
             "team": "BUF",
             "opponent": "HOU",
             "line": "2+ Receptions",
-            "score": 69.47,
-            "confidence": 69,
+            "score": 73.54,
+            "confidence": 74,
             "tier": "A",
-            "reason": "REC/g 2.41 | Rec match 1.05x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 69.47,
-            "model_hit_rate_raw": 0.6947,
+            "reason": "REC/g 2.61 | Rec match 1.13x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 73.54,
+            "model_hit_rate_raw": 0.7354,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.247443372763118
+            "td_lambda": 0.26793698514104375
           },
           {
             "player_id": "2976592",
@@ -9324,6 +9320,22 @@
             "td_lambda": 0.6497904030154326
           },
           {
+            "player_id": "4688552",
+            "player_name": "Keleki Latu",
+            "team": "BUF",
+            "opponent": "HOU",
+            "line": "2+ Receptions",
+            "score": 61.19,
+            "confidence": 61,
+            "tier": "B",
+            "reason": "REC/g 2.07 | Rec match 1.13x | 2025 GP 5 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 61.19,
+            "model_hit_rate_raw": 0.6119,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.12100379974111652
+          },
+          {
             "player_id": "4429022",
             "player_name": "Kayshon Boutte",
             "team": "HOU",
@@ -9354,22 +9366,6 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.07566193223894886
-          },
-          {
-            "player_id": "4688552",
-            "player_name": "Keleki Latu",
-            "team": "BUF",
-            "opponent": "HOU",
-            "line": "2+ Receptions",
-            "score": 56.88,
-            "confidence": 57,
-            "tier": "B",
-            "reason": "REC/g 1.91 | Rec match 1.05x | 2025 GP 5 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 56.88,
-            "model_hit_rate_raw": 0.5688,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.11174861995753715
           },
           {
             "player_id": "4429939",
@@ -9723,15 +9719,15 @@
             "team": "LV",
             "opponent": "MIA",
             "line": "Anytime TD",
-            "score": 46.13,
+            "score": 45.57,
             "confidence": 46,
             "tier": "A",
-            "reason": "TD \u03bb 0.62 | Rush match 0.99x | Rec match 1.24x | 2025 GP 12 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 46.13,
-            "model_hit_rate_raw": 0.4613,
+            "reason": "TD \u03bb 0.61 | Rush match 0.99x | Rec match 1.22x | 2025 GP 12 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 45.57,
+            "model_hit_rate_raw": 0.4557,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.6185477707006369
+            "td_lambda": 0.6082425153451084
           },
           {
             "player_id": "4890973",
@@ -9870,22 +9866,6 @@
         ],
         "RecYds": [
           {
-            "player_id": "4429086",
-            "player_name": "Michael Mayer",
-            "team": "LV",
-            "opponent": "MIA",
-            "line": "25+ Rec Yds",
-            "score": 66.67,
-            "confidence": 67,
-            "tier": "A",
-            "reason": "Proj 32.8 rec yds/g | Rec match 1.24x | 2025 GP 13 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 66.67,
-            "model_hit_rate_raw": 0.6667,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.143346571749719
-          },
-          {
             "player_id": "4361332",
             "player_name": "Shedrick Jackson",
             "team": "LV",
@@ -9900,6 +9880,22 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.32573787607403987
+          },
+          {
+            "player_id": "4429086",
+            "player_name": "Michael Mayer",
+            "team": "LV",
+            "opponent": "MIA",
+            "line": "25+ Rec Yds",
+            "score": 65.81,
+            "confidence": 66,
+            "tier": "A",
+            "reason": "Proj 32.2 rec yds/g | Rec match 1.22x | 2025 GP 13 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 65.81,
+            "model_hit_rate_raw": 0.6581,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.14095836004450635
           },
           {
             "player_id": "4249417",
@@ -9932,22 +9928,6 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.36979332462448555
-          },
-          {
-            "player_id": "4367209",
-            "player_name": "Greg Dulcich",
-            "team": "MIA",
-            "opponent": "LV",
-            "line": "20+ Rec Yds",
-            "score": 64.81,
-            "confidence": 65,
-            "tier": "A",
-            "reason": "Proj 25.7 rec yds/g | Rec match 0.79x | 2025 GP 10 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 64.81,
-            "model_hit_rate_raw": 0.6481,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.11071592356687895
           },
           {
             "player_id": "4429160",
@@ -9984,22 +9964,6 @@
             "td_lambda": 0.13423062610830025
           },
           {
-            "player_id": "4432665",
-            "player_name": "Brock Bowers",
-            "team": "LV",
-            "opponent": "MIA",
-            "line": "50+ Rec Yds",
-            "score": 63.9,
-            "confidence": 64,
-            "tier": "A",
-            "reason": "Proj 62.2 rec yds/g | Rec match 1.24x | 2025 GP 12 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 63.9,
-            "model_hit_rate_raw": 0.639,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.6185477707006369
-          },
-          {
             "player_id": "4432775",
             "player_name": "Dont'e Thornton Jr.",
             "team": "LV",
@@ -10016,20 +9980,52 @@
             "td_lambda": 0.09069137639759997
           },
           {
-            "player_id": "4360797",
-            "player_name": "Tutu Atwell",
+            "player_id": "4367209",
+            "player_name": "Greg Dulcich",
             "team": "MIA",
             "opponent": "LV",
             "line": "20+ Rec Yds",
-            "score": 62.53,
+            "score": 63.74,
+            "confidence": 64,
+            "tier": "A",
+            "reason": "Proj 25.3 rec yds/g | Rec match 0.78x | 2025 GP 10 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 63.74,
+            "model_hit_rate_raw": 0.6374,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.10887135162219716
+          },
+          {
+            "player_id": "4045305",
+            "player_name": "Ian Thomas",
+            "team": "LV",
+            "opponent": "MIA",
+            "line": "10+ Rec Yds",
+            "score": 63.2,
             "confidence": 63,
             "tier": "A",
-            "reason": "Proj 24.8 rec yds/g | Rec match 0.92x | 2025 GP 10 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 62.53,
-            "model_hit_rate_raw": 0.6253,
+            "reason": "Proj 15.1 rec yds/g | Rec match 1.22x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 63.2,
+            "model_hit_rate_raw": 0.632,
             "lineup_confirmed": false,
-            "position": "WR",
-            "td_lambda": 0.16180981679943834
+            "position": "TE",
+            "td_lambda": 0.061773373682232645
+          },
+          {
+            "player_id": "4432665",
+            "player_name": "Brock Bowers",
+            "team": "LV",
+            "opponent": "MIA",
+            "line": "50+ Rec Yds",
+            "score": 62.97,
+            "confidence": 63,
+            "tier": "A",
+            "reason": "Proj 61.1 rec yds/g | Rec match 1.22x | 2025 GP 12 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 62.97,
+            "model_hit_rate_raw": 0.6297,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.6082425153451084
           }
         ],
         "RushYds": [
@@ -10210,22 +10206,6 @@
             "td_lambda": 0.31224548019058274
           },
           {
-            "player_id": "4367209",
-            "player_name": "Greg Dulcich",
-            "team": "MIA",
-            "opponent": "LV",
-            "line": "2+ Receptions",
-            "score": 63.78,
-            "confidence": 64,
-            "tier": "A",
-            "reason": "REC/g 2.17 | Rec match 0.79x | 2025 GP 10 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 63.78,
-            "model_hit_rate_raw": 0.6378,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.11071592356687895
-          },
-          {
             "player_id": "4603186",
             "player_name": "Jack Bech",
             "team": "LV",
@@ -10240,6 +10220,22 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.08615680757771997
+          },
+          {
+            "player_id": "4367209",
+            "player_name": "Greg Dulcich",
+            "team": "MIA",
+            "opponent": "LV",
+            "line": "2+ Receptions",
+            "score": 62.88,
+            "confidence": 63,
+            "tier": "A",
+            "reason": "REC/g 2.13 | Rec match 0.78x | 2025 GP 10 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 62.88,
+            "model_hit_rate_raw": 0.6288,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.10887135162219716
           },
           {
             "player_id": "4374187",
@@ -10295,15 +10291,15 @@
             "team": "LV",
             "opponent": "MIA",
             "line": "6+ Receptions",
-            "score": 54.41,
-            "confidence": 54,
+            "score": 52.79,
+            "confidence": 53,
             "tier": "B",
-            "reason": "REC/g 5.94 | Rec match 1.24x | 2025 GP 12 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 54.41,
-            "model_hit_rate_raw": 0.5441,
+            "reason": "REC/g 5.84 | Rec match 1.22x | 2025 GP 12 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 52.79,
+            "model_hit_rate_raw": 0.5279,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.6185477707006369
+            "td_lambda": 0.6082425153451084
           }
         ],
         "PassTD": [
@@ -10764,15 +10760,15 @@
             "team": "MIN",
             "opponent": "GB",
             "line": "Anytime TD",
-            "score": 22.54,
-            "confidence": 23,
+            "score": 22.21,
+            "confidence": 22,
             "tier": "C",
-            "reason": "TD \u03bb 0.26 | Rush match 1.30x | Rec match 0.98x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 22.54,
-            "model_hit_rate_raw": 0.2254,
+            "reason": "TD \u03bb 0.25 | Rush match 1.30x | Rec match 0.96x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 22.21,
+            "model_hit_rate_raw": 0.2221,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.2553992624874288
+            "td_lambda": 0.2511442077572737
           },
           {
             "player_id": "4036133",
@@ -10780,15 +10776,15 @@
             "team": "MIN",
             "opponent": "GB",
             "line": "Anytime TD",
-            "score": 18.45,
+            "score": 18.17,
             "confidence": 18,
             "tier": "C",
-            "reason": "TD \u03bb 0.20 | Rush match 1.30x | Rec match 0.98x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 18.45,
-            "model_hit_rate_raw": 0.1845,
+            "reason": "TD \u03bb 0.20 | Rush match 1.30x | Rec match 0.96x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 18.17,
+            "model_hit_rate_raw": 0.1817,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.20390747569560846
+            "td_lambda": 0.20051029490298464
           }
         ],
         "RecYds": [
@@ -10878,15 +10874,15 @@
             "team": "MIN",
             "opponent": "GB",
             "line": "10+ Rec Yds",
-            "score": 61.58,
-            "confidence": 62,
+            "score": 60.97,
+            "confidence": 61,
             "tier": "B",
-            "reason": "Proj 14.4 rec yds/g | Rec match 0.98x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 61.58,
-            "model_hit_rate_raw": 0.6158,
+            "reason": "Proj 14.2 rec yds/g | Rec match 0.96x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 60.97,
+            "model_hit_rate_raw": 0.6097,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.2553992624874288
+            "td_lambda": 0.2511442077572737
           },
           {
             "player_id": "4701936",
@@ -10903,22 +10899,6 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.06362005997303126
-          },
-          {
-            "player_id": "4036133",
-            "player_name": "T.J. Hockenson",
-            "team": "MIN",
-            "opponent": "GB",
-            "line": "25+ Rec Yds",
-            "score": 59.34,
-            "confidence": 59,
-            "tier": "B",
-            "reason": "Proj 28.7 rec yds/g | Rec match 0.98x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 59.34,
-            "model_hit_rate_raw": 0.5934,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.20390747569560846
           },
           {
             "player_id": "4047365",
@@ -10939,20 +10919,36 @@
             "td_lambda": 0.763804411732683
           },
           {
+            "player_id": "4036133",
+            "player_name": "T.J. Hockenson",
+            "team": "MIN",
+            "opponent": "GB",
+            "line": "25+ Rec Yds",
+            "score": 58.29,
+            "confidence": 58,
+            "tier": "B",
+            "reason": "Proj 28.3 rec yds/g | Rec match 0.96x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 58.29,
+            "model_hit_rate_raw": 0.5829,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.20051029490298464
+          },
+          {
             "player_id": "4433959",
             "player_name": "Ben Yurosek",
             "team": "MIN",
             "opponent": "GB",
             "line": "5+ Rec Yds",
-            "score": 58.43,
+            "score": 58.07,
             "confidence": 58,
             "tier": "B",
-            "reason": "Proj 8.2 rec yds/g | Rec match 0.98x | 2025 GP 12 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 58.43,
-            "model_hit_rate_raw": 0.5843,
+            "reason": "Proj 8.1 rec yds/g | Rec match 0.96x | 2025 GP 12 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 58.07,
+            "model_hit_rate_raw": 0.5807,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.05870063694267516
+            "td_lambda": 0.057722660653889514
           }
         ],
         "RushYds": [
@@ -11244,15 +11240,15 @@
             "team": "MIN",
             "opponent": "GB",
             "line": "2+ Receptions",
-            "score": 41.19,
-            "confidence": 41,
+            "score": 40.38,
+            "confidence": 40,
             "tier": "C",
-            "reason": "REC/g 1.41 | Rec match 0.98x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 41.19,
-            "model_hit_rate_raw": 0.4119,
+            "reason": "REC/g 1.39 | Rec match 0.96x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 40.38,
+            "model_hit_rate_raw": 0.4038,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.2553992624874288
+            "td_lambda": 0.2511442077572737
           }
         ],
         "PassTD": [
@@ -11499,7 +11495,7 @@
           "market": "TD",
           "player_name": "Dallas Goedert",
           "line": "Anytime TD",
-          "score": 52.12,
+          "score": 51.53,
           "confidence": 52,
           "tier": "A",
           "player_id": "3121023"
@@ -11531,15 +11527,15 @@
             "team": "PHI",
             "opponent": "WSH",
             "line": "Anytime TD",
-            "score": 52.12,
+            "score": 51.53,
             "confidence": 52,
             "tier": "A",
-            "reason": "TD \u03bb 0.74 | Rush match 1.30x | Rec match 1.17x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 52.12,
-            "model_hit_rate_raw": 0.5212,
+            "reason": "TD \u03bb 0.72 | Rush match 1.30x | Rec match 1.15x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 51.53,
+            "model_hit_rate_raw": 0.5153,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.7364441166610796
+            "td_lambda": 0.7241746606275179
           },
           {
             "player_id": "3929630",
@@ -11699,22 +11695,6 @@
         ],
         "RecYds": [
           {
-            "player_id": "3121023",
-            "player_name": "Dallas Goedert",
-            "team": "PHI",
-            "opponent": "WSH",
-            "line": "35+ Rec Yds",
-            "score": 64.23,
-            "confidence": 64,
-            "tier": "A",
-            "reason": "Proj 43.8 rec yds/g | Rec match 1.17x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 64.23,
-            "model_hit_rate_raw": 0.6423,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.7364441166610796
-          },
-          {
             "player_id": "4241478",
             "player_name": "DeVonta Smith",
             "team": "PHI",
@@ -11729,6 +11709,22 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.3125992301465365
+          },
+          {
+            "player_id": "3121023",
+            "player_name": "Dallas Goedert",
+            "team": "PHI",
+            "opponent": "WSH",
+            "line": "35+ Rec Yds",
+            "score": 63.31,
+            "confidence": 63,
+            "tier": "A",
+            "reason": "Proj 43.1 rec yds/g | Rec match 1.15x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 63.31,
+            "model_hit_rate_raw": 0.6331,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.7241746606275179
           },
           {
             "player_id": "3930066",
@@ -12154,15 +12150,15 @@
             "team": "PHI",
             "opponent": "WSH",
             "line": "4+ Receptions",
-            "score": 65.06,
-            "confidence": 65,
+            "score": 63.77,
+            "confidence": 64,
             "tier": "A",
-            "reason": "REC/g 4.46 | Rec match 1.17x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 65.06,
-            "model_hit_rate_raw": 0.6506,
+            "reason": "REC/g 4.38 | Rec match 1.15x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 63.77,
+            "model_hit_rate_raw": 0.6377,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.7364441166610796
+            "td_lambda": 0.7241746606275179
           },
           {
             "player_id": "3926231",
@@ -12552,15 +12548,15 @@
             "team": "ARI",
             "opponent": "LAC",
             "line": "Anytime TD",
-            "score": 41.51,
-            "confidence": 42,
+            "score": 40.98,
+            "confidence": 41,
             "tier": "B",
-            "reason": "TD \u03bb 0.54 | Rush match 0.84x | Rec match 0.94x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 41.51,
-            "model_hit_rate_raw": 0.4151,
+            "reason": "TD \u03bb 0.53 | Rush match 0.84x | Rec match 0.93x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 40.98,
+            "model_hit_rate_raw": 0.4098,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.5362955414012739
+            "td_lambda": 0.5273606413628962
           },
           {
             "player_id": "4429025",
@@ -12747,22 +12743,6 @@
             "td_lambda": 0.43505623583239783
           },
           {
-            "player_id": "4361307",
-            "player_name": "Trey McBride",
-            "team": "ARI",
-            "opponent": "LAC",
-            "line": "50+ Rec Yds",
-            "score": 62.79,
-            "confidence": 63,
-            "tier": "A",
-            "reason": "Proj 60.9 rec yds/g | Rec match 0.94x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 62.79,
-            "model_hit_rate_raw": 0.6279,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.5362955414012739
-          },
-          {
             "player_id": "4612826",
             "player_name": "Ladd McConkey",
             "team": "LAC",
@@ -12813,6 +12793,22 @@
             "rush_yds_mean": 62.0176488090964,
             "rec_yds_mean": 14.6823527953204,
             "td_lambda": 0.4343529411764706
+          },
+          {
+            "player_id": "4361307",
+            "player_name": "Trey McBride",
+            "team": "ARI",
+            "opponent": "LAC",
+            "line": "50+ Rec Yds",
+            "score": 61.83,
+            "confidence": 62,
+            "tier": "B",
+            "reason": "Proj 59.9 rec yds/g | Rec match 0.93x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 61.83,
+            "model_hit_rate_raw": 0.6183,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.5273606413628962
           },
           {
             "player_id": "4432708",
@@ -13133,22 +13129,6 @@
             "td_lambda": 0.15425842830052097
           },
           {
-            "player_id": "4361307",
-            "player_name": "Trey McBride",
-            "team": "ARI",
-            "opponent": "LAC",
-            "line": "6+ Receptions",
-            "score": 58.68,
-            "confidence": 59,
-            "tier": "B",
-            "reason": "REC/g 6.21 | Rec match 0.94x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 58.68,
-            "model_hit_rate_raw": 0.5868,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.5362955414012739
-          },
-          {
             "player_id": "4612826",
             "player_name": "Ladd McConkey",
             "team": "LAC",
@@ -13183,20 +13163,36 @@
             "td_lambda": 0.668
           },
           {
+            "player_id": "4361307",
+            "player_name": "Trey McBride",
+            "team": "ARI",
+            "opponent": "LAC",
+            "line": "6+ Receptions",
+            "score": 57.07,
+            "confidence": 57,
+            "tier": "B",
+            "reason": "REC/g 6.10 | Rec match 0.93x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 57.07,
+            "model_hit_rate_raw": 0.5707,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.5273606413628962
+          },
+          {
             "player_id": "4426844",
             "player_name": "Elijah Higgins",
             "team": "ARI",
             "opponent": "LAC",
             "line": "2+ Receptions",
-            "score": 56.66,
-            "confidence": 57,
+            "score": 55.75,
+            "confidence": 56,
             "tier": "B",
-            "reason": "REC/g 1.90 | Rec match 0.94x | 2025 GP 17 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 56.66,
-            "model_hit_rate_raw": 0.5666,
+            "reason": "REC/g 1.87 | Rec match 0.93x | 2025 GP 17 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 55.75,
+            "model_hit_rate_raw": 0.5575,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.043047133757961785
+            "td_lambda": 0.042329951146185645
           },
           {
             "player_id": "4430968",
@@ -13608,15 +13604,15 @@
             "team": "DAL",
             "opponent": "NYG",
             "line": "Anytime TD",
-            "score": 39.09,
+            "score": 38.58,
             "confidence": 39,
             "tier": "B",
-            "reason": "TD \u03bb 0.50 | Rush match 0.97x | Rec match 1.16x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 39.09,
-            "model_hit_rate_raw": 0.3909,
+            "reason": "TD \u03bb 0.49 | Rush match 0.97x | Rec match 1.14x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 38.58,
+            "model_hit_rate_raw": 0.3858,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.4956942675159236
+            "td_lambda": 0.4874358010772893
           },
           {
             "player_id": "4426354",
@@ -13679,7 +13675,7 @@
             "score": 26.49,
             "confidence": 26,
             "tier": "C",
-            "reason": "TD \u03bb 0.31 | Rush match 1.05x | Rec match 1.25x | 2025 GP 14 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "reason": "TD \u03bb 0.31 | Rush match 1.05x | Rec match 1.25x | 2025 GP 14 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
             "sim_prob_pct": 26.49,
             "model_hit_rate_raw": 0.2649,
             "lineup_confirmed": false,
@@ -13707,6 +13703,22 @@
         ],
         "RecYds": [
           {
+            "player_id": "4242355",
+            "player_name": "Jake Ferguson",
+            "team": "DAL",
+            "opponent": "NYG",
+            "line": "30+ Rec Yds",
+            "score": 66.48,
+            "confidence": 66,
+            "tier": "A",
+            "reason": "Proj 39.2 rec yds/g | Rec match 1.14x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 66.48,
+            "model_hit_rate_raw": 0.6648,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.4874358010772893
+          },
+          {
             "player_id": "3676833",
             "player_name": "KaVontae Turpin",
             "team": "DAL",
@@ -13731,7 +13743,7 @@
             "score": 65.8,
             "confidence": 66,
             "tier": "A",
-            "reason": "Proj 38.7 rec yds/g | Rec match 1.25x | 2025 GP 14 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "reason": "Proj 38.7 rec yds/g | Rec match 1.25x | 2025 GP 14 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
             "sim_prob_pct": 65.8,
             "model_hit_rate_raw": 0.658,
             "lineup_confirmed": false,
@@ -13849,22 +13861,6 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.5360988163318964
-          },
-          {
-            "player_id": "4040655",
-            "player_name": "Darnell Mooney",
-            "team": "NYG",
-            "opponent": "DAL",
-            "line": "35+ Rec Yds",
-            "score": 60.92,
-            "confidence": 61,
-            "tier": "B",
-            "reason": "Proj 41.3 rec yds/g | Rec match 1.25x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 60.92,
-            "model_hit_rate_raw": 0.6092,
-            "lineup_confirmed": false,
-            "position": "WR",
-            "td_lambda": 0.15986656651014675
           }
         ],
         "RushYds": [
@@ -14110,15 +14106,15 @@
             "team": "DAL",
             "opponent": "NYG",
             "line": "4+ Receptions",
-            "score": 76.48,
-            "confidence": 76,
+            "score": 75.35,
+            "confidence": 75,
             "tier": "A",
-            "reason": "REC/g 5.22 | Rec match 1.16x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 76.48,
-            "model_hit_rate_raw": 0.7648,
+            "reason": "REC/g 5.14 | Rec match 1.14x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 75.35,
+            "model_hit_rate_raw": 0.7535,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.4956942675159236
+            "td_lambda": 0.4874358010772893
           },
           {
             "player_id": "5083754",
@@ -14687,22 +14683,6 @@
         ],
         "RecYds": [
           {
-            "player_id": "3051876",
-            "player_name": "Evan Engram",
-            "team": "DEN",
-            "opponent": "KC",
-            "line": "20+ Rec Yds",
-            "score": 67.96,
-            "confidence": 68,
-            "tier": "A",
-            "reason": "Proj 27.0 rec yds/g | Rec match 0.93x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 67.96,
-            "model_hit_rate_raw": 0.6796,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.09108382165605097
-          },
-          {
             "player_id": "4362921",
             "player_name": "Tyquan Thornton",
             "team": "KC",
@@ -14717,6 +14697,22 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.23421095526809954
+          },
+          {
+            "player_id": "3051876",
+            "player_name": "Evan Engram",
+            "team": "DEN",
+            "opponent": "KC",
+            "line": "20+ Rec Yds",
+            "score": 66.88,
+            "confidence": 67,
+            "tier": "A",
+            "reason": "Proj 26.6 rec yds/g | Rec match 0.91x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 66.88,
+            "model_hit_rate_raw": 0.6688,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.08956632844795191
           },
           {
             "player_id": "4372016",
@@ -15072,15 +15068,15 @@
             "team": "DEN",
             "opponent": "KC",
             "line": "2+ Receptions",
-            "score": 78.54,
-            "confidence": 79,
+            "score": 77.75,
+            "confidence": 78,
             "tier": "A",
-            "reason": "REC/g 2.90 | Rec match 0.93x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 78.54,
-            "model_hit_rate_raw": 0.7854,
+            "reason": "REC/g 2.85 | Rec match 0.91x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 77.75,
+            "model_hit_rate_raw": 0.7775,
             "lineup_confirmed": false,
             "position": "TE",
-            "td_lambda": 0.09108382165605097
+            "td_lambda": 0.08956632844795191
           },
           {
             "player_id": "4568490",
@@ -15542,12 +15538,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 19.6
+        "joint_prob_pct": 20.3
       },
       "ceiling": {
         "qb_line": "3+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 6.6
+        "joint_prob_pct": 6.9
       }
     },
     {
@@ -15674,12 +15670,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 34.9
+        "joint_prob_pct": 29.8
       },
       "ceiling": {
         "qb_line": "4+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 8.2
+        "joint_prob_pct": 7.2
       }
     },
     {
