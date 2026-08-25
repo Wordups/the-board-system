@@ -1,7 +1,7 @@
 {
   "sport": "NFL",
   "date": "2026-09-09",
-  "last_updated": "11:54 PM ET",
+  "last_updated": "12:40 AM ET",
   "week": 1,
   "season": 2026,
   "uncertainty_note": "Week 1 \u00b7 2026 \u2014 built entirely from 2025 prior-season stats; no current-season sample yet, and rosters/depth charts are not yet final.",
@@ -13008,24 +13008,6 @@
             "td_lambda": 0.1612
           },
           {
-            "player_id": "4429275",
-            "player_name": "Trey Benson",
-            "team": "ARI",
-            "opponent": "LAC",
-            "line": "30+ Rush Yds",
-            "score": 59.32,
-            "confidence": 59,
-            "tier": "B",
-            "reason": "Proj 34.5 rush yds/g | Rush match 0.84x | 2025 GP 4 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 59.32,
-            "model_hit_rate_raw": 0.5932,
-            "lineup_confirmed": false,
-            "position": "RB",
-            "rush_yds_mean": 34.46917666528755,
-            "rec_yds_mean": 11.25,
-            "td_lambda": 0.17292097641704593
-          },
-          {
             "player_id": "4569609",
             "player_name": "Evan Hull",
             "team": "ARI",
@@ -13060,6 +13042,27 @@
             "rush_yds_mean": 22.96193588376785,
             "rec_yds_mean": 10.124999821186066,
             "td_lambda": 0.34351339470417874
+          },
+          {
+            "player_id": "2578570",
+            "player_name": "Jacoby Brissett",
+            "team": "ARI",
+            "opponent": "LAC",
+            "line": "10+ Rush Yds",
+            "score": 48.75,
+            "confidence": 49,
+            "tier": "C",
+            "reason": "Proj 9.5 rush yds/g | Rush match 0.84x | 2025 GP 14 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 48.75,
+            "model_hit_rate_raw": 0.4875,
+            "lineup_confirmed": false,
+            "position": "QB",
+            "pass_yds_mean": 244.07191883672556,
+            "completions_mean": 23.069500757668838,
+            "pass_td_lambda": 1.5984273252242291,
+            "int_lambda": 0.18888888888888888,
+            "rush_yds_mean": 9.528065094469728,
+            "td_lambda": 0.06912517813634901
           }
         ],
         "REC": [
@@ -13144,24 +13147,6 @@
             "td_lambda": 0.15391556642558252
           },
           {
-            "player_id": "4429275",
-            "player_name": "Trey Benson",
-            "team": "ARI",
-            "opponent": "LAC",
-            "line": "2+ Receptions",
-            "score": 59.57,
-            "confidence": 60,
-            "tier": "B",
-            "reason": "REC/g 2.01 | Rec match 0.75x | 2025 GP 4 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 59.57,
-            "model_hit_rate_raw": 0.5957,
-            "lineup_confirmed": false,
-            "position": "RB",
-            "rush_yds_mean": 34.46917666528755,
-            "rec_yds_mean": 11.25,
-            "td_lambda": 0.17292097641704593
-          },
-          {
             "player_id": "4612826",
             "player_name": "Ladd McConkey",
             "team": "LAC",
@@ -13226,6 +13211,24 @@
             "lineup_confirmed": false,
             "position": "TE",
             "td_lambda": 0.04225056264066017
+          },
+          {
+            "player_id": "4430968",
+            "player_name": "Kimani Vidal",
+            "team": "LAC",
+            "opponent": "ARI",
+            "line": "2+ Receptions",
+            "score": 55.65,
+            "confidence": 56,
+            "tier": "B",
+            "reason": "REC/g 1.87 | Rec match 1.30x | 2025 GP 13 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 55.65,
+            "model_hit_rate_raw": 0.5565,
+            "lineup_confirmed": false,
+            "position": "RB",
+            "rush_yds_mean": 62.0176488090964,
+            "rec_yds_mean": 14.6823527953204,
+            "td_lambda": 0.4343529411764706
           }
         ],
         "PassTD": [
@@ -16015,12 +16018,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 37.7
+        "joint_prob_pct": 38.1
       },
       "ceiling": {
         "qb_line": "4+ Pass TD",
         "receiver_line": "2+ Rec TD",
-        "joint_prob_pct": 3.1
+        "joint_prob_pct": 3.0
       }
     },
     {
@@ -17261,20 +17264,20 @@
       "game_id": "401872926",
       "matchup": "ARI @ LAC",
       "rb": {
-        "player_name": "Trey Benson",
-        "player_id": "4429275"
+        "player_name": "Bam Knight",
+        "player_id": "4427728"
       },
       "floor": {
-        "rush_yds_line": "30+ Rush Yds",
+        "rush_yds_line": "20+ Rush Yds",
         "rec_yds_line": "10+ Rec Yds",
         "td_line": "1+ TD",
-        "joint_prob_pct": 12.5
+        "joint_prob_pct": 20.1
       },
       "ceiling": {
-        "rush_yds_line": "40+ Rush Yds",
-        "rec_yds_line": "15+ Rec Yds",
+        "rush_yds_line": "25+ Rush Yds",
+        "rec_yds_line": "10+ Rec Yds",
         "td_line": "1+ TD",
-        "joint_prob_pct": 9.7
+        "joint_prob_pct": 18.0
       }
     },
     {
@@ -30259,36 +30262,6 @@
           "rush_yds": 83.0,
           "rec_yds": 29.0,
           "total_yds": 112.0
-        }
-      ]
-    },
-    "4429275": {
-      "team": "ARI",
-      "position": "RB",
-      "games": [
-        {
-          "week": 1,
-          "rush_yds": 69.0,
-          "rec_yds": 6.0,
-          "total_yds": 75.0
-        },
-        {
-          "week": 2,
-          "rush_yds": 14.0,
-          "rec_yds": 30.0,
-          "total_yds": 44.0
-        },
-        {
-          "week": 3,
-          "rush_yds": 42.0,
-          "rec_yds": 9.0,
-          "total_yds": 51.0
-        },
-        {
-          "week": 4,
-          "rush_yds": 35.0,
-          "rec_yds": 19.0,
-          "total_yds": 54.0
         }
       ]
     },
