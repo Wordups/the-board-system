@@ -1,7 +1,7 @@
 {
   "sport": "SOCCER",
-  "date": "2026-08-26",
-  "last_updated": "12:37 PM ET",
+  "date": "2026-08-27",
+  "last_updated": "6:48 PM ET",
   "pinned_board": {
     "title": "Anytime Goalscorer Top 10",
     "market": "GS",
@@ -9,36 +9,36 @@
   },
   "games": [
     {
-      "game_id": "401882919",
-      "matchup": "RSO @ RMA",
+      "game_id": "401882924",
+      "matchup": "OSA @ CEL",
       "time": "La Liga | Scheduled",
       "top_signals": [
         {
           "market": "BTTS",
           "player_name": "Both Teams to Score",
           "line": "BTTS No",
-          "score": 52.85,
-          "confidence": 53,
-          "tier": "C",
-          "player_id": "401882919-btts"
+          "score": 58.47,
+          "confidence": 58,
+          "tier": "B",
+          "player_id": "401882924-btts"
         },
         {
           "market": "1H",
           "player_name": "First Half Goal",
           "line": "1H Over 0.5 Goals",
-          "score": 75.99,
-          "confidence": 76,
-          "tier": "A",
-          "player_id": "401882919-1h"
+          "score": 62.63,
+          "confidence": 63,
+          "tier": "B",
+          "player_id": "401882924-1h"
         },
         {
-          "market": "ML",
-          "player_name": "RMA",
-          "line": "Moneyline",
-          "score": 75.69,
-          "confidence": 76,
-          "tier": "A",
-          "player_id": "401882919-ml"
+          "market": "OU",
+          "player_name": "Match Total",
+          "line": "Under 2.5 Goals",
+          "score": 61.68,
+          "confidence": 62,
+          "tier": "B",
+          "player_id": "401882924-ou"
         }
       ],
       "markets": {
@@ -48,79 +48,196 @@
         "SOT": [],
         "BTTS": [
           {
-            "player_id": "401882919-btts",
+            "player_id": "401882924-btts",
             "player_name": "Both Teams to Score",
-            "team": "RMA",
-            "opponent": "RSO",
+            "team": "CEL",
+            "opponent": "OSA",
             "line": "BTTS No",
-            "score": 52.85,
-            "confidence": 53,
-            "tier": "C",
-            "reason": "Home score 90.6% | Away score 52.0% | xG 2.37-0.73",
-            "sim_prob_pct": 52.85,
-            "model_hit_rate": 0.5285
+            "score": 58.47,
+            "confidence": 58,
+            "tier": "B",
+            "reason": "Home score 72.4% | Away score 57.4% | xG 1.29-0.85",
+            "sim_prob_pct": 58.47,
+            "model_hit_rate": 0.5847
           }
         ],
         "1H": [
           {
-            "player_id": "401882919-1h",
+            "player_id": "401882924-1h",
             "player_name": "First Half Goal",
-            "team": "RMA",
-            "opponent": "RSO",
+            "team": "CEL",
+            "opponent": "OSA",
             "line": "1H Over 0.5 Goals",
-            "score": 75.99,
-            "confidence": 76,
-            "tier": "A",
-            "reason": "First-half \u03bb 1.43 | 46% goal-time share | Full-match xG 3.10",
-            "sim_prob_pct": 75.99,
-            "model_hit_rate": 0.7599
+            "score": 62.63,
+            "confidence": 63,
+            "tier": "B",
+            "reason": "First-half \u03bb 0.98 | 46% goal-time share | Full-match xG 2.14",
+            "sim_prob_pct": 62.63,
+            "model_hit_rate": 0.6263
           }
         ],
         "1HML": [
           {
-            "player_id": "401882919-1hml",
-            "player_name": "RMA",
-            "team": "RMA",
-            "opponent": "RSO",
-            "line": "1H Moneyline",
-            "score": 54.88,
-            "confidence": 55,
+            "player_id": "401882924-1hml",
+            "player_name": "Draw",
+            "team": "Draw",
+            "opponent": "OSA",
+            "line": "1H Draw",
+            "score": 46.56,
+            "confidence": 47,
             "tier": "C",
-            "reason": "1H Poisson 54.9% | 1H xG 1.09-0.34",
-            "sim_prob_pct": 54.88,
-            "model_hit_rate": 0.5488
+            "reason": "1H Poisson 46.6% | 1H xG 0.59-0.39",
+            "sim_prob_pct": 46.56,
+            "model_hit_rate": 0.4656
           }
         ],
         "OU": [
           {
-            "player_id": "401882919-ou",
+            "player_id": "401882924-ou",
             "player_name": "Match Total",
-            "team": "RMA",
-            "opponent": "RSO",
-            "line": "Under 3.5 Goals",
-            "score": 57.97,
-            "confidence": 58,
+            "team": "CEL",
+            "opponent": "OSA",
+            "line": "Under 2.5 Goals",
+            "score": 61.68,
+            "confidence": 62,
             "tier": "B",
-            "reason": "Total \u03bb 3.10 | Model over 37.5% | Calibrated under 58.0%",
-            "sim_prob_pct": 57.97,
-            "model_hit_rate": 0.5797,
-            "implied_odds": "-110"
+            "reason": "Total \u03bb 2.14 | Model over 36.1% | Calibrated under 61.7%",
+            "sim_prob_pct": 61.68,
+            "model_hit_rate": 0.6168,
+            "implied_odds": "-155"
           }
         ],
         "ML": [
           {
-            "player_id": "401882919-ml",
-            "player_name": "RMA",
-            "team": "RMA",
-            "opponent": "RSO",
+            "player_id": "401882924-ml",
+            "player_name": "CEL",
+            "team": "CEL",
+            "opponent": "OSA",
             "line": "Moneyline",
-            "score": 75.69,
-            "confidence": 76,
+            "score": 47.54,
+            "confidence": 48,
+            "tier": "C",
+            "reason": "Calibrated 47.5% | Poisson 46.6% | Market 48.8%",
+            "sim_prob_pct": 47.54,
+            "model_hit_rate": 0.4754,
+            "implied_odds": "-105"
+          }
+        ]
+      }
+    },
+    {
+      "game_id": "401882921",
+      "matchup": "ATH @ BAR",
+      "time": "La Liga | Scheduled",
+      "top_signals": [
+        {
+          "market": "BTTS",
+          "player_name": "Both Teams to Score",
+          "line": "BTTS Yes",
+          "score": 50.87,
+          "confidence": 51,
+          "tier": "C",
+          "player_id": "401882921-btts"
+        },
+        {
+          "market": "1H",
+          "player_name": "First Half Goal",
+          "line": "1H Over 0.5 Goals",
+          "score": 77.96,
+          "confidence": 78,
+          "tier": "A",
+          "player_id": "401882921-1h"
+        },
+        {
+          "market": "ML",
+          "player_name": "BAR",
+          "line": "Moneyline",
+          "score": 74.78,
+          "confidence": 75,
+          "tier": "A",
+          "player_id": "401882921-ml"
+        }
+      ],
+      "markets": {
+        "GS": [],
+        "AST": [],
+        "SHOTS": [],
+        "SOT": [],
+        "BTTS": [
+          {
+            "player_id": "401882921-btts",
+            "player_name": "Both Teams to Score",
+            "team": "BAR",
+            "opponent": "ATH",
+            "line": "BTTS Yes",
+            "score": 50.87,
+            "confidence": 51,
+            "tier": "C",
+            "reason": "Home score 91.6% | Away score 55.5% | xG 2.48-0.81",
+            "sim_prob_pct": 50.87,
+            "model_hit_rate": 0.5087
+          }
+        ],
+        "1H": [
+          {
+            "player_id": "401882921-1h",
+            "player_name": "First Half Goal",
+            "team": "BAR",
+            "opponent": "ATH",
+            "line": "1H Over 0.5 Goals",
+            "score": 77.96,
+            "confidence": 78,
             "tier": "A",
-            "reason": "Calibrated 75.7% | Poisson 73.8% | Market 78.3%",
-            "sim_prob_pct": 75.69,
-            "model_hit_rate": 0.7569,
-            "implied_odds": "-450"
+            "reason": "First-half \u03bb 1.51 | 46% goal-time share | Full-match xG 3.29",
+            "sim_prob_pct": 77.96,
+            "model_hit_rate": 0.7796
+          }
+        ],
+        "1HML": [
+          {
+            "player_id": "401882921-1hml",
+            "player_name": "BAR",
+            "team": "BAR",
+            "opponent": "ATH",
+            "line": "1H Moneyline",
+            "score": 55.47,
+            "confidence": 55,
+            "tier": "C",
+            "reason": "1H Poisson 55.5% | 1H xG 1.14-0.37",
+            "sim_prob_pct": 55.47,
+            "model_hit_rate": 0.5547
+          }
+        ],
+        "OU": [
+          {
+            "player_id": "401882921-ou",
+            "player_name": "Match Total",
+            "team": "BAR",
+            "opponent": "ATH",
+            "line": "Under 3.5 Goals",
+            "score": 56.64,
+            "confidence": 57,
+            "tier": "B",
+            "reason": "Total \u03bb 3.29 | Model over 41.7% | Calibrated under 56.6%",
+            "sim_prob_pct": 56.64,
+            "model_hit_rate": 0.5664,
+            "implied_odds": "-130"
+          }
+        ],
+        "ML": [
+          {
+            "player_id": "401882921-ml",
+            "player_name": "BAR",
+            "team": "BAR",
+            "opponent": "ATH",
+            "line": "Moneyline",
+            "score": 74.78,
+            "confidence": 75,
+            "tier": "A",
+            "reason": "Calibrated 74.8% | Poisson 73.8% | Market 76.1%",
+            "sim_prob_pct": 74.78,
+            "model_hit_rate": 0.7478,
+            "implied_odds": "-380"
           }
         ]
       }
