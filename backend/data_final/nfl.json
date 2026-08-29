@@ -1,7 +1,7 @@
 {
   "sport": "NFL",
   "date": "2026-09-09",
-  "last_updated": "1:47 PM ET",
+  "last_updated": "2:45 PM ET",
   "week": 1,
   "season": 2026,
   "uncertainty_note": "Week 1 \u00b7 2026 \u2014 built entirely from 2025 prior-season stats; no current-season sample yet, and rosters/depth charts are not yet final.",
@@ -633,6 +633,24 @@
             "int_lambda": 0.1619047619047619,
             "rush_yds_mean": 19.073467998458415,
             "td_lambda": 0.1758212660322714
+          },
+          {
+            "player_id": "4431431",
+            "player_name": "Corey Kiner",
+            "team": "NE",
+            "opponent": "SEA",
+            "line": "20+ Rush Yds",
+            "score": 58.66,
+            "confidence": 59,
+            "tier": "B",
+            "reason": "Proj 23.3 rush yds/g | Rush match 0.82x | 2025 GP 4 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 58.66,
+            "model_hit_rate_raw": 0.5866,
+            "lineup_confirmed": false,
+            "position": "RB",
+            "rush_yds_mean": 23.28258171286719,
+            "rec_yds_mean": 10.083966056275123,
+            "td_lambda": 0.18555643246817105
           },
           {
             "player_id": "4429835",
@@ -12956,24 +12974,6 @@
             "td_lambda": 0.668
           },
           {
-            "player_id": "4431431",
-            "player_name": "Corey Kiner",
-            "team": "ARI",
-            "opponent": "LAC",
-            "line": "20+ Rush Yds",
-            "score": 59.87,
-            "confidence": 60,
-            "tier": "B",
-            "reason": "Proj 23.8 rush yds/g | Rush match 0.84x | 2025 GP 4 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 59.87,
-            "model_hit_rate_raw": 0.5987,
-            "lineup_confirmed": false,
-            "position": "RB",
-            "rush_yds_mean": 23.7501034340091,
-            "rec_yds_mean": 6.65625,
-            "td_lambda": 0.17292097641704593
-          },
-          {
             "player_id": "4038941",
             "player_name": "Justin Herbert",
             "team": "LAC",
@@ -15435,12 +15435,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 27.0
+        "joint_prob_pct": 26.0
       },
       "ceiling": {
         "qb_line": "4+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 4.1
+        "joint_prob_pct": 4.0
       }
     },
     {
@@ -16007,12 +16007,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 38.1
+        "joint_prob_pct": 38.2
       },
       "ceiling": {
         "qb_line": "4+ Pass TD",
         "receiver_line": "2+ Rec TD",
-        "joint_prob_pct": 3.0
+        "joint_prob_pct": 3.1
       }
     },
     {
@@ -31143,7 +31143,7 @@
       ]
     },
     "4431431": {
-      "team": "ARI",
+      "team": "NE",
       "position": "RB",
       "games": [
         {
