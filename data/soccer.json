@@ -1,7 +1,7 @@
 {
   "sport": "SOCCER",
   "date": "2026-08-29",
-  "last_updated": "7:36 PM ET",
+  "last_updated": "8:05 PM ET",
   "pinned_board": {
     "title": "Anytime Goalscorer Top 10",
     "market": "GS",
@@ -499,8 +499,8 @@
           "market": "BTTS",
           "player_name": "Both Teams to Score",
           "line": "BTTS Yes",
-          "score": 57.6,
-          "confidence": 58,
+          "score": 57.31,
+          "confidence": 57,
           "tier": "B",
           "player_id": "401879312-btts"
         },
@@ -508,7 +508,7 @@
           "market": "1H",
           "player_name": "First Half Goal",
           "line": "1H Over 0.5 Goals",
-          "score": 73.09,
+          "score": 72.89,
           "confidence": 73,
           "tier": "A",
           "player_id": "401879312-1h"
@@ -517,7 +517,7 @@
           "market": "1HML",
           "player_name": "Draw",
           "line": "1H Draw",
-          "score": 39.77,
+          "score": 39.9,
           "confidence": 40,
           "tier": "C",
           "player_id": "401879312-1hml"
@@ -535,12 +535,12 @@
             "team": "TOT",
             "opponent": "NEW",
             "line": "BTTS Yes",
-            "score": 57.6,
-            "confidence": 58,
+            "score": 57.31,
+            "confidence": 57,
             "tier": "B",
-            "reason": "Home score 77.8% | Away score 74.1% | xG 1.50-1.35",
-            "sim_prob_pct": 57.6,
-            "model_hit_rate": 0.576
+            "reason": "Home score 77.6% | Away score 73.9% | xG 1.50-1.34",
+            "sim_prob_pct": 57.31,
+            "model_hit_rate": 0.5731
           }
         ],
         "1H": [
@@ -550,12 +550,12 @@
             "team": "TOT",
             "opponent": "NEW",
             "line": "1H Over 0.5 Goals",
-            "score": 73.09,
+            "score": 72.89,
             "confidence": 73,
             "tier": "A",
-            "reason": "First-half \u03bb 1.31 | 46% goal-time share | Full-match xG 2.85",
-            "sim_prob_pct": 73.09,
-            "model_hit_rate": 0.7309
+            "reason": "First-half \u03bb 1.31 | 46% goal-time share | Full-match xG 2.84",
+            "sim_prob_pct": 72.89,
+            "model_hit_rate": 0.7289
           }
         ],
         "1HML": [
@@ -565,12 +565,12 @@
             "team": "Draw",
             "opponent": "NEW",
             "line": "1H Draw",
-            "score": 39.77,
+            "score": 39.9,
             "confidence": 40,
             "tier": "C",
-            "reason": "1H Poisson 39.8% | 1H xG 0.69-0.62",
-            "sim_prob_pct": 39.77,
-            "model_hit_rate": 0.3977
+            "reason": "1H Poisson 39.9% | 1H xG 0.69-0.62",
+            "sim_prob_pct": 39.9,
+            "model_hit_rate": 0.399
           }
         ],
         "OU": [
@@ -580,12 +580,12 @@
             "team": "TOT",
             "opponent": "NEW",
             "line": "Over 2.5 Goals",
-            "score": 55.44,
+            "score": 55.01,
             "confidence": 55,
             "tier": "C",
-            "reason": "Total \u03bb 2.85 | Model over 54.3% | Calibrated over 55.4%",
-            "sim_prob_pct": 55.44,
-            "model_hit_rate": 0.5544,
+            "reason": "Total \u03bb 2.84 | Model over 53.9% | Calibrated over 55.0%",
+            "sim_prob_pct": 55.01,
+            "model_hit_rate": 0.5501,
             "implied_odds": "-150"
           }
         ],
@@ -596,12 +596,12 @@
             "team": "TOT",
             "opponent": "NEW",
             "line": "Moneyline",
-            "score": 41.72,
+            "score": 41.69,
             "confidence": 42,
             "tier": "C",
             "reason": "Calibrated 41.7% | Poisson 41.0% | Market 42.7%",
-            "sim_prob_pct": 41.72,
-            "model_hit_rate": 0.4172,
+            "sim_prob_pct": 41.69,
+            "model_hit_rate": 0.4169,
             "implied_odds": "+125"
           }
         ]
@@ -4856,6 +4856,19 @@
             "model_hit_rate": 0.2966
           },
           {
+            "player_id": "307221",
+            "player_name": "Dante Sealy",
+            "team": "MTL",
+            "opponent": "MIA",
+            "line": "Assist",
+            "score": 21.51,
+            "confidence": 22,
+            "tier": "C",
+            "reason": "Assist \u03bb 0.24 | Raw A/m 0.20 | Team xG 1.27 | Sample 20 | MLS | Shrunk to F prior",
+            "sim_prob_pct": 21.51,
+            "model_hit_rate": 0.2151
+          },
+          {
             "player_id": "295620",
             "player_name": "Bode Hidalgo",
             "team": "MTL",
@@ -4867,19 +4880,6 @@
             "reason": "Assist \u03bb 0.22 | Raw A/m 0.25 | Team xG 1.27 | Sample 4 | MLS | Shrunk to D prior",
             "sim_prob_pct": 19.58,
             "model_hit_rate": 0.1958
-          },
-          {
-            "player_id": "279758",
-            "player_name": "Matthew Longstaff",
-            "team": "MTL",
-            "opponent": "MIA",
-            "line": "Assist",
-            "score": 16.71,
-            "confidence": 17,
-            "tier": "C",
-            "reason": "Assist \u03bb 0.18 | Raw A/m 0.14 | Team xG 1.27 | Sample 21 | MLS | Shrunk to M prior",
-            "sim_prob_pct": 16.71,
-            "model_hit_rate": 0.1671
           }
         ],
         "SHOTS": [
