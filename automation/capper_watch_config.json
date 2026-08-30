@@ -7,7 +7,7 @@
       "enabled": true,
       "last_seen_iso": null,
       "capper": "jpwvoh",
-      "note": "mainly first-basket props (playable); his CFB first-TD posts are caught by skip_markets"
+      "note": "first baskets (NBA) and first TDs (NFL) - both playable. Only his CFB TD posts are skipped."
     },
     {
       "name": "jfar-cfb",
@@ -77,12 +77,12 @@
   "skip_markets": [
     {
       "match": "CFB first TD",
-      "why": "college TD-scorer props are not offered on Brian's books - unplayable"
+      "why": "college TD-scorer props are not offered on Brian's books"
     },
     {
       "match": "CFB anytime TD",
-      "why": "same - college TD-scorer props unavailable"
+      "why": "same - college only"
     }
   ],
-  "skip_markets_note": "Any pick matching a skip_markets entry is logged with status 'unplayable' and excluded from EV, notifications and the capper record - it is not a read on the pick, just a market Brian cannot access. Applies across all channels."
+  "skip_markets_note": "COLLEGE ONLY. NFL first-TD and anytime-TD props are playable and must NOT be skipped - same for NBA first basket. Do not widen these entries to TD props in general. A skipped pick logs as 'unplayable' and stays out of EV, notifications and the capper record."
 }
