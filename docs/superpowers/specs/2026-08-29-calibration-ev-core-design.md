@@ -1,6 +1,6 @@
 # Empirical Calibration, Market Weighting, and EV Core
 
-**Date:** 2026-08-29
+**Date:** 2026-08-29 (amended 2026-08-30)
 **Status:** Approved for planning
 **Scope:** Spec 1 of 3 (see [Related specs](#related-specs))
 
@@ -52,6 +52,26 @@ using `sim_prob_pct`, then emits BET/PASS/CHECK. With `model_prob` inflated
 
 **14 BETs become 7 BETs and 7 PASSes.** Schwarber inverts from a recommended
 bet to 10 points of negative edge.
+
+### Live validation, 2026-08-29
+
+Six HR selections were priced and graded against the settled slate.
+
+| Play | Price | Result | P/L on $10 |
+|---|---|---|---|
+| Zach Neto | 11.5c Kalshi | **HR** | +$76.96 |
+| Colton Cowser | +540 book | **HR** | +$54.00 |
+| Bryce Eldridge | 11.5c Kalshi | 4-for-9, 0 HR | -$10 |
+| Rafael Devers | 14.5c Kalshi | 4-for-9, 0 HR | -$10 |
+| Brandon Marsh | +630 book | 1-for-4 | -$10 |
+| Corbin Carroll | 14.5c Kalshi | 0-for-9 | -$10 |
+
+$60 staked returned $150.96, **+$90.96 (+151.6%)**. Two hits against 1.10
+expected; the model gave 22.4% odds of exactly two. Every fade held: Alonso
+0-for-5, Schwarber 0-for-4, Henderson 0-for-5, Murakami 0-for-4.
+
+One slate proves nothing about EV. It does, however, produce two findings that
+change the design, each named for the play that produced it.
 
 ### Why the grader has a deadline
 
@@ -248,11 +268,59 @@ module.
    EV adjustment.
 
 **Significance gate.** ρ is published with its sample size and z-score, and
-defaults to independence until it clears 95%. Measured MLB same-team same-day:
+defaults to independence until it clears 95%. The same bar governs every
+h2h-driven adjustment including exclusion - see The Crow-Armstrong Gate. Measured MLB same-team same-day:
 92 co-occurrences vs 81.5 expected across 2,792 pairs — **1.13x, z = +1.18, not
 significant**. MLB HR would ship as independent today. NFL passing-game
 correlation is expected to be far stronger and is the primary consumer of this
 module.
+
+## The Cowser Rule - candidate discovery
+
+**Colton Cowser was never on the board.** The 2026-08-29 HR board listed four
+Orioles against Jack Perkins: Encarnacion-Strand, Alonso, Basallo, Henderson.
+All four lost. Cowser hit, at +540, and he entered the analysis only because the
+full opposing lineup was priced by hand off a sportsbook screen.
+
+A system that ranks only what the board already selected cannot find him. Ranking
+is not discovery.
+
+**Rule.** When a probable pitcher clears a vulnerability threshold for a market,
+expand the candidate set to the **entire opposing lineup** and price every batter,
+regardless of whether the board surfaced them.
+
+- Vulnerability threshold is per market, from the same shrunk pitcher rate the
+  applier already computes (for HR: shrunk HR/9 at or above league).
+- Expanded candidates carry `discovery: "lineup_expansion"` so their hit rate can
+  be tracked separately against board-native selections.
+- Expansion respects the same guardrails as any other candidate: established-role
+  filter, minimum season sample, and the cold-start source flag.
+
+The measurable question this answers over a season: do expanded candidates
+outperform board-native ones at the same price? On the founding slate the board's
+four Orioles went 0-for-4 and the expanded lineup produced the winner.
+
+## The Crow-Armstrong Gate - no veto on an insignificant sample
+
+**Pete Crow-Armstrong went 4-for-6 with 3 HR and 13 total bases.** He had been
+excluded on a head-to-head record of 0-for-13 with 6 K against Andrew Abbott -
+the single most confident exclusion of the slate.
+
+That was a process error, not variance. At a 5% per-PA home-run rate, observing
+zero home runs in 14 plate appearances has probability 0.49. It is a coin flip.
+It was treated as disqualifying.
+
+**Rule.** The significance gate is not limited to the joint-probability module.
+**Any** head-to-head-driven adjustment must clear it - including exclusion.
+
+- A h2h sample may adjust or veto only when it reaches significance against the
+  relevant base rate for that market.
+- Below the bar the sample is reported for display and contributes nothing to
+  probability, ranking, or eligibility.
+- Vetoes are logged with their z-score so wrongful exclusions are auditable after
+  the fact.
+
+Under this gate, Crow-Armstrong's 14 PA could not have removed him.
 
 ## Decision rules v2
 
