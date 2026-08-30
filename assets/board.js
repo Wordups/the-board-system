@@ -873,6 +873,85 @@
       </section>`;
   }
 
+  // Calibration — the empirical half the guardrail never had. The closed-form
+  // baseline in calibration_guardrail.py compares the sim to theory; these
+  // numbers compare it to what actually happened, reconstructed from 112
+  // pre-slate snapshots in git history and graded against MLB game logs.
+  // Static until the grader + fitter land (see spec 1); the shape of the
+  // finding is what this tab exists to keep visible.
+  const CALIBRATION_BINS = [
+    { label: "says 20–25%", claimed: 23.6, actual: 15.8, n: 911 },
+    { label: "says 25–30%", claimed: 27.1, actual: 17.7, n: 1529 },
+    { label: "says 30–35%", claimed: 32.1, actual: 17.5, n: 703 },
+    { label: "says 35%+",   claimed: 37.9, actual: 19.8, n: 374 },
+  ];
+  const CALIBRATION_GRADED = [
+    { name: "Zach Neto", price: "11.5¢ Kalshi", result: "HR", pl: "+$76.96", won: true },
+    { name: "Colton Cowser", price: "+540 book", result: "HR", pl: "+$54.00", won: true },
+    { name: "Bryce Eldridge", price: "11.5¢ Kalshi", result: "4-for-9, 0 HR", pl: "−$10", won: false },
+    { name: "Rafael Devers", price: "14.5¢ Kalshi", result: "4-for-9, 0 HR", pl: "−$10", won: false },
+    { name: "Brandon Marsh", price: "+630 book", result: "1-for-4", pl: "−$10", won: false },
+    { name: "Corbin Carroll", price: "14.5¢ Kalshi", result: "0-for-9", pl: "−$10", won: false },
+  ];
+
+  function calBar(bin) {
+    const scale = value => Math.round((value / 40) * 100);
+    return `<div class="cal-row">
+      <span class="cal-label">${esc(bin.label)}</span>
+      <div class="cal-bars">
+        <div class="cal-bar claimed" style="width:${scale(bin.claimed)}%">claimed ${bin.claimed.toFixed(1)}%</div>
+        <div class="cal-bar actual" style="width:${scale(bin.actual)}%">actual ${bin.actual.toFixed(1)}%</div>
+      </div>
+      <span class="cal-n">n=${bin.n}</span>
+    </div>`;
+  }
+
+  function renderCalibration() {
+    return `${pageHead("Measured, not assumed", "Calibration", "is the missing half.", "The board's probabilities were graded against 4,521 outcomes across 112 pre-slate snapshots. Every bin above 20% lands between 0.52x and 0.67x of what was published, and the score barely ranks at all.", latestSlateDate())}
+      <div class="metric-strip">
+        <div class="metric"><span class="metric-label">Entries graded</span><strong>4,521</strong></div>
+        <div class="metric"><span class="metric-label">Slates reconstructed</span><strong>112</strong></div>
+        <div class="metric"><span class="metric-label">AUC · coin flip is 0.50</span><strong>0.515</strong></div>
+        <div class="metric"><span class="metric-label">Real ceiling, top decile</span><strong>20.8%</strong></div>
+      </div>
+
+      <div class="section-head"><div><span class="section-kicker">MLB · HR 1+</span><h2>Claimed against actual</h2></div><p class="section-note">Bar length is the probability. The gap is the error.</p></div>
+      <section class="cal-panel">
+        ${CALIBRATION_BINS.map(calBar).join("")}
+        <div class="cal-key"><span><i class="claimed"></i>what the board printed</span><span><i class="actual"></i>what actually happened</span></div>
+      </section>
+
+      <div class="section-head"><div><span class="section-kicker">Live validation · 2026-08-29</span><h2>Six priced, six graded</h2></div><p class="section-note">$60 staked returned $150.96 — two hits against 1.10 expected.</p></div>
+      <section class="signal-list">
+        ${CALIBRATION_GRADED.map(play => `<div class="cal-play${play.won ? " won" : ""}">
+          <strong>${esc(play.name)}</strong>
+          <span>${esc(play.price)}</span>
+          <span>${esc(play.result)}</span>
+          <b>${esc(play.pl)}</b>
+        </div>`).join("")}
+      </section>
+
+      <div class="section-head"><div><span class="section-kicker">Amendments</span><h2>Two rules, named for the plays that proved them</h2></div><p class="section-note">Both came out of the 08-29 slate.</p></div>
+      <section class="method-grid">
+        <article class="method-card cal-rule">
+          <span class="section-kicker">Amendment 1 · Discovery</span>
+          <h2>The Cowser Rule</h2>
+          <p class="cal-rule-sub">Ranking is not discovery.</p>
+          <div class="reason-box">Colton Cowser was never on the board. The four Orioles it listed against Jack Perkins went 0-for-4. Cowser hit, at +540, from the 8th spot — found only by pricing the full opposing lineup.</div>
+          <p>When a probable pitcher clears a vulnerability threshold, expand the candidate set to the <strong>entire opposing lineup</strong> and price every batter, whether or not the board surfaced them. Expanded candidates are tagged so their hit rate is tracked separately.</p>
+        </article>
+        <article class="method-card cal-rule">
+          <span class="section-kicker">Amendment 2 · Significance</span>
+          <h2>The Crow-Armstrong Gate</h2>
+          <p class="cal-rule-sub">No veto on an insignificant sample.</p>
+          <div class="reason-box">Pete Crow-Armstrong was excluded on an 0-for-13 head-to-head. He went 4-for-6 with 3 home runs. Zero HR in 14 plate appearances has probability 0.49 at a 5% rate — a coin flip treated as disqualifying.</div>
+          <p>The significance gate governs <strong>every</strong> head-to-head adjustment, exclusion included. Below the bar a sample is context only and moves nothing. Vetoes are logged with their z-score so wrongful exclusions stay auditable.</p>
+        </article>
+      </section>
+
+      <div class="empty-state cal-status"><strong>The engine is specified, not yet wired.</strong>These figures are a fixed backtest. Once the post-slate grader and the empirical fitter land, this tab reads live from <code>data_final/calibration/</code> and every selection carries its own calibrated probability, EV, and sample size.</div>`;
+  }
+
   function renderMethod() {
     const example = [...rows].sort((a,b) => b.geometry - a.geometry)[0];
     return `${pageHead("Transparent ranking", "The math", "has a shape.", "The Vector Index measures whether a signal is strong in several independent directions. It does not pretend that model score, probability, and market value are the same thing.", latestSlateDate())}
@@ -1035,6 +1114,7 @@
       { route: "games", href: "#games", label: "Games", core: true },
       { route: "card", href: "#card", label: "My Card", count: saved.length, core: true },
       { route: "method", href: "#method", label: "Method" },
+      { route: "calibration", href: "#calibration", label: "Calibration" },
     ];
     const active = routeInfo();
     const current = active.route === "sport" ? `sport/${active.argument}` : active.route;
@@ -1051,9 +1131,10 @@
     else if (route.route === "games") app.innerHTML = renderGames();
     else if (route.route === "card") app.innerHTML = renderCard();
     else if (route.route === "method") app.innerHTML = renderMethod();
+    else if (route.route === "calibration") app.innerHTML = renderCalibration();
     else if (route.route === "opening") app.innerHTML = renderOpeningEdge();
     else app.innerHTML = renderToday();
-    document.title = `The Board · ${route.route === "sport" ? SPORT_META[route.argument]?.label || "Sport" : route.route === "opening" ? "Opening Edge" : route.route[0].toUpperCase() + route.route.slice(1)}`;
+    document.title = `The Board · ${route.route === "sport" ? SPORT_META[route.argument]?.label || "Sport" : route.route === "opening" ? "Opening Edge" : route.route === "calibration" ? "Calibration" : route.route[0].toUpperCase() + route.route.slice(1)}`;
     const routeDate = route.route === "sport"
       ? snapshot.sports[route.argument]?.date
       : route.route === "games"
