@@ -932,7 +932,7 @@
       </section>
 
       <div class="section-head"><div><span class="section-kicker">Amendments</span><h2>Two rules, named for the plays that proved them</h2></div><p class="section-note">Both came out of the 08-29 slate.</p></div>
-      <section class="method-grid">
+      <section class="method-grid cal-rules">
         <article class="method-card cal-rule">
           <span class="section-kicker">Amendment 1 · Discovery</span>
           <h2>The Cowser Rule</h2>

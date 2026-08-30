@@ -102,7 +102,7 @@ svg { display: block; }
 .brand strong { display: block; font-size: 13px; letter-spacing: .18em; line-height: 1.1; }
 .brand small { display: block; margin-top: 3px; color: var(--faint); font: 500 8px/1 var(--mono); letter-spacing: .2em; }
 
-.primary-nav { display: flex; justify-content: center; gap: 3px; overflow-x: auto; scrollbar-width: none; }
+.primary-nav { display: flex; justify-content: safe center; gap: 3px; overflow-x: auto; scrollbar-width: none; }
 .primary-nav::-webkit-scrollbar, .mobile-sport-nav::-webkit-scrollbar { display: none; }
 .nav-link {
   position: relative;
@@ -803,3 +803,28 @@ h1 em { color: var(--muted); font-style: normal; font-weight: 500; }
   .cal-play { grid-template-columns: 1fr auto; row-gap: 4px; }
   .cal-play b { text-align: left; }
 }
+
+
+/* Eleven primary tabs no longer fit a laptop header at the original padding.
+   Tighten before the nav has to scroll rather than clipping a label to "Ca". */
+@media (max-width: 1360px) {
+  .nav-link { padding-left: 8px; padding-right: 8px; font-size: 11.5px; }
+  .nav-link.active::after { left: 8px; right: 8px; }
+}
+@media (max-width: 1180px) {
+  .nav-link { padding-left: 6px; padding-right: 6px; font-size: 11px; }
+  .nav-link.active::after { left: 6px; right: 6px; }
+  .site-header { grid-template-columns: 170px minmax(0, 1fr) auto; gap: 14px; padding: 0 16px; }
+}
+
+/* The nav scrolls between 820px and 1360px, where eleven tabs can overflow.
+   Fade the trailing edge so a clipped label reads as "scroll for more"
+   instead of as a broken label. */
+.primary-nav {
+  -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 26px), transparent 100%);
+          mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 26px), transparent 100%);
+}
+@media (max-width: 820px) { .primary-nav { -webkit-mask-image: none; mask-image: none; } }
+
+/* Two parallel rules read better as equal columns than Method's .85/1.15 split. */
+.method-grid.cal-rules { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
