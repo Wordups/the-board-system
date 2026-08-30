@@ -31,9 +31,28 @@ before the game, grade after, compare to what the price implied.
 
 ## Config
 
-Channels to watch live in `automation/capper_watch_config.json`. Every channel
-in `channels` is checked; `state` tracks the last message seen per channel so
-each run only reads what is new.
+Channels to watch live in `automation/capper_watch_config.json`. Every enabled
+channel is checked, and `last_seen_iso` per channel means each run only reads
+what is new.
+
+**Channel is not the same thing as capper.** Several cappers post in more than
+one channel — a sport split like `jfar-cfb` / `jfar-mlb`, or a main channel plus
+a VIP one. Each channel therefore carries a `capper` field, and that is what the
+ledger and the record group by. Two channels with `"capper": "jfar"` produce one
+record built from both, not two half-sized ones. Splitting a capper's sample in
+half is the fastest way to make a real edge look like noise.
+
+Each ledger row records both: `channel` (where it was posted) and `capper` (who
+posted it).
+
+### Discovery
+
+While `discover` is true, the run first enumerates **every** channel under the
+Official Picks category — including any not yet in `channels` — and reports the
+full list with each channel's most recent post date. Use that to complete the
+capper mapping, then set `discover` to false.
+
+If a channel appears that is not in the config, report it and do not read it.
 
 ## Mode: pregame (default)
 
@@ -42,7 +61,8 @@ each run only reads what is new.
 2. Read messages newer than that channel's `last_seen_iso` in the config. If
    `last_seen_iso` is null, read the last 24 hours only.
 3. For each message that contains a pick, extract:
-   `capper` (channel name), `posted_at`, `sport`, `player`, `market`, `line`,
+   `channel`, `capper` (from the config mapping, not the channel name),
+   `posted_at`, `sport`, `player`, `market`, `line`,
    `price` (American odds as posted), `book`, `units` if stated, and the raw
    message text.
    A message is a pick if it names a player or team **and** a market or line.
@@ -74,9 +94,11 @@ game has ended:
    `backend/app/grading/` does.
 2. Set `status` to `hit` or `miss`, record the raw stat, and compute P/L at a
    flat $10 stake using the posted price.
-3. Rewrite the ledger and append a per-capper summary to
-   `automation/capper_record.json`: picks graded, hit rate, ROI at flat stakes,
-   average posted price, and average calibrated EV.
+3. Rewrite the ledger and append a summary to `automation/capper_record.json`,
+   **grouped by `capper`, not by channel** — picks graded, hit rate, ROI at flat
+   stakes, average posted price, and average calibrated EV. Include a per-channel
+   breakdown underneath each capper, so a sport split stays visible without
+   fragmenting the sample.
 
 ## What to report back
 

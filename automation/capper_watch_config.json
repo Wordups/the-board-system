@@ -1,63 +1,75 @@
 {
   "server": "Beat The Books",
-  "note": "Add or remove channels here. Every channel listed is checked each run. Set last_seen_iso to null to re-read the last 24h.",
+  "note": "Add or remove channels here. `capper` is the identity the ledger groups by - set the same capper on every channel one person posts in, so their record is one sample and not several. `discover` makes the next run enumerate every channel under Official Picks so the mapping can be completed.",
   "channels": [
     {
       "name": "jpwvoh",
       "enabled": true,
-      "last_seen_iso": null
+      "last_seen_iso": null,
+      "capper": "jpwvoh"
     },
     {
       "name": "jfar-cfb",
       "enabled": true,
-      "last_seen_iso": null
+      "last_seen_iso": null,
+      "capper": "jfar"
     },
     {
       "name": "joke",
       "enabled": true,
-      "last_seen_iso": null
+      "last_seen_iso": null,
+      "capper": "joke"
     },
     {
       "name": "camden",
       "enabled": true,
-      "last_seen_iso": null
+      "last_seen_iso": null,
+      "capper": "camden"
     },
     {
       "name": "roi-guy",
       "enabled": true,
-      "last_seen_iso": null
+      "last_seen_iso": null,
+      "capper": "roi-guy"
     },
     {
       "name": "gator",
       "enabled": true,
-      "last_seen_iso": null
+      "last_seen_iso": null,
+      "capper": "gator"
     },
     {
       "name": "wagerwinners",
       "enabled": true,
-      "last_seen_iso": null
+      "last_seen_iso": null,
+      "capper": "wagerwinners"
     },
     {
       "name": "goldielocks",
       "enabled": true,
-      "last_seen_iso": null
+      "last_seen_iso": null,
+      "capper": "goldielocks"
     },
     {
       "name": "fitz",
       "enabled": true,
-      "last_seen_iso": null
+      "last_seen_iso": null,
+      "capper": "fitz"
     },
     {
       "name": "ev-sloth",
       "enabled": true,
-      "last_seen_iso": null
+      "last_seen_iso": null,
+      "capper": "ev-sloth"
     },
     {
       "name": "cracky",
       "enabled": true,
-      "last_seen_iso": null
+      "last_seen_iso": null,
+      "capper": "cracky"
     }
   ],
   "ev_notify_threshold": 0.05,
-  "flat_stake_usd": 10
+  "flat_stake_usd": 10,
+  "discover": true
 }
