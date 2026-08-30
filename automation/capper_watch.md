@@ -78,6 +78,12 @@ If a channel appears that is not in the config, report it and do not read it.
    Any other market (spreads, totals, moneylines, DFS, other sports) is logged
    with `calibrated: false` and no EV. **Do not guess an EV for an uncalibrated
    market.**
+
+   Before any of that, check `skip_markets`. A pick in one of those markets is
+   logged with `status: "unplayable"` and takes no further processing - no EV, no
+   notification, no place in the capper record. This is not a judgement on the
+   pick; it is a market Brian's books do not offer, so grading it would distort a
+   capper's record with bets he could never have made.
 5. Append every pick to `automation/capper_ledger.jsonl`, one JSON object per
    line, `status: "pending"`.
 6. Update `last_seen_iso` per channel in the config.

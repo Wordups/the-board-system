@@ -7,7 +7,7 @@
       "enabled": false,
       "last_seen_iso": null,
       "capper": "jpwvoh",
-      "disabled_reason": "not playable for Brian - skip"
+      "disabled_reason": "posts college TD-scorer props, an unplayable market - re-enable if he posts others"
     },
     {
       "name": "jfar-cfb",
@@ -73,5 +73,16 @@
   ],
   "ev_notify_threshold": 0.05,
   "flat_stake_usd": 10,
-  "discover": true
+  "discover": true,
+  "skip_markets": [
+    {
+      "match": "CFB first TD",
+      "why": "college TD-scorer props are not offered on Brian's books - unplayable"
+    },
+    {
+      "match": "CFB anytime TD",
+      "why": "same - college TD-scorer props unavailable"
+    }
+  ],
+  "skip_markets_note": "Any pick matching a skip_markets entry is logged with status 'unplayable' and excluded from EV, notifications and the capper record - it is not a read on the pick, just a market Brian cannot access. Applies across all channels."
 }
