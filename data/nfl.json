@@ -1,7 +1,7 @@
 {
   "sport": "NFL",
   "date": "2026-09-09",
-  "last_updated": "9:45 AM ET",
+  "last_updated": "1:58 PM ET",
   "week": 1,
   "season": 2026,
   "uncertainty_note": "Week 1 \u00b7 2026 \u2014 built entirely from 2025 prior-season stats; no current-season sample yet, and rosters/depth charts are not yet final.",
@@ -7917,22 +7917,6 @@
             "td_lambda": 0.2683805624999192
           },
           {
-            "player_id": "4239944",
-            "player_name": "Hunter Long",
-            "team": "JAX",
-            "opponent": "CLE",
-            "line": "Anytime TD",
-            "score": 23.35,
-            "confidence": 23,
-            "tier": "C",
-            "reason": "TD \u03bb 0.27 | Rush match 1.26x | Rec match 1.17x | 2025 GP 9 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 23.35,
-            "model_hit_rate_raw": 0.2335,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.2659446153846154
-          },
-          {
             "player_id": "4432620",
             "player_name": "Parker Washington",
             "team": "JAX",
@@ -7963,6 +7947,24 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.2157633429871742
+          },
+          {
+            "player_id": "4240631",
+            "player_name": "DeeJay Dallas",
+            "team": "JAX",
+            "opponent": "CLE",
+            "line": "Anytime TD",
+            "score": 17.78,
+            "confidence": 18,
+            "tier": "PASS",
+            "reason": "TD \u03bb 0.20 | Rush match 1.26x | Rec match 0.75x | 2025 GP 6 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 17.78,
+            "model_hit_rate_raw": 0.1778,
+            "lineup_confirmed": false,
+            "position": "RB",
+            "rush_yds_mean": 23.865453040959867,
+            "rec_yds_mean": 4.199999999999999,
+            "td_lambda": 0.19573024410426149
           }
         ],
         "RecYds": [
@@ -8111,20 +8113,20 @@
             "td_lambda": 0.1401272238311957
           },
           {
-            "player_id": "4239944",
-            "player_name": "Hunter Long",
-            "team": "JAX",
-            "opponent": "CLE",
-            "line": "15+ Rec Yds",
-            "score": 59.01,
-            "confidence": 59,
+            "player_id": "4808839",
+            "player_name": "Isaiah Bond",
+            "team": "CLE",
+            "opponent": "JAX",
+            "line": "25+ Rec Yds",
+            "score": 58.3,
+            "confidence": 58,
             "tier": "B",
-            "reason": "Proj 18.4 rec yds/g | Rec match 1.17x | 2025 GP 9 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 59.01,
-            "model_hit_rate_raw": 0.5901,
+            "reason": "Proj 28.3 rec yds/g | Rec match 1.08x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 58.3,
+            "model_hit_rate_raw": 0.583,
             "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.2659446153846154
+            "position": "WR",
+            "td_lambda": 0.07670928487641877
           }
         ],
         "RushYds": [
@@ -8378,22 +8380,6 @@
             "td_lambda": 0.17997947726876873
           },
           {
-            "player_id": "4239944",
-            "player_name": "Hunter Long",
-            "team": "JAX",
-            "opponent": "CLE",
-            "line": "2+ Receptions",
-            "score": 64.35,
-            "confidence": 64,
-            "tier": "A",
-            "reason": "REC/g 2.19 | Rec match 1.17x | 2025 GP 9 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 64.35,
-            "model_hit_rate_raw": 0.6435,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "td_lambda": 0.2659446153846154
-          },
-          {
             "player_id": "4430539",
             "player_name": "Brenton Strange",
             "team": "JAX",
@@ -8458,6 +8444,22 @@
             "lineup_confirmed": false,
             "position": "WR",
             "td_lambda": 0.09024621750166914
+          },
+          {
+            "player_id": "4245131",
+            "player_name": "Tim Jones",
+            "team": "JAX",
+            "opponent": "CLE",
+            "line": "2+ Receptions",
+            "score": 46.08,
+            "confidence": 46,
+            "tier": "C",
+            "reason": "REC/g 1.56 | Rec match 0.75x | 2025 GP 4 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 46.08,
+            "model_hit_rate_raw": 0.4608,
+            "lineup_confirmed": false,
+            "position": "WR",
+            "td_lambda": 0.1401272238311957
           }
         ],
         "PassTD": [
@@ -12836,6 +12838,22 @@
             "td_lambda": 0.3706626515378796
           },
           {
+            "player_id": "4239944",
+            "player_name": "Hunter Long",
+            "team": "ARI",
+            "opponent": "LAC",
+            "line": "10+ Rec Yds",
+            "score": 61.97,
+            "confidence": 62,
+            "tier": "B",
+            "reason": "Proj 14.6 rec yds/g | Rec match 0.92x | 2025 GP 9 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 61.97,
+            "model_hit_rate_raw": 0.6197,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "td_lambda": 0.21038769230769233
+          },
+          {
             "player_id": "4361307",
             "player_name": "Trey McBride",
             "team": "ARI",
@@ -12866,22 +12884,6 @@
             "lineup_confirmed": false,
             "position": "TE",
             "td_lambda": 0.27094736842105266
-          },
-          {
-            "player_id": "4686612",
-            "player_name": "Tre' Harris",
-            "team": "LAC",
-            "opponent": "ARI",
-            "line": "20+ Rec Yds",
-            "score": 61.47,
-            "confidence": 61,
-            "tier": "B",
-            "reason": "Proj 24.4 rec yds/g | Rec match 1.01x | 2025 GP 17 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 61.47,
-            "model_hit_rate_raw": 0.6147,
-            "lineup_confirmed": false,
-            "position": "WR",
-            "td_lambda": 0.11818142788126298
           }
         ],
         "RushYds": [
@@ -15813,12 +15815,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 18.4
+        "joint_prob_pct": 20.0
       },
       "ceiling": {
         "qb_line": "3+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 6.1
+        "joint_prob_pct": 6.8
       }
     },
     {
@@ -16011,12 +16013,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 38.2
+        "joint_prob_pct": 35.0
       },
       "ceiling": {
         "qb_line": "4+ Pass TD",
         "receiver_line": "2+ Rec TD",
-        "joint_prob_pct": 3.1
+        "joint_prob_pct": 2.7
       }
     },
     {
@@ -19271,62 +19273,6 @@
           "pass_td": 1.0,
           "interceptions": 1.0,
           "rush_yds": 31.0
-        }
-      ]
-    },
-    "3059989": {
-      "team": "JAX",
-      "position": "QB",
-      "games": [
-        {
-          "week": 11,
-          "opponent": "LAC",
-          "result": "W",
-          "completions": 0.0,
-          "pass_yds": 0.0,
-          "pass_td": 0.0,
-          "interceptions": 0.0,
-          "rush_yds": 0.0
-        },
-        {
-          "week": 13,
-          "opponent": "TEN",
-          "result": "W",
-          "completions": 0.0,
-          "pass_yds": 0.0,
-          "pass_td": 0.0,
-          "interceptions": 0.0,
-          "rush_yds": -3.0
-        },
-        {
-          "week": 14,
-          "opponent": "IND",
-          "result": "W",
-          "completions": 1.0,
-          "pass_yds": 3.0,
-          "pass_td": 0.0,
-          "interceptions": 0.0,
-          "rush_yds": -1.0
-        },
-        {
-          "week": 15,
-          "opponent": "NYJ",
-          "result": "W",
-          "completions": 0.0,
-          "pass_yds": 0.0,
-          "pass_td": 0.0,
-          "interceptions": 0.0,
-          "rush_yds": -2.0
-        },
-        {
-          "week": 18,
-          "opponent": "TEN",
-          "result": "W",
-          "completions": 2.0,
-          "pass_yds": 16.0,
-          "pass_td": 0.0,
-          "interceptions": 0.0,
-          "rush_yds": -2.0
         }
       ]
     },
