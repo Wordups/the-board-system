@@ -1,7 +1,7 @@
 {
   "sport": "TENNIS",
   "date": "2026-09-01",
-  "last_updated": "10:34 AM ET",
+  "last_updated": "1:54 PM ET",
   "pinned_board": {
     "title": "Match Win Top 10",
     "market": "ML",
@@ -29,17 +29,6 @@
         "reason": "Rank 104 vs 82 | Form 3-0 vs 0-0 | Francesca Jones vs Magda Linette"
       },
       {
-        "player_id": "2886",
-        "player_name": "Corentin Moutet",
-        "team": "ATP",
-        "opponent": "Dane Sweeny",
-        "line": "Match Winner",
-        "score": 84.0,
-        "confidence": 84,
-        "tier": "A",
-        "reason": "Rank 62 vs 123 | Form 0-0 vs 0-0 | Corentin Moutet vs Dane Sweeny"
-      },
-      {
         "player_id": "7602",
         "player_name": "Flavio Cobolli",
         "team": "ATP",
@@ -49,6 +38,17 @@
         "confidence": 84,
         "tier": "A",
         "reason": "Rank 6 vs 119 | Form 0-0 vs 0-0 | Flavio Cobolli vs Francisco Comesana"
+      },
+      {
+        "player_id": "2886",
+        "player_name": "Corentin Moutet",
+        "team": "ATP",
+        "opponent": "Dane Sweeny",
+        "line": "Match Winner",
+        "score": 84.0,
+        "confidence": 84,
+        "tier": "A",
+        "reason": "Rank 62 vs 123 | Form 0-0 vs 0-0 | Corentin Moutet vs Dane Sweeny"
       },
       {
         "player_id": "2337",
@@ -84,6 +84,17 @@
         "reason": "Rank 30 vs 78 | Form 0-0 vs 0-0 | Ignacio Buse vs Marcos Giron"
       },
       {
+        "player_id": "9820",
+        "player_name": "Mirra Andreeva",
+        "team": "WTA",
+        "opponent": "Janice Tjen",
+        "line": "Match Winner",
+        "score": 84.0,
+        "confidence": 84,
+        "tier": "A",
+        "reason": "Rank 5 vs 36 | Form 0-0 vs 0-0 | Janice Tjen vs Mirra Andreeva"
+      },
+      {
         "player_id": "13478",
         "player_name": "Yuliia Starodubtseva",
         "team": "WTA",
@@ -104,25 +115,164 @@
         "confidence": 84,
         "tier": "A",
         "reason": "Rank 12 vs 84 | Form 0-0 vs 0-0 | Belinda Bencic vs Yulia Putintseva"
-      },
-      {
-        "player_id": "1556",
-        "player_name": "Madison Keys",
-        "team": "WTA",
-        "opponent": "Alina Korneeva",
-        "line": "Match Winner",
-        "score": 84.0,
-        "confidence": 84,
-        "tier": "A",
-        "reason": "Rank 24 vs 69 | Form 0-0 vs 0-0 | Alina Korneeva vs Madison Keys"
       }
     ]
   },
   "games": [
     {
+      "game_id": "182721",
+      "matchup": "Flavio Cobolli vs Francisco Comesana",
+      "time": "ATP | US Open | 4th",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Flavio Cobolli",
+          "line": "Match Winner",
+          "score": 84.0,
+          "confidence": 84,
+          "tier": "A",
+          "player_id": "7602"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Flavio Cobolli",
+          "line": "Flavio Cobolli -1.5 Sets",
+          "score": 80.0,
+          "confidence": 80,
+          "tier": "A",
+          "player_id": "182721-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Under 34.5 Games",
+          "score": 70.0,
+          "confidence": 70,
+          "tier": "B",
+          "player_id": "182721-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "7602",
+            "player_name": "Flavio Cobolli",
+            "team": "ATP",
+            "opponent": "Francisco Comesana",
+            "line": "Match Winner",
+            "score": 84.0,
+            "confidence": 84,
+            "tier": "A",
+            "reason": "Rank 6 vs 119 | Form 0-0 vs 0-0 | Flavio Cobolli vs Francisco Comesana"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "182721-ou",
+            "player_name": "Match Total",
+            "team": "ATP",
+            "opponent": "Flavio Cobolli vs Francisco Comesana",
+            "line": "Under 34.5 Games",
+            "score": 70.0,
+            "confidence": 70,
+            "tier": "B",
+            "reason": "Round Round 1 | Rank gap 113 | Form gap +0.00"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "182721-sets",
+            "player_name": "Flavio Cobolli",
+            "team": "ATP",
+            "opponent": "Francisco Comesana",
+            "line": "Flavio Cobolli -1.5 Sets",
+            "score": 80.0,
+            "confidence": 80,
+            "tier": "A",
+            "reason": "Best-of-5 | Sets 0-0 | Rank gap 113"
+          }
+        ]
+      }
+    },
+    {
+      "game_id": "182732",
+      "matchup": "Darwin Blanch vs Taylor Fritz",
+      "time": "ATP | US Open | 1st",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Taylor Fritz",
+          "line": "Match Winner",
+          "score": 75.0,
+          "confidence": 75,
+          "tier": "A",
+          "player_id": "2946"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Taylor Fritz",
+          "line": "Taylor Fritz -1.5 Sets",
+          "score": 71.0,
+          "confidence": 71,
+          "tier": "B",
+          "player_id": "182732-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Under 34.5 Games",
+          "score": 61.0,
+          "confidence": 61,
+          "tier": "B",
+          "player_id": "182732-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "2946",
+            "player_name": "Taylor Fritz",
+            "team": "ATP",
+            "opponent": "Darwin Blanch",
+            "line": "Match Winner",
+            "score": 75.0,
+            "confidence": 75,
+            "tier": "A",
+            "reason": "Rank 10 vs 250 | Form 0-0 vs 0-0 | Rank est. | Darwin Blanch vs Taylor Fritz"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "182732-ou",
+            "player_name": "Match Total",
+            "team": "ATP",
+            "opponent": "Darwin Blanch vs Taylor Fritz",
+            "line": "Under 34.5 Games",
+            "score": 61.0,
+            "confidence": 61,
+            "tier": "B",
+            "reason": "Round Round 1 | Rank gap 240 | Form gap +0.00"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "182732-sets",
+            "player_name": "Taylor Fritz",
+            "team": "ATP",
+            "opponent": "Darwin Blanch",
+            "line": "Taylor Fritz -1.5 Sets",
+            "score": 71.0,
+            "confidence": 71,
+            "tier": "B",
+            "reason": "Best-of-5 | Sets 0-0 | Rank gap 240"
+          }
+        ]
+      }
+    },
+    {
       "game_id": "182683",
       "matchup": "Zsombor Piros vs Mattia Bellucci",
-      "time": "ATP | US Open | 9/1 - 11:00 AM EDT",
+      "time": "ATP | US Open | 9/1 - 2:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -197,7 +347,7 @@
     {
       "game_id": "182706",
       "matchup": "Corentin Moutet vs Dane Sweeny",
-      "time": "ATP | US Open | 9/1 - 11:00 AM EDT",
+      "time": "ATP | US Open | 9/1 - 2:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -272,7 +422,7 @@
     {
       "game_id": "182715",
       "matchup": "Tristan Schoolkate vs Nishesh Basavareddy",
-      "time": "ATP | US Open | 9/1 - 11:00 AM EDT",
+      "time": "ATP | US Open | 9/1 - 2:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -345,84 +495,9 @@
       }
     },
     {
-      "game_id": "182721",
-      "matchup": "Flavio Cobolli vs Francisco Comesana",
-      "time": "ATP | US Open | 9/1 - 11:00 AM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Flavio Cobolli",
-          "line": "Match Winner",
-          "score": 84.0,
-          "confidence": 84,
-          "tier": "A",
-          "player_id": "7602"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Flavio Cobolli",
-          "line": "Flavio Cobolli -1.5 Sets",
-          "score": 80.0,
-          "confidence": 80,
-          "tier": "A",
-          "player_id": "182721-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 34.5 Games",
-          "score": 70.0,
-          "confidence": 70,
-          "tier": "B",
-          "player_id": "182721-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "7602",
-            "player_name": "Flavio Cobolli",
-            "team": "ATP",
-            "opponent": "Francisco Comesana",
-            "line": "Match Winner",
-            "score": 84.0,
-            "confidence": 84,
-            "tier": "A",
-            "reason": "Rank 6 vs 119 | Form 0-0 vs 0-0 | Flavio Cobolli vs Francisco Comesana"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182721-ou",
-            "player_name": "Match Total",
-            "team": "ATP",
-            "opponent": "Flavio Cobolli vs Francisco Comesana",
-            "line": "Under 34.5 Games",
-            "score": 70.0,
-            "confidence": 70,
-            "tier": "B",
-            "reason": "Round Round 1 | Rank gap 113 | Form gap +0.00"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182721-sets",
-            "player_name": "Flavio Cobolli",
-            "team": "ATP",
-            "opponent": "Francisco Comesana",
-            "line": "Flavio Cobolli -1.5 Sets",
-            "score": 80.0,
-            "confidence": 80,
-            "tier": "A",
-            "reason": "Best-of-5 | Sets 0-0 | Rank gap 113"
-          }
-        ]
-      }
-    },
-    {
       "game_id": "182736",
       "matchup": "Francisco Cerundolo vs Filip Misolic",
-      "time": "ATP | US Open | 9/1 - 11:00 AM EDT",
+      "time": "ATP | US Open | 9/1 - 2:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -497,7 +572,7 @@
     {
       "game_id": "182685",
       "matchup": "Carlos Taberner vs Zizou Bergs",
-      "time": "ATP | US Open | 9/1 - 12:30 PM EDT",
+      "time": "ATP | US Open | 9/1 - 4:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -572,7 +647,7 @@
     {
       "game_id": "182694",
       "matchup": "Jan-Lennard Struff vs Camilo Ugo Carabelli",
-      "time": "ATP | US Open | 9/1 - 12:30 PM EDT",
+      "time": "ATP | US Open | 9/1 - 4:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -647,7 +722,7 @@
     {
       "game_id": "182702",
       "matchup": "Lorenzo Musetti vs Arthur Fery",
-      "time": "ATP | US Open | 9/1 - 12:30 PM EDT",
+      "time": "ATP | US Open | 9/1 - 4:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -720,234 +795,9 @@
       }
     },
     {
-      "game_id": "182681",
-      "matchup": "Francesco Passaro vs Jesper de Jong",
-      "time": "ATP | US Open | 9/1 - 1:00 PM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Jesper de Jong",
-          "line": "Match Winner",
-          "score": 61.0,
-          "confidence": 61,
-          "tier": "B",
-          "player_id": "3897"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Jesper de Jong",
-          "line": "Jesper de Jong -1.5 Sets",
-          "score": 71.0,
-          "confidence": 71,
-          "tier": "B",
-          "player_id": "182681-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 34.5 Games",
-          "score": 61.0,
-          "confidence": 61,
-          "tier": "B",
-          "player_id": "182681-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "3897",
-            "player_name": "Jesper de Jong",
-            "team": "ATP",
-            "opponent": "Francesco Passaro",
-            "line": "Match Winner",
-            "score": 61.0,
-            "confidence": 61,
-            "tier": "B",
-            "reason": "Rank 100 vs 250 | Form 0-0 vs 3-0 | Rank est. | Francesco Passaro vs Jesper de Jong"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182681-ou",
-            "player_name": "Match Total",
-            "team": "ATP",
-            "opponent": "Francesco Passaro vs Jesper de Jong",
-            "line": "Under 34.5 Games",
-            "score": 61.0,
-            "confidence": 61,
-            "tier": "B",
-            "reason": "Round Round 1 | Rank gap 150 | Form gap -1.00"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182681-sets",
-            "player_name": "Jesper de Jong",
-            "team": "ATP",
-            "opponent": "Francesco Passaro",
-            "line": "Jesper de Jong -1.5 Sets",
-            "score": 71.0,
-            "confidence": 71,
-            "tier": "B",
-            "reason": "Best-of-5 | Sets 0-0 | Rank gap 150"
-          }
-        ]
-      }
-    },
-    {
-      "game_id": "182732",
-      "matchup": "Darwin Blanch vs Taylor Fritz",
-      "time": "ATP | US Open | 9/1 - 1:00 PM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Taylor Fritz",
-          "line": "Match Winner",
-          "score": 75.0,
-          "confidence": 75,
-          "tier": "A",
-          "player_id": "2946"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Taylor Fritz",
-          "line": "Taylor Fritz -1.5 Sets",
-          "score": 71.0,
-          "confidence": 71,
-          "tier": "B",
-          "player_id": "182732-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 34.5 Games",
-          "score": 61.0,
-          "confidence": 61,
-          "tier": "B",
-          "player_id": "182732-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "2946",
-            "player_name": "Taylor Fritz",
-            "team": "ATP",
-            "opponent": "Darwin Blanch",
-            "line": "Match Winner",
-            "score": 75.0,
-            "confidence": 75,
-            "tier": "A",
-            "reason": "Rank 10 vs 250 | Form 0-0 vs 0-0 | Rank est. | Darwin Blanch vs Taylor Fritz"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182732-ou",
-            "player_name": "Match Total",
-            "team": "ATP",
-            "opponent": "Darwin Blanch vs Taylor Fritz",
-            "line": "Under 34.5 Games",
-            "score": 61.0,
-            "confidence": 61,
-            "tier": "B",
-            "reason": "Round Round 1 | Rank gap 240 | Form gap +0.00"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182732-sets",
-            "player_name": "Taylor Fritz",
-            "team": "ATP",
-            "opponent": "Darwin Blanch",
-            "line": "Taylor Fritz -1.5 Sets",
-            "score": 71.0,
-            "confidence": 71,
-            "tier": "B",
-            "reason": "Best-of-5 | Sets 0-0 | Rank gap 240"
-          }
-        ]
-      }
-    },
-    {
-      "game_id": "182703",
-      "matchup": "Thanasi Kokkinakis vs Rafael Jodar",
-      "time": "ATP | US Open | 9/1 - 2:00 PM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Rafael Jodar",
-          "line": "Match Winner",
-          "score": 75.0,
-          "confidence": 75,
-          "tier": "A",
-          "player_id": "12657"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Rafael Jodar",
-          "line": "Rafael Jodar -1.5 Sets",
-          "score": 71.0,
-          "confidence": 71,
-          "tier": "B",
-          "player_id": "182703-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 34.5 Games",
-          "score": 61.0,
-          "confidence": 61,
-          "tier": "B",
-          "player_id": "182703-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "12657",
-            "player_name": "Rafael Jodar",
-            "team": "ATP",
-            "opponent": "Thanasi Kokkinakis",
-            "line": "Match Winner",
-            "score": 75.0,
-            "confidence": 75,
-            "tier": "A",
-            "reason": "Rank 13 vs 250 | Form 0-0 vs 0-0 | Rank est. | Thanasi Kokkinakis vs Rafael Jodar"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182703-ou",
-            "player_name": "Match Total",
-            "team": "ATP",
-            "opponent": "Thanasi Kokkinakis vs Rafael Jodar",
-            "line": "Under 34.5 Games",
-            "score": 61.0,
-            "confidence": 61,
-            "tier": "B",
-            "reason": "Round Round 1 | Rank gap 237 | Form gap +0.00"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182703-sets",
-            "player_name": "Rafael Jodar",
-            "team": "ATP",
-            "opponent": "Thanasi Kokkinakis",
-            "line": "Rafael Jodar -1.5 Sets",
-            "score": 71.0,
-            "confidence": 71,
-            "tier": "B",
-            "reason": "Best-of-5 | Sets 0-0 | Rank gap 237"
-          }
-        ]
-      }
-    },
-    {
       "game_id": "182710",
       "matchup": "Arthur Gea vs Juan Manuel Cerundolo",
-      "time": "ATP | US Open | 9/1 - 2:00 PM EDT",
+      "time": "ATP | US Open | 9/1 - 4:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -1020,9 +870,159 @@
       }
     },
     {
+      "game_id": "182681",
+      "matchup": "Francesco Passaro vs Jesper de Jong",
+      "time": "ATP | US Open | 9/1 - 4:45 PM EDT",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Jesper de Jong",
+          "line": "Match Winner",
+          "score": 61.0,
+          "confidence": 61,
+          "tier": "B",
+          "player_id": "3897"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Jesper de Jong",
+          "line": "Jesper de Jong -1.5 Sets",
+          "score": 71.0,
+          "confidence": 71,
+          "tier": "B",
+          "player_id": "182681-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Under 34.5 Games",
+          "score": 61.0,
+          "confidence": 61,
+          "tier": "B",
+          "player_id": "182681-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "3897",
+            "player_name": "Jesper de Jong",
+            "team": "ATP",
+            "opponent": "Francesco Passaro",
+            "line": "Match Winner",
+            "score": 61.0,
+            "confidence": 61,
+            "tier": "B",
+            "reason": "Rank 100 vs 250 | Form 0-0 vs 3-0 | Rank est. | Francesco Passaro vs Jesper de Jong"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "182681-ou",
+            "player_name": "Match Total",
+            "team": "ATP",
+            "opponent": "Francesco Passaro vs Jesper de Jong",
+            "line": "Under 34.5 Games",
+            "score": 61.0,
+            "confidence": 61,
+            "tier": "B",
+            "reason": "Round Round 1 | Rank gap 150 | Form gap -1.00"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "182681-sets",
+            "player_name": "Jesper de Jong",
+            "team": "ATP",
+            "opponent": "Francesco Passaro",
+            "line": "Jesper de Jong -1.5 Sets",
+            "score": 71.0,
+            "confidence": 71,
+            "tier": "B",
+            "reason": "Best-of-5 | Sets 0-0 | Rank gap 150"
+          }
+        ]
+      }
+    },
+    {
+      "game_id": "182703",
+      "matchup": "Bu Yunchaokete vs Rafael Jodar",
+      "time": "ATP | US Open | 9/1 - 5:45 PM EDT",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Rafael Jodar",
+          "line": "Match Winner",
+          "score": 71.9,
+          "confidence": 72,
+          "tier": "B",
+          "player_id": "12657"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Rafael Jodar",
+          "line": "Rafael Jodar -1.5 Sets",
+          "score": 80.0,
+          "confidence": 80,
+          "tier": "A",
+          "player_id": "182703-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Under 34.5 Games",
+          "score": 70.0,
+          "confidence": 70,
+          "tier": "B",
+          "player_id": "182703-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "12657",
+            "player_name": "Rafael Jodar",
+            "team": "ATP",
+            "opponent": "Bu Yunchaokete",
+            "line": "Match Winner",
+            "score": 71.9,
+            "confidence": 72,
+            "tier": "B",
+            "reason": "Rank 13 vs 124 | Form 0-0 vs 2-1 | Bu Yunchaokete vs Rafael Jodar"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "182703-ou",
+            "player_name": "Match Total",
+            "team": "ATP",
+            "opponent": "Bu Yunchaokete vs Rafael Jodar",
+            "line": "Under 34.5 Games",
+            "score": 70.0,
+            "confidence": 70,
+            "tier": "B",
+            "reason": "Round Round 1 | Rank gap 111 | Form gap -0.55"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "182703-sets",
+            "player_name": "Rafael Jodar",
+            "team": "ATP",
+            "opponent": "Bu Yunchaokete",
+            "line": "Rafael Jodar -1.5 Sets",
+            "score": 80.0,
+            "confidence": 80,
+            "tier": "A",
+            "reason": "Best-of-5 | Sets 0-0 | Rank gap 111"
+          }
+        ]
+      }
+    },
+    {
       "game_id": "182708",
       "matchup": "Michael Zheng vs Fabian Marozsan",
-      "time": "ATP | US Open | 9/1 - 2:30 PM EDT",
+      "time": "ATP | US Open | 9/1 - 6:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -1097,7 +1097,7 @@
     {
       "game_id": "182712",
       "matchup": "Daniel Altmaier vs Zachary Svajda",
-      "time": "ATP | US Open | 9/1 - 2:30 PM EDT",
+      "time": "ATP | US Open | 9/1 - 6:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -1172,7 +1172,7 @@
     {
       "game_id": "182751",
       "matchup": "Benjamin Bonzi vs Alex Molcan",
-      "time": "ATP | US Open | 9/1 - 2:30 PM EDT",
+      "time": "ATP | US Open | 9/1 - 6:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -1240,231 +1240,6 @@
             "confidence": 64,
             "tier": "B",
             "reason": "Best-of-5 | Sets 0-0 | Rank gap 11"
-          }
-        ]
-      }
-    },
-    {
-      "game_id": "182697",
-      "matchup": "Botic Van De Zandschulp vs Jan Choinski",
-      "time": "ATP | US Open | 9/1 - 4:00 PM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Botic Van De Zandschulp",
-          "line": "Match Winner",
-          "score": 57.06,
-          "confidence": 57,
-          "tier": "C",
-          "player_id": "3310"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Botic Van De Zandschulp",
-          "line": "Over 3.5 Sets",
-          "score": 64.0,
-          "confidence": 64,
-          "tier": "B",
-          "player_id": "182697-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Over 36.5 Games",
-          "score": 75.75,
-          "confidence": 76,
-          "tier": "A",
-          "player_id": "182697-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "3310",
-            "player_name": "Botic Van De Zandschulp",
-            "team": "ATP",
-            "opponent": "Jan Choinski",
-            "line": "Match Winner",
-            "score": 57.06,
-            "confidence": 57,
-            "tier": "C",
-            "reason": "Rank 70 vs 76 | Form 0-0 vs 0-0 | Botic Van De Zandschulp vs Jan Choinski"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182697-ou",
-            "player_name": "Match Total",
-            "team": "ATP",
-            "opponent": "Botic Van De Zandschulp vs Jan Choinski",
-            "line": "Over 36.5 Games",
-            "score": 75.75,
-            "confidence": 76,
-            "tier": "A",
-            "reason": "Round Round 1 | Rank gap 6 | Form gap +0.00"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182697-sets",
-            "player_name": "Botic Van De Zandschulp",
-            "team": "ATP",
-            "opponent": "Jan Choinski",
-            "line": "Over 3.5 Sets",
-            "score": 64.0,
-            "confidence": 64,
-            "tier": "B",
-            "reason": "Best-of-5 | Sets 0-0 | Rank gap 6"
-          }
-        ]
-      }
-    },
-    {
-      "game_id": "182750",
-      "matchup": "Ignacio Buse vs Marcos Giron",
-      "time": "ATP | US Open | 9/1 - 4:30 PM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Ignacio Buse",
-          "line": "Match Winner",
-          "score": 84.0,
-          "confidence": 84,
-          "tier": "A",
-          "player_id": "11226"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Ignacio Buse",
-          "line": "Ignacio Buse -1.5 Sets",
-          "score": 80.0,
-          "confidence": 80,
-          "tier": "A",
-          "player_id": "182750-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 34.5 Games",
-          "score": 70.0,
-          "confidence": 70,
-          "tier": "B",
-          "player_id": "182750-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "11226",
-            "player_name": "Ignacio Buse",
-            "team": "ATP",
-            "opponent": "Marcos Giron",
-            "line": "Match Winner",
-            "score": 84.0,
-            "confidence": 84,
-            "tier": "A",
-            "reason": "Rank 30 vs 78 | Form 0-0 vs 0-0 | Ignacio Buse vs Marcos Giron"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182750-ou",
-            "player_name": "Match Total",
-            "team": "ATP",
-            "opponent": "Ignacio Buse vs Marcos Giron",
-            "line": "Under 34.5 Games",
-            "score": 70.0,
-            "confidence": 70,
-            "tier": "B",
-            "reason": "Round Round 1 | Rank gap 48 | Form gap +0.00"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182750-sets",
-            "player_name": "Ignacio Buse",
-            "team": "ATP",
-            "opponent": "Marcos Giron",
-            "line": "Ignacio Buse -1.5 Sets",
-            "score": 80.0,
-            "confidence": 80,
-            "tier": "A",
-            "reason": "Best-of-5 | Sets 0-0 | Rank gap 48"
-          }
-        ]
-      }
-    },
-    {
-      "game_id": "182696",
-      "matchup": "Alex de Minaur vs Andrea Guerrieri",
-      "time": "ATP | US Open | 9/1 - 5:00 PM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Alex de Minaur",
-          "line": "Match Winner",
-          "score": 61.0,
-          "confidence": 61,
-          "tier": "B",
-          "player_id": "2651"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Alex de Minaur",
-          "line": "Alex de Minaur -1.5 Sets",
-          "score": 71.0,
-          "confidence": 71,
-          "tier": "B",
-          "player_id": "182696-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 34.5 Games",
-          "score": 61.0,
-          "confidence": 61,
-          "tier": "B",
-          "player_id": "182696-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "2651",
-            "player_name": "Alex de Minaur",
-            "team": "ATP",
-            "opponent": "Andrea Guerrieri",
-            "line": "Match Winner",
-            "score": 61.0,
-            "confidence": 61,
-            "tier": "B",
-            "reason": "Rank 7 vs 250 | Form 0-0 vs 3-0 | Rank est. | Alex de Minaur vs Andrea Guerrieri"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182696-ou",
-            "player_name": "Match Total",
-            "team": "ATP",
-            "opponent": "Alex de Minaur vs Andrea Guerrieri",
-            "line": "Under 34.5 Games",
-            "score": 61.0,
-            "confidence": 61,
-            "tier": "B",
-            "reason": "Round Round 1 | Rank gap 243 | Form gap -0.86"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182696-sets",
-            "player_name": "Alex de Minaur",
-            "team": "ATP",
-            "opponent": "Andrea Guerrieri",
-            "line": "Alex de Minaur -1.5 Sets",
-            "score": 71.0,
-            "confidence": 71,
-            "tier": "B",
-            "reason": "Best-of-5 | Sets 0-0 | Rank gap 243"
           }
         ]
       }
@@ -1545,9 +1320,309 @@
       }
     },
     {
+      "game_id": "182696",
+      "matchup": "Alex de Minaur vs Andrea Guerrieri",
+      "time": "ATP | US Open | 9/1 - 7:45 PM EDT",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Alex de Minaur",
+          "line": "Match Winner",
+          "score": 61.0,
+          "confidence": 61,
+          "tier": "B",
+          "player_id": "2651"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Alex de Minaur",
+          "line": "Alex de Minaur -1.5 Sets",
+          "score": 71.0,
+          "confidence": 71,
+          "tier": "B",
+          "player_id": "182696-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Under 34.5 Games",
+          "score": 61.0,
+          "confidence": 61,
+          "tier": "B",
+          "player_id": "182696-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "2651",
+            "player_name": "Alex de Minaur",
+            "team": "ATP",
+            "opponent": "Andrea Guerrieri",
+            "line": "Match Winner",
+            "score": 61.0,
+            "confidence": 61,
+            "tier": "B",
+            "reason": "Rank 7 vs 250 | Form 0-0 vs 3-0 | Rank est. | Alex de Minaur vs Andrea Guerrieri"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "182696-ou",
+            "player_name": "Match Total",
+            "team": "ATP",
+            "opponent": "Alex de Minaur vs Andrea Guerrieri",
+            "line": "Under 34.5 Games",
+            "score": 61.0,
+            "confidence": 61,
+            "tier": "B",
+            "reason": "Round Round 1 | Rank gap 243 | Form gap -0.86"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "182696-sets",
+            "player_name": "Alex de Minaur",
+            "team": "ATP",
+            "opponent": "Andrea Guerrieri",
+            "line": "Alex de Minaur -1.5 Sets",
+            "score": 71.0,
+            "confidence": 71,
+            "tier": "B",
+            "reason": "Best-of-5 | Sets 0-0 | Rank gap 243"
+          }
+        ]
+      }
+    },
+    {
+      "game_id": "182697",
+      "matchup": "Botic Van De Zandschulp vs Jan Choinski",
+      "time": "ATP | US Open | 9/1 - 7:45 PM EDT",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Botic Van De Zandschulp",
+          "line": "Match Winner",
+          "score": 57.06,
+          "confidence": 57,
+          "tier": "C",
+          "player_id": "3310"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Botic Van De Zandschulp",
+          "line": "Over 3.5 Sets",
+          "score": 64.0,
+          "confidence": 64,
+          "tier": "B",
+          "player_id": "182697-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Over 36.5 Games",
+          "score": 75.75,
+          "confidence": 76,
+          "tier": "A",
+          "player_id": "182697-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "3310",
+            "player_name": "Botic Van De Zandschulp",
+            "team": "ATP",
+            "opponent": "Jan Choinski",
+            "line": "Match Winner",
+            "score": 57.06,
+            "confidence": 57,
+            "tier": "C",
+            "reason": "Rank 70 vs 76 | Form 0-0 vs 0-0 | Botic Van De Zandschulp vs Jan Choinski"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "182697-ou",
+            "player_name": "Match Total",
+            "team": "ATP",
+            "opponent": "Botic Van De Zandschulp vs Jan Choinski",
+            "line": "Over 36.5 Games",
+            "score": 75.75,
+            "confidence": 76,
+            "tier": "A",
+            "reason": "Round Round 1 | Rank gap 6 | Form gap +0.00"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "182697-sets",
+            "player_name": "Botic Van De Zandschulp",
+            "team": "ATP",
+            "opponent": "Jan Choinski",
+            "line": "Over 3.5 Sets",
+            "score": 64.0,
+            "confidence": 64,
+            "tier": "B",
+            "reason": "Best-of-5 | Sets 0-0 | Rank gap 6"
+          }
+        ]
+      }
+    },
+    {
+      "game_id": "182750",
+      "matchup": "Ignacio Buse vs Marcos Giron",
+      "time": "ATP | US Open | 9/1 - 7:45 PM EDT",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Ignacio Buse",
+          "line": "Match Winner",
+          "score": 84.0,
+          "confidence": 84,
+          "tier": "A",
+          "player_id": "11226"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Ignacio Buse",
+          "line": "Ignacio Buse -1.5 Sets",
+          "score": 80.0,
+          "confidence": 80,
+          "tier": "A",
+          "player_id": "182750-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Under 34.5 Games",
+          "score": 70.0,
+          "confidence": 70,
+          "tier": "B",
+          "player_id": "182750-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "11226",
+            "player_name": "Ignacio Buse",
+            "team": "ATP",
+            "opponent": "Marcos Giron",
+            "line": "Match Winner",
+            "score": 84.0,
+            "confidence": 84,
+            "tier": "A",
+            "reason": "Rank 30 vs 78 | Form 0-0 vs 0-0 | Ignacio Buse vs Marcos Giron"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "182750-ou",
+            "player_name": "Match Total",
+            "team": "ATP",
+            "opponent": "Ignacio Buse vs Marcos Giron",
+            "line": "Under 34.5 Games",
+            "score": 70.0,
+            "confidence": 70,
+            "tier": "B",
+            "reason": "Round Round 1 | Rank gap 48 | Form gap +0.00"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "182750-sets",
+            "player_name": "Ignacio Buse",
+            "team": "ATP",
+            "opponent": "Marcos Giron",
+            "line": "Ignacio Buse -1.5 Sets",
+            "score": 80.0,
+            "confidence": 80,
+            "tier": "A",
+            "reason": "Best-of-5 | Sets 0-0 | Rank gap 48"
+          }
+        ]
+      }
+    },
+    {
+      "game_id": "182628",
+      "matchup": "Janice Tjen vs Mirra Andreeva",
+      "time": "ATP | US Open | 9/1 - 1:55 PM EDT",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Mirra Andreeva",
+          "line": "Match Winner",
+          "score": 75.0,
+          "confidence": 75,
+          "tier": "A",
+          "player_id": "9820"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Mirra Andreeva",
+          "line": "Mirra Andreeva -1.5 Sets",
+          "score": 71.0,
+          "confidence": 71,
+          "tier": "B",
+          "player_id": "182628-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Under 34.5 Games",
+          "score": 61.0,
+          "confidence": 61,
+          "tier": "B",
+          "player_id": "182628-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "9820",
+            "player_name": "Mirra Andreeva",
+            "team": "ATP",
+            "opponent": "Janice Tjen",
+            "line": "Match Winner",
+            "score": 75.0,
+            "confidence": 75,
+            "tier": "A",
+            "reason": "Rank 5 vs 250 | Form 0-0 vs 0-0 | Rank est. | Janice Tjen vs Mirra Andreeva"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "182628-ou",
+            "player_name": "Match Total",
+            "team": "ATP",
+            "opponent": "Janice Tjen vs Mirra Andreeva",
+            "line": "Under 34.5 Games",
+            "score": 61.0,
+            "confidence": 61,
+            "tier": "B",
+            "reason": "Round Round 1 | Rank gap 245 | Form gap +0.00"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "182628-sets",
+            "player_name": "Mirra Andreeva",
+            "team": "ATP",
+            "opponent": "Janice Tjen",
+            "line": "Mirra Andreeva -1.5 Sets",
+            "score": 71.0,
+            "confidence": 71,
+            "tier": "B",
+            "reason": "Best-of-5 | Sets 0-0 | Rank gap 245"
+          }
+        ]
+      }
+    },
+    {
       "game_id": "182597",
       "matchup": "Robin Montgomery vs Maria Sakkari",
-      "time": "ATP | US Open | 9/1 - 11:00 AM EDT",
+      "time": "ATP | US Open | 9/1 - 2:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -1622,7 +1697,7 @@
     {
       "game_id": "182598",
       "matchup": "Ella Seidel vs Yuliia Starodubtseva",
-      "time": "ATP | US Open | 9/1 - 11:00 AM EDT",
+      "time": "ATP | US Open | 9/1 - 2:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -1697,7 +1772,7 @@
     {
       "game_id": "182602",
       "matchup": "Elena Rybakina vs Thea Frodin",
-      "time": "ATP | US Open | 9/1 - 11:00 AM EDT",
+      "time": "ATP | US Open | 9/1 - 2:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -1770,9 +1845,84 @@
       }
     },
     {
+      "game_id": "182609",
+      "matchup": "Anna Bondar vs Lucie Havlickova",
+      "time": "ATP | US Open | 9/1 - 2:45 PM EDT",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Lucie Havlickova",
+          "line": "Match Winner",
+          "score": 55.0,
+          "confidence": 55,
+          "tier": "C",
+          "player_id": "7434"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Lucie Havlickova",
+          "line": "Lucie Havlickova -1.5 Sets",
+          "score": 66.04,
+          "confidence": 66,
+          "tier": "B",
+          "player_id": "182609-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Under 34.5 Games",
+          "score": 58.2,
+          "confidence": 58,
+          "tier": "B",
+          "player_id": "182609-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "7434",
+            "player_name": "Lucie Havlickova",
+            "team": "ATP",
+            "opponent": "Anna Bondar",
+            "line": "Match Winner",
+            "score": 55.0,
+            "confidence": 55,
+            "tier": "C",
+            "reason": "Rank 250 vs 250 | Form 3-0 vs 0-0 | Rank est. | Anna Bondar vs Lucie Havlickova"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "182609-ou",
+            "player_name": "Match Total",
+            "team": "ATP",
+            "opponent": "Anna Bondar vs Lucie Havlickova",
+            "line": "Under 34.5 Games",
+            "score": 58.2,
+            "confidence": 58,
+            "tier": "B",
+            "reason": "Round Round 1 | Rank gap 0 | Form gap +0.92"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "182609-sets",
+            "player_name": "Lucie Havlickova",
+            "team": "ATP",
+            "opponent": "Anna Bondar",
+            "line": "Lucie Havlickova -1.5 Sets",
+            "score": 66.04,
+            "confidence": 66,
+            "tier": "B",
+            "reason": "Best-of-5 | Sets 6-1 | Rank gap 0"
+          }
+        ]
+      }
+    },
+    {
       "game_id": "182615",
       "matchup": "Belinda Bencic vs Yulia Putintseva",
-      "time": "ATP | US Open | 9/1 - 11:00 AM EDT",
+      "time": "ATP | US Open | 9/1 - 2:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -1847,7 +1997,7 @@
     {
       "game_id": "182627",
       "matchup": "Eva Lys vs Gabriela Knutson",
-      "time": "ATP | US Open | 9/1 - 11:00 AM EDT",
+      "time": "ATP | US Open | 9/1 - 2:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -1920,159 +2070,9 @@
       }
     },
     {
-      "game_id": "182611",
-      "matchup": "Alina Korneeva vs Madison Keys",
-      "time": "ATP | US Open | 9/1 - 11:30 AM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Madison Keys",
-          "line": "Match Winner",
-          "score": 75.0,
-          "confidence": 75,
-          "tier": "A",
-          "player_id": "1556"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Madison Keys",
-          "line": "Madison Keys -1.5 Sets",
-          "score": 71.0,
-          "confidence": 71,
-          "tier": "B",
-          "player_id": "182611-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 34.5 Games",
-          "score": 61.0,
-          "confidence": 61,
-          "tier": "B",
-          "player_id": "182611-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "1556",
-            "player_name": "Madison Keys",
-            "team": "ATP",
-            "opponent": "Alina Korneeva",
-            "line": "Match Winner",
-            "score": 75.0,
-            "confidence": 75,
-            "tier": "A",
-            "reason": "Rank 22 vs 250 | Form 0-0 vs 0-0 | Rank est. | Alina Korneeva vs Madison Keys"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182611-ou",
-            "player_name": "Match Total",
-            "team": "ATP",
-            "opponent": "Alina Korneeva vs Madison Keys",
-            "line": "Under 34.5 Games",
-            "score": 61.0,
-            "confidence": 61,
-            "tier": "B",
-            "reason": "Round Round 1 | Rank gap 228 | Form gap +0.00"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182611-sets",
-            "player_name": "Madison Keys",
-            "team": "ATP",
-            "opponent": "Alina Korneeva",
-            "line": "Madison Keys -1.5 Sets",
-            "score": 71.0,
-            "confidence": 71,
-            "tier": "B",
-            "reason": "Best-of-5 | Sets 0-0 | Rank gap 228"
-          }
-        ]
-      }
-    },
-    {
-      "game_id": "182609",
-      "matchup": "Anna Bondar vs Lucie Havlickova",
-      "time": "ATP | US Open | 9/1 - 12:30 PM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Lucie Havlickova",
-          "line": "Match Winner",
-          "score": 55.0,
-          "confidence": 55,
-          "tier": "C",
-          "player_id": "7434"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Lucie Havlickova",
-          "line": "Lucie Havlickova -1.5 Sets",
-          "score": 66.04,
-          "confidence": 66,
-          "tier": "B",
-          "player_id": "182609-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 34.5 Games",
-          "score": 58.2,
-          "confidence": 58,
-          "tier": "B",
-          "player_id": "182609-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "7434",
-            "player_name": "Lucie Havlickova",
-            "team": "ATP",
-            "opponent": "Anna Bondar",
-            "line": "Match Winner",
-            "score": 55.0,
-            "confidence": 55,
-            "tier": "C",
-            "reason": "Rank 250 vs 250 | Form 3-0 vs 0-0 | Rank est. | Anna Bondar vs Lucie Havlickova"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182609-ou",
-            "player_name": "Match Total",
-            "team": "ATP",
-            "opponent": "Anna Bondar vs Lucie Havlickova",
-            "line": "Under 34.5 Games",
-            "score": 58.2,
-            "confidence": 58,
-            "tier": "B",
-            "reason": "Round Round 1 | Rank gap 0 | Form gap +0.92"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182609-sets",
-            "player_name": "Lucie Havlickova",
-            "team": "ATP",
-            "opponent": "Anna Bondar",
-            "line": "Lucie Havlickova -1.5 Sets",
-            "score": 66.04,
-            "confidence": 66,
-            "tier": "B",
-            "reason": "Best-of-5 | Sets 6-1 | Rank gap 0"
-          }
-        ]
-      }
-    },
-    {
       "game_id": "182644",
       "matchup": "Paula Badosa vs Daria Kasatkina",
-      "time": "ATP | US Open | 9/1 - 12:30 PM EDT",
+      "time": "ATP | US Open | 9/1 - 4:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -2147,7 +2147,7 @@
     {
       "game_id": "182601",
       "matchup": "Jessica Bouzas Maneiro vs Darja Vidmanova",
-      "time": "ATP | US Open | 9/1 - 1:00 PM EDT",
+      "time": "ATP | US Open | 9/1 - 4:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -2220,84 +2220,9 @@
       }
     },
     {
-      "game_id": "182628",
-      "matchup": "Janice Tjen vs Mirra Andreeva",
-      "time": "ATP | US Open | 9/1 - 1:00 PM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Mirra Andreeva",
-          "line": "Match Winner",
-          "score": 75.0,
-          "confidence": 75,
-          "tier": "A",
-          "player_id": "9820"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Mirra Andreeva",
-          "line": "Mirra Andreeva -1.5 Sets",
-          "score": 71.0,
-          "confidence": 71,
-          "tier": "B",
-          "player_id": "182628-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 34.5 Games",
-          "score": 61.0,
-          "confidence": 61,
-          "tier": "B",
-          "player_id": "182628-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "9820",
-            "player_name": "Mirra Andreeva",
-            "team": "ATP",
-            "opponent": "Janice Tjen",
-            "line": "Match Winner",
-            "score": 75.0,
-            "confidence": 75,
-            "tier": "A",
-            "reason": "Rank 5 vs 250 | Form 0-0 vs 0-0 | Rank est. | Janice Tjen vs Mirra Andreeva"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182628-ou",
-            "player_name": "Match Total",
-            "team": "ATP",
-            "opponent": "Janice Tjen vs Mirra Andreeva",
-            "line": "Under 34.5 Games",
-            "score": 61.0,
-            "confidence": 61,
-            "tier": "B",
-            "reason": "Round Round 1 | Rank gap 245 | Form gap +0.00"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182628-sets",
-            "player_name": "Mirra Andreeva",
-            "team": "ATP",
-            "opponent": "Janice Tjen",
-            "line": "Mirra Andreeva -1.5 Sets",
-            "score": 71.0,
-            "confidence": 71,
-            "tier": "B",
-            "reason": "Best-of-5 | Sets 0-0 | Rank gap 245"
-          }
-        ]
-      }
-    },
-    {
       "game_id": "182648",
       "matchup": "Jelena Ostapenko vs Tatjana Maria",
-      "time": "ATP | US Open | 9/1 - 1:00 PM EDT",
+      "time": "ATP | US Open | 9/1 - 4:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -2372,7 +2297,7 @@
     {
       "game_id": "182650",
       "matchup": "Darja Semenistaja vs Anastasia Potapova",
-      "time": "ATP | US Open | 9/1 - 1:00 PM EDT",
+      "time": "ATP | US Open | 9/1 - 4:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -2447,7 +2372,7 @@
     {
       "game_id": "182600",
       "matchup": "Elise Mertens vs Kaitlin Quevedo",
-      "time": "ATP | US Open | 9/1 - 2:30 PM EDT",
+      "time": "ATP | US Open | 9/1 - 6:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -2522,7 +2447,7 @@
     {
       "game_id": "182636",
       "matchup": "Magdalena Frech vs Iva Jovic",
-      "time": "ATP | US Open | 9/1 - 2:30 PM EDT",
+      "time": "ATP | US Open | 9/1 - 6:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -2595,150 +2520,9 @@
       }
     },
     {
-      "game_id": "182649",
-      "matchup": "Leolia Jeanjean vs Arantxa Rus",
-      "time": "ATP | US Open | 9/1 - 2:30 PM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Arantxa Rus",
-          "line": "Match Winner",
-          "score": 55.0,
-          "confidence": 55,
-          "tier": "C",
-          "player_id": "810"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Arantxa Rus",
-          "line": "Arantxa Rus -1.5 Sets",
-          "score": 65.32,
-          "confidence": 65,
-          "tier": "B",
-          "player_id": "182649-sets"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "810",
-            "player_name": "Arantxa Rus",
-            "team": "ATP",
-            "opponent": "Leolia Jeanjean",
-            "line": "Match Winner",
-            "score": 55.0,
-            "confidence": 55,
-            "tier": "C",
-            "reason": "Rank 250 vs 250 | Form 3-0 vs 0-0 | Rank est. | Leolia Jeanjean vs Arantxa Rus"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182649-ou",
-            "player_name": "Match Total",
-            "team": "ATP",
-            "opponent": "Leolia Jeanjean vs Arantxa Rus",
-            "line": "Under 34.5 Games",
-            "score": 57.6,
-            "confidence": 58,
-            "tier": "C",
-            "reason": "Round Round 1 | Rank gap 0 | Form gap +0.86"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182649-sets",
-            "player_name": "Arantxa Rus",
-            "team": "ATP",
-            "opponent": "Leolia Jeanjean",
-            "line": "Arantxa Rus -1.5 Sets",
-            "score": 65.32,
-            "confidence": 65,
-            "tier": "B",
-            "reason": "Best-of-5 | Sets 6-2 | Rank gap 0"
-          }
-        ]
-      }
-    },
-    {
-      "game_id": "182631",
-      "matchup": "Mayar Sherif vs Nikola Bartunkova",
-      "time": "ATP | US Open | 9/1 - 3:00 PM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Mayar Sherif",
-          "line": "Match Winner",
-          "score": 48.0,
-          "confidence": 48,
-          "tier": "C",
-          "player_id": "2179"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Mayar Sherif",
-          "line": "Over 3.5 Sets",
-          "score": 51.0,
-          "confidence": 51,
-          "tier": "C",
-          "player_id": "182631-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Over 36.5 Games",
-          "score": 63.0,
-          "confidence": 63,
-          "tier": "B",
-          "player_id": "182631-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "2179",
-            "player_name": "Mayar Sherif",
-            "team": "ATP",
-            "opponent": "Nikola Bartunkova",
-            "line": "Match Winner",
-            "score": 48.0,
-            "confidence": 48,
-            "tier": "C",
-            "reason": "Rank 250 vs 250 | Form 0-0 vs 0-0 | Rank est. | Mayar Sherif vs Nikola Bartunkova"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182631-ou",
-            "player_name": "Match Total",
-            "team": "ATP",
-            "opponent": "Mayar Sherif vs Nikola Bartunkova",
-            "line": "Over 36.5 Games",
-            "score": 63.0,
-            "confidence": 63,
-            "tier": "B",
-            "reason": "Round Round 1 | Rank gap 0 | Form gap +0.00"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182631-sets",
-            "player_name": "Mayar Sherif",
-            "team": "ATP",
-            "opponent": "Nikola Bartunkova",
-            "line": "Over 3.5 Sets",
-            "score": 51.0,
-            "confidence": 51,
-            "tier": "C",
-            "reason": "Best-of-5 | Sets 0-0 | Rank gap 0"
-          }
-        ]
-      }
-    },
-    {
       "game_id": "182641",
       "matchup": "Francesca Jones vs Magda Linette",
-      "time": "ATP | US Open | 9/1 - 4:00 PM EDT",
+      "time": "ATP | US Open | 9/1 - 6:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -2811,27 +2595,93 @@
       }
     },
     {
-      "game_id": "182642",
-      "matchup": "Reese Brantmeier vs Oleksandra Oliynykova",
-      "time": "ATP | US Open | 9/1 - 4:30 PM EDT",
+      "game_id": "182649",
+      "matchup": "Leolia Jeanjean vs Arantxa Rus",
+      "time": "ATP | US Open | 9/1 - 6:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
-          "player_name": "Reese Brantmeier",
+          "player_name": "Arantxa Rus",
+          "line": "Match Winner",
+          "score": 55.0,
+          "confidence": 55,
+          "tier": "C",
+          "player_id": "810"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Arantxa Rus",
+          "line": "Arantxa Rus -1.5 Sets",
+          "score": 65.32,
+          "confidence": 65,
+          "tier": "B",
+          "player_id": "182649-sets"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "810",
+            "player_name": "Arantxa Rus",
+            "team": "ATP",
+            "opponent": "Leolia Jeanjean",
+            "line": "Match Winner",
+            "score": 55.0,
+            "confidence": 55,
+            "tier": "C",
+            "reason": "Rank 250 vs 250 | Form 3-0 vs 0-0 | Rank est. | Leolia Jeanjean vs Arantxa Rus"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "182649-ou",
+            "player_name": "Match Total",
+            "team": "ATP",
+            "opponent": "Leolia Jeanjean vs Arantxa Rus",
+            "line": "Under 34.5 Games",
+            "score": 57.6,
+            "confidence": 58,
+            "tier": "C",
+            "reason": "Round Round 1 | Rank gap 0 | Form gap +0.86"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "182649-sets",
+            "player_name": "Arantxa Rus",
+            "team": "ATP",
+            "opponent": "Leolia Jeanjean",
+            "line": "Arantxa Rus -1.5 Sets",
+            "score": 65.32,
+            "confidence": 65,
+            "tier": "B",
+            "reason": "Best-of-5 | Sets 6-2 | Rank gap 0"
+          }
+        ]
+      }
+    },
+    {
+      "game_id": "182631",
+      "matchup": "Mayar Sherif vs Nikola Bartunkova",
+      "time": "ATP | US Open | 9/1 - 6:45 PM EDT",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Mayar Sherif",
           "line": "Match Winner",
           "score": 48.0,
           "confidence": 48,
           "tier": "C",
-          "player_id": "6823"
+          "player_id": "2179"
         },
         {
           "market": "Sets",
-          "player_name": "Reese Brantmeier",
+          "player_name": "Mayar Sherif",
           "line": "Over 3.5 Sets",
           "score": 51.0,
           "confidence": 51,
           "tier": "C",
-          "player_id": "182642-sets"
+          "player_id": "182631-sets"
         },
         {
           "market": "O/U",
@@ -2840,29 +2690,29 @@
           "score": 63.0,
           "confidence": 63,
           "tier": "B",
-          "player_id": "182642-ou"
+          "player_id": "182631-ou"
         }
       ],
       "markets": {
         "ML": [
           {
-            "player_id": "6823",
-            "player_name": "Reese Brantmeier",
+            "player_id": "2179",
+            "player_name": "Mayar Sherif",
             "team": "ATP",
-            "opponent": "Oleksandra Oliynykova",
+            "opponent": "Nikola Bartunkova",
             "line": "Match Winner",
             "score": 48.0,
             "confidence": 48,
             "tier": "C",
-            "reason": "Rank 250 vs 250 | Form 0-0 vs 0-0 | Rank est. | Reese Brantmeier vs Oleksandra Oliynykova"
+            "reason": "Rank 250 vs 250 | Form 0-0 vs 0-0 | Rank est. | Mayar Sherif vs Nikola Bartunkova"
           }
         ],
         "O/U": [
           {
-            "player_id": "182642-ou",
+            "player_id": "182631-ou",
             "player_name": "Match Total",
             "team": "ATP",
-            "opponent": "Reese Brantmeier vs Oleksandra Oliynykova",
+            "opponent": "Mayar Sherif vs Nikola Bartunkova",
             "line": "Over 36.5 Games",
             "score": 63.0,
             "confidence": 63,
@@ -2872,10 +2722,10 @@
         ],
         "Sets": [
           {
-            "player_id": "182642-sets",
-            "player_name": "Reese Brantmeier",
+            "player_id": "182631-sets",
+            "player_name": "Mayar Sherif",
             "team": "ATP",
-            "opponent": "Oleksandra Oliynykova",
+            "opponent": "Nikola Bartunkova",
             "line": "Over 3.5 Sets",
             "score": 51.0,
             "confidence": 51,
@@ -2961,9 +2811,159 @@
       }
     },
     {
+      "game_id": "182721",
+      "matchup": "Flavio Cobolli vs Francisco Comesana",
+      "time": "WTA | US Open | 4th",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Flavio Cobolli",
+          "line": "Match Winner",
+          "score": 75.0,
+          "confidence": 75,
+          "tier": "A",
+          "player_id": "7602"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Flavio Cobolli",
+          "line": "Flavio Cobolli -1.5 Sets",
+          "score": 70.0,
+          "confidence": 70,
+          "tier": "B",
+          "player_id": "182721-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Under 21.5 Games",
+          "score": 60.0,
+          "confidence": 60,
+          "tier": "B",
+          "player_id": "182721-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "7602",
+            "player_name": "Flavio Cobolli",
+            "team": "WTA",
+            "opponent": "Francisco Comesana",
+            "line": "Match Winner",
+            "score": 75.0,
+            "confidence": 75,
+            "tier": "A",
+            "reason": "Rank 5 vs 250 | Form 0-0 vs 0-0 | Rank est. | Flavio Cobolli vs Francisco Comesana"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "182721-ou",
+            "player_name": "Match Total",
+            "team": "WTA",
+            "opponent": "Flavio Cobolli vs Francisco Comesana",
+            "line": "Under 21.5 Games",
+            "score": 60.0,
+            "confidence": 60,
+            "tier": "B",
+            "reason": "Round Round 1 | Rank gap 245 | Form gap +0.00"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "182721-sets",
+            "player_name": "Flavio Cobolli",
+            "team": "WTA",
+            "opponent": "Francisco Comesana",
+            "line": "Flavio Cobolli -1.5 Sets",
+            "score": 70.0,
+            "confidence": 70,
+            "tier": "B",
+            "reason": "Best-of-3 | Sets 0-0 | Rank gap 245"
+          }
+        ]
+      }
+    },
+    {
+      "game_id": "182732",
+      "matchup": "Darwin Blanch vs Taylor Fritz",
+      "time": "WTA | US Open | 1st",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Taylor Fritz",
+          "line": "Match Winner",
+          "score": 75.0,
+          "confidence": 75,
+          "tier": "A",
+          "player_id": "2946"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Taylor Fritz",
+          "line": "Taylor Fritz -1.5 Sets",
+          "score": 70.0,
+          "confidence": 70,
+          "tier": "B",
+          "player_id": "182732-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Under 21.5 Games",
+          "score": 60.0,
+          "confidence": 60,
+          "tier": "B",
+          "player_id": "182732-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "2946",
+            "player_name": "Taylor Fritz",
+            "team": "WTA",
+            "opponent": "Darwin Blanch",
+            "line": "Match Winner",
+            "score": 75.0,
+            "confidence": 75,
+            "tier": "A",
+            "reason": "Rank 9 vs 250 | Form 0-0 vs 0-0 | Rank est. | Darwin Blanch vs Taylor Fritz"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "182732-ou",
+            "player_name": "Match Total",
+            "team": "WTA",
+            "opponent": "Darwin Blanch vs Taylor Fritz",
+            "line": "Under 21.5 Games",
+            "score": 60.0,
+            "confidence": 60,
+            "tier": "B",
+            "reason": "Round Round 1 | Rank gap 241 | Form gap +0.00"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "182732-sets",
+            "player_name": "Taylor Fritz",
+            "team": "WTA",
+            "opponent": "Darwin Blanch",
+            "line": "Taylor Fritz -1.5 Sets",
+            "score": 70.0,
+            "confidence": 70,
+            "tier": "B",
+            "reason": "Best-of-3 | Sets 0-0 | Rank gap 241"
+          }
+        ]
+      }
+    },
+    {
       "game_id": "182683",
       "matchup": "Zsombor Piros vs Mattia Bellucci",
-      "time": "WTA | US Open | 9/1 - 11:00 AM EDT",
+      "time": "WTA | US Open | 9/1 - 2:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -3029,7 +3029,7 @@
     {
       "game_id": "182706",
       "matchup": "Corentin Moutet vs Dane Sweeny",
-      "time": "WTA | US Open | 9/1 - 11:00 AM EDT",
+      "time": "WTA | US Open | 9/1 - 2:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -3104,7 +3104,7 @@
     {
       "game_id": "182715",
       "matchup": "Tristan Schoolkate vs Nishesh Basavareddy",
-      "time": "WTA | US Open | 9/1 - 11:00 AM EDT",
+      "time": "WTA | US Open | 9/1 - 2:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -3177,84 +3177,9 @@
       }
     },
     {
-      "game_id": "182721",
-      "matchup": "Flavio Cobolli vs Francisco Comesana",
-      "time": "WTA | US Open | 9/1 - 11:00 AM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Flavio Cobolli",
-          "line": "Match Winner",
-          "score": 75.0,
-          "confidence": 75,
-          "tier": "A",
-          "player_id": "7602"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Flavio Cobolli",
-          "line": "Flavio Cobolli -1.5 Sets",
-          "score": 70.0,
-          "confidence": 70,
-          "tier": "B",
-          "player_id": "182721-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 21.5 Games",
-          "score": 60.0,
-          "confidence": 60,
-          "tier": "B",
-          "player_id": "182721-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "7602",
-            "player_name": "Flavio Cobolli",
-            "team": "WTA",
-            "opponent": "Francisco Comesana",
-            "line": "Match Winner",
-            "score": 75.0,
-            "confidence": 75,
-            "tier": "A",
-            "reason": "Rank 5 vs 250 | Form 0-0 vs 0-0 | Rank est. | Flavio Cobolli vs Francisco Comesana"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182721-ou",
-            "player_name": "Match Total",
-            "team": "WTA",
-            "opponent": "Flavio Cobolli vs Francisco Comesana",
-            "line": "Under 21.5 Games",
-            "score": 60.0,
-            "confidence": 60,
-            "tier": "B",
-            "reason": "Round Round 1 | Rank gap 245 | Form gap +0.00"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182721-sets",
-            "player_name": "Flavio Cobolli",
-            "team": "WTA",
-            "opponent": "Francisco Comesana",
-            "line": "Flavio Cobolli -1.5 Sets",
-            "score": 70.0,
-            "confidence": 70,
-            "tier": "B",
-            "reason": "Best-of-3 | Sets 0-0 | Rank gap 245"
-          }
-        ]
-      }
-    },
-    {
       "game_id": "182736",
       "matchup": "Francisco Cerundolo vs Filip Misolic",
-      "time": "WTA | US Open | 9/1 - 11:00 AM EDT",
+      "time": "WTA | US Open | 9/1 - 2:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -3329,7 +3254,7 @@
     {
       "game_id": "182685",
       "matchup": "Carlos Taberner vs Zizou Bergs",
-      "time": "WTA | US Open | 9/1 - 12:30 PM EDT",
+      "time": "WTA | US Open | 9/1 - 4:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -3404,7 +3329,7 @@
     {
       "game_id": "182694",
       "matchup": "Jan-Lennard Struff vs Camilo Ugo Carabelli",
-      "time": "WTA | US Open | 9/1 - 12:30 PM EDT",
+      "time": "WTA | US Open | 9/1 - 4:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -3479,7 +3404,7 @@
     {
       "game_id": "182702",
       "matchup": "Lorenzo Musetti vs Arthur Fery",
-      "time": "WTA | US Open | 9/1 - 12:30 PM EDT",
+      "time": "WTA | US Open | 9/1 - 4:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -3552,225 +3477,9 @@
       }
     },
     {
-      "game_id": "182681",
-      "matchup": "Francesco Passaro vs Jesper de Jong",
-      "time": "WTA | US Open | 9/1 - 1:00 PM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Francesco Passaro",
-          "line": "Match Winner",
-          "score": 55.0,
-          "confidence": 55,
-          "tier": "C",
-          "player_id": "3820"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Francesco Passaro",
-          "line": "Francesco Passaro -1.5 Sets",
-          "score": 66.0,
-          "confidence": 66,
-          "tier": "B",
-          "player_id": "182681-sets"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "3820",
-            "player_name": "Francesco Passaro",
-            "team": "WTA",
-            "opponent": "Jesper de Jong",
-            "line": "Match Winner",
-            "score": 55.0,
-            "confidence": 55,
-            "tier": "C",
-            "reason": "Rank 250 vs 250 | Form 3-0 vs 0-0 | Rank est. | Francesco Passaro vs Jesper de Jong"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182681-ou",
-            "player_name": "Match Total",
-            "team": "WTA",
-            "opponent": "Francesco Passaro vs Jesper de Jong",
-            "line": "Under 21.5 Games",
-            "score": 58.0,
-            "confidence": 58,
-            "tier": "C",
-            "reason": "Round Round 1 | Rank gap 0 | Form gap +1.00"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182681-sets",
-            "player_name": "Francesco Passaro",
-            "team": "WTA",
-            "opponent": "Jesper de Jong",
-            "line": "Francesco Passaro -1.5 Sets",
-            "score": 66.0,
-            "confidence": 66,
-            "tier": "B",
-            "reason": "Best-of-3 | Sets 6-0 | Rank gap 0"
-          }
-        ]
-      }
-    },
-    {
-      "game_id": "182732",
-      "matchup": "Darwin Blanch vs Taylor Fritz",
-      "time": "WTA | US Open | 9/1 - 1:00 PM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Taylor Fritz",
-          "line": "Match Winner",
-          "score": 75.0,
-          "confidence": 75,
-          "tier": "A",
-          "player_id": "2946"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Taylor Fritz",
-          "line": "Taylor Fritz -1.5 Sets",
-          "score": 70.0,
-          "confidence": 70,
-          "tier": "B",
-          "player_id": "182732-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 21.5 Games",
-          "score": 60.0,
-          "confidence": 60,
-          "tier": "B",
-          "player_id": "182732-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "2946",
-            "player_name": "Taylor Fritz",
-            "team": "WTA",
-            "opponent": "Darwin Blanch",
-            "line": "Match Winner",
-            "score": 75.0,
-            "confidence": 75,
-            "tier": "A",
-            "reason": "Rank 9 vs 250 | Form 0-0 vs 0-0 | Rank est. | Darwin Blanch vs Taylor Fritz"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182732-ou",
-            "player_name": "Match Total",
-            "team": "WTA",
-            "opponent": "Darwin Blanch vs Taylor Fritz",
-            "line": "Under 21.5 Games",
-            "score": 60.0,
-            "confidence": 60,
-            "tier": "B",
-            "reason": "Round Round 1 | Rank gap 241 | Form gap +0.00"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182732-sets",
-            "player_name": "Taylor Fritz",
-            "team": "WTA",
-            "opponent": "Darwin Blanch",
-            "line": "Taylor Fritz -1.5 Sets",
-            "score": 70.0,
-            "confidence": 70,
-            "tier": "B",
-            "reason": "Best-of-3 | Sets 0-0 | Rank gap 241"
-          }
-        ]
-      }
-    },
-    {
-      "game_id": "182703",
-      "matchup": "Thanasi Kokkinakis vs Rafael Jodar",
-      "time": "WTA | US Open | 9/1 - 2:00 PM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Rafael Jodar",
-          "line": "Match Winner",
-          "score": 75.0,
-          "confidence": 75,
-          "tier": "A",
-          "player_id": "12657"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Rafael Jodar",
-          "line": "Rafael Jodar -1.5 Sets",
-          "score": 70.0,
-          "confidence": 70,
-          "tier": "B",
-          "player_id": "182703-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 21.5 Games",
-          "score": 60.0,
-          "confidence": 60,
-          "tier": "B",
-          "player_id": "182703-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "12657",
-            "player_name": "Rafael Jodar",
-            "team": "WTA",
-            "opponent": "Thanasi Kokkinakis",
-            "line": "Match Winner",
-            "score": 75.0,
-            "confidence": 75,
-            "tier": "A",
-            "reason": "Rank 12 vs 250 | Form 0-0 vs 0-0 | Rank est. | Thanasi Kokkinakis vs Rafael Jodar"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182703-ou",
-            "player_name": "Match Total",
-            "team": "WTA",
-            "opponent": "Thanasi Kokkinakis vs Rafael Jodar",
-            "line": "Under 21.5 Games",
-            "score": 60.0,
-            "confidence": 60,
-            "tier": "B",
-            "reason": "Round Round 1 | Rank gap 238 | Form gap +0.00"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182703-sets",
-            "player_name": "Rafael Jodar",
-            "team": "WTA",
-            "opponent": "Thanasi Kokkinakis",
-            "line": "Rafael Jodar -1.5 Sets",
-            "score": 70.0,
-            "confidence": 70,
-            "tier": "B",
-            "reason": "Best-of-3 | Sets 0-0 | Rank gap 238"
-          }
-        ]
-      }
-    },
-    {
       "game_id": "182710",
       "matchup": "Arthur Gea vs Juan Manuel Cerundolo",
-      "time": "WTA | US Open | 9/1 - 2:00 PM EDT",
+      "time": "WTA | US Open | 9/1 - 4:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -3834,9 +3543,150 @@
       }
     },
     {
+      "game_id": "182681",
+      "matchup": "Francesco Passaro vs Jesper de Jong",
+      "time": "WTA | US Open | 9/1 - 4:45 PM EDT",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Francesco Passaro",
+          "line": "Match Winner",
+          "score": 55.0,
+          "confidence": 55,
+          "tier": "C",
+          "player_id": "3820"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Francesco Passaro",
+          "line": "Francesco Passaro -1.5 Sets",
+          "score": 66.0,
+          "confidence": 66,
+          "tier": "B",
+          "player_id": "182681-sets"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "3820",
+            "player_name": "Francesco Passaro",
+            "team": "WTA",
+            "opponent": "Jesper de Jong",
+            "line": "Match Winner",
+            "score": 55.0,
+            "confidence": 55,
+            "tier": "C",
+            "reason": "Rank 250 vs 250 | Form 3-0 vs 0-0 | Rank est. | Francesco Passaro vs Jesper de Jong"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "182681-ou",
+            "player_name": "Match Total",
+            "team": "WTA",
+            "opponent": "Francesco Passaro vs Jesper de Jong",
+            "line": "Under 21.5 Games",
+            "score": 58.0,
+            "confidence": 58,
+            "tier": "C",
+            "reason": "Round Round 1 | Rank gap 0 | Form gap +1.00"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "182681-sets",
+            "player_name": "Francesco Passaro",
+            "team": "WTA",
+            "opponent": "Jesper de Jong",
+            "line": "Francesco Passaro -1.5 Sets",
+            "score": 66.0,
+            "confidence": 66,
+            "tier": "B",
+            "reason": "Best-of-3 | Sets 6-0 | Rank gap 0"
+          }
+        ]
+      }
+    },
+    {
+      "game_id": "182703",
+      "matchup": "Bu Yunchaokete vs Rafael Jodar",
+      "time": "WTA | US Open | 9/1 - 5:45 PM EDT",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Rafael Jodar",
+          "line": "Match Winner",
+          "score": 62.9,
+          "confidence": 63,
+          "tier": "B",
+          "player_id": "12657"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Rafael Jodar",
+          "line": "Rafael Jodar -1.5 Sets",
+          "score": 70.0,
+          "confidence": 70,
+          "tier": "B",
+          "player_id": "182703-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Under 21.5 Games",
+          "score": 60.0,
+          "confidence": 60,
+          "tier": "B",
+          "player_id": "182703-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "12657",
+            "player_name": "Rafael Jodar",
+            "team": "WTA",
+            "opponent": "Bu Yunchaokete",
+            "line": "Match Winner",
+            "score": 62.9,
+            "confidence": 63,
+            "tier": "B",
+            "reason": "Rank 12 vs 250 | Form 0-0 vs 2-1 | Rank est. | Bu Yunchaokete vs Rafael Jodar"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "182703-ou",
+            "player_name": "Match Total",
+            "team": "WTA",
+            "opponent": "Bu Yunchaokete vs Rafael Jodar",
+            "line": "Under 21.5 Games",
+            "score": 60.0,
+            "confidence": 60,
+            "tier": "B",
+            "reason": "Round Round 1 | Rank gap 238 | Form gap -0.55"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "182703-sets",
+            "player_name": "Rafael Jodar",
+            "team": "WTA",
+            "opponent": "Bu Yunchaokete",
+            "line": "Rafael Jodar -1.5 Sets",
+            "score": 70.0,
+            "confidence": 70,
+            "tier": "B",
+            "reason": "Best-of-3 | Sets 0-0 | Rank gap 238"
+          }
+        ]
+      }
+    },
+    {
       "game_id": "182708",
       "matchup": "Michael Zheng vs Fabian Marozsan",
-      "time": "WTA | US Open | 9/1 - 2:30 PM EDT",
+      "time": "WTA | US Open | 9/1 - 6:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -3911,7 +3761,7 @@
     {
       "game_id": "182712",
       "matchup": "Daniel Altmaier vs Zachary Svajda",
-      "time": "WTA | US Open | 9/1 - 2:30 PM EDT",
+      "time": "WTA | US Open | 9/1 - 6:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -3986,7 +3836,7 @@
     {
       "game_id": "182751",
       "matchup": "Benjamin Bonzi vs Alex Molcan",
-      "time": "WTA | US Open | 9/1 - 2:30 PM EDT",
+      "time": "WTA | US Open | 9/1 - 6:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -4054,231 +3904,6 @@
             "confidence": 50,
             "tier": "C",
             "reason": "Best-of-3 | Sets 0-0 | Rank gap 0"
-          }
-        ]
-      }
-    },
-    {
-      "game_id": "182697",
-      "matchup": "Botic Van De Zandschulp vs Jan Choinski",
-      "time": "WTA | US Open | 9/1 - 4:00 PM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Botic Van De Zandschulp",
-          "line": "Match Winner",
-          "score": 48.0,
-          "confidence": 48,
-          "tier": "C",
-          "player_id": "3310"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Botic Van De Zandschulp",
-          "line": "Over 2.5 Sets",
-          "score": 50.0,
-          "confidence": 50,
-          "tier": "C",
-          "player_id": "182697-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Over 22.5 Games",
-          "score": 64.0,
-          "confidence": 64,
-          "tier": "B",
-          "player_id": "182697-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "3310",
-            "player_name": "Botic Van De Zandschulp",
-            "team": "WTA",
-            "opponent": "Jan Choinski",
-            "line": "Match Winner",
-            "score": 48.0,
-            "confidence": 48,
-            "tier": "C",
-            "reason": "Rank 250 vs 250 | Form 0-0 vs 0-0 | Rank est. | Botic Van De Zandschulp vs Jan Choinski"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182697-ou",
-            "player_name": "Match Total",
-            "team": "WTA",
-            "opponent": "Botic Van De Zandschulp vs Jan Choinski",
-            "line": "Over 22.5 Games",
-            "score": 64.0,
-            "confidence": 64,
-            "tier": "B",
-            "reason": "Round Round 1 | Rank gap 0 | Form gap +0.00"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182697-sets",
-            "player_name": "Botic Van De Zandschulp",
-            "team": "WTA",
-            "opponent": "Jan Choinski",
-            "line": "Over 2.5 Sets",
-            "score": 50.0,
-            "confidence": 50,
-            "tier": "C",
-            "reason": "Best-of-3 | Sets 0-0 | Rank gap 0"
-          }
-        ]
-      }
-    },
-    {
-      "game_id": "182750",
-      "matchup": "Ignacio Buse vs Marcos Giron",
-      "time": "WTA | US Open | 9/1 - 4:30 PM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Ignacio Buse",
-          "line": "Match Winner",
-          "score": 75.0,
-          "confidence": 75,
-          "tier": "A",
-          "player_id": "11226"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Ignacio Buse",
-          "line": "Ignacio Buse -1.5 Sets",
-          "score": 70.0,
-          "confidence": 70,
-          "tier": "B",
-          "player_id": "182750-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 21.5 Games",
-          "score": 60.0,
-          "confidence": 60,
-          "tier": "B",
-          "player_id": "182750-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "11226",
-            "player_name": "Ignacio Buse",
-            "team": "WTA",
-            "opponent": "Marcos Giron",
-            "line": "Match Winner",
-            "score": 75.0,
-            "confidence": 75,
-            "tier": "A",
-            "reason": "Rank 32 vs 250 | Form 0-0 vs 0-0 | Rank est. | Ignacio Buse vs Marcos Giron"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182750-ou",
-            "player_name": "Match Total",
-            "team": "WTA",
-            "opponent": "Ignacio Buse vs Marcos Giron",
-            "line": "Under 21.5 Games",
-            "score": 60.0,
-            "confidence": 60,
-            "tier": "B",
-            "reason": "Round Round 1 | Rank gap 218 | Form gap +0.00"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182750-sets",
-            "player_name": "Ignacio Buse",
-            "team": "WTA",
-            "opponent": "Marcos Giron",
-            "line": "Ignacio Buse -1.5 Sets",
-            "score": 70.0,
-            "confidence": 70,
-            "tier": "B",
-            "reason": "Best-of-3 | Sets 0-0 | Rank gap 218"
-          }
-        ]
-      }
-    },
-    {
-      "game_id": "182696",
-      "matchup": "Alex de Minaur vs Andrea Guerrieri",
-      "time": "WTA | US Open | 9/1 - 5:00 PM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Alex de Minaur",
-          "line": "Match Winner",
-          "score": 61.0,
-          "confidence": 61,
-          "tier": "B",
-          "player_id": "2651"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Alex de Minaur",
-          "line": "Alex de Minaur -1.5 Sets",
-          "score": 70.0,
-          "confidence": 70,
-          "tier": "B",
-          "player_id": "182696-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 21.5 Games",
-          "score": 60.0,
-          "confidence": 60,
-          "tier": "B",
-          "player_id": "182696-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "2651",
-            "player_name": "Alex de Minaur",
-            "team": "WTA",
-            "opponent": "Andrea Guerrieri",
-            "line": "Match Winner",
-            "score": 61.0,
-            "confidence": 61,
-            "tier": "B",
-            "reason": "Rank 6 vs 250 | Form 0-0 vs 3-0 | Rank est. | Alex de Minaur vs Andrea Guerrieri"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182696-ou",
-            "player_name": "Match Total",
-            "team": "WTA",
-            "opponent": "Alex de Minaur vs Andrea Guerrieri",
-            "line": "Under 21.5 Games",
-            "score": 60.0,
-            "confidence": 60,
-            "tier": "B",
-            "reason": "Round Round 1 | Rank gap 244 | Form gap -0.86"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182696-sets",
-            "player_name": "Alex de Minaur",
-            "team": "WTA",
-            "opponent": "Andrea Guerrieri",
-            "line": "Alex de Minaur -1.5 Sets",
-            "score": 70.0,
-            "confidence": 70,
-            "tier": "B",
-            "reason": "Best-of-3 | Sets 0-0 | Rank gap 244"
           }
         ]
       }
@@ -4359,9 +3984,309 @@
       }
     },
     {
+      "game_id": "182696",
+      "matchup": "Alex de Minaur vs Andrea Guerrieri",
+      "time": "WTA | US Open | 9/1 - 7:45 PM EDT",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Alex de Minaur",
+          "line": "Match Winner",
+          "score": 61.0,
+          "confidence": 61,
+          "tier": "B",
+          "player_id": "2651"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Alex de Minaur",
+          "line": "Alex de Minaur -1.5 Sets",
+          "score": 70.0,
+          "confidence": 70,
+          "tier": "B",
+          "player_id": "182696-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Under 21.5 Games",
+          "score": 60.0,
+          "confidence": 60,
+          "tier": "B",
+          "player_id": "182696-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "2651",
+            "player_name": "Alex de Minaur",
+            "team": "WTA",
+            "opponent": "Andrea Guerrieri",
+            "line": "Match Winner",
+            "score": 61.0,
+            "confidence": 61,
+            "tier": "B",
+            "reason": "Rank 6 vs 250 | Form 0-0 vs 3-0 | Rank est. | Alex de Minaur vs Andrea Guerrieri"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "182696-ou",
+            "player_name": "Match Total",
+            "team": "WTA",
+            "opponent": "Alex de Minaur vs Andrea Guerrieri",
+            "line": "Under 21.5 Games",
+            "score": 60.0,
+            "confidence": 60,
+            "tier": "B",
+            "reason": "Round Round 1 | Rank gap 244 | Form gap -0.86"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "182696-sets",
+            "player_name": "Alex de Minaur",
+            "team": "WTA",
+            "opponent": "Andrea Guerrieri",
+            "line": "Alex de Minaur -1.5 Sets",
+            "score": 70.0,
+            "confidence": 70,
+            "tier": "B",
+            "reason": "Best-of-3 | Sets 0-0 | Rank gap 244"
+          }
+        ]
+      }
+    },
+    {
+      "game_id": "182697",
+      "matchup": "Botic Van De Zandschulp vs Jan Choinski",
+      "time": "WTA | US Open | 9/1 - 7:45 PM EDT",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Botic Van De Zandschulp",
+          "line": "Match Winner",
+          "score": 48.0,
+          "confidence": 48,
+          "tier": "C",
+          "player_id": "3310"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Botic Van De Zandschulp",
+          "line": "Over 2.5 Sets",
+          "score": 50.0,
+          "confidence": 50,
+          "tier": "C",
+          "player_id": "182697-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Over 22.5 Games",
+          "score": 64.0,
+          "confidence": 64,
+          "tier": "B",
+          "player_id": "182697-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "3310",
+            "player_name": "Botic Van De Zandschulp",
+            "team": "WTA",
+            "opponent": "Jan Choinski",
+            "line": "Match Winner",
+            "score": 48.0,
+            "confidence": 48,
+            "tier": "C",
+            "reason": "Rank 250 vs 250 | Form 0-0 vs 0-0 | Rank est. | Botic Van De Zandschulp vs Jan Choinski"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "182697-ou",
+            "player_name": "Match Total",
+            "team": "WTA",
+            "opponent": "Botic Van De Zandschulp vs Jan Choinski",
+            "line": "Over 22.5 Games",
+            "score": 64.0,
+            "confidence": 64,
+            "tier": "B",
+            "reason": "Round Round 1 | Rank gap 0 | Form gap +0.00"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "182697-sets",
+            "player_name": "Botic Van De Zandschulp",
+            "team": "WTA",
+            "opponent": "Jan Choinski",
+            "line": "Over 2.5 Sets",
+            "score": 50.0,
+            "confidence": 50,
+            "tier": "C",
+            "reason": "Best-of-3 | Sets 0-0 | Rank gap 0"
+          }
+        ]
+      }
+    },
+    {
+      "game_id": "182750",
+      "matchup": "Ignacio Buse vs Marcos Giron",
+      "time": "WTA | US Open | 9/1 - 7:45 PM EDT",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Ignacio Buse",
+          "line": "Match Winner",
+          "score": 75.0,
+          "confidence": 75,
+          "tier": "A",
+          "player_id": "11226"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Ignacio Buse",
+          "line": "Ignacio Buse -1.5 Sets",
+          "score": 70.0,
+          "confidence": 70,
+          "tier": "B",
+          "player_id": "182750-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Under 21.5 Games",
+          "score": 60.0,
+          "confidence": 60,
+          "tier": "B",
+          "player_id": "182750-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "11226",
+            "player_name": "Ignacio Buse",
+            "team": "WTA",
+            "opponent": "Marcos Giron",
+            "line": "Match Winner",
+            "score": 75.0,
+            "confidence": 75,
+            "tier": "A",
+            "reason": "Rank 32 vs 250 | Form 0-0 vs 0-0 | Rank est. | Ignacio Buse vs Marcos Giron"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "182750-ou",
+            "player_name": "Match Total",
+            "team": "WTA",
+            "opponent": "Ignacio Buse vs Marcos Giron",
+            "line": "Under 21.5 Games",
+            "score": 60.0,
+            "confidence": 60,
+            "tier": "B",
+            "reason": "Round Round 1 | Rank gap 218 | Form gap +0.00"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "182750-sets",
+            "player_name": "Ignacio Buse",
+            "team": "WTA",
+            "opponent": "Marcos Giron",
+            "line": "Ignacio Buse -1.5 Sets",
+            "score": 70.0,
+            "confidence": 70,
+            "tier": "B",
+            "reason": "Best-of-3 | Sets 0-0 | Rank gap 218"
+          }
+        ]
+      }
+    },
+    {
+      "game_id": "182628",
+      "matchup": "Janice Tjen vs Mirra Andreeva",
+      "time": "WTA | US Open | 9/1 - 1:55 PM EDT",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Mirra Andreeva",
+          "line": "Match Winner",
+          "score": 84.0,
+          "confidence": 84,
+          "tier": "A",
+          "player_id": "9820"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Mirra Andreeva",
+          "line": "Mirra Andreeva -1.5 Sets",
+          "score": 79.0,
+          "confidence": 79,
+          "tier": "A",
+          "player_id": "182628-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Under 21.5 Games",
+          "score": 69.0,
+          "confidence": 69,
+          "tier": "B",
+          "player_id": "182628-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "9820",
+            "player_name": "Mirra Andreeva",
+            "team": "WTA",
+            "opponent": "Janice Tjen",
+            "line": "Match Winner",
+            "score": 84.0,
+            "confidence": 84,
+            "tier": "A",
+            "reason": "Rank 5 vs 36 | Form 0-0 vs 0-0 | Janice Tjen vs Mirra Andreeva"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "182628-ou",
+            "player_name": "Match Total",
+            "team": "WTA",
+            "opponent": "Janice Tjen vs Mirra Andreeva",
+            "line": "Under 21.5 Games",
+            "score": 69.0,
+            "confidence": 69,
+            "tier": "B",
+            "reason": "Round Round 1 | Rank gap 31 | Form gap +0.00"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "182628-sets",
+            "player_name": "Mirra Andreeva",
+            "team": "WTA",
+            "opponent": "Janice Tjen",
+            "line": "Mirra Andreeva -1.5 Sets",
+            "score": 79.0,
+            "confidence": 79,
+            "tier": "A",
+            "reason": "Best-of-3 | Sets 0-0 | Rank gap 31"
+          }
+        ]
+      }
+    },
+    {
       "game_id": "182597",
       "matchup": "Robin Montgomery vs Maria Sakkari",
-      "time": "WTA | US Open | 9/1 - 11:00 AM EDT",
+      "time": "WTA | US Open | 9/1 - 2:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -4436,7 +4361,7 @@
     {
       "game_id": "182598",
       "matchup": "Ella Seidel vs Yuliia Starodubtseva",
-      "time": "WTA | US Open | 9/1 - 11:00 AM EDT",
+      "time": "WTA | US Open | 9/1 - 2:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -4511,7 +4436,7 @@
     {
       "game_id": "182602",
       "matchup": "Elena Rybakina vs Thea Frodin",
-      "time": "WTA | US Open | 9/1 - 11:00 AM EDT",
+      "time": "WTA | US Open | 9/1 - 2:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -4584,9 +4509,84 @@
       }
     },
     {
+      "game_id": "182609",
+      "matchup": "Anna Bondar vs Lucie Havlickova",
+      "time": "WTA | US Open | 9/1 - 2:45 PM EDT",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Anna Bondar",
+          "line": "Match Winner",
+          "score": 61.0,
+          "confidence": 61,
+          "tier": "B",
+          "player_id": "2734"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Anna Bondar",
+          "line": "Anna Bondar -1.5 Sets",
+          "score": 70.0,
+          "confidence": 70,
+          "tier": "B",
+          "player_id": "182609-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Under 21.5 Games",
+          "score": 60.0,
+          "confidence": 60,
+          "tier": "B",
+          "player_id": "182609-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "2734",
+            "player_name": "Anna Bondar",
+            "team": "WTA",
+            "opponent": "Lucie Havlickova",
+            "line": "Match Winner",
+            "score": 61.0,
+            "confidence": 61,
+            "tier": "B",
+            "reason": "Rank 73 vs 250 | Form 0-0 vs 3-0 | Rank est. | Anna Bondar vs Lucie Havlickova"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "182609-ou",
+            "player_name": "Match Total",
+            "team": "WTA",
+            "opponent": "Anna Bondar vs Lucie Havlickova",
+            "line": "Under 21.5 Games",
+            "score": 60.0,
+            "confidence": 60,
+            "tier": "B",
+            "reason": "Round Round 1 | Rank gap 177 | Form gap -0.92"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "182609-sets",
+            "player_name": "Anna Bondar",
+            "team": "WTA",
+            "opponent": "Lucie Havlickova",
+            "line": "Anna Bondar -1.5 Sets",
+            "score": 70.0,
+            "confidence": 70,
+            "tier": "B",
+            "reason": "Best-of-3 | Sets 0-0 | Rank gap 177"
+          }
+        ]
+      }
+    },
+    {
       "game_id": "182615",
       "matchup": "Belinda Bencic vs Yulia Putintseva",
-      "time": "WTA | US Open | 9/1 - 11:00 AM EDT",
+      "time": "WTA | US Open | 9/1 - 2:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -4661,7 +4661,7 @@
     {
       "game_id": "182627",
       "matchup": "Eva Lys vs Gabriela Knutson",
-      "time": "WTA | US Open | 9/1 - 11:00 AM EDT",
+      "time": "WTA | US Open | 9/1 - 2:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -4734,159 +4734,9 @@
       }
     },
     {
-      "game_id": "182611",
-      "matchup": "Alina Korneeva vs Madison Keys",
-      "time": "WTA | US Open | 9/1 - 11:30 AM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Madison Keys",
-          "line": "Match Winner",
-          "score": 84.0,
-          "confidence": 84,
-          "tier": "A",
-          "player_id": "1556"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Madison Keys",
-          "line": "Madison Keys -1.5 Sets",
-          "score": 79.0,
-          "confidence": 79,
-          "tier": "A",
-          "player_id": "182611-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 21.5 Games",
-          "score": 69.0,
-          "confidence": 69,
-          "tier": "B",
-          "player_id": "182611-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "1556",
-            "player_name": "Madison Keys",
-            "team": "WTA",
-            "opponent": "Alina Korneeva",
-            "line": "Match Winner",
-            "score": 84.0,
-            "confidence": 84,
-            "tier": "A",
-            "reason": "Rank 24 vs 69 | Form 0-0 vs 0-0 | Alina Korneeva vs Madison Keys"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182611-ou",
-            "player_name": "Match Total",
-            "team": "WTA",
-            "opponent": "Alina Korneeva vs Madison Keys",
-            "line": "Under 21.5 Games",
-            "score": 69.0,
-            "confidence": 69,
-            "tier": "B",
-            "reason": "Round Round 1 | Rank gap 45 | Form gap +0.00"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182611-sets",
-            "player_name": "Madison Keys",
-            "team": "WTA",
-            "opponent": "Alina Korneeva",
-            "line": "Madison Keys -1.5 Sets",
-            "score": 79.0,
-            "confidence": 79,
-            "tier": "A",
-            "reason": "Best-of-3 | Sets 0-0 | Rank gap 45"
-          }
-        ]
-      }
-    },
-    {
-      "game_id": "182609",
-      "matchup": "Anna Bondar vs Lucie Havlickova",
-      "time": "WTA | US Open | 9/1 - 12:30 PM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Anna Bondar",
-          "line": "Match Winner",
-          "score": 61.0,
-          "confidence": 61,
-          "tier": "B",
-          "player_id": "2734"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Anna Bondar",
-          "line": "Anna Bondar -1.5 Sets",
-          "score": 70.0,
-          "confidence": 70,
-          "tier": "B",
-          "player_id": "182609-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 21.5 Games",
-          "score": 60.0,
-          "confidence": 60,
-          "tier": "B",
-          "player_id": "182609-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "2734",
-            "player_name": "Anna Bondar",
-            "team": "WTA",
-            "opponent": "Lucie Havlickova",
-            "line": "Match Winner",
-            "score": 61.0,
-            "confidence": 61,
-            "tier": "B",
-            "reason": "Rank 73 vs 250 | Form 0-0 vs 3-0 | Rank est. | Anna Bondar vs Lucie Havlickova"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182609-ou",
-            "player_name": "Match Total",
-            "team": "WTA",
-            "opponent": "Anna Bondar vs Lucie Havlickova",
-            "line": "Under 21.5 Games",
-            "score": 60.0,
-            "confidence": 60,
-            "tier": "B",
-            "reason": "Round Round 1 | Rank gap 177 | Form gap -0.92"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182609-sets",
-            "player_name": "Anna Bondar",
-            "team": "WTA",
-            "opponent": "Lucie Havlickova",
-            "line": "Anna Bondar -1.5 Sets",
-            "score": 70.0,
-            "confidence": 70,
-            "tier": "B",
-            "reason": "Best-of-3 | Sets 0-0 | Rank gap 177"
-          }
-        ]
-      }
-    },
-    {
       "game_id": "182644",
       "matchup": "Paula Badosa vs Daria Kasatkina",
-      "time": "WTA | US Open | 9/1 - 12:30 PM EDT",
+      "time": "WTA | US Open | 9/1 - 4:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -4952,7 +4802,7 @@
     {
       "game_id": "182601",
       "matchup": "Jessica Bouzas Maneiro vs Darja Vidmanova",
-      "time": "WTA | US Open | 9/1 - 1:00 PM EDT",
+      "time": "WTA | US Open | 9/1 - 4:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -5025,84 +4875,9 @@
       }
     },
     {
-      "game_id": "182628",
-      "matchup": "Janice Tjen vs Mirra Andreeva",
-      "time": "WTA | US Open | 9/1 - 1:00 PM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Mirra Andreeva",
-          "line": "Match Winner",
-          "score": 84.0,
-          "confidence": 84,
-          "tier": "A",
-          "player_id": "9820"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Mirra Andreeva",
-          "line": "Mirra Andreeva -1.5 Sets",
-          "score": 79.0,
-          "confidence": 79,
-          "tier": "A",
-          "player_id": "182628-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 21.5 Games",
-          "score": 69.0,
-          "confidence": 69,
-          "tier": "B",
-          "player_id": "182628-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "9820",
-            "player_name": "Mirra Andreeva",
-            "team": "WTA",
-            "opponent": "Janice Tjen",
-            "line": "Match Winner",
-            "score": 84.0,
-            "confidence": 84,
-            "tier": "A",
-            "reason": "Rank 5 vs 36 | Form 0-0 vs 0-0 | Janice Tjen vs Mirra Andreeva"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182628-ou",
-            "player_name": "Match Total",
-            "team": "WTA",
-            "opponent": "Janice Tjen vs Mirra Andreeva",
-            "line": "Under 21.5 Games",
-            "score": 69.0,
-            "confidence": 69,
-            "tier": "B",
-            "reason": "Round Round 1 | Rank gap 31 | Form gap +0.00"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182628-sets",
-            "player_name": "Mirra Andreeva",
-            "team": "WTA",
-            "opponent": "Janice Tjen",
-            "line": "Mirra Andreeva -1.5 Sets",
-            "score": 79.0,
-            "confidence": 79,
-            "tier": "A",
-            "reason": "Best-of-3 | Sets 0-0 | Rank gap 31"
-          }
-        ]
-      }
-    },
-    {
       "game_id": "182648",
       "matchup": "Jelena Ostapenko vs Tatjana Maria",
-      "time": "WTA | US Open | 9/1 - 1:00 PM EDT",
+      "time": "WTA | US Open | 9/1 - 4:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -5177,7 +4952,7 @@
     {
       "game_id": "182650",
       "matchup": "Darja Semenistaja vs Anastasia Potapova",
-      "time": "WTA | US Open | 9/1 - 1:00 PM EDT",
+      "time": "WTA | US Open | 9/1 - 4:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -5252,7 +5027,7 @@
     {
       "game_id": "182600",
       "matchup": "Elise Mertens vs Kaitlin Quevedo",
-      "time": "WTA | US Open | 9/1 - 2:30 PM EDT",
+      "time": "WTA | US Open | 9/1 - 6:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -5327,7 +5102,7 @@
     {
       "game_id": "182636",
       "matchup": "Magdalena Frech vs Iva Jovic",
-      "time": "WTA | US Open | 9/1 - 2:30 PM EDT",
+      "time": "WTA | US Open | 9/1 - 6:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -5391,9 +5166,84 @@
       }
     },
     {
+      "game_id": "182641",
+      "matchup": "Francesca Jones vs Magda Linette",
+      "time": "WTA | US Open | 9/1 - 6:15 PM EDT",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Francesca Jones",
+          "line": "Match Winner",
+          "score": 89.88,
+          "confidence": 90,
+          "tier": "A",
+          "player_id": "7815"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Francesca Jones",
+          "line": "Francesca Jones -1.5 Sets",
+          "score": 80.0,
+          "confidence": 80,
+          "tier": "A",
+          "player_id": "182641-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Under 21.5 Games",
+          "score": 75.0,
+          "confidence": 75,
+          "tier": "A",
+          "player_id": "182641-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "7815",
+            "player_name": "Francesca Jones",
+            "team": "WTA",
+            "opponent": "Magda Linette",
+            "line": "Match Winner",
+            "score": 89.88,
+            "confidence": 90,
+            "tier": "A",
+            "reason": "Rank 104 vs 82 | Form 3-0 vs 0-0 | Francesca Jones vs Magda Linette"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "182641-ou",
+            "player_name": "Match Total",
+            "team": "WTA",
+            "opponent": "Francesca Jones vs Magda Linette",
+            "line": "Under 21.5 Games",
+            "score": 75.0,
+            "confidence": 75,
+            "tier": "A",
+            "reason": "Round Round 1 | Rank gap 22 | Form gap +0.92"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "182641-sets",
+            "player_name": "Francesca Jones",
+            "team": "WTA",
+            "opponent": "Magda Linette",
+            "line": "Francesca Jones -1.5 Sets",
+            "score": 80.0,
+            "confidence": 80,
+            "tier": "A",
+            "reason": "Best-of-3 | Sets 6-1 | Rank gap 22"
+          }
+        ]
+      }
+    },
+    {
       "game_id": "182649",
       "matchup": "Leolia Jeanjean vs Arantxa Rus",
-      "time": "WTA | US Open | 9/1 - 2:30 PM EDT",
+      "time": "WTA | US Open | 9/1 - 6:15 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -5468,7 +5318,7 @@
     {
       "game_id": "182631",
       "matchup": "Mayar Sherif vs Nikola Bartunkova",
-      "time": "WTA | US Open | 9/1 - 3:00 PM EDT",
+      "time": "WTA | US Open | 9/1 - 6:45 PM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -5527,156 +5377,6 @@
             "confidence": 56,
             "tier": "C",
             "reason": "Best-of-3 | Sets 0-0 | Rank gap 18"
-          }
-        ]
-      }
-    },
-    {
-      "game_id": "182641",
-      "matchup": "Francesca Jones vs Magda Linette",
-      "time": "WTA | US Open | 9/1 - 4:00 PM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Francesca Jones",
-          "line": "Match Winner",
-          "score": 89.88,
-          "confidence": 90,
-          "tier": "A",
-          "player_id": "7815"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Francesca Jones",
-          "line": "Francesca Jones -1.5 Sets",
-          "score": 80.0,
-          "confidence": 80,
-          "tier": "A",
-          "player_id": "182641-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 21.5 Games",
-          "score": 75.0,
-          "confidence": 75,
-          "tier": "A",
-          "player_id": "182641-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "7815",
-            "player_name": "Francesca Jones",
-            "team": "WTA",
-            "opponent": "Magda Linette",
-            "line": "Match Winner",
-            "score": 89.88,
-            "confidence": 90,
-            "tier": "A",
-            "reason": "Rank 104 vs 82 | Form 3-0 vs 0-0 | Francesca Jones vs Magda Linette"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182641-ou",
-            "player_name": "Match Total",
-            "team": "WTA",
-            "opponent": "Francesca Jones vs Magda Linette",
-            "line": "Under 21.5 Games",
-            "score": 75.0,
-            "confidence": 75,
-            "tier": "A",
-            "reason": "Round Round 1 | Rank gap 22 | Form gap +0.92"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182641-sets",
-            "player_name": "Francesca Jones",
-            "team": "WTA",
-            "opponent": "Magda Linette",
-            "line": "Francesca Jones -1.5 Sets",
-            "score": 80.0,
-            "confidence": 80,
-            "tier": "A",
-            "reason": "Best-of-3 | Sets 6-1 | Rank gap 22"
-          }
-        ]
-      }
-    },
-    {
-      "game_id": "182642",
-      "matchup": "Reese Brantmeier vs Oleksandra Oliynykova",
-      "time": "WTA | US Open | 9/1 - 4:30 PM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Oleksandra Oliynykova",
-          "line": "Match Winner",
-          "score": 75.0,
-          "confidence": 75,
-          "tier": "A",
-          "player_id": "5705"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Oleksandra Oliynykova",
-          "line": "Oleksandra Oliynykova -1.5 Sets",
-          "score": 70.0,
-          "confidence": 70,
-          "tier": "B",
-          "player_id": "182642-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 21.5 Games",
-          "score": 60.0,
-          "confidence": 60,
-          "tier": "B",
-          "player_id": "182642-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "5705",
-            "player_name": "Oleksandra Oliynykova",
-            "team": "WTA",
-            "opponent": "Reese Brantmeier",
-            "line": "Match Winner",
-            "score": 75.0,
-            "confidence": 75,
-            "tier": "A",
-            "reason": "Rank 46 vs 250 | Form 0-0 vs 0-0 | Rank est. | Reese Brantmeier vs Oleksandra Oliynykova"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "182642-ou",
-            "player_name": "Match Total",
-            "team": "WTA",
-            "opponent": "Reese Brantmeier vs Oleksandra Oliynykova",
-            "line": "Under 21.5 Games",
-            "score": 60.0,
-            "confidence": 60,
-            "tier": "B",
-            "reason": "Round Round 1 | Rank gap 204 | Form gap +0.00"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "182642-sets",
-            "player_name": "Oleksandra Oliynykova",
-            "team": "WTA",
-            "opponent": "Reese Brantmeier",
-            "line": "Oleksandra Oliynykova -1.5 Sets",
-            "score": 70.0,
-            "confidence": 70,
-            "tier": "B",
-            "reason": "Best-of-3 | Sets 0-0 | Rank gap 204"
           }
         ]
       }
