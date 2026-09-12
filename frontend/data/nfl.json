@@ -1,7 +1,7 @@
 {
   "sport": "NFL",
   "date": "2026-09-13",
-  "last_updated": "3:00 PM ET",
+  "last_updated": "5:23 PM ET",
   "week": 1,
   "season": 2026,
   "uncertainty_note": "Week 1 \u00b7 2026 \u2014 built entirely from 2025 prior-season stats; no current-season sample yet, and rosters/depth charts are not yet final.",
@@ -4625,7 +4625,7 @@
             "score": 52.6,
             "confidence": 53,
             "tier": "B",
-            "reason": "Pass TD \u03bb 0.75 | Rec match 1.15x | 2025 GP 4 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "reason": "Pass TD \u03bb 0.75 | Rec match 1.15x | 2025 GP 4 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
             "sim_prob_pct": 52.6,
             "model_hit_rate_raw": 0.526,
             "lineup_confirmed": false,
@@ -4688,7 +4688,7 @@
             "score": 17.22,
             "confidence": 17,
             "tier": "PASS",
-            "reason": "Pass TD \u03bb 0.75 | Rec match 1.15x | 2025 GP 4 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "reason": "Pass TD \u03bb 0.75 | Rec match 1.15x | 2025 GP 4 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
             "sim_prob_pct": 17.22,
             "model_hit_rate_raw": 0.1722,
             "lineup_confirmed": false,
@@ -4732,7 +4732,7 @@
             "score": 71.51,
             "confidence": 72,
             "tier": "A",
-            "reason": "Proj 178.5 pass yds/g | Rec match 1.15x | 2025 GP 4 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "reason": "Proj 178.5 pass yds/g | Rec match 1.15x | 2025 GP 4 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
             "sim_prob_pct": 71.51,
             "model_hit_rate_raw": 0.7151,
             "lineup_confirmed": false,
@@ -4776,7 +4776,7 @@
             "score": 78.13,
             "confidence": 78,
             "tier": "A",
-            "reason": "Proj 18.1 completions/g | Rec match 1.15x | 2025 GP 4 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "reason": "Proj 18.1 completions/g | Rec match 1.15x | 2025 GP 4 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
             "sim_prob_pct": 78.13,
             "model_hit_rate_raw": 0.7813,
             "lineup_confirmed": false,
@@ -4820,7 +4820,7 @@
             "score": 60.35,
             "confidence": 60,
             "tier": "A",
-            "reason": "INT \u03bb 0.93 (no matchup adj - takeaway rate not collected) | 2025 GP 4 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "reason": "INT \u03bb 0.93 (no matchup adj - takeaway rate not collected) | 2025 GP 4 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
             "sim_prob_pct": 60.35,
             "model_hit_rate_raw": 0.6035,
             "lineup_confirmed": false,
@@ -4841,7 +4841,7 @@
             "score": 23.67,
             "confidence": 24,
             "tier": "PASS",
-            "reason": "INT \u03bb 0.93 (no matchup adj - takeaway rate not collected) | 2025 GP 4 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "reason": "INT \u03bb 0.93 (no matchup adj - takeaway rate not collected) | 2025 GP 4 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
             "sim_prob_pct": 23.67,
             "model_hit_rate_raw": 0.2367,
             "lineup_confirmed": false,
@@ -13451,12 +13451,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 32.6
+        "joint_prob_pct": 32.4
       },
       "ceiling": {
         "qb_line": "3+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 9.5
+        "joint_prob_pct": 9.4
       }
     },
     {
@@ -13517,12 +13517,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 26.2
+        "joint_prob_pct": 26.1
       },
       "ceiling": {
         "qb_line": "3+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 6.4
+        "joint_prob_pct": 6.7
       }
     },
     {
@@ -13583,12 +13583,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 33.2
+        "joint_prob_pct": 33.3
       },
       "ceiling": {
         "qb_line": "4+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 8.3
+        "joint_prob_pct": 8.2
       }
     },
     {
@@ -13759,7 +13759,7 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 18.7
+        "joint_prob_pct": 19.2
       },
       "ceiling": {
         "qb_line": "4+ Pass TD",
@@ -13803,12 +13803,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 22.8
+        "joint_prob_pct": 22.7
       },
       "ceiling": {
         "qb_line": "3+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 6.9
+        "joint_prob_pct": 6.8
       }
     },
     {
@@ -13847,12 +13847,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 28.8
+        "joint_prob_pct": 28.5
       },
       "ceiling": {
         "qb_line": "3+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 7.3
+        "joint_prob_pct": 7.1
       }
     },
     {
@@ -13869,12 +13869,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 30.4
+        "joint_prob_pct": 30.5
       },
       "ceiling": {
         "qb_line": "3+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 8.0
+        "joint_prob_pct": 8.2
       }
     },
     {
@@ -13891,12 +13891,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 37.1
+        "joint_prob_pct": 37.8
       },
       "ceiling": {
         "qb_line": "4+ Pass TD",
         "receiver_line": "2+ Rec TD",
-        "joint_prob_pct": 2.9
+        "joint_prob_pct": 3.1
       }
     },
     {
@@ -14001,12 +14001,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 26.4
+        "joint_prob_pct": 26.6
       },
       "ceiling": {
         "qb_line": "4+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 3.4
+        "joint_prob_pct": 3.7
       }
     },
     {
