@@ -1382,6 +1382,15 @@ def build_team_player_candidates(
                 tagged["rush_yds_mean"] = rush_yds_mean
                 tagged["rec_yds_mean"] = rec_yds_mean
                 tagged["td_lambda"] = td_lambda
+            if position in ("WR", "TE"):
+                # Plain-language projection fields for the frontend drawer,
+                # same convention as QB/RB: the exact means/lambda this
+                # candidate's own market probability was scored from.
+                # Tagged unconditionally across all of this player's rows
+                # (RecYds, REC, TD, ...) so the drawer can show a coherent
+                # "projected performance" section instead of parsing reason text.
+                tagged["rec_yds_mean"] = rec_yds_mean
+                tagged["td_lambda"] = td_lambda
             # Raw signal only -- see fetch_target_shares. Not wired into any
             # scoring/probability math; a future consumer (e.g. the same-game
             # sim's receiver-attribution weighting) can read it off the row.

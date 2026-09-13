@@ -1171,14 +1171,10 @@
       if (num(raw.rec_yds_mean)) cards.push(["Rec Yards", raw.rec_yds_mean.toFixed(0), "projected"]);
       if (num(raw.td_lambda)) cards.push(["Touchdowns", raw.td_lambda.toFixed(1), "expected"]);
     } else {
-      // WR/TE aren't tagged with an explicit mean the way QB/RB are -- fall
-      // back to the same "Proj X.X" reason-text parse the generic drawer
-      // already relies on (parseEvidence), read off this player's own
-      // RecYds/RushYds rows specifically rather than the clicked row alone.
-      const recYds = pool.find(item => item.market === "RecYds");
-      const rushYds = pool.find(item => item.market === "RushYds");
-      if (recYds?.evidence?.projection !== null && recYds?.evidence?.projection !== undefined) cards.push(["Rec Yards", recYds.evidence.projection.toFixed(0), "projected"]);
-      if (rushYds?.evidence?.projection !== null && rushYds?.evidence?.projection !== undefined) cards.push(["Rush Yards", rushYds.evidence.projection.toFixed(0), "projected"]);
+      // WR/TE receiving/rushing and TD projections, exported by the collector
+      // just like QB/RB are (see to_board_row's allow-list).
+      if (num(raw.rec_yds_mean)) cards.push(["Rec Yards", raw.rec_yds_mean.toFixed(0), "projected"]);
+      if (num(raw.rush_yds_mean)) cards.push(["Rush Yards", raw.rush_yds_mean.toFixed(0), "projected"]);
       if (num(raw.td_lambda)) cards.push(["Touchdowns", raw.td_lambda.toFixed(1), "expected"]);
     }
     return cards;
