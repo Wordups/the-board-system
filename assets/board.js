@@ -1196,10 +1196,15 @@
           tier: null, score: game.pass_yds, rowId: null,
         });
       }
+      const resultPrefix = game.result ? `${game.result} ` : "";
+      const opponent = game.opponent || "—";
+      const tdStr = game.td && game.td > 0 ? ` · ${Math.round(game.td)} TD` : "";
+      const attStr = game.rush_attempts ? ` ${Math.round(game.rush_attempts)}@` : "";
+      const recStr = game.receptions ? ` ${Math.round(game.receptions)} rec` : "";
       return compactCard({
         label: `Wk ${game.week}`,
-        name: `${Math.round(game.rush_yds)} rush + ${Math.round(game.rec_yds)} rec`,
-        meta: "2025 season",
+        name: `${resultPrefix}vs ${opponent}`,
+        meta: `${Math.round(game.rush_yds)} rush${attStr}${recStr}${tdStr}`,
         line: `${Math.round(game.total_yds)} total yds`,
         tier: null, score: game.total_yds, rowId: null,
       });

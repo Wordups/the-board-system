@@ -357,12 +357,12 @@ def fetch_rb_gamelogs(rosters: dict[str, list[dict[str, Any]]], *, season: int) 
 
 
 def parse_rb_gamelog(payload: dict[str, Any]) -> list[dict[str, float]] | None:
-    """Regular-season per-game rushing+receiving lines, sorted chronologically
+    """Regular-season per-game rushing+receiving stats, sorted chronologically
     (earliest week first). ESPN's gamelog response groups games under
     `seasonTypes[].categories[].events[]`, with each event's stat values as a
     flat string array positionally matched to the top-level `names` list
     (e.g. names[1] == "rushingYards" -> stats[1] is that game's rushing
-    yards); real per-game week numbers and IDs live in the separate
+    yards); real per-game week numbers, opponent, and result live in the separate
     top-level `events` dict, keyed by eventId. Postseason is a separate
     seasonTypes entry and deliberately excluded here -- a much smaller,
     non-representative sample that not every RB even has. Returns None if
@@ -382,8 +382,21 @@ def parse_rb_gamelog(payload: dict[str, Any]) -> list[dict[str, float]] | None:
     try:
         rush_idx = names.index("rushingYards")
         rec_idx = names.index("receivingYards")
+        rec_rec_idx = names.index("receivingReceptions")
+        rush_att_idx = names.index("rushingAttempts")
+        rec_td_idx = names.index("receivingTouchdowns")
+        rush_td_idx = names.index("rushingTouchdowns")
     except ValueError:
-        return None
+        # Fallback if some stats aren't available
+        try:
+            rush_idx = names.index("rushingYards")
+            rec_idx = names.index("receivingYards")
+        except ValueError:
+            return None
+        rec_rec_idx = names.index("receivingReceptions") if "receivingReceptions" in names else None
+        rush_att_idx = names.index("rushingAttempts") if "rushingAttempts" in names else None
+        rec_td_idx = names.index("receivingTouchdowns") if "receivingTouchdowns" in names else None
+        rush_td_idx = names.index("rushingTouchdowns") if "rushingTouchdowns" in names else None
 
     games: list[dict[str, float]] = []
     for event_row in regular["categories"][0].get("events", []):
@@ -392,18 +405,35 @@ def parse_rb_gamelog(payload: dict[str, Any]) -> list[dict[str, float]] | None:
             continue
         event_meta = events_by_id.get(event_row.get("eventId"), {})
         week = event_meta.get("week")
+        opponent = event_meta.get("opponent", {}).get("abbreviation")
+        result = event_meta.get("result")
         if week is None:
             continue
         rush_yds = parse_number(stats[rush_idx])
         rec_yds = parse_number(stats[rec_idx])
-        games.append(
-            {
-                "week": int(week),
-                "rush_yds": rush_yds,
-                "rec_yds": rec_yds,
-                "total_yds": rush_yds + rec_yds,
-            }
-        )
+        game: dict[str, Any] = {
+            "week": int(week),
+            "rush_yds": rush_yds,
+            "rec_yds": rec_yds,
+            "total_yds": rush_yds + rec_yds,
+        }
+        if opponent:
+            game["opponent"] = opponent
+        if result:
+            game["result"] = result
+        if rec_rec_idx is not None and len(stats) > rec_rec_idx:
+            game["receptions"] = parse_number(stats[rec_rec_idx])
+        if rush_att_idx is not None and len(stats) > rush_att_idx:
+            game["rush_attempts"] = parse_number(stats[rush_att_idx])
+        if rec_td_idx is not None and len(stats) > rec_td_idx:
+            rec_td = parse_number(stats[rec_td_idx])
+            if rec_td > 0:
+                game["td"] = rec_td
+        if rush_td_idx is not None and len(stats) > rush_td_idx:
+            rush_td = parse_number(stats[rush_td_idx])
+            if rush_td > 0:
+                game["td"] = game.get("td", 0) + rush_td
+        games.append(game)
 
     games.sort(key=lambda row: row["week"])
     return games or None
