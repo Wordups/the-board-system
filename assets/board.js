@@ -824,15 +824,25 @@
     if (!activeSports.includes(gameSport)) gameSport = activeSports[0] || "mlb";
     const source = games.filter(game => game.sport === gameSport);
     const board = snapshot.sports[gameSport];
-    return `${pageHead("Event index", "Games", "without the sprawl.", "Every event gets its own compact card. Open a signal only when the matchup earns a closer look.", board?.date || staleInfo().latest)}
+
+    let gameHtml = `${pageHead("Event index", "Games", "without the sprawl.", "Every event gets its own compact card. Open a signal only when the matchup earns a closer look.", board?.date || staleInfo().latest)}
       ${freshnessBanner(board?.date)}
       <div class="toolbar" style="grid-template-columns:minmax(180px,260px)">
         <label class="field"><select data-filter="game-sport">${activeSports.map(sport => `<option value="${esc(sport)}"${sport === gameSport ? " selected" : ""}>${esc(SPORT_META[sport]?.label || sport.toUpperCase())} · ${games.filter(game => game.sport === sport).length} games</option>`).join("")}</select></label>
-      </div>
-      <section class="game-grid">${source.map(game => {
-        const top = [...game.rows].sort((a,b) => b.geometry - a.geometry).slice(0,3);
-        return `<article class="game-card"><div class="game-head"><div><h3>${esc(game.matchup)}</h3><span>${esc(game.time)}</span></div><span>${game.rows.length} signals</span></div><div class="game-picks">${top.map(row => `<div class="game-pick" data-selection-id="${esc(row.id)}" role="button" tabindex="0"><span class="market-token">${esc(row.market)}</span><div><strong>${esc(row.playerName)}</strong><span>${esc(row.line)} · ${esc(row.verdict.label)}</span></div><b>${row.geometry}</b></div>`).join("") || "<span>No selections</span>"}</div></article>`;
-      }).join("")}</section>`;
+      </div>`;
+
+    // For NFL, show the Top 20 Projections pinned board first
+    if (gameSport === "nfl" && board?.pinned_board) {
+      const pinned = board.pinned_board;
+      gameHtml += `<section style="margin-bottom:24px"><h2 style="margin:0 0 12px;font-size:18px">💎 ${esc(pinned.title)}</h2><p style="margin:0 0 12px;font-size:13px;color:#888">Best opportunities across all markets this week — ranked by model projection strength.</p><div class="core-grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr));">${pinned.players.map(row => `<div class="top-projection-card" data-selection-id="${esc(row.id)}" role="button" tabindex="0" style="padding:12px;border:1px solid #333;border-radius:4px;cursor:pointer;transition:all 0.2s"><div style="margin-bottom:8px"><strong>${esc(row.playerName)}</strong></div><div style="font-size:12px;color:#888;margin-bottom:6px">${esc(row.team)} · ${esc(row.market)} · ${esc(row.line)}</div><div style="font-size:11px;color:#aaa"><strong>Score:</strong> ${row.score.toFixed(1)}</div></div>`).join("")}</div></section>`;
+    }
+
+    gameHtml += `<section class="game-grid">${source.map(game => {
+      const top = [...game.rows].sort((a,b) => b.score - a.score).slice(0,3);
+      return `<article class="game-card"><div class="game-head"><div><h3>${esc(game.matchup)}</h3><span>${esc(game.time)}</span></div><span>${game.rows.length} signals</span></div><div class="game-picks">${top.map(row => `<div class="game-pick" data-selection-id="${esc(row.id)}" role="button" tabindex="0"><span class="market-token">${esc(row.market)}</span><div><strong>${esc(row.playerName)}</strong><span>${esc(row.line)}</span></div><b>${row.score.toFixed(1)}</b></div>`).join("") || "<span>No selections</span>"}</div></article>`;
+    }).join("")}</section>`;
+
+    return gameHtml;
   }
 
   function cardAudit(cardRows) {
