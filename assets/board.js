@@ -1348,16 +1348,14 @@
   function openGameDrawer(gameId) {
     const game = games.find(item => String(item.gameId) === String(gameId));
     if (!game) return;
-    const recs = [...game.rows].sort((a, b) => b.geometry - a.geometry);
+    const recs = [...game.rows].sort((a, b) => b.score - a.score);
     const statsSheet = gameStatsSheet(game.rows);
-    drawerContent.innerHTML = `<div class="drawer-hero"><div><span class="sport-token" data-sport="${esc(game.sport)}">${esc(game.sportLabel)}</span><h2>${esc(game.matchup)}</h2><div class="signal-meta">${esc(game.time)} · ${game.rows.length} recommendation${game.rows.length === 1 ? "" : "s"}</div></div></div>
+    drawerContent.innerHTML = `<div class="drawer-hero"><div><span class="sport-token" data-sport="${esc(game.sport)}">${esc(game.sportLabel)}</span><h2>${esc(game.matchup)}</h2><div class="signal-meta">${esc(game.time)}</div></div></div>
       ${statsSheet}
-      <section class="drawer-section"><h3>Recommendations for this game</h3>
-        ${recs.length ? `<div class="game-rec-list">${recs.map(row => `<div class="game-rec" data-selection-id="${esc(row.id)}" role="button" tabindex="0" aria-label="Open ${esc(row.playerName)} ${esc(row.line)} analysis">
-          <div class="game-rec-main"><span class="market-token">${esc(row.market)}</span><div><strong>${esc(row.playerName)}</strong><span>${esc(row.line)} · ${esc(priceText(row))}</span></div></div>
-          <div class="game-rec-side"><span class="status-token ${esc(row.verdict.tone)}">${esc(row.verdict.label)}</span><b>${row.geometry}</b></div>
-        </div>`).join("")}</div>` : `<div class="empty-state"><strong>No selections for this game.</strong>Nothing was exported for this matchup.</div>`}
-      </section>`;
+      ${recs.length ? `<section class="drawer-section"><h3>Top opportunities</h3><div class="game-rec-list">${recs.slice(0, 8).map(row => `<div class="game-rec" data-selection-id="${esc(row.id)}" role="button" tabindex="0" aria-label="Open ${esc(row.playerName)} ${esc(row.line)} analysis">
+          <div class="game-rec-main"><span class="market-token">${esc(row.market)}</span><div><strong>${esc(row.playerName)}</strong><span>${esc(row.line)}</span></div></div>
+          <div class="game-rec-side"><b>${row.score.toFixed(1)}</b></div>
+        </div>`).join("")}</div></section>` : `<section class="drawer-section"><div class="empty-state"><strong>No selections for this game.</strong>Use the stat sheet above to find your own picks.</div></section>`}`;
     showDrawer();
   }
 
