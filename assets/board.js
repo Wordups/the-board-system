@@ -1352,9 +1352,9 @@
     const statsSheet = gameStatsSheet(game.rows);
     drawerContent.innerHTML = `<div class="drawer-hero"><div><span class="sport-token" data-sport="${esc(game.sport)}">${esc(game.sportLabel)}</span><h2>${esc(game.matchup)}</h2><div class="signal-meta">${esc(game.time)}</div></div></div>
       ${statsSheet}
-      ${recs.length ? `<section class="drawer-section"><h3>Top opportunities</h3><div class="game-rec-list">${recs.slice(0, 8).map(row => `<div class="game-rec" data-selection-id="${esc(row.id)}" role="button" tabindex="0" aria-label="Open ${esc(row.playerName)} ${esc(row.line)} analysis">
-          <div class="game-rec-main"><span class="market-token">${esc(row.market)}</span><div><strong>${esc(row.playerName)}</strong><span>${esc(row.line)}</span></div></div>
-          <div class="game-rec-side"><b>${row.score.toFixed(1)}</b></div>
+      ${recs.length ? `<section class="drawer-section"><h3>Top opportunities</h3><div class="game-rec-list">${recs.slice(0, 8).map(row => `<div class="game-rec" role="button" tabindex="0" style="position:relative">
+          <div class="game-rec-main" data-selection-id="${esc(row.id)}" aria-label="Open ${esc(row.playerName)} ${esc(row.line)} analysis"><span class="market-token">${esc(row.market)}</span><div><strong>${esc(row.playerName)}</strong><span>${esc(row.line)}</span></div></div>
+          <div class="game-rec-side"><b>${row.score.toFixed(1)}</b><button class="rec-menu-btn" data-selection-id="${esc(row.id)}" style="margin-left:8px;padding:4px 8px;background:#333;border:1px solid #555;border-radius:3px;color:#aaa;cursor:pointer;font-size:14px">⋮</button></div>
         </div>`).join("")}</div></section>` : `<section class="drawer-section"><div class="empty-state"><strong>No selections for this game.</strong>Use the stat sheet above to find your own picks.</div></section>`}`;
     showDrawer();
   }
@@ -1367,6 +1367,25 @@
       ["Lineup", row.evidence.lineup],
     ].filter(([, value]) => value !== null && value !== undefined && value !== "");
     return entries.map(([label, value]) => `<div class="factor-card"><span>${esc(label)}</span><strong>${esc(value)}</strong></div>`);
+  }
+
+  function showSelectionMenu(event, selectionId) {
+    event.stopPropagation();
+    const row = rowMap.get(selectionId);
+    if (!row) return;
+
+    const menu = document.createElement("div");
+    menu.style.cssText = "position:absolute;top:100%;right:0;background:#1a1a1a;border:1px solid #444;border-radius:4px;z-index:1000;min-width:180px;box-shadow:0 4px 12px rgba(0,0,0,0.5)";
+    menu.innerHTML = `
+      <div style="padding:8px;border-bottom:1px solid #333"><button data-action="add-to-card" data-id="${esc(selectionId)}" style="width:100%;padding:8px;background:#333;border:1px solid #555;border-radius:3px;color:#aaa;cursor:pointer;text-align:left">Add to card</button></div>
+      <div style="padding:8px;border-bottom:1px solid #333"><button data-action="view-all-markets" data-player="${esc(row.playerName)}" style="width:100%;padding:8px;background:#333;border:1px solid #555;border-radius:3px;color:#aaa;cursor:pointer;text-align:left">See all markets</button></div>
+      <div style="padding:8px"><button data-action="view-player" data-id="${esc(selectionId)}" style="width:100%;padding:8px;background:#333;border:1px solid #555;border-radius:3px;color:#aaa;cursor:pointer;text-align:left">View analysis</button></div>
+    `;
+
+    // Remove any existing menu
+    document.querySelectorAll("[data-menu-open]").forEach(m => m.remove());
+    menu.setAttribute("data-menu-open", "true");
+    event.target.parentElement.parentElement.appendChild(menu);
   }
 
   function closeDrawer() {
@@ -1425,10 +1444,14 @@
   }
 
   document.addEventListener("click", event => {
+    const menuBtn = event.target.closest(".rec-menu-btn");
+    if (menuBtn) { showSelectionMenu(event, menuBtn.dataset.selectionId); return; }
+
     const selection = event.target.closest("[data-selection-id]");
     if (selection) { openDrawer(selection.dataset.selectionId); return; }
     const gameChip = event.target.closest("[data-game-id]");
     if (gameChip) { openGameDrawer(gameChip.dataset.gameId); return; }
+
     const action = event.target.closest("[data-action]");
     if (!action) return;
     if (action.dataset.action === "page-prev") {
@@ -1439,6 +1462,8 @@
       render();
     } else if (action.dataset.action === "toggle-save") toggleSave(action.dataset.id);
     else if (action.dataset.action === "remove") { toggleSave(action.dataset.id); render(); }
+    else if (action.dataset.action === "add-to-card") toggleSave(action.dataset.id);
+    else if (action.dataset.action === "view-player") openDrawer(action.dataset.id);
   });
 
   document.addEventListener("keydown", event => {
