@@ -824,15 +824,25 @@
     if (!activeSports.includes(gameSport)) gameSport = activeSports[0] || "mlb";
     const source = games.filter(game => game.sport === gameSport);
     const board = snapshot.sports[gameSport];
-    return `${pageHead("Event index", "Games", "without the sprawl.", "Every event gets its own compact card. Open a signal only when the matchup earns a closer look.", board?.date || staleInfo().latest)}
+
+    let gameHtml = `${pageHead("Event index", "Games", "without the sprawl.", "Every event gets its own compact card. Open a signal only when the matchup earns a closer look.", board?.date || staleInfo().latest)}
       ${freshnessBanner(board?.date)}
       <div class="toolbar" style="grid-template-columns:minmax(180px,260px)">
         <label class="field"><select data-filter="game-sport">${activeSports.map(sport => `<option value="${esc(sport)}"${sport === gameSport ? " selected" : ""}>${esc(SPORT_META[sport]?.label || sport.toUpperCase())} · ${games.filter(game => game.sport === sport).length} games</option>`).join("")}</select></label>
-      </div>
-      <section class="game-grid">${source.map(game => {
-        const top = [...game.rows].sort((a,b) => b.geometry - a.geometry).slice(0,3);
-        return `<article class="game-card"><div class="game-head"><div><h3>${esc(game.matchup)}</h3><span>${esc(game.time)}</span></div><span>${game.rows.length} signals</span></div><div class="game-picks">${top.map(row => `<div class="game-pick" data-selection-id="${esc(row.id)}" role="button" tabindex="0"><span class="market-token">${esc(row.market)}</span><div><strong>${esc(row.playerName)}</strong><span>${esc(row.line)} · ${esc(row.verdict.label)}</span></div><b>${row.geometry}</b></div>`).join("") || "<span>No selections</span>"}</div></article>`;
-      }).join("")}</section>`;
+      </div>`;
+
+    // For NFL, show the Top 20 Projections pinned board first
+    if (gameSport === "nfl" && board?.pinned_board) {
+      const pinned = board.pinned_board;
+      gameHtml += `<section style="margin-bottom:24px"><h2 style="margin:0 0 12px;font-size:18px">💎 ${esc(pinned.title)}</h2><p style="margin:0 0 12px;font-size:13px;color:#888">Best opportunities across all markets this week — ranked by model projection strength.</p><div class="core-grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr));">${pinned.players.map(row => `<div class="top-projection-card" data-selection-id="${esc(row.id)}" role="button" tabindex="0" style="padding:12px;border:1px solid #333;border-radius:4px;cursor:pointer;transition:all 0.2s"><div style="margin-bottom:8px"><strong>${esc(row.playerName)}</strong></div><div style="font-size:12px;color:#888;margin-bottom:6px">${esc(row.team)} · ${esc(row.market)} · ${esc(row.line)}</div><div style="font-size:11px;color:#aaa"><strong>Score:</strong> ${row.score.toFixed(1)}</div></div>`).join("")}</div></section>`;
+    }
+
+    gameHtml += `<section class="game-grid">${source.map(game => {
+      const top = [...game.rows].sort((a,b) => b.score - a.score).slice(0,3);
+      return `<article class="game-card"><div class="game-head"><div><h3>${esc(game.matchup)}</h3><span>${esc(game.time)}</span></div><span>${game.rows.length} signals</span></div><div class="game-picks">${top.map(row => `<div class="game-pick" data-selection-id="${esc(row.id)}" role="button" tabindex="0"><span class="market-token">${esc(row.market)}</span><div><strong>${esc(row.playerName)}</strong><span>${esc(row.line)}</span></div><b>${row.score.toFixed(1)}</b></div>`).join("") || "<span>No selections</span>"}</div></article>`;
+    }).join("")}</section>`;
+
+    return gameHtml;
   }
 
   function cardAudit(cardRows) {
@@ -1110,6 +1120,26 @@
   // his QB Stat Stack / RB Usage Stack floor+ceiling combo and his 2025
   // game-by-game history, both shipped in the same snapshot under
   // snapshot.sports.nfl.
+  function gamePerformanceContext(playerId, position) {
+    const entry = snapshot?.sports?.nfl?.player_gamelogs?.[playerId];
+    const games = entry?.games;
+    if (!games || !games.length) return "";
+
+    const recent = [...games].slice(-6);
+    let totalYards = 0, totalTouchdowns = 0, gameCount = 0;
+    for (const game of recent) {
+      const yds = (game.rush_yds || 0) + (game.rec_yds || 0) + (game.pass_yds || 0);
+      totalYards += yds;
+      totalTouchdowns += game.td || 0;
+      gameCount++;
+    }
+
+    const avgRecent = gameCount > 0 ? (totalYards / gameCount).toFixed(0) : "—";
+    const trend = recent.length > 2 && recent[recent.length - 1].total_yds > recent[0].total_yds ? "↑ trending up" : recent.length > 2 ? "↓ trending down" : "→ steady";
+
+    return `<p class="section-note" style="margin:-6px 0 12px;max-width:none;text-align:left"><strong>Recent form:</strong> ${avgRecent} yds/game last 6 games · ${trend}</p>`;
+  }
+
   function nflDrawerBody(row) {
     const playerRows = rows.filter(item => item.sport === "nfl" && row.playerId && item.playerId === row.playerId);
     const pool = playerRows.length ? playerRows : [row];
@@ -1127,7 +1157,8 @@
     const position = raw.position || inferNflPosition(pool);
 
     const projectionCards = nflProjectionCards(position, raw, pool);
-    const projectionSection = `<section class="drawer-section"><h3>Projected performance</h3><p class="section-note" style="margin:-6px 0 12px;max-width:none;text-align:left">Built from his 2025 per-game rates, adjusted for this matchup -- not the abstract signal geometry, the actual projected stat line.</p><div class="factor-grid">${projectionCards.length ? projectionCards.map(([label, value, note]) => `<div class="factor-card"><span>${esc(label)}</span><strong>${esc(value)}</strong><small>${esc(note)}</small></div>`).join("") : `<div class="factor-card"><span>Projection</span><strong>—</strong><small>Below the collector's minimum-sample floor</small></div>`}</div></section>`;
+    const perfContext = gamePerformanceContext(row.playerId, position);
+    const projectionSection = `<section class="drawer-section"><h3>Projected performance vs ${esc(row.opponent)}</h3><p class="section-note" style="margin:-6px 0 12px;max-width:none;text-align:left">Built from his 2025 per-game rates, adjusted for this matchup -- the actual projected stat line for this game.</p>${perfContext}<div class="factor-grid">${projectionCards.length ? projectionCards.map(([label, value, note]) => `<div class="factor-card"><span>${esc(label)}</span><strong>${esc(value)}</strong><small>${esc(note)}</small></div>`).join("") : `<div class="factor-card"><span>Projection</span><strong>—</strong><small>Below the collector's minimum-sample floor</small></div>`}</div></section>`;
 
     const stack = position === "QB"
       ? (snapshot?.sports?.nfl?.qb_stacks || []).find(item => String(item.qb.player_id) === String(row.playerId))
@@ -1157,29 +1188,70 @@
     return "WR";
   }
 
+  function projectionLandingZone(mean, stdRatio = 0.55, minStd = 15) {
+    if (!mean || mean <= 0) return null;
+    const std = Math.max(minStd, mean * stdRatio);
+    const low = Math.max(0, Math.round(mean - std));
+    const high = Math.round(mean + std);
+    return { low, mid: Math.round(mean), high };
+  }
+
   function nflProjectionCards(position, raw, pool) {
     const cards = [];
     const num = value => typeof value === "number" && Number.isFinite(value);
+
     if (position === "QB") {
-      if (num(raw.pass_yds_mean)) cards.push(["Pass Yards", raw.pass_yds_mean.toFixed(0), "projected"]);
-      if (num(raw.completions_mean)) cards.push(["Completions", raw.completions_mean.toFixed(1), "projected"]);
-      if (num(raw.pass_td_lambda)) cards.push(["Pass TDs", raw.pass_td_lambda.toFixed(1), "expected"]);
-      if (num(raw.int_lambda)) cards.push(["Interceptions", raw.int_lambda.toFixed(1), "expected"]);
-      if (num(raw.rush_yds_mean) && raw.rush_yds_mean >= 5) cards.push(["Rush Yards", raw.rush_yds_mean.toFixed(0), "projected"]);
+      if (num(raw.pass_yds_mean)) {
+        const zone = projectionLandingZone(raw.pass_yds_mean);
+        cards.push(["Pass Yards", `${zone.low}–${zone.high}`, `${zone.mid} expected`]);
+      }
+      if (num(raw.completions_mean)) {
+        const zone = projectionLandingZone(raw.completions_mean);
+        cards.push(["Completions", `${zone.low}–${zone.high}`, `${zone.mid} expected`]);
+      }
+      if (num(raw.pass_td_lambda)) {
+        const low = Math.max(0, Math.round(raw.pass_td_lambda - 0.5));
+        const high = Math.round(raw.pass_td_lambda + 0.5);
+        cards.push(["Pass TDs", `${low}–${high}`, `${raw.pass_td_lambda.toFixed(1)} expected`]);
+      }
+      if (num(raw.int_lambda)) {
+        const low = Math.max(0, Math.round(raw.int_lambda - 0.4));
+        const high = Math.round(raw.int_lambda + 0.4);
+        cards.push(["Interceptions", `${low}–${high}`, `${raw.int_lambda.toFixed(1)} expected`]);
+      }
+      if (num(raw.rush_yds_mean) && raw.rush_yds_mean >= 5) {
+        const zone = projectionLandingZone(raw.rush_yds_mean);
+        cards.push(["Rush Yards", `${zone.low}–${zone.high}`, `${zone.mid} expected`]);
+      }
     } else if (position === "RB") {
-      if (num(raw.rush_yds_mean)) cards.push(["Rush Yards", raw.rush_yds_mean.toFixed(0), "projected"]);
-      if (num(raw.rec_yds_mean)) cards.push(["Rec Yards", raw.rec_yds_mean.toFixed(0), "projected"]);
-      if (num(raw.td_lambda)) cards.push(["Touchdowns", raw.td_lambda.toFixed(1), "expected"]);
+      if (num(raw.rush_yds_mean)) {
+        const zone = projectionLandingZone(raw.rush_yds_mean);
+        cards.push(["Rush Yards", `${zone.low}–${zone.high}`, `${zone.mid} expected`]);
+      }
+      if (num(raw.rec_yds_mean)) {
+        const zone = projectionLandingZone(raw.rec_yds_mean);
+        cards.push(["Rec Yards", `${zone.low}–${zone.high}`, `${zone.mid} expected`]);
+      }
+      if (num(raw.td_lambda)) {
+        const low = Math.max(0, Math.round(raw.td_lambda - 0.3));
+        const high = Math.round(raw.td_lambda + 0.3);
+        cards.push(["Touchdowns", `${low}–${high}`, `${raw.td_lambda.toFixed(1)} expected`]);
+      }
     } else {
-      // WR/TE aren't tagged with an explicit mean the way QB/RB are -- fall
-      // back to the same "Proj X.X" reason-text parse the generic drawer
-      // already relies on (parseEvidence), read off this player's own
-      // RecYds/RushYds rows specifically rather than the clicked row alone.
-      const recYds = pool.find(item => item.market === "RecYds");
-      const rushYds = pool.find(item => item.market === "RushYds");
-      if (recYds?.evidence?.projection !== null && recYds?.evidence?.projection !== undefined) cards.push(["Rec Yards", recYds.evidence.projection.toFixed(0), "projected"]);
-      if (rushYds?.evidence?.projection !== null && rushYds?.evidence?.projection !== undefined) cards.push(["Rush Yards", rushYds.evidence.projection.toFixed(0), "projected"]);
-      if (num(raw.td_lambda)) cards.push(["Touchdowns", raw.td_lambda.toFixed(1), "expected"]);
+      // WR/TE receiving/rushing and TD projections
+      if (num(raw.rec_yds_mean)) {
+        const zone = projectionLandingZone(raw.rec_yds_mean);
+        cards.push(["Rec Yards", `${zone.low}–${zone.high}`, `${zone.mid} expected`]);
+      }
+      if (num(raw.rush_yds_mean)) {
+        const zone = projectionLandingZone(raw.rush_yds_mean);
+        cards.push(["Rush Yards", `${zone.low}–${zone.high}`, `${zone.mid} expected`]);
+      }
+      if (num(raw.td_lambda)) {
+        const low = Math.max(0, Math.round(raw.td_lambda - 0.3));
+        const high = Math.round(raw.td_lambda + 0.3);
+        cards.push(["Touchdowns", `${low}–${high}`, `${raw.td_lambda.toFixed(1)} expected`]);
+      }
     }
     return cards;
   }
@@ -1200,10 +1272,15 @@
           tier: null, score: game.pass_yds, rowId: null,
         });
       }
+      const resultPrefix = game.result ? `${game.result} ` : "";
+      const opponent = game.opponent || "—";
+      const tdStr = game.td && game.td > 0 ? ` · ${Math.round(game.td)} TD` : "";
+      const attStr = game.rush_attempts ? ` ${Math.round(game.rush_attempts)}@` : "";
+      const recStr = game.receptions ? ` ${Math.round(game.receptions)} rec` : "";
       return compactCard({
         label: `Wk ${game.week}`,
-        name: `${Math.round(game.rush_yds)} rush + ${Math.round(game.rec_yds)} rec`,
-        meta: "2025 season",
+        name: `${resultPrefix}vs ${opponent}`,
+        meta: `${Math.round(game.rush_yds)} rush${attStr}${recStr}${tdStr}`,
         line: `${Math.round(game.total_yds)} total yds`,
         tier: null, score: game.total_yds, rowId: null,
       });
@@ -1218,17 +1295,67 @@
     document.body.style.overflow = "hidden";
   }
 
+  function gameStatsSheet(gameRows) {
+    const byPosition = { QB: [], RB: [], WR: [], TE: [] };
+    const seen = new Set();
+
+    gameRows.forEach(row => {
+      if (seen.has(row.playerId)) return;
+      seen.add(row.playerId);
+      const pos = row.raw?.position || "WR";
+      if (byPosition[pos]) byPosition[pos].push(row);
+    });
+
+    const statRow = (player) => {
+      const raw = player.raw || {};
+      const pos = raw.position || "WR";
+      const num = v => typeof v === "number" ? v : null;
+
+      let rush = "", rec = "", recYds = "", pass = "", passYds = "", td = "", passTd = "";
+
+      if (pos === "QB") {
+        passYds = num(raw.pass_yds_mean) ? `${Math.round(raw.pass_yds_mean)}` : "–";
+        pass = num(raw.completions_mean) ? `${Math.round(raw.completions_mean)}` : "–";
+        passTd = num(raw.pass_td_lambda) ? `${raw.pass_td_lambda.toFixed(1)}` : "–";
+        td = "–";
+      } else if (pos === "RB") {
+        rush = num(raw.rush_yds_mean) ? `${Math.round(raw.rush_yds_mean)}` : "–";
+        rec = num(raw.rec_per_game) ? `${Math.round(raw.rec_per_game * 16)}` : "–";
+        recYds = num(raw.rec_yds_mean) ? `${Math.round(raw.rec_yds_mean)}` : "–";
+        td = num(raw.td_lambda) ? `${raw.td_lambda.toFixed(1)}` : "–";
+      } else {
+        recYds = num(raw.rec_yds_mean) ? `${Math.round(raw.rec_yds_mean)}` : "–";
+        rec = num(raw.rec_per_game) ? `${Math.round(raw.rec_per_game * 16)}` : "–";
+        rush = num(raw.rush_yds_mean) ? `${Math.round(raw.rush_yds_mean)}` : "–";
+        td = num(raw.td_lambda) ? `${raw.td_lambda.toFixed(1)}` : "–";
+      }
+
+      return `<tr><td class="player-name"><strong>${esc(player.playerName)}</strong></td><td>${rush}</td><td>${rec}</td><td>${recYds}</td><td>${passYds}</td><td>${td}</td><td>${passTd}</td></tr>`;
+    };
+
+    let html = `<section class="drawer-section"><h3>Player stat sheet 💎</h3><p class="section-note" style="margin:-6px 0 12px;max-width:none;text-align:left">Find hidden gems: all projections for this matchup by position.</p>`;
+
+    for (const [pos, players] of Object.entries(byPosition)) {
+      if (!players.length) continue;
+      const sorted = players.sort((a, b) => (b.raw?.pass_yds_mean || b.raw?.rush_yds_mean || 0) - (a.raw?.pass_yds_mean || a.raw?.rush_yds_mean || 0));
+      html += `<div style="margin-bottom:16px"><h4 style="margin:0 0 8px;font-size:13px;color:#888;text-transform:uppercase">${pos}</h4><table style="width:100%;font-size:12px;border-collapse:collapse"><thead><tr style="border-bottom:1px solid #333"><th style="text-align:left;padding:4px;font-weight:500">Player</th><th style="text-align:center;padding:4px">Rush</th><th style="text-align:center;padding:4px">Rec</th><th style="text-align:center;padding:4px">Rec Yds</th><th style="text-align:center;padding:4px">Pass Yds</th><th style="text-align:center;padding:4px">TD</th><th style="text-align:center;padding:4px">Pass TD</th></tr></thead><tbody>${sorted.map(statRow).join("")}</tbody></table></div>`;
+    }
+
+    html += `</section>`;
+    return html;
+  }
+
   function openGameDrawer(gameId) {
     const game = games.find(item => String(item.gameId) === String(gameId));
     if (!game) return;
-    const recs = [...game.rows].sort((a, b) => b.geometry - a.geometry);
-    drawerContent.innerHTML = `<div class="drawer-hero"><div><span class="sport-token" data-sport="${esc(game.sport)}">${esc(game.sportLabel)}</span><h2>${esc(game.matchup)}</h2><div class="signal-meta">${esc(game.time)} · ${game.rows.length} recommendation${game.rows.length === 1 ? "" : "s"}</div></div></div>
-      <section class="drawer-section"><h3>Recommendations for this game</h3>
-        ${recs.length ? `<div class="game-rec-list">${recs.map(row => `<div class="game-rec" data-selection-id="${esc(row.id)}" role="button" tabindex="0" aria-label="Open ${esc(row.playerName)} ${esc(row.line)} analysis">
-          <div class="game-rec-main"><span class="market-token">${esc(row.market)}</span><div><strong>${esc(row.playerName)}</strong><span>${esc(row.line)} · ${esc(priceText(row))}</span></div></div>
-          <div class="game-rec-side"><span class="status-token ${esc(row.verdict.tone)}">${esc(row.verdict.label)}</span><b>${row.geometry}</b></div>
-        </div>`).join("")}</div>` : `<div class="empty-state"><strong>No selections for this game.</strong>Nothing was exported for this matchup.</div>`}
-      </section>`;
+    const recs = [...game.rows].sort((a, b) => b.score - a.score);
+    const statsSheet = gameStatsSheet(game.rows);
+    drawerContent.innerHTML = `<div class="drawer-hero"><div><span class="sport-token" data-sport="${esc(game.sport)}">${esc(game.sportLabel)}</span><h2>${esc(game.matchup)}</h2><div class="signal-meta">${esc(game.time)}</div></div></div>
+      ${statsSheet}
+      ${recs.length ? `<section class="drawer-section"><h3>Top opportunities</h3><div class="game-rec-list">${recs.slice(0, 8).map(row => `<div class="game-rec" role="button" tabindex="0" style="position:relative">
+          <div class="game-rec-main" data-selection-id="${esc(row.id)}" aria-label="Open ${esc(row.playerName)} ${esc(row.line)} analysis"><span class="market-token">${esc(row.market)}</span><div><strong>${esc(row.playerName)}</strong><span>${esc(row.line)}</span></div></div>
+          <div class="game-rec-side"><b>${row.score.toFixed(1)}</b><button class="rec-menu-btn" data-selection-id="${esc(row.id)}" style="margin-left:8px;padding:4px 8px;background:#333;border:1px solid #555;border-radius:3px;color:#aaa;cursor:pointer;font-size:14px">⋮</button></div>
+        </div>`).join("")}</div></section>` : `<section class="drawer-section"><div class="empty-state"><strong>No selections for this game.</strong>Use the stat sheet above to find your own picks.</div></section>`}`;
     showDrawer();
   }
 
@@ -1240,6 +1367,25 @@
       ["Lineup", row.evidence.lineup],
     ].filter(([, value]) => value !== null && value !== undefined && value !== "");
     return entries.map(([label, value]) => `<div class="factor-card"><span>${esc(label)}</span><strong>${esc(value)}</strong></div>`);
+  }
+
+  function showSelectionMenu(event, selectionId) {
+    event.stopPropagation();
+    const row = rowMap.get(selectionId);
+    if (!row) return;
+
+    const menu = document.createElement("div");
+    menu.style.cssText = "position:absolute;top:100%;right:0;background:#1a1a1a;border:1px solid #444;border-radius:4px;z-index:1000;min-width:180px;box-shadow:0 4px 12px rgba(0,0,0,0.5)";
+    menu.innerHTML = `
+      <div style="padding:8px;border-bottom:1px solid #333"><button data-action="add-to-card" data-id="${esc(selectionId)}" style="width:100%;padding:8px;background:#333;border:1px solid #555;border-radius:3px;color:#aaa;cursor:pointer;text-align:left">Add to card</button></div>
+      <div style="padding:8px;border-bottom:1px solid #333"><button data-action="view-all-markets" data-player="${esc(row.playerName)}" style="width:100%;padding:8px;background:#333;border:1px solid #555;border-radius:3px;color:#aaa;cursor:pointer;text-align:left">See all markets</button></div>
+      <div style="padding:8px"><button data-action="view-player" data-id="${esc(selectionId)}" style="width:100%;padding:8px;background:#333;border:1px solid #555;border-radius:3px;color:#aaa;cursor:pointer;text-align:left">View analysis</button></div>
+    `;
+
+    // Remove any existing menu
+    document.querySelectorAll("[data-menu-open]").forEach(m => m.remove());
+    menu.setAttribute("data-menu-open", "true");
+    event.target.parentElement.parentElement.appendChild(menu);
   }
 
   function closeDrawer() {
@@ -1298,10 +1444,14 @@
   }
 
   document.addEventListener("click", event => {
+    const menuBtn = event.target.closest(".rec-menu-btn");
+    if (menuBtn) { showSelectionMenu(event, menuBtn.dataset.selectionId); return; }
+
     const selection = event.target.closest("[data-selection-id]");
     if (selection) { openDrawer(selection.dataset.selectionId); return; }
     const gameChip = event.target.closest("[data-game-id]");
     if (gameChip) { openGameDrawer(gameChip.dataset.gameId); return; }
+
     const action = event.target.closest("[data-action]");
     if (!action) return;
     if (action.dataset.action === "page-prev") {
@@ -1312,6 +1462,8 @@
       render();
     } else if (action.dataset.action === "toggle-save") toggleSave(action.dataset.id);
     else if (action.dataset.action === "remove") { toggleSave(action.dataset.id); render(); }
+    else if (action.dataset.action === "add-to-card") toggleSave(action.dataset.id);
+    else if (action.dataset.action === "view-player") openDrawer(action.dataset.id);
   });
 
   document.addEventListener("keydown", event => {

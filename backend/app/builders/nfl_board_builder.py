@@ -122,6 +122,12 @@ def build_nfl_board(*, config, paths) -> dict:
     season = raw_payload.get("season")
     week_label = f"Week {week} · {season}" if week and season else "Week 1"
 
+    # Top 20 projections ranked by model score (best opportunities across all markets)
+    all_candidates = []
+    for raw_game in raw_payload["games"]:
+        all_candidates.extend(raw_game["candidates"])
+    top_projections = sorted(all_candidates, key=lambda row: (row["score"], row["confidence"]), reverse=True)[:20]
+
     return {
         "sport": "NFL",
         "date": raw_payload["date"],
@@ -135,9 +141,9 @@ def build_nfl_board(*, config, paths) -> dict:
         # carries lineup_confirmed: false for the same reason.
         "uncertainty_note": f"{week_label} — built entirely from 2025 prior-season stats; no current-season sample yet, and rosters/depth charts are not yet final.",
         "pinned_board": {
-            "title": "Anytime TD Top 10",
-            "market": "TD",
-            "players": [to_board_row(candidate) for candidate in sorted(pinned_candidates, key=lambda row: (row["score"], row["confidence"]), reverse=True)[:10]],
+            "title": "Top 20 Projections",
+            "market": "All",
+            "players": [to_board_row(candidate) for candidate in top_projections],
         },
         "games": games_output,
         # Extra fields the generic board pipeline/schema ignores (same
