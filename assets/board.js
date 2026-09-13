@@ -1285,11 +1285,63 @@
     document.body.style.overflow = "hidden";
   }
 
+  function gameStatsSheet(gameRows) {
+    const byPosition = { QB: [], RB: [], WR: [], TE: [] };
+    const seen = new Set();
+
+    gameRows.forEach(row => {
+      if (seen.has(row.playerId)) return;
+      seen.add(row.playerId);
+      const pos = row.raw?.position || "WR";
+      if (byPosition[pos]) byPosition[pos].push(row);
+    });
+
+    const statRow = (player) => {
+      const raw = player.raw || {};
+      const pos = raw.position || "WR";
+      const num = v => typeof v === "number" ? v : null;
+
+      let rush = "", rec = "", recYds = "", pass = "", passYds = "", td = "", passTd = "";
+
+      if (pos === "QB") {
+        passYds = num(raw.pass_yds_mean) ? `${Math.round(raw.pass_yds_mean)}` : "–";
+        pass = num(raw.completions_mean) ? `${Math.round(raw.completions_mean)}` : "–";
+        passTd = num(raw.pass_td_lambda) ? `${raw.pass_td_lambda.toFixed(1)}` : "–";
+        td = "–";
+      } else if (pos === "RB") {
+        rush = num(raw.rush_yds_mean) ? `${Math.round(raw.rush_yds_mean)}` : "–";
+        rec = num(raw.rec_per_game) ? `${Math.round(raw.rec_per_game * 16)}` : "–";
+        recYds = num(raw.rec_yds_mean) ? `${Math.round(raw.rec_yds_mean)}` : "–";
+        td = num(raw.td_lambda) ? `${raw.td_lambda.toFixed(1)}` : "–";
+      } else {
+        recYds = num(raw.rec_yds_mean) ? `${Math.round(raw.rec_yds_mean)}` : "–";
+        rec = num(raw.rec_per_game) ? `${Math.round(raw.rec_per_game * 16)}` : "–";
+        rush = num(raw.rush_yds_mean) ? `${Math.round(raw.rush_yds_mean)}` : "–";
+        td = num(raw.td_lambda) ? `${raw.td_lambda.toFixed(1)}` : "–";
+      }
+
+      return `<tr><td class="player-name"><strong>${esc(player.playerName)}</strong></td><td>${rush}</td><td>${rec}</td><td>${recYds}</td><td>${passYds}</td><td>${td}</td><td>${passTd}</td></tr>`;
+    };
+
+    let html = `<section class="drawer-section"><h3>Player stat sheet 💎</h3><p class="section-note" style="margin:-6px 0 12px;max-width:none;text-align:left">Find hidden gems: all projections for this matchup by position.</p>`;
+
+    for (const [pos, players] of Object.entries(byPosition)) {
+      if (!players.length) continue;
+      const sorted = players.sort((a, b) => (b.raw?.pass_yds_mean || b.raw?.rush_yds_mean || 0) - (a.raw?.pass_yds_mean || a.raw?.rush_yds_mean || 0));
+      html += `<div style="margin-bottom:16px"><h4 style="margin:0 0 8px;font-size:13px;color:#888;text-transform:uppercase">${pos}</h4><table style="width:100%;font-size:12px;border-collapse:collapse"><thead><tr style="border-bottom:1px solid #333"><th style="text-align:left;padding:4px;font-weight:500">Player</th><th style="text-align:center;padding:4px">Rush</th><th style="text-align:center;padding:4px">Rec</th><th style="text-align:center;padding:4px">Rec Yds</th><th style="text-align:center;padding:4px">Pass Yds</th><th style="text-align:center;padding:4px">TD</th><th style="text-align:center;padding:4px">Pass TD</th></tr></thead><tbody>${sorted.map(statRow).join("")}</tbody></table></div>`;
+    }
+
+    html += `</section>`;
+    return html;
+  }
+
   function openGameDrawer(gameId) {
     const game = games.find(item => String(item.gameId) === String(gameId));
     if (!game) return;
     const recs = [...game.rows].sort((a, b) => b.geometry - a.geometry);
+    const statsSheet = gameStatsSheet(game.rows);
     drawerContent.innerHTML = `<div class="drawer-hero"><div><span class="sport-token" data-sport="${esc(game.sport)}">${esc(game.sportLabel)}</span><h2>${esc(game.matchup)}</h2><div class="signal-meta">${esc(game.time)} · ${game.rows.length} recommendation${game.rows.length === 1 ? "" : "s"}</div></div></div>
+      ${statsSheet}
       <section class="drawer-section"><h3>Recommendations for this game</h3>
         ${recs.length ? `<div class="game-rec-list">${recs.map(row => `<div class="game-rec" data-selection-id="${esc(row.id)}" role="button" tabindex="0" aria-label="Open ${esc(row.playerName)} ${esc(row.line)} analysis">
           <div class="game-rec-main"><span class="market-token">${esc(row.market)}</span><div><strong>${esc(row.playerName)}</strong><span>${esc(row.line)} · ${esc(priceText(row))}</span></div></div>
