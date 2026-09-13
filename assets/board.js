@@ -1110,6 +1110,26 @@
   // his QB Stat Stack / RB Usage Stack floor+ceiling combo and his 2025
   // game-by-game history, both shipped in the same snapshot under
   // snapshot.sports.nfl.
+  function gamePerformanceContext(playerId, position) {
+    const entry = snapshot?.sports?.nfl?.player_gamelogs?.[playerId];
+    const games = entry?.games;
+    if (!games || !games.length) return "";
+
+    const recent = [...games].slice(-6);
+    let totalYards = 0, totalTouchdowns = 0, gameCount = 0;
+    for (const game of recent) {
+      const yds = (game.rush_yds || 0) + (game.rec_yds || 0) + (game.pass_yds || 0);
+      totalYards += yds;
+      totalTouchdowns += game.td || 0;
+      gameCount++;
+    }
+
+    const avgRecent = gameCount > 0 ? (totalYards / gameCount).toFixed(0) : "—";
+    const trend = recent.length > 2 && recent[recent.length - 1].total_yds > recent[0].total_yds ? "↑ trending up" : recent.length > 2 ? "↓ trending down" : "→ steady";
+
+    return `<p class="section-note" style="margin:-6px 0 12px;max-width:none;text-align:left"><strong>Recent form:</strong> ${avgRecent} yds/game last 6 games · ${trend}</p>`;
+  }
+
   function nflDrawerBody(row) {
     const playerRows = rows.filter(item => item.sport === "nfl" && row.playerId && item.playerId === row.playerId);
     const pool = playerRows.length ? playerRows : [row];
@@ -1127,7 +1147,8 @@
     const position = raw.position || inferNflPosition(pool);
 
     const projectionCards = nflProjectionCards(position, raw, pool);
-    const projectionSection = `<section class="drawer-section"><h3>Projected performance</h3><p class="section-note" style="margin:-6px 0 12px;max-width:none;text-align:left">Built from his 2025 per-game rates, adjusted for this matchup -- not the abstract signal geometry, the actual projected stat line.</p><div class="factor-grid">${projectionCards.length ? projectionCards.map(([label, value, note]) => `<div class="factor-card"><span>${esc(label)}</span><strong>${esc(value)}</strong><small>${esc(note)}</small></div>`).join("") : `<div class="factor-card"><span>Projection</span><strong>—</strong><small>Below the collector's minimum-sample floor</small></div>`}</div></section>`;
+    const perfContext = gamePerformanceContext(row.playerId, position);
+    const projectionSection = `<section class="drawer-section"><h3>Projected performance vs ${esc(row.opponent)}</h3><p class="section-note" style="margin:-6px 0 12px;max-width:none;text-align:left">Built from his 2025 per-game rates, adjusted for this matchup -- the actual projected stat line for this game.</p>${perfContext}<div class="factor-grid">${projectionCards.length ? projectionCards.map(([label, value, note]) => `<div class="factor-card"><span>${esc(label)}</span><strong>${esc(value)}</strong><small>${esc(note)}</small></div>`).join("") : `<div class="factor-card"><span>Projection</span><strong>—</strong><small>Below the collector's minimum-sample floor</small></div>`}</div></section>`;
 
     const stack = position === "QB"
       ? (snapshot?.sports?.nfl?.qb_stacks || []).find(item => String(item.qb.player_id) === String(row.playerId))
