@@ -1178,25 +1178,70 @@
     return "WR";
   }
 
+  function projectionLandingZone(mean, stdRatio = 0.55, minStd = 15) {
+    if (!mean || mean <= 0) return null;
+    const std = Math.max(minStd, mean * stdRatio);
+    const low = Math.max(0, Math.round(mean - std));
+    const high = Math.round(mean + std);
+    return { low, mid: Math.round(mean), high };
+  }
+
   function nflProjectionCards(position, raw, pool) {
     const cards = [];
     const num = value => typeof value === "number" && Number.isFinite(value);
+
     if (position === "QB") {
-      if (num(raw.pass_yds_mean)) cards.push(["Pass Yards", raw.pass_yds_mean.toFixed(0), "projected"]);
-      if (num(raw.completions_mean)) cards.push(["Completions", raw.completions_mean.toFixed(1), "projected"]);
-      if (num(raw.pass_td_lambda)) cards.push(["Pass TDs", raw.pass_td_lambda.toFixed(1), "expected"]);
-      if (num(raw.int_lambda)) cards.push(["Interceptions", raw.int_lambda.toFixed(1), "expected"]);
-      if (num(raw.rush_yds_mean) && raw.rush_yds_mean >= 5) cards.push(["Rush Yards", raw.rush_yds_mean.toFixed(0), "projected"]);
+      if (num(raw.pass_yds_mean)) {
+        const zone = projectionLandingZone(raw.pass_yds_mean);
+        cards.push(["Pass Yards", `${zone.low}–${zone.high}`, `${zone.mid} expected`]);
+      }
+      if (num(raw.completions_mean)) {
+        const zone = projectionLandingZone(raw.completions_mean);
+        cards.push(["Completions", `${zone.low}–${zone.high}`, `${zone.mid} expected`]);
+      }
+      if (num(raw.pass_td_lambda)) {
+        const low = Math.max(0, Math.round(raw.pass_td_lambda - 0.5));
+        const high = Math.round(raw.pass_td_lambda + 0.5);
+        cards.push(["Pass TDs", `${low}–${high}`, `${raw.pass_td_lambda.toFixed(1)} expected`]);
+      }
+      if (num(raw.int_lambda)) {
+        const low = Math.max(0, Math.round(raw.int_lambda - 0.4));
+        const high = Math.round(raw.int_lambda + 0.4);
+        cards.push(["Interceptions", `${low}–${high}`, `${raw.int_lambda.toFixed(1)} expected`]);
+      }
+      if (num(raw.rush_yds_mean) && raw.rush_yds_mean >= 5) {
+        const zone = projectionLandingZone(raw.rush_yds_mean);
+        cards.push(["Rush Yards", `${zone.low}–${zone.high}`, `${zone.mid} expected`]);
+      }
     } else if (position === "RB") {
-      if (num(raw.rush_yds_mean)) cards.push(["Rush Yards", raw.rush_yds_mean.toFixed(0), "projected"]);
-      if (num(raw.rec_yds_mean)) cards.push(["Rec Yards", raw.rec_yds_mean.toFixed(0), "projected"]);
-      if (num(raw.td_lambda)) cards.push(["Touchdowns", raw.td_lambda.toFixed(1), "expected"]);
+      if (num(raw.rush_yds_mean)) {
+        const zone = projectionLandingZone(raw.rush_yds_mean);
+        cards.push(["Rush Yards", `${zone.low}–${zone.high}`, `${zone.mid} expected`]);
+      }
+      if (num(raw.rec_yds_mean)) {
+        const zone = projectionLandingZone(raw.rec_yds_mean);
+        cards.push(["Rec Yards", `${zone.low}–${zone.high}`, `${zone.mid} expected`]);
+      }
+      if (num(raw.td_lambda)) {
+        const low = Math.max(0, Math.round(raw.td_lambda - 0.3));
+        const high = Math.round(raw.td_lambda + 0.3);
+        cards.push(["Touchdowns", `${low}–${high}`, `${raw.td_lambda.toFixed(1)} expected`]);
+      }
     } else {
-      // WR/TE receiving/rushing and TD projections, exported by the collector
-      // just like QB/RB are (see to_board_row's allow-list).
-      if (num(raw.rec_yds_mean)) cards.push(["Rec Yards", raw.rec_yds_mean.toFixed(0), "projected"]);
-      if (num(raw.rush_yds_mean)) cards.push(["Rush Yards", raw.rush_yds_mean.toFixed(0), "projected"]);
-      if (num(raw.td_lambda)) cards.push(["Touchdowns", raw.td_lambda.toFixed(1), "expected"]);
+      // WR/TE receiving/rushing and TD projections
+      if (num(raw.rec_yds_mean)) {
+        const zone = projectionLandingZone(raw.rec_yds_mean);
+        cards.push(["Rec Yards", `${zone.low}–${zone.high}`, `${zone.mid} expected`]);
+      }
+      if (num(raw.rush_yds_mean)) {
+        const zone = projectionLandingZone(raw.rush_yds_mean);
+        cards.push(["Rush Yards", `${zone.low}–${zone.high}`, `${zone.mid} expected`]);
+      }
+      if (num(raw.td_lambda)) {
+        const low = Math.max(0, Math.round(raw.td_lambda - 0.3));
+        const high = Math.round(raw.td_lambda + 0.3);
+        cards.push(["Touchdowns", `${low}–${high}`, `${raw.td_lambda.toFixed(1)} expected`]);
+      }
     }
     return cards;
   }
