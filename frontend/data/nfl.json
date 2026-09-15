@@ -1,7 +1,7 @@
 {
   "sport": "NFL",
   "date": "2026-09-14",
-  "last_updated": "6:18 PM ET",
+  "last_updated": "9:12 PM ET",
   "week": 1,
   "season": 2026,
   "uncertainty_note": "Week 1 \u00b7 2026 \u2014 built entirely from 2025 prior-season stats; no current-season sample yet, and rosters/depth charts are not yet final.",
@@ -381,7 +381,7 @@
     {
       "game_id": "401872931",
       "matchup": "DEN @ KC",
-      "time": "9/14 - 8:15 PM EDT",
+      "time": "8:46 - 2nd",
       "top_signals": [
         {
           "market": "TD",
@@ -896,24 +896,6 @@
             "int_lambda": 0.1619047619047619,
             "rush_yds_mean": 21.511636366685433,
             "td_lambda": 0.30072388444069864
-          },
-          {
-            "player_id": "4362748",
-            "player_name": "Tyler Badie",
-            "team": "DEN",
-            "opponent": "KC",
-            "line": "10+ Rush Yds",
-            "score": 52.67,
-            "confidence": 53,
-            "tier": "B",
-            "reason": "Proj 11.0 rush yds/g | Rush match 1.15x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 52.67,
-            "model_hit_rate_raw": 0.5267,
-            "lineup_confirmed": false,
-            "position": "RB",
-            "rush_yds_mean": 11.0055063913471,
-            "rec_yds_mean": 12.805,
-            "td_lambda": 0.0991638151425762
           }
         ],
         "REC": [
@@ -1055,24 +1037,6 @@
             "td_lambda": 0.2598737808376362
           },
           {
-            "player_id": "4362748",
-            "player_name": "Tyler Badie",
-            "team": "DEN",
-            "opponent": "KC",
-            "line": "2+ Receptions",
-            "score": 53.15,
-            "confidence": 53,
-            "tier": "B",
-            "reason": "REC/g 1.78 | Rec match 1.30x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 53.15,
-            "model_hit_rate_raw": 0.5315,
-            "lineup_confirmed": false,
-            "position": "RB",
-            "rush_yds_mean": 11.0055063913471,
-            "rec_yds_mean": 12.805,
-            "td_lambda": 0.0991638151425762
-          },
-          {
             "player_id": "3911853",
             "player_name": "Adam Trautman",
             "team": "DEN",
@@ -1088,6 +1052,23 @@
             "position": "TE",
             "rec_yds_mean": 16.265060634908494,
             "td_lambda": 0.10120481927710843
+          },
+          {
+            "player_id": "4686472",
+            "player_name": "Marvin Mims Jr.",
+            "team": "DEN",
+            "opponent": "KC",
+            "line": "4+ Receptions",
+            "score": 48.46,
+            "confidence": 48,
+            "tier": "C",
+            "reason": "REC/g 3.60 | Rec match 1.30x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 48.46,
+            "model_hit_rate_raw": 0.4846,
+            "lineup_confirmed": false,
+            "position": "WR",
+            "rec_yds_mean": 34.621053153590154,
+            "td_lambda": 0.22697904052165818
           }
         ],
         "PassTD": [
@@ -1383,12 +1364,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 21.8
+        "joint_prob_pct": 22.1
       },
       "ceiling": {
         "qb_line": "4+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 3.2
+        "joint_prob_pct": 3.3
       }
     },
     {
@@ -1405,12 +1386,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 38.7
+        "joint_prob_pct": 40.3
       },
       "ceiling": {
         "qb_line": "4+ Pass TD",
         "receiver_line": "2+ Rec TD",
-        "joint_prob_pct": 2.8
+        "joint_prob_pct": 3.2
       }
     }
   ],
@@ -1540,16 +1521,6 @@
         "best_stretch_avg_yds": 37.4,
         "best_stretch_weeks": "Wk 3-7",
         "season_avg_total_yds": 19.0
-      },
-      {
-        "player_id": "4362748",
-        "player_name": "Tyler Badie",
-        "team": "DEN",
-        "games_sampled": 16,
-        "best_stretch_total_yds": 68.0,
-        "best_stretch_avg_yds": 13.6,
-        "best_stretch_weeks": "Wk 2-7",
-        "season_avg_total_yds": 10.2
       }
     ],
     "trending_up": [
@@ -2097,140 +2068,6 @@
           "total_yds": 84.0,
           "opponent": "LV",
           "rush_attempts": 18.0
-        }
-      ]
-    },
-    "4362748": {
-      "team": "DEN",
-      "position": "RB",
-      "games": [
-        {
-          "week": 1,
-          "rush_yds": 0.0,
-          "rec_yds": 16.0,
-          "total_yds": 16.0,
-          "opponent": "TEN",
-          "rush_attempts": 0.0
-        },
-        {
-          "week": 2,
-          "rush_yds": 3.0,
-          "rec_yds": 19.0,
-          "total_yds": 22.0,
-          "opponent": "IND",
-          "rush_attempts": 1.0
-        },
-        {
-          "week": 3,
-          "rush_yds": 0.0,
-          "rec_yds": 0.0,
-          "total_yds": 0.0,
-          "opponent": "LAC",
-          "rush_attempts": 0.0
-        },
-        {
-          "week": 4,
-          "rush_yds": 0.0,
-          "rec_yds": 11.0,
-          "total_yds": 11.0,
-          "opponent": "CIN",
-          "rush_attempts": 0.0
-        },
-        {
-          "week": 5,
-          "rush_yds": 0.0,
-          "rec_yds": 16.0,
-          "total_yds": 16.0,
-          "opponent": "PHI",
-          "rush_attempts": 0.0
-        },
-        {
-          "week": 7,
-          "rush_yds": 0.0,
-          "rec_yds": 19.0,
-          "total_yds": 19.0,
-          "opponent": "NYG",
-          "rush_attempts": 0.0
-        },
-        {
-          "week": 8,
-          "rush_yds": 6.0,
-          "rec_yds": 0.0,
-          "total_yds": 6.0,
-          "opponent": "DAL",
-          "rush_attempts": 1.0
-        },
-        {
-          "week": 9,
-          "rush_yds": 0.0,
-          "rec_yds": 6.0,
-          "total_yds": 6.0,
-          "opponent": "HOU",
-          "rush_attempts": 0.0
-        },
-        {
-          "week": 10,
-          "rush_yds": 0.0,
-          "rec_yds": 0.0,
-          "total_yds": 0.0,
-          "opponent": "LV",
-          "rush_attempts": 0.0
-        },
-        {
-          "week": 11,
-          "rush_yds": 0.0,
-          "rec_yds": 0.0,
-          "total_yds": 0.0,
-          "opponent": "KC",
-          "rush_attempts": 0.0
-        },
-        {
-          "week": 13,
-          "rush_yds": 0.0,
-          "rec_yds": 18.0,
-          "total_yds": 18.0,
-          "opponent": "WSH",
-          "rush_attempts": 0.0
-        },
-        {
-          "week": 14,
-          "rush_yds": 16.0,
-          "rec_yds": 5.0,
-          "total_yds": 21.0,
-          "opponent": "LV",
-          "rush_attempts": 4.0
-        },
-        {
-          "week": 15,
-          "rush_yds": 0.0,
-          "rec_yds": 1.0,
-          "total_yds": 1.0,
-          "opponent": "GB",
-          "rush_attempts": 0.0
-        },
-        {
-          "week": 16,
-          "rush_yds": 0.0,
-          "rec_yds": 2.0,
-          "total_yds": 2.0,
-          "opponent": "JAX",
-          "rush_attempts": 0.0
-        },
-        {
-          "week": 17,
-          "rush_yds": 0.0,
-          "rec_yds": 0.0,
-          "total_yds": 0.0,
-          "opponent": "KC",
-          "rush_attempts": 0.0
-        },
-        {
-          "week": 18,
-          "rush_yds": -2.0,
-          "rec_yds": 28.0,
-          "total_yds": 26.0,
-          "opponent": "LAC",
-          "rush_attempts": 2.0
         }
       ]
     },
