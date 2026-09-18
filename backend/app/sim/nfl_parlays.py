@@ -241,9 +241,12 @@ def build_same_game_parlays_for_game(
             if role not in team_stars:
                 continue
             star = team_stars[role]
-            # Find TD market for this star
+            # Find TD market for this star by player_name and team
+            star_name = str(star.get("player_name", ""))
+            star_team = str(star.get("team", ""))
             td_cands = [c for c in candidates
-                       if c.get("player_id") == star.get("player_id")
+                       if str(c.get("player_name", "")) == star_name
+                       and str(c.get("team", "")) == star_team
                        and str(c.get("market", "")) == "TD"]
             if td_cands:
                 td_cand = td_cands[0]
@@ -257,28 +260,52 @@ def build_same_game_parlays_for_game(
             break
 
     # Second: volume legs for moonshot (11-12 to reach 14-15 total)
-    volume_candidates = sorted(
-        candidates,
-        key=lambda c: _score_player_for_moonshot_volume(c, game_script),
-        reverse=True,
-    )
+    # Two-pass approach: try strict thresholds first, then relax if needed
     volume_legs = []
     volume_players = grind_players | td_players  # Exclude grind + TD players
 
-    for cand in volume_candidates:
-        if len(volume_legs) >= 11:  # 3 TDs + 11 volume = 14 legs
-            break
-        pid = str(cand.get("player_id", ""))
-        if pid in volume_players:
-            continue
-        is_safe = all(
-            _is_safe_pairing(cand, leg, game_script)
-            for leg in (td_legs + volume_legs)
+    # Helper to collect volume legs with optional confidence floor
+    def collect_volume_legs(min_legs: int, max_legs: int, conf_floor: int = 0) -> list[dict[str, Any]]:
+        """Collect volume legs, filtering by confidence floor."""
+        legs = []
+        candidates_filtered = [c for c in candidates if int(c.get("confidence", 0)) >= conf_floor]
+        candidates_sorted = sorted(
+            candidates_filtered,
+            key=lambda c: _score_player_for_moonshot_volume(c, game_script),
+            reverse=True,
         )
-        if not is_safe:
-            continue
-        volume_legs.append(cand)
-        volume_players.add(pid)
+        for cand in candidates_sorted:
+            if len(legs) >= max_legs:
+                break
+            # Skip TD markets (only volume markets allowed)
+            if str(cand.get("market", "")) == "TD":
+                continue
+            pid = str(cand.get("player_id", ""))
+            if pid in (volume_players | {str(l.get("player_id", "")) for l in legs}):
+                continue
+            is_safe = all(
+                _is_safe_pairing(cand, leg, game_script)
+                for leg in (td_legs + legs)
+            )
+            if not is_safe:
+                continue
+            legs.append(cand)
+        return legs if len(legs) >= min_legs else []
+
+    # Pass 1: Try to collect 11 volume legs with high confidence (75+)
+    volume_legs = collect_volume_legs(6, 11, conf_floor=75)
+    if not volume_legs:
+        # Pass 2: Try with moderate confidence (60+)
+        volume_legs = collect_volume_legs(6, 11, conf_floor=60)
+    if not volume_legs:
+        # Pass 3: Accept lower confidence (40+), minimum 4 volume for 7 total with 3 TDs
+        volume_legs = collect_volume_legs(4, 11, conf_floor=40)
+    if not volume_legs:
+        # Pass 4: Accept any confidence, just get what we can (minimum 4 for 7 total with 3 TDs)
+        volume_legs = collect_volume_legs(4, 11, conf_floor=0)
+
+    # Update volume_players with collected legs
+    volume_players.update(str(leg.get("player_id", "")) for leg in volume_legs)
 
     moonshot_legs = td_legs + volume_legs
 
@@ -309,8 +336,8 @@ def build_same_game_parlays_for_game(
             "implied_win": 750,
         }
 
-    # Moonshot ticket (3 star TDs + 11 volume)
-    if len(moonshot_legs) >= 9:
+    # Moonshot ticket (minimum 7: 3 star TDs + 4 volume, up to 14: 3 TDs + 11 volume)
+    if len(moonshot_legs) >= 7:
         ticket["moonshot"] = {
             "legs": [
                 {
