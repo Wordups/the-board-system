@@ -1,538 +1,562 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080b0e">
-  <meta name="description" content="Sports Engine — NFL parlay generation system.">
-  <title>Sports Engine · The Board</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/board.css">
-  <style>
-    .engine-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFL Same-Game Parlays</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .engine-header {
-      text-align: center;
-      margin-bottom: 3rem;
-      border-bottom: 2px solid #3b82f6;
-      padding-bottom: 2rem;
-    }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            line-height: 1.6;
+            padding: 2rem;
+        }
 
-    .engine-title {
-      font-size: 2.5rem;
-      color: #3b82f6;
-      margin-bottom: 0.5rem;
-      font-weight: 700;
-    }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
 
-    .engine-subtitle {
-      color: #94a3b8;
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-    }
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 2rem;
+        }
 
-    .engine-stats {
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-      flex-wrap: wrap;
-    }
+        h1 {
+            font-size: 2.5rem;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
 
-    .stat-item {
-      text-align: center;
-    }
+        .subtitle {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
 
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #22c55e;
-    }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
 
-    .stat-label {
-      font-size: 0.9rem;
-      color: #94a3b8;
-      margin-top: 0.25rem;
-    }
+        .stat-item {
+            text-align: center;
+        }
 
-    .parlays-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #22c55e;
+        }
 
-    .parlay-card {
-      background: #1e293b;
-      border: 2px solid #3b82f6;
-      border-radius: 0.75rem;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1);
-    }
+        .stat-label {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-top: 0.25rem;
+        }
 
-    .parlay-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(59, 130, 246, 0.2);
-      border-color: #60a5fa;
-    }
+        .parlays-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
 
-    .game-header {
-      background: transparent;
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid rgba(59, 130, 246, 0.3);
-    }
+        .parlay-card {
+            background: #1e293b;
+            border: 2px solid #3b82f6;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1);
+        }
 
-    .game-matchup {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-      color: #e2e8f0;
-    }
+        .parlay-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.2);
+            border-color: #60a5fa;
+        }
 
-    .game-time {
-      font-size: 0.85rem;
-      opacity: 0.7;
-      color: #94a3b8;
-    }
+        .game-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+        }
 
-    .game-script {
-      display: inline-block;
-      margin-top: 0.5rem;
-      padding: 0.25rem 0.75rem;
-      background: rgba(59, 130, 246, 0.15);
-      border-radius: 0.25rem;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #93c5fd;
-    }
+        .game-matchup {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
 
-    .tickets {
-      padding: 1.5rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
+        .game-time {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            color: #bfdbfe;
+        }
 
-    .ticket {
-      background: rgba(59, 130, 246, 0.05);
-      border-left: 4px solid #3b82f6;
-      padding: 1.25rem;
-      border-radius: 0.25rem;
-    }
+        .game-script {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
 
-    .ticket-type {
-      font-weight: bold;
-      color: #93c5fd;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.5rem;
-    }
+        .tickets {
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
 
-    .ticket-odds {
-      font-size: 1.4rem;
-      font-weight: bold;
-      color: #22c55e;
-      margin-bottom: 0.5rem;
-    }
+        .ticket {
+            background: rgba(59, 130, 246, 0.05);
+            border-left: 4px solid #3b82f6;
+            padding: 1.25rem;
+            border-radius: 0.25rem;
+        }
 
-    .ticket-stats {
-      font-size: 0.85rem;
-      color: #cbd5e1;
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.75rem;
-    }
+        .ticket-type {
+            font-weight: bold;
+            color: #93c5fd;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
 
-    .ticket-stat-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+        .ticket-odds {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #22c55e;
+            margin-bottom: 0.5rem;
+        }
 
-    .ticket-stat-label {
-      font-size: 0.7rem;
-      color: #94a3b8;
-      margin-top: 0.25rem;
-    }
+        .ticket-stats {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
 
-    .legs-preview {
-      margin-top: 0.75rem;
-      padding-top: 0.75rem;
-      border-top: 1px solid rgba(59, 130, 246, 0.2);
-    }
+        .ticket-stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    .legs-title {
-      font-size: 0.75rem;
-      color: #64748b;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-    }
+        .ticket-stat-label {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            margin-top: 0.25rem;
+        }
 
-    .leg {
-      font-size: 0.75rem;
-      color: #cbd5e1;
-      margin-bottom: 0.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+        .legs-preview {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+        }
 
-    .leg-market {
-      background: rgba(59, 130, 246, 0.2);
-      padding: 0.1rem 0.4rem;
-      border-radius: 0.15rem;
-      font-size: 0.65rem;
-      color: #93c5fd;
-      font-weight: 600;
-      min-width: 40px;
-      text-align: center;
-    }
+        .legs-title {
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
 
-    .leg-player {
-      flex: 1;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
+        .leg {
+            font-size: 0.75rem;
+            color: #cbd5e1;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-    .leg-line {
-      color: #94a3b8;
-      font-size: 0.65rem;
-    }
+        .leg-market {
+            background: rgba(59, 130, 246, 0.2);
+            padding: 0.1rem 0.4rem;
+            border-radius: 0.15rem;
+            font-size: 0.65rem;
+            color: #93c5fd;
+            font-weight: 600;
+            min-width: 40px;
+            text-align: center;
+        }
 
-    .expand-btn {
-      margin-top: 0.75rem;
-      padding: 0.5rem;
-      width: 100%;
-      background: rgba(59, 130, 246, 0.1);
-      border: 1px solid #3b82f6;
-      color: #93c5fd;
-      border-radius: 0.25rem;
-      font-size: 0.75rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-weight: 600;
-    }
+        .leg-player {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
 
-    .expand-btn:hover {
-      background: rgba(59, 130, 246, 0.2);
-      border-color: #60a5fa;
-    }
+        .leg-line {
+            color: #94a3b8;
+            font-size: 0.65rem;
+        }
 
-    .legs-full {
-      margin-top: 0.75rem;
-      padding-top: 0.75rem;
-      border-top: 1px solid rgba(59, 130, 246, 0.2);
-      display: none;
-    }
+        .expand-btn {
+            margin-top: 0.75rem;
+            padding: 0.5rem;
+            width: 100%;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid #3b82f6;
+            color: #93c5fd;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
 
-    .legs-full.show {
-      display: block;
-    }
+        .expand-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #60a5fa;
+        }
 
-    .td-parlays-section {
-      margin-top: 4rem;
-      padding-top: 3rem;
-      border-top: 2px solid #3b82f6;
-    }
+        .legs-full {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            display: none;
+        }
 
-    .td-section-title {
-      text-align: center;
-      color: #3b82f6;
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      font-weight: bold;
-    }
+        .legs-full.show {
+            display: block;
+        }
 
-    .td-parlay-card {
-      background: #1e293b;
-      border: 2px solid #ef4444;
-      border-radius: 0.75rem;
-      overflow: hidden;
-      margin-bottom: 1.5rem;
-    }
+        @media (max-width: 768px) {
+            .parlays-grid {
+                grid-template-columns: 1fr;
+            }
 
-    .td-game-header {
-      background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
-      padding: 1.5rem;
-    }
+            .tickets {
+                grid-template-columns: 1fr;
+            }
 
-    .td-game-matchup {
-      font-size: 1.3rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-    }
+            h1 {
+                font-size: 2rem;
+            }
 
-    .td-legs {
-      padding: 1.5rem;
-    }
+            .stats {
+                gap: 1rem;
+            }
 
-    .td-leg {
-      background: rgba(239, 68, 68, 0.1);
-      border-left: 4px solid #ef4444;
-      padding: 1rem;
-      margin-bottom: 0.75rem;
-      border-radius: 0.25rem;
-    }
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
 
-    .td-leg-player {
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: #fca5a5;
-      margin-bottom: 0.25rem;
-    }
+        .td-parlays-section {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 2px solid #3b82f6;
+        }
 
-    .td-leg-odds {
-      font-size: 0.9rem;
-      color: #cbd5e1;
-      display: flex;
-      justify-content: space-between;
-    }
+        .td-section-title {
+            text-align: center;
+            color: #3b82f6;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
 
-    @media (max-width: 768px) {
-      .parlays-grid {
-        grid-template-columns: 1fr;
-      }
+        .td-parlay-card {
+            background: #1e293b;
+            border: 2px solid #ef4444;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
 
-      .tickets {
-        grid-template-columns: 1fr;
-      }
+        .td-game-header {
+            background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+            padding: 1.5rem;
+        }
 
-      .engine-title {
-        font-size: 2rem;
-      }
+        .td-game-matchup {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
 
-      .engine-stats {
-        gap: 1rem;
-      }
+        .td-legs {
+            padding: 1.5rem;
+        }
 
-      .stat-number {
-        font-size: 2rem;
-      }
-    }
-  </style>
+        .td-leg {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            border-radius: 0.25rem;
+        }
+
+        .td-leg-player {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #fca5a5;
+            margin-bottom: 0.25rem;
+        }
+
+        .td-leg-odds {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer {
+            text-align: center;
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+        }
+
+        .footer a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-  <a class="skip-link" href="#app">Skip to the engine</a>
-  <nav class="site-switch" aria-label="Board network">
-    <span class="site-switch-label">The Board Network</span>
-    <a class="site-tab" href="https://wordups.github.io/the-board-system/">Sports Board</a>
-    <a class="site-tab active" href="sports-engine.html" aria-current="page">Sports Engine</a>
-    <a class="site-tab" href="https://wordups.github.io/the-board-market/">Stock Market</a>
-  </nav>
-  <header class="site-header">
-    <a class="brand" href="sports-engine.html" aria-label="Sports Engine home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span><strong>SPORTS ENGINE</strong><small>PARLAY SYSTEM</small></span></a>
-  </header>
+    <nav class="site-switch" aria-label="Board network" style="display: flex; justify-content: center; gap: 2rem; padding: 1rem; background: #0f172a; border-bottom: 1px solid #334155; margin-bottom: 2rem;">
+        <span style="color: #94a3b8; font-size: 0.9rem;">The Board Network</span>
+        <a href="https://wordups.github.io/the-board-system/" style="color: #3b82f6; text-decoration: none;">Sports Board</a>
+        <a href="sports-engine.html" style="color: #22c55e; text-decoration: none; font-weight: bold;">Sports Engine</a>
+        <a href="https://wordups.github.io/the-board-market/" style="color: #3b82f6; text-decoration: none;">Stock Market</a>
+    </nav>
+    <div class="container">
+        <header>
+            <h1>🎯 Sports Engine</h1>
+            <p class="subtitle" id="week-label">Week 2 · 2025</p>
+            <div class="stats" id="stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="game-count">0</div>
+                    <div class="stat-label">Games</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="ticket-count">0</div>
+                    <div class="stat-label">Tickets</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4 + 9-14</div>
+                    <div class="stat-label">Grind + Moonshot Legs</div>
+                </div>
+            </div>
+        </header>
 
-  <main id="app">
-    <div class="engine-container">
-      <div class="engine-header">
-        <h1 class="engine-title">🎯 Same-Game Parlay Generator</h1>
-        <p class="engine-subtitle" id="week-label">Week 2 · 2025</p>
-        <div class="engine-stats">
-          <div class="stat-item">
-            <div class="stat-number" id="game-count">0</div>
-            <div class="stat-label">Games</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number" id="ticket-count">0</div>
-            <div class="stat-label">Tickets</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">4 + 9-14</div>
-            <div class="stat-label">Grind + Moonshot Legs</div>
-          </div>
+        <div class="parlays-grid" id="parlays-container">
+            <!-- Populated by JavaScript -->
         </div>
-      </div>
 
-      <div class="parlays-grid" id="parlays-container">
-        <!-- Populated by JavaScript -->
-      </div>
-
-      <div class="td-parlays-section" id="td-section" style="display:none;">
-        <h2 class="td-section-title">⭐ Star Player TD Parlays</h2>
-        <div id="td-parlays-container">
-          <!-- Populated by JavaScript -->
+        <div class="td-parlays-section" id="td-section" style="display:none;">
+            <h2 class="td-section-title">⭐ Star Player TD Parlays</h2>
+            <div id="td-parlays-container">
+                <!-- Populated by JavaScript -->
+            </div>
         </div>
-      </div>
+
+        <div class="footer">
+            <p>Separate parlay system · <a href="#" onclick="location.reload()">Refresh</a></p>
+            <p style="margin-top: 0.5rem; color: #475569;">Built with game-script logic and correlation modeling</p>
+        </div>
     </div>
-  </main>
 
-  <script>
-    async function loadParlays() {
-      try {
-        const response = await fetch('./data/nfl_parlays.json');
-        const data = await response.json();
+    <script>
+        async function loadParlays() {
+            try {
+                const response = await fetch('./data/nfl_parlays.json');
+                const data = await response.json();
 
-        document.getElementById('week-label').textContent =
-          `Week ${data.week} · ${data.season}`;
-        document.getElementById('game-count').textContent = data.parlays.length;
-        document.getElementById('ticket-count').textContent = data.parlays.length * 2;
+                document.getElementById('week-label').textContent =
+                    `Week ${data.week} · ${data.season}`;
+                document.getElementById('game-count').textContent = data.parlays.length;
+                document.getElementById('ticket-count').textContent = data.parlays.length * 2;
 
-        const container = document.getElementById('parlays-container');
-        container.innerHTML = '';
+                const container = document.getElementById('parlays-container');
+                container.innerHTML = '';
 
-        data.parlays.forEach((parlay) => {
-          const card = createParlayCard(parlay);
-          container.appendChild(card);
+                data.parlays.forEach((parlay, index) => {
+                    const card = createParlayCard(parlay, index);
+                    container.appendChild(card);
+                });
+
+                // Render TD parlays if available
+                renderTDParlays(data);
+            } catch (error) {
+                console.error('Error loading parlays:', error);
+                document.getElementById('parlays-container').innerHTML =
+                    '<p style="grid-column: 1/-1; text-align: center; color: #ef4444;">Error loading parlay data</p>';
+            }
+        }
+
+        function createParlayCard(parlay, index) {
+            const card = document.createElement('div');
+            card.className = 'parlay-card';
+
+            const gameScriptLabel = {
+                shootout: '🔥 Shootout',
+                blowout: '⚡ Blowout',
+                normal: '⚙️ Normal'
+            }[parlay.game_script] || '⚙️ Normal';
+
+            card.innerHTML = `
+                <div class="game-header">
+                    <div class="game-matchup">${parlay.matchup}</div>
+                    <div class="game-time">${parlay.time}</div>
+                    <div class="game-script">${gameScriptLabel}</div>
+                </div>
+                <div class="tickets">
+                    ${createTicketHTML('Grind', parlay.grind)}
+                    ${createTicketHTML('Moonshot', parlay.moonshot)}
+                </div>
+            `;
+
+            return card;
+        }
+
+        function createTicketHTML(type, ticket) {
+            const legsPreview = ticket.legs.slice(0, 3).map(leg =>
+                `<div class="leg">
+                    <span class="leg-market">${leg.market}</span>
+                    <span class="leg-player">${leg.player_name}</span>
+                    <span class="leg-line">${leg.line}</span>
+                </div>`
+            ).join('');
+
+            const allLegs = ticket.legs.map(leg =>
+                `<div class="leg">
+                    <span class="leg-market">${leg.market}</span>
+                    <span class="leg-player">${leg.player_name}</span>
+                    <span class="leg-line">${leg.line}</span>
+                    <span style="color: #64748b; font-size: 0.65rem;">conf ${leg.confidence}%</span>
+                </div>`
+            ).join('');
+
+            const ticketId = `ticket-${Math.random().toString(36).substr(2, 9)}`;
+            const winPercentage = type === 'Grind' ? '+66.7%' : '+226.0%';
+
+            return `
+                <div class="ticket">
+                    <div class="ticket-type">${type}</div>
+                    <div class="ticket-odds">${ticket.odds > 0 ? '+' : ''}${ticket.odds}</div>
+                    <div class="ticket-stats">
+                        <div class="ticket-stat-item">
+                            <strong>${ticket.legs.length}</strong>
+                            <div class="ticket-stat-label">LEGS</div>
+                        </div>
+                        <div class="ticket-stat-item">
+                            <strong>$${ticket.stake}</strong>
+                            <div class="ticket-stat-label">STAKE</div>
+                        </div>
+                        <div class="ticket-stat-item">
+                            <strong>$${Math.round(ticket.implied_win)}</strong>
+                            <div class="ticket-stat-label">WIN</div>
+                        </div>
+                    </div>
+                    <div class="legs-preview">
+                        <div class="legs-title">Top 3 Legs</div>
+                        ${legsPreview}
+                        <button class="expand-btn" onclick="toggleLegsFull('${ticketId}')">
+                            View all ${ticket.legs.length} legs →
+                        </button>
+                    </div>
+                    <div class="legs-full" id="${ticketId}">
+                        <div class="legs-title">All ${ticket.legs.length} Legs</div>
+                        ${allLegs}
+                    </div>
+                </div>
+            `;
+        }
+
+        function toggleLegsFull(ticketId) {
+            const legsFullDiv = document.getElementById(ticketId);
+            legsFullDiv.classList.toggle('show');
+
+            const btn = event.target;
+            if (legsFullDiv.classList.contains('show')) {
+                btn.textContent = 'Hide legs ↑';
+            } else {
+                btn.textContent = 'View all ' + btn.parentElement.querySelector('.legs-title').textContent.split(' ')[1] + ' legs →';
+            }
+        }
+
+        function renderTDParlays(data) {
+            if (!data.td_parlays || data.td_parlays.length === 0) return;
+
+            const section = document.getElementById('td-section');
+            const container = document.getElementById('td-parlays-container');
+
+            section.style.display = 'block';
+            container.innerHTML = '';
+
+            data.td_parlays.forEach(parlay => {
+                const card = document.createElement('div');
+                card.className = 'td-parlay-card';
+
+                const gameScriptLabel = {
+                    shootout: '🔥 Shootout',
+                    blowout: '⚡ Blowout',
+                    normal: '⚙️ Normal'
+                }[parlay.game_script] || '⚙️ Normal';
+
+                let legsHTML = '';
+                parlay.td_parlay.legs.forEach(leg => {
+                    legsHTML += `
+                        <div class="td-leg">
+                            <div class="td-leg-player">🎯 ${leg.player_name}</div>
+                            <div class="td-leg-odds">
+                                <span>${leg.market}</span>
+                                <span style="color: #22c55e; font-weight: bold;">conf ${leg.confidence}%</span>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                card.innerHTML = `
+                    <div class="td-game-header">
+                        <div class="td-game-matchup">${parlay.matchup}</div>
+                        <div class="game-time">${parlay.time} · ${gameScriptLabel}</div>
+                    </div>
+                    <div class="td-legs">
+                        <div style="font-weight: bold; color: #fca5a5; margin-bottom: 1rem;">
+                            ${parlay.td_parlay.legs.length} Star Players · <span style="color: #22c55e;">+${parlay.td_parlay.odds}</span> · $${parlay.td_parlay.stake} stake
+                        </div>
+                        ${legsHTML}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Load parlays on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadParlays();
         });
-
-        renderTDParlays(data);
-      } catch (error) {
-        console.error('Error loading parlays:', error);
-        document.getElementById('parlays-container').innerHTML =
-          '<p style="grid-column: 1/-1; text-align: center; color: #ef4444;">Error loading parlay data</p>';
-      }
-    }
-
-    function createParlayCard(parlay) {
-      const card = document.createElement('div');
-      card.className = 'parlay-card';
-
-      const gameScriptLabel = {
-        shootout: '🔥 Shootout',
-        blowout: '⚡ Blowout',
-        normal: '⚙️ Normal'
-      }[parlay.game_script] || '⚙️ Normal';
-
-      card.innerHTML = `
-        <div class="game-header">
-          <div class="game-matchup">${parlay.matchup}</div>
-          <div class="game-time">${parlay.time}</div>
-          <div class="game-script">${gameScriptLabel}</div>
-        </div>
-        <div class="tickets">
-          ${parlay.grind ? createTicketHTML('Grind', parlay.grind) : ''}
-          ${parlay.moonshot ? createTicketHTML('Moonshot', parlay.moonshot) : ''}
-        </div>
-      `;
-
-      return card;
-    }
-
-    function createTicketHTML(type, ticket) {
-      const legsPreview = ticket.legs.slice(0, 3).map(leg =>
-        `<div class="leg">
-          <span class="leg-market">${leg.market}</span>
-          <span class="leg-player">${leg.player_name}</span>
-          <span class="leg-line">${leg.line}</span>
-        </div>`
-      ).join('');
-
-      const allLegs = ticket.legs.map(leg =>
-        `<div class="leg">
-          <span class="leg-market">${leg.market}</span>
-          <span class="leg-player">${leg.player_name}</span>
-          <span class="leg-line">${leg.line}</span>
-          <span style="color: #64748b; font-size: 0.65rem;">conf ${leg.confidence}%</span>
-        </div>`
-      ).join('');
-
-      const ticketId = `t${Math.random().toString(36).substr(2, 8)}`;
-
-      return `
-        <div class="ticket">
-          <div class="ticket-type">${type}</div>
-          <div class="ticket-odds">${ticket.odds > 0 ? '+' : ''}${ticket.odds}</div>
-          <div class="ticket-stats">
-            <div class="ticket-stat-item">
-              <strong>${ticket.legs.length}</strong>
-              <div class="ticket-stat-label">LEGS</div>
-            </div>
-            <div class="ticket-stat-item">
-              <strong>$${ticket.stake}</strong>
-              <div class="ticket-stat-label">STAKE</div>
-            </div>
-            <div class="ticket-stat-item">
-              <strong>$${Math.round(ticket.implied_win)}</strong>
-              <div class="ticket-stat-label">WIN</div>
-            </div>
-          </div>
-          <div class="legs-preview">
-            <div class="legs-title">Top 3 Legs</div>
-            ${legsPreview}
-            <button class="expand-btn" onclick="toggleLegsFull('${ticketId}')">
-              View all ${ticket.legs.length} legs →
-            </button>
-          </div>
-          <div class="legs-full" id="${ticketId}">
-            <div class="legs-title">All ${ticket.legs.length} Legs</div>
-            ${allLegs}
-          </div>
-        </div>
-      `;
-    }
-
-    function toggleLegsFull(ticketId) {
-      const legsFullDiv = document.getElementById(ticketId);
-      legsFullDiv.classList.toggle('show');
-
-      const btn = event.target;
-      if (legsFullDiv.classList.contains('show')) {
-        btn.textContent = 'Hide legs ↑';
-      } else {
-        const legCount = legsFullDiv.querySelector('.legs-title').textContent.split(' ')[1];
-        btn.textContent = `View all ${legCount} legs →`;
-      }
-    }
-
-    function renderTDParlays(data) {
-      if (!data.td_parlays || data.td_parlays.length === 0) return;
-
-      const section = document.getElementById('td-section');
-      const container = document.getElementById('td-parlays-container');
-
-      section.style.display = 'block';
-      container.innerHTML = '';
-
-      data.td_parlays.forEach(parlay => {
-        const card = document.createElement('div');
-        card.className = 'td-parlay-card';
-
-        const gameScriptLabel = {
-          shootout: '🔥 Shootout',
-          blowout: '⚡ Blowout',
-          normal: '⚙️ Normal'
-        }[parlay.game_script] || '⚙️ Normal';
-
-        let legsHTML = '';
-        parlay.td_parlay.legs.forEach(leg => {
-          legsHTML += `
-            <div class="td-leg">
-              <div class="td-leg-player">🎯 ${leg.player_name}</div>
-              <div class="td-leg-odds">
-                <span>${leg.market}</span>
-                <span style="color: #22c55e; font-weight: bold;">conf ${leg.confidence}%</span>
-              </div>
-            </div>
-          `;
-        });
-
-        card.innerHTML = `
-          <div class="td-game-header">
-            <div class="td-game-matchup">${parlay.matchup}</div>
-            <div class="game-time">${parlay.time} · ${gameScriptLabel}</div>
-          </div>
-          <div class="td-legs">
-            <div style="font-weight: bold; color: #fca5a5; margin-bottom: 1rem;">
-              ${parlay.td_parlay.legs.length} Star Players · <span style="color: #22c55e;">+${parlay.td_parlay.odds}</span> · $${parlay.td_parlay.stake} stake
-            </div>
-            ${legsHTML}
-          </div>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', loadParlays);
-  </script>
+    </script>
 </body>
 </html>
