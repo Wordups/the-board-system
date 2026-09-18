@@ -184,6 +184,22 @@ def _score_player_for_moonshot_volume(candidate: dict[str, Any], game_script: st
     return base_score
 
 
+def _calculate_parlay_odds(legs: list[dict[str, Any]]) -> int:
+    """Calculate American odds for a parlay from leg odds.
+
+    Multiplies decimal odds together, then converts to American format.
+    """
+    parlay_decimal = 1.0
+    for leg in legs:
+        leg_odds = float(leg.get("odds", 1.0))
+        if leg_odds > 0:
+            parlay_decimal *= leg_odds
+
+    # Convert decimal odds to American: American = (decimal - 1) * 100
+    american_odds = int(round((parlay_decimal - 1) * 100))
+    return american_odds
+
+
 def build_same_game_parlays_for_game(
     *,
     game_id: str,
@@ -319,59 +335,74 @@ def build_same_game_parlays_for_game(
 
     # Grind ticket (4 volume legs)
     if len(grind_legs) >= 4:
+        grind_legs_formatted = [
+            {
+                "player_name": leg.get("player_name", ""),
+                "player_id": str(leg.get("player_id", "")),
+                "market": leg.get("market", ""),
+                "line": leg.get("line", ""),
+                "score": round(float(leg.get("score", 0)), 2),
+                "confidence": int(leg.get("confidence", 0)),
+            }
+            for leg in grind_legs
+        ]
+        grind_odds = _calculate_parlay_odds(grind_legs)
+        grind_stake = 100
+        grind_payout = int(grind_stake * (1 + grind_odds / 100))
+
         ticket["grind"] = {
-            "legs": [
-                {
-                    "player_name": leg.get("player_name", ""),
-                    "player_id": str(leg.get("player_id", "")),
-                    "market": leg.get("market", ""),
-                    "line": leg.get("line", ""),
-                    "score": round(float(leg.get("score", 0)), 2),
-                    "confidence": int(leg.get("confidence", 0)),
-                }
-                for leg in grind_legs
-            ],
-            "odds": 650,
-            "stake": 100,
-            "implied_win": 750,
+            "legs": grind_legs_formatted,
+            "odds": grind_odds,
+            "stake": grind_stake,
+            "implied_win": grind_payout - grind_stake,
         }
 
     # Moonshot ticket (minimum 7: 3 star TDs + 4 volume, up to 14: 3 TDs + 11 volume)
     if len(moonshot_legs) >= 7:
+        moonshot_legs_formatted = [
+            {
+                "player_name": leg.get("player_name", ""),
+                "player_id": str(leg.get("player_id", "")),
+                "market": leg.get("market", ""),
+                "line": leg.get("line", ""),
+                "score": round(float(leg.get("score", 0)), 2),
+                "confidence": int(leg.get("confidence", 0)),
+            }
+            for leg in moonshot_legs
+        ]
+        moonshot_odds = _calculate_parlay_odds(moonshot_legs)
+        moonshot_stake = 25
+        moonshot_payout = int(moonshot_stake * (1 + moonshot_odds / 100))
+
         ticket["moonshot"] = {
-            "legs": [
-                {
-                    "player_name": leg.get("player_name", ""),
-                    "player_id": str(leg.get("player_id", "")),
-                    "market": leg.get("market", ""),
-                    "line": leg.get("line", ""),
-                    "score": round(float(leg.get("score", 0)), 2),
-                    "confidence": int(leg.get("confidence", 0)),
-                }
-                for leg in moonshot_legs
-            ],
-            "odds": 2150,
-            "stake": 25,
-            "implied_win": 562,
+            "legs": moonshot_legs_formatted,
+            "odds": moonshot_odds,
+            "stake": moonshot_stake,
+            "implied_win": moonshot_payout - moonshot_stake,
         }
 
     # TD Parlay (star players only)
     if len(td_legs) >= 2:
+        td_legs_formatted = [
+            {
+                "player_name": leg.get("player_name", ""),
+                "player_id": str(leg.get("player_id", "")),
+                "market": leg.get("market", ""),
+                "line": leg.get("line", ""),
+                "score": round(float(leg.get("score", 0)), 2),
+                "confidence": int(leg.get("confidence", 0)),
+            }
+            for leg in td_legs
+        ]
+        td_odds = _calculate_parlay_odds(td_legs)
+        td_stake = 50
+        td_payout = int(td_stake * (1 + td_odds / 100))
+
         ticket["td_parlay"] = {
-            "legs": [
-                {
-                    "player_name": leg.get("player_name", ""),
-                    "player_id": str(leg.get("player_id", "")),
-                    "market": leg.get("market", ""),
-                    "line": leg.get("line", ""),
-                    "score": round(float(leg.get("score", 0)), 2),
-                    "confidence": int(leg.get("confidence", 0)),
-                }
-                for leg in td_legs
-            ],
-            "odds": 1200 if len(td_legs) == 2 else 3000,  # 2x or 3x ~+1200/-3000
-            "stake": 50,
-            "implied_win": 650 if len(td_legs) == 2 else 1550,
+            "legs": td_legs_formatted,
+            "odds": td_odds,
+            "stake": td_stake,
+            "implied_win": td_payout - td_stake,
         }
 
     # Return ticket if it has at least grind + moonshot
