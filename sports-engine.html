@@ -12,187 +12,133 @@
   <link rel="stylesheet" href="assets/board.css">
   <style>
     .engine-container {
-      max-width: 1400px;
+      max-width: 1480px;
       margin: 0 auto;
       padding: 2rem;
     }
 
     .parlays-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 620px), 1fr));
       gap: 2rem;
       margin-bottom: 3rem;
     }
 
-    .parlay-card {
-      background: #1e293b;
-      border: 2px solid #3b82f6;
-      border-radius: 0.75rem;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1);
-    }
-
-    .parlay-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(59, 130, 246, 0.2);
-      border-color: #60a5fa;
-    }
-
-    .game-header {
-      background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
-      padding: 1.5rem;
-      border-bottom: 1px solid rgba(59, 130, 246, 0.3);
-    }
-
-    .game-matchup {
-      font-size: 1.3rem;
-      font-weight: bold;
-      margin-bottom: 0.25rem;
-      color: #e2e8f0;
-    }
-
-    .game-time {
-      font-size: 0.85rem;
-      opacity: 0.9;
-      color: #bfdbfe;
-    }
-
-    .game-script {
-      display: inline-block;
-      margin-top: 0.5rem;
-      padding: 0.25rem 0.75rem;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 0.25rem;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .tickets {
-      padding: 1.5rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
+    .parlay-card { display: contents; }
+    .tickets { display: contents; }
 
     .ticket {
-      background: rgba(59, 130, 246, 0.05);
-      border-left: 4px solid #3b82f6;
-      padding: 1.25rem;
-      border-radius: 0.25rem;
+      overflow: hidden;
+      border: 1px solid rgba(96, 165, 250, .42);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #0765c8 0, #054e9b 100%);
+      box-shadow: 0 18px 48px rgba(0, 33, 80, .28);
     }
 
-    .ticket-type {
-      font-weight: bold;
-      color: #93c5fd;
-      font-size: 0.9rem;
+    .ticket-topbar {
+      min-height: 82px;
+      padding: 0 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      color: #fff;
+    }
+
+    .ticket-heading { display: flex; align-items: center; gap: 14px; min-width: 0; }
+    .sgp-badge {
+      border: 2px solid rgba(255,255,255,.8);
+      border-radius: 6px;
+      padding: 5px 8px 4px;
+      color: #ffe142;
+      font: 800 .72rem/1 Manrope, sans-serif;
+      letter-spacing: .08em;
+      transform: skew(-7deg);
+    }
+    .ticket-title { font-size: clamp(1.1rem, 3vw, 1.45rem); font-weight: 800; white-space: nowrap; }
+    .ticket-odds { font-size: clamp(1.35rem, 3.5vw, 1.8rem); font-weight: 800; white-space: nowrap; }
+
+    .ticket-body {
+      margin: 0 14px 14px;
+      padding: 24px 24px 28px;
+      border-radius: 16px;
+      background: #17191c;
+      color: #f5f7fa;
+    }
+
+    .ticket-meta { display: flex; justify-content: space-between; gap: 20px; align-items: baseline; }
+    .game-matchup { font-size: clamp(1rem, 2.5vw, 1.28rem); font-weight: 600; }
+    .game-time { color: #aeb5c0; white-space: nowrap; font-size: .92rem; }
+    .ticket-context { margin: 8px 0 22px; color: #87909c; font: 500 .7rem/1.3 DM Mono, monospace; letter-spacing: .08em; text-transform: uppercase; }
+
+    .legs-list { position: relative; }
+    .leg {
+      position: relative;
+      min-height: 86px;
+      padding: 8px 0 12px 86px;
+      display: flex;
+      align-items: center;
+    }
+    .leg:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 52px;
+      bottom: -34px;
+      width: 2px;
+      background: #68707b;
+    }
+    .leg-node {
+      position: absolute;
+      left: 0;
+      top: 22px;
+      width: 46px;
+      height: 46px;
+      border: 2px solid #737b86;
+      border-radius: 50%;
+      background: #202328;
+      z-index: 1;
+    }
+    .leg-ball {
+      position: absolute;
+      left: 48px;
+      top: 20px;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #292d33;
+      color: #0b75d1;
+      font-size: 1.1rem;
+      z-index: 2;
+    }
+    .leg-copy { min-width: 0; padding-left: 18px; }
+    .leg-selection {
+      color: #0877da;
+      font-size: clamp(1rem, 3vw, 1.32rem);
+      font-weight: 800;
+      line-height: 1.18;
+      overflow-wrap: anywhere;
+    }
+    .leg-market {
+      margin-top: 5px;
+      color: #a9afb8;
+      font: 500 clamp(.67rem, 2vw, .82rem)/1.3 DM Mono, monospace;
+      letter-spacing: .09em;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.5rem;
     }
-
-    .ticket-odds {
-      font-size: 1.4rem;
-      font-weight: bold;
-      color: #22c55e;
-      margin-bottom: 0.5rem;
-    }
-
-    .ticket-stats {
-      font-size: 0.85rem;
-      color: #cbd5e1;
+    .ticket-footer {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 0.75rem;
+      gap: 18px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid #30343a;
+      color: #aab1bb;
+      font-size: .78rem;
     }
-
-    .ticket-stat-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .ticket-stat-label {
-      font-size: 0.7rem;
-      color: #94a3b8;
-      margin-top: 0.25rem;
-    }
-
-    .legs-preview {
-      margin-top: 0.75rem;
-      padding-top: 0.75rem;
-      border-top: 1px solid rgba(59, 130, 246, 0.2);
-    }
-
-    .legs-title {
-      font-size: 0.75rem;
-      color: #64748b;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-    }
-
-    .leg {
-      font-size: 0.75rem;
-      color: #cbd5e1;
-      margin-bottom: 0.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .leg-market {
-      background: rgba(59, 130, 246, 0.2);
-      padding: 0.1rem 0.4rem;
-      border-radius: 0.15rem;
-      font-size: 0.65rem;
-      color: #93c5fd;
-      font-weight: 600;
-      min-width: 40px;
-      text-align: center;
-    }
-
-    .leg-player {
-      flex: 1;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .leg-line {
-      color: #94a3b8;
-      font-size: 0.65rem;
-    }
-
-    .expand-btn {
-      margin-top: 0.75rem;
-      padding: 0.5rem;
-      width: 100%;
-      background: rgba(59, 130, 246, 0.1);
-      border: 1px solid #3b82f6;
-      color: #93c5fd;
-      border-radius: 0.25rem;
-      font-size: 0.75rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-weight: 600;
-    }
-
-    .expand-btn:hover {
-      background: rgba(59, 130, 246, 0.2);
-      border-color: #60a5fa;
-    }
-
-    .legs-full {
-      margin-top: 0.75rem;
-      padding-top: 0.75rem;
-      border-top: 1px solid rgba(59, 130, 246, 0.2);
-      display: none;
-    }
-
-    .legs-full.show {
-      display: block;
-    }
+    .ticket-footer strong { color: #fff; }
 
     .td-parlays-section {
       margin-top: 4rem;
@@ -258,9 +204,13 @@
         grid-template-columns: 1fr;
       }
 
-      .tickets {
-        grid-template-columns: 1fr;
-      }
+      .engine-container { padding: 1rem; }
+      .ticket-topbar { min-height: 70px; padding: 0 16px; }
+      .ticket-body { margin: 0 8px 8px; padding: 20px 14px 24px; }
+      .ticket-meta { align-items: flex-start; }
+      .leg { padding-left: 72px; min-height: 82px; }
+      .leg-ball { left: 42px; width: 36px; height: 36px; }
+      .leg-copy { padding-left: 12px; }
     }
   </style>
 </head>
@@ -327,112 +277,92 @@
       }
     }
 
+    const teamNames = {
+      ARI: 'Arizona Cardinals', ATL: 'Atlanta Falcons', BAL: 'Baltimore Ravens', BUF: 'Buffalo Bills',
+      CAR: 'Carolina Panthers', CHI: 'Chicago Bears', CIN: 'Cincinnati Bengals', CLE: 'Cleveland Browns',
+      DAL: 'Dallas Cowboys', DEN: 'Denver Broncos', DET: 'Detroit Lions', GB: 'Green Bay Packers',
+      HOU: 'Houston Texans', IND: 'Indianapolis Colts', JAX: 'Jacksonville Jaguars', KC: 'Kansas City Chiefs',
+      LV: 'Las Vegas Raiders', LAC: 'Los Angeles Chargers', LAR: 'Los Angeles Rams', MIA: 'Miami Dolphins',
+      MIN: 'Minnesota Vikings', NE: 'New England Patriots', NO: 'New Orleans Saints', NYG: 'New York Giants',
+      NYJ: 'New York Jets', PHI: 'Philadelphia Eagles', PIT: 'Pittsburgh Steelers', SEA: 'Seattle Seahawks',
+      SF: 'San Francisco 49ers', TB: 'Tampa Bay Buccaneers', TEN: 'Tennessee Titans', WAS: 'Washington Commanders'
+    };
+
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>'"]/g, char => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+      })[char]);
+    }
+
+    function fullMatchup(matchup) {
+      const [away, home] = matchup.split(/\s*@\s*/);
+      return `${teamNames[away] || away} @ ${teamNames[home] || home}`;
+    }
+
+    function americanOdds(value) {
+      const number = Number(value);
+      return Number.isFinite(number) && number > 0 ? `+${number}` : String(value);
+    }
+
+    function legDisplay(leg) {
+      const player = escapeHTML(leg.player_name);
+      const line = Number(leg.line);
+      const nextWhole = Number.isInteger(line) ? line : Math.floor(line) + 1;
+      const formats = {
+        PassYds: [`${player} ${nextWhole}+ Yards`, `${player} - Alt Passing Yds`],
+        RushYds: [`${player} ${nextWhole}+ Yards`, `${player} - Alt Rushing Yds`],
+        RecYds: [`${player} ${nextWhole}+ Yards`, `${player} - Alt Receiving Yds`],
+        REC: [`${player} ${nextWhole}+ Receptions`, `${player} - Alt Receptions`],
+        PassTD: [`${player} ${nextWhole}+ Passing Touchdowns`, `${player} - Alt Passing TDs`],
+        TD: [`${player}`, 'Any Time Touchdown Scorer']
+      };
+      const [selection, market] = formats[leg.market] || [`${player} ${escapeHTML(leg.line)}`, escapeHTML(leg.market)];
+      return `
+        <div class="leg">
+          <span class="leg-node" aria-hidden="true"></span>
+          <span class="leg-ball" aria-hidden="true">🏈</span>
+          <div class="leg-copy">
+            <div class="leg-selection">${selection}</div>
+            <div class="leg-market">${market}</div>
+          </div>
+        </div>`;
+    }
+
+    function ticketHTML(parlay, ticket, type) {
+      const tier = type === 'grind' ? 'Grind' : 'Moonshot';
+      return `
+        <article class="ticket ticket-${type}">
+          <header class="ticket-topbar">
+            <div class="ticket-heading">
+              <span class="sgp-badge">SGP</span>
+              <span class="ticket-title">Same Game Parlay</span>
+            </div>
+            <div class="ticket-odds">${americanOdds(ticket.odds)}</div>
+          </header>
+          <div class="ticket-body">
+            <div class="ticket-meta">
+              <div class="game-matchup">${escapeHTML(fullMatchup(parlay.matchup))}</div>
+              <div class="game-time">${escapeHTML(parlay.time)}</div>
+            </div>
+            <div class="ticket-context">${tier} · ${ticket.legs.length} plays · ${escapeHTML(parlay.game_script || 'normal')} game script</div>
+            <div class="legs-list">${ticket.legs.map(legDisplay).join('')}</div>
+            <footer class="ticket-footer">
+              <span>Stake <strong>$${escapeHTML(ticket.stake)}</strong></span>
+              <span>Potential return <strong>$${escapeHTML(ticket.implied_win)}</strong></span>
+            </footer>
+          </div>
+        </article>`;
+    }
+
     function createParlayCard(parlay) {
       const card = document.createElement('div');
       card.className = 'parlay-card';
-
-      const gameScriptLabel = {
-        'shootout': '🔥 Shootout',
-        'blowout': '🏈 Blowout',
-        'normal': '⚖️ Normal'
-      }[parlay.game_script] || 'Normal';
-
-      let ticketsHtml = '';
-      if (parlay.grind) {
-        ticketsHtml += `
-          <div class="ticket">
-            <div class="ticket-type">Grind</div>
-            <div class="ticket-odds">${parlay.grind.odds}</div>
-            <div class="ticket-stats">
-              <div class="ticket-stat-item">
-                <div>${parlay.grind.stake}</div>
-                <div class="ticket-stat-label">Stake</div>
-              </div>
-              <div class="ticket-stat-item">
-                <div>${parlay.grind.implied_win}</div>
-                <div class="ticket-stat-label">Win</div>
-              </div>
-            </div>
-            <div class="legs-preview">
-              <div class="legs-title">${parlay.grind.legs.length} Legs</div>
-              ${parlay.grind.legs.slice(0, 2).map(leg => `
-                <div class="leg">
-                  <span class="leg-market">${leg.market}</span>
-                  <span class="leg-player">${leg.player_name}</span>
-                  <span class="leg-line">${leg.line}</span>
-                </div>
-              `).join('')}
-            </div>
-            <button class="expand-btn" onclick="toggleLegs(this)">View All ${parlay.grind.legs.length} Legs</button>
-            <div class="legs-full">
-              ${parlay.grind.legs.map(leg => `
-                <div class="leg">
-                  <span class="leg-market">${leg.market}</span>
-                  <span class="leg-player">${leg.player_name}</span>
-                  <span class="leg-line">${leg.line}</span>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-        `;
-      }
-
-      if (parlay.moonshot) {
-        ticketsHtml += `
-          <div class="ticket">
-            <div class="ticket-type">Moonshot</div>
-            <div class="ticket-odds">${parlay.moonshot.odds}</div>
-            <div class="ticket-stats">
-              <div class="ticket-stat-item">
-                <div>${parlay.moonshot.stake}</div>
-                <div class="ticket-stat-label">Stake</div>
-              </div>
-              <div class="ticket-stat-item">
-                <div>${parlay.moonshot.implied_win}</div>
-                <div class="ticket-stat-label">Win</div>
-              </div>
-            </div>
-            <div class="legs-preview">
-              <div class="legs-title">${parlay.moonshot.legs.length} Legs</div>
-              ${parlay.moonshot.legs.slice(0, 2).map(leg => `
-                <div class="leg">
-                  <span class="leg-market">${leg.market}</span>
-                  <span class="leg-player">${leg.player_name}</span>
-                  <span class="leg-line">${leg.line}</span>
-                </div>
-              `).join('')}
-            </div>
-            <button class="expand-btn" onclick="toggleLegs(this)">View All ${parlay.moonshot.legs.length} Legs</button>
-            <div class="legs-full">
-              ${parlay.moonshot.legs.map(leg => `
-                <div class="leg">
-                  <span class="leg-market">${leg.market}</span>
-                  <span class="leg-player">${leg.player_name}</span>
-                  <span class="leg-line">${leg.line}</span>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-        `;
-      }
-
-      card.innerHTML = `
-        <div class="game-header">
-          <div class="game-matchup">${parlay.matchup}</div>
-          <div class="game-time">${parlay.time}</div>
-          <div class="game-script">${gameScriptLabel}</div>
-        </div>
-        <div class="tickets">${ticketsHtml}</div>
-      `;
+      card.innerHTML = `<div class="tickets">
+        ${parlay.grind ? ticketHTML(parlay, parlay.grind, 'grind') : ''}
+        ${parlay.moonshot ? ticketHTML(parlay, parlay.moonshot, 'moonshot') : ''}
+      </div>`;
 
       return card;
-    }
-
-    function toggleLegs(btn) {
-      const parent = btn.parentElement;
-      const legsFull = parent.querySelector('.legs-full');
-      legsFull.classList.toggle('show');
-      btn.textContent = legsFull.classList.contains('show') ? 'Hide Legs' : btn.textContent.replace('Hide', 'View All');
     }
 
     function renderTDParlays(data) {
