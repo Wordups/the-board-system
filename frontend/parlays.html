@@ -264,6 +264,65 @@
             }
         }
 
+        .td-parlays-section {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 2px solid #3b82f6;
+        }
+
+        .td-section-title {
+            text-align: center;
+            color: #3b82f6;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+
+        .td-parlay-card {
+            background: #1e293b;
+            border: 2px solid #ef4444;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .td-game-header {
+            background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+            padding: 1.5rem;
+        }
+
+        .td-game-matchup {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .td-legs {
+            padding: 1.5rem;
+        }
+
+        .td-leg {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            border-radius: 0.25rem;
+        }
+
+        .td-leg-player {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #fca5a5;
+            margin-bottom: 0.25rem;
+        }
+
+        .td-leg-odds {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            display: flex;
+            justify-content: space-between;
+        }
+
         .footer {
             text-align: center;
             color: #64748b;
@@ -308,6 +367,13 @@
             <!-- Populated by JavaScript -->
         </div>
 
+        <div class="td-parlays-section" id="td-section" style="display:none;">
+            <h2 class="td-section-title">⭐ Star Player TD Parlays</h2>
+            <div id="td-parlays-container">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+
         <div class="footer">
             <p>Separate parlay system · <a href="#" onclick="location.reload()">Refresh</a></p>
             <p style="margin-top: 0.5rem; color: #475569;">Built with game-script logic and correlation modeling</p>
@@ -332,6 +398,9 @@
                     const card = createParlayCard(parlay, index);
                     container.appendChild(card);
                 });
+
+                // Render TD parlays if available
+                renderTDParlays(data);
             } catch (error) {
                 console.error('Error loading parlays:', error);
                 document.getElementById('parlays-container').innerHTML =
@@ -430,8 +499,58 @@
             }
         }
 
+        function renderTDParlays(data) {
+            if (!data.td_parlays || data.td_parlays.length === 0) return;
+
+            const section = document.getElementById('td-section');
+            const container = document.getElementById('td-parlays-container');
+
+            section.style.display = 'block';
+            container.innerHTML = '';
+
+            data.td_parlays.forEach(parlay => {
+                const card = document.createElement('div');
+                card.className = 'td-parlay-card';
+
+                const gameScriptLabel = {
+                    shootout: '🔥 Shootout',
+                    blowout: '⚡ Blowout',
+                    normal: '⚙️ Normal'
+                }[parlay.game_script] || '⚙️ Normal';
+
+                let legsHTML = '';
+                parlay.td_parlay.legs.forEach(leg => {
+                    legsHTML += `
+                        <div class="td-leg">
+                            <div class="td-leg-player">🎯 ${leg.player_name}</div>
+                            <div class="td-leg-odds">
+                                <span>${leg.market}</span>
+                                <span style="color: #22c55e; font-weight: bold;">conf ${leg.confidence}%</span>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                card.innerHTML = `
+                    <div class="td-game-header">
+                        <div class="td-game-matchup">${parlay.matchup}</div>
+                        <div class="game-time">${parlay.time} · ${gameScriptLabel}</div>
+                    </div>
+                    <div class="td-legs">
+                        <div style="font-weight: bold; color: #fca5a5; margin-bottom: 1rem;">
+                            ${parlay.td_parlay.legs.length} Star Players · <span style="color: #22c55e;">+${parlay.td_parlay.odds}</span> · $${parlay.td_parlay.stake} stake
+                        </div>
+                        ${legsHTML}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
         // Load parlays on page load
-        document.addEventListener('DOMContentLoaded', loadParlays);
+        document.addEventListener('DOMContentLoaded', function() {
+            loadParlays();
+        });
     </script>
 </body>
 </html>
