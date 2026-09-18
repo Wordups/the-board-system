@@ -42,6 +42,16 @@
         "odds": 2150,
         "stake": 25,
         "implied_win": 562.5
+      },
+      "td_parlay": {
+        "legs": [
+          {"player_name": "Bryce Young", "player_id": "1001", "market": "TD", "line": -115, "score": 85, "confidence": 92},
+          {"player_name": "D'Andre Swift", "player_id": "1002", "market": "TD", "line": -110, "score": 88, "confidence": 90},
+          {"player_name": "Kyle Pitts", "player_id": "1004", "market": "TD", "line": -120, "score": 80, "confidence": 85}
+        ],
+        "odds": 3000,
+        "stake": 50,
+        "implied_win": 1550
       }
     },
     {
@@ -80,6 +90,16 @@
         "odds": 2180,
         "stake": 25,
         "implied_win": 570
+      },
+      "td_parlay": {
+        "legs": [
+          {"player_name": "Jalen Hurts", "player_id": "2001", "market": "TD", "line": -120, "score": 90, "confidence": 94},
+          {"player_name": "Saquon Barkley", "player_id": "2002", "market": "TD", "line": -115, "score": 92, "confidence": 93},
+          {"player_name": "A.J. Brown", "player_id": "2003", "market": "TD", "line": -125, "score": 88, "confidence": 91}
+        ],
+        "odds": 3100,
+        "stake": 50,
+        "implied_win": 1600
       }
     },
     {
@@ -118,6 +138,16 @@
         "odds": 2420,
         "stake": 25,
         "implied_win": 630.5
+      },
+      "td_parlay": {
+        "legs": [
+          {"player_name": "Tua Tagovailoa", "player_id": "3001", "market": "TD", "line": -125, "score": 91, "confidence": 95},
+          {"player_name": "Christian McCaffrey", "player_id": "3006", "market": "TD", "line": -130, "score": 93, "confidence": 96},
+          {"player_name": "Tyreek Hill", "player_id": "3003", "market": "TD", "line": -120, "score": 91, "confidence": 94}
+        ],
+        "odds": 3250,
+        "stake": 50,
+        "implied_win": 1675
       }
     },
     {
@@ -156,6 +186,82 @@
         "odds": 2240,
         "stake": 25,
         "implied_win": 585
+      },
+      "td_parlay": {
+        "legs": [
+          {"player_name": "Patrick Mahomes", "player_id": "4001", "market": "TD", "line": -135, "score": 92, "confidence": 95},
+          {"player_name": "Travis Kelce", "player_id": "4003", "market": "TD", "line": -130, "score": 88, "confidence": 91},
+          {"player_name": "Jonathan Taylor", "player_id": "4006", "market": "TD", "line": -125, "score": 84, "confidence": 87}
+        ],
+        "odds": 3400,
+        "stake": 50,
+        "implied_win": 1750
+      }
+    }
+  ],
+  "td_parlays": [
+    {
+      "game_id": "CAR_ATL",
+      "matchup": "CAR @ ATL",
+      "time": "1:00 PM EDT",
+      "game_script": "normal",
+      "td_parlay": {
+        "legs": [
+          {"player_name": "Bryce Young", "player_id": "1001", "market": "TD", "line": -115, "score": 85, "confidence": 92},
+          {"player_name": "D'Andre Swift", "player_id": "1002", "market": "TD", "line": -110, "score": 88, "confidence": 90},
+          {"player_name": "Kyle Pitts", "player_id": "1004", "market": "TD", "line": -120, "score": 80, "confidence": 85}
+        ],
+        "odds": 3000,
+        "stake": 50,
+        "implied_win": 1550
+      }
+    },
+    {
+      "game_id": "PHI_TEN",
+      "matchup": "PHI @ TEN",
+      "time": "1:00 PM EDT",
+      "game_script": "normal",
+      "td_parlay": {
+        "legs": [
+          {"player_name": "Jalen Hurts", "player_id": "2001", "market": "TD", "line": -120, "score": 90, "confidence": 94},
+          {"player_name": "Saquon Barkley", "player_id": "2002", "market": "TD", "line": -115, "score": 92, "confidence": 93},
+          {"player_name": "A.J. Brown", "player_id": "2003", "market": "TD", "line": -125, "score": 88, "confidence": 91}
+        ],
+        "odds": 3100,
+        "stake": 50,
+        "implied_win": 1600
+      }
+    },
+    {
+      "game_id": "MIA_SF",
+      "matchup": "MIA @ SF",
+      "time": "4:25 PM EDT",
+      "game_script": "shootout",
+      "td_parlay": {
+        "legs": [
+          {"player_name": "Tua Tagovailoa", "player_id": "3001", "market": "TD", "line": -125, "score": 91, "confidence": 95},
+          {"player_name": "Christian McCaffrey", "player_id": "3006", "market": "TD", "line": -130, "score": 93, "confidence": 96},
+          {"player_name": "Tyreek Hill", "player_id": "3003", "market": "TD", "line": -120, "score": 91, "confidence": 94}
+        ],
+        "odds": 3250,
+        "stake": 50,
+        "implied_win": 1675
+      }
+    },
+    {
+      "game_id": "IND_KC",
+      "matchup": "IND @ KC",
+      "time": "8:20 PM EDT",
+      "game_script": "normal",
+      "td_parlay": {
+        "legs": [
+          {"player_name": "Patrick Mahomes", "player_id": "4001", "market": "TD", "line": -135, "score": 92, "confidence": 95},
+          {"player_name": "Travis Kelce", "player_id": "4003", "market": "TD", "line": -130, "score": 88, "confidence": 91},
+          {"player_name": "Jonathan Taylor", "player_id": "4006", "market": "TD", "line": -125, "score": 84, "confidence": 87}
+        ],
+        "odds": 3400,
+        "stake": 50,
+        "implied_win": 1750
       }
     }
   ]
