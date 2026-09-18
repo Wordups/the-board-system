@@ -69,6 +69,8 @@ def build_parlays_from_props(props_by_game: dict[str, Any]) -> dict[str, Any]:
         "sport": "NFL",
         "date": timestamp_et().split("T")[0],
         "last_updated": timestamp_et(),
+        "week": 2,
+        "season": 2025,
         "parlays": parlays,
         "td_parlays": td_parlays,
     }

@@ -1,7 +1,9 @@
 {
   "sport": "NFL",
-  "date": "4:14 PM E",
-  "last_updated": "4:14 PM ET",
+  "date": "5:46 PM E",
+  "last_updated": "5:46 PM ET",
+  "week": 2,
+  "season": 2025,
   "parlays": [
     {
       "game_id": "CAR_ATL",
@@ -50,52 +52,12 @@
       "moonshot": {
         "legs": [
           {
-            "player_name": "D'Andre Swift",
-            "player_id": "1002",
-            "market": "RushYds",
-            "line": 75,
-            "score": 88.0,
-            "confidence": 90
-          },
-          {
-            "player_name": "Kirk Cousins",
-            "player_id": "2001",
-            "market": "PassYds",
-            "line": 260,
-            "score": 82.0,
-            "confidence": 88
-          },
-          {
-            "player_name": "Adam Thielen",
-            "player_id": "1004",
-            "market": "RecYds",
-            "line": 55,
-            "score": 75.0,
-            "confidence": 80
-          },
-          {
-            "player_name": "D'Andre Swift",
-            "player_id": "1002b",
-            "market": "REC",
-            "line": 4,
-            "score": 80.0,
-            "confidence": 85
-          },
-          {
-            "player_name": "Drake London",
-            "player_id": "2004",
-            "market": "RecYds",
-            "line": 50,
-            "score": 70.0,
+            "player_name": "Bryce Young",
+            "player_id": "1001a",
+            "market": "TD",
+            "line": 1,
+            "score": 72.0,
             "confidence": 75
-          },
-          {
-            "player_name": "Tommy Tremble",
-            "player_id": "1005",
-            "market": "RecYds",
-            "line": 35,
-            "score": 60.0,
-            "confidence": 70
           },
           {
             "player_name": "D'Andre Swift",
@@ -115,18 +77,111 @@
           },
           {
             "player_name": "Kirk Cousins",
-            "player_id": "2001a",
-            "market": "TD",
-            "line": 1,
-            "score": 68.0,
-            "confidence": 72
+            "player_id": "2001",
+            "market": "PassYds",
+            "line": 260,
+            "score": 82.0,
+            "confidence": 88
+          },
+          {
+            "player_name": "Adam Thielen",
+            "player_id": "1004",
+            "market": "RecYds",
+            "line": 55,
+            "score": 75.0,
+            "confidence": 80
+          },
+          {
+            "player_name": "Drake London",
+            "player_id": "2004",
+            "market": "RecYds",
+            "line": 50,
+            "score": 70.0,
+            "confidence": 75
+          },
+          {
+            "player_name": "Tommy Tremble",
+            "player_id": "1005",
+            "market": "RecYds",
+            "line": 35,
+            "score": 60.0,
+            "confidence": 70
           }
         ],
         "odds": 2150,
         "stake": 25,
         "implied_win": 562
+      },
+      "td_parlay": {
+        "legs": [
+          {
+            "player_name": "Bryce Young",
+            "player_id": "1001a",
+            "market": "TD",
+            "line": 1,
+            "score": 72.0,
+            "confidence": 75
+          },
+          {
+            "player_name": "D'Andre Swift",
+            "player_id": "1002a",
+            "market": "TD",
+            "line": 1,
+            "score": 75.0,
+            "confidence": 78
+          },
+          {
+            "player_name": "Diontae Johnson",
+            "player_id": "1003a",
+            "market": "TD",
+            "line": 1,
+            "score": 62.0,
+            "confidence": 65
+          }
+        ],
+        "odds": 3000,
+        "stake": 50,
+        "implied_win": 1550
       }
     }
   ],
-  "td_parlays": []
+  "td_parlays": [
+    {
+      "game_id": "CAR_ATL",
+      "matchup": "CAR @ ATL",
+      "time": "1:00 PM EDT",
+      "game_script": "normal",
+      "td_parlay": {
+        "legs": [
+          {
+            "player_name": "Bryce Young",
+            "player_id": "1001a",
+            "market": "TD",
+            "line": 1,
+            "score": 72.0,
+            "confidence": 75
+          },
+          {
+            "player_name": "D'Andre Swift",
+            "player_id": "1002a",
+            "market": "TD",
+            "line": 1,
+            "score": 75.0,
+            "confidence": 78
+          },
+          {
+            "player_name": "Diontae Johnson",
+            "player_id": "1003a",
+            "market": "TD",
+            "line": 1,
+            "score": 62.0,
+            "confidence": 65
+          }
+        ],
+        "odds": 3000,
+        "stake": 50,
+        "implied_win": 1550
+      }
+    }
+  ]
 }

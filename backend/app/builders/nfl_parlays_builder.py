@@ -61,6 +61,8 @@ def build_nfl_parlays_board_from_fanduel(*, games: list[dict[str, str]]) -> dict
         "sport": "NFL",
         "date": timestamp_et().split("T")[0],
         "last_updated": timestamp_et(),
+        "week": 2,
+        "season": 2025,
         "parlays": parlays,
         "td_parlays": td_parlays,
         "source": "FanDuel live props",
