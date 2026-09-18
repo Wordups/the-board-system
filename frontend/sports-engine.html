@@ -60,11 +60,27 @@
       margin-top: 0.25rem;
     }
 
-    .parlays-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-      gap: 2rem;
+    .parlays-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
       margin-bottom: 3rem;
+    }
+
+    .game-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .game-section-header {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      padding: 0.75rem 1rem;
+      background: rgba(59, 130, 246, 0.1);
+      border-left: 4px solid #3b82f6;
+      border-radius: 0.25rem;
     }
 
     .parlay-card {
@@ -115,9 +131,7 @@
 
     .tickets {
       padding: 1.5rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      display: block;
     }
 
     .ticket {
@@ -298,12 +312,8 @@
     }
 
     @media (max-width: 768px) {
-      .parlays-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .tickets {
-        grid-template-columns: 1fr;
+      .game-section {
+        gap: 0.75rem;
       }
 
       .engine-title {
@@ -353,7 +363,7 @@
         </div>
       </div>
 
-      <div class="parlays-grid" id="parlays-container">
+      <div class="parlays-list" id="parlays-container">
         <!-- Populated by JavaScript -->
       </div>
 
@@ -381,37 +391,53 @@
         container.innerHTML = '';
 
         data.parlays.forEach((parlay) => {
-          const card = createParlayCard(parlay);
-          container.appendChild(card);
+          const gameSection = document.createElement('div');
+          gameSection.className = 'game-section';
+
+          // Game header
+          const header = document.createElement('div');
+          header.className = 'game-section-header';
+          const gameScriptLabel = {
+            shootout: '🔥 Shootout',
+            blowout: '⚡ Blowout',
+            normal: '⚙️ Normal'
+          }[parlay.game_script] || '⚙️ Normal';
+          header.innerHTML = `${parlay.matchup} · ${parlay.time} · ${gameScriptLabel}`;
+          gameSection.appendChild(header);
+
+          // Grind ticket
+          if (parlay.grind) {
+            const grindCard = createTicketCard(parlay, 'grind');
+            gameSection.appendChild(grindCard);
+          }
+
+          // Moonshot ticket
+          if (parlay.moonshot) {
+            const moonshotCard = createTicketCard(parlay, 'moonshot');
+            gameSection.appendChild(moonshotCard);
+          }
+
+          container.appendChild(gameSection);
         });
 
         renderTDParlays(data);
       } catch (error) {
         console.error('Error loading parlays:', error);
         document.getElementById('parlays-container').innerHTML =
-          '<p style="grid-column: 1/-1; text-align: center; color: #ef4444;">Error loading parlay data</p>';
+          '<p style="text-align: center; color: #ef4444;">Error loading parlay data</p>';
       }
     }
 
-    function createParlayCard(parlay) {
+    function createTicketCard(parlay, ticketType) {
       const card = document.createElement('div');
       card.className = 'parlay-card';
 
-      const gameScriptLabel = {
-        shootout: '🔥 Shootout',
-        blowout: '⚡ Blowout',
-        normal: '⚙️ Normal'
-      }[parlay.game_script] || '⚙️ Normal';
+      const ticket = parlay[ticketType];
+      const typeName = ticketType.charAt(0).toUpperCase() + ticketType.slice(1);
 
       card.innerHTML = `
-        <div class="game-header">
-          <div class="game-matchup">${parlay.matchup}</div>
-          <div class="game-time">${parlay.time}</div>
-          <div class="game-script">${gameScriptLabel}</div>
-        </div>
         <div class="tickets">
-          ${parlay.grind ? createTicketHTML('Grind', parlay.grind) : ''}
-          ${parlay.moonshot ? createTicketHTML('Moonshot', parlay.moonshot) : ''}
+          ${createTicketHTML(typeName, ticket)}
         </div>
       `;
 
