@@ -148,10 +148,10 @@ def build_nfl_board(*, config, paths) -> dict:
         "games": games_output,
         # Extra fields the generic board pipeline/schema ignores (same
         # pattern as data.diamond for MLB) — see nfl_same_game.py /
-        # nfl_qb_stack.py / nfl_rb_stack.py. Three separate fields because
-        # they're three structurally different card kinds (QB<->receiver
-        # pair, one QB's own three-market stack, one RB's own three-market
-        # stack), not one field overloaded with multiple shapes.
+        # nfl_qb_stack.py / nfl_rb_stack.py. Three separate fields for
+        # distinct card kinds: QB<->receiver pairs, one QB's multi-market
+        # stack, and one RB's multi-market stack. Parlays are generated
+        # separately via the nfl_parlays_builder (see generate_nfl_parlays.py).
         "same_game_pairs": same_game_pairs,
         "qb_stacks": qb_stacks,
         "rb_stacks": rb_stacks,
