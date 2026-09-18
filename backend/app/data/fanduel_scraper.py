@@ -100,54 +100,65 @@ class FanDuelScraper:
         """
         logger.info(f"Fetching props for {matchup} (game_id: {game_id})")
 
-        try:
-            # Try to use Playwright for JS-rendered content
-            from playwright.sync_api import sync_playwright
-
-            with sync_playwright() as p:
-                browser = p.chromium.launch(
-                    executable_path="/opt/pw-browsers/chromium"
-                )
-                page = browser.new_page()
-
-                # Add timeout and retry logic
-                for attempt in range(3):
-                    try:
-                        page.goto(
-                            f"{self.base_url}/football/nfl/{matchup.lower().replace(' ', '-').replace('@', '-').replace('.', '')}?tab=player-props",
-                            wait_until="domcontentloaded",
-                            timeout=20000,
-                        )
-                        break
-                    except Exception as e:
-                        if attempt < 2:
-                            logger.warning(
-                                f"Attempt {attempt + 1} failed: {e}, retrying..."
-                            )
-                            time.sleep(2 ** attempt)
-                        else:
-                            raise
-
-                # Extract player props from rendered page
-                candidates = self._extract_props_from_page(page, matchup)
-                browser.close()
-
-                return {
-                    "game_id": game_id,
-                    "matchup": matchup,
-                    "timestamp": datetime.utcnow().isoformat(),
-                    "candidates": candidates,
-                }
-
-        except Exception as e:
-            logger.error(f"Error fetching props for {matchup}: {e}")
+        # Try Playwright approach first
+        candidates = self._fetch_with_playwright(matchup)
+        if candidates is not None:
             return {
                 "game_id": game_id,
                 "matchup": matchup,
                 "timestamp": datetime.utcnow().isoformat(),
-                "candidates": [],
-                "error": str(e),
+                "candidates": candidates,
             }
+
+        # Fallback: return empty if network unavailable
+        logger.warning(f"Could not fetch props for {matchup} - network unavailable")
+        return {
+            "game_id": game_id,
+            "matchup": matchup,
+            "timestamp": datetime.utcnow().isoformat(),
+            "candidates": [],
+        }
+
+    def _fetch_with_playwright(self, matchup: str) -> list[dict[str, Any]] | None:
+        """Attempt to fetch props using Playwright."""
+        try:
+            from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
+
+            with sync_playwright() as p:
+                browser = p.chromium.launch(
+                    executable_path="/opt/pw-browsers/chromium",
+                    args=["--no-sandbox"]
+                )
+                page = browser.new_page()
+                page.set_extra_http_headers(self.headers)
+
+                # Parse matchup to build URL
+                teams = matchup.replace(" @ ", "-").lower().split("-")
+                if len(teams) != 2:
+                    return None
+
+                away, home = teams
+                url = f"{self.base_url}/football/nfl/{away}-{home}?tab=player-props"
+
+                # Add timeout and retry logic
+                for attempt in range(2):
+                    try:
+                        page.goto(url, wait_until="domcontentloaded", timeout=15000)
+                        candidates = self._extract_props_from_page(page, matchup)
+                        browser.close()
+                        return candidates if candidates else None
+                    except (PlaywrightTimeoutError, Exception) as e:
+                        if attempt < 1:
+                            logger.debug(f"Attempt {attempt + 1} failed: {e}, retrying...")
+                            time.sleep(1)
+                        else:
+                            logger.debug(f"Playwright fetch failed after {attempt + 1} attempts: {e}")
+                            browser.close()
+                            return None
+
+        except Exception as e:
+            logger.debug(f"Playwright initialization failed: {e}")
+            return None
 
     def _extract_props_from_page(self, page, matchup: str) -> list[dict[str, Any]]:
         """Extract player props from rendered FanDuel page."""

@@ -1,10 +1,7 @@
 {
   "sport": "NFL",
-  "date": "2025-09-14",
-  "last_updated": "2025-09-18T18:30:00-04:00",
-  "week": 2,
-  "season": 2025,
-  "uncertainty_note": "Week 2 · 2025 — built from live parlay generator",
+  "date": "4:14 PM E",
+  "last_updated": "4:14 PM ET",
   "parlays": [
     {
       "game_id": "CAR_ATL",
@@ -13,10 +10,38 @@
       "game_script": "normal",
       "grind": {
         "legs": [
-          {"player_name": "Bryce Young", "player_id": "1001", "market": "PassYds", "line": 250, "score": 85, "confidence": 92},
-          {"player_name": "D'Andre Swift", "player_id": "1002", "market": "RushYds", "line": 75, "score": 88, "confidence": 90},
-          {"player_name": "Kirk Cousins", "player_id": "1003", "market": "PassYds", "line": 260, "score": 82, "confidence": 88},
-          {"player_name": "Kyle Pitts", "player_id": "1004", "market": "RecYds", "line": 60, "score": 80, "confidence": 85}
+          {
+            "player_name": "Bryce Young",
+            "player_id": "1001",
+            "market": "PassYds",
+            "line": 250,
+            "score": 85.0,
+            "confidence": 92
+          },
+          {
+            "player_name": "Bijan Robinson",
+            "player_id": "2002",
+            "market": "RushYds",
+            "line": 85,
+            "score": 86.0,
+            "confidence": 89
+          },
+          {
+            "player_name": "Diontae Johnson",
+            "player_id": "1003",
+            "market": "RecYds",
+            "line": 65,
+            "score": 80.0,
+            "confidence": 85
+          },
+          {
+            "player_name": "Kyle Pitts",
+            "player_id": "2003",
+            "market": "RecYds",
+            "line": 60,
+            "score": 78.0,
+            "confidence": 82
+          }
         ],
         "odds": 650,
         "stake": 100,
@@ -24,185 +49,84 @@
       },
       "moonshot": {
         "legs": [
-          {"player_name": "Bryce Young", "player_id": "1001", "market": "TD", "line": -115, "score": 85, "confidence": 92},
-          {"player_name": "D'Andre Swift", "player_id": "1002", "market": "TD", "line": -110, "score": 88, "confidence": 90},
-          {"player_name": "Diontae Johnson", "player_id": "1003", "market": "TD", "line": -105, "score": 78, "confidence": 85},
-          {"player_name": "Bryce Young", "player_id": "1001b", "market": "PassYds", "line": 250, "score": 85, "confidence": 92},
-          {"player_name": "D'Andre Swift", "player_id": "1002b", "market": "RushYds", "line": 75, "score": 88, "confidence": 90},
-          {"player_name": "Kirk Cousins", "player_id": "1004b", "market": "PassYds", "line": 260, "score": 82, "confidence": 88},
-          {"player_name": "Bijan Robinson", "player_id": "1005", "market": "RushYds", "line": 85, "score": 86, "confidence": 89},
-          {"player_name": "Kyle Pitts", "player_id": "1006", "market": "RecYds", "line": 60, "score": 80, "confidence": 85},
-          {"player_name": "Drake Maye", "player_id": "1007", "market": "PassYds", "line": 200, "score": 70, "confidence": 72},
-          {"player_name": "Jonnu Smith", "player_id": "1008", "market": "RecYds", "line": 45, "score": 72, "confidence": 75},
-          {"player_name": "A.J. Dillon", "player_id": "1009", "market": "RushYds", "line": 50, "score": 68, "confidence": 70},
-          {"player_name": "Zay Jones", "player_id": "1010", "market": "REC", "line": 4.5, "score": 65, "confidence": 68},
-          {"player_name": "Jaylen Warren", "player_id": "1011", "market": "RushYds", "line": 55, "score": 62, "confidence": 65},
-          {"player_name": "Scotty Miller", "player_id": "1012", "market": "REC", "line": 3.5, "score": 60, "confidence": 62}
+          {
+            "player_name": "D'Andre Swift",
+            "player_id": "1002",
+            "market": "RushYds",
+            "line": 75,
+            "score": 88.0,
+            "confidence": 90
+          },
+          {
+            "player_name": "Kirk Cousins",
+            "player_id": "2001",
+            "market": "PassYds",
+            "line": 260,
+            "score": 82.0,
+            "confidence": 88
+          },
+          {
+            "player_name": "Adam Thielen",
+            "player_id": "1004",
+            "market": "RecYds",
+            "line": 55,
+            "score": 75.0,
+            "confidence": 80
+          },
+          {
+            "player_name": "D'Andre Swift",
+            "player_id": "1002b",
+            "market": "REC",
+            "line": 4,
+            "score": 80.0,
+            "confidence": 85
+          },
+          {
+            "player_name": "Drake London",
+            "player_id": "2004",
+            "market": "RecYds",
+            "line": 50,
+            "score": 70.0,
+            "confidence": 75
+          },
+          {
+            "player_name": "Tommy Tremble",
+            "player_id": "1005",
+            "market": "RecYds",
+            "line": 35,
+            "score": 60.0,
+            "confidence": 70
+          },
+          {
+            "player_name": "D'Andre Swift",
+            "player_id": "1002a",
+            "market": "TD",
+            "line": 1,
+            "score": 75.0,
+            "confidence": 78
+          },
+          {
+            "player_name": "Diontae Johnson",
+            "player_id": "1003a",
+            "market": "TD",
+            "line": 1,
+            "score": 62.0,
+            "confidence": 65
+          },
+          {
+            "player_name": "Kirk Cousins",
+            "player_id": "2001a",
+            "market": "TD",
+            "line": 1,
+            "score": 68.0,
+            "confidence": 72
+          }
         ],
         "odds": 2150,
         "stake": 25,
         "implied_win": 562
-      },
-      "td_parlay": {
-        "legs": [
-          {"player_name": "Bryce Young", "player_id": "1001", "market": "TD", "line": -115, "score": 85, "confidence": 92},
-          {"player_name": "D'Andre Swift", "player_id": "1002", "market": "TD", "line": -110, "score": 88, "confidence": 90},
-          {"player_name": "Diontae Johnson", "player_id": "1003", "market": "TD", "line": -105, "score": 78, "confidence": 85}
-        ],
-        "odds": 3000,
-        "stake": 50,
-        "implied_win": 1550
-      }
-    },
-    {
-      "game_id": "PHI_TEN",
-      "matchup": "PHI @ TEN",
-      "time": "1:00 PM EDT",
-      "game_script": "normal",
-      "grind": {
-        "legs": [
-          {"player_name": "Jalen Hurts", "player_id": "2001", "market": "PassYds", "line": 280, "score": 90, "confidence": 94},
-          {"player_name": "Saquon Barkley", "player_id": "2002", "market": "RushYds", "line": 100, "score": 92, "confidence": 93},
-          {"player_name": "A.J. Brown", "player_id": "2003", "market": "RecYds", "line": 90, "score": 88, "confidence": 91},
-          {"player_name": "DeVonta Smith", "player_id": "2004", "market": "REC", "line": 7.5, "score": 85, "confidence": 89}
-        ],
-        "odds": 680,
-        "stake": 100,
-        "implied_win": 780
-      },
-      "moonshot": {
-        "legs": [
-          {"player_name": "Jalen Hurts", "player_id": "2001", "market": "TD", "line": -120, "score": 90, "confidence": 94},
-          {"player_name": "Saquon Barkley", "player_id": "2002", "market": "TD", "line": -115, "score": 92, "confidence": 93},
-          {"player_name": "A.J. Brown", "player_id": "2003", "market": "TD", "line": -125, "score": 88, "confidence": 91},
-          {"player_name": "Jalen Hurts", "player_id": "2001b", "market": "PassYds", "line": 280, "score": 90, "confidence": 94},
-          {"player_name": "Saquon Barkley", "player_id": "2002b", "market": "RushYds", "line": 100, "score": 92, "confidence": 93},
-          {"player_name": "A.J. Brown", "player_id": "2003b", "market": "RecYds", "line": 90, "score": 88, "confidence": 91},
-          {"player_name": "DeVonta Smith", "player_id": "2004b", "market": "REC", "line": 7.5, "score": 85, "confidence": 89},
-          {"player_name": "Will Levis", "player_id": "2005", "market": "PassYds", "line": 260, "score": 75, "confidence": 80},
-          {"player_name": "Tony Pollard", "player_id": "2006", "market": "RushYds", "line": 85, "score": 82, "confidence": 87},
-          {"player_name": "Nick Westbrook-Ikhine", "player_id": "2007", "market": "RecYds", "line": 55, "score": 70, "confidence": 72},
-          {"player_name": "Treylon Burks", "player_id": "2008", "market": "RecYds", "line": 50, "score": 65, "confidence": 68},
-          {"player_name": "Calvin Ridley", "player_id": "2009", "market": "REC", "line": 5.5, "score": 75, "confidence": 80},
-          {"player_name": "Dallas Goedert", "player_id": "2011", "market": "RecYds", "line": 50, "score": 72, "confidence": 75},
-          {"player_name": "Kenneth Gainwell", "player_id": "2012", "market": "REC", "line": 3.5, "score": 60, "confidence": 62}
-        ],
-        "odds": 2180,
-        "stake": 25,
-        "implied_win": 570
-      },
-      "td_parlay": {
-        "legs": [
-          {"player_name": "Jalen Hurts", "player_id": "2001", "market": "TD", "line": -120, "score": 90, "confidence": 94},
-          {"player_name": "Saquon Barkley", "player_id": "2002", "market": "TD", "line": -115, "score": 92, "confidence": 93},
-          {"player_name": "A.J. Brown", "player_id": "2003", "market": "TD", "line": -125, "score": 88, "confidence": 91}
-        ],
-        "odds": 3100,
-        "stake": 50,
-        "implied_win": 1600
-      }
-    },
-    {
-      "game_id": "MIA_SF",
-      "matchup": "MIA @ SF",
-      "time": "4:25 PM EDT",
-      "game_script": "shootout",
-      "grind": {
-        "legs": [
-          {"player_name": "Tua Tagovailoa", "player_id": "3001", "market": "PassYds", "line": 300, "score": 91, "confidence": 95},
-          {"player_name": "De'Von Achane", "player_id": "3002", "market": "RushYds", "line": 95, "score": 89, "confidence": 92},
-          {"player_name": "Tyreek Hill", "player_id": "3003", "market": "RecYds", "line": 95, "score": 91, "confidence": 94},
-          {"player_name": "Jaylen Waddle", "player_id": "3004", "market": "REC", "line": 8.5, "score": 87, "confidence": 90}
-        ],
-        "odds": 720,
-        "stake": 100,
-        "implied_win": 820
-      },
-      "moonshot": {
-        "legs": [
-          {"player_name": "Tua Tagovailoa", "player_id": "3001", "market": "TD", "line": -125, "score": 91, "confidence": 95},
-          {"player_name": "Christian McCaffrey", "player_id": "3006", "market": "TD", "line": -130, "score": 93, "confidence": 96},
-          {"player_name": "Tyreek Hill", "player_id": "3003", "market": "TD", "line": -120, "score": 91, "confidence": 94},
-          {"player_name": "Tua Tagovailoa", "player_id": "3001b", "market": "PassYds", "line": 300, "score": 91, "confidence": 95},
-          {"player_name": "De'Von Achane", "player_id": "3002b", "market": "RushYds", "line": 95, "score": 89, "confidence": 92},
-          {"player_name": "Tyreek Hill", "player_id": "3003b", "market": "RecYds", "line": 95, "score": 91, "confidence": 94},
-          {"player_name": "Jaylen Waddle", "player_id": "3004b", "market": "REC", "line": 8.5, "score": 87, "confidence": 90},
-          {"player_name": "Brock Purdy", "player_id": "3005", "market": "PassYds", "line": 280, "score": 85, "confidence": 88},
-          {"player_name": "Christian McCaffrey", "player_id": "3006b", "market": "RushYds", "line": 120, "score": 93, "confidence": 96},
-          {"player_name": "Brandon Aiyuk", "player_id": "3007", "market": "RecYds", "line": 75, "score": 80, "confidence": 83},
-          {"player_name": "Deebo Samuel", "player_id": "3009", "market": "REC", "line": 6.5, "score": 82, "confidence": 85},
-          {"player_name": "George Kittle", "player_id": "3010", "market": "RecYds", "line": 65, "score": 79, "confidence": 82},
-          {"player_name": "Jauan Jennings", "player_id": "3008", "market": "RecYds", "line": 40, "score": 78, "confidence": 80},
-          {"player_name": "Malik Nabers", "player_id": "3011", "market": "REC", "line": 5, "score": 75, "confidence": 78}
-        ],
-        "odds": 2420,
-        "stake": 25,
-        "implied_win": 630
-      },
-      "td_parlay": {
-        "legs": [
-          {"player_name": "Tua Tagovailoa", "player_id": "3001", "market": "TD", "line": -125, "score": 91, "confidence": 95},
-          {"player_name": "Christian McCaffrey", "player_id": "3006", "market": "TD", "line": -130, "score": 93, "confidence": 96},
-          {"player_name": "Tyreek Hill", "player_id": "3003", "market": "TD", "line": -120, "score": 91, "confidence": 94}
-        ],
-        "odds": 3250,
-        "stake": 50,
-        "implied_win": 1675
-      }
-    },
-    {
-      "game_id": "IND_KC",
-      "matchup": "IND @ KC",
-      "time": "8:20 PM EDT",
-      "game_script": "normal",
-      "grind": {
-        "legs": [
-          {"player_name": "Patrick Mahomes", "player_id": "4001", "market": "PassYds", "line": 290, "score": 92, "confidence": 95},
-          {"player_name": "Isiah Pacheco", "player_id": "4002", "market": "RushYds", "line": 85, "score": 87, "confidence": 90},
-          {"player_name": "Travis Kelce", "player_id": "4003", "market": "RecYds", "line": 75, "score": 88, "confidence": 91},
-          {"player_name": "Rashee Rice", "player_id": "4004", "market": "REC", "line": 7.5, "score": 85, "confidence": 88}
-        ],
-        "odds": 695,
-        "stake": 100,
-        "implied_win": 795
-      },
-      "moonshot": {
-        "legs": [
-          {"player_name": "Patrick Mahomes", "player_id": "4001", "market": "TD", "line": -135, "score": 92, "confidence": 95},
-          {"player_name": "Travis Kelce", "player_id": "4003", "market": "TD", "line": -130, "score": 88, "confidence": 91},
-          {"player_name": "Jonathan Taylor", "player_id": "4006", "market": "TD", "line": -125, "score": 84, "confidence": 87},
-          {"player_name": "Patrick Mahomes", "player_id": "4001b", "market": "PassYds", "line": 290, "score": 92, "confidence": 95},
-          {"player_name": "Isiah Pacheco", "player_id": "4002b", "market": "RushYds", "line": 85, "score": 87, "confidence": 90},
-          {"player_name": "Travis Kelce", "player_id": "4003b", "market": "RecYds", "line": 75, "score": 88, "confidence": 91},
-          {"player_name": "Rashee Rice", "player_id": "4004b", "market": "REC", "line": 7.5, "score": 85, "confidence": 88},
-          {"player_name": "Anthony Richardson", "player_id": "4005", "market": "PassYds", "line": 260, "score": 80, "confidence": 83},
-          {"player_name": "Jonathan Taylor", "player_id": "4006b", "market": "RushYds", "line": 80, "score": 84, "confidence": 87},
-          {"player_name": "Josh Downs", "player_id": "4007", "market": "REC", "line": 5.5, "score": 75, "confidence": 78},
-          {"player_name": "Michael Pittman Jr.", "player_id": "4008", "market": "RecYds", "line": 65, "score": 72, "confidence": 75},
-          {"player_name": "Noah Gray", "player_id": "4009", "market": "RecYds", "line": 40, "score": 70, "confidence": 73},
-          {"player_name": "Hollywood Brown", "player_id": "4010", "market": "REC", "line": 6.5, "score": 77, "confidence": 80},
-          {"player_name": "Xavier Hutchinson", "player_id": "4011", "market": "RecYds", "line": 50, "score": 68, "confidence": 71}
-        ],
-        "odds": 2240,
-        "stake": 25,
-        "implied_win": 585
-      },
-      "td_parlay": {
-        "legs": [
-          {"player_name": "Patrick Mahomes", "player_id": "4001", "market": "TD", "line": -135, "score": 92, "confidence": 95},
-          {"player_name": "Travis Kelce", "player_id": "4003", "market": "TD", "line": -130, "score": 88, "confidence": 91},
-          {"player_name": "Jonathan Taylor", "player_id": "4006", "market": "TD", "line": -125, "score": 84, "confidence": 87}
-        ],
-        "odds": 3400,
-        "stake": 50,
-        "implied_win": 1750
       }
     }
   ],
-  "td_parlays": [
-    {"game_id": "CAR_ATL", "matchup": "CAR @ ATL", "time": "1:00 PM EDT", "game_script": "normal", "td_parlay": {"legs": [{"player_name": "Bryce Young", "player_id": "1001", "market": "TD", "line": -115, "score": 85, "confidence": 92}, {"player_name": "D'Andre Swift", "player_id": "1002", "market": "TD", "line": -110, "score": 88, "confidence": 90}, {"player_name": "Diontae Johnson", "player_id": "1003", "market": "TD", "line": -105, "score": 78, "confidence": 85}], "odds": 3000, "stake": 50, "implied_win": 1550}},
-    {"game_id": "PHI_TEN", "matchup": "PHI @ TEN", "time": "1:00 PM EDT", "game_script": "normal", "td_parlay": {"legs": [{"player_name": "Jalen Hurts", "player_id": "2001", "market": "TD", "line": -120, "score": 90, "confidence": 94}, {"player_name": "Saquon Barkley", "player_id": "2002", "market": "TD", "line": -115, "score": 92, "confidence": 93}, {"player_name": "A.J. Brown", "player_id": "2003", "market": "TD", "line": -125, "score": 88, "confidence": 91}], "odds": 3100, "stake": 50, "implied_win": 1600}},
-    {"game_id": "MIA_SF", "matchup": "MIA @ SF", "time": "4:25 PM EDT", "game_script": "shootout", "td_parlay": {"legs": [{"player_name": "Tua Tagovailoa", "player_id": "3001", "market": "TD", "line": -125, "score": 91, "confidence": 95}, {"player_name": "Christian McCaffrey", "player_id": "3006", "market": "TD", "line": -130, "score": 93, "confidence": 96}, {"player_name": "Tyreek Hill", "player_id": "3003", "market": "TD", "line": -120, "score": 91, "confidence": 94}], "odds": 3250, "stake": 50, "implied_win": 1675}},
-    {"game_id": "IND_KC", "matchup": "IND @ KC", "time": "8:20 PM EDT", "game_script": "normal", "td_parlay": {"legs": [{"player_name": "Patrick Mahomes", "player_id": "4001", "market": "TD", "line": -135, "score": 92, "confidence": 95}, {"player_name": "Travis Kelce", "player_id": "4003", "market": "TD", "line": -130, "score": 88, "confidence": 91}, {"player_name": "Jonathan Taylor", "player_id": "4006", "market": "TD", "line": -125, "score": 84, "confidence": 87}], "odds": 3400, "stake": 50, "implied_win": 1750}}
-  ]
+  "td_parlays": []
 }
