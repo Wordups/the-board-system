@@ -119,8 +119,8 @@ def build_same_game_parlays_for_game(
     game_id: str,
     matchup: str,
     candidates: list[dict[str, Any]],
-    grind_leg_count: int = 3,
-    moonshot_leg_count: int = 5,
+    grind_leg_count: int = 4,
+    moonshot_leg_count: int = 14,
 ) -> list[dict[str, Any]]:
     """Build grind + moonshot parlay tickets for one game.
 
@@ -215,7 +215,7 @@ def build_same_game_parlays_for_game(
         moonshot_legs.append(cand)
         moonshot_players.add(pid)
 
-    if len(moonshot_legs) >= 5:  # Only output if we hit min leg count
+    if len(moonshot_legs) >= 9:  # Only output if we hit min leg count (allow up to 14)
         parlays.append({
             "game_id": str(game_id),
             "matchup": matchup,
