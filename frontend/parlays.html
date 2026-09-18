@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFL Same-Game Parlays</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #22c55e;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-top: 0.25rem;
+        }
+
+        .parlays-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .parlay-card {
+            background: #1e293b;
+            border: 2px solid #3b82f6;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1);
+        }
+
+        .parlay-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.2);
+            border-color: #60a5fa;
+        }
+
+        .game-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .game-matchup {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+
+        .game-time {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            color: #bfdbfe;
+        }
+
+        .game-script {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tickets {
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .ticket {
+            background: rgba(59, 130, 246, 0.05);
+            border-left: 4px solid #3b82f6;
+            padding: 1.25rem;
+            border-radius: 0.25rem;
+        }
+
+        .ticket-type {
+            font-weight: bold;
+            color: #93c5fd;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .ticket-odds {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #22c55e;
+            margin-bottom: 0.5rem;
+        }
+
+        .ticket-stats {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+
+        .ticket-stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .ticket-stat-label {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            margin-top: 0.25rem;
+        }
+
+        .legs-preview {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .legs-title {
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .leg {
+            font-size: 0.75rem;
+            color: #cbd5e1;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .leg-market {
+            background: rgba(59, 130, 246, 0.2);
+            padding: 0.1rem 0.4rem;
+            border-radius: 0.15rem;
+            font-size: 0.65rem;
+            color: #93c5fd;
+            font-weight: 600;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .leg-player {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .leg-line {
+            color: #94a3b8;
+            font-size: 0.65rem;
+        }
+
+        .expand-btn {
+            margin-top: 0.75rem;
+            padding: 0.5rem;
+            width: 100%;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid #3b82f6;
+            color: #93c5fd;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        .expand-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #60a5fa;
+        }
+
+        .legs-full {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            display: none;
+        }
+
+        .legs-full.show {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .parlays-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tickets {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .stats {
+                gap: 1rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+        }
+
+        .footer a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 NFL Same-Game Parlays</h1>
+            <p class="subtitle" id="week-label">Week 2 · 2025</p>
+            <div class="stats" id="stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="game-count">0</div>
+                    <div class="stat-label">Games</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="ticket-count">0</div>
+                    <div class="stat-label">Tickets</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4 + 9-14</div>
+                    <div class="stat-label">Grind + Moonshot Legs</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="parlays-grid" id="parlays-container">
+            <!-- Populated by JavaScript -->
+        </div>
+
+        <div class="footer">
+            <p>Separate parlay system · <a href="#" onclick="location.reload()">Refresh</a></p>
+            <p style="margin-top: 0.5rem; color: #475569;">Built with game-script logic and correlation modeling</p>
+        </div>
+    </div>
+
+    <script>
+        async function loadParlays() {
+            try {
+                const response = await fetch('./data/nfl_parlays.json');
+                const data = await response.json();
+
+                document.getElementById('week-label').textContent =
+                    `Week ${data.week} · ${data.season}`;
+                document.getElementById('game-count').textContent = data.parlays.length;
+                document.getElementById('ticket-count').textContent = data.parlays.length * 2;
+
+                const container = document.getElementById('parlays-container');
+                container.innerHTML = '';
+
+                data.parlays.forEach((parlay, index) => {
+                    const card = createParlayCard(parlay, index);
+                    container.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Error loading parlays:', error);
+                document.getElementById('parlays-container').innerHTML =
+                    '<p style="grid-column: 1/-1; text-align: center; color: #ef4444;">Error loading parlay data</p>';
+            }
+        }
+
+        function createParlayCard(parlay, index) {
+            const card = document.createElement('div');
+            card.className = 'parlay-card';
+
+            const gameScriptLabel = {
+                shootout: '🔥 Shootout',
+                blowout: '⚡ Blowout',
+                normal: '⚙️ Normal'
+            }[parlay.game_script] || '⚙️ Normal';
+
+            card.innerHTML = `
+                <div class="game-header">
+                    <div class="game-matchup">${parlay.matchup}</div>
+                    <div class="game-time">${parlay.time}</div>
+                    <div class="game-script">${gameScriptLabel}</div>
+                </div>
+                <div class="tickets">
+                    ${createTicketHTML('Grind', parlay.grind)}
+                    ${createTicketHTML('Moonshot', parlay.moonshot)}
+                </div>
+            `;
+
+            return card;
+        }
+
+        function createTicketHTML(type, ticket) {
+            const legsPreview = ticket.legs.slice(0, 3).map(leg =>
+                `<div class="leg">
+                    <span class="leg-market">${leg.market}</span>
+                    <span class="leg-player">${leg.player_name}</span>
+                    <span class="leg-line">${leg.line}</span>
+                </div>`
+            ).join('');
+
+            const allLegs = ticket.legs.map(leg =>
+                `<div class="leg">
+                    <span class="leg-market">${leg.market}</span>
+                    <span class="leg-player">${leg.player_name}</span>
+                    <span class="leg-line">${leg.line}</span>
+                    <span style="color: #64748b; font-size: 0.65rem;">conf ${leg.confidence}%</span>
+                </div>`
+            ).join('');
+
+            const ticketId = `ticket-${Math.random().toString(36).substr(2, 9)}`;
+            const winPercentage = type === 'Grind' ? '+66.7%' : '+226.0%';
+
+            return `
+                <div class="ticket">
+                    <div class="ticket-type">${type}</div>
+                    <div class="ticket-odds">${ticket.odds > 0 ? '+' : ''}${ticket.odds}</div>
+                    <div class="ticket-stats">
+                        <div class="ticket-stat-item">
+                            <strong>${ticket.legs.length}</strong>
+                            <div class="ticket-stat-label">LEGS</div>
+                        </div>
+                        <div class="ticket-stat-item">
+                            <strong>$${ticket.stake}</strong>
+                            <div class="ticket-stat-label">STAKE</div>
+                        </div>
+                        <div class="ticket-stat-item">
+                            <strong>$${Math.round(ticket.implied_win)}</strong>
+                            <div class="ticket-stat-label">WIN</div>
+                        </div>
+                    </div>
+                    <div class="legs-preview">
+                        <div class="legs-title">Top 3 Legs</div>
+                        ${legsPreview}
+                        <button class="expand-btn" onclick="toggleLegsFull('${ticketId}')">
+                            View all ${ticket.legs.length} legs →
+                        </button>
+                    </div>
+                    <div class="legs-full" id="${ticketId}">
+                        <div class="legs-title">All ${ticket.legs.length} Legs</div>
+                        ${allLegs}
+                    </div>
+                </div>
+            `;
+        }
+
+        function toggleLegsFull(ticketId) {
+            const legsFullDiv = document.getElementById(ticketId);
+            legsFullDiv.classList.toggle('show');
+
+            const btn = event.target;
+            if (legsFullDiv.classList.contains('show')) {
+                btn.textContent = 'Hide legs ↑';
+            } else {
+                btn.textContent = 'View all ' + btn.parentElement.querySelector('.legs-title').textContent.split(' ')[1] + ' legs →';
+            }
+        }
+
+        // Load parlays on page load
+        document.addEventListener('DOMContentLoaded', loadParlays);
+    </script>
+</body>
+</html>

@@ -10,13 +10,13 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from app.builders.nfl_parlays_builder import build_nfl_parlays_board
-from app.config import Config
-from app.utils.paths import ProjectPaths
+from app.config import build_config
+from app.paths import build_paths
 
 
 def generate_nfl_parlays(project_root: Path) -> None:
-    config = Config.from_env()
-    paths = ProjectPaths(project_root)
+    config = build_config(project_root)
+    paths = build_paths(project_root)
 
     # Build parlay board (independent from main board)
     parlays_board = build_nfl_parlays_board(config=config, paths=paths)
