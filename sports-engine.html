@@ -306,17 +306,23 @@
 
     function legDisplay(leg) {
       const player = escapeHTML(leg.player_name);
-      const line = Number(leg.line);
-      const nextWhole = Number.isInteger(line) ? line : Math.floor(line) + 1;
+      const rawLine = String(leg.line ?? '');
+      const numericMatch = rawLine.match(/\d+(?:\.\d+)?/);
+      const numericLine = numericMatch ? Number(numericMatch[0]) : Number.NaN;
+      const threshold = Number.isFinite(numericLine)
+        ? (rawLine.includes('+') || Number.isInteger(numericLine) ? numericLine : Math.floor(numericLine) + 1)
+        : '';
       const formats = {
-        PassYds: [`${player} ${nextWhole}+ Yards`, `${player} - Alt Passing Yds`],
-        RushYds: [`${player} ${nextWhole}+ Yards`, `${player} - Alt Rushing Yds`],
-        RecYds: [`${player} ${nextWhole}+ Yards`, `${player} - Alt Receiving Yds`],
-        REC: [`${player} ${nextWhole}+ Receptions`, `${player} - Alt Receptions`],
-        PassTD: [`${player} ${nextWhole}+ Passing Touchdowns`, `${player} - Alt Passing TDs`],
-        TD: [`${player}`, 'Any Time Touchdown Scorer']
+        PassYds: [`${player} ${threshold}+ Passing Yards`, `${player} - Alt Passing Yds`],
+        RushYds: [`${player} ${threshold}+ Rushing Yards`, `${player} - Alt Rushing Yds`],
+        RecYds: [`${player} ${threshold}+ Receiving Yards`, `${player} - Alt Receiving Yds`],
+        REC: [`${player} ${threshold}+ Receptions`, `${player} - Alt Receptions`],
+        Completions: [`${player} ${threshold}+ Completions`, `${player} - Alt Completions`],
+        PassTD: [`${player} ${threshold}+ Passing Touchdowns`, `${player} - Alt Passing TDs`],
+        TD: [`${player}`, 'Any Time Touchdown Scorer'],
+        ML: [`${player} Moneyline`, 'Game Moneyline']
       };
-      const [selection, market] = formats[leg.market] || [`${player} ${escapeHTML(leg.line)}`, escapeHTML(leg.market)];
+      const [selection, market] = formats[leg.market] || [`${player} ${escapeHTML(rawLine)}`, escapeHTML(leg.market)];
       return `
         <div class="leg">
           <span class="leg-node" aria-hidden="true"></span>
@@ -394,7 +400,7 @@
           </div>
           <div class="td-legs">
             <div style="font-weight: bold; margin-bottom: 1rem; color: #fca5a5;">
-              Odds: ${parlay.td_parlay.odds} · ${parlay.td_parlay.legs.length} Star Players
+              Pricing unavailable · ${parlay.td_parlay.legs.length} Star Players
             </div>
             ${legsHtml}
           </div>

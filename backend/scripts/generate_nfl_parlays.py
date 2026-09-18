@@ -27,12 +27,19 @@ def generate_nfl_parlays(project_root: Path) -> None:
     with open(frontend_parlay_path, "w") as f:
         json.dump(parlays_board, f, indent=2)
 
+    # Root GitHub Pages entrypoint fetches data/nfl_parlays.json.
+    site_parlay_path = project_root / "data" / "nfl_parlays.json"
+    site_parlay_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(site_parlay_path, "w") as f:
+        json.dump(parlays_board, f, indent=2)
+
     backend_parlay_path = project_root / "backend" / "data_final" / "nfl_parlays.json"
     backend_parlay_path.parent.mkdir(parents=True, exist_ok=True)
     with open(backend_parlay_path, "w") as f:
         json.dump(parlays_board, f, indent=2)
 
-    print(f"✓ Generated {len(parlays_board['parlays'])} parlay tickets")
+    print(f"Generated {len(parlays_board['parlays'])} parlay tickets")
+    print(f"  Site:     {site_parlay_path}")
     print(f"  Frontend: {frontend_parlay_path}")
     print(f"  Backend:  {backend_parlay_path}")
 

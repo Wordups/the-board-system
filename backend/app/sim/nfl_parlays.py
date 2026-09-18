@@ -372,9 +372,12 @@ def build_same_game_parlays_for_game(
                 }
                 for leg in td_legs
             ],
-            "odds": 1200 if len(td_legs) == 2 else 3000,  # 2x or 3x ~+1200/-3000
+            # Exact SGP prices require a sportsbook quote for these specific
+            # correlated legs. Do not manufacture a number from leg count.
+            "odds": None,
+            "odds_source": "unavailable — live sportsbook quote required",
             "stake": 50,
-            "implied_win": 650 if len(td_legs) == 2 else 1550,
+            "implied_win": None,
         }
 
     # Return ticket if it has at least grind + moonshot
