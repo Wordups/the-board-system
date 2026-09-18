@@ -344,7 +344,7 @@
               <div class="game-matchup">${escapeHTML(fullMatchup(parlay.matchup))}</div>
               <div class="game-time">${escapeHTML(parlay.time)}</div>
             </div>
-            <div class="ticket-context">${tier} · ${ticket.legs.length} plays · ${escapeHTML(parlay.game_script || 'normal')} game script</div>
+            <div class="ticket-context">${tier} · ${ticket.legs.length} plays · ${escapeHTML(parlay.game_script || 'normal')} game script · estimated odds</div>
             <div class="legs-list">${ticket.legs.map(legDisplay).join('')}</div>
             <footer class="ticket-footer">
               <span>Stake <strong>$${escapeHTML(ticket.stake)}</strong></span>

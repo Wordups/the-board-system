@@ -11,6 +11,8 @@ Handles cross-team stacking and anti-correlation gates (forbidden same-team pair
 
 from __future__ import annotations
 
+import math
+
 from typing import Any
 import numpy as np
 
@@ -184,6 +186,28 @@ def _score_player_for_moonshot_volume(candidate: dict[str, Any], game_script: st
     return base_score
 
 
+def _reference_calibrated_odds(leg_count: int) -> int:
+    """Estimate American SGP odds from the two supplied winning-slip anchors.
+
+    The reference slips price 9 legs at +2363 (24.63 decimal) and 14 legs at
+    +11496 (115.96 decimal).  Interpolating/extrapolating in log-decimal space
+    preserves the compounding shape without pretending these are live book odds.
+    """
+    if leg_count <= 0:
+        raise ValueError("leg_count must be positive")
+
+    low_legs, low_decimal = 9, 24.63
+    high_legs, high_decimal = 14, 115.96
+    log_step = (math.log(high_decimal) - math.log(low_decimal)) / (high_legs - low_legs)
+    decimal_odds = math.exp(math.log(low_decimal) + (leg_count - low_legs) * log_step)
+    return round((decimal_odds - 1.0) * 100)
+
+
+def _estimated_return(stake: float, american_odds: int) -> float:
+    """Return total payout (stake included) for positive American odds."""
+    return round(float(stake) * (1.0 + american_odds / 100.0), 2)
+
+
 def build_same_game_parlays_for_game(
     *,
     game_id: str,
@@ -292,6 +316,8 @@ def build_same_game_parlays_for_game(
 
     # Grind ticket (4 volume legs)
     if len(grind_legs) >= 4:
+        grind_stake = 100
+        grind_odds = _reference_calibrated_odds(len(grind_legs))
         ticket["grind"] = {
             "legs": [
                 {
@@ -304,13 +330,16 @@ def build_same_game_parlays_for_game(
                 }
                 for leg in grind_legs
             ],
-            "odds": 650,
-            "stake": 100,
-            "implied_win": 750,
+            "odds": grind_odds,
+            "odds_source": "reference-calibrated estimate",
+            "stake": grind_stake,
+            "implied_win": _estimated_return(grind_stake, grind_odds),
         }
 
     # Moonshot ticket (3 star TDs + 11 volume)
     if len(moonshot_legs) >= 9:
+        moonshot_stake = 25
+        moonshot_odds = _reference_calibrated_odds(len(moonshot_legs))
         ticket["moonshot"] = {
             "legs": [
                 {
@@ -323,9 +352,10 @@ def build_same_game_parlays_for_game(
                 }
                 for leg in moonshot_legs
             ],
-            "odds": 2150,
-            "stake": 25,
-            "implied_win": 562,
+            "odds": moonshot_odds,
+            "odds_source": "reference-calibrated estimate",
+            "stake": moonshot_stake,
+            "implied_win": _estimated_return(moonshot_stake, moonshot_odds),
         }
 
     # TD Parlay (star players only)
