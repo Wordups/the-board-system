@@ -264,6 +264,11 @@
         const container = document.getElementById('parlays-container');
         container.innerHTML = '';
 
+        if (!data.parlays.length) {
+          container.innerHTML = '<section class="loading-state"><p>No verified FanDuel NFL lines are available.</p></section>';
+          return;
+        }
+
         data.parlays.forEach((parlay, index) => {
           const card = createParlayCard(parlay, index);
           container.appendChild(card);
@@ -306,6 +311,17 @@
 
     function legDisplay(leg) {
       const player = escapeHTML(leg.player_name);
+      if (leg.selection && leg.book === 'FanDuel Sportsbook') {
+        return `
+          <div class="leg">
+            <span class="leg-node" aria-hidden="true"></span>
+            <span class="leg-ball" aria-hidden="true">🏈</span>
+            <div class="leg-copy">
+              <div class="leg-selection">${escapeHTML(leg.selection)}</div>
+              <div class="leg-market">${escapeHTML(leg.line)} · FanDuel Sportsbook</div>
+            </div>
+          </div>`;
+      }
       const rawLine = String(leg.line ?? '');
       const numericMatch = rawLine.match(/\d+(?:\.\d+)?/);
       const numericLine = numericMatch ? Number(numericMatch[0]) : Number.NaN;
@@ -335,7 +351,13 @@
     }
 
     function ticketHTML(parlay, ticket, type) {
-      const tier = type === 'grind' ? 'Grind' : 'Moonshot';
+      const tier = type === 'fanduel' ? 'FanDuel verified' : (type === 'grind' ? 'Grind' : 'Moonshot');
+      const oddsLabel = ticket.odds == null ? 'PRICE PENDING' : americanOdds(ticket.odds);
+      const footer = ticket.stake == null ? '' : `
+        <footer class="ticket-footer">
+          <span>Stake <strong>$${escapeHTML(ticket.stake)}</strong></span>
+          <span>Potential return <strong>$${escapeHTML(ticket.implied_win)}</strong></span>
+        </footer>`;
       return `
         <article class="ticket ticket-${type}">
           <header class="ticket-topbar">
@@ -343,19 +365,16 @@
               <span class="sgp-badge">SGP</span>
               <span class="ticket-title">Same Game Parlay</span>
             </div>
-            <div class="ticket-odds">${americanOdds(ticket.odds)}</div>
+            <div class="ticket-odds">${oddsLabel}</div>
           </header>
           <div class="ticket-body">
             <div class="ticket-meta">
               <div class="game-matchup">${escapeHTML(fullMatchup(parlay.matchup))}</div>
               <div class="game-time">${escapeHTML(parlay.time)}</div>
             </div>
-            <div class="ticket-context">${tier} · ${ticket.legs.length} plays · ${escapeHTML(parlay.game_script || 'normal')} game script · estimated odds</div>
+            <div class="ticket-context">${tier} · ${ticket.legs.length} plays · ${escapeHTML(ticket.odds_status || 'confirmed market')}</div>
             <div class="legs-list">${ticket.legs.map(legDisplay).join('')}</div>
-            <footer class="ticket-footer">
-              <span>Stake <strong>$${escapeHTML(ticket.stake)}</strong></span>
-              <span>Potential return <strong>$${escapeHTML(ticket.implied_win)}</strong></span>
-            </footer>
+            ${footer}
           </div>
         </article>`;
     }
@@ -364,6 +383,7 @@
       const card = document.createElement('div');
       card.className = 'parlay-card';
       card.innerHTML = `<div class="tickets">
+        ${parlay.fanduel ? ticketHTML(parlay, parlay.fanduel, 'fanduel') : ''}
         ${parlay.grind ? ticketHTML(parlay, parlay.grind, 'grind') : ''}
         ${parlay.moonshot ? ticketHTML(parlay, parlay.moonshot, 'moonshot') : ''}
       </div>`;

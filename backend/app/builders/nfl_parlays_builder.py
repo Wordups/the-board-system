@@ -1,45 +1,77 @@
 from __future__ import annotations
 
-from app.collectors.nfl_collector import collect_nfl_raw_data
-from app.sim.nfl_parlays import build_same_game_parlays_for_game
+import json
+from pathlib import Path
+
 from app.utils.dates import timestamp_et
 
 
+FANDUEL_SOURCE = "FanDuel Sportsbook"
+
+
+def _load_fanduel_snapshot(path: Path) -> dict:
+    if not path.exists():
+        return {
+            "source": FANDUEL_SOURCE,
+            "date": None,
+            "week": None,
+            "season": None,
+            "parlays": [],
+            "source_status": "unavailable",
+        }
+
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if payload.get("source") != FANDUEL_SOURCE:
+        raise ValueError("NFL parlay source must be FanDuel Sportsbook")
+
+    for parlay in payload.get("parlays", []):
+        if parlay.get("book") != FANDUEL_SOURCE:
+            raise ValueError("Every NFL parlay must identify FanDuel Sportsbook")
+        if not parlay.get("legs"):
+            raise ValueError("FanDuel parlay cannot be empty")
+        for leg in parlay["legs"]:
+            if leg.get("book") != FANDUEL_SOURCE:
+                raise ValueError("Every NFL leg must come from FanDuel Sportsbook")
+            if not all(leg.get(field) for field in ("player_name", "market", "line", "selection")):
+                raise ValueError("FanDuel leg is missing required market data")
+
+    return payload
+
+
 def build_nfl_parlays_board(*, config, paths) -> dict:
-    raw_payload = collect_nfl_raw_data(paths.data_raw)
+    del config
+    source_path = paths.backend_root / "data_sources" / "fanduel_nfl_parlays.json"
+    source = _load_fanduel_snapshot(source_path)
     parlays = []
-    td_parlays = []
 
-    for raw_game in raw_payload["games"]:
-        ticket = build_same_game_parlays_for_game(
-            game_id=raw_game["game_id"],
-            matchup=f'{raw_game["away_team"]} @ {raw_game["home_team"]}',
-            time=raw_game.get("time", ""),
-            candidates=raw_game["candidates"],
-        )
-        if ticket:
-            parlays.append(ticket)
-            # Extract TD parlay if present
-            if "td_parlay" in ticket:
-                td_parlays.append({
-                    "game_id": ticket["game_id"],
-                    "matchup": ticket["matchup"],
-                    "time": ticket.get("time", ""),
-                    "game_script": ticket["game_script"],
-                    "td_parlay": ticket["td_parlay"],
-                })
-
-    week = raw_payload.get("week")
-    season = raw_payload.get("season")
-    week_label = f"Week {week} · {season}" if week and season else "Week 1"
+    for item in source.get("parlays", []):
+        odds_are_stable = item.get("odds_status") == "confirmed"
+        parlays.append({
+            "game_id": item["game_id"],
+            "matchup": item["matchup"],
+            "time": item.get("time", ""),
+            "game_script": "fanduel market",
+            "fanduel": {
+                "legs": item["legs"],
+                "odds": item.get("displayed_odds") if odds_are_stable else None,
+                "odds_source": FANDUEL_SOURCE,
+                "odds_status": item.get("odds_status", "unavailable"),
+                "source_url": source.get("source_url"),
+                "stake": None,
+                "implied_win": None,
+            },
+        })
 
     return {
         "sport": "NFL",
-        "date": raw_payload["date"],
+        "date": source.get("date"),
         "last_updated": timestamp_et(),
-        "week": week,
-        "season": season,
-        "uncertainty_note": f"{week_label} — built entirely from 2025 prior-season stats; no current-season sample yet.",
+        "captured_at": source.get("captured_at"),
+        "week": source.get("week"),
+        "season": source.get("season"),
+        "source": FANDUEL_SOURCE,
+        "source_status": source.get("source_status", "captured"),
+        "uncertainty_note": "Only markets and lines displayed by FanDuel Sportsbook are eligible.",
         "parlays": parlays,
-        "td_parlays": td_parlays,
+        "td_parlays": [],
     }
