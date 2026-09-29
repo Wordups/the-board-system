@@ -1,7 +1,7 @@
 {
   "sport": "MLB",
   "date": "2026-09-29",
-  "last_updated": "6:14 AM ET",
+  "last_updated": "7:12 AM ET",
   "calibration": {
     "threshold_pp": 15.0,
     "mode": "off",
@@ -36,7 +36,7 @@
         "team": "PHI",
         "opponent": "ATL",
         "line": "HR 1+",
-        "score": 37.2,
+        "score": 37.01,
         "confidence": 37,
         "tier": "A",
         "reason": "HR edge 22.1 | L5 0.40/g | L10 0.30/g | Season 0.29/g | HR% 0.24 | HistHR% 0.27 | OPS 0.857 | SLG 0.503 | ISO 0.271 | PowIdx 0.50 | Surge 0.21 | Matchup 0.18 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.076 | vs Chris Sale | ERA 2.16 | WHIP 0.98 | HR/9 0.55 | HR A 10 | Hand L | Platoon - | vsP 0.000/0.000 in 3 PA | Age 33 | Order est. 1 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30",
@@ -254,7 +254,7 @@
         "score": 94.24,
         "confidence": 92,
         "tier": "A",
-        "reason": "Edge 58.0, trend 0.40, matchup 0.27, form 0.15",
+        "reason": "Edge 58.0, trend 0.40, matchup 0.26, form 0.15",
         "sim_prob_pct": 93.6
       },
       {
@@ -314,7 +314,7 @@
         "score": 93.68,
         "confidence": 92,
         "tier": "A",
-        "reason": "Edge 58.0, trend 0.40, matchup 0.22, form 0.26",
+        "reason": "Edge 58.0, trend 0.40, matchup 0.25, form 0.26",
         "sim_prob_pct": 93.1
       },
       {
@@ -1952,12 +1952,12 @@
                 "model_prob_raw": 0.3468,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26SEP291400PHIATL-PHIKSCHWARBER12-1",
-                "implied_prob": 0.175,
-                "edge_pp": 17.2,
-                "volume": 6717,
+                "implied_prob": 0.18,
+                "edge_pp": 16.7,
+                "volume": 6724,
                 "decision": "BET",
                 "model_fair_american": 188,
-                "market_american": 471
+                "market_american": 456
               },
               {
                 "threshold": 2,
@@ -2003,7 +2003,7 @@
                 "ticker": "KXMLBHR-26SEP291400PHIATL-ATLMOLSON28-1",
                 "implied_prob": 0.165,
                 "edge_pp": 10.3,
-                "volume": 2167,
+                "volume": 2251,
                 "decision": "BET",
                 "model_fair_american": 274,
                 "market_american": 506
@@ -2050,12 +2050,12 @@
                 "model_prob_raw": 0.244,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26SEP291400PHIATL-ATLDBALDWIN30-1",
-                "implied_prob": 0.115,
-                "edge_pp": 12.9,
-                "volume": 683,
+                "implied_prob": 0.105,
+                "edge_pp": 13.9,
+                "volume": 778,
                 "decision": "BET",
                 "model_fair_american": 310,
-                "market_american": 770
+                "market_american": 852
               },
               {
                 "threshold": 2,
@@ -2253,7 +2253,7 @@
             "score": 92.44,
             "confidence": 92,
             "tier": "A",
-            "reason": "Edge 58.0, trend 0.40, matchup 0.27, form 0.15",
+            "reason": "Edge 58.0, trend 0.40, matchup 0.26, form 0.15",
             "sim_prob_pct": 93.6,
             "calibration_status": "flag",
             "baseline_prob_pct": 69.5,
@@ -2328,7 +2328,7 @@
             "score": 91.88,
             "confidence": 92,
             "tier": "A",
-            "reason": "Edge 58.0, trend 0.40, matchup 0.22, form 0.26",
+            "reason": "Edge 58.0, trend 0.40, matchup 0.25, form 0.26",
             "sim_prob_pct": 93.1,
             "calibration_status": "flag",
             "baseline_prob_pct": 75.4,
@@ -2495,7 +2495,7 @@
             "score": 35.52,
             "confidence": 36,
             "tier": "A",
-            "reason": "Edge 8.5, trend 0.25, matchup 0.31, form 0.12",
+            "reason": "Edge 8.5, trend 0.25, matchup 0.30, form 0.12",
             "sim_prob_pct": 36.7,
             "calibration_status": "ok",
             "baseline_prob_pct": 39.8,
@@ -2525,7 +2525,7 @@
             "score": 34.2,
             "confidence": 34,
             "tier": "B",
-            "reason": "Edge 6.9, trend 0.20, matchup 0.22, form 0.25",
+            "reason": "Edge 6.9, trend 0.20, matchup 0.26, form 0.25",
             "sim_prob_pct": 35.4,
             "calibration_status": "ok",
             "baseline_prob_pct": 44.9,
@@ -2540,11 +2540,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.97,
         "park_factor_rhb": 1.02,
-        "wind_mph": 3,
-        "wind_deg": 55,
-        "wind_label": "IN",
-        "hr_lean": "HR suppress",
-        "summary_chip": "Truist Park \u00b7 3mph IN (HR suppress)"
+        "wind_mph": 4,
+        "wind_deg": 357,
+        "wind_label": "CROSS",
+        "hr_lean": "neutral",
+        "summary_chip": "Truist Park \u00b7 4mph CROSS"
       }
     },
     {
@@ -2610,7 +2610,7 @@
                 "ticker": "KXMLBHR-26SEP291700CWSHOU-CWSMMURAKAMI5-1",
                 "implied_prob": 0.185,
                 "edge_pp": 19.8,
-                "volume": 23691,
+                "volume": 24057,
                 "decision": "BET",
                 "model_fair_american": 161,
                 "market_american": 441
@@ -2659,7 +2659,7 @@
                 "ticker": "KXMLBHR-26SEP291700CWSHOU-HOUYALVAREZ44-1",
                 "implied_prob": 0.195,
                 "edge_pp": 12.7,
-                "volume": 8039,
+                "volume": 8262,
                 "decision": "BET",
                 "model_fair_american": 211,
                 "market_american": 413
@@ -2708,7 +2708,7 @@
                 "ticker": "KXMLBHR-26SEP291700CWSHOU-CWSCMONTGOMERY12-1",
                 "implied_prob": 0.155,
                 "edge_pp": 14.7,
-                "volume": 1203,
+                "volume": 1224,
                 "decision": "BET",
                 "model_fair_american": 231,
                 "market_american": 545
@@ -3267,12 +3267,12 @@
                 "model_prob_raw": 0.3068,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26SEP292000BOSNYY-NYYBRICE22-1",
-                "implied_prob": 0.16,
-                "edge_pp": 14.7,
-                "volume": 9376,
+                "implied_prob": 0.155,
+                "edge_pp": 15.2,
+                "volume": 9377,
                 "decision": "BET",
                 "model_fair_american": 226,
-                "market_american": 525
+                "market_american": 545
               },
               {
                 "threshold": 2,
@@ -3806,11 +3806,11 @@
         "is_dome": false,
         "park_factor_lhb": 1.18,
         "park_factor_rhb": 1.05,
-        "wind_mph": 4,
-        "wind_deg": 235,
-        "wind_label": "OUT",
+        "wind_mph": 3,
+        "wind_deg": 332,
+        "wind_label": "CROSS",
         "hr_lean": "HR boost",
-        "summary_chip": "Yankee Stadium \u00b7 4mph OUT (HR boost)"
+        "summary_chip": "Yankee Stadium \u00b7 3mph CROSS (HR boost)"
       }
     },
     {
@@ -3876,7 +3876,7 @@
                 "ticker": "KXMLBHR-26SEP292200CHCSD-CHCPCROWARMSTRONG4-1",
                 "implied_prob": 0.205,
                 "edge_pp": 11.7,
-                "volume": 15047,
+                "volume": 15122,
                 "decision": "BET",
                 "model_fair_american": 211,
                 "market_american": 388
@@ -3925,7 +3925,7 @@
                 "ticker": "KXMLBHR-26SEP292200CHCSD-CHCIHAPP8-1",
                 "implied_prob": 0.105,
                 "edge_pp": 15.3,
-                "volume": 3997,
+                "volume": 3998,
                 "decision": "BET",
                 "model_fair_american": 288,
                 "market_american": 852
@@ -3972,12 +3972,12 @@
                 "model_prob_raw": 0.2372,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26SEP292200CHCSD-CHCABREGMAN3-1",
-                "implied_prob": 0.115,
-                "edge_pp": 12.2,
-                "volume": 20248,
+                "implied_prob": 0.105,
+                "edge_pp": 13.2,
+                "volume": 20368,
                 "decision": "BET",
                 "model_fair_american": 322,
-                "market_american": 770
+                "market_american": 852
               },
               {
                 "threshold": 2,
@@ -3988,7 +3988,7 @@
                 "ticker": "KXMLBHR-26SEP292200CHCSD-CHCABREGMAN3-2",
                 "implied_prob": 0.01,
                 "edge_pp": 1.6,
-                "volume": 18231,
+                "volume": 18327,
                 "decision": "PASS",
                 "model_fair_american": 3746,
                 "market_american": 9900
@@ -4190,7 +4190,7 @@
             "score": 87.16,
             "confidence": 87,
             "tier": "A",
-            "reason": "Edge 49.7, trend 0.40, matchup 0.31, form 0.30",
+            "reason": "Edge 49.7, trend 0.40, matchup 0.29, form 0.30",
             "sim_prob_pct": 88.4,
             "calibration_status": "flag",
             "baseline_prob_pct": 68.2,
@@ -4250,7 +4250,7 @@
             "score": 82.32,
             "confidence": 82,
             "tier": "A",
-            "reason": "Edge 40.8, trend 0.40, matchup 0.27, form 0.14",
+            "reason": "Edge 40.8, trend 0.40, matchup 0.28, form 0.14",
             "sim_prob_pct": 83.5,
             "calibration_status": "flag",
             "baseline_prob_pct": 65.0,
@@ -4372,7 +4372,7 @@
             "score": 34.52,
             "confidence": 35,
             "tier": "B",
-            "reason": "Edge 6.6, trend 0.25, matchup 0.36, form 0.31",
+            "reason": "Edge 6.6, trend 0.25, matchup 0.33, form 0.31",
             "sim_prob_pct": 35.7,
             "calibration_status": "ok",
             "baseline_prob_pct": 42.3,
@@ -4462,11 +4462,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.9,
         "park_factor_rhb": 0.92,
-        "wind_mph": 3,
-        "wind_deg": 48,
+        "wind_mph": 4,
+        "wind_deg": 40,
         "wind_label": "IN",
         "hr_lean": "HR suppress",
-        "summary_chip": "Petco Park \u00b7 3mph IN (HR suppress)"
+        "summary_chip": "Petco Park \u00b7 4mph IN (HR suppress)"
       }
     }
   ],
@@ -4509,7 +4509,7 @@
           "ticker": "KXMLBHR-26SEP291700CWSHOU-CWSMMURAKAMI5-1",
           "implied_prob": 0.185,
           "edge_pp": 19.8,
-          "volume": 23691,
+          "volume": 24057,
           "decision": "BET",
           "model_fair_american": 161,
           "market_american": 441
@@ -4524,7 +4524,7 @@
             "ticker": "KXMLBHR-26SEP291700CWSHOU-CWSMMURAKAMI5-1",
             "implied_prob": 0.185,
             "edge_pp": 19.8,
-            "volume": 23691,
+            "volume": 24057,
             "decision": "BET",
             "model_fair_american": 161,
             "market_american": 441
@@ -4561,12 +4561,12 @@
           "model_prob_raw": 0.3468,
           "shrink_pp": 0.0,
           "ticker": "KXMLBHR-26SEP291400PHIATL-PHIKSCHWARBER12-1",
-          "implied_prob": 0.175,
-          "edge_pp": 17.2,
-          "volume": 6717,
+          "implied_prob": 0.18,
+          "edge_pp": 16.7,
+          "volume": 6724,
           "decision": "BET",
           "model_fair_american": 188,
-          "market_american": 471
+          "market_american": 456
         },
         "ladder": [
           {
@@ -4576,12 +4576,12 @@
             "model_prob_raw": 0.3468,
             "shrink_pp": 0.0,
             "ticker": "KXMLBHR-26SEP291400PHIATL-PHIKSCHWARBER12-1",
-            "implied_prob": 0.175,
-            "edge_pp": 17.2,
-            "volume": 6717,
+            "implied_prob": 0.18,
+            "edge_pp": 16.7,
+            "volume": 6724,
             "decision": "BET",
             "model_fair_american": 188,
-            "market_american": 471
+            "market_american": 456
           },
           {
             "threshold": 2,
@@ -4617,7 +4617,7 @@
           "ticker": "KXMLBHR-26SEP292200CHCSD-CHCIHAPP8-1",
           "implied_prob": 0.105,
           "edge_pp": 15.3,
-          "volume": 3997,
+          "volume": 3998,
           "decision": "BET",
           "model_fair_american": 288,
           "market_american": 852
@@ -4632,7 +4632,7 @@
             "ticker": "KXMLBHR-26SEP292200CHCSD-CHCIHAPP8-1",
             "implied_prob": 0.105,
             "edge_pp": 15.3,
-            "volume": 3997,
+            "volume": 3998,
             "decision": "BET",
             "model_fair_american": 288,
             "market_american": 852
@@ -4655,6 +4655,60 @@
         "label": "REPORT_ONLY \u2014 no execution venue wired"
       },
       {
+        "player_id": "700250",
+        "player_name": "Ben Rice",
+        "team": "NYY",
+        "opponent": "BOS",
+        "market": "HR",
+        "game_id": "bos-nyy-2026-09-29",
+        "headline_line": "HR 1+",
+        "best": {
+          "threshold": 1,
+          "line": "1+",
+          "model_prob": 0.3068,
+          "model_prob_raw": 0.3068,
+          "shrink_pp": 0.0,
+          "ticker": "KXMLBHR-26SEP292000BOSNYY-NYYBRICE22-1",
+          "implied_prob": 0.155,
+          "edge_pp": 15.2,
+          "volume": 9377,
+          "decision": "BET",
+          "model_fair_american": 226,
+          "market_american": 545
+        },
+        "ladder": [
+          {
+            "threshold": 1,
+            "line": "1+",
+            "model_prob": 0.3068,
+            "model_prob_raw": 0.3068,
+            "shrink_pp": 0.0,
+            "ticker": "KXMLBHR-26SEP292000BOSNYY-NYYBRICE22-1",
+            "implied_prob": 0.155,
+            "edge_pp": 15.2,
+            "volume": 9377,
+            "decision": "BET",
+            "model_fair_american": 226,
+            "market_american": 545
+          },
+          {
+            "threshold": 2,
+            "line": "2+",
+            "model_prob": 0.046,
+            "model_prob_raw": 0.046,
+            "shrink_pp": 0.0,
+            "ticker": "KXMLBHR-26SEP292000BOSNYY-NYYBRICE22-2",
+            "implied_prob": 0.01,
+            "edge_pp": 3.6,
+            "volume": 1223,
+            "decision": "PASS",
+            "model_fair_american": 2074,
+            "market_american": 9900
+          }
+        ],
+        "label": "REPORT_ONLY \u2014 no execution venue wired"
+      },
+      {
         "player_id": "695657",
         "player_name": "Colson Montgomery",
         "team": "CWS",
@@ -4671,7 +4725,7 @@
           "ticker": "KXMLBHR-26SEP291700CWSHOU-CWSCMONTGOMERY12-1",
           "implied_prob": 0.155,
           "edge_pp": 14.7,
-          "volume": 1203,
+          "volume": 1224,
           "decision": "BET",
           "model_fair_american": 231,
           "market_american": 545
@@ -4686,7 +4740,7 @@
             "ticker": "KXMLBHR-26SEP291700CWSHOU-CWSCMONTGOMERY12-1",
             "implied_prob": 0.155,
             "edge_pp": 14.7,
-            "volume": 1203,
+            "volume": 1224,
             "decision": "BET",
             "model_fair_american": 231,
             "market_american": 545
@@ -4709,54 +4763,108 @@
         "label": "REPORT_ONLY \u2014 no execution venue wired"
       },
       {
-        "player_id": "700250",
-        "player_name": "Ben Rice",
-        "team": "NYY",
-        "opponent": "BOS",
+        "player_id": "686948",
+        "player_name": "Drake Baldwin",
+        "team": "ATL",
+        "opponent": "PHI",
         "market": "HR",
-        "game_id": "bos-nyy-2026-09-29",
+        "game_id": "phi-atl-2026-09-29",
         "headline_line": "HR 1+",
         "best": {
           "threshold": 1,
           "line": "1+",
-          "model_prob": 0.3068,
-          "model_prob_raw": 0.3068,
+          "model_prob": 0.244,
+          "model_prob_raw": 0.244,
           "shrink_pp": 0.0,
-          "ticker": "KXMLBHR-26SEP292000BOSNYY-NYYBRICE22-1",
-          "implied_prob": 0.16,
-          "edge_pp": 14.7,
-          "volume": 9376,
+          "ticker": "KXMLBHR-26SEP291400PHIATL-ATLDBALDWIN30-1",
+          "implied_prob": 0.105,
+          "edge_pp": 13.9,
+          "volume": 778,
           "decision": "BET",
-          "model_fair_american": 226,
-          "market_american": 525
+          "model_fair_american": 310,
+          "market_american": 852
         },
         "ladder": [
           {
             "threshold": 1,
             "line": "1+",
-            "model_prob": 0.3068,
-            "model_prob_raw": 0.3068,
+            "model_prob": 0.244,
+            "model_prob_raw": 0.244,
             "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26SEP292000BOSNYY-NYYBRICE22-1",
-            "implied_prob": 0.16,
-            "edge_pp": 14.7,
-            "volume": 9376,
+            "ticker": "KXMLBHR-26SEP291400PHIATL-ATLDBALDWIN30-1",
+            "implied_prob": 0.105,
+            "edge_pp": 13.9,
+            "volume": 778,
             "decision": "BET",
-            "model_fair_american": 226,
-            "market_american": 525
+            "model_fair_american": 310,
+            "market_american": 852
           },
           {
             "threshold": 2,
             "line": "2+",
-            "model_prob": 0.046,
-            "model_prob_raw": 0.046,
+            "model_prob": 0.0292,
+            "model_prob_raw": 0.0292,
             "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26SEP292000BOSNYY-NYYBRICE22-2",
+            "ticker": "KXMLBHR-26SEP291400PHIATL-ATLDBALDWIN30-2",
             "implied_prob": 0.01,
-            "edge_pp": 3.6,
-            "volume": 1223,
+            "edge_pp": 1.9,
+            "volume": 338,
             "decision": "PASS",
-            "model_fair_american": 2074,
+            "model_fair_american": 3325,
+            "market_american": 9900
+          }
+        ],
+        "label": "REPORT_ONLY \u2014 no execution venue wired"
+      },
+      {
+        "player_id": "608324",
+        "player_name": "Alex Bregman",
+        "team": "CHC",
+        "opponent": "SD",
+        "market": "HR",
+        "game_id": "chc-sd-2026-09-29",
+        "headline_line": "HR 1+",
+        "best": {
+          "threshold": 1,
+          "line": "1+",
+          "model_prob": 0.2372,
+          "model_prob_raw": 0.2372,
+          "shrink_pp": 0.0,
+          "ticker": "KXMLBHR-26SEP292200CHCSD-CHCABREGMAN3-1",
+          "implied_prob": 0.105,
+          "edge_pp": 13.2,
+          "volume": 20368,
+          "decision": "BET",
+          "model_fair_american": 322,
+          "market_american": 852
+        },
+        "ladder": [
+          {
+            "threshold": 1,
+            "line": "1+",
+            "model_prob": 0.2372,
+            "model_prob_raw": 0.2372,
+            "shrink_pp": 0.0,
+            "ticker": "KXMLBHR-26SEP292200CHCSD-CHCABREGMAN3-1",
+            "implied_prob": 0.105,
+            "edge_pp": 13.2,
+            "volume": 20368,
+            "decision": "BET",
+            "model_fair_american": 322,
+            "market_american": 852
+          },
+          {
+            "threshold": 2,
+            "line": "2+",
+            "model_prob": 0.026,
+            "model_prob_raw": 0.026,
+            "shrink_pp": 0.0,
+            "ticker": "KXMLBHR-26SEP292200CHCSD-CHCABREGMAN3-2",
+            "implied_prob": 0.01,
+            "edge_pp": 1.6,
+            "volume": 18327,
+            "decision": "PASS",
+            "model_fair_american": 3746,
             "market_american": 9900
           }
         ],
@@ -4817,60 +4925,6 @@
         "label": "REPORT_ONLY \u2014 no execution venue wired"
       },
       {
-        "player_id": "686948",
-        "player_name": "Drake Baldwin",
-        "team": "ATL",
-        "opponent": "PHI",
-        "market": "HR",
-        "game_id": "phi-atl-2026-09-29",
-        "headline_line": "HR 1+",
-        "best": {
-          "threshold": 1,
-          "line": "1+",
-          "model_prob": 0.244,
-          "model_prob_raw": 0.244,
-          "shrink_pp": 0.0,
-          "ticker": "KXMLBHR-26SEP291400PHIATL-ATLDBALDWIN30-1",
-          "implied_prob": 0.115,
-          "edge_pp": 12.9,
-          "volume": 683,
-          "decision": "BET",
-          "model_fair_american": 310,
-          "market_american": 770
-        },
-        "ladder": [
-          {
-            "threshold": 1,
-            "line": "1+",
-            "model_prob": 0.244,
-            "model_prob_raw": 0.244,
-            "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26SEP291400PHIATL-ATLDBALDWIN30-1",
-            "implied_prob": 0.115,
-            "edge_pp": 12.9,
-            "volume": 683,
-            "decision": "BET",
-            "model_fair_american": 310,
-            "market_american": 770
-          },
-          {
-            "threshold": 2,
-            "line": "2+",
-            "model_prob": 0.0292,
-            "model_prob_raw": 0.0292,
-            "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26SEP291400PHIATL-ATLDBALDWIN30-2",
-            "implied_prob": 0.01,
-            "edge_pp": 1.9,
-            "volume": 338,
-            "decision": "PASS",
-            "model_fair_american": 3325,
-            "market_american": 9900
-          }
-        ],
-        "label": "REPORT_ONLY \u2014 no execution venue wired"
-      },
-      {
         "player_id": "670541",
         "player_name": "Yordan Alvarez",
         "team": "HOU",
@@ -4887,7 +4941,7 @@
           "ticker": "KXMLBHR-26SEP291700CWSHOU-HOUYALVAREZ44-1",
           "implied_prob": 0.195,
           "edge_pp": 12.7,
-          "volume": 8039,
+          "volume": 8262,
           "decision": "BET",
           "model_fair_american": 211,
           "market_american": 413
@@ -4902,7 +4956,7 @@
             "ticker": "KXMLBHR-26SEP291700CWSHOU-HOUYALVAREZ44-1",
             "implied_prob": 0.195,
             "edge_pp": 12.7,
-            "volume": 8039,
+            "volume": 8262,
             "decision": "BET",
             "model_fair_american": 211,
             "market_american": 413
@@ -4925,60 +4979,6 @@
         "label": "REPORT_ONLY \u2014 no execution venue wired"
       },
       {
-        "player_id": "608324",
-        "player_name": "Alex Bregman",
-        "team": "CHC",
-        "opponent": "SD",
-        "market": "HR",
-        "game_id": "chc-sd-2026-09-29",
-        "headline_line": "HR 1+",
-        "best": {
-          "threshold": 1,
-          "line": "1+",
-          "model_prob": 0.2372,
-          "model_prob_raw": 0.2372,
-          "shrink_pp": 0.0,
-          "ticker": "KXMLBHR-26SEP292200CHCSD-CHCABREGMAN3-1",
-          "implied_prob": 0.115,
-          "edge_pp": 12.2,
-          "volume": 20248,
-          "decision": "BET",
-          "model_fair_american": 322,
-          "market_american": 770
-        },
-        "ladder": [
-          {
-            "threshold": 1,
-            "line": "1+",
-            "model_prob": 0.2372,
-            "model_prob_raw": 0.2372,
-            "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26SEP292200CHCSD-CHCABREGMAN3-1",
-            "implied_prob": 0.115,
-            "edge_pp": 12.2,
-            "volume": 20248,
-            "decision": "BET",
-            "model_fair_american": 322,
-            "market_american": 770
-          },
-          {
-            "threshold": 2,
-            "line": "2+",
-            "model_prob": 0.026,
-            "model_prob_raw": 0.026,
-            "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26SEP292200CHCSD-CHCABREGMAN3-2",
-            "implied_prob": 0.01,
-            "edge_pp": 1.6,
-            "volume": 18231,
-            "decision": "PASS",
-            "model_fair_american": 3746,
-            "market_american": 9900
-          }
-        ],
-        "label": "REPORT_ONLY \u2014 no execution venue wired"
-      },
-      {
         "player_id": "691718",
         "player_name": "Pete Crow-Armstrong",
         "team": "CHC",
@@ -4995,7 +4995,7 @@
           "ticker": "KXMLBHR-26SEP292200CHCSD-CHCPCROWARMSTRONG4-1",
           "implied_prob": 0.205,
           "edge_pp": 11.7,
-          "volume": 15047,
+          "volume": 15122,
           "decision": "BET",
           "model_fair_american": 211,
           "market_american": 388
@@ -5010,7 +5010,7 @@
             "ticker": "KXMLBHR-26SEP292200CHCSD-CHCPCROWARMSTRONG4-1",
             "implied_prob": 0.205,
             "edge_pp": 11.7,
-            "volume": 15047,
+            "volume": 15122,
             "decision": "BET",
             "model_fair_american": 211,
             "market_american": 388
@@ -5049,7 +5049,7 @@
           "ticker": "KXMLBHR-26SEP291400PHIATL-ATLMOLSON28-1",
           "implied_prob": 0.165,
           "edge_pp": 10.3,
-          "volume": 2167,
+          "volume": 2251,
           "decision": "BET",
           "model_fair_american": 274,
           "market_american": 506
@@ -5064,7 +5064,7 @@
             "ticker": "KXMLBHR-26SEP291400PHIATL-ATLMOLSON28-1",
             "implied_prob": 0.165,
             "edge_pp": 10.3,
-            "volume": 2167,
+            "volume": 2251,
             "decision": "BET",
             "model_fair_american": 274,
             "market_american": 506
