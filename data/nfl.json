@@ -1,7 +1,7 @@
 {
   "sport": "NFL",
   "date": "2026-10-01",
-  "last_updated": "4:16 PM ET",
+  "last_updated": "5:13 PM ET",
   "week": 4,
   "season": 2026,
   "uncertainty_note": "Week 4 \u00b7 2026 \u2014 built entirely from 2025 prior-season stats; no current-season sample yet, and rosters/depth charts are not yet final.",
@@ -11170,6 +11170,23 @@
             "td_lambda": 0.5558913559585593
           },
           {
+            "player_id": "4361426",
+            "player_name": "Justin Shorter",
+            "team": "LV",
+            "opponent": "KC",
+            "line": "10+ Rec Yds",
+            "score": 61.75,
+            "confidence": 62,
+            "tier": "B",
+            "reason": "Proj 14.5 rec yds/g | Rec match 0.87x | 2025 GP 7 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 61.75,
+            "model_hit_rate_raw": 0.6175,
+            "lineup_confirmed": false,
+            "position": "WR",
+            "rec_yds_mean": 14.484660126070478,
+            "td_lambda": 0.11411360241636904
+          },
+          {
             "player_id": "4362921",
             "player_name": "Tyquan Thornton",
             "team": "KC",
@@ -11202,23 +11219,6 @@
             "position": "TE",
             "rec_yds_mean": 34.67857088361468,
             "td_lambda": 0.21285714285714286
-          },
-          {
-            "player_id": "4683062",
-            "player_name": "Xavier Worthy",
-            "team": "KC",
-            "opponent": "LV",
-            "line": "30+ Rec Yds",
-            "score": 59.15,
-            "confidence": 59,
-            "tier": "B",
-            "reason": "Proj 34.4 rec yds/g | Rec match 0.86x | 2025 GP 14 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 59.15,
-            "model_hit_rate_raw": 0.5915,
-            "lineup_confirmed": false,
-            "position": "WR",
-            "rec_yds_mean": 34.37659414853713,
-            "td_lambda": 0.1181407639870249
           }
         ],
         "RushYds": [
@@ -15959,12 +15959,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 20.9
+        "joint_prob_pct": 19.9
       },
       "ceiling": {
         "qb_line": "3+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 4.1
+        "joint_prob_pct": 3.9
       }
     },
     {
