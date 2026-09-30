@@ -1,7 +1,7 @@
 {
   "sport": "NFL",
   "date": "2026-10-01",
-  "last_updated": "12:17 AM ET",
+  "last_updated": "1:14 AM ET",
   "week": 4,
   "season": 2026,
   "uncertainty_note": "Week 4 \u00b7 2026 \u2014 built entirely from 2025 prior-season stats; no current-season sample yet, and rosters/depth charts are not yet final.",
@@ -71,6 +71,24 @@
         "int_lambda": 0.16999999999999998,
         "rush_yds_mean": 22.3111294993794,
         "td_lambda": 0.4140008274720729
+      },
+      {
+        "player_id": "4371733",
+        "player_name": "Kenny Gainwell",
+        "team": "TB",
+        "opponent": "GB",
+        "line": "2+ Receptions",
+        "score": 82.49,
+        "confidence": 82,
+        "tier": "A",
+        "reason": "REC/g 3.17 | Rec match 0.82x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+        "sim_prob_pct": 82.49,
+        "model_hit_rate_raw": 0.8249,
+        "lineup_confirmed": false,
+        "position": "RB",
+        "rush_yds_mean": 43.64285773322696,
+        "rec_yds_mean": 21.11076371695887,
+        "td_lambda": 0.5230274486424722
       },
       {
         "player_id": "4361411",
@@ -159,22 +177,22 @@
         "td_lambda": 0.6441778145543142
       },
       {
-        "player_id": "4371733",
-        "player_name": "Kenny Gainwell",
-        "team": "TB",
-        "opponent": "GB",
+        "player_id": "4890973",
+        "player_name": "Ashton Jeanty",
+        "team": "LV",
+        "opponent": "KC",
         "line": "2+ Receptions",
-        "score": 82.11,
+        "score": 82.21,
         "confidence": 82,
         "tier": "A",
-        "reason": "REC/g 3.14 | Rec match 0.81x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-        "sim_prob_pct": 82.11,
-        "model_hit_rate_raw": 0.8211,
+        "reason": "REC/g 3.15 | Rec match 1.04x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+        "sim_prob_pct": 82.21,
+        "model_hit_rate_raw": 0.8221,
         "lineup_confirmed": false,
         "position": "RB",
-        "rush_yds_mean": 43.64285773322696,
-        "rec_yds_mean": 20.91979015012156,
-        "td_lambda": 0.5218576474787382
+        "rush_yds_mean": 52.784678712462274,
+        "rec_yds_mean": 19.97168222778875,
+        "td_lambda": 0.5580118906896175
       },
       {
         "player_id": "4686422",
@@ -230,24 +248,6 @@
         "position": "WR",
         "rec_yds_mean": 38.83750937734433,
         "td_lambda": 0.17130883300055463
-      },
-      {
-        "player_id": "4890973",
-        "player_name": "Ashton Jeanty",
-        "team": "LV",
-        "opponent": "KC",
-        "line": "2+ Receptions",
-        "score": 81.82,
-        "confidence": 82,
-        "tier": "A",
-        "reason": "REC/g 3.12 | Rec match 1.03x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-        "sim_prob_pct": 81.82,
-        "model_hit_rate_raw": 0.8182,
-        "lineup_confirmed": false,
-        "position": "RB",
-        "rush_yds_mean": 52.784678712462274,
-        "rec_yds_mean": 19.791013094169575,
-        "td_lambda": 0.5556209459702819
       },
       {
         "player_id": "3054212",
@@ -390,7 +390,7 @@
           "market": "TD",
           "player_name": "Jaylen Warren",
           "line": "Anytime TD",
-          "score": 43.08,
+          "score": 43.13,
           "confidence": 43,
           "tier": "B",
           "player_id": "4569987"
@@ -422,17 +422,17 @@
             "team": "PIT",
             "opponent": "CLE",
             "line": "Anytime TD",
-            "score": 43.08,
+            "score": 43.13,
             "confidence": 43,
             "tier": "B",
-            "reason": "TD \u03bb 0.56 | Rush match 1.26x | Rec match 0.85x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 43.08,
-            "model_hit_rate_raw": 0.4308,
+            "reason": "TD \u03bb 0.56 | Rush match 1.26x | Rec match 0.86x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 43.13,
+            "model_hit_rate_raw": 0.4313,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 71.09127016963177,
-            "rec_yds_mean": 16.569449470147326,
-            "td_lambda": 0.5635022040079034
+            "rec_yds_mean": 16.720709441836203,
+            "td_lambda": 0.5644043200344283
           },
           {
             "player_id": "4038815",
@@ -440,17 +440,17 @@
             "team": "PIT",
             "opponent": "CLE",
             "line": "Anytime TD",
-            "score": 39.11,
+            "score": 39.14,
             "confidence": 39,
             "tier": "B",
-            "reason": "TD \u03bb 0.50 | Rush match 1.26x | Rec match 0.85x | 2025 GP 17 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 39.11,
-            "model_hit_rate_raw": 0.3911,
+            "reason": "TD \u03bb 0.50 | Rush match 1.26x | Rec match 0.86x | 2025 GP 17 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 39.14,
+            "model_hit_rate_raw": 0.3914,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 74.80126810238256,
-            "rec_yds_mean": 14.320028863696594,
-            "td_lambda": 0.49610211259377435
+            "rec_yds_mean": 14.450754218477337,
+            "td_lambda": 0.4965909439381967
           },
           {
             "player_id": "4685702",
@@ -461,14 +461,14 @@
             "score": 33.46,
             "confidence": 33,
             "tier": "B",
-            "reason": "TD \u03bb 0.41 | Rush match 0.84x | Rec match 0.86x | 2025 GP 14 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "reason": "TD \u03bb 0.41 | Rush match 0.84x | Rec match 0.87x | 2025 GP 14 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
             "sim_prob_pct": 33.46,
             "model_hit_rate_raw": 0.3346,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 46.65563477892462,
-            "rec_yds_mean": 10.847706934718365,
-            "td_lambda": 0.4072930248376956
+            "rec_yds_mean": 10.946733993329511,
+            "td_lambda": 0.4074326224521859
           },
           {
             "player_id": "5083076",
@@ -544,17 +544,17 @@
             "team": "CLE",
             "opponent": "PIT",
             "line": "Anytime TD",
-            "score": 24.68,
+            "score": 24.7,
             "confidence": 25,
             "tier": "C",
-            "reason": "TD \u03bb 0.28 | Rush match 0.84x | Rec match 0.86x | 2025 GP 4 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 24.68,
-            "model_hit_rate_raw": 0.2468,
+            "reason": "TD \u03bb 0.28 | Rush match 0.84x | Rec match 0.87x | 2025 GP 4 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 24.7,
+            "model_hit_rate_raw": 0.247,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 27.43069921390153,
-            "rec_yds_mean": 8.279141897131042,
-            "td_lambda": 0.2833931701793951
+            "rec_yds_mean": 8.354720918101199,
+            "td_lambda": 0.28370726481199837
           },
           {
             "player_id": "4241463",
@@ -579,17 +579,17 @@
             "team": "CLE",
             "opponent": "PIT",
             "line": "Anytime TD",
-            "score": 17.22,
+            "score": 17.23,
             "confidence": 17,
             "tier": "PASS",
-            "reason": "TD \u03bb 0.19 | Rush match 0.84x | Rec match 0.86x | 2025 GP 8 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 17.22,
-            "model_hit_rate_raw": 0.1722,
+            "reason": "TD \u03bb 0.19 | Rush match 0.84x | Rec match 0.87x | 2025 GP 8 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 17.23,
+            "model_hit_rate_raw": 0.1723,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 24.96896979726934,
-            "rec_yds_mean": 5.949513224778152,
-            "td_lambda": 0.1889287801195967
+            "rec_yds_mean": 6.003825421665797,
+            "td_lambda": 0.18913817654133222
           }
         ],
         "RecYds": [
@@ -701,17 +701,17 @@
             "team": "PIT",
             "opponent": "CLE",
             "line": "10+ Rec Yds",
-            "score": 61.33,
-            "confidence": 61,
+            "score": 61.67,
+            "confidence": 62,
             "tier": "B",
-            "reason": "Proj 14.3 rec yds/g | Rec match 0.85x | 2025 GP 17 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 61.33,
-            "model_hit_rate_raw": 0.6133,
+            "reason": "Proj 14.5 rec yds/g | Rec match 0.86x | 2025 GP 17 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 61.67,
+            "model_hit_rate_raw": 0.6167,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 74.80126810238256,
-            "rec_yds_mean": 14.320028863696594,
-            "td_lambda": 0.49610211259377435
+            "rec_yds_mean": 14.450754218477337,
+            "td_lambda": 0.4965909439381967
           },
           {
             "player_id": "4613104",
@@ -781,8 +781,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 27.43069921390153,
-            "rec_yds_mean": 8.279141897131042,
-            "td_lambda": 0.2833931701793951
+            "rec_yds_mean": 8.354720918101199,
+            "td_lambda": 0.28370726481199837
           },
           {
             "player_id": "4038815",
@@ -799,8 +799,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 74.80126810238256,
-            "rec_yds_mean": 14.320028863696594,
-            "td_lambda": 0.49610211259377435
+            "rec_yds_mean": 14.450754218477337,
+            "td_lambda": 0.4965909439381967
           },
           {
             "player_id": "4037457",
@@ -817,8 +817,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 14.972279682872609,
-            "rec_yds_mean": 3.4075988627552345,
-            "td_lambda": 0.142136453575931
+            "rec_yds_mean": 3.4387063119457486,
+            "td_lambda": 0.14231421042844822
           },
           {
             "player_id": "4722893",
@@ -835,8 +835,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 24.96896979726934,
-            "rec_yds_mean": 5.949513224778152,
-            "td_lambda": 0.1889287801195967
+            "rec_yds_mean": 6.003825421665797,
+            "td_lambda": 0.18913817654133222
           },
           {
             "player_id": "4432762",
@@ -874,8 +874,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 71.09127016963177,
-            "rec_yds_mean": 16.569449470147326,
-            "td_lambda": 0.5635022040079034
+            "rec_yds_mean": 16.720709441836203,
+            "td_lambda": 0.5644043200344283
           },
           {
             "player_id": "4685702",
@@ -892,8 +892,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 46.65563477892462,
-            "rec_yds_mean": 10.847706934718365,
-            "td_lambda": 0.4072930248376956
+            "rec_yds_mean": 10.946733993329511,
+            "td_lambda": 0.4074326224521859
           },
           {
             "player_id": "4570561",
@@ -910,8 +910,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 17.72445179975176,
-            "rec_yds_mean": 6.021194107004395,
-            "td_lambda": 0.1778904808951584
+            "rec_yds_mean": 6.0761606677099635,
+            "td_lambda": 0.17820457552776164
           }
         ],
         "REC": [
@@ -984,6 +984,24 @@
             "td_lambda": 0.3999424780064166
           },
           {
+            "player_id": "4569987",
+            "player_name": "Jaylen Warren",
+            "team": "PIT",
+            "opponent": "CLE",
+            "line": "2+ Receptions",
+            "score": 61.53,
+            "confidence": 62,
+            "tier": "B",
+            "reason": "REC/g 2.08 | Rec match 0.86x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 61.53,
+            "model_hit_rate_raw": 0.6153,
+            "lineup_confirmed": false,
+            "position": "RB",
+            "rush_yds_mean": 71.09127016963177,
+            "rec_yds_mean": 16.720709441836203,
+            "td_lambda": 0.5644043200344283
+          },
+          {
             "player_id": "4808839",
             "player_name": "Isaiah Bond",
             "team": "CLE",
@@ -1001,22 +1019,22 @@
             "td_lambda": 0.08744510331140916
           },
           {
-            "player_id": "4569987",
-            "player_name": "Jaylen Warren",
+            "player_id": "4038815",
+            "player_name": "Rico Dowdle",
             "team": "PIT",
             "opponent": "CLE",
             "line": "2+ Receptions",
-            "score": 61.04,
-            "confidence": 61,
+            "score": 57.76,
+            "confidence": 58,
             "tier": "B",
-            "reason": "REC/g 2.06 | Rec match 0.85x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 61.04,
-            "model_hit_rate_raw": 0.6104,
+            "reason": "REC/g 1.94 | Rec match 0.86x | 2025 GP 17 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 57.76,
+            "model_hit_rate_raw": 0.5776,
             "lineup_confirmed": false,
             "position": "RB",
-            "rush_yds_mean": 71.09127016963177,
-            "rec_yds_mean": 16.569449470147326,
-            "td_lambda": 0.5635022040079034
+            "rush_yds_mean": 74.80126810238256,
+            "rec_yds_mean": 14.450754218477337,
+            "td_lambda": 0.4965909439381967
           },
           {
             "player_id": "4613104",
@@ -1051,24 +1069,6 @@
             "position": "WR",
             "rec_yds_mean": 21.23542671174996,
             "td_lambda": 0.10287659213106959
-          },
-          {
-            "player_id": "4038815",
-            "player_name": "Rico Dowdle",
-            "team": "PIT",
-            "opponent": "CLE",
-            "line": "2+ Receptions",
-            "score": 57.27,
-            "confidence": 57,
-            "tier": "B",
-            "reason": "REC/g 1.92 | Rec match 0.85x | 2025 GP 17 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 57.27,
-            "model_hit_rate_raw": 0.5727,
-            "lineup_confirmed": false,
-            "position": "RB",
-            "rush_yds_mean": 74.80126810238256,
-            "rec_yds_mean": 14.320028863696594,
-            "td_lambda": 0.49610211259377435
           },
           {
             "player_id": "4241463",
@@ -2322,7 +2322,7 @@
           "market": "TD",
           "player_name": "James Cook III",
           "line": "Anytime TD",
-          "score": 55.7,
+          "score": 55.74,
           "confidence": 56,
           "tier": "A",
           "player_id": "4379399"
@@ -2354,17 +2354,17 @@
             "team": "BUF",
             "opponent": "NE",
             "line": "Anytime TD",
-            "score": 55.7,
+            "score": 55.74,
             "confidence": 56,
             "tier": "A",
-            "reason": "TD \u03bb 0.81 | Rush match 1.12x | Rec match 0.92x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 55.7,
-            "model_hit_rate_raw": 0.557,
+            "reason": "TD \u03bb 0.82 | Rush match 1.12x | Rec match 0.93x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 55.74,
+            "model_hit_rate_raw": 0.5574,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 95.44717188372051,
-            "rec_yds_mean": 15.169959098264624,
-            "td_lambda": 0.8142105295024337
+            "rec_yds_mean": 15.308443336250866,
+            "td_lambda": 0.8151364183507395
           },
           {
             "player_id": "3918298",
@@ -2393,17 +2393,17 @@
             "team": "NE",
             "opponent": "BUF",
             "line": "Anytime TD",
-            "score": 44.02,
+            "score": 44.08,
             "confidence": 44,
             "tier": "B",
-            "reason": "TD \u03bb 0.58 | Rush match 1.02x | Rec match 0.81x | 2025 GP 14 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 44.02,
-            "model_hit_rate_raw": 0.4402,
+            "reason": "TD \u03bb 0.58 | Rush match 1.02x | Rec match 0.82x | 2025 GP 14 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 44.08,
+            "model_hit_rate_raw": 0.4408,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 43.87891455594958,
-            "rec_yds_mean": 18.057149077772305,
-            "td_lambda": 0.5802520221718601
+            "rec_yds_mean": 18.221990031794743,
+            "td_lambda": 0.5812057154900849
           },
           {
             "player_id": "4432710",
@@ -2411,17 +2411,17 @@
             "team": "NE",
             "opponent": "BUF",
             "line": "Anytime TD",
-            "score": 42.67,
+            "score": 42.7,
             "confidence": 43,
             "tier": "B",
-            "reason": "TD \u03bb 0.56 | Rush match 1.02x | Rec match 0.81x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 42.67,
-            "model_hit_rate_raw": 0.4267,
+            "reason": "TD \u03bb 0.56 | Rush match 1.02x | Rec match 0.82x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 42.7,
+            "model_hit_rate_raw": 0.427,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 52.6351822079488,
-            "rec_yds_mean": 10.691479279744982,
-            "td_lambda": 0.5563243757538776
+            "rec_yds_mean": 10.789080159972178,
+            "td_lambda": 0.5567894774213863
           },
           {
             "player_id": "3915411",
@@ -2429,17 +2429,17 @@
             "team": "BUF",
             "opponent": "NE",
             "line": "Anytime TD",
-            "score": 28.4,
+            "score": 28.46,
             "confidence": 28,
             "tier": "C",
-            "reason": "TD \u03bb 0.33 | Rush match 1.12x | Rec match 0.92x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 28.4,
-            "model_hit_rate_raw": 0.284,
+            "reason": "TD \u03bb 0.33 | Rush match 1.12x | Rec match 0.93x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 28.46,
+            "model_hit_rate_raw": 0.2846,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 19.63362668537935,
-            "rec_yds_mean": 13.945870436554413,
-            "td_lambda": 0.3340403066760256
+            "rec_yds_mean": 14.073180156241266,
+            "td_lambda": 0.33496619552433127
           },
           {
             "player_id": "3915416",
@@ -2597,22 +2597,22 @@
             "td_lambda": 0.18638331365604094
           },
           {
-            "player_id": "4379399",
-            "player_name": "James Cook III",
+            "player_id": "3915411",
+            "player_name": "Ty Johnson",
             "team": "BUF",
             "opponent": "NE",
             "line": "10+ Rec Yds",
-            "score": 63.48,
-            "confidence": 63,
-            "tier": "A",
-            "reason": "Proj 15.2 rec yds/g | Rec match 0.92x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 63.48,
-            "model_hit_rate_raw": 0.6348,
+            "score": 60.7,
+            "confidence": 61,
+            "tier": "B",
+            "reason": "Proj 14.1 rec yds/g | Rec match 0.93x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 60.7,
+            "model_hit_rate_raw": 0.607,
             "lineup_confirmed": false,
             "position": "RB",
-            "rush_yds_mean": 95.44717188372051,
-            "rec_yds_mean": 15.169959098264624,
-            "td_lambda": 0.8142105295024337
+            "rush_yds_mean": 19.63362668537935,
+            "rec_yds_mean": 14.073180156241266,
+            "td_lambda": 0.33496619552433127
           },
           {
             "player_id": "4613202",
@@ -2630,24 +2630,6 @@
             "position": "WR",
             "rec_yds_mean": 14.035714456013272,
             "td_lambda": 0.15961680162342143
-          },
-          {
-            "player_id": "3915411",
-            "player_name": "Ty Johnson",
-            "team": "BUF",
-            "opponent": "NE",
-            "line": "10+ Rec Yds",
-            "score": 60.37,
-            "confidence": 60,
-            "tier": "B",
-            "reason": "Proj 13.9 rec yds/g | Rec match 0.92x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 60.37,
-            "model_hit_rate_raw": 0.6037,
-            "lineup_confirmed": false,
-            "position": "RB",
-            "rush_yds_mean": 19.63362668537935,
-            "rec_yds_mean": 13.945870436554413,
-            "td_lambda": 0.3340403066760256
           },
           {
             "player_id": "2991662",
@@ -2699,6 +2681,23 @@
             "position": "WR",
             "rec_yds_mean": 18.28124964237213,
             "td_lambda": 0.28000181009515934
+          },
+          {
+            "player_id": "4385690",
+            "player_name": "Dalton Kincaid",
+            "team": "BUF",
+            "opponent": "NE",
+            "line": "30+ Rec Yds",
+            "score": 58.62,
+            "confidence": 59,
+            "tier": "B",
+            "reason": "Proj 34.1 rec yds/g | Rec match 0.79x | 2025 GP 12 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 58.62,
+            "model_hit_rate_raw": 0.5862,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "rec_yds_mean": 34.08024451536231,
+            "td_lambda": 0.2939482804585444
           }
         ],
         "RushYds": [
@@ -2738,8 +2737,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 43.87891455594958,
-            "rec_yds_mean": 18.057149077772305,
-            "td_lambda": 0.5802520221718601
+            "rec_yds_mean": 18.221990031794743,
+            "td_lambda": 0.5812057154900849
           },
           {
             "player_id": "3915411",
@@ -2756,8 +2755,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 19.63362668537935,
-            "rec_yds_mean": 13.945870436554413,
-            "td_lambda": 0.3340403066760256
+            "rec_yds_mean": 14.073180156241266,
+            "td_lambda": 0.33496619552433127
           },
           {
             "player_id": "4379399",
@@ -2774,8 +2773,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 95.44717188372051,
-            "rec_yds_mean": 15.169959098264624,
-            "td_lambda": 0.8142105295024337
+            "rec_yds_mean": 15.308443336250866,
+            "td_lambda": 0.8151364183507395
           },
           {
             "player_id": "4432710",
@@ -2792,8 +2791,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 52.6351822079488,
-            "rec_yds_mean": 10.691479279744982,
-            "td_lambda": 0.5563243757538776
+            "rec_yds_mean": 10.789080159972178,
+            "td_lambda": 0.5567894774213863
           },
           {
             "player_id": "4431431",
@@ -2810,8 +2809,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 28.939594538684318,
-            "rec_yds_mean": 7.193590074954769,
-            "td_lambda": 0.20657158686751134
+            "rec_yds_mean": 7.2592592592592595,
+            "td_lambda": 0.20686756065592593
           },
           {
             "player_id": "4431452",
@@ -2849,8 +2848,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 23.635044700126077,
-            "rec_yds_mean": 6.20787952328584,
-            "td_lambda": 0.17398356573388946
+            "rec_yds_mean": 6.264550306623086,
+            "td_lambda": 0.1749094545821952
           }
         ],
         "REC": [
@@ -2979,17 +2978,35 @@
             "team": "NE",
             "opponent": "BUF",
             "line": "2+ Receptions",
-            "score": 54.29,
-            "confidence": 54,
+            "score": 54.77,
+            "confidence": 55,
             "tier": "B",
-            "reason": "REC/g 1.82 | Rec match 0.81x | 2025 GP 14 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 54.29,
-            "model_hit_rate_raw": 0.5429,
+            "reason": "REC/g 1.84 | Rec match 0.82x | 2025 GP 14 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 54.77,
+            "model_hit_rate_raw": 0.5477,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 43.87891455594958,
-            "rec_yds_mean": 18.057149077772305,
-            "td_lambda": 0.5802520221718601
+            "rec_yds_mean": 18.221990031794743,
+            "td_lambda": 0.5812057154900849
+          },
+          {
+            "player_id": "4379399",
+            "player_name": "James Cook III",
+            "team": "BUF",
+            "opponent": "NE",
+            "line": "2+ Receptions",
+            "score": 54.5,
+            "confidence": 54,
+            "tier": "B",
+            "reason": "REC/g 1.83 | Rec match 0.93x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 54.5,
+            "model_hit_rate_raw": 0.545,
+            "lineup_confirmed": false,
+            "position": "RB",
+            "rush_yds_mean": 95.44717188372051,
+            "rec_yds_mean": 15.308443336250866,
+            "td_lambda": 0.8151364183507395
           },
           {
             "player_id": "3930086",
@@ -3007,24 +3024,6 @@
             "position": "TE",
             "rec_yds_mean": 20.17899959905285,
             "td_lambda": 0.18638331365604094
-          },
-          {
-            "player_id": "4379399",
-            "player_name": "James Cook III",
-            "team": "BUF",
-            "opponent": "NE",
-            "line": "2+ Receptions",
-            "score": 54.01,
-            "confidence": 54,
-            "tier": "B",
-            "reason": "REC/g 1.81 | Rec match 0.92x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 54.01,
-            "model_hit_rate_raw": 0.5401,
-            "lineup_confirmed": false,
-            "position": "RB",
-            "rush_yds_mean": 95.44717188372051,
-            "rec_yds_mean": 15.169959098264624,
-            "td_lambda": 0.8142105295024337
           }
         ],
         "PassTD": [
@@ -3271,7 +3270,7 @@
           "market": "TD",
           "player_name": "D'Andre Swift",
           "line": "Anytime TD",
-          "score": 52.21,
+          "score": 52.24,
           "confidence": 52,
           "tier": "A",
           "player_id": "4259545"
@@ -3303,17 +3302,17 @@
             "team": "CHI",
             "opponent": "NYJ",
             "line": "Anytime TD",
-            "score": 52.21,
+            "score": 52.24,
             "confidence": 52,
             "tier": "A",
-            "reason": "TD \u03bb 0.74 | Rush match 1.30x | Rec match 0.98x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 52.21,
-            "model_hit_rate_raw": 0.5221,
+            "reason": "TD \u03bb 0.74 | Rush match 1.30x | Rec match 0.99x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 52.24,
+            "model_hit_rate_raw": 0.5224,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 81.575,
-            "rec_yds_mean": 17.470147324890153,
-            "td_lambda": 0.7383594210390282
+            "rec_yds_mean": 17.62962962962963,
+            "td_lambda": 0.7389524256651017
           },
           {
             "player_id": "4569618",
@@ -3372,17 +3371,17 @@
             "team": "CHI",
             "opponent": "NYJ",
             "line": "Anytime TD",
-            "score": 33.55,
+            "score": 33.56,
             "confidence": 34,
             "tier": "B",
-            "reason": "TD \u03bb 0.41 | Rush match 1.30x | Rec match 0.98x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 33.55,
-            "model_hit_rate_raw": 0.3355,
+            "reason": "TD \u03bb 0.41 | Rush match 1.30x | Rec match 0.99x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 33.56,
+            "model_hit_rate_raw": 0.3356,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 58.87142762683687,
-            "rec_yds_mean": 10.311018944361768,
-            "td_lambda": 0.4087121318416227
+            "rec_yds_mean": 10.405146660337945,
+            "td_lambda": 0.4088490448866036
           },
           {
             "player_id": "4685247",
@@ -3390,17 +3389,17 @@
             "team": "NYJ",
             "opponent": "CHI",
             "line": "Anytime TD",
-            "score": 30.5,
-            "confidence": 30,
+            "score": 30.52,
+            "confidence": 31,
             "tier": "B",
             "reason": "TD \u03bb 0.36 | Rush match 1.13x | Rec match 0.79x | 2025 GP 4 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 30.5,
-            "model_hit_rate_raw": 0.305,
+            "sim_prob_pct": 30.52,
+            "model_hit_rate_raw": 0.3052,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 34.37401737691353,
-            "rec_yds_mean": 7.169811320754717,
-            "td_lambda": 0.3638993140365592
+            "rec_yds_mean": 7.235263432446531,
+            "td_lambda": 0.3641862274028794
           },
           {
             "player_id": "4427366",
@@ -3408,17 +3407,17 @@
             "team": "NYJ",
             "opponent": "CHI",
             "line": "Anytime TD",
-            "score": 29.81,
+            "score": 29.84,
             "confidence": 30,
             "tier": "C",
             "reason": "TD \u03bb 0.35 | Rush match 1.13x | Rec match 0.79x | 2025 GP 16 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 29.81,
-            "model_hit_rate_raw": 0.2981,
+            "sim_prob_pct": 29.84,
+            "model_hit_rate_raw": 0.2984,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 69.48059577989243,
-            "rec_yds_mean": 15.950374773843372,
-            "td_lambda": 0.353898907465246
+            "rec_yds_mean": 16.09598330725091,
+            "td_lambda": 0.3543723145196745
           },
           {
             "player_id": "5160110",
@@ -3660,8 +3659,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 69.48059577989243,
-            "rec_yds_mean": 15.950374773843372,
-            "td_lambda": 0.353898907465246
+            "rec_yds_mean": 16.09598330725091,
+            "td_lambda": 0.3543723145196745
           },
           {
             "player_id": "4259545",
@@ -3678,8 +3677,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 81.575,
-            "rec_yds_mean": 17.470147324890153,
-            "td_lambda": 0.7383594210390282
+            "rec_yds_mean": 17.62962962962963,
+            "td_lambda": 0.7389524256651017
           },
           {
             "player_id": "4608686",
@@ -3696,8 +3695,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 58.87142762683687,
-            "rec_yds_mean": 10.311018944361768,
-            "td_lambda": 0.4087121318416227
+            "rec_yds_mean": 10.405146660337945,
+            "td_lambda": 0.4088490448866036
           },
           {
             "player_id": "15864",
@@ -3735,8 +3734,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 34.37401737691353,
-            "rec_yds_mean": 7.169811320754717,
-            "td_lambda": 0.3638993140365592
+            "rec_yds_mean": 7.235263432446531,
+            "td_lambda": 0.3641862274028794
           },
           {
             "player_id": "4257364",
@@ -3753,8 +3752,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 18.330000000000002,
-            "rec_yds_mean": 7.578599121219954,
-            "td_lambda": 0.15335942103902817
+            "rec_yds_mean": 7.647782994261868,
+            "td_lambda": 0.15395242566510173
           },
           {
             "player_id": "4695404",
@@ -3771,8 +3770,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 22.765742656185353,
-            "rec_yds_mean": 9.507366244507624,
-            "td_lambda": 0.14555972561462366
+            "rec_yds_mean": 9.594157537819509,
+            "td_lambda": 0.14567449096115176
           },
           {
             "player_id": "4426386",
@@ -3789,8 +3788,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 21.863636391813106,
-            "rec_yds_mean": 5.010644047087573,
-            "td_lambda": 0.18935952442491602
+            "rec_yds_mean": 5.056385450751648,
+            "td_lambda": 0.189620903874425
           },
           {
             "player_id": "4035537",
@@ -3807,8 +3806,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 15.285167697445635,
-            "rec_yds_mean": 2.7500646161798916,
-            "td_lambda": 0.11151109681968627
+            "rec_yds_mean": 2.775169535732916,
+            "td_lambda": 0.11165455350284641
           }
         ],
         "REC": [
@@ -3937,17 +3936,17 @@
             "team": "CHI",
             "opponent": "NYJ",
             "line": "2+ Receptions",
-            "score": 61.69,
+            "score": 62.18,
             "confidence": 62,
-            "tier": "B",
-            "reason": "REC/g 2.09 | Rec match 0.98x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 61.69,
-            "model_hit_rate_raw": 0.6169,
+            "tier": "A",
+            "reason": "REC/g 2.11 | Rec match 0.99x | 2025 GP 16 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 62.18,
+            "model_hit_rate_raw": 0.6218,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 81.575,
-            "rec_yds_mean": 17.470147324890153,
-            "td_lambda": 0.7383594210390282
+            "rec_yds_mean": 17.62962962962963,
+            "td_lambda": 0.7389524256651017
           },
           {
             "player_id": "4431299",
@@ -4193,17 +4192,17 @@
             "team": "CIN",
             "opponent": "JAX",
             "line": "Anytime TD",
-            "score": 43.44,
-            "confidence": 43,
+            "score": 43.6,
+            "confidence": 44,
             "tier": "B",
-            "reason": "TD \u03bb 0.57 | Rush match 0.77x | Rec match 1.18x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 43.44,
-            "model_hit_rate_raw": 0.4344,
+            "reason": "TD \u03bb 0.57 | Rush match 0.77x | Rec match 1.19x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 43.6,
+            "model_hit_rate_raw": 0.436,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 43.59138697012004,
-            "rec_yds_mean": 27.766102381175948,
-            "td_lambda": 0.5699147178453801
+            "rec_yds_mean": 28.01957488595976,
+            "td_lambda": 0.5726499586043001
           },
           {
             "player_id": "4360310",
@@ -4227,40 +4226,40 @@
             "td_lambda": 0.49382587623381996
           },
           {
-            "player_id": "4362619",
-            "player_name": "Chris Rodriguez Jr.",
-            "team": "JAX",
-            "opponent": "CIN",
-            "line": "Anytime TD",
-            "score": 38.92,
-            "confidence": 39,
-            "tier": "B",
-            "reason": "TD \u03bb 0.49 | Rush match 1.09x | Rec match 1.03x | 2025 GP 13 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 38.92,
-            "model_hit_rate_raw": 0.3892,
-            "lineup_confirmed": false,
-            "position": "RB",
-            "rush_yds_mean": 42.98454721498107,
-            "rec_yds_mean": 5.230109604949229,
-            "td_lambda": 0.4930630536348859
-          },
-          {
             "player_id": "4882093",
             "player_name": "Bhayshul Tuten",
             "team": "JAX",
             "opponent": "CIN",
             "line": "Anytime TD",
-            "score": 38.89,
+            "score": 38.96,
             "confidence": 39,
             "tier": "B",
-            "reason": "TD \u03bb 0.49 | Rush match 1.09x | Rec match 1.03x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 38.89,
-            "model_hit_rate_raw": 0.3889,
+            "reason": "TD \u03bb 0.49 | Rush match 1.09x | Rec match 1.04x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 38.96,
+            "model_hit_rate_raw": 0.3896,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 27.347952445879386,
-            "rec_yds_mean": 7.345839579810374,
-            "td_lambda": 0.49241429410813164
+            "rec_yds_mean": 7.412898626574422,
+            "td_lambda": 0.4935667162166203
+          },
+          {
+            "player_id": "4362619",
+            "player_name": "Chris Rodriguez Jr.",
+            "team": "JAX",
+            "opponent": "CIN",
+            "line": "Anytime TD",
+            "score": 38.94,
+            "confidence": 39,
+            "tier": "B",
+            "reason": "TD \u03bb 0.49 | Rush match 1.09x | Rec match 1.04x | 2025 GP 13 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 38.94,
+            "model_hit_rate_raw": 0.3894,
+            "lineup_confirmed": false,
+            "position": "RB",
+            "rush_yds_mean": 42.98454721498107,
+            "rec_yds_mean": 5.277854476147252,
+            "td_lambda": 0.4932407089700687
           },
           {
             "player_id": "4362628",
@@ -4336,17 +4335,17 @@
             "team": "CIN",
             "opponent": "JAX",
             "line": "Anytime TD",
-            "score": 17.87,
+            "score": 17.89,
             "confidence": 18,
             "tier": "PASS",
-            "reason": "TD \u03bb 0.20 | Rush match 0.77x | Rec match 1.18x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 17.87,
-            "model_hit_rate_raw": 0.1787,
+            "reason": "TD \u03bb 0.20 | Rush match 0.77x | Rec match 1.19x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 17.89,
+            "model_hit_rate_raw": 0.1789,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 22.324325811057456,
-            "rec_yds_mean": 8.901633947192137,
-            "td_lambda": 0.19689075660474223
+            "rec_yds_mean": 8.982895602943758,
+            "td_lambda": 0.19707260086572306
           }
         ],
         "RecYds": [
@@ -4492,17 +4491,17 @@
             "team": "CIN",
             "opponent": "JAX",
             "line": "5+ Rec Yds",
-            "score": 60.26,
+            "score": 60.47,
             "confidence": 60,
             "tier": "B",
-            "reason": "Proj 8.9 rec yds/g | Rec match 1.18x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 60.26,
-            "model_hit_rate_raw": 0.6026,
+            "reason": "Proj 9.0 rec yds/g | Rec match 1.19x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 60.47,
+            "model_hit_rate_raw": 0.6047,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 22.324325811057456,
-            "rec_yds_mean": 8.901633947192137,
-            "td_lambda": 0.19689075660474223
+            "rec_yds_mean": 8.982895602943758,
+            "td_lambda": 0.19707260086572306
           },
           {
             "player_id": "3116164",
@@ -4538,8 +4537,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 27.347952445879386,
-            "rec_yds_mean": 7.345839579810374,
-            "td_lambda": 0.49241429410813164
+            "rec_yds_mean": 7.412898626574422,
+            "td_lambda": 0.4935667162166203
           },
           {
             "player_id": "4360310",
@@ -4577,8 +4576,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 43.59138697012004,
-            "rec_yds_mean": 27.766102381175948,
-            "td_lambda": 0.5699147178453801
+            "rec_yds_mean": 28.01957488595976,
+            "td_lambda": 0.5726499586043001
           },
           {
             "player_id": "4362619",
@@ -4595,8 +4594,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 42.98454721498107,
-            "rec_yds_mean": 5.230109604949229,
-            "td_lambda": 0.4930630536348859
+            "rec_yds_mean": 5.277854476147252,
+            "td_lambda": 0.4932407089700687
           },
           {
             "player_id": "2576336",
@@ -4613,8 +4612,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 14.671371869338326,
-            "rec_yds_mean": 9.426360331635342,
-            "td_lambda": 0.17132244179230027
+            "rec_yds_mean": 9.5124121343498,
+            "td_lambda": 0.1715000971274831
           },
           {
             "player_id": "4911851",
@@ -4631,8 +4630,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 13.64793035957124,
-            "rec_yds_mean": 5.4154512084041455,
-            "td_lambda": 0.08659825858115777
+            "rec_yds_mean": 5.464888034771945,
+            "td_lambda": 0.08674207480487722
           },
           {
             "player_id": "4429299",
@@ -4649,8 +4648,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 8.213322300372363,
-            "rec_yds_mean": 3.8438873093822696,
-            "td_lambda": 0.07136562299461267
+            "rec_yds_mean": 3.878977569118414,
+            "td_lambda": 0.07153837504254446
           },
           {
             "player_id": "3116389",
@@ -4667,8 +4666,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 22.324325811057456,
-            "rec_yds_mean": 8.901633947192137,
-            "td_lambda": 0.19689075660474223
+            "rec_yds_mean": 8.982895602943758,
+            "td_lambda": 0.19707260086572306
           }
         ],
         "REC": [
@@ -4763,17 +4762,17 @@
             "team": "CIN",
             "opponent": "JAX",
             "line": "4+ Receptions",
-            "score": 63.34,
-            "confidence": 63,
+            "score": 64.04,
+            "confidence": 64,
             "tier": "A",
-            "reason": "REC/g 4.36 | Rec match 1.18x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 63.34,
-            "model_hit_rate_raw": 0.6334,
+            "reason": "REC/g 4.40 | Rec match 1.19x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 64.04,
+            "model_hit_rate_raw": 0.6404,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 43.59138697012004,
-            "rec_yds_mean": 27.766102381175948,
-            "td_lambda": 0.5699147178453801
+            "rec_yds_mean": 28.01957488595976,
+            "td_lambda": 0.5726499586043001
           },
           {
             "player_id": "4239993",
@@ -4832,17 +4831,17 @@
             "team": "CIN",
             "opponent": "JAX",
             "line": "2+ Receptions",
-            "score": 46.9,
+            "score": 47.36,
             "confidence": 47,
             "tier": "C",
-            "reason": "REC/g 1.58 | Rec match 1.18x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 46.9,
-            "model_hit_rate_raw": 0.469,
+            "reason": "REC/g 1.60 | Rec match 1.19x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 47.36,
+            "model_hit_rate_raw": 0.4736,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 22.324325811057456,
-            "rec_yds_mean": 8.901633947192137,
-            "td_lambda": 0.19689075660474223
+            "rec_yds_mean": 8.982895602943758,
+            "td_lambda": 0.19707260086572306
           }
         ],
         "PassTD": [
@@ -5223,14 +5222,14 @@
             "score": 35.81,
             "confidence": 36,
             "tier": "B",
-            "reason": "TD \u03bb 0.44 | Rush match 0.97x | Rec match 0.82x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "reason": "TD \u03bb 0.44 | Rush match 0.97x | Rec match 0.83x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
             "sim_prob_pct": 35.81,
             "model_hit_rate_raw": 0.3581,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 31.387828455407785,
-            "rec_yds_mean": 5.926669959668434,
-            "td_lambda": 0.44325443241634904
+            "rec_yds_mean": 5.980773623880326,
+            "td_lambda": 0.44336833486553484
           },
           {
             "player_id": "4595348",
@@ -5311,17 +5310,17 @@
             "team": "ARI",
             "opponent": "NYG",
             "line": "Anytime TD",
-            "score": 32.38,
+            "score": 32.43,
             "confidence": 32,
             "tier": "B",
-            "reason": "TD \u03bb 0.39 | Rush match 0.97x | Rec match 0.82x | 2025 GP 12 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 32.38,
-            "model_hit_rate_raw": 0.3238,
+            "reason": "TD \u03bb 0.39 | Rush match 0.97x | Rec match 0.83x | 2025 GP 12 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 32.43,
+            "model_hit_rate_raw": 0.3243,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 26.397186134095325,
-            "rec_yds_mean": 11.054018931168246,
-            "td_lambda": 0.3913256117577601
+            "rec_yds_mean": 11.154929380461642,
+            "td_lambda": 0.39194228673655507
           },
           {
             "player_id": "4360516",
@@ -5547,8 +5546,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 26.397186134095325,
-            "rec_yds_mean": 11.054018931168246,
-            "td_lambda": 0.3913256117577601
+            "rec_yds_mean": 11.154929380461642,
+            "td_lambda": 0.39194228673655507
           },
           {
             "player_id": "4569609",
@@ -5565,8 +5564,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 20.876127430699217,
-            "rec_yds_mean": 5.0766606358232105,
-            "td_lambda": 0.15764440323362144
+            "rec_yds_mean": 5.12300469483568,
+            "td_lambda": 0.1578835983769116
           },
           {
             "player_id": "4373626",
@@ -5583,8 +5582,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 31.387828455407785,
-            "rec_yds_mean": 5.926669959668434,
-            "td_lambda": 0.44325443241634904
+            "rec_yds_mean": 5.980773623880326,
+            "td_lambda": 0.44336833486553484
           },
           {
             "player_id": "4696981",
@@ -6142,7 +6141,7 @@
           "market": "TD",
           "player_name": "Kyren Williams",
           "line": "Anytime TD",
-          "score": 50.57,
+          "score": 50.66,
           "confidence": 51,
           "tier": "A",
           "player_id": "4430737"
@@ -6174,17 +6173,17 @@
             "team": "LAR",
             "opponent": "PHI",
             "line": "Anytime TD",
-            "score": 50.57,
+            "score": 50.66,
             "confidence": 51,
             "tier": "A",
-            "reason": "TD \u03bb 0.70 | Rush match 0.94x | Rec match 1.24x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 50.57,
-            "model_hit_rate_raw": 0.5057,
+            "reason": "TD \u03bb 0.71 | Rush match 0.94x | Rec match 1.25x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 50.66,
+            "model_hit_rate_raw": 0.5066,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 63.56246258309352,
-            "rec_yds_mean": 19.909167662111614,
-            "td_lambda": 0.7046375129441775
+            "rec_yds_mean": 20.090915410722435,
+            "td_lambda": 0.7064280249294845
           },
           {
             "player_id": "16800",
@@ -6299,17 +6298,17 @@
             "team": "LAR",
             "opponent": "PHI",
             "line": "Anytime TD",
-            "score": 29.42,
+            "score": 29.43,
             "confidence": 29,
             "tier": "C",
-            "reason": "TD \u03bb 0.35 | Rush match 0.94x | Rec match 1.24x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 29.42,
-            "model_hit_rate_raw": 0.2942,
+            "reason": "TD \u03bb 0.35 | Rush match 0.94x | Rec match 1.25x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 29.43,
+            "model_hit_rate_raw": 0.2943,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 40.912742465786735,
-            "rec_yds_mean": 5.435143929836348,
-            "td_lambda": 0.3483553671998855
+            "rec_yds_mean": 5.484760528048208,
+            "td_lambda": 0.34852794666834885
           },
           {
             "player_id": "4241478",
@@ -6473,17 +6472,17 @@
             "team": "LAR",
             "opponent": "PHI",
             "line": "15+ Rec Yds",
-            "score": 62.83,
+            "score": 63.28,
             "confidence": 63,
             "tier": "A",
-            "reason": "Proj 19.9 rec yds/g | Rec match 1.24x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 62.83,
-            "model_hit_rate_raw": 0.6283,
+            "reason": "Proj 20.1 rec yds/g | Rec match 1.25x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 63.28,
+            "model_hit_rate_raw": 0.6328,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 63.56246258309352,
-            "rec_yds_mean": 19.909167662111614,
-            "td_lambda": 0.7046375129441775
+            "rec_yds_mean": 20.090915410722435,
+            "td_lambda": 0.7064280249294845
           },
           {
             "player_id": "15835",
@@ -6572,8 +6571,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 63.56246258309352,
-            "rec_yds_mean": 19.909167662111614,
-            "td_lambda": 0.7046375129441775
+            "rec_yds_mean": 20.090915410722435,
+            "td_lambda": 0.7064280249294845
           },
           {
             "player_id": "4429013",
@@ -6608,8 +6607,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 40.912742465786735,
-            "rec_yds_mean": 5.435143929836348,
-            "td_lambda": 0.3483553671998855
+            "rec_yds_mean": 5.484760528048208,
+            "td_lambda": 0.34852794666834885
           },
           {
             "player_id": "4040715",
@@ -6728,17 +6727,17 @@
             "team": "LAR",
             "opponent": "PHI",
             "line": "2+ Receptions",
-            "score": 73.7,
+            "score": 74.16,
             "confidence": 74,
             "tier": "A",
-            "reason": "REC/g 2.62 | Rec match 1.24x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 73.7,
-            "model_hit_rate_raw": 0.737,
+            "reason": "REC/g 2.65 | Rec match 1.25x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 74.16,
+            "model_hit_rate_raw": 0.7416,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 63.56246258309352,
-            "rec_yds_mean": 19.909167662111614,
-            "td_lambda": 0.7046375129441775
+            "rec_yds_mean": 20.090915410722435,
+            "td_lambda": 0.7064280249294845
           },
           {
             "player_id": "4372414",
@@ -7178,17 +7177,17 @@
             "team": "TB",
             "opponent": "GB",
             "line": "Anytime TD",
-            "score": 43.36,
+            "score": 43.39,
             "confidence": 43,
             "tier": "B",
-            "reason": "TD \u03bb 0.57 | Rush match 1.30x | Rec match 0.81x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 43.36,
-            "model_hit_rate_raw": 0.4336,
+            "reason": "TD \u03bb 0.57 | Rush match 1.30x | Rec match 0.82x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 43.39,
+            "model_hit_rate_raw": 0.4339,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 30.20952463604155,
-            "rec_yds_mean": 3.4737658309640738,
-            "td_lambda": 0.5684723750446159
+            "rec_yds_mean": 3.5054773082942097,
+            "td_lambda": 0.5689374767121246
           },
           {
             "player_id": "4371733",
@@ -7196,17 +7195,17 @@
             "team": "TB",
             "opponent": "GB",
             "line": "Anytime TD",
-            "score": 40.66,
+            "score": 40.73,
             "confidence": 41,
             "tier": "B",
-            "reason": "TD \u03bb 0.52 | Rush match 1.30x | Rec match 0.81x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 40.66,
-            "model_hit_rate_raw": 0.4066,
+            "reason": "TD \u03bb 0.52 | Rush match 1.30x | Rec match 0.82x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 40.73,
+            "model_hit_rate_raw": 0.4073,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 43.64285773322696,
-            "rec_yds_mean": 20.91979015012156,
-            "td_lambda": 0.5218576474787382
+            "rec_yds_mean": 21.11076371695887,
+            "td_lambda": 0.5230274486424722
           },
           {
             "player_id": "4248528",
@@ -7248,17 +7247,17 @@
             "team": "TB",
             "opponent": "GB",
             "line": "Anytime TD",
-            "score": 33.73,
+            "score": 33.84,
             "confidence": 34,
             "tier": "B",
-            "reason": "TD \u03bb 0.41 | Rush match 1.30x | Rec match 0.81x | 2025 GP 10 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 33.73,
-            "model_hit_rate_raw": 0.3373,
+            "reason": "TD \u03bb 0.41 | Rush match 1.30x | Rec match 0.82x | 2025 GP 10 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 33.84,
+            "model_hit_rate_raw": 0.3384,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 70.19999929155622,
-            "rec_yds_mean": 19.279400803562776,
-            "td_lambda": 0.4113578997895359
+            "rec_yds_mean": 19.455399506777354,
+            "td_lambda": 0.41311260153513674
           },
           {
             "player_id": "4608810",
@@ -7365,6 +7364,24 @@
             "td_lambda": 0.22382363023819374
           },
           {
+            "player_id": "4371733",
+            "player_name": "Kenny Gainwell",
+            "team": "TB",
+            "opponent": "GB",
+            "line": "15+ Rec Yds",
+            "score": 65.81,
+            "confidence": 66,
+            "tier": "A",
+            "reason": "Proj 21.1 rec yds/g | Rec match 0.82x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 65.81,
+            "model_hit_rate_raw": 0.6581,
+            "lineup_confirmed": false,
+            "position": "RB",
+            "rush_yds_mean": 43.64285773322696,
+            "rec_yds_mean": 21.11076371695887,
+            "td_lambda": 0.5230274486424722
+          },
+          {
             "player_id": "4701936",
             "player_name": "Matthew Golden",
             "team": "GB",
@@ -7380,24 +7397,6 @@
             "position": "WR",
             "rec_yds_mean": 25.95887121514149,
             "td_lambda": 0.0685660825534023
-          },
-          {
-            "player_id": "4371733",
-            "player_name": "Kenny Gainwell",
-            "team": "TB",
-            "opponent": "GB",
-            "line": "15+ Rec Yds",
-            "score": 65.35,
-            "confidence": 65,
-            "tier": "A",
-            "reason": "Proj 20.9 rec yds/g | Rec match 0.81x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 65.35,
-            "model_hit_rate_raw": 0.6535,
-            "lineup_confirmed": false,
-            "position": "RB",
-            "rush_yds_mean": 43.64285773322696,
-            "rec_yds_mean": 20.91979015012156,
-            "td_lambda": 0.5218576474787382
           },
           {
             "player_id": "4608810",
@@ -7490,17 +7489,17 @@
             "team": "TB",
             "opponent": "GB",
             "line": "15+ Rec Yds",
-            "score": 61.23,
-            "confidence": 61,
+            "score": 61.68,
+            "confidence": 62,
             "tier": "B",
-            "reason": "Proj 19.3 rec yds/g | Rec match 0.81x | 2025 GP 10 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 61.23,
-            "model_hit_rate_raw": 0.6123,
+            "reason": "Proj 19.5 rec yds/g | Rec match 0.82x | 2025 GP 10 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 61.68,
+            "model_hit_rate_raw": 0.6168,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 70.19999929155622,
-            "rec_yds_mean": 19.279400803562776,
-            "td_lambda": 0.4113578997895359
+            "rec_yds_mean": 19.455399506777354,
+            "td_lambda": 0.41311260153513674
           }
         ],
         "RushYds": [
@@ -7519,8 +7518,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 43.64285773322696,
-            "rec_yds_mean": 20.91979015012156,
-            "td_lambda": 0.5218576474787382
+            "rec_yds_mean": 21.11076371695887,
+            "td_lambda": 0.5230274486424722
           },
           {
             "player_id": "4430871",
@@ -7537,8 +7536,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 30.20952463604155,
-            "rec_yds_mean": 3.4737658309640738,
-            "td_lambda": 0.5684723750446159
+            "rec_yds_mean": 3.5054773082942097,
+            "td_lambda": 0.5689374767121246
           },
           {
             "player_id": "4819231",
@@ -7555,8 +7554,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 14.428157750593096,
-            "rec_yds_mean": 5.222464257327518,
-            "td_lambda": 0.10850508476135004
+            "rec_yds_mean": 5.27013933531564,
+            "td_lambda": 0.10873979283846016
           },
           {
             "player_id": "4596448",
@@ -7573,8 +7572,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 70.19999929155622,
-            "rec_yds_mean": 19.279400803562776,
-            "td_lambda": 0.4113578997895359
+            "rec_yds_mean": 19.455399506777354,
+            "td_lambda": 0.41311260153513674
           },
           {
             "player_id": "3149687",
@@ -7591,8 +7590,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 11.120436744848522,
-            "rec_yds_mean": 7.873869089146001,
-            "td_lambda": 0.07233672317423336
+            "rec_yds_mean": 7.945748436595168,
+            "td_lambda": 0.0724931952256401
           },
           {
             "player_id": "4036378",
@@ -7623,17 +7622,17 @@
             "team": "TB",
             "opponent": "GB",
             "line": "2+ Receptions",
-            "score": 82.11,
+            "score": 82.49,
             "confidence": 82,
             "tier": "A",
-            "reason": "REC/g 3.14 | Rec match 0.81x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 82.11,
-            "model_hit_rate_raw": 0.8211,
+            "reason": "REC/g 3.17 | Rec match 0.82x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 82.49,
+            "model_hit_rate_raw": 0.8249,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 43.64285773322696,
-            "rec_yds_mean": 20.91979015012156,
-            "td_lambda": 0.5218576474787382
+            "rec_yds_mean": 21.11076371695887,
+            "td_lambda": 0.5230274486424722
           },
           {
             "player_id": "3054212",
@@ -7760,17 +7759,17 @@
             "team": "TB",
             "opponent": "GB",
             "line": "2+ Receptions",
-            "score": 65.11,
-            "confidence": 65,
+            "score": 65.59,
+            "confidence": 66,
             "tier": "A",
-            "reason": "REC/g 2.22 | Rec match 0.81x | 2025 GP 10 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 65.11,
-            "model_hit_rate_raw": 0.6511,
+            "reason": "REC/g 2.24 | Rec match 0.82x | 2025 GP 10 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 65.59,
+            "model_hit_rate_raw": 0.6559,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 70.19999929155622,
-            "rec_yds_mean": 19.279400803562776,
-            "td_lambda": 0.4113578997895359
+            "rec_yds_mean": 19.455399506777354,
+            "td_lambda": 0.41311260153513674
           },
           {
             "player_id": "4701936",
@@ -9916,12 +9915,12 @@
         },
         {
           "market": "RushYds",
-          "player_name": "Jaret Patterson",
-          "line": "25+ Rush Yds",
-          "score": 66.3,
-          "confidence": 66,
+          "player_name": "Aaron Jones Sr.",
+          "line": "35+ Rush Yds",
+          "score": 65.12,
+          "confidence": 65,
           "tier": "A",
-          "player_id": "4362452"
+          "player_id": "3042519"
         }
       ],
       "markets": {
@@ -9977,24 +9976,6 @@
             "rush_yds_mean": 44.509310009364114,
             "rec_yds_mean": 20.718750619888308,
             "td_lambda": 0.3161205006206041
-          },
-          {
-            "player_id": "4362452",
-            "player_name": "Jaret Patterson",
-            "team": "MIN",
-            "opponent": "MIA",
-            "line": "Anytime TD",
-            "score": 24.14,
-            "confidence": 24,
-            "tier": "C",
-            "reason": "TD \u03bb 0.28 | Rush match 0.99x | Rec match 1.30x | 2025 GP 6 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 24.14,
-            "model_hit_rate_raw": 0.2414,
-            "lineup_confirmed": false,
-            "position": "RB",
-            "rush_yds_mean": 32.52412081092264,
-            "rec_yds_mean": 8.320000030994416,
-            "td_lambda": 0.276330657840298
           },
           {
             "player_id": "4036133",
@@ -10100,6 +10081,24 @@
             "position": "WR",
             "rec_yds_mean": 63.074055594935984,
             "td_lambda": 0.17580918191897993
+          },
+          {
+            "player_id": "4710341",
+            "player_name": "Jarquez Hunter",
+            "team": "MIA",
+            "opponent": "MIN",
+            "line": "Anytime TD",
+            "score": 15.55,
+            "confidence": 16,
+            "tier": "PASS",
+            "reason": "TD \u03bb 0.17 | Rush match 0.94x | Rec match 0.75x | 2025 GP 5 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 15.55,
+            "model_hit_rate_raw": 0.1555,
+            "lineup_confirmed": false,
+            "position": "RB",
+            "rush_yds_mean": 17.577713418838783,
+            "rec_yds_mean": 4.666666666666667,
+            "td_lambda": 0.16896244196202823
           }
         ],
         "RecYds": [
@@ -10258,43 +10257,24 @@
             "td_lambda": 0.13866666666666666
           },
           {
-            "player_id": "4362452",
-            "player_name": "Jaret Patterson",
+            "player_id": "4565185",
+            "player_name": "Tai Felton",
             "team": "MIN",
             "opponent": "MIA",
-            "line": "5+ Rec Yds",
-            "score": 58.76,
-            "confidence": 59,
+            "line": "10+ Rec Yds",
+            "score": 51.86,
+            "confidence": 52,
             "tier": "B",
-            "reason": "Proj 8.3 rec yds/g | Rec match 1.30x | 2025 GP 6 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 58.76,
-            "model_hit_rate_raw": 0.5876,
+            "reason": "Proj 10.7 rec yds/g | Rec match 1.08x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 51.86,
+            "model_hit_rate_raw": 0.5186,
             "lineup_confirmed": false,
-            "position": "RB",
-            "rush_yds_mean": 32.52412081092264,
-            "rec_yds_mean": 8.320000030994416,
-            "td_lambda": 0.276330657840298
+            "position": "WR",
+            "rec_yds_mean": 10.70006274638236,
+            "td_lambda": 0.07341623674391068
           }
         ],
         "RushYds": [
-          {
-            "player_id": "4362452",
-            "player_name": "Jaret Patterson",
-            "team": "MIN",
-            "opponent": "MIA",
-            "line": "25+ Rush Yds",
-            "score": 66.3,
-            "confidence": 66,
-            "tier": "A",
-            "reason": "Proj 32.5 rush yds/g | Rush match 0.99x | 2025 GP 6 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 66.3,
-            "model_hit_rate_raw": 0.663,
-            "lineup_confirmed": false,
-            "position": "RB",
-            "rush_yds_mean": 32.52412081092264,
-            "rec_yds_mean": 8.320000030994416,
-            "td_lambda": 0.276330657840298
-          },
           {
             "player_id": "3042519",
             "player_name": "Aaron Jones Sr.",
@@ -10330,24 +10310,6 @@
             "rush_yds_mean": 30.671315758481533,
             "rec_yds_mean": 5.357142908232553,
             "td_lambda": 0.24314202967078435
-          },
-          {
-            "player_id": "4372019",
-            "player_name": "Jerome Ford",
-            "team": "MIN",
-            "opponent": "MIA",
-            "line": "10+ Rush Yds",
-            "score": 60.77,
-            "confidence": 61,
-            "tier": "B",
-            "reason": "Proj 14.1 rush yds/g | Rush match 0.99x | 2025 GP 13 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 60.77,
-            "model_hit_rate_raw": 0.6077,
-            "lineup_confirmed": false,
-            "position": "RB",
-            "rush_yds_mean": 14.100221442568168,
-            "rec_yds_mean": 12.158823711731854,
-            "td_lambda": 0.10404030275742901
           },
           {
             "player_id": "4429435",
@@ -10460,24 +10422,6 @@
             "position": "WR",
             "rec_yds_mean": 63.074055594935984,
             "td_lambda": 0.17580918191897993
-          },
-          {
-            "player_id": "4372019",
-            "player_name": "Jerome Ford",
-            "team": "MIN",
-            "opponent": "MIA",
-            "line": "2+ Receptions",
-            "score": 73.85,
-            "confidence": 74,
-            "tier": "A",
-            "reason": "REC/g 2.63 | Rec match 1.30x | 2025 GP 13 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 73.85,
-            "model_hit_rate_raw": 0.7385,
-            "lineup_confirmed": false,
-            "position": "RB",
-            "rush_yds_mean": 14.100221442568168,
-            "rec_yds_mean": 12.158823711731854,
-            "td_lambda": 0.10404030275742901
           },
           {
             "player_id": "4569603",
@@ -10842,12 +10786,12 @@
       "top_signals": [
         {
           "market": "TD",
-          "player_name": "Rashee Rice",
+          "player_name": "Ashton Jeanty",
           "line": "Anytime TD",
-          "score": 42.64,
+          "score": 42.77,
           "confidence": 43,
           "tier": "B",
-          "player_id": "4428331"
+          "player_id": "4890973"
         },
         {
           "market": "ML",
@@ -10871,6 +10815,24 @@
       "markets": {
         "TD": [
           {
+            "player_id": "4890973",
+            "player_name": "Ashton Jeanty",
+            "team": "LV",
+            "opponent": "KC",
+            "line": "Anytime TD",
+            "score": 42.77,
+            "confidence": 43,
+            "tier": "B",
+            "reason": "TD \u03bb 0.56 | Rush match 0.97x | Rec match 1.04x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 42.77,
+            "model_hit_rate_raw": 0.4277,
+            "lineup_confirmed": false,
+            "position": "RB",
+            "rush_yds_mean": 52.784678712462274,
+            "rec_yds_mean": 19.97168222778875,
+            "td_lambda": 0.5580118906896175
+          },
+          {
             "player_id": "4428331",
             "player_name": "Rashee Rice",
             "team": "KC",
@@ -10886,24 +10848,6 @@
             "position": "WR",
             "rec_yds_mean": 54.373593398349584,
             "td_lambda": 0.5558913559585593
-          },
-          {
-            "player_id": "4890973",
-            "player_name": "Ashton Jeanty",
-            "team": "LV",
-            "opponent": "KC",
-            "line": "Anytime TD",
-            "score": 42.63,
-            "confidence": 43,
-            "tier": "B",
-            "reason": "TD \u03bb 0.56 | Rush match 0.97x | Rec match 1.03x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 42.63,
-            "model_hit_rate_raw": 0.4263,
-            "lineup_confirmed": false,
-            "position": "RB",
-            "rush_yds_mean": 52.784678712462274,
-            "rec_yds_mean": 19.791013094169575,
-            "td_lambda": 0.5556209459702819
           },
           {
             "player_id": "4432665",
@@ -10928,17 +10872,17 @@
             "team": "KC",
             "opponent": "LV",
             "line": "Anytime TD",
-            "score": 28.9,
+            "score": 28.91,
             "confidence": 29,
             "tier": "C",
             "reason": "TD \u03bb 0.34 | Rush match 1.09x | Rec match 0.78x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 28.9,
-            "model_hit_rate_raw": 0.289,
+            "sim_prob_pct": 28.91,
+            "model_hit_rate_raw": 0.2891,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 61.87245227555109,
-            "rec_yds_mean": 12.513434364564777,
-            "td_lambda": 0.3411430958040168
+            "rec_yds_mean": 12.62766759428824,
+            "td_lambda": 0.3412512456042538
           },
           {
             "player_id": "3139477",
@@ -11035,17 +10979,17 @@
             "team": "KC",
             "opponent": "LV",
             "line": "Anytime TD",
-            "score": 14.53,
+            "score": 14.55,
             "confidence": 15,
             "tier": "PASS",
             "reason": "TD \u03bb 0.16 | Rush match 1.09x | Rec match 0.78x | 2025 GP 7 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 14.53,
-            "model_hit_rate_raw": 0.1453,
+            "sim_prob_pct": 14.55,
+            "model_hit_rate_raw": 0.1455,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 22.53672828779057,
-            "rec_yds_mean": 3.957987734674217,
-            "td_lambda": 0.15704668122482707
+            "rec_yds_mean": 3.994119599753402,
+            "td_lambda": 0.15725314902527956
           }
         ],
         "RecYds": [
@@ -11084,6 +11028,24 @@
             "td_lambda": 0.11212821678924835
           },
           {
+            "player_id": "4890973",
+            "player_name": "Ashton Jeanty",
+            "team": "LV",
+            "opponent": "KC",
+            "line": "15+ Rec Yds",
+            "score": 62.98,
+            "confidence": 63,
+            "tier": "A",
+            "reason": "Proj 20.0 rec yds/g | Rec match 1.04x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 62.98,
+            "model_hit_rate_raw": 0.6298,
+            "lineup_confirmed": false,
+            "position": "RB",
+            "rush_yds_mean": 52.784678712462274,
+            "rec_yds_mean": 19.97168222778875,
+            "td_lambda": 0.5580118906896175
+          },
+          {
             "player_id": "4432665",
             "player_name": "Brock Bowers",
             "team": "LV",
@@ -11099,24 +11061,6 @@
             "position": "TE",
             "rec_yds_mean": 48.62703371874271,
             "td_lambda": 0.4838389762729939
-          },
-          {
-            "player_id": "4890973",
-            "player_name": "Ashton Jeanty",
-            "team": "LV",
-            "opponent": "KC",
-            "line": "15+ Rec Yds",
-            "score": 62.53,
-            "confidence": 63,
-            "tier": "A",
-            "reason": "Proj 19.8 rec yds/g | Rec match 1.03x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 62.53,
-            "model_hit_rate_raw": 0.6253,
-            "lineup_confirmed": false,
-            "position": "RB",
-            "rush_yds_mean": 52.784678712462274,
-            "rec_yds_mean": 19.791013094169575,
-            "td_lambda": 0.5556209459702819
           },
           {
             "player_id": "5082630",
@@ -11170,23 +11114,6 @@
             "td_lambda": 0.5558913559585593
           },
           {
-            "player_id": "4361426",
-            "player_name": "Justin Shorter",
-            "team": "LV",
-            "opponent": "KC",
-            "line": "10+ Rec Yds",
-            "score": 61.75,
-            "confidence": 62,
-            "tier": "B",
-            "reason": "Proj 14.5 rec yds/g | Rec match 0.87x | 2025 GP 7 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 61.75,
-            "model_hit_rate_raw": 0.6175,
-            "lineup_confirmed": false,
-            "position": "WR",
-            "rec_yds_mean": 14.484660126070478,
-            "td_lambda": 0.11411360241636904
-          },
-          {
             "player_id": "4362921",
             "player_name": "Tyquan Thornton",
             "team": "KC",
@@ -11219,6 +11146,24 @@
             "position": "TE",
             "rec_yds_mean": 34.67857088361468,
             "td_lambda": 0.21285714285714286
+          },
+          {
+            "player_id": "4596602",
+            "player_name": "Brashard Smith",
+            "team": "KC",
+            "opponent": "LV",
+            "line": "5+ Rec Yds",
+            "score": 59.27,
+            "confidence": 59,
+            "tier": "B",
+            "reason": "Proj 8.5 rec yds/g | Rec match 0.78x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 59.27,
+            "model_hit_rate_raw": 0.5927,
+            "lineup_confirmed": false,
+            "position": "RB",
+            "rush_yds_mean": 16.516578895275288,
+            "rec_yds_mean": 8.518071462569301,
+            "td_lambda": 0.1197306593510711
           }
         ],
         "RushYds": [
@@ -11237,8 +11182,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 61.87245227555109,
-            "rec_yds_mean": 12.513434364564777,
-            "td_lambda": 0.3411430958040168
+            "rec_yds_mean": 12.62766759428824,
+            "td_lambda": 0.3412512456042538
           },
           {
             "player_id": "4890973",
@@ -11255,8 +11200,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 52.784678712462274,
-            "rec_yds_mean": 19.791013094169575,
-            "td_lambda": 0.5556209459702819
+            "rec_yds_mean": 19.97168222778875,
+            "td_lambda": 0.5580118906896175
           },
           {
             "player_id": "2983509",
@@ -11273,8 +11218,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 8.912898691457213,
-            "rec_yds_mean": 6.4985414970356725,
-            "td_lambda": 0.12474078079484263
+            "rec_yds_mean": 6.557865689105638,
+            "td_lambda": 0.12488459701856205
           },
           {
             "player_id": "4366963",
@@ -11291,8 +11236,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 8.174005577904651,
-            "rec_yds_mean": 3.643121808449301,
-            "td_lambda": 0.07855995844521596
+            "rec_yds_mean": 3.6763793106130263,
+            "td_lambda": 0.07870377466893538
           },
           {
             "player_id": "3139477",
@@ -11330,8 +11275,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 22.53672828779057,
-            "rec_yds_mean": 3.957987734674217,
-            "td_lambda": 0.15704668122482707
+            "rec_yds_mean": 3.994119599753402,
+            "td_lambda": 0.15725314902527956
           },
           {
             "player_id": "4596602",
@@ -11348,8 +11293,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 16.516578895275288,
-            "rec_yds_mean": 8.441014729255803,
-            "td_lambda": 0.11928454142509343
+            "rec_yds_mean": 8.518071462569301,
+            "td_lambda": 0.1197306593510711
           }
         ],
         "REC": [
@@ -11376,17 +11321,17 @@
             "team": "LV",
             "opponent": "KC",
             "line": "2+ Receptions",
-            "score": 81.82,
+            "score": 82.21,
             "confidence": 82,
             "tier": "A",
-            "reason": "REC/g 3.12 | Rec match 1.03x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 81.82,
-            "model_hit_rate_raw": 0.8182,
+            "reason": "REC/g 3.15 | Rec match 1.04x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 82.21,
+            "model_hit_rate_raw": 0.8221,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 52.784678712462274,
-            "rec_yds_mean": 19.791013094169575,
-            "td_lambda": 0.5556209459702819
+            "rec_yds_mean": 19.97168222778875,
+            "td_lambda": 0.5580118906896175
           },
           {
             "player_id": "4428718",
@@ -11508,21 +11453,22 @@
             "td_lambda": 0.21416476998852527
           },
           {
-            "player_id": "4374187",
-            "player_name": "Deven Thompkins",
-            "team": "LV",
-            "opponent": "KC",
+            "player_id": "4567048",
+            "player_name": "Kenneth Walker III",
+            "team": "KC",
+            "opponent": "LV",
             "line": "2+ Receptions",
-            "score": 43.01,
+            "score": 43.28,
             "confidence": 43,
             "tier": "C",
-            "reason": "REC/g 1.46 | Rec match 0.87x | 2025 GP 7 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 43.01,
-            "model_hit_rate_raw": 0.4301,
+            "reason": "REC/g 1.47 | Rec match 0.78x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 43.28,
+            "model_hit_rate_raw": 0.4328,
             "lineup_confirmed": false,
-            "position": "WR",
-            "rec_yds_mean": 16.610126595150515,
-            "td_lambda": 0.11411360241636904
+            "position": "RB",
+            "rush_yds_mean": 61.87245227555109,
+            "rec_yds_mean": 12.62766759428824,
+            "td_lambda": 0.3412512456042538
           }
         ],
         "PassTD": [
@@ -11769,8 +11715,8 @@
           "market": "TD",
           "player_name": "RJ Harvey",
           "line": "Anytime TD",
-          "score": 51.73,
-          "confidence": 52,
+          "score": 50.1,
+          "confidence": 50,
           "tier": "A",
           "player_id": "4568490"
         },
@@ -11801,17 +11747,17 @@
             "team": "DEN",
             "opponent": "SF",
             "line": "Anytime TD",
-            "score": 51.73,
-            "confidence": 52,
+            "score": 50.1,
+            "confidence": 50,
             "tier": "A",
-            "reason": "TD \u03bb 0.73 | Rush match 1.03x | Rec match 1.26x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 51.73,
-            "model_hit_rate_raw": 0.5173,
+            "reason": "TD \u03bb 0.70 | Rush match 1.03x | Rec match 1.13x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 50.1,
+            "model_hit_rate_raw": 0.501,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 34.70465138816387,
-            "rec_yds_mean": 24.664526015320188,
-            "td_lambda": 0.7282730623009661
+            "rec_yds_mean": 22.105969966937035,
+            "td_lambda": 0.6952353980454233
           },
           {
             "player_id": "3117251",
@@ -11854,17 +11800,17 @@
             "team": "DEN",
             "opponent": "SF",
             "line": "Anytime TD",
-            "score": 34.48,
+            "score": 34.29,
             "confidence": 34,
             "tier": "B",
-            "reason": "TD \u03bb 0.42 | Rush match 1.03x | Rec match 1.26x | 2025 GP 10 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 34.48,
-            "model_hit_rate_raw": 0.3448,
+            "reason": "TD \u03bb 0.42 | Rush match 1.03x | Rec match 1.13x | 2025 GP 10 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 34.29,
+            "model_hit_rate_raw": 0.3429,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 69.11519368970583,
-            "rec_yds_mean": 8.351216673177564,
-            "td_lambda": 0.42283903948039053
+            "rec_yds_mean": 7.484909495117678,
+            "td_lambda": 0.4198581975926724
           },
           {
             "player_id": "3128429",
@@ -12090,24 +12036,6 @@
             "td_lambda": 0.2922089450934162
           },
           {
-            "player_id": "4568490",
-            "player_name": "RJ Harvey",
-            "team": "DEN",
-            "opponent": "SF",
-            "line": "20+ Rec Yds",
-            "score": 62.21,
-            "confidence": 62,
-            "tier": "A",
-            "reason": "Proj 24.7 rec yds/g | Rec match 1.26x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 62.21,
-            "model_hit_rate_raw": 0.6221,
-            "lineup_confirmed": false,
-            "position": "RB",
-            "rush_yds_mean": 34.70465138816387,
-            "rec_yds_mean": 24.664526015320188,
-            "td_lambda": 0.7282730623009661
-          },
-          {
             "player_id": "3126486",
             "player_name": "Deebo Samuel Sr.",
             "team": "SF",
@@ -12140,6 +12068,23 @@
             "position": "TE",
             "rec_yds_mean": 19.500000472295852,
             "td_lambda": 0.12133333333333335
+          },
+          {
+            "player_id": "16731",
+            "player_name": "Brandin Cooks",
+            "team": "SF",
+            "opponent": "DEN",
+            "line": "15+ Rec Yds",
+            "score": 61.19,
+            "confidence": 61,
+            "tier": "B",
+            "reason": "Proj 19.3 rec yds/g | Rec match 0.79x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 61.19,
+            "model_hit_rate_raw": 0.6119,
+            "lineup_confirmed": false,
+            "position": "WR",
+            "rec_yds_mean": 19.26283098334251,
+            "td_lambda": 0.059739859776974324
           }
         ],
         "RushYds": [
@@ -12158,8 +12103,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 69.11519368970583,
-            "rec_yds_mean": 8.351216673177564,
-            "td_lambda": 0.42283903948039053
+            "rec_yds_mean": 7.484909495117678,
+            "td_lambda": 0.4198581975926724
           },
           {
             "player_id": "3117251",
@@ -12215,8 +12160,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 34.70465138816387,
-            "rec_yds_mean": 24.664526015320188,
-            "td_lambda": 0.7282730623009661
+            "rec_yds_mean": 22.105969966937035,
+            "td_lambda": 0.6952353980454233
           },
           {
             "player_id": "4362748",
@@ -12233,8 +12178,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 9.830533719486969,
-            "rec_yds_mean": 12.383148100284311,
-            "td_lambda": 0.09011227591926876
+            "rec_yds_mean": 11.098591549295772,
+            "td_lambda": 0.08802568659786607
           }
         ],
         "REC": [
@@ -12254,6 +12199,24 @@
             "position": "WR",
             "rec_yds_mean": 36.36223341549673,
             "td_lambda": 0.2922089450934162
+          },
+          {
+            "player_id": "4568490",
+            "player_name": "RJ Harvey",
+            "team": "DEN",
+            "opponent": "SF",
+            "line": "2+ Receptions",
+            "score": 79.67,
+            "confidence": 80,
+            "tier": "A",
+            "reason": "REC/g 2.97 | Rec match 1.13x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 79.67,
+            "model_hit_rate_raw": 0.7967,
+            "lineup_confirmed": false,
+            "position": "RB",
+            "rush_yds_mean": 34.70465138816387,
+            "rec_yds_mean": 22.105969966937035,
+            "td_lambda": 0.6952353980454233
           },
           {
             "player_id": "4686472",
@@ -12391,23 +12354,6 @@
             "position": "TE",
             "rec_yds_mean": 16.80000014305115,
             "td_lambda": 0.196
-          },
-          {
-            "player_id": "3128429",
-            "player_name": "Courtland Sutton",
-            "team": "DEN",
-            "opponent": "SF",
-            "line": "4+ Receptions",
-            "score": 54.37,
-            "confidence": 54,
-            "tier": "B",
-            "reason": "REC/g 3.88 | Rec match 0.91x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 54.37,
-            "model_hit_rate_raw": 0.5437,
-            "lineup_confirmed": false,
-            "position": "WR",
-            "rec_yds_mean": 52.07269081531434,
-            "td_lambda": 0.3663924554762596
           }
         ],
         "PassTD": [
@@ -13772,17 +13718,17 @@
             "team": "CAR",
             "opponent": "DET",
             "line": "Anytime TD",
-            "score": 28.18,
+            "score": 28.3,
             "confidence": 28,
             "tier": "C",
-            "reason": "TD \u03bb 0.33 | Rush match 1.16x | Rec match 1.07x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 28.18,
-            "model_hit_rate_raw": 0.2818,
+            "reason": "TD \u03bb 0.33 | Rush match 1.16x | Rec match 1.08x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 28.3,
+            "model_hit_rate_raw": 0.283,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 41.57716083644983,
-            "rec_yds_mean": 15.66720637555652,
-            "td_lambda": 0.3309438619052884
+            "rec_yds_mean": 15.810229907936403,
+            "td_lambda": 0.33264579066605915
           },
           {
             "player_id": "4429795",
@@ -14047,8 +13993,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 41.57716083644983,
-            "rec_yds_mean": 15.66720637555652,
-            "td_lambda": 0.3309438619052884
+            "rec_yds_mean": 15.810229907936403,
+            "td_lambda": 0.33264579066605915
           },
           {
             "player_id": "4239934",
@@ -14065,8 +14011,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 24.11464229271959,
-            "rec_yds_mean": 7.4685965365727585,
-            "td_lambda": 0.17488005042876398
+            "rec_yds_mean": 7.536776212832551,
+            "td_lambda": 0.1751633945378956
           },
           {
             "player_id": "4912274",
@@ -14266,17 +14212,17 @@
             "team": "CAR",
             "opponent": "DET",
             "line": "2+ Receptions",
-            "score": 63.47,
-            "confidence": 63,
+            "score": 63.95,
+            "confidence": 64,
             "tier": "A",
-            "reason": "REC/g 2.16 | Rec match 1.07x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 63.47,
-            "model_hit_rate_raw": 0.6347,
+            "reason": "REC/g 2.18 | Rec match 1.08x | 2025 GP 15 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 63.95,
+            "model_hit_rate_raw": 0.6395,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 41.57716083644983,
-            "rec_yds_mean": 15.66720637555652,
-            "td_lambda": 0.3309438619052884
+            "rec_yds_mean": 15.810229907936403,
+            "td_lambda": 0.33264579066605915
           }
         ],
         "PassTD": [
@@ -14614,17 +14560,17 @@
             "team": "ATL",
             "opponent": "NO",
             "line": "Anytime TD",
-            "score": 42.87,
+            "score": 42.98,
             "confidence": 43,
             "tier": "B",
-            "reason": "TD \u03bb 0.56 | Rush match 0.87x | Rec match 1.03x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 42.87,
-            "model_hit_rate_raw": 0.4287,
+            "reason": "TD \u03bb 0.56 | Rush match 0.87x | Rec match 1.04x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 42.98,
+            "model_hit_rate_raw": 0.4298,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 68.36038442314415,
-            "rec_yds_mean": 43.12668482392139,
-            "td_lambda": 0.5598805178763844
+            "rec_yds_mean": 43.52038173806777,
+            "td_lambda": 0.5618220368965967
           },
           {
             "player_id": "4426502",
@@ -14809,17 +14755,17 @@
             "team": "ATL",
             "opponent": "NO",
             "line": "35+ Rec Yds",
-            "score": 63.41,
-            "confidence": 63,
+            "score": 63.91,
+            "confidence": 64,
             "tier": "A",
-            "reason": "Proj 43.1 rec yds/g | Rec match 1.03x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 63.41,
-            "model_hit_rate_raw": 0.6341,
+            "reason": "Proj 43.5 rec yds/g | Rec match 1.04x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 63.91,
+            "model_hit_rate_raw": 0.6391,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 68.36038442314415,
-            "rec_yds_mean": 43.12668482392139,
-            "td_lambda": 0.5598805178763844
+            "rec_yds_mean": 43.52038173806777,
+            "td_lambda": 0.5618220368965967
           },
           {
             "player_id": "4426502",
@@ -14957,8 +14903,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 68.36038442314415,
-            "rec_yds_mean": 43.12668482392139,
-            "td_lambda": 0.5598805178763844
+            "rec_yds_mean": 43.52038173806777,
+            "td_lambda": 0.5618220368965967
           },
           {
             "player_id": "4599739",
@@ -15050,8 +14996,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 23.589731148752616,
-            "rec_yds_mean": 3.98774136411096,
-            "td_lambda": 0.15529893040967407
+            "rec_yds_mean": 4.0241448455256394,
+            "td_lambda": 0.1554427466333935
           },
           {
             "player_id": "4035886",
@@ -15068,8 +15014,8 @@
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 17.44311118157302,
-            "rec_yds_mean": 5.639230261877763,
-            "td_lambda": 0.13790603719125233
+            "rec_yds_mean": 5.690709933021665,
+            "td_lambda": 0.13818059543653488
           }
         ],
         "REC": [
@@ -15215,17 +15161,17 @@
             "team": "ATL",
             "opponent": "NO",
             "line": "4+ Receptions",
-            "score": 62.34,
-            "confidence": 62,
+            "score": 63.04,
+            "confidence": 63,
             "tier": "A",
-            "reason": "REC/g 4.30 | Rec match 1.03x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 62.34,
-            "model_hit_rate_raw": 0.6234,
+            "reason": "REC/g 4.34 | Rec match 1.04x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 63.04,
+            "model_hit_rate_raw": 0.6304,
             "lineup_confirmed": false,
             "position": "RB",
             "rush_yds_mean": 68.36038442314415,
-            "rec_yds_mean": 43.12668482392139,
-            "td_lambda": 0.5598805178763844
+            "rec_yds_mean": 43.52038173806777,
+            "td_lambda": 0.5618220368965967
           },
           {
             "player_id": "3054850",
@@ -15915,12 +15861,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 16.4
+        "joint_prob_pct": 16.8
       },
       "ceiling": {
         "qb_line": "2+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 5.5
+        "joint_prob_pct": 5.7
       }
     },
     {
@@ -15959,12 +15905,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 19.9
+        "joint_prob_pct": 20.9
       },
       "ceiling": {
         "qb_line": "3+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 3.9
+        "joint_prob_pct": 4.2
       }
     },
     {
@@ -16762,9 +16708,9 @@
       },
       "ceiling": {
         "rush_yds_line": "55+ Rush Yds",
-        "rec_yds_line": "10+ Rec Yds",
+        "rec_yds_line": "15+ Rec Yds",
         "td_line": "2+ TD",
-        "joint_prob_pct": 5.0
+        "joint_prob_pct": 4.7
       }
     },
     {
@@ -16778,7 +16724,7 @@
         "rush_yds_line": "60+ Rush Yds",
         "rec_yds_line": "10+ Rec Yds",
         "td_line": "1+ TD",
-        "joint_prob_pct": 28.1
+        "joint_prob_pct": 28.2
       },
       "ceiling": {
         "rush_yds_line": "85+ Rush Yds",
@@ -16836,15 +16782,15 @@
       },
       "floor": {
         "rush_yds_line": "80+ Rush Yds",
-        "rec_yds_line": "10+ Rec Yds",
+        "rec_yds_line": "15+ Rec Yds",
         "td_line": "1+ TD",
-        "joint_prob_pct": 36.8
+        "joint_prob_pct": 32.4
       },
       "ceiling": {
         "rush_yds_line": "110+ Rush Yds",
-        "rec_yds_line": "15+ Rec Yds",
+        "rec_yds_line": "20+ Rec Yds",
         "td_line": "2+ TD",
-        "joint_prob_pct": 12.5
+        "joint_prob_pct": 11.3
       }
     },
     {
@@ -16858,7 +16804,7 @@
         "rush_yds_line": "45+ Rush Yds",
         "rec_yds_line": "10+ Rec Yds",
         "td_line": "1+ TD",
-        "joint_prob_pct": 26.7
+        "joint_prob_pct": 26.8
       },
       "ceiling": {
         "rush_yds_line": "60+ Rush Yds",
@@ -16878,13 +16824,13 @@
         "rush_yds_line": "65+ Rush Yds",
         "rec_yds_line": "15+ Rec Yds",
         "td_line": "1+ TD",
-        "joint_prob_pct": 33.2
+        "joint_prob_pct": 33.4
       },
       "ceiling": {
         "rush_yds_line": "95+ Rush Yds",
         "rec_yds_line": "20+ Rec Yds",
         "td_line": "2+ TD",
-        "joint_prob_pct": 9.7
+        "joint_prob_pct": 9.8
       }
     },
     {
@@ -16898,13 +16844,13 @@
         "rush_yds_line": "55+ Rush Yds",
         "rec_yds_line": "15+ Rec Yds",
         "td_line": "1+ TD",
-        "joint_prob_pct": 20.9
+        "joint_prob_pct": 21.0
       },
       "ceiling": {
         "rush_yds_line": "80+ Rush Yds",
         "rec_yds_line": "20+ Rec Yds",
         "td_line": "1+ TD",
-        "joint_prob_pct": 14.2
+        "joint_prob_pct": 14.3
       }
     },
     {
@@ -16918,13 +16864,13 @@
         "rush_yds_line": "35+ Rush Yds",
         "rec_yds_line": "25+ Rec Yds",
         "td_line": "1+ TD",
-        "joint_prob_pct": 29.7
+        "joint_prob_pct": 29.9
       },
       "ceiling": {
         "rush_yds_line": "50+ Rush Yds",
         "rec_yds_line": "30+ Rec Yds",
         "td_line": "2+ TD",
-        "joint_prob_pct": 7.6
+        "joint_prob_pct": 7.7
       }
     },
     {
@@ -16938,7 +16884,7 @@
         "rush_yds_line": "10+ Rush Yds",
         "rec_yds_line": "10+ Rec Yds",
         "td_line": "1+ TD",
-        "joint_prob_pct": 11.6
+        "joint_prob_pct": 11.7
       },
       "ceiling": {
         "rush_yds_line": "15+ Rush Yds",
@@ -16958,7 +16904,7 @@
         "rush_yds_line": "20+ Rush Yds",
         "rec_yds_line": "10+ Rec Yds",
         "td_line": "1+ TD",
-        "joint_prob_pct": 22.9
+        "joint_prob_pct": 23.0
       },
       "ceiling": {
         "rush_yds_line": "30+ Rush Yds",
@@ -16998,13 +16944,13 @@
         "rush_yds_line": "50+ Rush Yds",
         "rec_yds_line": "15+ Rec Yds",
         "td_line": "1+ TD",
-        "joint_prob_pct": 34.7
+        "joint_prob_pct": 34.9
       },
       "ceiling": {
         "rush_yds_line": "75+ Rush Yds",
         "rec_yds_line": "25+ Rec Yds",
         "td_line": "2+ TD",
-        "joint_prob_pct": 9.0
+        "joint_prob_pct": 9.1
       }
     },
     {
@@ -17038,13 +16984,13 @@
         "rush_yds_line": "60+ Rush Yds",
         "rec_yds_line": "15+ Rec Yds",
         "td_line": "1+ TD",
-        "joint_prob_pct": 25.1
+        "joint_prob_pct": 25.2
       },
       "ceiling": {
         "rush_yds_line": "80+ Rush Yds",
         "rec_yds_line": "20+ Rec Yds",
         "td_line": "2+ TD",
-        "joint_prob_pct": 4.8
+        "joint_prob_pct": 4.9
       }
     },
     {
@@ -17158,13 +17104,13 @@
         "rush_yds_line": "50+ Rush Yds",
         "rec_yds_line": "10+ Rec Yds",
         "td_line": "1+ TD",
-        "joint_prob_pct": 21.7
+        "joint_prob_pct": 21.8
       },
       "ceiling": {
         "rush_yds_line": "70+ Rush Yds",
         "rec_yds_line": "15+ Rec Yds",
         "td_line": "1+ TD",
-        "joint_prob_pct": 15.5
+        "joint_prob_pct": 15.6
       }
     },
     {
@@ -17178,7 +17124,7 @@
         "rush_yds_line": "45+ Rush Yds",
         "rec_yds_line": "15+ Rec Yds",
         "td_line": "1+ TD",
-        "joint_prob_pct": 30.0
+        "joint_prob_pct": 30.2
       },
       "ceiling": {
         "rush_yds_line": "60+ Rush Yds",
@@ -17191,20 +17137,20 @@
       "game_id": "401872975",
       "matchup": "DEN @ SF",
       "rb": {
-        "player_name": "J.K. Dobbins",
-        "player_id": "4241985"
+        "player_name": "RJ Harvey",
+        "player_id": "4568490"
       },
       "floor": {
-        "rush_yds_line": "55+ Rush Yds",
-        "rec_yds_line": "5+ Rec Yds",
+        "rush_yds_line": "30+ Rush Yds",
+        "rec_yds_line": "20+ Rec Yds",
         "td_line": "1+ TD",
-        "joint_prob_pct": 25.4
+        "joint_prob_pct": 31.3
       },
       "ceiling": {
-        "rush_yds_line": "80+ Rush Yds",
-        "rec_yds_line": "10+ Rec Yds",
+        "rush_yds_line": "40+ Rush Yds",
+        "rec_yds_line": "25+ Rec Yds",
         "td_line": "2+ TD",
-        "joint_prob_pct": 4.8
+        "joint_prob_pct": 9.2
       }
     },
     {
@@ -17258,7 +17204,7 @@
         "rush_yds_line": "35+ Rush Yds",
         "rec_yds_line": "15+ Rec Yds",
         "td_line": "1+ TD",
-        "joint_prob_pct": 20.0
+        "joint_prob_pct": 20.2
       },
       "ceiling": {
         "rush_yds_line": "50+ Rush Yds",
@@ -17298,13 +17244,13 @@
         "rush_yds_line": "55+ Rush Yds",
         "rec_yds_line": "35+ Rec Yds",
         "td_line": "1+ TD",
-        "joint_prob_pct": 30.3
+        "joint_prob_pct": 30.6
       },
       "ceiling": {
         "rush_yds_line": "80+ Rush Yds",
         "rec_yds_line": "50+ Rec Yds",
         "td_line": "2+ TD",
-        "joint_prob_pct": 7.0
+        "joint_prob_pct": 7.1
       }
     },
     {
@@ -24347,6 +24293,28 @@
         }
       ]
     },
+    "3068267": {
+      "team": "WSH",
+      "position": "RB",
+      "games": [
+        {
+          "week": 1,
+          "rush_yds": 26.0,
+          "rec_yds": 31.0,
+          "total_yds": 57.0,
+          "opponent": "NYG",
+          "rush_attempts": 6.0
+        },
+        {
+          "week": 2,
+          "rush_yds": 17.0,
+          "rec_yds": 7.0,
+          "total_yds": 24.0,
+          "opponent": "GB",
+          "rush_attempts": 8.0
+        }
+      ]
+    },
     "3116389": {
       "team": "CIN",
       "position": "RB",
@@ -27642,61 +27610,6 @@
         }
       ]
     },
-    "4362452": {
-      "team": "MIN",
-      "position": "RB",
-      "games": [
-        {
-          "week": 8,
-          "rush_yds": 30.0,
-          "rec_yds": 0.0,
-          "total_yds": 30.0,
-          "opponent": "MIN",
-          "rush_attempts": 11.0
-        },
-        {
-          "week": 9,
-          "rush_yds": 44.0,
-          "rec_yds": 0.0,
-          "total_yds": 44.0,
-          "opponent": "TEN",
-          "rush_attempts": 9.0
-        },
-        {
-          "week": 10,
-          "rush_yds": 1.0,
-          "rec_yds": 0.0,
-          "total_yds": 1.0,
-          "opponent": "PIT",
-          "rush_attempts": 1.0
-        },
-        {
-          "week": 13,
-          "rush_yds": 54.0,
-          "rec_yds": 0.0,
-          "total_yds": 54.0,
-          "opponent": "LV",
-          "rush_attempts": 11.0,
-          "td": 1.0
-        },
-        {
-          "week": 17,
-          "rush_yds": 1.0,
-          "rec_yds": 0.0,
-          "total_yds": 1.0,
-          "opponent": "HOU",
-          "rush_attempts": 1.0
-        },
-        {
-          "week": 18,
-          "rush_yds": 29.0,
-          "rec_yds": 8.0,
-          "total_yds": 37.0,
-          "opponent": "DEN",
-          "rush_attempts": 8.0
-        }
-      ]
-    },
     "4362478": {
       "team": "DAL",
       "position": "RB",
@@ -28487,116 +28400,6 @@
           "opponent": "BAL",
           "rush_attempts": 5.0,
           "td": 1.0
-        }
-      ]
-    },
-    "4372019": {
-      "team": "MIN",
-      "position": "RB",
-      "games": [
-        {
-          "week": 1,
-          "rush_yds": 8.0,
-          "rec_yds": -3.0,
-          "total_yds": 5.0,
-          "opponent": "CIN",
-          "rush_attempts": 6.0
-        },
-        {
-          "week": 2,
-          "rush_yds": 31.0,
-          "rec_yds": 23.0,
-          "total_yds": 54.0,
-          "opponent": "BAL",
-          "rush_attempts": 6.0
-        },
-        {
-          "week": 3,
-          "rush_yds": 0.0,
-          "rec_yds": 10.0,
-          "total_yds": 10.0,
-          "opponent": "GB",
-          "rush_attempts": 0.0
-        },
-        {
-          "week": 4,
-          "rush_yds": -1.0,
-          "rec_yds": 4.0,
-          "total_yds": 3.0,
-          "opponent": "DET",
-          "rush_attempts": 1.0
-        },
-        {
-          "week": 5,
-          "rush_yds": 18.0,
-          "rec_yds": 20.0,
-          "total_yds": 38.0,
-          "opponent": "MIN",
-          "rush_attempts": 5.0
-        },
-        {
-          "week": 6,
-          "rush_yds": 17.0,
-          "rec_yds": 13.0,
-          "total_yds": 30.0,
-          "opponent": "PIT",
-          "rush_attempts": 2.0
-        },
-        {
-          "week": 7,
-          "rush_yds": 0.0,
-          "rec_yds": 10.0,
-          "total_yds": 10.0,
-          "opponent": "MIA",
-          "rush_attempts": 1.0
-        },
-        {
-          "week": 8,
-          "rush_yds": 0.0,
-          "rec_yds": -1.0,
-          "total_yds": -1.0,
-          "opponent": "NE",
-          "rush_attempts": 0.0
-        },
-        {
-          "week": 10,
-          "rush_yds": 1.0,
-          "rec_yds": 0.0,
-          "total_yds": 1.0,
-          "opponent": "NYJ",
-          "rush_attempts": 1.0
-        },
-        {
-          "week": 11,
-          "rush_yds": 2.0,
-          "rec_yds": 0.0,
-          "total_yds": 2.0,
-          "opponent": "BAL",
-          "rush_attempts": 1.0
-        },
-        {
-          "week": 12,
-          "rush_yds": -3.0,
-          "rec_yds": 0.0,
-          "total_yds": -3.0,
-          "opponent": "LV",
-          "rush_attempts": 1.0
-        },
-        {
-          "week": 13,
-          "rush_yds": 0.0,
-          "rec_yds": 17.0,
-          "total_yds": 17.0,
-          "opponent": "SF",
-          "rush_attempts": 0.0
-        },
-        {
-          "week": 14,
-          "rush_yds": 0.0,
-          "rec_yds": 10.0,
-          "total_yds": 10.0,
-          "opponent": "TEN",
-          "rush_attempts": 0.0
         }
       ]
     },
