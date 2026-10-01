@@ -1,7 +1,7 @@
 {
   "sport": "MLB",
   "date": "2026-10-01",
-  "last_updated": "11:13 AM ET",
+  "last_updated": "11:38 AM ET",
   "calibration": {
     "threshold_pp": 15.0,
     "mode": "off",
@@ -1152,7 +1152,7 @@
                 "ticker": "KXMLBHR-26OCT011400PHIATL-PHIKSCHWARBER12-1",
                 "implied_prob": 0.23,
                 "edge_pp": 10.8,
-                "volume": 13776,
+                "volume": 14805,
                 "decision": "BET",
                 "model_fair_american": 196,
                 "market_american": 335
@@ -1166,7 +1166,7 @@
                 "ticker": "KXMLBHR-26OCT011400PHIATL-PHIKSCHWARBER12-2",
                 "implied_prob": 0.03,
                 "edge_pp": 2.0,
-                "volume": 11388,
+                "volume": 11437,
                 "decision": "PASS",
                 "model_fair_american": 1884,
                 "market_american": 3233
@@ -1201,7 +1201,7 @@
                 "ticker": "KXMLBHR-26OCT011400PHIATL-ATLMOLSON28-1",
                 "implied_prob": 0.18,
                 "edge_pp": 7.1,
-                "volume": 20018,
+                "volume": 21784,
                 "decision": "BET",
                 "model_fair_american": 298,
                 "market_american": 456
@@ -1248,12 +1248,12 @@
                 "model_prob_raw": 0.234,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26OCT011400PHIATL-ATLDBALDWIN30-1",
-                "implied_prob": 0.125,
-                "edge_pp": 10.9,
-                "volume": 10113,
+                "implied_prob": 0.13,
+                "edge_pp": 10.4,
+                "volume": 10592,
                 "decision": "BET",
                 "model_fair_american": 327,
-                "market_american": 700
+                "market_american": 669
               },
               {
                 "threshold": 2,
@@ -1718,7 +1718,7 @@
               "model_prob_raw": 0.543,
               "shrink_pp": 8.5,
               "edge_pp": -4.7,
-              "volume": 365297
+              "volume": 395062
             },
             "decision": "PASS"
           }
@@ -1730,11 +1730,11 @@
         "is_dome": false,
         "park_factor_lhb": 0.97,
         "park_factor_rhb": 1.02,
-        "wind_mph": 4,
-        "wind_deg": 106,
+        "wind_mph": 5,
+        "wind_deg": 103,
         "wind_label": "IN",
         "hr_lean": "HR suppress",
-        "summary_chip": "Truist Park \u00b7 4mph IN (HR suppress)"
+        "summary_chip": "Truist Park \u00b7 5mph IN (HR suppress)"
       }
     }
   ],
@@ -1761,60 +1761,6 @@
     "decision_rules": "BET: edge_pp between +5 and +25 and market implied_prob between 0.10 and 0.80.\nPASS: edge_pp < +5 (no edge) or implied_prob outside 0.10-0.80 (chalk/longshot).\nCHECK: edge_pp > +25 \u2014 model disagrees with the market too much; probable model error, verify before betting. (No Kalshi market: NO_MARKET.)",
     "players": [
       {
-        "player_id": "686948",
-        "player_name": "Drake Baldwin",
-        "team": "ATL",
-        "opponent": "PHI",
-        "market": "HR",
-        "game_id": "phi-atl-2026-10-01",
-        "headline_line": "HR 1+",
-        "best": {
-          "threshold": 1,
-          "line": "1+",
-          "model_prob": 0.234,
-          "model_prob_raw": 0.234,
-          "shrink_pp": 0.0,
-          "ticker": "KXMLBHR-26OCT011400PHIATL-ATLDBALDWIN30-1",
-          "implied_prob": 0.125,
-          "edge_pp": 10.9,
-          "volume": 10113,
-          "decision": "BET",
-          "model_fair_american": 327,
-          "market_american": 700
-        },
-        "ladder": [
-          {
-            "threshold": 1,
-            "line": "1+",
-            "model_prob": 0.234,
-            "model_prob_raw": 0.234,
-            "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26OCT011400PHIATL-ATLDBALDWIN30-1",
-            "implied_prob": 0.125,
-            "edge_pp": 10.9,
-            "volume": 10113,
-            "decision": "BET",
-            "model_fair_american": 327,
-            "market_american": 700
-          },
-          {
-            "threshold": 2,
-            "line": "2+",
-            "model_prob": 0.0276,
-            "model_prob_raw": 0.0276,
-            "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26OCT011400PHIATL-ATLDBALDWIN30-2",
-            "implied_prob": 0.005,
-            "edge_pp": 2.3,
-            "volume": 627,
-            "decision": "PASS",
-            "model_fair_american": 3523,
-            "market_american": 19900
-          }
-        ],
-        "label": "REPORT_ONLY \u2014 no execution venue wired"
-      },
-      {
         "player_id": "656941",
         "player_name": "Kyle Schwarber",
         "team": "PHI",
@@ -1831,7 +1777,7 @@
           "ticker": "KXMLBHR-26OCT011400PHIATL-PHIKSCHWARBER12-1",
           "implied_prob": 0.23,
           "edge_pp": 10.8,
-          "volume": 13776,
+          "volume": 14805,
           "decision": "BET",
           "model_fair_american": 196,
           "market_american": 335
@@ -1846,7 +1792,7 @@
             "ticker": "KXMLBHR-26OCT011400PHIATL-PHIKSCHWARBER12-1",
             "implied_prob": 0.23,
             "edge_pp": 10.8,
-            "volume": 13776,
+            "volume": 14805,
             "decision": "BET",
             "model_fair_american": 196,
             "market_american": 335
@@ -1860,10 +1806,64 @@
             "ticker": "KXMLBHR-26OCT011400PHIATL-PHIKSCHWARBER12-2",
             "implied_prob": 0.03,
             "edge_pp": 2.0,
-            "volume": 11388,
+            "volume": 11437,
             "decision": "PASS",
             "model_fair_american": 1884,
             "market_american": 3233
+          }
+        ],
+        "label": "REPORT_ONLY \u2014 no execution venue wired"
+      },
+      {
+        "player_id": "686948",
+        "player_name": "Drake Baldwin",
+        "team": "ATL",
+        "opponent": "PHI",
+        "market": "HR",
+        "game_id": "phi-atl-2026-10-01",
+        "headline_line": "HR 1+",
+        "best": {
+          "threshold": 1,
+          "line": "1+",
+          "model_prob": 0.234,
+          "model_prob_raw": 0.234,
+          "shrink_pp": 0.0,
+          "ticker": "KXMLBHR-26OCT011400PHIATL-ATLDBALDWIN30-1",
+          "implied_prob": 0.13,
+          "edge_pp": 10.4,
+          "volume": 10592,
+          "decision": "BET",
+          "model_fair_american": 327,
+          "market_american": 669
+        },
+        "ladder": [
+          {
+            "threshold": 1,
+            "line": "1+",
+            "model_prob": 0.234,
+            "model_prob_raw": 0.234,
+            "shrink_pp": 0.0,
+            "ticker": "KXMLBHR-26OCT011400PHIATL-ATLDBALDWIN30-1",
+            "implied_prob": 0.13,
+            "edge_pp": 10.4,
+            "volume": 10592,
+            "decision": "BET",
+            "model_fair_american": 327,
+            "market_american": 669
+          },
+          {
+            "threshold": 2,
+            "line": "2+",
+            "model_prob": 0.0276,
+            "model_prob_raw": 0.0276,
+            "shrink_pp": 0.0,
+            "ticker": "KXMLBHR-26OCT011400PHIATL-ATLDBALDWIN30-2",
+            "implied_prob": 0.005,
+            "edge_pp": 2.3,
+            "volume": 627,
+            "decision": "PASS",
+            "model_fair_american": 3523,
+            "market_american": 19900
           }
         ],
         "label": "REPORT_ONLY \u2014 no execution venue wired"
@@ -1885,7 +1885,7 @@
           "ticker": "KXMLBHR-26OCT011400PHIATL-ATLMOLSON28-1",
           "implied_prob": 0.18,
           "edge_pp": 7.1,
-          "volume": 20018,
+          "volume": 21784,
           "decision": "BET",
           "model_fair_american": 298,
           "market_american": 456
@@ -1900,7 +1900,7 @@
             "ticker": "KXMLBHR-26OCT011400PHIATL-ATLMOLSON28-1",
             "implied_prob": 0.18,
             "edge_pp": 7.1,
-            "volume": 20018,
+            "volume": 21784,
             "decision": "BET",
             "model_fair_american": 298,
             "market_american": 456
