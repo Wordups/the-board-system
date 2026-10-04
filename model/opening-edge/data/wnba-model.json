@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-02T20:46:33.608Z",
+  "generatedAt": "2026-10-04T15:58:44.838Z",
   "start": "2026-05-01",
-  "end": "2026-10-01",
+  "end": "2026-10-03",
   "source": "ESPN play-by-play; verify against official WNBA gamebook for wagering decisions",
   "marketDefinitions": {
     "firstFieldGoal": "First made field goal by either team; free throws excluded",
     "firstPoints": "First points by either team; free throws included"
   },
-  "games": 345,
+  "games": 346,
   "sequences": [
     {
       "gameId": "401867793",
@@ -67973,6 +67973,203 @@
           "text": "Kelsey Mitchell makes 14-foot jumper (Caitlin Clark assists)"
         }
       ]
+    },
+    {
+      "gameId": "401918294",
+      "date": "2026-10-03T01:00Z",
+      "teams": [
+        {
+          "id": "129689",
+          "abbreviation": "GS",
+          "displayName": "Golden State Valkyries"
+        },
+        {
+          "id": "3",
+          "abbreviation": "DAL",
+          "displayName": "Dallas Wings"
+        }
+      ],
+      "tip": {
+        "playId": "4019182944",
+        "winningTeamId": "3",
+        "possessionPlayerId": "4433730",
+        "possessionPlayerName": "Paige Bueckers",
+        "text": "Awak Kuier vs. Kiah Stokes (Paige Bueckers gains possession)"
+      },
+      "firstAttempt": {
+        "playId": "4019182947",
+        "clock": "9:41",
+        "teamId": "3",
+        "athleteId": "4433730",
+        "athleteName": "Paige Bueckers",
+        "text": "Paige Bueckers misses 26-foot three point jumper",
+        "made": false,
+        "pointsAttempted": 3,
+        "assistedById": null,
+        "assistedByName": null
+      },
+      "firstFieldGoal": {
+        "playId": "40191829427",
+        "clock": "7:48",
+        "teamId": "3",
+        "athleteId": "3904577",
+        "athleteName": "Arike Ogunbowale",
+        "text": "Arike Ogunbowale makes two point shot",
+        "made": true,
+        "pointsAttempted": 2,
+        "assistedById": null,
+        "assistedByName": null
+      },
+      "firstPoints": {
+        "playId": "40191829427",
+        "clock": "7:48",
+        "teamId": "3",
+        "athleteId": "3904577",
+        "athleteName": "Arike Ogunbowale",
+        "text": "Arike Ogunbowale makes two point shot",
+        "made": true,
+        "pointsAttempted": 2,
+        "assistedById": null,
+        "assistedByName": null
+      },
+      "firstAttemptsByTeam": {
+        "3": {
+          "playId": "4019182947",
+          "clock": "9:41",
+          "teamId": "3",
+          "athleteId": "4433730",
+          "athleteName": "Paige Bueckers",
+          "text": "Paige Bueckers misses 26-foot three point jumper",
+          "made": false,
+          "pointsAttempted": 3,
+          "assistedById": null,
+          "assistedByName": null
+        },
+        "129689": {
+          "playId": "40191829412",
+          "clock": "9:05",
+          "teamId": "129689",
+          "athleteId": "3142328",
+          "athleteName": "Gabby Williams",
+          "text": "Gabby Williams misses 26-foot three point step back jumpshot",
+          "made": false,
+          "pointsAttempted": 3,
+          "assistedById": null,
+          "assistedByName": null
+        }
+      },
+      "firstFieldGoalsByTeam": {
+        "3": {
+          "playId": "40191829427",
+          "clock": "7:48",
+          "teamId": "3",
+          "athleteId": "3904577",
+          "athleteName": "Arike Ogunbowale",
+          "text": "Arike Ogunbowale makes two point shot",
+          "made": true,
+          "pointsAttempted": 2,
+          "assistedById": null,
+          "assistedByName": null
+        },
+        "129689": {
+          "playId": "40191829435",
+          "clock": "7:08",
+          "teamId": "129689",
+          "athleteId": "2590093",
+          "athleteName": "Kiah Stokes",
+          "text": "Kiah Stokes makes 4-foot layup (Veronica Burton assists)",
+          "made": true,
+          "pointsAttempted": 2,
+          "assistedById": "4398935",
+          "assistedByName": "Veronica Burton"
+        }
+      },
+      "openingPlays": [
+        {
+          "playId": "4019182944",
+          "clock": "10:00",
+          "teamId": "3",
+          "type": "Jumpball",
+          "text": "Awak Kuier vs. Kiah Stokes (Paige Bueckers gains possession)"
+        },
+        {
+          "playId": "4019182947",
+          "clock": "9:41",
+          "teamId": "3",
+          "type": "Jump Shot",
+          "text": "Paige Bueckers misses 26-foot three point jumper"
+        },
+        {
+          "playId": "4019182948",
+          "clock": "9:40",
+          "teamId": "3",
+          "type": "Offensive Rebound",
+          "text": "Awak Kuier offensive rebound"
+        },
+        {
+          "playId": "40191829410",
+          "clock": "9:27",
+          "teamId": "3",
+          "type": "Bad Pass\nTurnover",
+          "text": "Arike Ogunbowale bad pass\nturnover (Gabby Williams steals)"
+        },
+        {
+          "playId": "40191829412",
+          "clock": "9:05",
+          "teamId": "129689",
+          "type": "Step Back Jump Shot",
+          "text": "Gabby Williams misses 26-foot three point step back jumpshot"
+        },
+        {
+          "playId": "40191829413",
+          "clock": "9:04",
+          "teamId": "3",
+          "type": "Defensive Rebound",
+          "text": "Maddy Siegrist defensive rebound"
+        },
+        {
+          "playId": "40191829414",
+          "clock": "8:51",
+          "teamId": "3",
+          "type": "Jump Shot",
+          "text": "Jessica Shepard misses 15-foot jumper"
+        },
+        {
+          "playId": "40191829415",
+          "clock": "8:50",
+          "teamId": "129689",
+          "type": "Defensive Rebound",
+          "text": "Golden State Valkyries defensive team rebound"
+        },
+        {
+          "playId": "40191829417",
+          "clock": "8:36",
+          "teamId": "3",
+          "type": "Personal Foul",
+          "text": "Awak Kuier personal foul"
+        },
+        {
+          "playId": "40191829420",
+          "clock": "8:19",
+          "teamId": "3",
+          "type": "Offensive Foul",
+          "text": "Arike Ogunbowale offensive foul"
+        },
+        {
+          "playId": "40191829422",
+          "clock": "8:19",
+          "teamId": "3",
+          "type": "Offensive Foul Turnover",
+          "text": "Arike Ogunbowale offensive foul turnover"
+        },
+        {
+          "playId": "40191829423",
+          "clock": "8:08",
+          "teamId": "129689",
+          "type": "Bad Pass\nTurnover",
+          "text": "Veronica Burton bad pass\nturnover (Arike Ogunbowale steals)"
+        }
+      ]
     }
   ],
   "players": [
@@ -68260,14 +68457,14 @@
       "athleteId": "3904577",
       "player": "Arike Ogunbowale",
       "teamId": "3",
-      "games": 9,
+      "games": 10,
       "firstAttempts": 2,
       "firstAttemptMakes": 1,
-      "firstFieldGoals": 2,
-      "firstPoints": 2,
+      "firstFieldGoals": 3,
+      "firstPoints": 3,
       "firstTeamAttempts": 7,
       "firstTeamAttemptMakes": 2,
-      "firstTeamFieldGoals": 5,
+      "firstTeamFieldGoals": 6,
       "assistedOpeningMakes": 2
     },
     {
@@ -68288,12 +68485,12 @@
       "athleteId": "4433730",
       "player": "Paige Bueckers",
       "teamId": "3",
-      "games": 22,
-      "firstAttempts": 9,
+      "games": 23,
+      "firstAttempts": 10,
       "firstAttemptMakes": 5,
       "firstFieldGoals": 9,
       "firstPoints": 8,
-      "firstTeamAttempts": 17,
+      "firstTeamAttempts": 18,
       "firstTeamAttemptMakes": 8,
       "firstTeamFieldGoals": 14,
       "assistedOpeningMakes": 9
@@ -68456,12 +68653,12 @@
       "athleteId": "3142328",
       "player": "Gabby Williams",
       "teamId": "129689",
-      "games": 16,
+      "games": 17,
       "firstAttempts": 7,
       "firstAttemptMakes": 5,
       "firstFieldGoals": 8,
       "firstPoints": 8,
-      "firstTeamAttempts": 13,
+      "firstTeamAttempts": 14,
       "firstTeamAttemptMakes": 8,
       "firstTeamFieldGoals": 11,
       "assistedOpeningMakes": 5
@@ -69352,15 +69549,15 @@
       "athleteId": "2590093",
       "player": "Kiah Stokes",
       "teamId": "129689",
-      "games": 3,
+      "games": 4,
       "firstAttempts": 0,
       "firstAttemptMakes": 0,
       "firstFieldGoals": 2,
       "firstPoints": 2,
       "firstTeamAttempts": 2,
       "firstTeamAttemptMakes": 1,
-      "firstTeamFieldGoals": 2,
-      "assistedOpeningMakes": 2
+      "firstTeamFieldGoals": 3,
+      "assistedOpeningMakes": 3
     },
     {
       "athleteId": "2566453",
@@ -69799,10 +69996,10 @@
     {
       "teamId": "3",
       "team": "DAL",
-      "games": 47,
-      "tipWins": 18,
-      "scoredFirstFieldGoal": 27,
-      "scoredFirstPoints": 25,
+      "games": 48,
+      "tipWins": 19,
+      "scoredFirstFieldGoal": 28,
+      "scoredFirstPoints": 26,
       "convertedFirstAttempt": 10
     },
     {
@@ -69844,7 +70041,7 @@
     {
       "teamId": "129689",
       "team": "GS",
-      "games": 46,
+      "games": 47,
       "tipWins": 23,
       "scoredFirstFieldGoal": 25,
       "scoredFirstPoints": 26,
@@ -69944,59 +70141,29 @@
       "player": "Paige Bueckers",
       "teamId": "3",
       "team": "DAL",
-      "games": 47,
+      "games": 48,
       "edgeScore": 40,
       "components": {
-        "playerFirstBasketShare": 0.19148936170212766,
-        "teamFirstBasketRate": 0.574468085106383,
-        "firstShotInvolvement": 0.3943679599499374,
-        "tipMatchup": 0.44148936170212766,
+        "playerFirstBasketShare": 0.1875,
+        "teamFirstBasketRate": 0.5833333333333334,
+        "firstShotInvolvement": 0.39583333333333326,
+        "tipMatchup": 0.44791666666666663,
         "roleAvailability": 0.5,
         "headToHead": 0.5,
         "marketValue": 0.5
       },
       "rates": {
-        "firstBasket": 0.19148936170212766,
-        "firstAttempt": 0.3617021276595745,
-        "firstAttemptMake": 0.47058823529411764,
-        "teamTipWin": 0.3829787234042553,
-        "teamScoresFirst": 0.574468085106383
+        "firstBasket": 0.1875,
+        "firstAttempt": 0.375,
+        "firstAttemptMake": 0.4444444444444444,
+        "teamTipWin": 0.3958333333333333,
+        "teamScoresFirst": 0.5833333333333334
       },
       "sample": {
         "firstFieldGoals": 9,
-        "firstAttempts": 17,
+        "firstAttempts": 18,
         "firstAttemptMakes": 8,
-        "teamGames": 47
-      }
-    },
-    {
-      "athleteId": "4257500",
-      "player": "Cecilia Zandalasini",
-      "teamId": "129689",
-      "team": "GS",
-      "games": 46,
-      "edgeScore": 40,
-      "components": {
-        "playerFirstBasketShare": 0.1956521739130435,
-        "teamFirstBasketRate": 0.5434782608695652,
-        "firstShotInvolvement": 0.358300395256917,
-        "tipMatchup": 0.5,
-        "roleAvailability": 0.5,
-        "headToHead": 0.5,
-        "marketValue": 0.5
-      },
-      "rates": {
-        "firstBasket": 0.1956521739130435,
-        "firstAttempt": 0.2391304347826087,
-        "firstAttemptMake": 0.6363636363636364,
-        "teamTipWin": 0.5,
-        "teamScoresFirst": 0.5434782608695652
-      },
-      "sample": {
-        "firstFieldGoals": 9,
-        "firstAttempts": 11,
-        "firstAttemptMakes": 7,
-        "teamGames": 46
+        "teamGames": 48
       }
     },
     {
@@ -70026,6 +70193,36 @@
         "firstFieldGoals": 7,
         "firstAttempts": 9,
         "firstAttemptMakes": 5,
+        "teamGames": 47
+      }
+    },
+    {
+      "athleteId": "4257500",
+      "player": "Cecilia Zandalasini",
+      "teamId": "129689",
+      "team": "GS",
+      "games": 47,
+      "edgeScore": 39,
+      "components": {
+        "playerFirstBasketShare": 0.19148936170212766,
+        "teamFirstBasketRate": 0.5319148936170213,
+        "firstShotInvolvement": 0.35473887814313343,
+        "tipMatchup": 0.49468085106382975,
+        "roleAvailability": 0.5,
+        "headToHead": 0.5,
+        "marketValue": 0.5
+      },
+      "rates": {
+        "firstBasket": 0.19148936170212766,
+        "firstAttempt": 0.23404255319148937,
+        "firstAttemptMake": 0.6363636363636364,
+        "teamTipWin": 0.48936170212765956,
+        "teamScoresFirst": 0.5319148936170213
+      },
+      "sample": {
+        "firstFieldGoals": 9,
+        "firstAttempts": 11,
+        "firstAttemptMakes": 7,
         "teamGames": 47
       }
     },
@@ -70064,29 +70261,29 @@
       "player": "Gabby Williams",
       "teamId": "129689",
       "team": "GS",
-      "games": 46,
+      "games": 47,
       "edgeScore": 39,
       "components": {
-        "playerFirstBasketShare": 0.17391304347826086,
-        "teamFirstBasketRate": 0.5434782608695652,
-        "firstShotInvolvement": 0.38244147157190633,
-        "tipMatchup": 0.5,
+        "playerFirstBasketShare": 0.1702127659574468,
+        "teamFirstBasketRate": 0.5319148936170213,
+        "firstShotInvolvement": 0.3799392097264437,
+        "tipMatchup": 0.49468085106382975,
         "roleAvailability": 0.5,
         "headToHead": 0.5,
         "marketValue": 0.5
       },
       "rates": {
-        "firstBasket": 0.17391304347826086,
-        "firstAttempt": 0.2826086956521739,
-        "firstAttemptMake": 0.6153846153846154,
-        "teamTipWin": 0.5,
-        "teamScoresFirst": 0.5434782608695652
+        "firstBasket": 0.1702127659574468,
+        "firstAttempt": 0.2978723404255319,
+        "firstAttemptMake": 0.5714285714285714,
+        "teamTipWin": 0.48936170212765956,
+        "teamScoresFirst": 0.5319148936170213
       },
       "sample": {
         "firstFieldGoals": 8,
-        "firstAttempts": 13,
+        "firstAttempts": 14,
         "firstAttemptMakes": 8,
-        "teamGames": 46
+        "teamGames": 47
       }
     },
     {
@@ -70780,6 +70977,36 @@
       }
     },
     {
+      "athleteId": "4790266",
+      "player": "Awak Kuier",
+      "teamId": "3",
+      "team": "DAL",
+      "games": 48,
+      "edgeScore": 35,
+      "components": {
+        "playerFirstBasketShare": 0.10416666666666667,
+        "teamFirstBasketRate": 0.5833333333333334,
+        "firstShotInvolvement": 0.20833333333333331,
+        "tipMatchup": 0.44791666666666663,
+        "roleAvailability": 0.5,
+        "headToHead": 0.5,
+        "marketValue": 0.5
+      },
+      "rates": {
+        "firstBasket": 0.10416666666666667,
+        "firstAttempt": 0.08333333333333333,
+        "firstAttemptMake": 0.5,
+        "teamTipWin": 0.3958333333333333,
+        "teamScoresFirst": 0.5833333333333334
+      },
+      "sample": {
+        "firstFieldGoals": 5,
+        "firstAttempts": 4,
+        "firstAttemptMakes": 2,
+        "teamGames": 48
+      }
+    },
+    {
       "athleteId": "4684384",
       "player": "Aneesah Morrow",
       "teamId": "18",
@@ -71020,36 +71247,6 @@
       }
     },
     {
-      "athleteId": "4790266",
-      "player": "Awak Kuier",
-      "teamId": "3",
-      "team": "DAL",
-      "games": 47,
-      "edgeScore": 34,
-      "components": {
-        "playerFirstBasketShare": 0.10638297872340426,
-        "teamFirstBasketRate": 0.574468085106383,
-        "firstShotInvolvement": 0.20957446808510638,
-        "tipMatchup": 0.44148936170212766,
-        "roleAvailability": 0.5,
-        "headToHead": 0.5,
-        "marketValue": 0.5
-      },
-      "rates": {
-        "firstBasket": 0.10638297872340426,
-        "firstAttempt": 0.0851063829787234,
-        "firstAttemptMake": 0.5,
-        "teamTipWin": 0.3829787234042553,
-        "teamScoresFirst": 0.574468085106383
-      },
-      "sample": {
-        "firstFieldGoals": 5,
-        "firstAttempts": 4,
-        "firstAttemptMakes": 2,
-        "teamGames": 47
-      }
-    },
-    {
       "athleteId": "4398776",
       "player": "NaLyssa Smith",
       "teamId": "17",
@@ -71174,29 +71371,29 @@
       "player": "Jessica Shepard",
       "teamId": "3",
       "team": "DAL",
-      "games": 47,
+      "games": 48,
       "edgeScore": 34,
       "components": {
-        "playerFirstBasketShare": 0.06382978723404255,
-        "teamFirstBasketRate": 0.574468085106383,
-        "firstShotInvolvement": 0.23164893617021276,
-        "tipMatchup": 0.44148936170212766,
+        "playerFirstBasketShare": 0.0625,
+        "teamFirstBasketRate": 0.5833333333333334,
+        "firstShotInvolvement": 0.22916666666666663,
+        "tipMatchup": 0.44791666666666663,
         "roleAvailability": 0.5,
         "headToHead": 0.5,
         "marketValue": 0.5
       },
       "rates": {
-        "firstBasket": 0.06382978723404255,
-        "firstAttempt": 0.1702127659574468,
+        "firstBasket": 0.0625,
+        "firstAttempt": 0.16666666666666666,
         "firstAttemptMake": 0.375,
-        "teamTipWin": 0.3829787234042553,
-        "teamScoresFirst": 0.574468085106383
+        "teamTipWin": 0.3958333333333333,
+        "teamScoresFirst": 0.5833333333333334
       },
       "sample": {
         "firstFieldGoals": 3,
         "firstAttempts": 8,
         "firstAttemptMakes": 3,
-        "teamGames": 47
+        "teamGames": 48
       }
     },
     {
@@ -71234,29 +71431,29 @@
       "player": "Veronica Burton",
       "teamId": "129689",
       "team": "GS",
-      "games": 46,
+      "games": 47,
       "edgeScore": 34,
       "components": {
-        "playerFirstBasketShare": 0.06521739130434782,
-        "teamFirstBasketRate": 0.5434782608695652,
-        "firstShotInvolvement": 0.2779503105590062,
-        "tipMatchup": 0.5,
+        "playerFirstBasketShare": 0.06382978723404255,
+        "teamFirstBasketRate": 0.5319148936170213,
+        "firstShotInvolvement": 0.27568389057750753,
+        "tipMatchup": 0.49468085106382975,
         "roleAvailability": 0.5,
         "headToHead": 0.5,
         "marketValue": 0.5
       },
       "rates": {
-        "firstBasket": 0.06521739130434782,
-        "firstAttempt": 0.15217391304347827,
+        "firstBasket": 0.06382978723404255,
+        "firstAttempt": 0.14893617021276595,
         "firstAttemptMake": 0.5714285714285714,
-        "teamTipWin": 0.5,
-        "teamScoresFirst": 0.5434782608695652
+        "teamTipWin": 0.48936170212765956,
+        "teamScoresFirst": 0.5319148936170213
       },
       "sample": {
         "firstFieldGoals": 3,
         "firstAttempts": 7,
         "firstAttemptMakes": 4,
-        "teamGames": 46
+        "teamGames": 47
       }
     },
     {
@@ -71264,29 +71461,29 @@
       "player": "Azzi Fudd",
       "teamId": "3",
       "team": "DAL",
-      "games": 47,
+      "games": 48,
       "edgeScore": 34,
       "components": {
-        "playerFirstBasketShare": 0.06382978723404255,
-        "teamFirstBasketRate": 0.574468085106383,
-        "firstShotInvolvement": 0.23936170212765956,
-        "tipMatchup": 0.44148936170212766,
+        "playerFirstBasketShare": 0.0625,
+        "teamFirstBasketRate": 0.5833333333333334,
+        "firstShotInvolvement": 0.2375,
+        "tipMatchup": 0.44791666666666663,
         "roleAvailability": 0.5,
         "headToHead": 0.5,
         "marketValue": 0.5
       },
       "rates": {
-        "firstBasket": 0.06382978723404255,
-        "firstAttempt": 0.1276595744680851,
+        "firstBasket": 0.0625,
+        "firstAttempt": 0.125,
         "firstAttemptMake": 0.5,
-        "teamTipWin": 0.3829787234042553,
-        "teamScoresFirst": 0.574468085106383
+        "teamTipWin": 0.3958333333333333,
+        "teamScoresFirst": 0.5833333333333334
       },
       "sample": {
         "firstFieldGoals": 3,
         "firstAttempts": 6,
         "firstAttemptMakes": 3,
-        "teamGames": 47
+        "teamGames": 48
       }
     },
     {
@@ -71294,29 +71491,29 @@
       "player": "Maddy Siegrist",
       "teamId": "3",
       "team": "DAL",
-      "games": 47,
+      "games": 48,
       "edgeScore": 34,
       "components": {
-        "playerFirstBasketShare": 0.0425531914893617,
-        "teamFirstBasketRate": 0.574468085106383,
-        "firstShotInvolvement": 0.3148936170212766,
-        "tipMatchup": 0.44148936170212766,
+        "playerFirstBasketShare": 0.041666666666666664,
+        "teamFirstBasketRate": 0.5833333333333334,
+        "firstShotInvolvement": 0.3145833333333333,
+        "tipMatchup": 0.44791666666666663,
         "roleAvailability": 0.5,
         "headToHead": 0.5,
         "marketValue": 0.5
       },
       "rates": {
-        "firstBasket": 0.0425531914893617,
-        "firstAttempt": 0.02127659574468085,
+        "firstBasket": 0.041666666666666664,
+        "firstAttempt": 0.020833333333333332,
         "firstAttemptMake": 1,
-        "teamTipWin": 0.3829787234042553,
-        "teamScoresFirst": 0.574468085106383
+        "teamTipWin": 0.3958333333333333,
+        "teamScoresFirst": 0.5833333333333334
       },
       "sample": {
         "firstFieldGoals": 2,
         "firstAttempts": 1,
         "firstAttemptMakes": 1,
-        "teamGames": 47
+        "teamGames": 48
       }
     },
     {
@@ -71530,33 +71727,63 @@
       }
     },
     {
-      "athleteId": "3913881",
-      "player": "Alanna Smith",
+      "athleteId": "3904577",
+      "player": "Arike Ogunbowale",
       "teamId": "3",
       "team": "DAL",
-      "games": 47,
+      "games": 48,
       "edgeScore": 33,
       "components": {
-        "playerFirstBasketShare": 0.06382978723404255,
-        "teamFirstBasketRate": 0.574468085106383,
-        "firstShotInvolvement": 0.20957446808510638,
-        "tipMatchup": 0.44148936170212766,
+        "playerFirstBasketShare": 0.0625,
+        "teamFirstBasketRate": 0.5833333333333334,
+        "firstShotInvolvement": 0.18779761904761905,
+        "tipMatchup": 0.44791666666666663,
         "roleAvailability": 0.5,
         "headToHead": 0.5,
         "marketValue": 0.5
       },
       "rates": {
-        "firstBasket": 0.06382978723404255,
-        "firstAttempt": 0.0851063829787234,
+        "firstBasket": 0.0625,
+        "firstAttempt": 0.14583333333333334,
+        "firstAttemptMake": 0.2857142857142857,
+        "teamTipWin": 0.3958333333333333,
+        "teamScoresFirst": 0.5833333333333334
+      },
+      "sample": {
+        "firstFieldGoals": 3,
+        "firstAttempts": 7,
+        "firstAttemptMakes": 2,
+        "teamGames": 48
+      }
+    },
+    {
+      "athleteId": "3913881",
+      "player": "Alanna Smith",
+      "teamId": "3",
+      "team": "DAL",
+      "games": 48,
+      "edgeScore": 33,
+      "components": {
+        "playerFirstBasketShare": 0.0625,
+        "teamFirstBasketRate": 0.5833333333333334,
+        "firstShotInvolvement": 0.20833333333333331,
+        "tipMatchup": 0.44791666666666663,
+        "roleAvailability": 0.5,
+        "headToHead": 0.5,
+        "marketValue": 0.5
+      },
+      "rates": {
+        "firstBasket": 0.0625,
+        "firstAttempt": 0.08333333333333333,
         "firstAttemptMake": 0.5,
-        "teamTipWin": 0.3829787234042553,
-        "teamScoresFirst": 0.574468085106383
+        "teamTipWin": 0.3958333333333333,
+        "teamScoresFirst": 0.5833333333333334
       },
       "sample": {
         "firstFieldGoals": 3,
         "firstAttempts": 4,
         "firstAttemptMakes": 2,
-        "teamGames": 47
+        "teamGames": 48
       }
     },
     {
@@ -71617,36 +71844,6 @@
         "firstAttempts": 3,
         "firstAttemptMakes": 2,
         "teamGames": 45
-      }
-    },
-    {
-      "athleteId": "2529622",
-      "player": "Kayla Thornton",
-      "teamId": "129689",
-      "team": "GS",
-      "games": 46,
-      "edgeScore": 33,
-      "components": {
-        "playerFirstBasketShare": 0.043478260869565216,
-        "teamFirstBasketRate": 0.5434782608695652,
-        "firstShotInvolvement": 0.21217391304347824,
-        "tipMatchup": 0.5,
-        "roleAvailability": 0.5,
-        "headToHead": 0.5,
-        "marketValue": 0.5
-      },
-      "rates": {
-        "firstBasket": 0.043478260869565216,
-        "firstAttempt": 0.21739130434782608,
-        "firstAttemptMake": 0.2,
-        "teamTipWin": 0.5,
-        "teamScoresFirst": 0.5434782608695652
-      },
-      "sample": {
-        "firstFieldGoals": 2,
-        "firstAttempts": 10,
-        "firstAttemptMakes": 2,
-        "teamGames": 46
       }
     },
     {
@@ -71890,31 +72087,31 @@
       }
     },
     {
-      "athleteId": "3904577",
-      "player": "Arike Ogunbowale",
-      "teamId": "3",
-      "team": "DAL",
+      "athleteId": "2529622",
+      "player": "Kayla Thornton",
+      "teamId": "129689",
+      "team": "GS",
       "games": 47,
       "edgeScore": 32,
       "components": {
         "playerFirstBasketShare": 0.0425531914893617,
-        "teamFirstBasketRate": 0.574468085106383,
-        "firstShotInvolvement": 0.18996960486322184,
-        "tipMatchup": 0.44148936170212766,
+        "teamFirstBasketRate": 0.5319148936170213,
+        "firstShotInvolvement": 0.20893617021276595,
+        "tipMatchup": 0.49468085106382975,
         "roleAvailability": 0.5,
         "headToHead": 0.5,
         "marketValue": 0.5
       },
       "rates": {
         "firstBasket": 0.0425531914893617,
-        "firstAttempt": 0.14893617021276595,
-        "firstAttemptMake": 0.2857142857142857,
-        "teamTipWin": 0.3829787234042553,
-        "teamScoresFirst": 0.574468085106383
+        "firstAttempt": 0.2127659574468085,
+        "firstAttemptMake": 0.2,
+        "teamTipWin": 0.48936170212765956,
+        "teamScoresFirst": 0.5319148936170213
       },
       "sample": {
         "firstFieldGoals": 2,
-        "firstAttempts": 7,
+        "firstAttempts": 10,
         "firstAttemptMakes": 2,
         "teamGames": 47
       }
@@ -72074,29 +72271,29 @@
       "player": "Kiah Stokes",
       "teamId": "129689",
       "team": "GS",
-      "games": 46,
+      "games": 47,
       "edgeScore": 32,
       "components": {
-        "playerFirstBasketShare": 0.043478260869565216,
-        "teamFirstBasketRate": 0.5434782608695652,
-        "firstShotInvolvement": 0.18043478260869564,
-        "tipMatchup": 0.5,
+        "playerFirstBasketShare": 0.0425531914893617,
+        "teamFirstBasketRate": 0.5319148936170213,
+        "firstShotInvolvement": 0.17978723404255317,
+        "tipMatchup": 0.49468085106382975,
         "roleAvailability": 0.5,
         "headToHead": 0.5,
         "marketValue": 0.5
       },
       "rates": {
-        "firstBasket": 0.043478260869565216,
-        "firstAttempt": 0.043478260869565216,
+        "firstBasket": 0.0425531914893617,
+        "firstAttempt": 0.0425531914893617,
         "firstAttemptMake": 0.5,
-        "teamTipWin": 0.5,
-        "teamScoresFirst": 0.5434782608695652
+        "teamTipWin": 0.48936170212765956,
+        "teamScoresFirst": 0.5319148936170213
       },
       "sample": {
         "firstFieldGoals": 2,
         "firstAttempts": 2,
         "firstAttemptMakes": 1,
-        "teamGames": 46
+        "teamGames": 47
       }
     },
     {
@@ -72217,36 +72414,6 @@
         "firstAttempts": 7,
         "firstAttemptMakes": 2,
         "teamGames": 44
-      }
-    },
-    {
-      "athleteId": "1054",
-      "player": "Tiffany Hayes",
-      "teamId": "129689",
-      "team": "GS",
-      "games": 46,
-      "edgeScore": 32,
-      "components": {
-        "playerFirstBasketShare": 0.021739130434782608,
-        "teamFirstBasketRate": 0.5434782608695652,
-        "firstShotInvolvement": 0.18043478260869564,
-        "tipMatchup": 0.5,
-        "roleAvailability": 0.5,
-        "headToHead": 0.5,
-        "marketValue": 0.5
-      },
-      "rates": {
-        "firstBasket": 0.021739130434782608,
-        "firstAttempt": 0.043478260869565216,
-        "firstAttemptMake": 0.5,
-        "teamTipWin": 0.5,
-        "teamScoresFirst": 0.5434782608695652
-      },
-      "sample": {
-        "firstFieldGoals": 1,
-        "firstAttempts": 2,
-        "firstAttemptMakes": 1,
-        "teamGames": 46
       }
     },
     {
@@ -72547,6 +72714,36 @@
         "firstAttempts": 7,
         "firstAttemptMakes": 1,
         "teamGames": 45
+      }
+    },
+    {
+      "athleteId": "1054",
+      "player": "Tiffany Hayes",
+      "teamId": "129689",
+      "team": "GS",
+      "games": 47,
+      "edgeScore": 31,
+      "components": {
+        "playerFirstBasketShare": 0.02127659574468085,
+        "teamFirstBasketRate": 0.5319148936170213,
+        "firstShotInvolvement": 0.17978723404255317,
+        "tipMatchup": 0.49468085106382975,
+        "roleAvailability": 0.5,
+        "headToHead": 0.5,
+        "marketValue": 0.5
+      },
+      "rates": {
+        "firstBasket": 0.02127659574468085,
+        "firstAttempt": 0.0425531914893617,
+        "firstAttemptMake": 0.5,
+        "teamTipWin": 0.48936170212765956,
+        "teamScoresFirst": 0.5319148936170213
+      },
+      "sample": {
+        "firstFieldGoals": 1,
+        "firstAttempts": 2,
+        "firstAttemptMakes": 1,
+        "teamGames": 47
       }
     },
     {
@@ -73030,36 +73227,6 @@
       }
     },
     {
-      "athleteId": "4065780",
-      "player": "Kaila Charles",
-      "teamId": "129689",
-      "team": "GS",
-      "games": 46,
-      "edgeScore": 29,
-      "components": {
-        "playerFirstBasketShare": 0,
-        "teamFirstBasketRate": 0.5434782608695652,
-        "firstShotInvolvement": 0.015217391304347825,
-        "tipMatchup": 0.5,
-        "roleAvailability": 0.5,
-        "headToHead": 0.5,
-        "marketValue": 0.5
-      },
-      "rates": {
-        "firstBasket": 0,
-        "firstAttempt": 0.021739130434782608,
-        "firstAttemptMake": 0,
-        "teamTipWin": 0.5,
-        "teamScoresFirst": 0.5434782608695652
-      },
-      "sample": {
-        "firstFieldGoals": 0,
-        "firstAttempts": 1,
-        "firstAttemptMakes": 0,
-        "teamGames": 46
-      }
-    },
-    {
       "athleteId": "4898898",
       "player": "Gianna Kneepkens",
       "teamId": "18",
@@ -73177,6 +73344,36 @@
         "firstAttempts": 6,
         "firstAttemptMakes": 2,
         "teamGames": 45
+      }
+    },
+    {
+      "athleteId": "4065780",
+      "player": "Kaila Charles",
+      "teamId": "129689",
+      "team": "GS",
+      "games": 47,
+      "edgeScore": 28,
+      "components": {
+        "playerFirstBasketShare": 0,
+        "teamFirstBasketRate": 0.5319148936170213,
+        "firstShotInvolvement": 0.014893617021276595,
+        "tipMatchup": 0.49468085106382975,
+        "roleAvailability": 0.5,
+        "headToHead": 0.5,
+        "marketValue": 0.5
+      },
+      "rates": {
+        "firstBasket": 0,
+        "firstAttempt": 0.02127659574468085,
+        "firstAttemptMake": 0,
+        "teamTipWin": 0.48936170212765956,
+        "teamScoresFirst": 0.5319148936170213
+      },
+      "sample": {
+        "firstFieldGoals": 0,
+        "firstAttempts": 1,
+        "firstAttemptMakes": 0,
+        "teamGames": 47
       }
     },
     {
