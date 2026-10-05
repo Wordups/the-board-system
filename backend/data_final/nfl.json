@@ -1,7 +1,7 @@
 {
   "sport": "NFL",
   "date": "2026-10-05",
-  "last_updated": "6:13 PM ET",
+  "last_updated": "7:13 PM ET",
   "week": 4,
   "season": 2026,
   "uncertainty_note": "Week 4 \u00b7 2026 \u2014 built entirely from 2025 prior-season stats; no current-season sample yet, and rosters/depth charts are not yet final.",
@@ -1022,23 +1022,6 @@
             "td_lambda": 0.17798692810457514
           },
           {
-            "player_id": "4036131",
-            "player_name": "Noah Fant",
-            "team": "NO",
-            "opponent": "ATL",
-            "line": "2+ Receptions",
-            "score": 57.95,
-            "confidence": 58,
-            "tier": "B",
-            "reason": "REC/g 1.95 | Rec match 0.80x | 2025 GP 15 | Status GTD | Lineup unconfirmed (Week 1 depth chart)",
-            "sim_prob_pct": 57.95,
-            "model_hit_rate_raw": 0.5795,
-            "lineup_confirmed": false,
-            "position": "TE",
-            "rec_yds_mean": 17.12280749782566,
-            "td_lambda": 0.1661919504643963
-          },
-          {
             "player_id": "4569559",
             "player_name": "Devaughn Vele",
             "team": "NO",
@@ -1071,6 +1054,23 @@
             "position": "WR",
             "rec_yds_mean": 20.25,
             "td_lambda": 0.15443964209887778
+          },
+          {
+            "player_id": "4360248",
+            "player_name": "Kyle Pitts Sr.",
+            "team": "ATL",
+            "opponent": "NO",
+            "line": "6+ Receptions",
+            "score": 51.33,
+            "confidence": 51,
+            "tier": "B",
+            "reason": "REC/g 5.75 | Rec match 1.20x | 2025 GP 17 | Status ACTIVE | Lineup unconfirmed (Week 1 depth chart)",
+            "sim_prob_pct": 51.33,
+            "model_hit_rate_raw": 0.5133,
+            "lineup_confirmed": false,
+            "position": "TE",
+            "rec_yds_mean": 60.01618294073272,
+            "td_lambda": 0.34131341425459066
           }
         ],
         "PassTD": [
@@ -1346,12 +1346,12 @@
       "floor": {
         "qb_line": "1+ Pass TD",
         "receiver_line": "1+ Rec TD",
-        "joint_prob_pct": 32.2
+        "joint_prob_pct": 36.4
       },
       "ceiling": {
         "qb_line": "3+ Pass TD",
         "receiver_line": "2+ Rec TD",
-        "joint_prob_pct": 3.7
+        "joint_prob_pct": 4.5
       }
     }
   ],
@@ -1487,52 +1487,6 @@
     ]
   },
   "player_gamelogs": {
-    "2972515": {
-      "team": "ATL",
-      "position": "QB",
-      "games": [
-        {
-          "week": 2,
-          "opponent": "CLE",
-          "result": "W",
-          "completions": 0.0,
-          "pass_yds": 0.0,
-          "pass_td": 0.0,
-          "interceptions": 0.0,
-          "rush_yds": -4.0
-        },
-        {
-          "week": 4,
-          "opponent": "KC",
-          "result": "L",
-          "completions": 9.0,
-          "pass_yds": 52.0,
-          "pass_td": 0.0,
-          "interceptions": 0.0,
-          "rush_yds": 0.0
-        },
-        {
-          "week": 5,
-          "opponent": "HOU",
-          "result": "L",
-          "completions": 14.0,
-          "pass_yds": 179.0,
-          "pass_td": 0.0,
-          "interceptions": 3.0,
-          "rush_yds": 0.0
-        },
-        {
-          "week": 6,
-          "opponent": "LAR",
-          "result": "L",
-          "completions": 11.0,
-          "pass_yds": 72.0,
-          "pass_td": 0.0,
-          "interceptions": 1.0,
-          "rush_yds": 0.0
-        }
-      ]
-    },
     "4241479": {
       "team": "ATL",
       "position": "QB",
@@ -1888,52 +1842,6 @@
           "pass_td": 1.0,
           "interceptions": 1.0,
           "rush_yds": 34.0
-        }
-      ]
-    },
-    "4361259": {
-      "team": "NO",
-      "position": "QB",
-      "games": [
-        {
-          "week": 1,
-          "opponent": "IND",
-          "result": "L",
-          "completions": 5.0,
-          "pass_yds": 32.0,
-          "pass_td": 0.0,
-          "interceptions": 0.0,
-          "rush_yds": 3.0
-        },
-        {
-          "week": 8,
-          "opponent": "ATL",
-          "result": "W",
-          "completions": 1.0,
-          "pass_yds": 0.0,
-          "pass_td": 0.0,
-          "interceptions": 0.0,
-          "rush_yds": 0.0
-        },
-        {
-          "week": 14,
-          "opponent": "NYJ",
-          "result": "W",
-          "completions": 0.0,
-          "pass_yds": 0.0,
-          "pass_td": 0.0,
-          "interceptions": 0.0,
-          "rush_yds": -2.0
-        },
-        {
-          "week": 18,
-          "opponent": "NE",
-          "result": "L",
-          "completions": 0.0,
-          "pass_yds": 0.0,
-          "pass_td": 0.0,
-          "interceptions": 0.0,
-          "rush_yds": 0.0
         }
       ]
     },
