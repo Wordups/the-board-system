@@ -1,22 +1,11 @@
 {
   "sport": "TENNIS",
   "date": "2026-10-10",
-  "last_updated": "11:24 PM ET",
+  "last_updated": "12:17 AM ET",
   "pinned_board": {
     "title": "Match Win Top 10",
     "market": "ML",
     "players": [
-      {
-        "player_id": "4115",
-        "player_name": "Nuno Borges",
-        "team": "ATP",
-        "opponent": "Jiri Lehecka",
-        "line": "Match Winner",
-        "score": 90.0,
-        "confidence": 90,
-        "tier": "A",
-        "reason": "Rank 51 vs 16 | Form 1-0 vs 0-0 | Nuno Borges vs Jiri Lehecka"
-      },
       {
         "player_id": "4010",
         "player_name": "Thiago Agustin Tirante",
@@ -27,6 +16,17 @@
         "confidence": 90,
         "tier": "A",
         "reason": "Rank 54 vs 13 | Form 1-0 vs 0-0 | Rafael Jodar vs Thiago Agustin Tirante"
+      },
+      {
+        "player_id": "4115",
+        "player_name": "Nuno Borges",
+        "team": "ATP",
+        "opponent": "Jiri Lehecka",
+        "line": "Match Winner",
+        "score": 90.0,
+        "confidence": 90,
+        "tier": "A",
+        "reason": "Rank 51 vs 16 | Form 1-0 vs 0-0 | Nuno Borges vs Jiri Lehecka"
       },
       {
         "player_id": "3793",
@@ -420,9 +420,84 @@
       }
     },
     {
+      "game_id": "184910",
+      "matchup": "Rafael Jodar vs Thiago Agustin Tirante",
+      "time": "ATP | Rolex Shanghai Masters | 1st",
+      "top_signals": [
+        {
+          "market": "ML",
+          "player_name": "Thiago Agustin Tirante",
+          "line": "Match Winner",
+          "score": 90.0,
+          "confidence": 90,
+          "tier": "A",
+          "player_id": "4010"
+        },
+        {
+          "market": "Sets",
+          "player_name": "Thiago Agustin Tirante",
+          "line": "Thiago Agustin Tirante -1.5 Sets",
+          "score": 82.0,
+          "confidence": 82,
+          "tier": "A",
+          "player_id": "184910-sets"
+        },
+        {
+          "market": "O/U",
+          "player_name": "Match Total",
+          "line": "Under 34.5 Games",
+          "score": 78.0,
+          "confidence": 78,
+          "tier": "A",
+          "player_id": "184910-ou"
+        }
+      ],
+      "markets": {
+        "ML": [
+          {
+            "player_id": "4010",
+            "player_name": "Thiago Agustin Tirante",
+            "team": "ATP",
+            "opponent": "Rafael Jodar",
+            "line": "Match Winner",
+            "score": 90.0,
+            "confidence": 90,
+            "tier": "A",
+            "reason": "Rank 54 vs 13 | Form 1-0 vs 0-0 | Rafael Jodar vs Thiago Agustin Tirante"
+          }
+        ],
+        "O/U": [
+          {
+            "player_id": "184910-ou",
+            "player_name": "Match Total",
+            "team": "ATP",
+            "opponent": "Rafael Jodar vs Thiago Agustin Tirante",
+            "line": "Under 34.5 Games",
+            "score": 78.0,
+            "confidence": 78,
+            "tier": "A",
+            "reason": "Round Round 2 | Rank gap 41 | Form gap +1.00"
+          }
+        ],
+        "Sets": [
+          {
+            "player_id": "184910-sets",
+            "player_name": "Thiago Agustin Tirante",
+            "team": "ATP",
+            "opponent": "Rafael Jodar",
+            "line": "Thiago Agustin Tirante -1.5 Sets",
+            "score": 82.0,
+            "confidence": 82,
+            "tier": "A",
+            "reason": "Best-of-5 | Sets 2-0 | Rank gap 41"
+          }
+        ]
+      }
+    },
+    {
       "game_id": "184907",
       "matchup": "Nuno Borges vs Jiri Lehecka",
-      "time": "ATP | Rolex Shanghai Masters | 10/10 - 12:00 AM EDT",
+      "time": "ATP | Rolex Shanghai Masters | 1st",
       "top_signals": [
         {
           "market": "ML",
@@ -497,7 +572,7 @@
     {
       "game_id": "184908",
       "matchup": "Felix Auger-Aliassime vs Camilo Ugo Carabelli",
-      "time": "ATP | Rolex Shanghai Masters | 10/10 - 12:00 AM EDT",
+      "time": "ATP | Rolex Shanghai Masters | 1st",
       "top_signals": [
         {
           "market": "ML",
@@ -572,7 +647,7 @@
     {
       "game_id": "184909",
       "matchup": "Jan-Lennard Struff vs Daniil Medvedev",
-      "time": "ATP | Rolex Shanghai Masters | 10/10 - 12:00 AM EDT",
+      "time": "ATP | Rolex Shanghai Masters | 1st",
       "top_signals": [
         {
           "market": "ML",
@@ -640,81 +715,6 @@
             "confidence": 80,
             "tier": "A",
             "reason": "Best-of-5 | Sets 0-0 | Rank gap 53"
-          }
-        ]
-      }
-    },
-    {
-      "game_id": "184910",
-      "matchup": "Rafael Jodar vs Thiago Agustin Tirante",
-      "time": "ATP | Rolex Shanghai Masters | 10/10 - 12:00 AM EDT",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Thiago Agustin Tirante",
-          "line": "Match Winner",
-          "score": 90.0,
-          "confidence": 90,
-          "tier": "A",
-          "player_id": "4010"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Thiago Agustin Tirante",
-          "line": "Thiago Agustin Tirante -1.5 Sets",
-          "score": 82.0,
-          "confidence": 82,
-          "tier": "A",
-          "player_id": "184910-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 34.5 Games",
-          "score": 78.0,
-          "confidence": 78,
-          "tier": "A",
-          "player_id": "184910-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "4010",
-            "player_name": "Thiago Agustin Tirante",
-            "team": "ATP",
-            "opponent": "Rafael Jodar",
-            "line": "Match Winner",
-            "score": 90.0,
-            "confidence": 90,
-            "tier": "A",
-            "reason": "Rank 54 vs 13 | Form 1-0 vs 0-0 | Rafael Jodar vs Thiago Agustin Tirante"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "184910-ou",
-            "player_name": "Match Total",
-            "team": "ATP",
-            "opponent": "Rafael Jodar vs Thiago Agustin Tirante",
-            "line": "Under 34.5 Games",
-            "score": 78.0,
-            "confidence": 78,
-            "tier": "A",
-            "reason": "Round Round 2 | Rank gap 41 | Form gap +1.00"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "184910-sets",
-            "player_name": "Thiago Agustin Tirante",
-            "team": "ATP",
-            "opponent": "Rafael Jodar",
-            "line": "Thiago Agustin Tirante -1.5 Sets",
-            "score": 82.0,
-            "confidence": 82,
-            "tier": "A",
-            "reason": "Best-of-5 | Sets 2-0 | Rank gap 41"
           }
         ]
       }
@@ -1622,7 +1622,7 @@
     {
       "game_id": "184960",
       "matchup": "Hugo Nys / Edouard Roger-Vasselin vs Petr Nouza / Michael Venus",
-      "time": "ATP | Rolex Shanghai Masters | 10/10 - 12:00 AM EDT",
+      "time": "ATP | Rolex Shanghai Masters | 1st",
       "top_signals": [
         {
           "market": "ML",
@@ -1697,7 +1697,7 @@
     {
       "game_id": "184970",
       "matchup": "Marcelo Arevalo / Mate Pavic vs Adam Pavlasek / Patrik Rikl",
-      "time": "ATP | Rolex Shanghai Masters | 10/10 - 12:00 AM EDT",
+      "time": "ATP | Rolex Shanghai Masters | 1st",
       "top_signals": [
         {
           "market": "ML",
@@ -2447,7 +2447,7 @@
     {
       "game_id": "185296",
       "matchup": "Elvina Kalieva vs Kyoka Okamura",
-      "time": "WTA | Suzhou Open | 10/9 - 11:30 PM EDT",
+      "time": "WTA | Suzhou Open | 10/10 - 12:15 AM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -2522,7 +2522,7 @@
     {
       "game_id": "185295",
       "matchup": "Renata Zarazua vs Rebecca Sramkova",
-      "time": "WTA | Suzhou Open | 10/10 - 1:00 AM EDT",
+      "time": "WTA | Suzhou Open | 10/10 - 1:10 AM EDT",
       "top_signals": [
         {
           "market": "ML",
@@ -2590,81 +2590,6 @@
             "confidence": 70,
             "tier": "B",
             "reason": "Best-of-3 | Sets 4-1 | Rank gap 156"
-          }
-        ]
-      }
-    },
-    {
-      "game_id": "185302",
-      "matchup": "Madeleine Brooks / Ekaterina Ovcharenko vs Yu-Yun Li / Zhang Ying",
-      "time": "WTA | Suzhou Open | 2nd",
-      "top_signals": [
-        {
-          "market": "ML",
-          "player_name": "Madeleine Brooks / Ekaterina Ovcharenko",
-          "line": "Match Winner",
-          "score": 76.54,
-          "confidence": 77,
-          "tier": "A",
-          "player_id": "16558-5196"
-        },
-        {
-          "market": "Sets",
-          "player_name": "Madeleine Brooks / Ekaterina Ovcharenko",
-          "line": "Madeleine Brooks / Ekaterina Ovcharenko -1.5 Sets",
-          "score": 70.0,
-          "confidence": 70,
-          "tier": "B",
-          "player_id": "185302-sets"
-        },
-        {
-          "market": "O/U",
-          "player_name": "Match Total",
-          "line": "Under 21.5 Games",
-          "score": 60.0,
-          "confidence": 60,
-          "tier": "B",
-          "player_id": "185302-ou"
-        }
-      ],
-      "markets": {
-        "ML": [
-          {
-            "player_id": "16558-5196",
-            "player_name": "Madeleine Brooks / Ekaterina Ovcharenko",
-            "team": "WTA",
-            "opponent": "Yu-Yun Li / Zhang Ying",
-            "line": "Match Winner",
-            "score": 76.54,
-            "confidence": 77,
-            "tier": "A",
-            "reason": "Rank 4 vs 250 | Form 2-0 vs 2-0 | Rank est. | Madeleine Brooks / Ekaterina Ovcharenko vs Yu-Yun Li / Zhang Ying"
-          }
-        ],
-        "O/U": [
-          {
-            "player_id": "185302-ou",
-            "player_name": "Match Total",
-            "team": "WTA",
-            "opponent": "Madeleine Brooks / Ekaterina Ovcharenko vs Yu-Yun Li / Zhang Ying",
-            "line": "Under 21.5 Games",
-            "score": 60.0,
-            "confidence": 60,
-            "tier": "B",
-            "reason": "Round Semifinal | Rank gap 246 | Form gap -0.11"
-          }
-        ],
-        "Sets": [
-          {
-            "player_id": "185302-sets",
-            "player_name": "Madeleine Brooks / Ekaterina Ovcharenko",
-            "team": "WTA",
-            "opponent": "Yu-Yun Li / Zhang Ying",
-            "line": "Madeleine Brooks / Ekaterina Ovcharenko -1.5 Sets",
-            "score": 70.0,
-            "confidence": 70,
-            "tier": "B",
-            "reason": "Best-of-3 | Sets 4-1 | Rank gap 246"
           }
         ]
       }
@@ -2972,7 +2897,7 @@
     {
       "game_id": "186365",
       "matchup": "Moyuka Uchijima vs Magdalena Frech",
-      "time": "WTA | Dongfeng Voyah Wuhan Open | 1st",
+      "time": "WTA | Dongfeng Voyah Wuhan Open | 2nd",
       "top_signals": [
         {
           "market": "ML",
@@ -3047,7 +2972,7 @@
     {
       "game_id": "186368",
       "matchup": "Viktorija Golubic vs Daria Kasatkina",
-      "time": "WTA | Dongfeng Voyah Wuhan Open | 1st",
+      "time": "WTA | Dongfeng Voyah Wuhan Open | 2nd",
       "top_signals": [
         {
           "market": "ML",
@@ -3113,7 +3038,7 @@
     {
       "game_id": "186369",
       "matchup": "Sara Sorribes Tormo vs Talia Gibson",
-      "time": "WTA | Dongfeng Voyah Wuhan Open | 1st",
+      "time": "WTA | Dongfeng Voyah Wuhan Open | 2nd",
       "top_signals": [
         {
           "market": "ML",
@@ -3188,7 +3113,7 @@
     {
       "game_id": "186379",
       "matchup": "Alycia Parks vs Aoi Ito",
-      "time": "WTA | Dongfeng Voyah Wuhan Open | 1st",
+      "time": "WTA | Dongfeng Voyah Wuhan Open | 2nd",
       "top_signals": [
         {
           "market": "ML",
@@ -3919,7 +3844,7 @@
     },
     {
       "game_id": "186374",
-      "matchup": "Zhu Lin vs Camila Osorio",
+      "matchup": "Tyra Caterina Grant vs Camila Osorio",
       "time": "WTA | Dongfeng Voyah Wuhan Open | 10/10 - 3:30 AM EDT",
       "top_signals": [
         {
@@ -3956,12 +3881,12 @@
             "player_id": "3404",
             "player_name": "Camila Osorio",
             "team": "WTA",
-            "opponent": "Zhu Lin",
+            "opponent": "Tyra Caterina Grant",
             "line": "Match Winner",
             "score": 75.0,
             "confidence": 75,
             "tier": "A",
-            "reason": "Rank 66 vs 250 | Form 0-0 vs 0-0 | Rank est. | Zhu Lin vs Camila Osorio"
+            "reason": "Rank 66 vs 250 | Form 0-0 vs 0-0 | Rank est. | Tyra Caterina Grant vs Camila Osorio"
           }
         ],
         "O/U": [
@@ -3969,7 +3894,7 @@
             "player_id": "186374-ou",
             "player_name": "Match Total",
             "team": "WTA",
-            "opponent": "Zhu Lin vs Camila Osorio",
+            "opponent": "Tyra Caterina Grant vs Camila Osorio",
             "line": "Under 21.5 Games",
             "score": 60.0,
             "confidence": 60,
@@ -3982,7 +3907,7 @@
             "player_id": "186374-sets",
             "player_name": "Camila Osorio",
             "team": "WTA",
-            "opponent": "Zhu Lin",
+            "opponent": "Tyra Caterina Grant",
             "line": "Camila Osorio -1.5 Sets",
             "score": 70.0,
             "confidence": 70,
