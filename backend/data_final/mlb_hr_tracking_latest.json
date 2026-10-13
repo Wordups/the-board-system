@@ -1,14 +1,14 @@
 {
   "sport": "MLB",
   "date": "2026-10-12",
-  "generated_at": "2026-10-12 9:37 PM ET",
-  "board_last_updated": "9:37 PM ET",
+  "generated_at": "2026-10-12 10:30 PM ET",
+  "board_last_updated": "10:30 PM ET",
   "tracking_version": 1,
   "summary": {
     "pinned_board_title": "HR Core",
-    "tracked_candidate_count": 5,
+    "tracked_candidate_count": 6,
     "core_candidate_count": 2,
-    "fringe_candidate_count": 2
+    "fringe_candidate_count": 3
   },
   "daily_picks": {
     "single": {
@@ -146,8 +146,8 @@
         "pinned_board": true
       },
       "result": {
-        "status": "pending",
-        "home_runs": 0
+        "status": "hit",
+        "home_runs": 1
       },
       "features": {
         "pitcher_name": "Drew Rasmussen",
@@ -294,6 +294,63 @@
       "evidence": []
     },
     {
+      "player_id": "689414",
+      "player_name": "Liam Hicks",
+      "team": "TB",
+      "opponent": "CLE",
+      "game_id": "cle-tb-2026-10-12",
+      "market": "HR",
+      "line": "HR 1+",
+      "score": 23.64,
+      "base_score": 23.64,
+      "confidence": 24,
+      "tier": "B",
+      "reason": "HR edge 9.6 | L5 0.60/g | L10 0.30/g | Season 0.13/g | HR% 0.12 | HistHR% 0.08 | OPS 0.801 | SLG 0.434 | ISO 0.150 | PowIdx 0.16 | Surge 0.41 | Matchup 0.25 | ProjPA 4.0 | Sample 1.00 | Peak3Y 0.017 | vs Foster Griffin | ERA 3.60 | WHIP 1.21 | HR/9 1.20 | HR A 23 | Hand L | Platoon - | Age 27 | Order est. 9 | Lineup confirmed | Rising 0.23 | L5 XBH 0.80/g | Season XBH 0.25/g | Wts T0.42/M0.28/F0.30",
+      "research_rank": 5,
+      "pinned_rank": null,
+      "core_fringe_tag": "fringe",
+      "board_tags": {
+        "play_of_day": false,
+        "daily_straight": false,
+        "daily_two_leg": false,
+        "daily_three_leg": false,
+        "pinned_board": false
+      },
+      "result": {
+        "status": "pending",
+        "home_runs": 0
+      },
+      "features": {
+        "pitcher_name": "Foster Griffin",
+        "pitcher_whip": 1.21,
+        "pitcher_hr9": 1.2,
+        "pitcher_hr_allowed": 23.0,
+        "vs_pitcher_avg": 0.0,
+        "vs_pitcher_ops": 0.0,
+        "vs_pitcher_hr": 0.0,
+        "order_estimate": 9,
+        "projected_pa": 4.05,
+        "lineup_confirmed": true,
+        "lineup_uncertainty_penalty": 0.0,
+        "season_hr_probability": 0.125,
+        "l10_hr_probability": 0.246,
+        "l5_hr_probability": 0.374,
+        "historical_hr_probability": 0.081,
+        "season_hr_per_game": 0.127,
+        "l10_hr_per_game": 0.3,
+        "l5_hr_per_game": 0.6,
+        "ops": 0.801,
+        "slg": 0.434,
+        "iso": 0.15,
+        "sample_reliability": 1.0,
+        "age": 27.0,
+        "historical_power_index": 0.0,
+        "recent_peak_hr_rate": 0.017,
+        "career_hr_rate": 0.026
+      },
+      "evidence": []
+    },
+    {
       "player_id": "683748",
       "player_name": "Victor Mesa Jr.",
       "team": "TB",
@@ -306,7 +363,7 @@
       "confidence": 22,
       "tier": "B",
       "reason": "HR edge 11.8 | L5 0.20/g | L10 0.10/g | Season 0.18/g | HR% 0.18 | HistHR% 0.17 | OPS 0.825 | SLG 0.498 | ISO 0.238 | PowIdx 0.34 | Surge 0.16 | Matchup 0.25 | ProjPA 4.1 | Sample 1.00 | Peak3Y 0.043 | vs Foster Griffin | ERA 3.60 | WHIP 1.21 | HR/9 1.20 | HR A 23 | Hand L | Platoon - | Age 24 | Order est. 5 | Lineup confirmed | Rising 0.48 | L5 XBH 0.20/g | Season XBH 0.32/g | Wts T0.42/M0.28/F0.30",
-      "research_rank": 5,
+      "research_rank": 6,
       "pinned_rank": 3,
       "core_fringe_tag": "fringe",
       "board_tags": {
