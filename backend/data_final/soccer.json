@@ -1,7 +1,7 @@
 {
   "sport": "SOCCER",
   "date": "2026-10-13",
-  "last_updated": "10:16 AM ET",
+  "last_updated": "10:41 AM ET",
   "pinned_board": {
     "title": "Anytime Goalscorer Top 10",
     "market": "GS",
@@ -17,8 +17,8 @@
           "market": "BTTS",
           "player_name": "Both Teams to Score",
           "line": "BTTS Yes",
-          "score": 67.98,
-          "confidence": 68,
+          "score": 68.91,
+          "confidence": 69,
           "tier": "B",
           "player_id": "401915418-btts"
         },
@@ -26,19 +26,19 @@
           "market": "1H",
           "player_name": "First Half Goal",
           "line": "1H Over 0.5 Goals",
-          "score": 79.83,
+          "score": 80.43,
           "confidence": 80,
           "tier": "A",
           "player_id": "401915418-1h"
         },
         {
-          "market": "OU",
-          "player_name": "Match Total",
-          "line": "Over 2.5 Goals",
-          "score": 64.99,
-          "confidence": 65,
-          "tier": "B",
-          "player_id": "401915418-ou"
+          "market": "1HML",
+          "player_name": "Draw",
+          "line": "1H Draw",
+          "score": 34.92,
+          "confidence": 35,
+          "tier": "C",
+          "player_id": "401915418-1hml"
         }
       ],
       "markets": {
@@ -53,12 +53,12 @@
             "team": "RCL",
             "opponent": "SCP",
             "line": "BTTS Yes",
-            "score": 67.98,
-            "confidence": 68,
+            "score": 68.91,
+            "confidence": 69,
             "tier": "B",
-            "reason": "Home score 82.3% | Away score 82.6% | xG 1.73-1.75",
-            "sim_prob_pct": 67.98,
-            "model_hit_rate": 0.6798
+            "reason": "Home score 82.9% | Away score 83.1% | xG 1.77-1.78",
+            "sim_prob_pct": 68.91,
+            "model_hit_rate": 0.6891
           }
         ],
         "1H": [
@@ -68,12 +68,12 @@
             "team": "RCL",
             "opponent": "SCP",
             "line": "1H Over 0.5 Goals",
-            "score": 79.83,
+            "score": 80.43,
             "confidence": 80,
             "tier": "A",
-            "reason": "First-half \u03bb 1.60 | 46% goal-time share | Full-match xG 3.48",
-            "sim_prob_pct": 79.83,
-            "model_hit_rate": 0.7983
+            "reason": "First-half \u03bb 1.63 | 46% goal-time share | Full-match xG 3.55",
+            "sim_prob_pct": 80.43,
+            "model_hit_rate": 0.8043
           }
         ],
         "1HML": [
@@ -83,12 +83,12 @@
             "team": "Draw",
             "opponent": "RCL",
             "line": "1H Draw",
-            "score": 35.32,
+            "score": 34.92,
             "confidence": 35,
             "tier": "C",
-            "reason": "1H Poisson 35.3% | 1H xG 0.80-0.80",
-            "sim_prob_pct": 35.32,
-            "model_hit_rate": 0.3532
+            "reason": "1H Poisson 34.9% | 1H xG 0.81-0.82",
+            "sim_prob_pct": 34.92,
+            "model_hit_rate": 0.3492
           }
         ],
         "OU": [
@@ -97,14 +97,14 @@
             "player_name": "Match Total",
             "team": "RCL",
             "opponent": "SCP",
-            "line": "Over 2.5 Goals",
-            "score": 64.99,
-            "confidence": 65,
-            "tier": "B",
-            "reason": "Total \u03bb 3.48 | Model over 67.5% | Calibrated over 65.0%",
-            "sim_prob_pct": 64.99,
-            "model_hit_rate": 0.6499,
-            "implied_odds": "-175"
+            "line": "Under 3.5 Goals",
+            "score": 55.2,
+            "confidence": 55,
+            "tier": "C",
+            "reason": "Total \u03bb 3.55 | Model over 47.3% | Calibrated under 55.2%",
+            "sim_prob_pct": 55.2,
+            "model_hit_rate": 0.552,
+            "implied_odds": "-170"
           }
         ],
         "ML": [
@@ -114,12 +114,12 @@
             "team": "SCP",
             "opponent": "RCL",
             "line": "Moneyline",
-            "score": 38.37,
+            "score": 38.44,
             "confidence": 38,
             "tier": "C",
-            "reason": "Calibrated 38.4% | Poisson 39.1% | Market 37.3%",
-            "sim_prob_pct": 38.37,
-            "model_hit_rate": 0.3837,
+            "reason": "Calibrated 38.4% | Poisson 39.2% | Market 37.3%",
+            "sim_prob_pct": 38.44,
+            "model_hit_rate": 0.3844,
             "implied_odds": "+155"
           }
         ]
@@ -134,7 +134,7 @@
           "market": "BTTS",
           "player_name": "Both Teams to Score",
           "line": "BTTS Yes",
-          "score": 66.09,
+          "score": 66.2,
           "confidence": 66,
           "tier": "B",
           "player_id": "401915436-btts"
@@ -143,7 +143,7 @@
           "market": "1H",
           "player_name": "First Half Goal",
           "line": "1H Over 0.5 Goals",
-          "score": 79.5,
+          "score": 79.58,
           "confidence": 80,
           "tier": "A",
           "player_id": "401915436-1h"
@@ -152,7 +152,7 @@
           "market": "OU",
           "player_name": "Match Total",
           "line": "Over 2.5 Goals",
-          "score": 64.2,
+          "score": 64.39,
           "confidence": 64,
           "tier": "B",
           "player_id": "401915436-ou"
@@ -170,12 +170,12 @@
             "team": "SAB",
             "opponent": "SLP",
             "line": "BTTS Yes",
-            "score": 66.09,
+            "score": 66.2,
             "confidence": 66,
             "tier": "B",
-            "reason": "Home score 76.4% | Away score 86.5% | xG 1.44-2.00",
-            "sim_prob_pct": 66.09,
-            "model_hit_rate": 0.6609
+            "reason": "Home score 76.5% | Away score 86.5% | xG 1.45-2.01",
+            "sim_prob_pct": 66.2,
+            "model_hit_rate": 0.662
           }
         ],
         "1H": [
@@ -185,12 +185,12 @@
             "team": "SAB",
             "opponent": "SLP",
             "line": "1H Over 0.5 Goals",
-            "score": 79.5,
+            "score": 79.58,
             "confidence": 80,
             "tier": "A",
-            "reason": "First-half \u03bb 1.58 | 46% goal-time share | Full-match xG 3.45",
-            "sim_prob_pct": 79.5,
-            "model_hit_rate": 0.795
+            "reason": "First-half \u03bb 1.59 | 46% goal-time share | Full-match xG 3.45",
+            "sim_prob_pct": 79.58,
+            "model_hit_rate": 0.7958
           }
         ],
         "1HML": [
@@ -200,12 +200,12 @@
             "team": "SLP",
             "opponent": "SAB",
             "line": "1H Moneyline",
-            "score": 39.77,
+            "score": 39.8,
             "confidence": 40,
             "tier": "C",
-            "reason": "1H Poisson 39.8% | 1H xG 0.66-0.92",
-            "sim_prob_pct": 39.77,
-            "model_hit_rate": 0.3977
+            "reason": "1H Poisson 39.8% | 1H xG 0.67-0.92",
+            "sim_prob_pct": 39.8,
+            "model_hit_rate": 0.398
           }
         ],
         "OU": [
@@ -215,13 +215,13 @@
             "team": "SAB",
             "opponent": "SLP",
             "line": "Over 2.5 Goals",
-            "score": 64.2,
+            "score": 64.39,
             "confidence": 64,
             "tier": "B",
-            "reason": "Total \u03bb 3.45 | Model over 66.9% | Calibrated over 64.2%",
-            "sim_prob_pct": 64.2,
-            "model_hit_rate": 0.642,
-            "implied_odds": "-165"
+            "reason": "Total \u03bb 3.45 | Model over 67.0% | Calibrated over 64.4%",
+            "sim_prob_pct": 64.39,
+            "model_hit_rate": 0.6439,
+            "implied_odds": "-170"
           }
         ],
         "ML": [
@@ -231,12 +231,12 @@
             "team": "SLP",
             "opponent": "SAB",
             "line": "Moneyline",
-            "score": 50.75,
+            "score": 50.76,
             "confidence": 51,
             "tier": "C",
-            "reason": "Calibrated 50.7% | Poisson 50.5% | Market 51.1%",
-            "sim_prob_pct": 50.75,
-            "model_hit_rate": 0.5075,
+            "reason": "Calibrated 50.8% | Poisson 50.6% | Market 51.1%",
+            "sim_prob_pct": 50.76,
+            "model_hit_rate": 0.5076,
             "implied_odds": "-115"
           }
         ]
@@ -602,7 +602,7 @@
           "market": "BTTS",
           "player_name": "Both Teams to Score",
           "line": "BTTS Yes",
-          "score": 63.49,
+          "score": 63.32,
           "confidence": 63,
           "tier": "B",
           "player_id": "401915413-btts"
@@ -611,7 +611,7 @@
           "market": "1H",
           "player_name": "First Half Goal",
           "line": "1H Over 0.5 Goals",
-          "score": 83.18,
+          "score": 83.07,
           "confidence": 83,
           "tier": "A",
           "player_id": "401915413-1h"
@@ -620,7 +620,7 @@
           "market": "ML",
           "player_name": "INT",
           "line": "Moneyline",
-          "score": 73.38,
+          "score": 73.34,
           "confidence": 73,
           "tier": "A",
           "player_id": "401915413-ml"
@@ -638,12 +638,12 @@
             "team": "INT",
             "opponent": "BRU",
             "line": "BTTS Yes",
-            "score": 63.49,
+            "score": 63.32,
             "confidence": 63,
             "tier": "B",
-            "reason": "Home score 93.5% | Away score 67.9% | xG 2.74-1.14",
-            "sim_prob_pct": 63.49,
-            "model_hit_rate": 0.6349
+            "reason": "Home score 93.5% | Away score 67.7% | xG 2.73-1.13",
+            "sim_prob_pct": 63.32,
+            "model_hit_rate": 0.6332
           }
         ],
         "1H": [
@@ -653,12 +653,12 @@
             "team": "INT",
             "opponent": "BRU",
             "line": "1H Over 0.5 Goals",
-            "score": 83.18,
+            "score": 83.07,
             "confidence": 83,
             "tier": "A",
-            "reason": "First-half \u03bb 1.78 | 46% goal-time share | Full-match xG 3.88",
-            "sim_prob_pct": 83.18,
-            "model_hit_rate": 0.8318
+            "reason": "First-half \u03bb 1.78 | 46% goal-time share | Full-match xG 3.86",
+            "sim_prob_pct": 83.07,
+            "model_hit_rate": 0.8307
           }
         ],
         "1HML": [
@@ -668,12 +668,12 @@
             "team": "INT",
             "opponent": "BRU",
             "line": "1H Moneyline",
-            "score": 54.76,
+            "score": 54.68,
             "confidence": 55,
             "tier": "C",
-            "reason": "1H Poisson 54.8% | 1H xG 1.26-0.52",
-            "sim_prob_pct": 54.76,
-            "model_hit_rate": 0.5476
+            "reason": "1H Poisson 54.7% | 1H xG 1.26-0.52",
+            "sim_prob_pct": 54.68,
+            "model_hit_rate": 0.5468
           }
         ],
         "OU": [
@@ -683,13 +683,13 @@
             "team": "INT",
             "opponent": "BRU",
             "line": "Over 3.5 Goals",
-            "score": 53.63,
-            "confidence": 54,
+            "score": 53.27,
+            "confidence": 53,
             "tier": "C",
-            "reason": "Total \u03bb 3.88 | Model over 54.2% | Calibrated over 53.6%",
-            "sim_prob_pct": 53.63,
-            "model_hit_rate": 0.5363,
-            "implied_odds": "-125"
+            "reason": "Total \u03bb 3.86 | Model over 53.9% | Calibrated over 53.3%",
+            "sim_prob_pct": 53.27,
+            "model_hit_rate": 0.5327,
+            "implied_odds": "-120"
           }
         ],
         "ML": [
@@ -699,12 +699,12 @@
             "team": "INT",
             "opponent": "BRU",
             "line": "Moneyline",
-            "score": 73.38,
+            "score": 73.34,
             "confidence": 73,
             "tier": "A",
-            "reason": "Calibrated 73.4% | Poisson 71.1% | Market 76.6%",
-            "sim_prob_pct": 73.38,
-            "model_hit_rate": 0.7338,
+            "reason": "Calibrated 73.3% | Poisson 71.0% | Market 76.6%",
+            "sim_prob_pct": 73.34,
+            "model_hit_rate": 0.7334,
             "implied_odds": "-400"
           }
         ]
@@ -719,7 +719,7 @@
           "market": "BTTS",
           "player_name": "Both Teams to Score",
           "line": "BTTS Yes",
-          "score": 71.76,
+          "score": 71.59,
           "confidence": 72,
           "tier": "B",
           "player_id": "401915434-btts"
@@ -737,8 +737,8 @@
           "market": "ML",
           "player_name": "RBL",
           "line": "Moneyline",
-          "score": 58.45,
-          "confidence": 58,
+          "score": 59.15,
+          "confidence": 59,
           "tier": "B",
           "player_id": "401915434-ml"
         }
@@ -755,12 +755,12 @@
             "team": "RBL",
             "opponent": "PSV",
             "line": "BTTS Yes",
-            "score": 71.76,
+            "score": 71.59,
             "confidence": 72,
             "tier": "B",
-            "reason": "Home score 91.0% | Away score 78.8% | xG 2.41-1.55",
-            "sim_prob_pct": 71.76,
-            "model_hit_rate": 0.7176
+            "reason": "Home score 91.2% | Away score 78.5% | xG 2.42-1.54",
+            "sim_prob_pct": 71.59,
+            "model_hit_rate": 0.7159
           }
         ],
         "1H": [
@@ -785,12 +785,12 @@
             "team": "RBL",
             "opponent": "PSV",
             "line": "1H Moneyline",
-            "score": 44.81,
+            "score": 45.16,
             "confidence": 45,
             "tier": "C",
-            "reason": "1H Poisson 44.8% | 1H xG 1.11-0.71",
-            "sim_prob_pct": 44.81,
-            "model_hit_rate": 0.4481
+            "reason": "1H Poisson 45.2% | 1H xG 1.12-0.71",
+            "sim_prob_pct": 45.16,
+            "model_hit_rate": 0.4516
           }
         ],
         "OU": [
@@ -816,13 +816,13 @@
             "team": "RBL",
             "opponent": "PSV",
             "line": "Moneyline",
-            "score": 58.45,
-            "confidence": 58,
+            "score": 59.15,
+            "confidence": 59,
             "tier": "B",
-            "reason": "Calibrated 58.5% | Poisson 56.7% | Market 60.9%",
-            "sim_prob_pct": 58.45,
-            "model_hit_rate": 0.5845,
-            "implied_odds": "-175"
+            "reason": "Calibrated 59.2% | Poisson 57.2% | Market 61.9%",
+            "sim_prob_pct": 59.15,
+            "model_hit_rate": 0.5915,
+            "implied_odds": "-185"
           }
         ]
       }
@@ -836,7 +836,7 @@
           "market": "BTTS",
           "player_name": "Both Teams to Score",
           "line": "BTTS Yes",
-          "score": 63.2,
+          "score": 63.36,
           "confidence": 63,
           "tier": "B",
           "player_id": "401915411-btts"
@@ -845,7 +845,7 @@
           "market": "1H",
           "player_name": "First Half Goal",
           "line": "1H Over 0.5 Goals",
-          "score": 86.9,
+          "score": 87.0,
           "confidence": 87,
           "tier": "A",
           "player_id": "401915411-1h"
@@ -854,7 +854,7 @@
           "market": "ML",
           "player_name": "MUN",
           "line": "Moneyline",
-          "score": 82.57,
+          "score": 82.61,
           "confidence": 83,
           "tier": "A",
           "player_id": "401915411-ml"
@@ -872,12 +872,12 @@
             "team": "VIK",
             "opponent": "MUN",
             "line": "BTTS Yes",
-            "score": 63.2,
+            "score": 63.36,
             "confidence": 63,
             "tier": "B",
-            "reason": "Home score 65.5% | Away score 96.5% | xG 1.06-3.35",
-            "sim_prob_pct": 63.2,
-            "model_hit_rate": 0.632
+            "reason": "Home score 65.6% | Away score 96.6% | xG 1.07-3.37",
+            "sim_prob_pct": 63.36,
+            "model_hit_rate": 0.6336
           }
         ],
         "1H": [
@@ -887,12 +887,12 @@
             "team": "VIK",
             "opponent": "MUN",
             "line": "1H Over 0.5 Goals",
-            "score": 86.9,
+            "score": 87.0,
             "confidence": 87,
             "tier": "A",
-            "reason": "First-half \u03bb 2.03 | 46% goal-time share | Full-match xG 4.42",
-            "sim_prob_pct": 86.9,
-            "model_hit_rate": 0.869
+            "reason": "First-half \u03bb 2.04 | 46% goal-time share | Full-match xG 4.44",
+            "sim_prob_pct": 87.0,
+            "model_hit_rate": 0.87
           }
         ],
         "1HML": [
@@ -902,12 +902,12 @@
             "team": "MUN",
             "opponent": "VIK",
             "line": "1H Moneyline",
-            "score": 63.46,
-            "confidence": 63,
+            "score": 63.56,
+            "confidence": 64,
             "tier": "B",
-            "reason": "1H Poisson 63.5% | 1H xG 0.49-1.54",
-            "sim_prob_pct": 63.46,
-            "model_hit_rate": 0.6346
+            "reason": "1H Poisson 63.6% | 1H xG 0.49-1.55",
+            "sim_prob_pct": 63.56,
+            "model_hit_rate": 0.6356
           }
         ],
         "OU": [
@@ -917,13 +917,13 @@
             "team": "VIK",
             "opponent": "MUN",
             "line": "Under 4.5 Goals",
-            "score": 53.62,
-            "confidence": 54,
+            "score": 53.24,
+            "confidence": 53,
             "tier": "C",
-            "reason": "Total \u03bb 4.42 | Model over 45.2% | Calibrated under 53.6%",
-            "sim_prob_pct": 53.62,
-            "model_hit_rate": 0.5362,
-            "implied_odds": "-120"
+            "reason": "Total \u03bb 4.44 | Model over 45.6% | Calibrated under 53.2%",
+            "sim_prob_pct": 53.24,
+            "model_hit_rate": 0.5324,
+            "implied_odds": "-115"
           }
         ],
         "ML": [
@@ -933,12 +933,12 @@
             "team": "MUN",
             "opponent": "VIK",
             "line": "Moneyline",
-            "score": 82.57,
+            "score": 82.61,
             "confidence": 83,
             "tier": "A",
-            "reason": "Calibrated 82.6% | Poisson 80.6% | Market 85.2%",
-            "sim_prob_pct": 82.57,
-            "model_hit_rate": 0.8257,
+            "reason": "Calibrated 82.6% | Poisson 80.7% | Market 85.2%",
+            "sim_prob_pct": 82.61,
+            "model_hit_rate": 0.8261,
             "implied_odds": "-800"
           }
         ]
