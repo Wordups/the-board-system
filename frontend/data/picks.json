@@ -1,49 +1,106 @@
 {
-  "date": "2026-10-18",
-  "last_updated": "10:33 AM ET",
-  "updated_at": "2026-10-18T14:33:39Z",
+  "date": "2026-10-19",
+  "last_updated": "10:37 AM ET",
+  "updated_at": "2026-10-19T14:37:27Z",
   "sports": {
+    "wnba": {
+      "label": "WNBA",
+      "date": "2026-10-19",
+      "last_updated": "10:37 AM ET",
+      "straight": {
+        "player_id": "4398935",
+        "player_name": "Veronica Burton",
+        "team": "GS",
+        "opponent": "ATL",
+        "game_id": null,
+        "line": "4+ REB",
+        "score": 83.74,
+        "tier": "A",
+        "reason": "Implied -100 | Zone AIM | Edge +0.74 | Hit% 50% | Sample 12 | Proj 4.7 | Baseline 4.3 | USG 20% | MIN 30.0 | REB matchup 1.06x | Prev 4.3 | Pre 4.3 | Home boost",
+        "market": "REB",
+        "implied_odds": "-100",
+        "value_zone": "aim",
+        "edge": 0.74,
+        "model_hit_rate": 0.5
+      },
+      "twoLeg": [
+        {
+          "player_id": "4398935",
+          "player_name": "Veronica Burton",
+          "team": "GS",
+          "opponent": "ATL",
+          "game_id": null,
+          "line": "4+ REB",
+          "score": 83.74,
+          "tier": "A",
+          "reason": "Implied -100 | Zone AIM | Edge +0.74 | Hit% 50% | Sample 12 | Proj 4.7 | Baseline 4.3 | USG 20% | MIN 30.0 | REB matchup 1.06x | Prev 4.3 | Pre 4.3 | Home boost",
+          "market": "REB",
+          "implied_odds": "-100",
+          "value_zone": "aim",
+          "edge": 0.74,
+          "model_hit_rate": 0.5
+        }
+      ],
+      "threeLeg": [
+        {
+          "player_id": "4398935",
+          "player_name": "Veronica Burton",
+          "team": "GS",
+          "opponent": "ATL",
+          "game_id": null,
+          "line": "4+ REB",
+          "score": 83.74,
+          "tier": "A",
+          "reason": "Implied -100 | Zone AIM | Edge +0.74 | Hit% 50% | Sample 12 | Proj 4.7 | Baseline 4.3 | USG 20% | MIN 30.0 | REB matchup 1.06x | Prev 4.3 | Pre 4.3 | Home boost",
+          "market": "REB",
+          "implied_odds": "-100",
+          "value_zone": "aim",
+          "edge": 0.74,
+          "model_hit_rate": 0.5
+        }
+      ]
+    },
     "tennis": {
       "label": "TENNIS",
-      "date": "2026-10-18",
-      "last_updated": "10:33 AM ET",
+      "date": "2026-10-19",
+      "last_updated": "10:37 AM ET",
       "straight": {
-        "player_id": "8871",
-        "player_name": "Clement Chidekh",
+        "player_id": "12284",
+        "player_name": "Stefanos Sakellaridis",
         "team": "ATP",
-        "opponent": "Gauthier Onclin",
+        "opponent": "Mikhail Kukushkin",
         "game_id": null,
         "line": "Match Winner",
-        "score": 79.11,
+        "score": 89.0,
         "tier": "A",
-        "reason": "Rank 146 vs 250 | Form 1-0 vs 1-0 | Rank est. | Gauthier Onclin vs Clement Chidekh",
+        "reason": "Rank 133 vs 250 | Form 2-0 vs 0-0 | Rank est. | Stefanos Sakellaridis vs Mikhail Kukushkin",
         "market": "ML"
       },
       "twoLeg": [
         {
-          "player_id": "8871",
-          "player_name": "Clement Chidekh",
+          "player_id": "12284",
+          "player_name": "Stefanos Sakellaridis",
           "team": "ATP",
-          "opponent": "Gauthier Onclin",
+          "opponent": "Mikhail Kukushkin",
           "game_id": null,
           "line": "Match Winner",
-          "score": 79.11,
+          "score": 89.0,
           "tier": "A",
-          "reason": "Rank 146 vs 250 | Form 1-0 vs 1-0 | Rank est. | Gauthier Onclin vs Clement Chidekh",
+          "reason": "Rank 133 vs 250 | Form 2-0 vs 0-0 | Rank est. | Stefanos Sakellaridis vs Mikhail Kukushkin",
           "market": "ML"
         }
       ],
       "threeLeg": [
         {
-          "player_id": "8871",
-          "player_name": "Clement Chidekh",
+          "player_id": "12284",
+          "player_name": "Stefanos Sakellaridis",
           "team": "ATP",
-          "opponent": "Gauthier Onclin",
+          "opponent": "Mikhail Kukushkin",
           "game_id": null,
           "line": "Match Winner",
-          "score": 79.11,
+          "score": 89.0,
           "tier": "A",
-          "reason": "Rank 146 vs 250 | Form 1-0 vs 1-0 | Rank est. | Gauthier Onclin vs Clement Chidekh",
+          "reason": "Rank 133 vs 250 | Form 2-0 vs 0-0 | Rank est. | Stefanos Sakellaridis vs Mikhail Kukushkin",
           "market": "ML"
         }
       ]
@@ -53,11 +110,29 @@
     "title": "Ultimate Cook",
     "legs": [
       {
+        "sport": "wnba",
+        "player_id": "4398935",
+        "player_name": "Veronica Burton",
+        "team": "GS",
+        "opponent": "ATL",
+        "market": "REB",
+        "line": "4+ REB",
+        "tier": "A",
+        "american_odds": "-100",
+        "decimal_odds": 2.0,
+        "sources": [
+          "2-leg",
+          "3-leg",
+          "straight"
+        ],
+        "status": "Pending"
+      },
+      {
         "sport": "tennis",
-        "player_id": "8871",
-        "player_name": "Clement Chidekh",
+        "player_id": "12284",
+        "player_name": "Stefanos Sakellaridis",
         "team": "ATP",
-        "opponent": "Gauthier Onclin",
+        "opponent": "Mikhail Kukushkin",
         "market": "ML",
         "line": "Match Winner",
         "tier": "A",
@@ -72,13 +147,13 @@
       }
     ],
     "stake_usd": 10,
-    "priced_legs_count": 0,
-    "total_legs_count": 1,
-    "combined_american_odds": null,
-    "combined_decimal_odds": null,
-    "payout_usd": null,
-    "header_summary": "$10 stake \u2192 no priced legs available (0 of 1 priced legs)",
+    "priced_legs_count": 1,
+    "total_legs_count": 2,
+    "combined_american_odds": "+100",
+    "combined_decimal_odds": 2.0,
+    "payout_usd": 20.0,
+    "header_summary": "$10 stake \u2192 $20.00 payout (computed from 1 of 2 priced legs)",
     "status": "Pending",
-    "frozen_at": "2026-10-18T14:33:39Z"
+    "frozen_at": "2026-10-19T14:37:27Z"
   }
 }
