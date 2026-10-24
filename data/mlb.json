@@ -1,7 +1,7 @@
 {
   "sport": "MLB",
   "date": "2026-10-24",
-  "last_updated": "7:09 AM ET",
+  "last_updated": "8:16 AM ET",
   "calibration": {
     "threshold_pp": 15.0,
     "mode": "off",
@@ -36,7 +36,7 @@
         "team": "MIL",
         "opponent": "TB",
         "line": "HR 1+",
-        "score": 28.32,
+        "score": 28.28,
         "confidence": 28,
         "tier": "B",
         "reason": "HR edge 13.4 | L5 0.40/g | L10 0.20/g | Season 0.18/g | HR% 0.17 | HistHR% 0.15 | OPS 0.873 | SLG 0.484 | ISO 0.218 | PowIdx 0.39 | Surge 0.26 | Matchup 0.18 | ProjPA 4.3 | Sample 1.00 | Peak3Y 0.042 | vs Drew Rasmussen | ERA 2.67 | WHIP 0.91 | HR/9 0.73 | HR A 14 | Hand R | Platoon + | vsP 0.000/0.000 in 1 PA | Age 30 | Order est. 3 | Lineup pen 1.2 | L5 XBH 0.40/g | Season XBH 0.35/g | Wts T0.42/M0.28/F0.30",
@@ -91,7 +91,7 @@
         "score": 94.28,
         "confidence": 92,
         "tier": "A",
-        "reason": "Edge 58.0, trend 0.80, matchup 0.29, form 0.28",
+        "reason": "Edge 58.0, trend 0.80, matchup 0.26, form 0.28",
         "sim_prob_pct": 93.7
       },
       {
@@ -139,7 +139,7 @@
         "score": 93.36,
         "confidence": 92,
         "tier": "A",
-        "reason": "Edge 58.0, trend 0.40, matchup 0.24, form 0.23",
+        "reason": "Edge 58.0, trend 0.40, matchup 0.21, form 0.23",
         "sim_prob_pct": 92.8
       },
       {
@@ -1167,12 +1167,12 @@
                 "model_prob_raw": 0.306,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26OCT242000TBMIL-TBJCAMINERO13-1",
-                "implied_prob": 0.185,
-                "edge_pp": 12.1,
-                "volume": 2832,
+                "implied_prob": 0.175,
+                "edge_pp": 13.1,
+                "volume": 3434,
                 "decision": "BET",
                 "model_fair_american": 227,
-                "market_american": 441
+                "market_american": 471
               },
               {
                 "threshold": 2,
@@ -1181,12 +1181,12 @@
                 "model_prob_raw": 0.0456,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26OCT242000TBMIL-TBJCAMINERO13-2",
-                "implied_prob": 0.02,
-                "edge_pp": 2.6,
+                "implied_prob": 0.015,
+                "edge_pp": 3.1,
                 "volume": 273,
                 "decision": "PASS",
                 "model_fair_american": 2093,
-                "market_american": 4900
+                "market_american": 6567
               }
             ]
           },
@@ -1216,12 +1216,12 @@
                 "model_prob_raw": 0.268,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26OCT242000TBMIL-MILJBAUERS9-1",
-                "implied_prob": 0.135,
-                "edge_pp": 13.3,
-                "volume": 1938,
+                "implied_prob": 0.14,
+                "edge_pp": 12.8,
+                "volume": 2045,
                 "decision": "BET",
                 "model_fair_american": 273,
-                "market_american": 641
+                "market_american": 614
               },
               {
                 "threshold": 2,
@@ -1459,7 +1459,7 @@
             "score": 92.48,
             "confidence": 92,
             "tier": "A",
-            "reason": "Edge 58.0, trend 0.80, matchup 0.29, form 0.28",
+            "reason": "Edge 58.0, trend 0.80, matchup 0.26, form 0.28",
             "sim_prob_pct": 93.7,
             "calibration_status": "flag",
             "baseline_prob_pct": 29.4,
@@ -1519,7 +1519,7 @@
             "score": 91.56,
             "confidence": 92,
             "tier": "A",
-            "reason": "Edge 58.0, trend 0.40, matchup 0.24, form 0.23",
+            "reason": "Edge 58.0, trend 0.40, matchup 0.21, form 0.23",
             "sim_prob_pct": 92.8,
             "calibration_status": "flag",
             "baseline_prob_pct": 72.8,
@@ -1671,7 +1671,7 @@
             "score": 48.76,
             "confidence": 49,
             "tier": "A",
-            "reason": "Edge 20.1, trend 0.60, matchup 0.33, form 0.29",
+            "reason": "Edge 20.1, trend 0.60, matchup 0.31, form 0.29",
             "sim_prob_pct": 50.0,
             "calibration_status": "ok",
             "baseline_prob_pct": 45.8,
@@ -1701,7 +1701,7 @@
             "score": 42.52,
             "confidence": 43,
             "tier": "A",
-            "reason": "Edge 14.8, trend 0.45, matchup 0.26, form 0.22",
+            "reason": "Edge 14.8, trend 0.45, matchup 0.23, form 0.22",
             "sim_prob_pct": 43.7,
             "calibration_status": "ok",
             "baseline_prob_pct": 43.2,
@@ -1772,7 +1772,7 @@
               "model_prob_raw": 0.942,
               "shrink_pp": 42.4,
               "edge_pp": -1.7,
-              "volume": 444377
+              "volume": 462569
             },
             "decision": "PASS"
           }
@@ -1815,60 +1815,6 @@
     "decision_rules": "BET: edge_pp between +5 and +25 and market implied_prob between 0.10 and 0.80.\nPASS: edge_pp < +5 (no edge) or implied_prob outside 0.10-0.80 (chalk/longshot).\nCHECK: edge_pp > +25 \u2014 model disagrees with the market too much; probable model error, verify before betting. (No Kalshi market: NO_MARKET.)",
     "players": [
       {
-        "player_id": "641343",
-        "player_name": "Jake Bauers",
-        "team": "MIL",
-        "opponent": "TB",
-        "market": "HR",
-        "game_id": "tb-mil-2026-10-24",
-        "headline_line": "HR 1+",
-        "best": {
-          "threshold": 1,
-          "line": "1+",
-          "model_prob": 0.268,
-          "model_prob_raw": 0.268,
-          "shrink_pp": 0.0,
-          "ticker": "KXMLBHR-26OCT242000TBMIL-MILJBAUERS9-1",
-          "implied_prob": 0.135,
-          "edge_pp": 13.3,
-          "volume": 1938,
-          "decision": "BET",
-          "model_fair_american": 273,
-          "market_american": 641
-        },
-        "ladder": [
-          {
-            "threshold": 1,
-            "line": "1+",
-            "model_prob": 0.268,
-            "model_prob_raw": 0.268,
-            "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26OCT242000TBMIL-MILJBAUERS9-1",
-            "implied_prob": 0.135,
-            "edge_pp": 13.3,
-            "volume": 1938,
-            "decision": "BET",
-            "model_fair_american": 273,
-            "market_american": 641
-          },
-          {
-            "threshold": 2,
-            "line": "2+",
-            "model_prob": 0.032,
-            "model_prob_raw": 0.032,
-            "shrink_pp": 0.0,
-            "ticker": "KXMLBHR-26OCT242000TBMIL-MILJBAUERS9-2",
-            "implied_prob": 0.015,
-            "edge_pp": 1.7,
-            "volume": 0,
-            "decision": "PASS",
-            "model_fair_american": 3025,
-            "market_american": 6567
-          }
-        ],
-        "label": "REPORT_ONLY \u2014 no execution venue wired"
-      },
-      {
         "player_id": "691406",
         "player_name": "Junior Caminero",
         "team": "TB",
@@ -1883,12 +1829,12 @@
           "model_prob_raw": 0.306,
           "shrink_pp": 0.0,
           "ticker": "KXMLBHR-26OCT242000TBMIL-TBJCAMINERO13-1",
-          "implied_prob": 0.185,
-          "edge_pp": 12.1,
-          "volume": 2832,
+          "implied_prob": 0.175,
+          "edge_pp": 13.1,
+          "volume": 3434,
           "decision": "BET",
           "model_fair_american": 227,
-          "market_american": 441
+          "market_american": 471
         },
         "ladder": [
           {
@@ -1898,12 +1844,12 @@
             "model_prob_raw": 0.306,
             "shrink_pp": 0.0,
             "ticker": "KXMLBHR-26OCT242000TBMIL-TBJCAMINERO13-1",
-            "implied_prob": 0.185,
-            "edge_pp": 12.1,
-            "volume": 2832,
+            "implied_prob": 0.175,
+            "edge_pp": 13.1,
+            "volume": 3434,
             "decision": "BET",
             "model_fair_american": 227,
-            "market_american": 441
+            "market_american": 471
           },
           {
             "threshold": 2,
@@ -1912,12 +1858,66 @@
             "model_prob_raw": 0.0456,
             "shrink_pp": 0.0,
             "ticker": "KXMLBHR-26OCT242000TBMIL-TBJCAMINERO13-2",
-            "implied_prob": 0.02,
-            "edge_pp": 2.6,
+            "implied_prob": 0.015,
+            "edge_pp": 3.1,
             "volume": 273,
             "decision": "PASS",
             "model_fair_american": 2093,
-            "market_american": 4900
+            "market_american": 6567
+          }
+        ],
+        "label": "REPORT_ONLY \u2014 no execution venue wired"
+      },
+      {
+        "player_id": "641343",
+        "player_name": "Jake Bauers",
+        "team": "MIL",
+        "opponent": "TB",
+        "market": "HR",
+        "game_id": "tb-mil-2026-10-24",
+        "headline_line": "HR 1+",
+        "best": {
+          "threshold": 1,
+          "line": "1+",
+          "model_prob": 0.268,
+          "model_prob_raw": 0.268,
+          "shrink_pp": 0.0,
+          "ticker": "KXMLBHR-26OCT242000TBMIL-MILJBAUERS9-1",
+          "implied_prob": 0.14,
+          "edge_pp": 12.8,
+          "volume": 2045,
+          "decision": "BET",
+          "model_fair_american": 273,
+          "market_american": 614
+        },
+        "ladder": [
+          {
+            "threshold": 1,
+            "line": "1+",
+            "model_prob": 0.268,
+            "model_prob_raw": 0.268,
+            "shrink_pp": 0.0,
+            "ticker": "KXMLBHR-26OCT242000TBMIL-MILJBAUERS9-1",
+            "implied_prob": 0.14,
+            "edge_pp": 12.8,
+            "volume": 2045,
+            "decision": "BET",
+            "model_fair_american": 273,
+            "market_american": 614
+          },
+          {
+            "threshold": 2,
+            "line": "2+",
+            "model_prob": 0.032,
+            "model_prob_raw": 0.032,
+            "shrink_pp": 0.0,
+            "ticker": "KXMLBHR-26OCT242000TBMIL-MILJBAUERS9-2",
+            "implied_prob": 0.015,
+            "edge_pp": 1.7,
+            "volume": 0,
+            "decision": "PASS",
+            "model_fair_american": 3025,
+            "market_american": 6567
           }
         ],
         "label": "REPORT_ONLY \u2014 no execution venue wired"
