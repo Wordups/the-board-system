@@ -1,7 +1,7 @@
 {
   "sport": "MLB",
   "date": "2026-10-26",
-  "last_updated": "9:27 PM ET",
+  "last_updated": "10:19 PM ET",
   "calibration": {
     "threshold_pp": 15.0,
     "mode": "off",
@@ -18,14 +18,14 @@
         "team": "TB",
         "opponent": "MIL",
         "line": "HR 1+",
-        "score": 20.16,
-        "confidence": 20,
-        "tier": "C",
-        "reason": "HR edge 19.6 | L5 0.00/g | L10 0.20/g | Season 0.26/g | HR% 0.23 | HistHR% 0.24 | OPS 0.884 | SLG 0.524 | ISO 0.248 | PowIdx 0.52 | Surge 0.11 | Matchup 0.28 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.068 | vs Robert Gasser | ERA 3.87 | WHIP 1.19 | HR/9 1.23 | HR A 15 | Hand L | Platoon + | Age 22 | Order est. 4 | Lineup confirmed | Power due 0.19 | Rising 0.50 | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30 | In game (5)",
+        "score": 6.61,
+        "confidence": 7,
+        "tier": "PASS",
+        "reason": "HR edge 19.6 | L5 0.00/g | L10 0.20/g | Season 0.26/g | HR% 0.23 | HistHR% 0.24 | OPS 0.884 | SLG 0.524 | ISO 0.248 | PowIdx 0.52 | Surge 0.11 | Matchup 0.28 | ProjPA 4.4 | Sample 1.00 | Peak3Y 0.068 | vs Robert Gasser | ERA 3.87 | WHIP 1.19 | HR/9 1.23 | HR A 15 | Hand L | Platoon + | Age 22 | Order est. 4 | Lineup confirmed | Power due 0.19 | Rising 0.50 | Season XBH 0.42/g | Wts T0.42/M0.28/F0.30 | In game (7)",
         "sim_prob_pct": 32.8,
         "hr_result": "pending",
         "home_runs": 0,
-        "core_bucket": "strong",
+        "core_bucket": "fringe",
         "projected_pa": 4.42,
         "power_surge": 0.113,
         "hr_power_index": 0.522
@@ -36,10 +36,10 @@
         "team": "MIL",
         "opponent": "TB",
         "line": "HR 1+",
-        "score": 16.86,
-        "confidence": 17,
-        "tier": "C",
-        "reason": "HR edge 14.2 | L5 0.40/g | L10 0.20/g | Season 0.18/g | HR% 0.18 | HistHR% 0.15 | OPS 0.873 | SLG 0.484 | ISO 0.218 | PowIdx 0.46 | Surge 0.26 | Matchup 0.45 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.042 | vs Freddy Peralta | ERA 4.42 | WHIP 1.33 | HR/9 1.22 | HR A 23 | Hand R | Platoon + | vsP 0.000/0.333 in 3 PA | Age 30 | Order est. 2 | Lineup confirmed | L5 XBH 0.40/g | Season XBH 0.35/g | Wts T0.42/M0.28/F0.30 | In game (5)",
+        "score": 5.53,
+        "confidence": 6,
+        "tier": "PASS",
+        "reason": "HR edge 14.2 | L5 0.40/g | L10 0.20/g | Season 0.18/g | HR% 0.18 | HistHR% 0.15 | OPS 0.873 | SLG 0.484 | ISO 0.218 | PowIdx 0.46 | Surge 0.26 | Matchup 0.45 | ProjPA 4.5 | Sample 1.00 | Peak3Y 0.042 | vs Freddy Peralta | ERA 4.42 | WHIP 1.33 | HR/9 1.22 | HR A 23 | Hand R | Platoon + | vsP 0.000/0.333 in 3 PA | Age 30 | Order est. 2 | Lineup confirmed | L5 XBH 0.40/g | Season XBH 0.35/g | Wts T0.42/M0.28/F0.30 | In game (7)",
         "sim_prob_pct": 27.4,
         "hr_result": "pending",
         "home_runs": 0,
@@ -109,7 +109,7 @@
         "score": 94.56,
         "confidence": 93,
         "tier": "A",
-        "reason": "Edge 58.0, trend 0.40, matchup 0.30, form 0.23",
+        "reason": "Edge 58.0, trend 0.40, matchup 0.32, form 0.23",
         "sim_prob_pct": 92.8
       },
       {
@@ -1008,12 +1008,12 @@
                 "model_prob_raw": 0.328,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26OCT262000MILTB-TBJCAMINERO13-1",
-                "implied_prob": 0.135,
-                "edge_pp": 19.3,
-                "volume": 118451,
-                "decision": "BET",
+                "implied_prob": 0.05,
+                "edge_pp": 27.8,
+                "volume": 127546,
+                "decision": "CHECK",
                 "model_fair_american": 205,
-                "market_american": 641
+                "market_american": 1900
               },
               {
                 "threshold": 2,
@@ -1022,12 +1022,12 @@
                 "model_prob_raw": 0.0548,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26OCT262000MILTB-TBJCAMINERO13-2",
-                "implied_prob": 0.015,
-                "edge_pp": 4.0,
-                "volume": 64768,
+                "implied_prob": 0.005,
+                "edge_pp": 5.0,
+                "volume": 65222,
                 "decision": "PASS",
                 "model_fair_american": 1725,
-                "market_american": 6567
+                "market_american": 19900
               }
             ]
           },
@@ -1057,12 +1057,12 @@
                 "model_prob_raw": 0.2744,
                 "shrink_pp": 0.0,
                 "ticker": "KXMLBHR-26OCT262000MILTB-MILJBAUERS9-1",
-                "implied_prob": 0.065,
-                "edge_pp": 20.9,
-                "volume": 33470,
+                "implied_prob": 0.045,
+                "edge_pp": 22.9,
+                "volume": 47651,
                 "decision": "PASS",
                 "model_fair_american": 264,
-                "market_american": 1438
+                "market_american": 2122
               },
               {
                 "threshold": 2,
@@ -1073,7 +1073,7 @@
                 "ticker": "KXMLBHR-26OCT262000MILTB-MILJBAUERS9-2",
                 "implied_prob": 0.005,
                 "edge_pp": 2.8,
-                "volume": 4388,
+                "volume": 4469,
                 "decision": "PASS",
                 "model_fair_american": 2912,
                 "market_american": 19900
@@ -1194,16 +1194,16 @@
             "sim_prob_pct": 29.8
           },
           {
-            "player_id": "683748-rbi",
-            "player_name": "Victor Mesa Jr.",
-            "team": "TB",
-            "opponent": "MIL",
+            "player_id": "687401-rbi",
+            "player_name": "Joey Ortiz",
+            "team": "MIL",
+            "opponent": "TB",
             "line": "1+ RBI",
-            "score": 23.72,
+            "score": 24.08,
             "confidence": 24,
             "tier": "B",
-            "reason": "RBI edge 1.2 | L5 0.60/g | L10 0.30/g | Season 0.43/g | Order est. 7 | Team R/G 4.54 | Team OBP 0.326 | WHIP 1.19 | Platoon 0.25 | RISP 0.18 | Lineup pen 0.0 | Wts T0.34/M0.33/F0.33",
-            "sim_prob_pct": 23.7
+            "reason": "RBI edge 0.0 | L5 0.60/g | L10 0.30/g | Season 0.35/g | Order est. 9 | Team R/G 5.14 | Team OBP 0.341 | WHIP 1.33 | Platoon 0.25 | RISP 0.23 | Lineup pen 0.0 | Wts T0.34/M0.33/F0.33",
+            "sim_prob_pct": 24.1
           }
         ],
         "K": [
@@ -1293,7 +1293,7 @@
             "score": 92.76,
             "confidence": 93,
             "tier": "A",
-            "reason": "Edge 58.0, trend 0.40, matchup 0.30, form 0.23",
+            "reason": "Edge 58.0, trend 0.40, matchup 0.32, form 0.23",
             "sim_prob_pct": 92.8,
             "calibration_status": "flag",
             "baseline_prob_pct": 72.8,
@@ -1460,7 +1460,7 @@
             "score": 43.72,
             "confidence": 44,
             "tier": "A",
-            "reason": "Edge 14.8, trend 0.45, matchup 0.37, form 0.22",
+            "reason": "Edge 14.8, trend 0.45, matchup 0.38, form 0.22",
             "sim_prob_pct": 43.7,
             "calibration_status": "ok",
             "baseline_prob_pct": 43.2,
@@ -1556,12 +1556,12 @@
             "sim_prob_pct": 93.4,
             "kalshi": {
               "ticker": "KXMLBGAME-26OCT262000MILTB-MIL",
-              "implied_prob": 0.775,
+              "implied_prob": 0.995,
               "model_prob": 0.51,
               "model_prob_raw": 0.934,
               "shrink_pp": 42.4,
-              "edge_pp": -26.5,
-              "volume": 3986737
+              "edge_pp": -48.5,
+              "volume": 5250459
             },
             "decision": "PASS"
           }
@@ -1611,20 +1611,7 @@
         "market": "HR",
         "game_id": "mil-tb-2026-10-26",
         "headline_line": "HR 1+",
-        "best": {
-          "threshold": 1,
-          "line": "1+",
-          "model_prob": 0.328,
-          "model_prob_raw": 0.328,
-          "shrink_pp": 0.0,
-          "ticker": "KXMLBHR-26OCT262000MILTB-TBJCAMINERO13-1",
-          "implied_prob": 0.135,
-          "edge_pp": 19.3,
-          "volume": 118451,
-          "decision": "BET",
-          "model_fair_american": 205,
-          "market_american": 641
-        },
+        "best": null,
         "ladder": [
           {
             "threshold": 1,
@@ -1633,12 +1620,12 @@
             "model_prob_raw": 0.328,
             "shrink_pp": 0.0,
             "ticker": "KXMLBHR-26OCT262000MILTB-TBJCAMINERO13-1",
-            "implied_prob": 0.135,
-            "edge_pp": 19.3,
-            "volume": 118451,
-            "decision": "BET",
+            "implied_prob": 0.05,
+            "edge_pp": 27.8,
+            "volume": 127546,
+            "decision": "CHECK",
             "model_fair_american": 205,
-            "market_american": 641
+            "market_american": 1900
           },
           {
             "threshold": 2,
@@ -1647,12 +1634,12 @@
             "model_prob_raw": 0.0548,
             "shrink_pp": 0.0,
             "ticker": "KXMLBHR-26OCT262000MILTB-TBJCAMINERO13-2",
-            "implied_prob": 0.015,
-            "edge_pp": 4.0,
-            "volume": 64768,
+            "implied_prob": 0.005,
+            "edge_pp": 5.0,
+            "volume": 65222,
             "decision": "PASS",
             "model_fair_american": 1725,
-            "market_american": 6567
+            "market_american": 19900
           }
         ],
         "label": "REPORT_ONLY \u2014 no execution venue wired"
@@ -1674,12 +1661,12 @@
             "model_prob_raw": 0.2744,
             "shrink_pp": 0.0,
             "ticker": "KXMLBHR-26OCT262000MILTB-MILJBAUERS9-1",
-            "implied_prob": 0.065,
-            "edge_pp": 20.9,
-            "volume": 33470,
+            "implied_prob": 0.045,
+            "edge_pp": 22.9,
+            "volume": 47651,
             "decision": "PASS",
             "model_fair_american": 264,
-            "market_american": 1438
+            "market_american": 2122
           },
           {
             "threshold": 2,
@@ -1690,7 +1677,7 @@
             "ticker": "KXMLBHR-26OCT262000MILTB-MILJBAUERS9-2",
             "implied_prob": 0.005,
             "edge_pp": 2.8,
-            "volume": 4388,
+            "volume": 4469,
             "decision": "PASS",
             "model_fair_american": 2912,
             "market_american": 19900
