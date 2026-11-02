@@ -1,7 +1,7 @@
 {
   "sport": "SOCCER",
   "date": "2026-11-01",
-  "last_updated": "7:23 PM ET",
+  "last_updated": "8:09 PM ET",
   "pinned_board": {
     "title": "Anytime Goalscorer Top 10",
     "market": "GS",
@@ -11,14 +11,14 @@
     {
       "game_id": "761932",
       "matchup": "MIA @ NE",
-      "time": "MLS | Scheduled",
+      "time": "MLS | 44'",
       "top_signals": [
         {
           "market": "BTTS",
           "player_name": "Both Teams to Score",
           "line": "BTTS Yes",
-          "score": 65.1,
-          "confidence": 65,
+          "score": 69.33,
+          "confidence": 69,
           "tier": "B",
           "player_id": "761932-btts"
         },
@@ -26,19 +26,19 @@
           "market": "1H",
           "player_name": "First Half Goal",
           "line": "1H Over 0.5 Goals",
-          "score": 78.06,
-          "confidence": 78,
+          "score": 80.82,
+          "confidence": 81,
           "tier": "A",
           "player_id": "761932-1h"
         },
         {
-          "market": "OU",
-          "player_name": "Match Total",
-          "line": "Over 2.5 Goals",
-          "score": 64.0,
-          "confidence": 64,
-          "tier": "B",
-          "player_id": "761932-ou"
+          "market": "1HML",
+          "player_name": "MIA",
+          "line": "1H Moneyline",
+          "score": 35.62,
+          "confidence": 36,
+          "tier": "C",
+          "player_id": "761932-1hml"
         }
       ],
       "markets": {
@@ -53,12 +53,12 @@
             "team": "NE",
             "opponent": "MIA",
             "line": "BTTS Yes",
-            "score": 65.1,
-            "confidence": 65,
+            "score": 69.33,
+            "confidence": 69,
             "tier": "B",
-            "reason": "Home score 79.1% | Away score 82.3% | xG 1.56-1.73",
-            "sim_prob_pct": 65.1,
-            "model_hit_rate": 0.651
+            "reason": "Home score 81.4% | Away score 85.1% | xG 1.68-1.91",
+            "sim_prob_pct": 69.33,
+            "model_hit_rate": 0.6933
           }
         ],
         "1H": [
@@ -68,27 +68,27 @@
             "team": "NE",
             "opponent": "MIA",
             "line": "1H Over 0.5 Goals",
-            "score": 78.06,
-            "confidence": 78,
+            "score": 80.82,
+            "confidence": 81,
             "tier": "A",
-            "reason": "First-half \u03bb 1.52 | 46% goal-time share | Full-match xG 3.30",
-            "sim_prob_pct": 78.06,
-            "model_hit_rate": 0.7806
+            "reason": "First-half \u03bb 1.65 | 46% goal-time share | Full-match xG 3.59",
+            "sim_prob_pct": 80.82,
+            "model_hit_rate": 0.8082
           }
         ],
         "1HML": [
           {
             "player_id": "761932-1hml",
-            "player_name": "Draw",
-            "team": "Draw",
+            "player_name": "MIA",
+            "team": "MIA",
             "opponent": "NE",
-            "line": "1H Draw",
-            "score": 36.45,
+            "line": "1H Moneyline",
+            "score": 35.62,
             "confidence": 36,
             "tier": "C",
-            "reason": "1H Poisson 36.5% | 1H xG 0.72-0.80",
-            "sim_prob_pct": 36.45,
-            "model_hit_rate": 0.3645
+            "reason": "1H Poisson 35.6% | 1H xG 0.77-0.88",
+            "sim_prob_pct": 35.62,
+            "model_hit_rate": 0.3562
           }
         ],
         "OU": [
@@ -97,14 +97,14 @@
             "player_name": "Match Total",
             "team": "NE",
             "opponent": "MIA",
-            "line": "Over 2.5 Goals",
-            "score": 64.0,
-            "confidence": 64,
-            "tier": "B",
-            "reason": "Total \u03bb 3.30 | Model over 64.0% | Calibrated over 64.0%",
-            "sim_prob_pct": 64.0,
-            "model_hit_rate": 0.64,
-            "implied_odds": "OFF"
+            "line": "Under 3.5 Goals",
+            "score": 50.54,
+            "confidence": 51,
+            "tier": "C",
+            "reason": "Total \u03bb 3.59 | Model over 48.3% | Calibrated under 50.5%",
+            "sim_prob_pct": 50.54,
+            "model_hit_rate": 0.5054,
+            "implied_odds": "-105"
           }
         ],
         "ML": [
@@ -114,13 +114,13 @@
             "team": "MIA",
             "opponent": "NE",
             "line": "Moneyline",
-            "score": 42.11,
-            "confidence": 42,
+            "score": 43.35,
+            "confidence": 43,
             "tier": "C",
-            "reason": "Poisson 42.1% | xG 1.56-1.73",
-            "sim_prob_pct": 42.11,
-            "model_hit_rate": 0.4211,
-            "implied_odds": "OFF"
+            "reason": "Calibrated 43.4% | Poisson 43.6% | Market 43.0%",
+            "sim_prob_pct": 43.35,
+            "model_hit_rate": 0.4335,
+            "implied_odds": "+115"
           }
         ]
       }
@@ -134,8 +134,8 @@
           "market": "BTTS",
           "player_name": "Both Teams to Score",
           "line": "BTTS Yes",
-          "score": 63.1,
-          "confidence": 63,
+          "score": 63.94,
+          "confidence": 64,
           "tier": "B",
           "player_id": "761921-btts"
         },
@@ -143,19 +143,19 @@
           "market": "1H",
           "player_name": "First Half Goal",
           "line": "1H Over 0.5 Goals",
-          "score": 78.43,
+          "score": 78.32,
           "confidence": 78,
           "tier": "A",
           "player_id": "761921-1h"
         },
         {
-          "market": "ML",
-          "player_name": "LAFC",
-          "line": "Moneyline",
-          "score": 56.07,
-          "confidence": 56,
+          "market": "OU",
+          "player_name": "Match Total",
+          "line": "Under 3.5 Goals",
+          "score": 56.63,
+          "confidence": 57,
           "tier": "B",
-          "player_id": "761921-ml"
+          "player_id": "761921-ou"
         }
       ],
       "markets": {
@@ -170,12 +170,12 @@
             "team": "LAFC",
             "opponent": "MIN",
             "line": "BTTS Yes",
-            "score": 63.1,
-            "confidence": 63,
+            "score": 63.94,
+            "confidence": 64,
             "tier": "B",
-            "reason": "Home score 87.1% | Away score 72.5% | xG 2.04-1.29",
-            "sim_prob_pct": 63.1,
-            "model_hit_rate": 0.631
+            "reason": "Home score 85.9% | Away score 74.4% | xG 1.96-1.36",
+            "sim_prob_pct": 63.94,
+            "model_hit_rate": 0.6394
           }
         ],
         "1H": [
@@ -185,12 +185,12 @@
             "team": "LAFC",
             "opponent": "MIN",
             "line": "1H Over 0.5 Goals",
-            "score": 78.43,
+            "score": 78.32,
             "confidence": 78,
             "tier": "A",
-            "reason": "First-half \u03bb 1.53 | 46% goal-time share | Full-match xG 3.33",
-            "sim_prob_pct": 78.43,
-            "model_hit_rate": 0.7843
+            "reason": "First-half \u03bb 1.53 | 46% goal-time share | Full-match xG 3.32",
+            "sim_prob_pct": 78.32,
+            "model_hit_rate": 0.7832
           }
         ],
         "1HML": [
@@ -200,12 +200,12 @@
             "team": "LAFC",
             "opponent": "MIN",
             "line": "1H Moneyline",
-            "score": 42.32,
-            "confidence": 42,
+            "score": 40.07,
+            "confidence": 40,
             "tier": "C",
-            "reason": "1H Poisson 42.3% | 1H xG 0.94-0.59",
-            "sim_prob_pct": 42.32,
-            "model_hit_rate": 0.4232
+            "reason": "1H Poisson 40.1% | 1H xG 0.90-0.63",
+            "sim_prob_pct": 40.07,
+            "model_hit_rate": 0.4007
           }
         ],
         "OU": [
@@ -215,13 +215,13 @@
             "team": "LAFC",
             "opponent": "MIN",
             "line": "Under 3.5 Goals",
-            "score": 56.33,
-            "confidence": 56,
+            "score": 56.63,
+            "confidence": 57,
             "tier": "B",
-            "reason": "Total \u03bb 3.33 | Model over 42.7% | Calibrated under 56.3%",
-            "sim_prob_pct": 56.33,
-            "model_hit_rate": 0.5633,
-            "implied_odds": "-135"
+            "reason": "Total \u03bb 3.32 | Model over 42.5% | Calibrated under 56.6%",
+            "sim_prob_pct": 56.63,
+            "model_hit_rate": 0.5663,
+            "implied_odds": "-140"
           }
         ],
         "ML": [
@@ -231,13 +231,13 @@
             "team": "LAFC",
             "opponent": "MIN",
             "line": "Moneyline",
-            "score": 56.07,
-            "confidence": 56,
-            "tier": "B",
-            "reason": "Calibrated 56.1% | Poisson 54.8% | Market 57.8%",
-            "sim_prob_pct": 56.07,
-            "model_hit_rate": 0.5607,
-            "implied_odds": "-165"
+            "score": 52.43,
+            "confidence": 52,
+            "tier": "C",
+            "reason": "Calibrated 52.4% | Poisson 51.4% | Market 53.8%",
+            "sim_prob_pct": 52.43,
+            "model_hit_rate": 0.5243,
+            "implied_odds": "-140"
           }
         ]
       }
@@ -251,7 +251,7 @@
           "market": "BTTS",
           "player_name": "Both Teams to Score",
           "line": "BTTS Yes",
-          "score": 61.02,
+          "score": 60.64,
           "confidence": 61,
           "tier": "B",
           "player_id": "761933-btts"
@@ -260,8 +260,8 @@
           "market": "1H",
           "player_name": "First Half Goal",
           "line": "1H Over 0.5 Goals",
-          "score": 76.7,
-          "confidence": 77,
+          "score": 76.45,
+          "confidence": 76,
           "tier": "A",
           "player_id": "761933-1h"
         },
@@ -269,8 +269,8 @@
           "market": "OU",
           "player_name": "Match Total",
           "line": "Over 2.5 Goals",
-          "score": 60.72,
-          "confidence": 61,
+          "score": 60.12,
+          "confidence": 60,
           "tier": "B",
           "player_id": "761933-ou"
         }
@@ -287,12 +287,12 @@
             "team": "POR",
             "opponent": "HOU",
             "line": "BTTS Yes",
-            "score": 61.02,
+            "score": 60.64,
             "confidence": 61,
             "tier": "B",
-            "reason": "Home score 85.1% | Away score 71.7% | xG 1.90-1.26",
-            "sim_prob_pct": 61.02,
-            "model_hit_rate": 0.6102
+            "reason": "Home score 84.9% | Away score 71.4% | xG 1.89-1.25",
+            "sim_prob_pct": 60.64,
+            "model_hit_rate": 0.6064
           }
         ],
         "1H": [
@@ -302,12 +302,12 @@
             "team": "POR",
             "opponent": "HOU",
             "line": "1H Over 0.5 Goals",
-            "score": 76.7,
-            "confidence": 77,
+            "score": 76.45,
+            "confidence": 76,
             "tier": "A",
-            "reason": "First-half \u03bb 1.46 | 46% goal-time share | Full-match xG 3.17",
-            "sim_prob_pct": 76.7,
-            "model_hit_rate": 0.767
+            "reason": "First-half \u03bb 1.45 | 46% goal-time share | Full-match xG 3.14",
+            "sim_prob_pct": 76.45,
+            "model_hit_rate": 0.7645
           }
         ],
         "1HML": [
@@ -317,12 +317,12 @@
             "team": "POR",
             "opponent": "HOU",
             "line": "1H Moneyline",
-            "score": 40.35,
+            "score": 40.22,
             "confidence": 40,
             "tier": "C",
-            "reason": "1H Poisson 40.4% | 1H xG 0.88-0.58",
-            "sim_prob_pct": 40.35,
-            "model_hit_rate": 0.4035
+            "reason": "1H Poisson 40.2% | 1H xG 0.87-0.58",
+            "sim_prob_pct": 40.22,
+            "model_hit_rate": 0.4022
           }
         ],
         "OU": [
@@ -332,13 +332,13 @@
             "team": "POR",
             "opponent": "HOU",
             "line": "Over 2.5 Goals",
-            "score": 60.72,
-            "confidence": 61,
+            "score": 60.12,
+            "confidence": 60,
             "tier": "B",
-            "reason": "Total \u03bb 3.17 | Model over 61.3% | Calibrated over 60.7%",
-            "sim_prob_pct": 60.72,
-            "model_hit_rate": 0.6072,
-            "implied_odds": "-170"
+            "reason": "Total \u03bb 3.14 | Model over 60.8% | Calibrated over 60.1%",
+            "sim_prob_pct": 60.12,
+            "model_hit_rate": 0.6012,
+            "implied_odds": "-165"
           }
         ],
         "ML": [
@@ -348,12 +348,12 @@
             "team": "POR",
             "opponent": "HOU",
             "line": "Moneyline",
-            "score": 53.36,
+            "score": 53.27,
             "confidence": 53,
             "tier": "C",
-            "reason": "Calibrated 53.4% | Poisson 52.4% | Market 54.6%",
-            "sim_prob_pct": 53.36,
-            "model_hit_rate": 0.5336,
+            "reason": "Calibrated 53.3% | Poisson 52.3% | Market 54.6%",
+            "sim_prob_pct": 53.27,
+            "model_hit_rate": 0.5327,
             "implied_odds": "-145"
           }
         ]
