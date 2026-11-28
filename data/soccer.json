@@ -1,7 +1,7 @@
 {
   "sport": "SOCCER",
   "date": "2026-11-27",
-  "last_updated": "6:37 PM ET",
+  "last_updated": "11:33 PM ET",
   "pinned_board": {
     "title": "Anytime Goalscorer Top 10",
     "market": "GS",
@@ -9,133 +9,16 @@
   },
   "games": [
     {
-      "game_id": "401933727",
-      "matchup": "MIA @ CLB",
-      "time": "MLS | Scheduled",
-      "top_signals": [
-        {
-          "market": "BTTS",
-          "player_name": "Both Teams to Score",
-          "line": "BTTS Yes",
-          "score": 70.41,
-          "confidence": 70,
-          "tier": "B",
-          "player_id": "401933727-btts"
-        },
-        {
-          "market": "1H",
-          "player_name": "First Half Goal",
-          "line": "1H Over 0.5 Goals",
-          "score": 81.41,
-          "confidence": 81,
-          "tier": "A",
-          "player_id": "401933727-1h"
-        },
-        {
-          "market": "1HML",
-          "player_name": "CLB",
-          "line": "1H Moneyline",
-          "score": 34.43,
-          "confidence": 34,
-          "tier": "C",
-          "player_id": "401933727-1hml"
-        }
-      ],
-      "markets": {
-        "GS": [],
-        "AST": [],
-        "SHOTS": [],
-        "SOT": [],
-        "BTTS": [
-          {
-            "player_id": "401933727-btts",
-            "player_name": "Both Teams to Score",
-            "team": "CLB",
-            "opponent": "MIA",
-            "line": "BTTS Yes",
-            "score": 70.41,
-            "confidence": 70,
-            "tier": "B",
-            "reason": "Home score 84.9% | Away score 82.9% | xG 1.89-1.77",
-            "sim_prob_pct": 70.41,
-            "model_hit_rate": 0.7041
-          }
-        ],
-        "1H": [
-          {
-            "player_id": "401933727-1h",
-            "player_name": "First Half Goal",
-            "team": "CLB",
-            "opponent": "MIA",
-            "line": "1H Over 0.5 Goals",
-            "score": 81.41,
-            "confidence": 81,
-            "tier": "A",
-            "reason": "First-half \u03bb 1.68 | 46% goal-time share | Full-match xG 3.66",
-            "sim_prob_pct": 81.41,
-            "model_hit_rate": 0.8141
-          }
-        ],
-        "1HML": [
-          {
-            "player_id": "401933727-1hml",
-            "player_name": "CLB",
-            "team": "CLB",
-            "opponent": "MIA",
-            "line": "1H Moneyline",
-            "score": 34.43,
-            "confidence": 34,
-            "tier": "C",
-            "reason": "1H Poisson 34.4% | 1H xG 0.87-0.81",
-            "sim_prob_pct": 34.43,
-            "model_hit_rate": 0.3443
-          }
-        ],
-        "OU": [
-          {
-            "player_id": "401933727-ou",
-            "player_name": "Match Total",
-            "team": "CLB",
-            "opponent": "MIA",
-            "line": "Under 3.5 Goals",
-            "score": 50.92,
-            "confidence": 51,
-            "tier": "C",
-            "reason": "Total \u03bb 3.66 | Model over 49.7% | Calibrated under 50.9%",
-            "sim_prob_pct": 50.92,
-            "model_hit_rate": 0.5092,
-            "implied_odds": "-125"
-          }
-        ],
-        "ML": [
-          {
-            "player_id": "401933727-ml",
-            "player_name": "CLB",
-            "team": "CLB",
-            "opponent": "MIA",
-            "line": "Moneyline",
-            "score": 39.36,
-            "confidence": 39,
-            "tier": "C",
-            "reason": "Calibrated 39.4% | Poisson 41.6% | Market 36.3%",
-            "sim_prob_pct": 39.36,
-            "model_hit_rate": 0.3936,
-            "implied_odds": "+155"
-          }
-        ]
-      }
-    },
-    {
       "game_id": "401933725",
       "matchup": "VAN @ RSL",
-      "time": "MLS | Scheduled",
+      "time": "MLS | HT",
       "top_signals": [
         {
           "market": "BTTS",
           "player_name": "Both Teams to Score",
           "line": "BTTS Yes",
-          "score": 60.7,
-          "confidence": 61,
+          "score": 60.05,
+          "confidence": 60,
           "tier": "B",
           "player_id": "401933725-btts"
         },
@@ -143,7 +26,7 @@
           "market": "1H",
           "player_name": "First Half Goal",
           "line": "1H Over 0.5 Goals",
-          "score": 75.28,
+          "score": 74.8,
           "confidence": 75,
           "tier": "A",
           "player_id": "401933725-1h"
@@ -152,7 +35,7 @@
           "market": "OU",
           "player_name": "Match Total",
           "line": "Over 2.5 Goals",
-          "score": 58.26,
+          "score": 57.96,
           "confidence": 58,
           "tier": "B",
           "player_id": "401933725-ou"
@@ -170,12 +53,12 @@
             "team": "RSL",
             "opponent": "VAN",
             "line": "BTTS Yes",
-            "score": 60.7,
-            "confidence": 61,
+            "score": 60.05,
+            "confidence": 60,
             "tier": "B",
-            "reason": "Home score 75.3% | Away score 80.6% | xG 1.40-1.64",
-            "sim_prob_pct": 60.7,
-            "model_hit_rate": 0.607
+            "reason": "Home score 75.2% | Away score 79.8% | xG 1.40-1.60",
+            "sim_prob_pct": 60.05,
+            "model_hit_rate": 0.6005
           }
         ],
         "1H": [
@@ -185,12 +68,12 @@
             "team": "RSL",
             "opponent": "VAN",
             "line": "1H Over 0.5 Goals",
-            "score": 75.28,
+            "score": 74.8,
             "confidence": 75,
             "tier": "A",
-            "reason": "First-half \u03bb 1.40 | 46% goal-time share | Full-match xG 3.04",
-            "sim_prob_pct": 75.28,
-            "model_hit_rate": 0.7528
+            "reason": "First-half \u03bb 1.38 | 46% goal-time share | Full-match xG 3.00",
+            "sim_prob_pct": 74.8,
+            "model_hit_rate": 0.748
           }
         ],
         "1HML": [
@@ -200,12 +83,12 @@
             "team": "Draw",
             "opponent": "RSL",
             "line": "1H Draw",
-            "score": 38.25,
-            "confidence": 38,
+            "score": 38.6,
+            "confidence": 39,
             "tier": "C",
-            "reason": "1H Poisson 38.3% | 1H xG 0.64-0.75",
-            "sim_prob_pct": 38.25,
-            "model_hit_rate": 0.3825
+            "reason": "1H Poisson 38.6% | 1H xG 0.64-0.74",
+            "sim_prob_pct": 38.6,
+            "model_hit_rate": 0.386
           }
         ],
         "OU": [
@@ -215,13 +98,13 @@
             "team": "RSL",
             "opponent": "VAN",
             "line": "Over 2.5 Goals",
-            "score": 58.26,
+            "score": 57.96,
             "confidence": 58,
             "tier": "B",
-            "reason": "Total \u03bb 3.04 | Model over 58.5% | Calibrated over 58.3%",
-            "sim_prob_pct": 58.26,
-            "model_hit_rate": 0.5826,
-            "implied_odds": "-155"
+            "reason": "Total \u03bb 3.00 | Model over 57.6% | Calibrated over 58.0%",
+            "sim_prob_pct": 57.96,
+            "model_hit_rate": 0.5796,
+            "implied_odds": "-160"
           }
         ],
         "ML": [
@@ -231,13 +114,13 @@
             "team": "VAN",
             "opponent": "RSL",
             "line": "Moneyline",
-            "score": 41.96,
-            "confidence": 42,
+            "score": 41.15,
+            "confidence": 41,
             "tier": "C",
-            "reason": "Calibrated 42.0% | Poisson 43.2% | Market 40.2%",
-            "sim_prob_pct": 41.96,
-            "model_hit_rate": 0.4196,
-            "implied_odds": "+130"
+            "reason": "Calibrated 41.2% | Poisson 42.4% | Market 39.4%",
+            "sim_prob_pct": 41.15,
+            "model_hit_rate": 0.4115,
+            "implied_odds": "+135"
           }
         ]
       }
